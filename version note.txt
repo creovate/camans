@@ -1,7 +1,3 @@
-- Fixed Worker/Job/Problem Complement Pop ups
-- Fixed 4 items to display on viewWorker.jsp
-- Fixed Stub column
-- Fixed some UI dimensions
-- Added Benefit module
-- Added Add Job, Add Problem to existing worker/job. (**facing unknown column in WHERE Clause)
-- Added validation for all forms
+Version 1.4.3
+Before UAT
+
