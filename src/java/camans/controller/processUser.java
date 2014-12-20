@@ -6,16 +6,26 @@ package camans.controller;
 
 import camans.entity.*;
 import camans.dao.*;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.List;
+import java.util.UUID;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.simple.JSONArray;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import org.json.simple.JSONObject;
 
 /**
@@ -40,21 +50,104 @@ public class processUser extends HttpServlet {
         //response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         try {
-            //data collection//
+
+
+            boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
+
             String action = request.getParameter("action");
-            String nric = request.getParameter("nNRIC");
-            String fullName = request.getParameter("nFullName");
-            String alias = request.getParameter("nAlias");
+            String nric = "";
+            String fullName = "";
+            String alias = "";
             String username = request.getParameter("nUsername");
-            String pwd = request.getParameter("nPwd");
-            String gender = request.getParameter("nGender");
-            String role = request.getParameter("nRole");
-            String email = request.getParameter("nEmail");
-            String phNum = request.getParameter("nPhNum");
-            String photoPath = request.getParameter("nPhotoPath");
-            String page = request.getParameter("page");
-            //end of data collection//
-            out.println(action);
+            String pwd = "";
+            String gender = "";
+            String role = "";
+            String email = "";
+            String phNum = "";
+            String photoPath = "";
+            
+            //check that we have a file upload request
+            if (isMultiPart) {
+                //==========================================//
+                //          Prepare for File Upload
+                //==========================================//
+                // Create a factory for disk-based file items
+                DiskFileItemFactory diskFactory = new DiskFileItemFactory();
+                // File Upload Handler
+                ServletFileUpload uploader = new ServletFileUpload(diskFactory);
+                // Put all the fields request into iter
+                FileItemIterator iter = uploader.getItemIterator(request);
+                //==========================================//
+                //          Data Collection
+                //==========================================//
+
+                while(iter.hasNext()) {
+                    FileItemStream item = iter.next();
+                    if (item.isFormField()) {
+                        String fieldName = item.getFieldName();
+                        InputStream is = item.openStream();
+                        byte[] b = new byte[is.available()];
+                        is.read(b);
+                        String value = new String(b);
+                        if ("action".equalsIgnoreCase(fieldName)) {
+                            action = value;
+                        } else if ("nNRIC".equalsIgnoreCase(fieldName)) {
+                            nric = value;
+                        } else if ("nFullName".equalsIgnoreCase(fieldName)) {
+                            fullName = value;
+                        } else if ("nAlias".equalsIgnoreCase(fieldName)) {
+                            alias = value;
+                        } else if ("nUsername".equalsIgnoreCase(fieldName)) {
+                            username = value;
+                        } else if ("nPwd".equalsIgnoreCase(fieldName)) {
+                            pwd = value;
+                        } else if ("nGender".equalsIgnoreCase(fieldName)) {
+                            gender = value;
+                        } else if ("nRole".equalsIgnoreCase(fieldName)) {
+                            role = value;
+                        } else if ("nEmail".equalsIgnoreCase(fieldName)) {
+                           email = value;
+                        }  else if ("nPhNum".equalsIgnoreCase(fieldName)) {
+                           phNum = value;
+                        }  else if ("nPhotoPath".equalsIgnoreCase(fieldName)) {
+                           photoPath = value;
+                        }    
+                    } else { //image upload
+
+                        if (!item.getName().equals("")) {
+                            //retrieve filePath of the app build folder
+                            String filePath = getServletContext().getRealPath("/");
+                            //to append in image file name
+                            String uniqueID = UUID.randomUUID().toString();
+                            try {
+                                File file = new File (filePath + File.separator + "img" + File.separator + username);
+                                //create a image fie directory with username
+                                if (!file.exists()) {file.mkdir();}
+                                //set the file Name
+                                String fileName = uniqueID + "-xx-" + item.getName();
+                                file = new File(file.getAbsolutePath() + File.separator + fileName);
+                                FileOutputStream fos = new FileOutputStream(file);
+                                InputStream is = item.openStream();
+                                int x = 0;
+                                byte[] b  = new byte[1024];
+                                while((x=is.read(b))!= -1){
+                                    fos.write(b,0,x);
+                                }
+                                fos.flush();
+                                fos.close();
+                                photoPath = "img/" + username + "/" + fileName;
+                            } catch (Exception e) {
+                                out.println("Error:" + e);
+                            }
+                        }    
+
+                    } //image upload
+                } //while iter.hasNext
+            }
+            //==========================================//
+            //          End of Data Collection
+            //==========================================//
+
             //==========================================//
             // Client Side NRIC and username validation
             //==========================================//
@@ -72,6 +165,7 @@ public class processUser extends HttpServlet {
                     returnJsonObject.put("valid", "true");
                 }
                 out.println(returnJsonObject);
+                
             } else if (action != null && (action.equals("add") || action.equals("edit"))) {
                 //either adding new user or editing
                 //=======================================//
@@ -114,13 +208,15 @@ public class processUser extends HttpServlet {
                 //=======================================//
 
                 //===============================================//
-                //      Server Side Valdiatin: Errors & Success
+                //      Server Side Valdiation: Errors & Success
                 //===============================================//
                 //Validation Pass
                 if (pass) {
 
                     User user = null;
-                     //this is adding new user
+                     //===============================================//
+                     //      Adding New user
+                     //===============================================//
                     if (action.equals("add")) {
                         //Encrypt password
                         String encryptedPwd = "";
@@ -134,23 +230,27 @@ public class processUser extends HttpServlet {
                             role, photoPath, "Active");
                         UserDAO.addUser(user);
                         success = "User " + user.getUsername() + " has been successfully added!";
-                        
-                        // this is editing existing user
+
+                      //===============================================//
+                     //      Editing Existing User
+                     //===============================================//
                     } else if (action.equals("edit")) {
-                        
+
+
                         user = UserDAO.retrieveUserByUsername(username);
+
                         user.setFullName(fullName);
                         user.setAlias(alias);
                         user.setGender(gender);
                         user.setRole(role);
                         user.setEmailAddress(email);
                         user.setPhoneNumber(phNum);
-                        user.setPhotoPath(photoPath);
+                        if (!photoPath.equals("")) { user.setPhotoPath(photoPath); }
                         UserDAO.updateUser(user);
                         success = "User " + user.getUsername() + " has been successfully updated!";
-                        
+
                     }
-                    
+
                     request.getSession().setAttribute("successMsg", success);
 
                 //Validation Fails    
@@ -158,61 +258,62 @@ public class processUser extends HttpServlet {
 
                     request.getSession().setAttribute("errorMsg", err);
                 }
-            
-            //=======================================//
-            //      Inactivate User
-            //=======================================//    
-            } else if (action.equals("inactive") || action.equals("active")) {//need to change to inactivate!
-                String success = "";
-                
-                if (action.equals("inactive")) {
-                    String inactivateUserName = request.getParameter("nUsername");
 
-                    User user = UserDAO.retrieveUserByUsername(inactivateUserName);
-                    user.setStatus("Inactive");
-                    UserDAO.updateStatus(user);
-                    //UserDAO.deleteUser(username);
-                    success = "User " + username + " has been successfully inactivated!";
-                } else {
-                    String activateUserName = request.getParameter("nUsername");
+        //=======================================//
+        //      Inactivate/Activate User
+        //=======================================//    
+        } else if (action.equals("inactive") || action.equals("active")) {//need to change to inactivate!
+            String success = "";
 
-                    User user = UserDAO.retrieveUserByUsername(activateUserName);
-                    user.setStatus("Active");
-                    UserDAO.updateStatus(user);
-                    success = "User " + username + " has been successfully activated!";
-                }
-                request.getSession().setAttribute("successMsg", success);
-                //response.sendRedirect("userManagement.jsp");
-                
-            //=======================================//
-            //      Reset Password 
-            //=======================================//       
-            } else if (action.equals("resetPwd")) {//
-                String success = "";
-                String resetUserName = request.getParameter("nUsername");
-                
-                //Encrypt password
-                String encryptedPwd = "";
-                try {
-                    encryptedPwd = PasswordHash.createHash(pwd);
-                } catch (Exception ex) {
-                    //do not process & show error page 
-                }
-                
-                User user = UserDAO.retrieveUserByUsername(resetUserName);
-                user.setPassword(encryptedPwd);
-                UserDAO.updatePassword(user);
-                
-                success = "User " + resetUserName + "'s password has been reset!";
-                request.getSession().setAttribute("successMsg", success);
-                //response.sendRedirect("userManagement.jsp");
-            }
-            
-            if (page == null || page.equals("")) {
-                response.sendRedirect("userManagement.jsp");
+            if (action.equals("inactive")) {
+                String inactivateUserName = request.getParameter("nUsername");
+
+                User user = UserDAO.retrieveUserByUsername(inactivateUserName);
+                user.setStatus("Inactive");
+                UserDAO.updateStatus(user);
+                //UserDAO.deleteUser(username);
+                success = "User " + username + " has been successfully inactivated!";
             } else {
-                response.sendRedirect(page);
-            } 
+                String activateUserName = request.getParameter("nUsername");
+
+                User user = UserDAO.retrieveUserByUsername(activateUserName);
+                user.setStatus("Active");
+                UserDAO.updateStatus(user);
+                success = "User " + username + " has been successfully activated!";
+            }
+            request.getSession().setAttribute("successMsg", success);
+            //response.sendRedirect("userManagement.jsp");
+
+        //=======================================//
+        //      Reset Password 
+        //=======================================//       
+        } else if (action.equals("resetPwd")) {//
+            String success = "";
+            String resetUserName = request.getParameter("nUsername");
+
+            //Encrypt password
+            String encryptedPwd = "";
+            try {
+                encryptedPwd = PasswordHash.createHash(pwd);
+            } catch (Exception ex) {
+                //do not process & show error page 
+            }
+
+            User user = UserDAO.retrieveUserByUsername(resetUserName);
+            user.setPassword(encryptedPwd);
+            UserDAO.updatePassword(user);
+
+            success = "User " + resetUserName + "'s password has been reset!";
+            request.getSession().setAttribute("successMsg", success);
+            //response.sendRedirect("userManagement.jsp");
+
+
+        }
+
+        response.sendRedirect("userManagement.jsp");
+      
+        } catch (Exception e) {
+            out.println("error:" + e);
         } finally {            
             out.close();
         }

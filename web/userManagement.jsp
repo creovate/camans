@@ -128,7 +128,7 @@
                                     <% if (photoPath == null) { %>
                                     <td><img src="img/profile_pic.jpg" width="40"></td>
                                     <% } else { %>
-                                    <td><%=photoPath%></td>
+                                    <td><img src=<%=photoPath%> width="40"></td>
                                     <% }%>
                                     <td><%=username%></td>
                                     <td><%=email%></td>
@@ -192,7 +192,8 @@
                         </h3>
                       </div> <!--modal-header-->
 
-                      <form id="newUserForm" method="post" action="processUser.do" class="form-horizontal">
+                      <form id="newUserForm" method="post" action="processUser.do" class="form-horizontal"
+                            enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label class="col-sm-3">NRIC Number <span style="color: red">*</span></label>
@@ -319,12 +320,13 @@
                         </h3>
                       </div> <!--modal-header-->
 
-                      <form id="editUserForm" method="post" action="processUser.do" class="form-horizontal">
+                      <form id="editUserForm" method="post" action="processUser.do" class="form-horizontal" 
+                            enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label class="col-sm-3">NRIC Number <span style="color: red">*</span></label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control edit_nric" id="InputNRIC" name="nNRIC"
+                                    <input type="text" class="form-control" id="InputNRIC" name="nNRIC"
                                         placeholder="Enter NRIC Number" readOnly="readOnly">
                                     </input>
                                 </div>
@@ -332,21 +334,21 @@
                             <div class="form-group">
                                 <label class="col-sm-3" for="InputFullName">Full Name <span style="color: red">*</span></label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control edit_fullName" id="InputFullName" name="nFullName"
+                                    <input type="text" class="form-control" id="InputFullName" name="nFullName"
                                         placeholder="Enter Full Name">
                                 </div>    
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3" for="InputAlias">Alias</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control edit_alias" id="InputAlias" name="nAlias"
+                                    <input type="text" class="form-control" id="InputAlias" name="nAlias"
                                         placeholder="Enter Alia">
                                 </div>    
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3" for="InputUsername">Username<span style="color: red">*</span></label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control edit_username" id="InputUsername" name="nUsername"
+                                    <input type="text" class="form-control" id="InputUsername" name="nUsername"
                                            placeholder="Username" readOnly="readOnly">
                                     <!--<span class="form-control edit_username"></span>-->
                                 </div>    
@@ -354,7 +356,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3" for="InputGender">Gender</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control edit_gender" id="InputGender" name="nGender">
+                                    <select class="form-control" id="InputGender" name="nGender">
                                         <option selected>Male</option>
                                         <option>Female</option>
                                     </select>
@@ -363,7 +365,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3" for="InputRole">Role</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control edit_role" id="InputRole" name="nRole">
+                                    <select class="form-control" id="InputRole" name="nRole">
                                         <option selected>Associate</option>
                                         <option>Specialist</option>
                                         <option>Manager</option>
@@ -375,29 +377,32 @@
                             <div class="form-group">
                                 <label class="col-sm-3" for="InputEmail1">Email address<span style="color: red">*</span></label>
                                 <div class="col-sm-9">
-                                    <input type="email" class="form-control edit_email" id="InputEmail1" name="nEmail"
+                                    <input type="email" class="form-control" id="InputEmail1" name="nEmail"
                                         placeholder="Enter email">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label  class="col-sm-3" for="InputPhNum">Phone Number</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control edit_phone" id="InputPhNum" name="nPhNum"
+                                    <input type="text" class="form-control" id="InputPhNum" name="nPhNum"
                                            placeholder="Enter Phone Number">
                                 </div>    
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-3" for="InputProfilePic">Profile Picture Upload</label>
+                                <div class="col-sm-9">
+                                    <img src="<%=img/profile_pic.jpg%>" id="InputPhoto" style="widith: 200px; height: 150px;">
+                                </div>
                                 <div class="col-sm-9 fileinput fileinput-new" data-provides="fileinput">
                                   <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                    <img data-src="holder.js/100%x100%" alt="...">
+                                    <img src="" id="InputPhoto">
                                   </div>
                                   <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                                   <div>
                                     <span class="btn btn-default btn-file">
                                         <span class="fileinput-new">Select image</span>
-                                        <span class="fileinput-exists">Change</span><input type="file" name="facePic">
+                                        <span class="fileinput-exists">Change</span><input type="file" id="InputPhoto" name="nPhotoPath">
                                     </span>
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                   </div>
@@ -420,7 +425,8 @@
                 <!-- End of Edit User modal -->    
 
                 <!-- Confirm Deactivate Modal -->
-                <div class="modal fade" id="user_delete_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="user_delete_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" 
+                     aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
 
@@ -461,7 +467,8 @@
                 <!-- End of Confirm Deactivate Modal-->
               
                 <!-- Confirm Activate Modal -->
-                <div class="modal fade" id="user_activate_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="user_activate_confirm" tabindex="-1" role="dialog" 
+                     aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
 
@@ -502,7 +509,8 @@
                 <!-- End of Confirm Activate Modal-->
                         
                 <!-- Reset Password Modal -->
-                <div class="modal fade" id="user_reset_pwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="user_reset_pwd" tabindex="-1" role="dialog" 
+                     aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
 
@@ -578,16 +586,26 @@
                     var email = $(this).data('email');
                     var phone = $(this).data('phone');
                     var photo = $(this).data('photo');
-
-                    $(".edit_nric").val(nricNum);
-                    $(".edit_fullName").val(fullName);
-                    $(".edit_alias").val(alias);
-                    $(".edit_username").val(username);
-                    $(".edit_gender").val(gender);
-                    $(".edit_role").val(role);
-                    $(".edit_email").val(email);
-                    $(".edit_phone").val(phone);
-                    $(".edit_photo").val(photo);
+                    
+                    $(".modal-body #InputNRIC").val(nricNum);
+                    $(".modal-body #InputFullName").val(fullName);
+                    $(".modal-body #InputAlias").val(alias);
+                    $(".modal-body #InputUsername").val(username);
+                    $(".modal-body #InputGender").val(gender);
+                    $(".modal-body #InputRole").val(role);
+                    $(".modal-body #InputEmail1").val(email);
+                    $(".modal-body #InputPhNum").val(phone);
+                    $(".modal-body #InputPhoto").attr('src', src);
+                    //$(".edit_nric").val(nricNum);
+                    //$(".edit_fullName").val(fullName);
+                    //$(".edit_alias").val(alias);
+                    //$(".edit_username").val(username);
+                    //$(".edit_gender").val(gender);
+                    //$(".edit_role").val(role);
+                    //$(".edit_email").val(email);
+                    //$(".edit_phone").val(phone);
+                    //$(".edit_photo").val(photo);
+                    //$(".fileinput").val(photo);
 
             });
             //passing data for inactive pop 
