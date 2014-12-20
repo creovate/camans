@@ -258,6 +258,7 @@ public class processUser extends HttpServlet {
 
                     request.getSession().setAttribute("errorMsg", err);
                 }
+                response.sendRedirect("userManagement.jsp");
 
         //=======================================//
         //      Inactivate/Activate User
@@ -281,36 +282,34 @@ public class processUser extends HttpServlet {
                 UserDAO.updateStatus(user);
                 success = "User " + username + " has been successfully activated!";
             }
-            request.getSession().setAttribute("successMsg", success);
-            //response.sendRedirect("userManagement.jsp");
+                request.getSession().setAttribute("successMsg", success);
+                response.sendRedirect("userManagement.jsp");
 
-        //=======================================//
-        //      Reset Password 
-        //=======================================//       
-        } else if (action.equals("resetPwd")) {//
-            String success = "";
-            String resetUserName = request.getParameter("nUsername");
+            //=======================================//
+            //      Reset Password 
+            //=======================================//       
+            } else if (action.equals("resetPwd")) {//
+                String success = "";
+                String resetUserName = request.getParameter("nUsername");
 
-            //Encrypt password
-            String encryptedPwd = "";
-            try {
-                encryptedPwd = PasswordHash.createHash(pwd);
-            } catch (Exception ex) {
-                //do not process & show error page 
+                //Encrypt password
+                String encryptedPwd = "";
+                try {
+                    encryptedPwd = PasswordHash.createHash(pwd);
+                } catch (Exception ex) {
+                    //do not process & show error page 
+                }
+
+                User user = UserDAO.retrieveUserByUsername(resetUserName);
+                user.setPassword(encryptedPwd);
+                UserDAO.updatePassword(user);
+
+                success = "User " + resetUserName + "'s password has been reset!";
+                request.getSession().setAttribute("successMsg", success);
+                response.sendRedirect("userManagement.jsp");
+
+
             }
-
-            User user = UserDAO.retrieveUserByUsername(resetUserName);
-            user.setPassword(encryptedPwd);
-            UserDAO.updatePassword(user);
-
-            success = "User " + resetUserName + "'s password has been reset!";
-            request.getSession().setAttribute("successMsg", success);
-            //response.sendRedirect("userManagement.jsp");
-
-
-        }
-
-        response.sendRedirect("userManagement.jsp");
       
         } catch (Exception e) {
             out.println("error:" + e);

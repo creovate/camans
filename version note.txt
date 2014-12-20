@@ -2,4 +2,7 @@
 1. Encrypt password
 2. Add Status for user (Active, Inactive)
 3. Forgot Password function
-4. Upload Image 
+4. Complete Form validation for user creation/editing
+5. Upload Image 
+
+Working on attachment modules

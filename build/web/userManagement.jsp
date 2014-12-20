@@ -388,21 +388,22 @@
                                            placeholder="Enter Phone Number">
                                 </div>    
                             </div>
-
+                            
                             <div class="form-group">
                                 <label class="col-sm-3" for="InputProfilePic">Profile Picture Upload</label>
-                                <div class="col-sm-9">
-                                    <img src="<%=img/profile_pic.jpg%>" id="InputPhoto" style="widith: 200px; height: 150px;">
-                                </div>
-                                <div class="col-sm-9 fileinput fileinput-new" data-provides="fileinput">
-                                  <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                    <img src="" id="InputPhoto">
+                                <!--
+                                <div class="col-sm-4">
+                                    <img id="InputPhoto" src="" id=""style="width: 150px; height: 150px;">
+                                </div>-->
+                                <div class="col-sm-4 fileinput fileinput-new" data-provides="fileinput">
+                                  <div class="fileinput-new thumbnail" style="width: 150px; height: 150px;">
+                                    <img id="InputPhoto" data-src="">
                                   </div>
-                                  <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                  <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 150px; max-height: 150px;"></div>
                                   <div>
                                     <span class="btn btn-default btn-file">
                                         <span class="fileinput-new">Select image</span>
-                                        <span class="fileinput-exists">Change</span><input type="file" id="InputPhoto" name="nPhotoPath">
+                                        <span class="fileinput-exists">Change</span><input type="file" name="nPhotoPath">
                                     </span>
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                   </div>
@@ -586,7 +587,7 @@
                     var email = $(this).data('email');
                     var phone = $(this).data('phone');
                     var photo = $(this).data('photo');
-                    
+
                     $(".modal-body #InputNRIC").val(nricNum);
                     $(".modal-body #InputFullName").val(fullName);
                     $(".modal-body #InputAlias").val(alias);
@@ -595,7 +596,7 @@
                     $(".modal-body #InputRole").val(role);
                     $(".modal-body #InputEmail1").val(email);
                     $(".modal-body #InputPhNum").val(phone);
-                    $(".modal-body #InputPhoto").attr('src', src);
+                    $(".modal-body #InputPhoto").attr('src', photo);
                     //$(".edit_nric").val(nricNum);
                     //$(".edit_fullName").val(fullName);
                     //$(".edit_alias").val(alias);
@@ -605,7 +606,6 @@
                     //$(".edit_email").val(email);
                     //$(".edit_phone").val(phone);
                     //$(".edit_photo").val(photo);
-                    //$(".fileinput").val(photo);
 
             });
             //passing data for inactive pop 

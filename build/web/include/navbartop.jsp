@@ -7,6 +7,8 @@
 <%
     User _user = (User) session.getAttribute("userLogin");
 %>
+
+
 <div class="row">
 
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">

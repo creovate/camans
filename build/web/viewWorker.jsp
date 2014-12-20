@@ -66,7 +66,8 @@
         <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
         <!--jasny-bootstrap v3.1.3, added by soemyatmayt-->
         <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
-
+        <!-- DataTables CSS, added by soemyatmyat -->
+        <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
         
         <script src="js/jquery-2.1.1.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -76,6 +77,9 @@
         <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>        
         <!--jasny-bootstrap v3.1.3, added by soemyatmyat-->
         <script src="js/jasny-bootstrap.js"></script>  
+        <!-- DataTables JS, Added by soemyatmyat -->
+        <script src="js/jquery.dataTables.js"></script>
+        <script src="js/dataTables.bootstrap.js"></script>
         
         <link rel="shortcut icon" href="img/twc_logo.png">
         <title>CAMANS</title>
@@ -209,6 +213,7 @@
 
                     <div  id="content" style="padding: 3% 1%">
                         <div class="tab-content ">
+                            <!----Worker Complement Tab---> 
                             <div class="tab-pane active" id="worker_complement">
                                 <br/>
 
@@ -1076,6 +1081,7 @@
                                 </div>
                             </div>
 
+                            <!----Job Complement Tab--->        
                             <div class="tab-pane " id="job_complement">
                                 <br/>
                                 <div class="row">
@@ -1868,6 +1874,7 @@
                                 </div>
                             </div>
 
+                            <!----Problem Complement Tab--->             
                             <div class="tab-pane " id="problem_complement" >
                                 <br/>
                                 
@@ -4081,6 +4088,7 @@
                                 </div>
                             </div>
 
+                            <!----Benefits Complement Tab--->                             
                             <div class="tab-pane" id="benefit_complement" >
                                         <br/>
                                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -4418,19 +4426,53 @@
                                     
                                 </div>
                                     </div>
-                                </div>
+                        
+                            <!----Attachments Complement Tab--->                
+                            <div class="tab-pane active" id="attachment_complement">
+                                <br/><br/>
+                                Select file to upload: <input type="file" name="fileInput"/><br>  
+                                <p class="worker_profile_header text-center">Existing Attachments</p>
+                                <table class="table table-striped table-bordered table-hover" id="worker_attachment">
+                                    <thead>
+                                        <tr>
+                                            <th>S/N</th>
+                                            <th>Name</th>
+                                            <th>Date & Time uploaded</th>
+                                            <th>Upload By</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Name1</td>
+                                            <td>Upload Time</td>
+                                            <td>Upload By Who</td>
+                                            <td align="center">
+                                                <a style="color: black" href="">
+                                                   <span data-toggle="tooltip" title="Download" class="glyphicon glyphicon-download-alt"></span>
+                                                </a>&nbsp; &nbsp; &nbsp; &nbsp;
+                                                <a style="color: black" href=""
+                                                   data-toggle="modal" data-target="#">
+                                                    <span data-toggle="tooltip" title="Rename" class="glyphicon glyphicon-pencil"></span>
+                                                </a>&nbsp; &nbsp; &nbsp; &nbsp;
+                                                <a style="color: black" href=""
+                                                   data-toggle="modal" data-target="#">
+                                                    <span data-toggle="tooltip" title="Delete" class="glyphicon glyphicon-trash"></span>
+                                                </a>    
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>                
+                        
                         </div>
-
-                    </div> 
-                    <div id="pop_up_content" >
                     </div>
-                </div>
 
+                 </div> 
+                 <div id="pop_up_content" ></div>
             </div>
-
-
-
-
 
         </div>
 
@@ -4448,7 +4490,7 @@
                 <li id="job_complement_tab" class="complement_tabs"><a href="#job_complement" role="tab" data-toggle="tab">Job</a></li>
                 <li id="problem_complement_tab" class="complement_tabs"><a href="#problem_complement" role="tab" data-toggle="tab">Problem</a></li>
                 <li id="benefit_complement_tab" class="complement_tabs"><a href="#benefit_complement" role="tab" data-toggle="tab">Benefit</a></li>
-
+                <li id="attachment_complement_tab" class="complement_tabs"><a href="#attachment_complement" role="tab" data-toggle="tab">Attachment</a></li>
             </ul>
         </div>
         <script>
@@ -4520,6 +4562,11 @@
                 var div = '#' + div_name + '_pop_up';
                 $(div).show();
             }
+            
+            //ready the data in tables - added by soemyatmyat
+            $(document).ready(function () {
+                $('#worker_attachment').dataTable();
+            }); 
 
 
         </script>
