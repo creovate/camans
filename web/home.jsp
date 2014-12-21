@@ -96,7 +96,7 @@
         
         <title>CAMANS</title>
     </head>
-    <body>
+    <body id="home">
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
             
