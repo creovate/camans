@@ -283,7 +283,7 @@
 
         </script>
     </head>
-    <body>
+    <body id="createCase">
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
         <div class="col-md-10">

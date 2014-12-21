@@ -146,7 +146,7 @@
 
         </style>
     </head>
-    <body style='background:white;overflow-y: scroll'>
+    <body id="home" style='background:white;overflow-y: scroll'>
         <jsp:include page="include/navbartop.jsp"/>
         <div class="row-offcanvas row-offcanvas-left" style="padding:1% 0% 0%;">
 
