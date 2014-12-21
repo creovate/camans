@@ -3,11 +3,15 @@
     Created on : Nov 19, 2014, 2:10:11 PM
     Author     : Nyein Su
 --%>
+<%@page import="camans.dao.CaseManagementDAO"%>
+<%@page import="camans.entity.Problem"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="camans.entity.User"%>
 <%
     User _user = (User) session.getAttribute("userLogin");
+    ArrayList<Problem> problemList = CaseManagementDAO.getUnassignedCases();
+    
 %>
-
 
 <div class="row">
 
@@ -26,14 +30,12 @@
            
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="ReferedCase.jsp">Referred Cases <span class="badge">4</span></a></li>
+                    <li><a href="caseReferral.jsp">Referred Cases <span class="badge"><%=problemList.size()%></span></a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="img/profile_pic.jpg" ><%=_user.getUsername()%> 
-                            <span class="caret"></span>
-                        </a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/profile_pic.jpg" ><%=_user.getUsername()%> <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="userProfile.jsp">Profile</a></li>
+
                             <li class="divider"></li>
                             <li><a href="logout.jsp">Log Out</a></li>
                         </ul>
