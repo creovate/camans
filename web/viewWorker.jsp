@@ -2431,7 +2431,7 @@
                                         <div class="panel panel-primary">
                                             <div class="panel-heading" role="tab" id="headingTwo">
                                                 <h4 class="panel-title">
-                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#salaryComps"  data-class="problem"  aria-expanded="false" aria-controls="collapseTwo">
+                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#salaryComps"  data-class="problem"  aria-expanded="true" aria-controls="collapseTwo">
                                                         Salary Complements
                                                     </a>
                                                 </h4>
@@ -2617,7 +2617,7 @@
                                         <div class="panel-primary panel">
                                             <div class="panel-heading" role="tab" id="headingThree">
                                                 <h4 class="panel-title">
-                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#medicalComps" data-class="problem"  aria-expanded="false" aria-controls="collapseThree">
+                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#medicalComps" data-class="problem"  aria-expanded="true" aria-controls="collapseThree">
                                                         Medical Complements
                                                     </a>
                                                 </h4>
@@ -3408,7 +3408,7 @@
                                         <div class="panel panel-primary">
                                             <div class="panel-heading" role="tab" id="headingThree">
                                                 <h4 class="panel-title">
-                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#otherComps" data-class="problem"   aria-expanded="false" aria-controls="collapseThree">
+                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#otherComps" data-class="problem"   aria-expanded="true" aria-controls="collapseThree">
                                                         Other Complements
                                                     </a>
                                                 </h4>
