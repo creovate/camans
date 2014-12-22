@@ -55,7 +55,7 @@ public class processUser extends HttpServlet {
             boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
 
             String action = request.getParameter("action");
-            String nric = "";
+            String nric = request.getParameter("nNRIC");
             String fullName = "";
             String alias = "";
             String username = request.getParameter("nUsername");

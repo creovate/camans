@@ -1,8 +1,10 @@
+-22nd Dec 2014-soemyatmyat
+1. Upload file attachements of worker
+Working on attachment modules
+
 -20th Dec 2014-soemyatmyat
 1. Encrypt password
 2. Add Status for user (Active, Inactive)
 3. Forgot Password function
 4. Complete Form validation for user creation/editing
 5. Upload Image 
-
-Working on attachment modules

@@ -146,7 +146,7 @@
 
         </style>
     </head>
-    <body style='background:white;overflow-y: scroll'>
+    <body id="home" style='background:white;overflow-y: scroll'>
         <jsp:include page="include/navbartop.jsp"/>
         <div class="row-offcanvas row-offcanvas-left" style="padding:1% 0% 0%;">
 
@@ -4430,24 +4430,69 @@
                             <!----Attachments Complement Tab--->                
                             <div class="tab-pane active" id="attachment_complement">
                                 <br/><br/>
-                                Select file to upload: <input type="file" name="fileInput"/><br>  
+                                <!-- Attachments Success & Error Display --->
+                                <% String successMsg = (String) request.getSession().getAttribute("successAttachMsg");
+                                    request.getSession().removeAttribute("successAttachMsg");
+
+                                    String errorMsg = (String) request.getSession().getAttribute("errAttachMsg");
+                                    request.getSession().removeAttribute("errAttachMsg"); %>
+                                <% if (successMsg != null && !successMsg.equals("null"))  { %>
+
+                                    <div class="alert alert-info" role="alert">
+                                       <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                       <%=successMsg%>
+                                   </div>
+
+                                <% } %>
+                                <% if (errorMsg != null)  { %>
+
+                                 <div class="alert alert-danger" role="alert">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <%=errorMsg%>
+                                </div>
+
+                                <% } %>
+                                <!-- End of Attachments Success & Error Display --->
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <form action="fileUpload.do" method="post" enctype="multipart/form-data"> 
+                                            <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
+                                            <label>File Upload</label><br/>
+                                            Select file to upload: <input type="file" name="fileInput"/><br/> 
+                                            <button type="submit">Upload File</button><br/><br/>
+                                        </form>
+                                    </div>
+                                </div>
                                 <p class="worker_profile_header text-center">Existing Attachments</p>
-                                <table class="table table-striped table-bordered table-hover" id="worker_attachment">
-                                    <thead>
+                                <%
+                                    //See if there is any file
+                                    ArrayList<Integer> workerAttachList = WorkerComplementsDAO.retrieveAttachmentIdsOfWorker(worker);
+                                    if (workerAttachList != null && !workerAttachList.isEmpty()) {
+                                %>
+                                <!--- only if file exits -->
+                                <table class="table table-striped  table-hover" id="worker_attachment">
+                                    <thead bgcolor="#3579BC">
                                         <tr>
-                                            <th>S/N</th>
-                                            <th>Name</th>
-                                            <th>Date & Time uploaded</th>
-                                            <th>Upload By</th>
-                                            <th>Actions</th>
+                                            <th><font color="#FFF">S/N</font></th>
+                                            <th><font color="#FFF">Name</font></th>
+                                            <th><font color="#FFF">Date & Time uploaded</font></th>
+                                            <th><font color="#FFF">Upload By</font></th>
+                                            <th><font color="#FFF">Actions</font></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Name1</td>
-                                            <td>Upload Time</td>
-                                            <td>Upload By Who</td>
+                                    <%
+                                        for (int i = 0; i < workerAttachList.size(); i++ ) {
+                                            WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(workerAttachList.get(i));
+                                            String docName = workerAttachment.getDocumentName();
+                                            java.util.Date timeStamp = WorkerComplementsDAO.retrieveTimeStamp(workerAttachment);
+                                            String submitBy = workerAttachment.getSubmitBy();
+                                    %>
+                                        <tr bgcolor="">
+                                            <td><%=i+1%></td>
+                                            <td><%=docName%></td>
+                                            <td><%=sdf.format(timeStamp)%></td>
+                                            <td><%=submitBy%></td>
                                             <td align="center">
                                                 <a style="color: black" href="">
                                                    <span data-toggle="tooltip" title="Download" class="glyphicon glyphicon-download-alt"></span>
@@ -4456,22 +4501,58 @@
                                                    data-toggle="modal" data-target="#">
                                                     <span data-toggle="tooltip" title="Rename" class="glyphicon glyphicon-pencil"></span>
                                                 </a>&nbsp; &nbsp; &nbsp; &nbsp;
-                                                <a style="color: black" href=""
-                                                   data-toggle="modal" data-target="#">
+                                                <a style="color: black" href="" class="delete_popup" data-docName='<%=docName%>' 
+                                                   data-id='<%=workerAttachment.getId()%>' data-toggle="modal" data-target="#attach_delete_confirm">
                                                     <span data-toggle="tooltip" title="Delete" class="glyphicon glyphicon-trash"></span>
                                                 </a>    
-
                                             </td>
                                         </tr>
+                                    <%  } // for loop  %>    
                                     </tbody>
                                 </table>
+                               <%  } else { //if not exits   %>     
+                                    <br/>No file has been uploaded to this worker yet!
+                               <%  } %>
                             </div>                
-                        
+                            <!----End of Attachments Complement Tab---> 
                         </div>
                     </div>
 
                  </div> 
-                 <div id="pop_up_content" ></div>
+                            
+                 <div id="pop_up_content" ></div> <!-- <-- What is this for? -->
+                 
+                 <!-- Confirm Attachment Delete Modal -->
+                <div class="modal fade" id="attach_delete_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" 
+                     aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h3 class="modal-title" id="attach_pop_up_label" style="color:#2980b9" align="center">
+                            Delete File
+                        </h3>
+                      </div> <!--modal-header-->
+                      <form id="deleteConfirmForm" method="post" action="#" class="form-horizontal">
+                        <div class="modal-body">
+                            <input type="hidden" name="attachId" id="InputID" value=""/>
+                            Are you sure you want to delete this file -<label id="InputDocName"></label>?<br/><br/>
+                        </div> <!--modal body -->
+
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-success">Ok</button>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+
+                    </div> <!--modal content -->
+                  </div> <!--modal dialog -->
+                </div> 
+                 
             </div>
 
         </div>
@@ -4567,7 +4648,14 @@
             $(document).ready(function () {
                 $('#worker_attachment').dataTable();
             }); 
-
+            
+            //passing data for attachment delete confirm - added by soemyatmyat
+            $(document).on( "click", '.edit_popup',function() {
+                var attachId = $(this).data('id');
+                var docName = $(this).data('docName');
+                $(".modal-body #InputID").val(attachId);
+                $(".modal-body #InputDocName").val(docName);
+          });
 
         </script>
     </div>

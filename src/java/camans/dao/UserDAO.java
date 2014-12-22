@@ -212,7 +212,7 @@ public class UserDAO {
         } 
     }
     
-    public static ArrayList<User> retrievelatest20Users() {
+    public static ArrayList<User> retrieveAllUsers() {
         ArrayList<User> userList = new ArrayList<User>();
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -223,7 +223,7 @@ public class UserDAO {
             conn = ConnectionManager.getConnection();
             sql = "SELECT NRIC_number, Full_name, Alias, Username,"
                     + "Email_address,Phone_number,Gender,Role,Photo, Status"
-                    + " FROM tbl_user order by Entry_date DESC limit 20;";
+                    + " FROM tbl_user order by Entry_date DESC";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             while (rs.next()) {

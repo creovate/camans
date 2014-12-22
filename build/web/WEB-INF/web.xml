@@ -21,20 +21,8 @@
         <servlet-class>camans.controller.processAddProblemComplement</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>processGenerateTWC2Fin</servlet-name>
-        <servlet-class>camans.controller.processGenerateTWC2Fin</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>processEditProblemComplement</servlet-name>
         <servlet-class>camans.controller.processEditProblemComplement</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>processSearchWorker</servlet-name>
-        <servlet-class>camans.controller.processSearchWorker</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>processAddBenefit</servlet-name>
-        <servlet-class>camans.controller.processAddBenefit</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>processUser</servlet-name>
@@ -48,9 +36,26 @@
         <servlet-name>processValidate</servlet-name>
         <servlet-class>camans.controller.processValidate</servlet-class>
     </servlet>
-    
-    
-    
+    <servlet>
+        <servlet-name>processSearchWorker</servlet-name>
+        <servlet-class>camans.controller.processSearchWorker</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>processAddBenefit</servlet-name>
+        <servlet-class>camans.controller.processAddBenefit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>processGenerateTWC2Fin</servlet-name>
+        <servlet-class>camans.controller.processGenerateTWC2Fin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>processAssignCase</servlet-name>
+        <servlet-class>camans.controller.processAssignCase</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>processFile</servlet-name>
+        <servlet-class>camans.controller.processFile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>processAddWorkerComplements</servlet-name>
         <url-pattern>/addWorkerComplement.do</url-pattern>
@@ -84,6 +89,14 @@
         <url-pattern>/editStubs.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>processValidate</servlet-name>
+        <url-pattern>/processValidate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>processEditProblemComplement</servlet-name>
+        <url-pattern>/editProblemComplement.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>processSearchWorker</servlet-name>
         <url-pattern>/searchWorker.do</url-pattern>
     </servlet-mapping>
@@ -96,10 +109,13 @@
         <url-pattern>/addBenefit.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>processValidate</servlet-name>
-        <url-pattern>/processValidate</url-pattern>
+        <servlet-name>processAssignCase</servlet-name>
+        <url-pattern>/assignCase.do</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>processFile</servlet-name>
+        <url-pattern>/fileUpload.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

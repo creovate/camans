@@ -86,26 +86,26 @@
 
                 <!-- Users Table -->
                 <h3 style="color:#2980b9">All Users</h3>
-                <div class="panel panel-default">
-                    <div class="panel-body">       
+                <!--<div class="panel panel-default">
+                    <div class="panel-body">-->       
                         <table class="table table-striped table-bordered table-hover" id="users-table">
-                            <thead>
+                            <thead bgcolor="#3579BC">
                                 <tr>
-                                    <th>S/N</th>
-                                    <th>Profile Picture </th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Registered Date</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
+                                    <th><font color="#FFF">S/N</font></th>
+                                    <th><font color="#FFF">Profile Picture</font></th>
+                                    <th><font color="#FFF">Username</font></th>
+                                    <th><font color="#FFF">Email</font></th>
+                                    <th><font color="#FFF">Role</font></th>
+                                    <th><font color="#FFF">Registered Date</font></th>
+                                    <th><font color="#FFF">Status</font></th>
+                                    <th><font color="#FFF">Actions</font></th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <%
                                     ArrayList<User> latestUserList = new ArrayList<User>();
-                                    latestUserList = UserDAO.retrievelatest20Users();
+                                    latestUserList = UserDAO.retrieveAllUsers();
                                     String photoPath;
                                     String username;
                                     String email;
@@ -173,8 +173,8 @@
                                 %>
                             </tbody>
                         </table>
-                    </div>
-                </div>
+                    <!--</div> //panel body
+                </div>//panel -->
                 <!-- End of Users Table -->    
 
                 <!-- New User Modal -->
@@ -440,7 +440,7 @@
                             Inactivate User
                         </h3>
                       </div> <!--modal-header-->
-                      <form id="deleteUserForm" method="post" action="processUser.do" class="form-horizontal">
+                      <form id="deleteConfirmForm" method="post" action="processUser.do" class="form-horizontal">
                         <div class="modal-body">
                             <!--<input type="hidden" name="deleteUserName" id="deleteUserName" value=""/>-->
                             

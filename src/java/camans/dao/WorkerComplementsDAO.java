@@ -1411,6 +1411,141 @@ public class WorkerComplementsDAO {
         }        
     }
        
+    /*Worker Attachments*/
+    public static ArrayList<Integer> retrieveAttachmentIdsOfWorker (Worker worker) {
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+
+         Connection conn = null;
+         PreparedStatement pstmt = null;
+         ResultSet rs = null;
+         String sql = "";
+
+         try {
+             conn = ConnectionManager.getConnection();
+             sql = "SELECT ID FROM tbl_worker_attachment where FIN_number = ?";
+             pstmt = conn.prepareStatement(sql);
+             pstmt.setString(1, worker.getFinNumber());
+             rs = pstmt.executeQuery();
+             while (rs.next()) {
+                 int id = rs.getInt(1);
+                 ids.add(id);
+             }
+
+         } catch (SQLException ex) {
+             handleSQLException(ex, sql);           
+         } finally {
+             ConnectionManager.close(conn, pstmt, rs);
+         }        
+
+         return ids;
+     }
+
+    public static WorkerAttachment retrieveAttachmentDetailsById(int id) {
+        WorkerAttachment workerAttachment = null;
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT Document_name, File_path, Submit_by, FIN_number "
+                    + "FROM tbl_worker_attachment where ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                String docName = rs.getString(1);
+                String filePath = rs.getString(2);
+                String submitBy = rs.getString(3);    
+                String workerFinNumber = rs.getString(4);
+
+                workerAttachment = new WorkerAttachment(workerFinNumber, id, docName
+                        ,filePath, submitBy);
+            }
+
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "WorkerAttachment={" + workerAttachment + "}");           
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        return workerAttachment;
+    }
+
+    public static void addAttachmentDetails(WorkerAttachment workerAttachment) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "INSERT INTO tbl_worker_attachment (Document_name, File_path, "
+                    + "Submit_by, FIN_number) "
+                    + "VALUES (?,?,?,?)";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, workerAttachment.getDocumentName());
+            pstmt.setString(2, workerAttachment.getFilePath());
+            pstmt.setString(3, workerAttachment.getSubmitBy());
+            pstmt.setString(4, workerAttachment.getWorkerFinNum());
+            
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "WorkerAttachment: " + workerAttachment + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt);
+        }    
+    }
+
+    public static void updateAttachmentDetails(WorkerAttachment workerAttachment) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "UPDATE tbl_worker_attachment SET Document_name = ? , File_path = ?,"
+                    + "Submit_by =? WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, workerAttachment.getDocumentName());
+            pstmt.setString(2, workerAttachment.getFilePath());
+            pstmt.setString(3, workerAttachment.getSubmitBy());
+            pstmt.setInt(4, workerAttachment.getId());
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "WorkerAttachment={" + workerAttachment + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }        
+    }    
+    
+    public static Date retrieveTimeStamp(WorkerAttachment workerAttachment) {
+        Date timeStamp = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT Entry_date FROM tbl_worker_attachment where ID = ?;";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, workerAttachment.getId());
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                timeStamp = rs.getDate(1);
+            }
+            return timeStamp;
+            
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "WorkerAttachment={" + workerAttachment + "}");           
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        return timeStamp;
+    }
+    
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
       String msg = "Unable to access data; SQL=" + sql + "\n";
       for (String parameter : parameters) {
