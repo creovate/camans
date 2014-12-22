@@ -1617,6 +1617,10 @@
 
     });
 
+$(document).ready(function(){
+        $('.cancel_btn').addClass('pull-right');
+        $('.form-control').addClass('input-sm');
+    });
 </script>
 <style>
     h4{
@@ -6401,11 +6405,8 @@
                 type = issue.getAggravatingIssueMore();
             }
 
-            double loss = 0.00;
-            String lossStr = issue.getAggravatingLoss();
-            if (lossStr != null || lossStr.trim().length() > 0) {
-                loss = Double.parseDouble(lossStr);
-            }
+            double loss = issue.getAggravatingLoss();
+            
             String remark = issue.getAggravatingRemark();
 
             if (remark == null) {
@@ -6424,7 +6425,7 @@
                 <div class='form-group'>
                     <label for='name' class="control-label">Monetary loss/value S$</label>
                     <br/>
-                    <input class="form-control" type='text' name="name" value="<%=loss%>">
+                    <input class="form-control" type='text' name="name" value="<%=(loss == 0) ? "0.00" : loss%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Remark</label>
@@ -6434,9 +6435,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#aggravIssue_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#aggravIssue_pop_up", "problem");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#aggravIssue_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class='btn modal_btn view_comp' onclick='add("#aggravIssue_pop_up", "problem");'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>

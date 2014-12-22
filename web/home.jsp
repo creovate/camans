@@ -108,7 +108,7 @@
                 <!-- SEARCH FILTERS -->
                 
                 <!--<div id="schwker_box" class="col-md-11 sub_div_w_bg" style="padding:2% 1%">-->
-                <div id="worker_filter_div" class="col-md-11"> 
+                <div id="worker_filter_div" class="col-md-12"> 
                     <div class="panel panel-default">
                         <div class="panel-body"> 
                 <!--<div class="col-mid-9 panel panel-default sub_div_w_bg" style="padding:2% 1%">-->    
@@ -326,7 +326,7 @@
                 <!-- End of search filters -->
 
                 <!-- search Results -->
-                <div id="worker_search_result_div" class="col-md-11">
+                <div id="worker_search_result_div" class="col-md-12">
                     <!--div class="col-md-3 pull-right"> 
                         <input type="text" id="search_in_recent" placeholder="Search..." class="form-control"/>
                     </div-->

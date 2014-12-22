@@ -29,7 +29,10 @@
             $('.dateInput').blur();
         });
     });
-    
+    $(document).ready(function(){
+        $('.cancel_btn').addClass('pull-right');
+        $('.form-control').addClass('input-sm');
+    });
     //job form validation 
     $(document).ready(function() {
         $('.job_pop_up')

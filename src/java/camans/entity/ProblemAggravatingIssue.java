@@ -17,14 +17,14 @@ public class ProblemAggravatingIssue {
     private int problemKey;
     private String AggravatingIssue;
     private String AggravatingIssueMore;
-    private String AggravatingLoss;
+    private double AggravatingLoss;
     private String AggravatingRemark;
 
     
     //constructor with id 
     public ProblemAggravatingIssue(int id, String workerFinNumber, int jobKey, int problemKey, 
             String AggravatingIssue, String AggravatingIssueMore, 
-            String AggravatingLoss, String AggravatingRemark) {
+            double AggravatingLoss, String AggravatingRemark) {
         this.id = id;
         this.workerFinNumber = workerFinNumber;
         this.jobKey = jobKey;
@@ -36,7 +36,7 @@ public class ProblemAggravatingIssue {
     }
 
     //constructor without id
-    public ProblemAggravatingIssue(String workerFinNumber, int jobKey, int problemKey, String AggravatingIssue, String AggravatingIssueMore, String AggravatingLoss, String AggravatingRemark) {
+    public ProblemAggravatingIssue(String workerFinNumber, int jobKey, int problemKey, String AggravatingIssue, String AggravatingIssueMore, double AggravatingLoss, String AggravatingRemark) {
         this.workerFinNumber = workerFinNumber;
         this.jobKey = jobKey;
         this.problemKey = problemKey;
@@ -95,11 +95,11 @@ public class ProblemAggravatingIssue {
         this.AggravatingIssueMore = AggravatingIssueMore;
     }
 
-    public String getAggravatingLoss() {
+    public double getAggravatingLoss() {
         return AggravatingLoss;
     }
 
-    public void setAggravatingLoss(String AggravatingLoss) {
+    public void setAggravatingLoss(double AggravatingLoss) {
         this.AggravatingLoss = AggravatingLoss;
     }
 

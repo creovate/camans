@@ -203,7 +203,10 @@
         });
     });
     
-
+    $(document).ready(function(){
+        $('.cancel_btn').addClass('pull-right');
+        $('.form-control').addClass('input-sm');
+    });
 </script>
 
 <%

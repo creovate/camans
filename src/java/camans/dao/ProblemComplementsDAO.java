@@ -72,7 +72,7 @@ public class ProblemComplementsDAO {
             while (rs.next()) {
                 String aggraIssue = rs.getString(1);
                 String aggraIssueMore = rs.getString(2);
-                String aggraLoss = rs.getString(3);
+                double aggraLoss = rs.getDouble(3);
                 String aggraRemarks = rs.getString(4);
                 String workerFinNumber = rs.getString(5);
                 int jobKey = rs.getInt(6);
@@ -103,7 +103,7 @@ public class ProblemComplementsDAO {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, problemAggravatingIssue.getAggravatingIssue());
             pstmt.setString(2, problemAggravatingIssue.getAggravatingIssueMore());
-            pstmt.setString(3, problemAggravatingIssue.getAggravatingLoss());
+            pstmt.setDouble(3, problemAggravatingIssue.getAggravatingLoss());
             pstmt.setString(4, problemAggravatingIssue.getAggravatingRemark());
             pstmt.setString(5, problemAggravatingIssue.getWorkerFinNumber());
             pstmt.setInt(6, problemAggravatingIssue.getJobKey());
@@ -128,7 +128,7 @@ public class ProblemComplementsDAO {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, problemAggravatingIssue.getAggravatingIssue());
             pstmt.setString(2, problemAggravatingIssue.getAggravatingIssueMore());
-            pstmt.setString(3, problemAggravatingIssue.getAggravatingLoss());
+            pstmt.setDouble(3, problemAggravatingIssue.getAggravatingLoss());
             pstmt.setString(4, problemAggravatingIssue.getAggravatingRemark());
             pstmt.setInt(5, problemAggravatingIssue.getId());
 

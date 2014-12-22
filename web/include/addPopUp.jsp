@@ -3357,11 +3357,18 @@
     }
 
     //year dropdown
-    for (i = new Date().getFullYear(); i > 1900; i--)
-    {
-        $('#yearpicker').append($('<option />').val(i).html(i));
-    }
+    $(document).ready(function() {
+        for (i = new Date().getFullYear(); i > 1900; i--)
+        {
+            $('#yearpicker').append($('<option />').val(i).html(i));
+        }
+    });
 
+
+    $(document).ready(function() {
+        $('.cancel_btn').addClass('pull-right');
+        $('.form-control').addClass('input-sm');
+    });
 </script>
 
 <%

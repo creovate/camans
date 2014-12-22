@@ -528,7 +528,10 @@
 
     });
 
-
+    $(document).ready(function(){
+        $('.cancel_btn').addClass('pull-right');
+        $('.form-control').addClass('input-sm');
+    });
 </script>
 <%
     /* data collection */
@@ -565,6 +568,7 @@
 
 <!--nickname-->
 <form method="POST" id='nickname_pop_up' data-title="View Worker's Nickname" class="form complement_detailed_form worker_pop_up"  >
+    <h4 class='view_comp'>View Nickname Details</h4>
     <h4 class='add_comp'>Add A New Nickname </h4>
     <h4 class='edit_comp'>Edit Nickname Details</h4>
 
@@ -632,7 +636,7 @@
 
 <form method="POST" id='passport_pop_up' class="form complement_detailed_form worker_pop_up"  >
     <h4 class='view_comp'>View Passport Details</h4>
-    <h4 class='add_comp'>Add A New Passport </h4>
+    <h4 class='add_comp'>Add A New Passport Details</h4>
     <h4 class='edit_comp'>Edit Passport Details</h4>
 
     <!--Get passport data using passport name-->
@@ -680,7 +684,6 @@
     </div>
 
     <div class='add_comp'>
-        <h3>Add A New Passport</h3>
         <div class='form-group '>
             <div class='form-group'>
                 <label for='nPassportNum' class="control-label">Passport No<span style="color: red">*</span>: </label>

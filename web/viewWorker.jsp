@@ -67,21 +67,20 @@
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" />
         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
-        <link rel="stylesheet" href="css/jquery-ui.css">
+        <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.css">
 
         <link rel="stylesheet" href="css/jquery-ui.structure.css">
         <link rel="stylesheet" href="css/jquery-ui.theme.css">
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-
+        
         <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
         <!--jasny-bootstrap v3.1.3, added by soemyatmayt-->
         <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
         <!-- DataTables CSS, added by soemyatmyat -->
         <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
 
-        <script src="js/jquery-2.1.1.js"></script>
+        <script src="js/jquery-2.1.3.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery-ui.js"></script>
+        <script src="js/jquery-ui-1.9.2.custom.js"></script>
         <script src="js/jquery.steps.js"></script>
         <script src="jquery.ui.position.js"></script>
         <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>        
@@ -251,7 +250,7 @@
                                                     if (i < nickNameIds.size() - 1) {
                                         %>
 
-                                        <div class="col-md-4 other_nickname moreObjs" >
+                                        <div class="col-sm-4 col-md-4 other_nickname moreObjs" >
 
                                             <table class="table table-bordered">
                                                 <tr>
@@ -263,7 +262,7 @@
                                         <%
                                         } else {
                                         %>
-                                        <div class="col-md-4">
+                                        <div class="col-sm-4 col-md-4">
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td style="width:80%"><%=nickname%></td>
@@ -1981,12 +1980,12 @@
                                                                         }
 
                                                                         String remark = aggravIs.getAggravatingRemark();
-                                                                        String loss = aggravIs.getAggravatingLoss();
+                                                                        double loss = aggravIs.getAggravatingLoss();
                                                                         if (i < aggravissueIds.size() - 1) {
                                                                 %>
                                                                 <tr class="other_aggravissue moreObjs">
                                                                     <td><%=issue%></td>
-                                                                    <td><%=loss%></td>
+                                                                    <td><%=(loss == 0) ? "0.00" : loss%></td>
                                                                     <td><%=remark%></td>
                                                                     <td>
                                                                         <a style="color: black" data-value='aggravissue' data-class="problem"   
@@ -2001,7 +2000,7 @@
                                                                 %>
                                                                 <tr>
                                                                     <td><%=issue%></td>
-                                                                    <td><%=loss%></td>
+                                                                    <td><%=(loss == 0) ? "0.00" : loss%></td>
                                                                     <td><%=remark%></td>
                                                                     <td><a style="color: black" data-value='aggravissue' data-class="problem"   data-aggravissue='<%=aggravIs.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#aggravIssue_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
@@ -4623,7 +4622,7 @@
                 }
                 if (div_action_val === 'viewedit' || div_class === 'benefection') {
                     $("#pop_up_content").load('include/' + url + '?workerFin=<%=workerFin%>&' + div_id + '=' + div_value
-                            + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + "&action=" + div_action_val).dialog({modal: true, minHeight: $(window).height() - 350,
+                            + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + "&action=" + div_action_val).dialog({modal: true,
                         minWidth: $(window).width() - 750, resizable: false, title: div_title, draggable: false, close: function() {
                             $(this).dialog('destroy');
                             $('#pop_up_content').empty();
