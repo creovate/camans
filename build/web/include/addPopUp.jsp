@@ -25,8 +25,7 @@
         $(".dateInput").datepicker({
             dateFormat: 'dd-M-yy',
             changeMonth: true,
-            changeYear: true,
-            maxDate: 0
+            changeYear: true
         });
 
     });
@@ -37,7 +36,6 @@
             dateFormat: 'dd-M-yy',
             changeMonth: true,
             changeYear: true,
-            maxDate: 0,
             onClose: function(selectedDate) {
                 $(".endDate").datepicker("option", "minDate", selectedDate);
             }
@@ -46,7 +44,6 @@
             dateFormat: 'dd-M-yy',
             changeMonth: true,
             changeYear: true,
-            maxDate: 0,
             onClose: function(selectedDate) {
 
                 $(".startDate").datepicker("option", "maxDate", selectedDate);
@@ -3331,40 +3328,47 @@
 
     //explain if above is Other
     /**function displayOther(div_id) {
+     var div = document.getElementById(div_id);
+     
+     if (document.getElementById(div_id).value == 'Other') {
+     var other_div = div_id + "_other_div";
+     //document.getElementById(other_div).style.display = 'block';
+     $("#" + other_div).show();
+     }else{
+     var other_div = div_id + "_other_div";
+     //document.getElementById(other_div).style.display = 'block';
+     $("#" + other_div).hide();
+     }
+     };**/
+
+    //hide the year dropdwon
+    function hideOther(div_id) {
         var div = document.getElementById(div_id);
 
-        if (document.getElementById(div_id).value == 'Other') {
-            var other_div = div_id + "_other_div";
-            //document.getElementById(other_div).style.display = 'block';
-            $("#" + other_div).show();
-        }else{
-            var other_div = div_id + "_other_div";
-            //document.getElementById(other_div).style.display = 'block';
-            $("#" + other_div).hide();
-        }
-    };**/
-    
-    //hide the year dropdwon
-    function hideOther(div_id){
-        var div = document.getElementById(div_id);
-        
-        if(document.getElementById(div_id).value === "Yes"){
+        if (document.getElementById(div_id).value === "Yes") {
             //alert("hello");
             var other_div = div_id + "_other_div";
             //alert(other_div);
             $("#" + other_div).toggle();
-        }else{
+        } else {
             var other_div = div_id + "_other_div";
             $("#" + other_div).toggle();
         }
     }
 
     //year dropdown
-    for (i = new Date().getFullYear(); i > 1900; i--)
-    {
-        $('#yearpicker').append($('<option />').val(i).html(i));
-    }
+    $(document).ready(function() {
+        for (i = new Date().getFullYear(); i > 1900; i--)
+        {
+            $('#yearpicker').append($('<option />').val(i).html(i));
+        }
+    });
 
+
+    $(document).ready(function() {
+        $('.cancel_btn').addClass('pull-right');
+        $('.form-control').addClass('input-sm');
+    });
 </script>
 
 <%

@@ -41,10 +41,6 @@
         <servlet-class>camans.controller.processSearchWorker</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>processAddBenefit</servlet-name>
-        <servlet-class>camans.controller.processAddBenefit</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>processGenerateTWC2Fin</servlet-name>
         <servlet-class>camans.controller.processGenerateTWC2Fin</servlet-class>
     </servlet>
@@ -103,10 +99,6 @@
     <servlet-mapping>
         <servlet-name>processGenerateTWC2Fin</servlet-name>
         <url-pattern>/generateTWC2Fin.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>processAddBenefit</servlet-name>
-        <url-pattern>/addBenefit.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>processAssignCase</servlet-name>

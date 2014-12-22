@@ -26,7 +26,16 @@ import java.util.logging.Logger;
  * @author soemyatmyat
  */
 public class WorkerComplementsDAO {
-
+    
+    /**
+     * Provide a consistent manner to handle SQL Exception
+     *
+     * @param ex The SQLException encountered
+     * @param sql The SQL command issued
+     * @param parameters Textual representation of the parameters passed in to
+     * PreparedStatement
+     */
+    
     /*Nickname*/
     public static ArrayList<Integer> retrieveNickNameIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1544,6 +1553,24 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, rs);
         }
         return timeStamp;
+    }
+    
+    public static void deleteWorkerAttachment(WorkerAttachment workerAttachment) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_worker_attachment WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, workerAttachment.getId());
+            
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "workerAttachment={" + workerAttachment + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }        
     }
     
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {

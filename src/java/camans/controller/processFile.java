@@ -4,6 +4,7 @@
  */
 package camans.controller;
 
+import camans.dao.ConnectionManager;
 import camans.dao.WorkerComplementsDAO;
 import camans.entity.User;
 import camans.entity.WorkerAttachment;
@@ -12,6 +13,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +28,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
- * @author pyaephyo
+ * @author soemyatmyat
  */
 public class processFile extends HttpServlet {
 
@@ -45,79 +49,167 @@ public class processFile extends HttpServlet {
         
         try {
             
+            boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
+            //==========================================//
+            //          Data Collection
+            //==========================================//
+            String attachId = request.getParameter("attachId");
+            String action = request.getParameter("action");
+            String workerFinNum = request.getParameter("workerFin");
+            String newFileName = request.getParameter("nFileName");
+            
             //==========================================//
             //          Success & Error Display
             //==========================================//
             String success = null;
             String error = null;
-            //==========================================//
-            //          Prepare for File Upload
-            //==========================================//
-            // Create a factory for disk-based file items
-            DiskFileItemFactory diskFactory = new DiskFileItemFactory();
-            // File Upload Handler
-            ServletFileUpload uploader = new ServletFileUpload(diskFactory);
-            // Put all the fields request into iter
-            FileItemIterator iter = uploader.getItemIterator(request);
             
-            //==========================================//
-            //          Data Collection
-            //==========================================//
-            String workerFinNum = null;
-            String fileOrign = null;
-            while(iter.hasNext()) {
-                FileItemStream item = iter.next();
-                if (item.isFormField()) {
-                    String fieldName = item.getFieldName();
-                    InputStream is = item.openStream();
-                    byte[] b = new byte[is.available()];
-                    is.read(b);
-                    String value = new String(b);
-                    if ("workerFin".equalsIgnoreCase(fieldName)) {
-                        workerFinNum = value;
-                    }
-                } else { //file upload
+            //check that we have a file upload request
+            if (isMultiPart) {
+                //==========================================//
+                //          Prepare for File Upload
+                //==========================================//
+                // Create a factory for disk-based file items
+                DiskFileItemFactory diskFactory = new DiskFileItemFactory();
+                // File Upload Handler
+                ServletFileUpload uploader = new ServletFileUpload(diskFactory);
+                // Put all the fields request into iter
+                FileItemIterator iter = uploader.getItemIterator(request);
 
-                    if (!item.getName().equals("")) {//only if there is file
-                        //retrieve filePath of the app build folder
-                        String filePath = getServletContext().getRealPath("/");
-                        //to append in image file name
-                        String uniqueID = UUID.randomUUID().toString();
-                        try {
-                            File file = new File (filePath + File.separator + "workers");
-                            if (!file.exists()) {file.mkdir();}
-                            file = new File (filePath + File.separator + "workers" + File.separator + workerFinNum);
-                            //create a image fie directory with username
-                            if (!file.exists()) {file.mkdir();}
-                            //set the file Name
-                            fileOrign = item.getName();
-                            String fileName = uniqueID + "-xx-" + item.getName();
-                            file = new File(file.getAbsolutePath() + File.separator + fileName);
-                            FileOutputStream fos = new FileOutputStream(file);
-                            InputStream is = item.openStream();
-                            int x = 0;
-                            byte[] b  = new byte[1024];
-                            while((x=is.read(b))!= -1){
-                                fos.write(b,0,x);
-                            }
-                            fos.flush();
-                            fos.close();
-                            String fileDir = "workers/" + workerFinNum + "/" + fileName;
-                            User _user = (User) request.getSession().getAttribute("userLogin");
-                            WorkerAttachment workerAttachment = new WorkerAttachment(workerFinNum,item.getName(),fileDir,_user.getUsername());
-                            WorkerComplementsDAO.addAttachmentDetails(workerAttachment);
-                        } catch (Exception e) {
-                            out.println("Error:" + e);
+                //==========================================//
+                //          Process File Upload 
+                //==========================================//
+                workerFinNum = null;
+                String fileOrign = null;
+                while(iter.hasNext()) {
+                    FileItemStream item = iter.next();
+                    if (item.isFormField()) {
+                        String fieldName = item.getFieldName();
+                        InputStream is = item.openStream();
+                        byte[] b = new byte[is.available()];
+                        is.read(b);
+                        String value = new String(b);
+                        if ("workerFin".equalsIgnoreCase(fieldName)) {
+                            workerFinNum = value;
                         }
-                    } else {
-                        error = "No File Selected";
+                    } else { //file upload
+
+                        if (!item.getName().equals("")) {//only if there is file
+                            //retrieve filePath of the app build folder
+                            String filePath = getServletContext().getRealPath("/");
+                            //to append in image file name
+                            String uniqueID = UUID.randomUUID().toString();
+                            try {
+                                File file = new File (filePath + File.separator + "workers");
+                                if (!file.exists()) {file.mkdir();}
+                                file = new File (filePath + File.separator + "workers" + File.separator + workerFinNum);
+                                //create a image fie directory with username
+                                if (!file.exists()) {file.mkdir();}
+                                //set the file Name
+                                fileOrign = item.getName();
+                                String fileName = uniqueID + "-xx-" + item.getName();
+                                file = new File(file.getAbsolutePath() + File.separator + fileName);
+                                FileOutputStream fos = new FileOutputStream(file);
+                                InputStream is = item.openStream();
+                                int x = 0;
+                                byte[] b  = new byte[1024];
+                                while((x=is.read(b))!= -1){
+                                    fos.write(b,0,x);
+                                }
+                                fos.flush();
+                                fos.close();
+                                String fileDir = "workers/" + workerFinNum + "/" + fileName;
+                                User _user = (User) request.getSession().getAttribute("userLogin");
+                                WorkerAttachment workerAttachment = new WorkerAttachment(workerFinNum,item.getName(),fileDir,_user.getUsername());
+                                WorkerComplementsDAO.addAttachmentDetails(workerAttachment);
+                            } catch (Exception e) {
+                                out.println("Error:" + e);
+                            }
+                        } else {
+                            error = "No File Selected";
+                            request.getSession().setAttribute("errAttachMsg", error);
+                        }
+                    } //end of fileUpload   
+                } //while
+                if (fileOrign != null) {
+                    success = fileOrign + " has been successfully uploaded!";
+                }
+                request.getSession().setAttribute("successAttachMsg", success);
+                response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+                //==========================================//
+                //          End of Process File Upload 
+                //==========================================//
+            } else { //this is not a file upload request
+                //==========================================//
+                //          Process File Delete
+                //==========================================//
+                if (action.equals("delete")) {
+                    int id = Integer.parseInt(attachId);
+                    WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(id);
+                    //retrieve filePath of the app build folder
+                    String filePath = getServletContext().getRealPath("/") + File.separator + workerAttachment.getFilePath();
+                    File deleteFile = new File(filePath);
+                    if (!deleteFile.exists()) {
+                        error = "Selected File does not exist. Please check with admin.";
                         request.getSession().setAttribute("errAttachMsg", error);
+                        response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+                    } else {
+                        if (deleteFile.delete()) {                      
+                            success = workerAttachment.getDocumentName() + " has been successfully deleted!";
+                            WorkerComplementsDAO.deleteWorkerAttachment(workerAttachment);
+                            request.getSession().setAttribute("successAttachMsg", success);
+                            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+                        } else { //file delete processing error
+                            //do not proceed & show error page
+                            //log the errors to logs file
+                        }
                     }
-                }   
+                //==========================================//
+                //          End of Process File Delete
+                //==========================================//    
+                } else if (action.equals("edit")) {
+                //==========================================//
+                //          Process File Rename
+                //==========================================//      
+                    int id = Integer.parseInt(attachId);
+                    WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(id);
+                    
+                    String fileDir = workerAttachment.getFilePath(); 
+                    String oldFilePath = getServletContext().getRealPath("/") + File.separator + fileDir; 
+                    File oldFile = new File(oldFilePath);
+                    if (!oldFile.exists()) {
+                        error = "Selected File does not exist. Please check with admin.";
+                        request.getSession().setAttribute("errAttachMsg", error);
+                        response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+                    } else {
+                        String oldFileName = oldFile.getName();
+
+                        newFileName = oldFileName.substring(0, oldFileName.indexOf("-xx-")) + "-xx-" 
+                                + newFileName + oldFileName.substring(oldFileName.indexOf("."));
+                        String newFilePath = oldFile.getParent() + File.separator + newFileName;
+                        File newFile = new File(newFilePath);
+                        if (oldFile.renameTo(newFile)) {
+                            workerAttachment.setDocumentName(newFileName.substring(newFileName.lastIndexOf('-')+1));
+                            workerAttachment.setFilePath("workers/" + workerFinNum + "/" + newFileName);
+                            WorkerComplementsDAO.updateAttachmentDetails(workerAttachment);
+                            success = oldFileName.substring(oldFileName.lastIndexOf('-')+1) + " has been successfully renamed to " + 
+                                    workerAttachment.getDocumentName() + "!";
+                            request.getSession().setAttribute("successAttachMsg", success);
+                            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+                        } else { //file rename processing error
+                            //do not proceed & show error page
+                            //log the errors to logs file  
+                        }
+
+                    }
+                    
+                    
+                //==========================================//
+                //         End of Process File Rename
+                //==========================================//  
+                    
+                }
             }
-            success = fileOrign + " has been successfully uploaded!";
-            request.getSession().setAttribute("successAttachMsg", success);
-            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
         } catch (Exception e) {
             //do not process & show error page
             out.println("error:" + e);    

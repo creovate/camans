@@ -4442,25 +4442,26 @@
                                 <!-- Attachments Success & Error Display --->
                                 <% String successMsg = (String) request.getSession().getAttribute("successAttachMsg");
                                     request.getSession().removeAttribute("successAttachMsg");
-
+                                    
                                     String errorMsg = (String) request.getSession().getAttribute("errAttachMsg");
-                                    request.getSession().removeAttribute("errAttachMsg");%>
-                                <% if (successMsg != null && !successMsg.equals("null")) {%>
+                                    request.getSession().removeAttribute("errAttachMsg"); %>
+                                    
+                                <% if (successMsg != null)  { %>
 
-                                <div class="alert alert-info" role="alert">
-                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                    <%=successMsg%>
-                                </div>
+                                    <div class="alert alert-info" role="alert">
+                                       <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                       <%=successMsg%>
+                                   </div>
 
-                                <% }%>
-                                <% if (errorMsg != null) {%>
+                                <% } %>
+                                <% if (errorMsg != null)  { %>
 
-                                <div class="alert alert-danger" role="alert">
+                                 <div class="alert alert-danger" role="alert">
                                     <a href="#" class="close" data-dismiss="alert">&times;</a>
                                     <%=errorMsg%>
                                 </div>
 
-                                <% }%>
+                                <% } %>
                                 <!-- End of Attachments Success & Error Display --->
                                 <div class="panel panel-default">
                                     <div class="panel-body">
@@ -4490,78 +4491,132 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%
-                                            for (int i = 0; i < workerAttachList.size(); i++) {
-                                                WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(workerAttachList.get(i));
-                                                String docName = workerAttachment.getDocumentName();
-                                                java.util.Date timeStamp = WorkerComplementsDAO.retrieveTimeStamp(workerAttachment);
-                                                String submitBy = workerAttachment.getSubmitBy();
-                                        %>
+                                    <%
+                                        for (int i = 0; i < workerAttachList.size(); i++ ) {
+                                            WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(workerAttachList.get(i));
+                                            String docName = workerAttachment.getDocumentName();
+                                            java.util.Date timeStamp = WorkerComplementsDAO.retrieveTimeStamp(workerAttachment);
+                                            String submitBy = workerAttachment.getSubmitBy();
+                                            //docName.substring(0, docName.indexOf("."));
+                                    %>
                                         <tr bgcolor="">
-                                            <td><%=i + 1%></td>
+                                            <td><%=i+1%></td>
                                             <td><%=docName%></td>
                                             <td><%=sdf.format(timeStamp)%></td>
                                             <td><%=submitBy%></td>
                                             <td align="center">
                                                 <a style="color: black" href="">
-                                                    <span data-toggle="tooltip" title="Download" class="glyphicon glyphicon-download-alt"></span>
+                                                   <span data-toggle="tooltip" title="Download" class="glyphicon glyphicon-download-alt"></span>
                                                 </a>&nbsp; &nbsp; &nbsp; &nbsp;
-                                                <a style="color: black" href=""
-                                                   data-toggle="modal" data-target="#">
+                                                <a style="color: black" href="" class="edit_popup" data-doc='<%=docName.substring(0, docName.indexOf("."))%>'
+                                                   data-id='<%=workerAttachment.getId()%>' data-toggle="modal" data-target="#attach_edit_popup">
                                                     <span data-toggle="tooltip" title="Rename" class="glyphicon glyphicon-pencil"></span>
                                                 </a>&nbsp; &nbsp; &nbsp; &nbsp;
-                                                <a style="color: black" href="" class="delete_popup" data-docName='<%=docName%>' 
+                                                <a style="color: black" href="" class="delete_popup" data-doc='<%=docName%>'
                                                    data-id='<%=workerAttachment.getId()%>' data-toggle="modal" data-target="#attach_delete_confirm">
                                                     <span data-toggle="tooltip" title="Delete" class="glyphicon glyphicon-trash"></span>
                                                 </a>    
                                             </td>
                                         </tr>
-                                        <%  } // for loop  %>    
+                                    <%  } // for loop  %>    
                                     </tbody>
                                 </table>
-                                <%  } else { //if not exits   %>     
-                                <br/>No file has been uploaded to this worker yet!
-                                <%  }%>
+                               <%  } else { //if not exits   %>     
+                                    <br/>No file has been uploaded to this worker yet!
+                               <%  } %>
                             </div>                
                             <!----End of Attachments Complement Tab---> 
                         </div>
                     </div>
 
-                </div> 
-
-                <div id="pop_up_content" ></div> <!-- <-- What is this for? -->
-
-                <!-- Confirm Attachment Delete Modal -->
+                 </div> 
+                            
+                 <div id="pop_up_content" ></div> <!-- <-- What is this for? -->
+                 
+                 <!-- Confirm Attachment Delete Modal -->
                 <div class="modal fade" id="attach_delete_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" 
                      aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
 
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <span aria-hidden="true">&times;</span>
-                                    <span class="sr-only">Close</span>
-                                </button>
-                                <h3 class="modal-title" id="attach_pop_up_label" style="color:#2980b9" align="center">
-                                    Delete File
-                                </h3>
-                            </div> <!--modal-header-->
-                            <form id="deleteConfirmForm" method="post" action="#" class="form-horizontal">
-                                <div class="modal-body">
-                                    <input type="hidden" name="attachId" id="InputID" value=""/>
-                                    Are you sure you want to delete this file -<label id="InputDocName"></label>?<br/><br/>
-                                </div> <!--modal body -->
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h3 class="modal-title" id="attach_pop_up_label" style="color:#2980b9" align="center">
+                            Delete File
+                        </h3>
+                      </div> <!--modal-header-->
+                      <form id="deleteConfirmForm" method="post" action="fileUpload.do">
+                        <div class="modal-body">
+                            <input type="hidden" name="attachId" id="InputID" value=""/>
+                            <input type="hidden" name="action" value="delete"/>
+                            <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
+                            Are you sure you want to delete this file?
+                            <input id="InputDocName" readOnly="readOnly"></input>
+                            <!--<label id="InputDocName" name="InputDocName"></label> Try Later-->
+                        </div> <!--modal body -->
 
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-success">Ok</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                </div>
-                            </form>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-success">Ok</button>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
 
-                        </div> <!--modal content -->
-                    </div> <!--modal dialog -->
+                    </div> <!--modal content -->
+                  </div> <!--modal dialog -->
                 </div> 
+                 <!-- End of Confirm Attachment Delete Modal -->
+            
+                 <!-- Rename Attachment Modal -->
+                <div class="modal fade" id="attach_edit_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" 
+                     aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
 
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h3 class="modal-title" id="attach_pop_up_label" style="color:#2980b9" align="center">
+                            Rename File
+                        </h3>
+                      </div> <!--modal-header-->
+                      <form id="editAttachForm" method="post" action="fileUpload.do" class="form-horizontal">
+                        <div class="modal-body">
+                           
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputDocName">Old File Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputDocName" name="fileName" readOnly="readOnly">
+                                </div>    
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputDocName">New File Name<span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputNewFileName" name="nFileName" required>
+                                </div>    
+                            </div>
+                            
+                        </div> <!--modal body -->
+
+                        <div class="modal-footer">
+                                                      
+                          <input type="hidden" name="attachId" id="InputID" value=""/>
+                          <input type="hidden" name="action" value="edit"/>
+                          <input type="hidden" name="workerFin" value="<%=workerFin%>"/>  
+                          <button type="submit" class="btn btn-success">Ok</button>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+
+                    </div> <!--modal content -->
+                  </div> <!--modal dialog -->
+                </div>                  
+                 <!-- End of Rename Attachment Modal -->
             </div>
 
         </div>
@@ -4654,17 +4709,67 @@
                 $(div).show();
             }
 
+           
             //ready the data in tables - added by soemyatmyat
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#worker_attachment').dataTable();
-            });
-
+            }); 
+            
             //passing data for attachment delete confirm - added by soemyatmyat
-            $(document).on("click", '.edit_popup', function() {
+            $(document).on( "click", '.delete_popup',function() {
                 var attachId = $(this).data('id');
-                var docName = $(this).data('docName');
+                var attachDocName = $(this).data('doc');
                 $(".modal-body #InputID").val(attachId);
-                $(".modal-body #InputDocName").val(docName);
+                //document.getElementById("InputDocName").innerHTML = attachDocName;
+                $(".modal-body #InputDocName").val(attachDocName);
+            });
+            
+            //passing data for attachment rename  - added by soemyatmyat
+            $(document).on( "click", '.edit_popup',function() {
+                var attachId = $(this).data('id');
+                var attachDocName = $(this).data('doc');
+                $(".modal-footer #InputID").val(attachId);
+                //document.getElementById("InputDocName").innerHTML = attachDocName;
+                $(".modal-body #InputDocName").val(attachDocName);
+            });
+            
+            //reset password form validation check - added by soemyatmyat
+            /*
+            $(document).ready(function() {
+                $('#editAttachForm')
+                .bootstrapValidator({
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        nFileName: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'The new file name cannot be empty.'
+                                },
+                                regexp: {
+                                    regexp: /^[0-9a-z\s]+$/i,
+                                    message: 'File name can consist of alphabetical, numerical character and spaces only.'
+                                },
+                                stringLength: {
+                                    max:190,
+                                    message: 'File name cannot be more than 190 characters.'
+                                },
+                                different: {
+                                    field:'fileName',
+                                    message:'The new file name and old file name cannot be the same.'
+                                }
+                            }
+                        }
+                    }
+                })
+            }); 
+            */
+            //to reset all the fields whenever the modal is opened - added by soemyatmyat
+            $('#attach_edit_popup').on('shown.bs.modal', function() {
+                $('#editAttachForm').bootstrapValidator('resetForm', true);
             });
 
         </script>
