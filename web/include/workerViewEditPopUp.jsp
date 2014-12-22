@@ -10,28 +10,24 @@
 
 </style>
 <script>
+    //----initialize datepicker----//
     $(function() {
         $(".dateInput").datepicker({
-                    dateFormat: 'dd-M-yy',
-                    changeMonth: true,
-                    changeYear: true,
-                    maxDate: 0
-                });
-
-    });
-    
-    //for date inputs
-    $(document).ready(function(){
-
-        $('.dateInput').focus(function(){
-
-        $('.dateInput').blur();
-
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true
         });
 
     });
 
-       //worker form validation 
+    //----disable manual input in date fields----//
+    $(document).ready(function() {
+        $('.dateInput').focus(function() {
+            $('.dateInput').blur();
+        });
+    });
+
+    //worker form validation 
     $(document).ready(function() {
         $('.worker_pop_up')
                 .bootstrapValidator({
@@ -531,7 +527,7 @@
         });
 
     });
-    
+
 
 </script>
 <%
@@ -1078,7 +1074,7 @@
         <div class='form-group '>
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Address<span style="color: red">*</span>:</label>
-                
+
                 <br/>
                 <textarea class="form-control"name="nAddress" rows="3"  maxlength="300" required></textarea>
 
@@ -1627,7 +1623,7 @@
             </div>
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark: </label>
-                
+
                 <br/>
                 <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
             </div>

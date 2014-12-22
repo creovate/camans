@@ -13,26 +13,21 @@
 
 </style>
 <script>
+    //----initialize datepicker----//
     $(function() {
         $(".dateInput").datepicker({
-                    dateFormat: 'dd-M-yy',
-                    changeMonth: true,
-                    changeYear: true,
-                    maxDate: 0
-                });
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true
+        });
 
     });
 
-    
-    //for date inputs
-    $(document).ready(function(){
-
-        $('.dateInput').focus(function(){
-
-        $('.dateInput').blur();
-
+    //----disable manual input in date fields----//
+    $(document).ready(function() {
+        $('.dateInput').focus(function() {
+            $('.dateInput').blur();
         });
-
     });
     
     //job form validation 
@@ -1559,7 +1554,7 @@
     </div>
 </form>
 
-<!--emp details-->        
+<!--employer details-->        
 <%
     }
 
