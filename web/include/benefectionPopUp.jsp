@@ -202,20 +202,7 @@
             }
         });
     });
-    //date revalidation
     
-     $('.dateInput').on('change', function() {
-     $('.complement_detailed_form')
-     .data('bootstrapValidator')             // Get the validator instance
-     .revalidateField('nisDate');                // Revalidate it
-     
-     });
-     $('.dateInput').on('change', function() {
-     $('.complement_detailed_form')
-     .data('bootstrapValidator')             // Get the validator instance
-     .revalidateField('isDate');                // Revalidate it
-     
-     });
 
 </script>
 
@@ -225,8 +212,8 @@
 
     String worker_fin = request.getParameter("workerFin");
     String jobKey = request.getParameter("jobkey");
-    String probKey = request.getParameter("problemKey");
-
+    String probKey = request.getParameter("probkey");
+    
     String foodbeneId = request.getParameter("foodbene");
     String transpobeneId = request.getParameter("transpobene");
     String medibeneId = request.getParameter("medibene");
