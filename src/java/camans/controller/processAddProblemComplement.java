@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -55,7 +56,15 @@ public class processAddProblemComplement extends HttpServlet {
                 //get all the parameters for Aggravating Issue
                 String aggraIssue = request.getParameter("naggravissueType");
                 String aggraIssueMore = request.getParameter("naggravissueTypeMore");
-                String aggraLoss = request.getParameter("naggravLoss");
+                String aggraLossStr = request.getParameter("aggravLoss");
+                Double aggraLoss = 0.0;
+                if (aggraLossStr != null && !aggraLossStr.equals("")) {
+                    try {
+                        aggraLoss = Double.parseDouble(aggraLossStr);
+                    } catch (Exception ex) {
+                        out.println(ex);
+                    }
+                }
                 String aggraRemark = request.getParameter("nremark");
                 
                 //create object

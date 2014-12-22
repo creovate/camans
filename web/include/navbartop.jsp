@@ -25,7 +25,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img id="logo" src="img/twc_logo.png"></a>
+                <a class="navbar-brand" href="home.jsp"><img id="logo" src="img/twc_logo.png"></a>
             </div>
            
 

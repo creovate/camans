@@ -56,7 +56,15 @@ public class processEditProblemComplement extends HttpServlet {
                 
                 String aggraIssue = request.getParameter("aggravissueType");
                 String aggraIssueMore = request.getParameter("aggravissueTypeMore");
-                String aggraLoss = request.getParameter("aggravLoss");
+                String aggraLossStr = request.getParameter("aggravLoss");
+                Double aggraLoss = 0.0;
+                if (aggraLossStr != null && !aggraLossStr.equals("")) {
+                    try {
+                        aggraLoss = Double.parseDouble(aggraLossStr);
+                    } catch (Exception ex) {
+                        out.println(ex);
+                    }
+                }
                 String aggraRemark = request.getParameter("remark");
                 
                 int id = Integer.parseInt(request.getParameter("Id"));

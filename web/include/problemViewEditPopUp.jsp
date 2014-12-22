@@ -9,52 +9,45 @@
 <%@page import="camans.entity.*"%>
 
 <script>
+    //----initialize datepicker----//
     $(function() {
         $(".dateInput").datepicker({
             dateFormat: 'dd-M-yy',
             changeMonth: true,
-            changeYear: true,
-            maxDate: 0
+            changeYear: true
         });
 
     });
-    
-    //start date & end date
+
+    //----validation for start date and end date----//
     $(function() {
-    $( ".startDate" ).datepicker({
-        dateFormat: 'dd-M-yy',
+        $(".startDate").datepicker({
+            dateFormat: 'dd-M-yy',
             changeMonth: true,
             changeYear: true,
-            maxDate: 0,
-      onClose: function( selectedDate ) {
-        $( ".endDate" ).datepicker( "option", "minDate", selectedDate );
-      }
-    });
-    $( ".endDate" ).datepicker({
-        dateFormat: 'dd-M-yy',
-            changeMonth: true,
-            changeYear: true,
-            maxDate: 0,
-      onClose: function( selectedDate ) {
-          
-        $( ".startDate" ).datepicker( "option", "maxDate", selectedDate );
-      }
-    });
-  });
-    
-//disable manual input in date fields
-    $(document).ready(function() {
-
-        $('.dateInput').focus(function() {
-
-            $('.dateInput').blur();
-
+            onClose: function(selectedDate) {
+                $(".endDate").datepicker("option", "minDate", selectedDate);
+            }
         });
+        $(".endDate").datepicker({
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            onClose: function(selectedDate) {
 
+                $(".startDate").datepicker("option", "maxDate", selectedDate);
+            }
+        });
     });
 
+    //----disable manual input in date fields----//
+    $(document).ready(function() {
+        $('.dateInput').focus(function() {
+            $('.dateInput').blur();
+        });
+    });
 
-    //problem form validation 
+    //----problem form validation----//
     $(document).ready(function() {
         $('.problem_pop_up')
                 .bootstrapValidator({
@@ -1405,10 +1398,10 @@
                             message: 'This field must be a number'
                         }
                     },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
+                    regexp: {
+                        regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                        message: 'This value must have maximum 2 decimal place.'
+                    }
                 },
                 //leadcase worker
                 leadCaseWorkerName: {
@@ -1418,7 +1411,6 @@
                         }
                     }
                 },
-                
                 nleadCaseWorkerName: {
                     validators: {
                         notEmpty: {
@@ -1426,7 +1418,6 @@
                         }
                     }
                 },
-                
                 //auxiliary caseworker
                 auxiliaryCaseWorkerName: {
                     validators: {
@@ -1609,9 +1600,10 @@
         });
 
     });
-    
-    
-    //date revalidation
+
+
+    //----date revalidation----//
+    //----** not validating yet tho. :P----//
     $('.dateInput').on('change', function() {
         $('.complement_detailed_form')
                 .data('bootstrapValidator')             // Get the validator instance
@@ -1625,7 +1617,10 @@
 
     });
 
-    
+$(document).ready(function(){
+        $('.cancel_btn').addClass('pull-right');
+        $('.form-control').addClass('input-sm');
+    });
 </script>
 <style>
     h4{
@@ -1738,7 +1733,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Where initially treated:</label>
                     <br/>
-                    <input class="form-control" type='text' name="remark" value="<%=(injuryInitialTreatment == null) ? "" : injuryInitialTreatment %>">
+                    <input class="form-control" type='text' name="remark" value="<%=(injuryInitialTreatment == null) ? "" : injuryInitialTreatment%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Does worker consider incident work-related?</label>
@@ -2012,7 +2007,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Nature of illness </label>
                     <br/>
-                    <input class="form-control" type='text' name="remark" value="<%=(nature  == null) ? "" : nature%>">
+                    <input class="form-control" type='text' name="remark" value="<%=(nature == null) ? "" : nature%>">
                 </div>
 
                 <div class='form-group'>
@@ -2112,7 +2107,7 @@
             <div class='form-group'>
                 <label for='diagnosePerson' class="control-label">Illness diagnosed person</label>
                 <br/>
-                <input class="form-control" type='text' name="diagnosePerson" value="<%=(diagnoseWho == null) ? "" :diagnoseWho%>">
+                <input class="form-control" type='text' name="diagnosePerson" value="<%=(diagnoseWho == null) ? "" : diagnoseWho%>">
             </div>
 
             <div class='form-group'>
@@ -2265,7 +2260,7 @@
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark</label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3"><%=(remark  == null) ? "" : remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
             </div>
 
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
@@ -4239,7 +4234,7 @@
         <div class='form-group'>
             <label for='' class="control-label">Remark: </label>
             <br/>
-            <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" :remark%></textarea>
+            <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
         </div>
 
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
@@ -4709,7 +4704,7 @@
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Was worker participating?: </label>
-            
+
             <select class="form-control" id="discussionWhere" name="discussionWorkerPresent">
                 <%
                     if (workerPresent == "Yes") {
@@ -5123,8 +5118,8 @@
 
         <div class='form-group'>
             <label for='' class="control-label">Date of Update<span style="color: red">*</span>: </label>
-            <input class="form-control dateInput" value="<%=(mcUpdate == null) ? ""
-                           : sdf.format(mcUpdate)%>" type='text' name="date" >
+                   <input class="form-control dateInput" value="<%=(mcUpdate == null) ? ""
+                    : sdf.format(mcUpdate)%>" type='text' name="date" >
         </div>
         <div class='form-group'>
             <label for='status' class="control-label">MC Status<span style="color: red">*</span></label>
@@ -5157,7 +5152,7 @@
             <label for='' class="control-label">MC Expiry Date:</label>
             <br/>
                    <input class="form-control dateInput" value="<%=(exp == null) ? ""
-                    : sdf.format(exp)%>"  type='text' name="expDate" >
+                           : sdf.format(exp)%>"  type='text' name="expDate" >
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Number of Cumulative Days: </label>
@@ -6410,11 +6405,8 @@
                 type = issue.getAggravatingIssueMore();
             }
 
-            double loss = 0.00;
-            String lossStr = issue.getAggravatingLoss();
-            if (lossStr != null || lossStr.trim().length() > 0) {
-                loss = Double.parseDouble(lossStr);
-            }
+            double loss = issue.getAggravatingLoss();
+            
             String remark = issue.getAggravatingRemark();
 
             if (remark == null) {
@@ -6433,19 +6425,19 @@
                 <div class='form-group'>
                     <label for='name' class="control-label">Monetary loss/value S$</label>
                     <br/>
-                    <input class="form-control" type='text' name="name" value="<%=loss%>">
+                    <input class="form-control" type='text' name="name" value="<%=(loss == 0) ? "0.00" : loss%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Remark</label>
                     <br/>
-                    <textarea class="form-control" name="remark" rows="3"><%=(remark == null)? "" : remark%></textarea>
+                    <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
                 </div>
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#aggravIssue_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#aggravIssue_pop_up", "problem");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#aggravIssue_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class='btn modal_btn view_comp' onclick='add("#aggravIssue_pop_up", "problem");'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -6531,7 +6523,7 @@
             <div class='form-group'>
                 <label for='aggravRemark' class="control-label">Remark </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "": remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>

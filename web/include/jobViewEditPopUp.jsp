@@ -13,28 +13,26 @@
 
 </style>
 <script>
+    //----initialize datepicker----//
     $(function() {
         $(".dateInput").datepicker({
-                    dateFormat: 'dd-M-yy',
-                    changeMonth: true,
-                    changeYear: true,
-                    maxDate: 0
-                });
-
-    });
-
-    
-    //for date inputs
-    $(document).ready(function(){
-
-        $('.dateInput').focus(function(){
-
-        $('.dateInput').blur();
-
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true
         });
 
     });
-    
+
+    //----disable manual input in date fields----//
+    $(document).ready(function() {
+        $('.dateInput').focus(function() {
+            $('.dateInput').blur();
+        });
+    });
+    $(document).ready(function(){
+        $('.cancel_btn').addClass('pull-right');
+        $('.form-control').addClass('input-sm');
+    });
     //job form validation 
     $(document).ready(function() {
         $('.job_pop_up')
@@ -1559,7 +1557,7 @@
     </div>
 </form>
 
-<!--emp details-->        
+<!--employer details-->        
 <%
     }
 

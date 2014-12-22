@@ -39,7 +39,7 @@ public class processAddBenefit extends HttpServlet {
             String action = request.getParameter("action");
             String workerFinNum = request.getParameter("workerFinNum");
             int jobKey = Integer.parseInt(request.getParameter("jobkey"));
-            int problemKey = Integer.parseInt(request.getParameter("jobkey"));
+            int problemKey = Integer.parseInt(request.getParameter("probKey"));
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
             if (action.equals("add")) {
                 String beneDateStr = request.getParameter("nisDate");
@@ -112,7 +112,7 @@ public class processAddBenefit extends HttpServlet {
                 out.println("here2");
             }
             
-            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + "&selectedBenefit=" + problemKey);
 
         } finally {            
             out.close();

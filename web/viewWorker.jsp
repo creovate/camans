@@ -14,37 +14,47 @@
     if (workerFin == null) {
         workerFin = (String) request.getAttribute("worker");
     }
-    //Worker workerTmp = (Worker) request.getSession().getAttribute("worker");
-    //String workerFin = workerTmp.getFinNumber();
     Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);
     //request.getSession().removeAttribute("workerTmp");
     ArrayList<Integer> jobIds = JobDAO.retrieveJobIdsOfWorker(worker);
     Job latestJob = JobDAO.retrieveJobByJobId(jobIds.get(jobIds.size() - 1));
     ArrayList<Integer> problemIds = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, latestJob);
     Problem latestProblem = ProblemDAO.retrieveProblemByProblemId(problemIds.get(problemIds.size() - 1));
-    String selectedBenefit = request.getParameter("selectedBenefit");
+    
     String selectedJob = request.getParameter("selectedJob");
-    if(selectedJob == null){
-    selectedJob = (String)request.getAttribute("selectedJob");
-    }
-    String selectedProb = request.getParameter("selectedProb");
-    if(selectedProb == null){
-    selectedProb = (String)request.getAttribute("selectedProb");
+    if (selectedJob == null) {
+        selectedJob = (String) request.getAttribute("selectedJob");
     }
     if (selectedJob != null) {
         int selectedJobId = Integer.parseInt(selectedJob);
         latestJob = JobDAO.retrieveJobByJobId(selectedJobId);
-
+        problemIds = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, latestJob);
+        latestProblem = ProblemDAO.retrieveProblemByProblemId(problemIds.get(problemIds.size() - 1));
     }
+    
+    String selectedProb = request.getParameter("selectedProb");
+    if (selectedProb == null) {
+        selectedProb = (String) request.getAttribute("selectedProb");
+    }
+    
     if (selectedProb != null) {
         int selectedProbId = Integer.parseInt(selectedProb);
         latestProblem = ProblemDAO.retrieveProblemByProblemId(selectedProbId);
         int selectedJobId = latestProblem.getJobKey();
         latestJob = JobDAO.retrieveJobByJobId(selectedJobId);
     }
-
+    
+    String selectedBenefit = request.getParameter("selectedBenefit");
+    if (selectedBenefit == null) {
+        selectedBenefit = (String) request.getAttribute("selectedBenefit");
+    }
+    
+    if (selectedBenefit != null) {
+        selectedProb = null;
+        selectedJob = null;
+    }
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-   
+
 
 %>
 
@@ -57,21 +67,20 @@
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" />
         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
-        <link rel="stylesheet" href="css/jquery-ui.css">
+        <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.css">
 
         <link rel="stylesheet" href="css/jquery-ui.structure.css">
         <link rel="stylesheet" href="css/jquery-ui.theme.css">
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-
+        
         <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
         <!--jasny-bootstrap v3.1.3, added by soemyatmayt-->
         <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
         <!-- DataTables CSS, added by soemyatmyat -->
         <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
-        
-        <script src="js/jquery-2.1.1.js"></script>
+
+        <script src="js/jquery-2.1.3.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery-ui.js"></script>
+        <script src="js/jquery-ui-1.9.2.custom.js"></script>
         <script src="js/jquery.steps.js"></script>
         <script src="jquery.ui.position.js"></script>
         <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>        
@@ -80,33 +89,33 @@
         <!-- DataTables JS, Added by soemyatmyat -->
         <script src="js/jquery.dataTables.js"></script>
         <script src="js/dataTables.bootstrap.js"></script>
-        
+
         <link rel="shortcut icon" href="img/twc_logo.png">
         <title>CAMANS</title>
 
         <script>
-            $(document).ready(function(event) {
-                //event.preventDefault();
-                /**if (<%=selectedBenefit%> == "benefit") {
+            $(document).ready(function() {
+                if (<%=selectedJob%> !== null) {
                     $(".complement_tabs").removeClass("active");
-                    $("#benefit_complement_tab").addClass("active");
-                    $("#worker_complement").removeClass("active");
+                    $("#job_complement_tab").addClass("active");
                     $(".tab-pane").removeClass("active");
-                    $("#benefit_complement").addClass("active");
-                } else **/
-                    if (<%=selectedProb%> !== null) {
+                    $("#job_complement").addClass("active");
+                    $("#jobSelected").val('<%=latestJob.getJobKey()%>');
+                }
+                if (<%=selectedProb%> !== null) {
                     $(".complement_tabs").removeClass("active");
                     $("#worker_complement").removeClass("active");
                     $("#job_complement").removeClass("active");
                     $("#problem_complement_tab").addClass("active");
                     $("#problem_complement").addClass("active");
                     $("#problemSelected").val('<%=latestProblem.getProbKey()%>');
-                } else if (<%=selectedJob%> !== null) {
+                }
+                if (<%=selectedBenefit%> !== null) {
                     $(".complement_tabs").removeClass("active");
-                    $("#job_complement_tab").addClass("active");
-                    $(".tab-pane").removeClass("active");
-                    $("#job_complement").addClass("active");
-                    $("#jobSelected").val('<%=latestJob.getJobKey()%>');
+                    $("#worker_complement").removeClass("active");
+                    $("#job_complement").removeClass("active");
+                    $("#benefit_complement_tab").addClass("active");
+                    $("#benefit_complement").addClass("active");
                 }
             });
 
@@ -117,20 +126,20 @@
 
                 $('.moreObjs').hide();
             });
-            
-            
+
+
             //for date inputs
-            $(document).ready(function(){
+            $(document).ready(function() {
 
-                $('.no_change').focus(function(){
+                $('.no_change').focus(function() {
 
-                $('.no_change').blur();
+                    $('.no_change').blur();
 
                 });
 
             });
-            
-            
+
+
         </script>
         <style>
             .col-md-1{
@@ -170,13 +179,13 @@
                             String wkerfinNum = worker.getFinNumber();
                             //String phNum = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(worker);
                             String wkerphNum = "";
-                            
+
                             ArrayList<Integer> phNoIds = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(worker);
                             if (phNoIds != null && !phNoIds.isEmpty()) {
-                                WorkerSgPhNum phNumObj = WorkerComplementsDAO.retrieveWorkerSgPhNumById(phNoIds.get(phNoIds.size()-1));
-                               wkerphNum = phNumObj.getPhNumber();
+                                WorkerSgPhNum phNumObj = WorkerComplementsDAO.retrieveWorkerSgPhNumById(phNoIds.get(phNoIds.size() - 1));
+                                wkerphNum = phNumObj.getPhNumber();
                             }
-                                                    
+
                         %>
                         <p><%=worker.getName()%><p>
                         <p><%=worker.getFinNumber()%></p>
@@ -186,16 +195,16 @@
                     <!--job stub-->
                     <p class="worker_profile_header text-center">Job Stub<a id="job_profile_details" style="color: white"  data-value='job' href="#" data-title="View/Edit Job Stub" data-toggle="modal" data-action="view" class="profile_details"><span class="glyphicon glyphicon-eye-open pull-right" pull-right></span></a></p>
                     <div class="worker_profile_content text-center text-capitalize"> 
-                        
+
                         <p><%=latestJob.getEmployerName()%></p>
                         <p><%=latestJob.getWorkPassType()%></p>
                         <p><%=(latestJob.getOccupation() == null) ? "-" : latestJob.getOccupation()%></p>
-                        <p>Job Start on: <%=(latestJob.getJobStartDate() == null) ? "-" : latestJob.getJobStartDate() %></p>
+                        <p>Job Start on: <%=(latestJob.getJobStartDate() == null) ? "-" : latestJob.getJobStartDate()%></p>
                     </div>
 
                     <!--Problem Stub-->
                     <p class="worker_profile_header text-center">Problem Stub<a id="problem_profile_details" style="color: white"  data-value='problem' href="#" data-title="View/Edit Problem Stub" data-toggle="modal" data-action="view" class="profile_details"><span class="glyphicon glyphicon-eye-open pull-right" pull-right></span></a></p>
-                    
+
                     <div class="worker_profile_content text-capitalize">
                         <p>Problem: <%=latestProblem.getProblem()%></p>
                         <p>Registered Date: <%=sdf.format(latestProblem.getProblemRegisteredDate())%></p>
@@ -241,7 +250,7 @@
                                                     if (i < nickNameIds.size() - 1) {
                                         %>
 
-                                        <div class="col-md-4 other_nickname moreObjs" >
+                                        <div class="col-sm-4 col-md-4 other_nickname moreObjs" >
 
                                             <table class="table table-bordered">
                                                 <tr>
@@ -253,21 +262,21 @@
                                         <%
                                         } else {
                                         %>
-                                        <div class="col-md-4">
+                                        <div class="col-sm-4 col-md-4">
                                             <table class="table table-bordered">
-                                            <tr>
-                                                <td style="width:80%"><%=nickname%></td>
-                                                <td class="text-center" style="width:20%"><a style="color: black"  data-class="worker" data-value='nickname' data-nickname='<%=nicknameObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#nickname_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-                                            </tr>
+                                                <tr>
+                                                    <td style="width:80%"><%=nickname%></td>
+                                                    <td class="text-center" style="width:20%"><a style="color: black"  data-class="worker" data-value='nickname' data-nickname='<%=nicknameObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#nickname_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                </tr>
                                             </table>
-                                        <%
-                                                }
-
-                                            }
-                                                %>
-                                            
-                                    </div>
                                             <%
+                                                    }
+
+                                                }
+                                            %>
+
+                                        </div>
+                                        <%
                                             if (nickNameIds.size() > 1) {
                                         %>
 
@@ -277,7 +286,7 @@
                                             }
                                         %>
 
-                                </div>
+                                    </div>
                                 </div>
 
                                 <!--Passport Details-->
@@ -320,8 +329,8 @@
                                             <tr class="other_passport moreObjs">
                                                 <td><%=isCountry%></td>
                                                 <td><%=passportNo%></td>
-                                                <td><%=(isDate==null)?"-":sdf.format(isDate)%></td>
-                                                <td><%=(exDate==null)?"-":sdf.format(exDate)%></td>  
+                                                <td><%=(isDate == null) ? "-" : sdf.format(isDate)%></td>
+                                                <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td>  
                                                 <td><a style="color: black" data-value='passport' data-passport='<%=passportDetails.getId()%>' 
                                                        href="" data-toggle="modal" data-class="worker"  data-action="viewedit" 
                                                        data-target="#passport_pop_up" class="edit_btn pop_up_open">
@@ -335,8 +344,8 @@
                                             <tr>
                                                 <td><%=isCountry%></td>
                                                 <td><%=passportNo%></td>
-                                                <td><%=(isDate==null)?"-":sdf.format(isDate)%></td>
-                                                <td><%=(exDate==null)?"-":sdf.format(exDate)%></td> 
+                                                <td><%=(isDate == null) ? "-" : sdf.format(isDate)%></td>
+                                                <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td> 
                                                 <td><a style="color: black" data-value='passport' data-passport='<%=passportDetails.getId()%>' 
                                                        href="" data-toggle="modal" data-class="worker"  data-action="viewedit" 
                                                        data-target="#passport_pop_up" class="edit_btn pop_up_open">
@@ -375,7 +384,7 @@
                                                     WorkerSgPhNum phNumObj = WorkerComplementsDAO.retrieveWorkerSgPhNumById(phoneNumberIds.get(i));
                                                     String phNum = phNumObj.getPhNumber();
                                                     java.util.Date obsolete = phNumObj.getObseleteDate();
-                                                    if(obsolete != null){
+                                                    if (obsolete != null) {
                                                         phNum = phNum + " (Obsoleted on " + sdf.format(obsolete) + ")";
                                                     } else {
                                                         phNum += " (Active)";
@@ -451,14 +460,14 @@
                                                     String phNum = homePhNum.getPhNumber();
                                                     String owner = homePhNum.getPhOwner();
                                                     java.util.Date oDate = homePhNum.getObseleteDate();
-                                                   
+
                                                     if (i < homePhIds.size() - 1) {
                                             %>
                                             <tr class="other_homephone moreobjs">
 
                                                 <td><%=phNum%></td>
                                                 <td><%=owner%></td>
-                                                <td><%=(oDate==null)?"-":sdf.format(oDate)%></td>
+                                                <td><%=(oDate == null) ? "-" : sdf.format(oDate)%></td>
                                                 <td><a style="color: black" data-value='homephone' 
                                                        data-homephone='<%=homePhNum.getId()%>' href="" data-toggle="modal" 
                                                        data-class="worker"  data-target="#homePhone_pop_up" data-action="viewedit" 
@@ -471,7 +480,7 @@
                                             <tr>
                                                 <td><%=phNum%></td>
                                                 <td><%=owner%></td>
-                                                <td><%=(oDate==null)?"-":sdf.format(oDate)%></td>
+                                                <td><%=(oDate == null) ? "-" : sdf.format(oDate)%></td>
 
                                                 <td><a style="color: black" data-value='homephone' data-homephone='<%=homePhNum.getId()%>' href="" data-toggle="modal" data-class="worker"  data-target="#homePhone_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
 
@@ -518,7 +527,7 @@
                                                     if (i < sgAddressIds.size() - 1) {
                                         %>
                                         <div class="col-md-6 other_sgaddress moreObjs">
-                                            
+
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td style="width:80%"><%=address%></td>
@@ -585,7 +594,7 @@
                                                     <td class="text-center" style="width:20%"><a style="color: black" data-class="worker"  data-value='homeadd' data-homeadd='<%=addressObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#homeAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                             </table>
-                                            
+
                                         </div>
                                         <%} else {
                                         %>
@@ -610,7 +619,7 @@
                                         %>
                                     </div>
                                 </div>
-                                    
+
                                 <!--Digital Contacts-->
                                 <div class="panel panel-default">
 
@@ -747,9 +756,9 @@
                                             %>
                                             <tr class="other_nok moreObjs">
                                                 <td><%=name%></td>
-                                                <td><%=(relationship==null)?"":relationship%></td>
-                                                <td><%=(phNum==null)?"":phNum%></td>
-                                                <td><%=(otherContact==null)?"":otherContact%></td>
+                                                <td><%=(relationship == null) ? "" : relationship%></td>
+                                                <td><%=(phNum == null) ? "" : phNum%></td>
+                                                <td><%=(otherContact == null) ? "" : otherContact%></td>
 
 
                                                 <td><a style="color: black"  data-class="worker" data-value='nok' data-nok='<%=nextOfKins.getId()%>' href="" data-toggle="modal" data-target="#nok_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
@@ -759,9 +768,9 @@
                                             %>
                                             <tr>
                                                 <td><%=name%></td>
-                                                <td><%=(relationship==null)?"":relationship%></td>
-                                                <td><%=(phNum==null)?"":phNum%></td>
-                                                <td><%=(otherContact==null)?"":otherContact%></td>
+                                                <td><%=(relationship == null) ? "" : relationship%></td>
+                                                <td><%=(phNum == null) ? "" : phNum%></td>
+                                                <td><%=(otherContact == null) ? "" : otherContact%></td>
 
                                                 <td><a style="color: black"  data-class="worker" data-value='nok' data-nok='<%=nextOfKins.getId()%>' href="" data-toggle="modal" data-target="#nok_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
@@ -892,7 +901,7 @@
                                                 <td><%=name%></td>
                                                 <td><%=relationship%></td>
                                                 <td><%=phNum%></td>
-                                                <td><%=(obDate==null)?"":sdf.format(obDate)%></td>
+                                                <td><%=(obDate == null) ? "" : sdf.format(obDate)%></td>
                                                 <td><a style="color: black" data-class="worker"  data-value='sgfri' data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#sgFri_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
@@ -902,7 +911,7 @@
                                                 <td><%=name%></td>
                                                 <td><%=relationship%></td>
                                                 <td><%=phNum%></td>
-                                                <td><%=(obDate==null)?"":sdf.format(obDate)%></td>
+                                                <td><%=(obDate == null) ? "" : sdf.format(obDate)%></td>
                                                 <td><a style="color: black" data-class="worker"  data-value='sgfri' data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#sgFri_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
@@ -921,7 +930,7 @@
                                         %>
                                     </div>
                                 </div>
-                                    
+
                                 <!--Worker's Language-->
                                 <div class="panel panel-default">
 
@@ -958,7 +967,7 @@
                                             <tr class="other_language moreObjs">
                                                 <td><%=mlanguage%></td>
                                                 <td><%=engStd%></td>
-                                                <td><%=(remark==null)?"":remark%></td>
+                                                <td><%=(remark == null) ? "" : remark%></td>
                                                 <td><a style="color: black"  data-class="worker" data-value='language' data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
@@ -967,7 +976,7 @@
                                             <tr>
                                                 <td><%=mlanguage%></td>
                                                 <td><%=engStd%></td>
-                                                <td><%=(remark==null)?"":remark%></td>
+                                                <td><%=(remark == null) ? "" : remark%></td>
                                                 <td><a style="color: black"  data-class="worker" data-value='language' data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
@@ -986,7 +995,7 @@
                                         %>
                                     </div>
                                 </div>
-                                    
+
                                 <!--Bank Account Details-->
                                 <div class="panel panel-default">
 
@@ -1173,9 +1182,9 @@
                                                 <tr class="moreObjs other_jobpass">
                                                     <td><%=passType%></td>
                                                     <td><%=passNo%></td>
-                                                    <td><%=(isDate==null)?"-":sdf.format(isDate)%></td>
-                                                    <td><%=(exDate==null)?"-":sdf.format(exDate)%></td>
-                                                    
+                                                    <td><%=(isDate == null) ? "-" : sdf.format(isDate)%></td>
+                                                    <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td>
+
                                                     <td><a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" href="" data-toggle="modal" data-action="viewedit" data-target="#passdetails_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                                 <%
@@ -1184,8 +1193,8 @@
                                                 <tr>
                                                     <td><%=passType%></td>
                                                     <td><%=passNo%></td>
-                                                    <td><%=(isDate==null)?"-":sdf.format(isDate)%></td>
-                                                    <td><%=(exDate==null)?"-":sdf.format(exDate)%></td>
+                                                    <td><%=(isDate == null) ? "-" : sdf.format(isDate)%></td>
+                                                    <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td>
                                                     <td><a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" href="" data-toggle="modal" data-action="viewedit" data-target="#passdetails_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                                 <%
@@ -1421,7 +1430,7 @@
                                                         String agentPName = agent.getAgentPersonName();
                                                         double agentPaidAmt = agent.getAgentAmtPaid();
                                                         String agentFWhere = agent.getAgentFeeWhere();
-                                                        
+
                                                         if (i < agentIdsList.size() - 1) {
                                                 %>
                                                 <tr class="other_agent moreObjs">
@@ -1675,7 +1684,7 @@
                                                 %>
                                                 <tr class="other_workhistory moreObjs">
                                                     <td><%=historyHow%></td>
-                                                    <td><%=(historyArrDate==null)?"-":sdf.format(historyArrDate)%></td>                        
+                                                    <td><%=(historyArrDate == null) ? "-" : sdf.format(historyArrDate)%></td>                        
                                                     <td><%=historyFirstJob%></td>
                                                     <td><%=historyArrYear%></td>
 
@@ -1686,7 +1695,7 @@
                                                 %>
                                                 <tr>
                                                     <td><%=historyHow%></td>
-                                                    <td><%=(historyArrDate==null)?"-":sdf.format(historyArrDate)%></td>                                       
+                                                    <td><%=(historyArrDate == null) ? "-" : sdf.format(historyArrDate)%></td>                                       
                                                     <td><%=historyFirstJob%></td>
                                                     <td><%=historyArrYear%></td>
 
@@ -1828,7 +1837,7 @@
                                                 %>
                                                 <tr class="other_ipa moreObjs">
                                                     <td><%=ipaPass%></td>
-                                                    <td><%=(ipaAppDate==null)?"-":sdf.format(ipaAppDate)%></td>
+                                                    <td><%=(ipaAppDate == null) ? "-" : sdf.format(ipaAppDate)%></td>
                                                     <td><%=empName%></td>
                                                     <td><%=salary%></td>
                                                     <td>
@@ -1843,7 +1852,7 @@
                                                 %>
                                                 <tr>
                                                     <td><%=ipaPass%></td>
-                                                    <td><%=(ipaAppDate==null)?"-":sdf.format(ipaAppDate)%></td>
+                                                    <td><%=(ipaAppDate == null) ? "-" : sdf.format(ipaAppDate)%></td>
                                                     <td><%=empName%></td>
                                                     <td><%=salary%></td>
                                                     <td>
@@ -1877,14 +1886,14 @@
                             <!----Problem Complement Tab--->             
                             <div class="tab-pane " id="problem_complement" >
                                 <br/>
-                                
+
                                 <div class="row">
                                     <form method="POST" action='changeToSelected'>
                                         <div class="form-group">
                                             <label for="probSelected" class="col-md-1 control-label">Select Job:</label>
                                             <div class="col-md-1">
                                                 <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
-                                                <input type="hidden" name="jobKey" value="<%=latestJob.getJobKey() %>"/>
+                                                <input type="hidden" name="jobKey" value="<%=latestJob.getJobKey()%>"/>
                                                 <input type="hidden" name="selectedType" value="problem"/>
                                                 <select class="form-control text-capitalize" id="problemSelected" name="selectedProblem" required>
                                                     <%
@@ -1893,7 +1902,7 @@
                                                             Problem tempProb = ProblemDAO.retrieveProblemByProblemId(Id);
                                                             String problemType = tempProb.getProblem();
                                                             java.util.Date tempDate = tempProb.getProblemRegisteredDate();
-                                                            
+
                                                             if (tempProb == latestProblem) {
                                                     %>
                                                     <option value="<%=Id%>" selected><%=problemType%></option>
@@ -1917,7 +1926,7 @@
                                     <!--need to change the vlaue of job id when the user change the dropdown value-->
                                 </div>
                                 <br/>
-                                
+
                                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
                                     <div class="panel panel-default">
 
@@ -1971,12 +1980,12 @@
                                                                         }
 
                                                                         String remark = aggravIs.getAggravatingRemark();
-                                                                        String loss = aggravIs.getAggravatingLoss();
+                                                                        double loss = aggravIs.getAggravatingLoss();
                                                                         if (i < aggravissueIds.size() - 1) {
                                                                 %>
                                                                 <tr class="other_aggravissue moreObjs">
                                                                     <td><%=issue%></td>
-                                                                    <td><%=loss%></td>
+                                                                    <td><%=(loss == 0) ? "0.00" : loss%></td>
                                                                     <td><%=remark%></td>
                                                                     <td>
                                                                         <a style="color: black" data-value='aggravissue' data-class="problem"   
@@ -1991,7 +2000,7 @@
                                                                 %>
                                                                 <tr>
                                                                     <td><%=issue%></td>
-                                                                    <td><%=loss%></td>
+                                                                    <td><%=(loss == 0) ? "0.00" : loss%></td>
                                                                     <td><%=remark%></td>
                                                                     <td><a style="color: black" data-value='aggravissue' data-class="problem"   data-aggravissue='<%=aggravIs.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#aggravIssue_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
@@ -2142,7 +2151,7 @@
                                                             %>
 
                                                             <table class="table table-condensed">
-                                                                
+
                                                                 <tr>
                                                                     <th>Name</th>
                                                                     <th>Start Date</th>
@@ -2431,7 +2440,7 @@
                                         <div class="panel panel-primary">
                                             <div class="panel-heading" role="tab" id="headingTwo">
                                                 <h4 class="panel-title">
-                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#salaryComps"  data-class="problem"  aria-expanded="false" aria-controls="collapseTwo">
+                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#salaryComps"  data-class="problem"  aria-expanded="true" aria-controls="collapseTwo">
                                                         Salary Complements
                                                     </a>
                                                 </h4>
@@ -2617,7 +2626,7 @@
                                         <div class="panel-primary panel">
                                             <div class="panel-heading" role="tab" id="headingThree">
                                                 <h4 class="panel-title">
-                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#medicalComps" data-class="problem"  aria-expanded="false" aria-controls="collapseThree">
+                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#medicalComps" data-class="problem"  aria-expanded="true" aria-controls="collapseThree">
                                                         Medical Complements
                                                     </a>
                                                 </h4>
@@ -3408,7 +3417,7 @@
                                         <div class="panel panel-primary">
                                             <div class="panel-heading" role="tab" id="headingThree">
                                                 <h4 class="panel-title">
-                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#otherComps" data-class="problem"   aria-expanded="false" aria-controls="collapseThree">
+                                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#otherComps" data-class="problem"   aria-expanded="true" aria-controls="collapseThree">
                                                         Other Complements
                                                     </a>
                                                 </h4>
@@ -3496,78 +3505,78 @@
                                                             </h4>
                                                         </div>
                                                         <div class="panel-body text-capitalize">
-                                                            <%
-                                                                ArrayList<Integer> traffickingIds = ProblemComplementsDAO.retrieveTraffickingIndicatorIdsOfProblem(latestProblem);
+                                                    <%
+                                                        ArrayList<Integer> traffickingIds = ProblemComplementsDAO.retrieveTraffickingIndicatorIdsOfProblem(latestProblem);
 
-                                                                if (traffickingIds != null && !traffickingIds.isEmpty()) {
-                                                            %>
+                                                        if (traffickingIds != null && !traffickingIds.isEmpty()) {
+                                                    %>
 
-                                                            <table class="table table-condensed">
-                                                                <tr>
-                                                                    <th>Assess Date</th>
-                                                                    <th>Assess Name</th>
-                                                                    <th>Action</th>
-                                                                </tr>
+                                                    <table class="table table-condensed">
+                                                        <tr>
+                                                            <th>Assess Date</th>
+                                                            <th>Assess Name</th>
+                                                            <th>Action</th>
+                                                        </tr>
 
-                                                                <%
-                                                                    for (int i = traffickingIds.size() - 1; i >= 0; i--) {
-                                                                        int traffickingId = traffickingIds.get(i);
+                                                    <%
+                                                        for (int i = traffickingIds.size() - 1; i >= 0; i--) {
+                                                            int traffickingId = traffickingIds.get(i);
 
-                                                                        ProblemTraffickingIndicator traffickingIndi = ProblemComplementsDAO.retrieveProblemTraffickingIndicatorById(traffickingId);
-                                                                        java.util.Date date = traffickingIndi.getTipiAssessDate();
-                                                                        String name = traffickingIndi.getTipiAssessName();
+                                                            ProblemTraffickingIndicator traffickingIndi = ProblemComplementsDAO.retrieveProblemTraffickingIndicatorById(traffickingId);
+                                                            java.util.Date date = traffickingIndi.getTipiAssessDate();
+                                                            String name = traffickingIndi.getTipiAssessName();
 
-                                                                        if (i < traffickingIds.size() - 1) {
-                                                                %>
-                                                                <tr class="other_trafficking moreObjs">
-                                                                    <%
-                                                                        if (date == null) {
-                                                                    %>
-                                                                    <td>-</td>
-                                                                    <%                                                                    } else {
-                                                                        String dateStr = sdf.format(date);
-                                                                    %>
-                                                                    <td><%=dateStr%></td>
-                                                                    <%
-                                                                        }
-                                                                    %>
-                                                                    <td><%=name%></td>
-                                                                    <td><a style="color: black" data-target="#trafficking_pop_up" data-value='trafficking' data-class="problem"   data-trafficking='<%=traffickingId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-                                                                </tr>
-                                                                <%
-                                                                } else {
-                                                                %>
-                                                                <tr>
-                                                                    <%
-                                                                        if (date == null) {
-                                                                    %>
-                                                                    <td>-</td>
-                                                                    <%                                                                    } else {
-                                                                        String dateStr = sdf.format(date);
-                                                                    %>
-                                                                    <td><%=dateStr%></td>
-                                                                    <%
-                                                                        }
-                                                                    %>
-                                                                    <td><%=name%></td>
-                                                                    <td><a style="color: black" data-target="#trafficking_pop_up" data-value='trafficking' data-class="problem"   data-trafficking='<%=traffickingId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-                                                                </tr>
-                                                                <%
-                                                                        }
-                                                                    }
-                                                                %>
-                                                            </table>
-                                                            <%
-                                                                if (traffickingIds.size() > 1) {
-                                                            %>
+                                                            if (i < traffickingIds.size() - 1) {
+                                                    %>
+                                                    <tr class="other_trafficking moreObjs">
+                                                    <%
+                                                        if (date == null) {
+                                                    %>
+                                                    <td>-</td>
+                                                    <%                                                                    } else {
+                                                        String dateStr = sdf.format(date);
+                                                    %>
+                                                    <td><%=dateStr%></td>
+                                                    <%
+                                                        }
+                                                    %>
+                                                    <td><%=name%></td>
+                                                    <td><a style="color: black" data-target="#trafficking_pop_up" data-value='trafficking' data-class="problem"   data-trafficking='<%=traffickingId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                </tr>
+                                                    <%
+                                                    } else {
+                                                    %>
+                                                    <tr>
+                                                    <%
+                                                        if (date == null) {
+                                                    %>
+                                                    <td>-</td>
+                                                    <%                                                                    } else {
+                                                        String dateStr = sdf.format(date);
+                                                    %>
+                                                    <td><%=dateStr%></td>
+                                                    <%
+                                                        }
+                                                    %>
+                                                    <td><%=name%></td>
+                                                    <td><a style="color: black" data-target="#trafficking_pop_up" data-value='trafficking' data-class="problem"   data-trafficking='<%=traffickingId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                </tr>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
+                                                </table>
+                                                    <%
+                                                        if (traffickingIds.size() > 1) {
+                                                    %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_trafficking_seemore" onclick="seemore('.other_trafficking')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_trafficking_seemore" onclick="seemore('.other_trafficking')">View Less</a>
-                                                            <%                                                            }
-                                                                }
-                                                            %>
-                                                        </div>
-                                                    </div-->
+                                                    <a href="#" class="text-center col-sm-12 seemore_btn other_trafficking_seemore" onclick="seemore('.other_trafficking')">See more</a>
+                                                    <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_trafficking_seemore" onclick="seemore('.other_trafficking')">View Less</a>
+                                                    <%                                                            }
+                                                        }
+                                                    %>
+                                                </div>
+                                            </div-->
 
                                                     <!--Police Report Lodged-->
                                                     <div class="panel panel-default">
@@ -4090,8 +4099,8 @@
 
                             <!----Benefits Complement Tab--->                             
                             <div class="tab-pane" id="benefit_complement" >
-                                        <br/>
-                                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <br/>
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                     <!--meal-->
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="foodbeneHead">
@@ -4109,19 +4118,19 @@
                                         </div>
                                         <div id="foodBeneCol" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="foodbeneHead">
                                             <div class="panel-body">
-                                            <%
-                                                ArrayList<Integer> mealIds = new ArrayList<Integer>();
-                                                ArrayList<String> list = DropdownDAO.retreiveAllDropdownListOfBenefits("Food");
-                                                ArrayList<Integer> ids = new ArrayList<Integer>();
-                                                for (String string: list) {
-                                                    
-                                                    ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
-                                                    mealIds.addAll(ids);
-                                                }
-                                                if (mealIds != null && !mealIds.isEmpty()) {
-                                                
-                                                
-                                            %>
+                                                <%
+                                                    ArrayList<Integer> mealIds = new ArrayList<Integer>();
+                                                    ArrayList<String> list = DropdownDAO.retreiveAllDropdownListOfBenefits("Food");
+                                                    ArrayList<Integer> ids = new ArrayList<Integer>();
+                                                    for (String string : list) {
+
+                                                        ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
+                                                        mealIds.addAll(ids);
+                                                    }
+                                                    if (mealIds != null && !mealIds.isEmpty()) {
+
+
+                                                %>
 
                                                 <table class="table table-condensed">
                                                     <tr>
@@ -4131,11 +4140,11 @@
                                                         <th>Benefit Value(S$)</th>
                                                         <th>Action</th>
                                                     </tr>
-                                           <%
-                                                for (int i = mealIds.size()-1; i >=0; i--) {
-                                                    int id = mealIds.get(i);
-                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(id);       
-                                           %>
+                                                    <%
+                                                        for (int i = mealIds.size() - 1; i >= 0; i--) {
+                                                            int id = mealIds.get(i);
+                                                            Benefit benefit = BenefitDAO.retrieveBenefitById(id);
+                                                    %>
                                                     <tr class="foodbene">
                                                         <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                         <td><%=benefit.getBenefitGiver()%></td>
@@ -4149,14 +4158,14 @@
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
                                                             </a></td>
                                                     </tr>                                    
-                                                    
-                                            <%
-                                                }
-                                            %>        
+
+                                                    <%
+                                                        }
+                                                    %>        
                                                 </table>
-                                            <%
-                                               }
-                                            %>
+                                                <%
+                                                    }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
@@ -4176,17 +4185,17 @@
                                         <div id="transpoBeneCol" class="panel-collapse collapse" role="tabpanel" aria-labelledby="transpoBeneHead">
                                             <div class="panel-body">
                                                 <%
-                                                ArrayList<Integer> transportIds = new ArrayList<Integer>();
-                                                list = DropdownDAO.retreiveAllDropdownListOfBenefits("Transport");
-                                                ids = new ArrayList<Integer>();
-                                                for (String string: list) {
-                                                    
-                                                    ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
-                                                    transportIds.addAll(ids);
-                                                }
-                                                if (transportIds != null && !transportIds.isEmpty()) {
-                                                
-                                                
+                                                    ArrayList<Integer> transportIds = new ArrayList<Integer>();
+                                                    list = DropdownDAO.retreiveAllDropdownListOfBenefits("Transport");
+                                                    ids = new ArrayList<Integer>();
+                                                    for (String string : list) {
+
+                                                        ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
+                                                        transportIds.addAll(ids);
+                                                    }
+                                                    if (transportIds != null && !transportIds.isEmpty()) {
+
+
                                                 %>
                                                 <table class="table table-condensed">
                                                     <tr>
@@ -4196,11 +4205,11 @@
                                                         <th>Benefit Value(S$)</th>
                                                         <th>Action</th>
                                                     </tr>
-                                            <%
-                                                for (int i = transportIds.size()-1; i >=0; i--) {
-                                                    int id = transportIds.get(i);
-                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(id);       
-                                           %>
+                                                    <%
+                                                        for (int i = transportIds.size() - 1; i >= 0; i--) {
+                                                            int id = transportIds.get(i);
+                                                            Benefit benefit = BenefitDAO.retrieveBenefitById(id);
+                                                    %>
                                                     <tr class="transpoBene">
                                                         <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                         <td><%=benefit.getBenefitGiver()%></td>
@@ -4215,13 +4224,13 @@
                                                             </a>
                                                         </td>
                                                     </tr>
-                                           <%
-                                                }
-                                            %>
+                                                    <%
+                                                        }
+                                                    %>
                                                 </table>
-                                           <%
-                                               }
-                                            %>
+                                                <%
+                                                    }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
@@ -4241,17 +4250,17 @@
                                         <div id="mediBeneCol" class="panel-collapse collapse" role="tabpanel" aria-labelledby="mediBeneHead">
                                             <div class="panel-body">
                                                 <%
-                                                ArrayList<Integer> medicalIds = new ArrayList<Integer>();
-                                                list = DropdownDAO.retreiveAllDropdownListOfBenefits("Medical & Karunya");
-                                                ids = new ArrayList<Integer>();
-                                                for (String string: list) {
-                                                    
-                                                    ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
-                                                    medicalIds.addAll(ids);
-                                                }
-                                                if (medicalIds != null && !medicalIds.isEmpty()) {
-                                                
-                                                
+                                                    ArrayList<Integer> medicalIds = new ArrayList<Integer>();
+                                                    list = DropdownDAO.retreiveAllDropdownListOfBenefits("Medical & Karunya");
+                                                    ids = new ArrayList<Integer>();
+                                                    for (String string : list) {
+
+                                                        ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
+                                                        medicalIds.addAll(ids);
+                                                    }
+                                                    if (medicalIds != null && !medicalIds.isEmpty()) {
+
+
                                                 %>
                                                 <table class="table table-condensed">
                                                     <tr>
@@ -4261,11 +4270,11 @@
                                                         <th>Benefit Value(S$)</th>
                                                         <th>Action</th>
                                                     </tr>
-                                            <%
-                                                for (int i = medicalIds.size()-1; i >=0; i--) {
-                                                    int id = medicalIds.get(i);
-                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(id);       
-                                           %>
+                                                    <%
+                                                        for (int i = medicalIds.size() - 1; i >= 0; i--) {
+                                                            int id = medicalIds.get(i);
+                                                            Benefit benefit = BenefitDAO.retrieveBenefitById(id);
+                                                    %>
                                                     <tr class="mediBene">
                                                         <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                         <td><%=benefit.getBenefitGiver()%></td>
@@ -4280,13 +4289,13 @@
                                                             </a>
                                                         </td>
                                                     </tr>
-                                            <%
-                                                }
-                                            %>                                                    
+                                                    <%
+                                                        }
+                                                    %>                                                    
                                                 </table>
-                                            <%
-                                               }
-                                            %>
+                                                <%
+                                                    }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
@@ -4306,17 +4315,17 @@
                                         <div id="roofBeneCol" class="panel-collapse collapse" role="tabpanel" aria-labelledby="roofBeneHead">
                                             <div class="panel-body">
                                                 <%
-                                                ArrayList<Integer> roofIds = new ArrayList<Integer>();
-                                                list = DropdownDAO.retreiveAllDropdownListOfBenefits("Roof");
-                                                ids = new ArrayList<Integer>();
-                                                for (String string: list) {
-                                                    
-                                                    ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
-                                                    roofIds.addAll(ids);
-                                                }
-                                                if (roofIds != null && !roofIds.isEmpty()) {
-                                                
-                                                
+                                                    ArrayList<Integer> roofIds = new ArrayList<Integer>();
+                                                    list = DropdownDAO.retreiveAllDropdownListOfBenefits("Roof");
+                                                    ids = new ArrayList<Integer>();
+                                                    for (String string : list) {
+
+                                                        ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
+                                                        roofIds.addAll(ids);
+                                                    }
+                                                    if (roofIds != null && !roofIds.isEmpty()) {
+
+
                                                 %>
                                                 <table class="table table-condensed">
                                                     <tr>
@@ -4326,11 +4335,11 @@
                                                         <th>Benefit Value(S$)</th>
                                                         <th>Action</th>
                                                     </tr>
-                                            <%
-                                                for (int i = roofIds.size()-1; i >=0; i--) {
-                                                    int id = roofIds.get(i);
-                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(id);       
-                                           %>
+                                                    <%
+                                                        for (int i = roofIds.size() - 1; i >= 0; i--) {
+                                                            int id = roofIds.get(i);
+                                                            Benefit benefit = BenefitDAO.retrieveBenefitById(id);
+                                                    %>
                                                     <tr class="roofBene">
                                                         <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                         <td><%=benefit.getBenefitGiver()%></td>
@@ -4344,17 +4353,17 @@
                                                             </a>
                                                         </td>
                                                     </tr>
-                                            <%
-                                                }
-                                            %>          
+                                                    <%
+                                                        }
+                                                    %>          
                                                 </table>
-                                            <%
-                                               }
-                                            %>
+                                                <%
+                                                    }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <!--other-->
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="otherBeneHead">
@@ -4373,17 +4382,17 @@
                                         <div id="otherBeneCol" class="panel-collapse collapse" role="tabpanel" aria-labelledby="otherBeneHead">
                                             <div class="panel-body">
                                                 <%
-                                                ArrayList<Integer> otherIds = new ArrayList<Integer>();
-                                                list = DropdownDAO.retreiveAllDropdownListOfBenefits("Other");
-                                                ids = new ArrayList<Integer>();
-                                                for (String string: list) {
-                                                    
-                                                    ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
-                                                    otherIds.addAll(ids);
-                                                }
-                                                if (otherIds != null && !otherIds.isEmpty()) {
-                                                
-                                                
+                                                    ArrayList<Integer> otherIds = new ArrayList<Integer>();
+                                                    list = DropdownDAO.retreiveAllDropdownListOfBenefits("Other");
+                                                    ids = new ArrayList<Integer>();
+                                                    for (String string : list) {
+
+                                                        ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
+                                                        otherIds.addAll(ids);
+                                                    }
+                                                    if (otherIds != null && !otherIds.isEmpty()) {
+
+
                                                 %>
                                                 <table class="table table-condensed">
                                                     <tr>
@@ -4395,11 +4404,11 @@
                                                         <th>Benefit Value(S$)</th>
                                                         <th>Action</th>
                                                     </tr>
-                                            <%
-                                                for (int i = otherIds.size()-1; i >=0; i--) {
-                                                    int id = otherIds.get(i);
-                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(id);       
-                                           %>
+                                                    <%
+                                                        for (int i = otherIds.size() - 1; i >= 0; i--) {
+                                                            int id = otherIds.get(i);
+                                                            Benefit benefit = BenefitDAO.retrieveBenefitById(id);
+                                                    %>
                                                     <tr class="roofBene">
                                                         <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                         <td><%=benefit.getBenefitGiver()%></td>
@@ -4413,20 +4422,20 @@
                                                             </a>
                                                         </td>
                                                     </tr>
-                                            <%
-                                                }
-                                            %>
+                                                    <%
+                                                        }
+                                                    %>
                                                 </table>
-                                            <%
-                                               }
-                                            %>
+                                                <%
+                                                    }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
-                                    </div>
-                        
+                            </div>
+
                             <!----Attachments Complement Tab--->                
                             <div class="tab-pane active" id="attachment_complement">
                                 <br/><br/>
@@ -4435,23 +4444,23 @@
                                     request.getSession().removeAttribute("successAttachMsg");
 
                                     String errorMsg = (String) request.getSession().getAttribute("errAttachMsg");
-                                    request.getSession().removeAttribute("errAttachMsg"); %>
-                                <% if (successMsg != null && !successMsg.equals("null"))  { %>
+                                    request.getSession().removeAttribute("errAttachMsg");%>
+                                <% if (successMsg != null && !successMsg.equals("null")) {%>
 
-                                    <div class="alert alert-info" role="alert">
-                                       <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                       <%=successMsg%>
-                                   </div>
+                                <div class="alert alert-info" role="alert">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <%=successMsg%>
+                                </div>
 
-                                <% } %>
-                                <% if (errorMsg != null)  { %>
+                                <% }%>
+                                <% if (errorMsg != null) {%>
 
-                                 <div class="alert alert-danger" role="alert">
+                                <div class="alert alert-danger" role="alert">
                                     <a href="#" class="close" data-dismiss="alert">&times;</a>
                                     <%=errorMsg%>
                                 </div>
 
-                                <% } %>
+                                <% }%>
                                 <!-- End of Attachments Success & Error Display --->
                                 <div class="panel panel-default">
                                     <div class="panel-body">
@@ -4481,21 +4490,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <%
-                                        for (int i = 0; i < workerAttachList.size(); i++ ) {
-                                            WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(workerAttachList.get(i));
-                                            String docName = workerAttachment.getDocumentName();
-                                            java.util.Date timeStamp = WorkerComplementsDAO.retrieveTimeStamp(workerAttachment);
-                                            String submitBy = workerAttachment.getSubmitBy();
-                                    %>
+                                        <%
+                                            for (int i = 0; i < workerAttachList.size(); i++) {
+                                                WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(workerAttachList.get(i));
+                                                String docName = workerAttachment.getDocumentName();
+                                                java.util.Date timeStamp = WorkerComplementsDAO.retrieveTimeStamp(workerAttachment);
+                                                String submitBy = workerAttachment.getSubmitBy();
+                                        %>
                                         <tr bgcolor="">
-                                            <td><%=i+1%></td>
+                                            <td><%=i + 1%></td>
                                             <td><%=docName%></td>
                                             <td><%=sdf.format(timeStamp)%></td>
                                             <td><%=submitBy%></td>
                                             <td align="center">
                                                 <a style="color: black" href="">
-                                                   <span data-toggle="tooltip" title="Download" class="glyphicon glyphicon-download-alt"></span>
+                                                    <span data-toggle="tooltip" title="Download" class="glyphicon glyphicon-download-alt"></span>
                                                 </a>&nbsp; &nbsp; &nbsp; &nbsp;
                                                 <a style="color: black" href=""
                                                    data-toggle="modal" data-target="#">
@@ -4507,52 +4516,52 @@
                                                 </a>    
                                             </td>
                                         </tr>
-                                    <%  } // for loop  %>    
+                                        <%  } // for loop  %>    
                                     </tbody>
                                 </table>
-                               <%  } else { //if not exits   %>     
-                                    <br/>No file has been uploaded to this worker yet!
-                               <%  } %>
+                                <%  } else { //if not exits   %>     
+                                <br/>No file has been uploaded to this worker yet!
+                                <%  }%>
                             </div>                
                             <!----End of Attachments Complement Tab---> 
                         </div>
                     </div>
 
-                 </div> 
-                            
-                 <div id="pop_up_content" ></div> <!-- <-- What is this for? -->
-                 
-                 <!-- Confirm Attachment Delete Modal -->
+                </div> 
+
+                <div id="pop_up_content" ></div> <!-- <-- What is this for? -->
+
+                <!-- Confirm Attachment Delete Modal -->
                 <div class="modal fade" id="attach_delete_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" 
                      aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        <h3 class="modal-title" id="attach_pop_up_label" style="color:#2980b9" align="center">
-                            Delete File
-                        </h3>
-                      </div> <!--modal-header-->
-                      <form id="deleteConfirmForm" method="post" action="#" class="form-horizontal">
-                        <div class="modal-body">
-                            <input type="hidden" name="attachId" id="InputID" value=""/>
-                            Are you sure you want to delete this file -<label id="InputDocName"></label>?<br/><br/>
-                        </div> <!--modal body -->
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span aria-hidden="true">&times;</span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                                <h3 class="modal-title" id="attach_pop_up_label" style="color:#2980b9" align="center">
+                                    Delete File
+                                </h3>
+                            </div> <!--modal-header-->
+                            <form id="deleteConfirmForm" method="post" action="#" class="form-horizontal">
+                                <div class="modal-body">
+                                    <input type="hidden" name="attachId" id="InputID" value=""/>
+                                    Are you sure you want to delete this file -<label id="InputDocName"></label>?<br/><br/>
+                                </div> <!--modal body -->
 
-                        <div class="modal-footer">
-                          <button type="submit" class="btn btn-success">Ok</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </form>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">Ok</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
 
-                    </div> <!--modal content -->
-                  </div> <!--modal dialog -->
+                        </div> <!--modal content -->
+                    </div> <!--modal dialog -->
                 </div> 
-                 
+
             </div>
 
         </div>
@@ -4575,21 +4584,21 @@
             </ul>
         </div>
         <script>
-            
-            $(document).on("click",".profile_details",function(){
-               var div_id = $(this).data('value');
-               var div_action_val = $(this).data('action');
-               var div_title = $(this).data('title');
-               
-               $("#pop_up_content").load('include/createcaseForm.jsp?workerFin=<%=workerFin%>' + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" +'&profile=' + div_id + '&action=' + div_action_val).dialog({modal: true, minHeight: $(window).height() - 350,
-                        minWidth: $(window).width() - 750, resizable: false, title: div_title, draggable: false, close: function() {
-                            $(this).dialog('destroy');
-                            $('#pop_up_content').empty();
-                        }
-                    });
-               
+
+            $(document).on("click", ".profile_details", function() {
+                var div_id = $(this).data('value');
+                var div_action_val = $(this).data('action');
+                var div_title = $(this).data('title');
+
+                $("#pop_up_content").load('include/createcaseForm.jsp?workerFin=<%=workerFin%>' + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + '&profile=' + div_id + '&action=' + div_action_val).dialog({modal: true, minHeight: $(window).height() - 350,
+                    minWidth: $(window).width() - 750, resizable: false, title: div_title, draggable: false, close: function() {
+                        $(this).dialog('destroy');
+                        $('#pop_up_content').empty();
+                    }
+                });
+
             });
-            
+
             $(document).on("click", ".pop_up_open", function() {
                 var div_id = $(this).data('value');
                 //alert('id: ' +div_id); //nickname
@@ -4613,7 +4622,7 @@
                 }
                 if (div_action_val === 'viewedit' || div_class === 'benefection') {
                     $("#pop_up_content").load('include/' + url + '?workerFin=<%=workerFin%>&' + div_id + '=' + div_value
-                            + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + "&action=" + div_action_val).dialog({modal: true, minHeight: $(window).height() - 350,
+                            + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + "&action=" + div_action_val).dialog({modal: true,
                         minWidth: $(window).width() - 750, resizable: false, title: div_title, draggable: false, close: function() {
                             $(this).dialog('destroy');
                             $('#pop_up_content').empty();
@@ -4637,25 +4646,26 @@
             function seemore(div_name) {
                 $(div_name).toggle();
                 $(div_name + '_seemore').toggle();
-            };
+            }
+            ;
 
             function pop_up_edit_box(div_name) {
                 var div = '#' + div_name + '_pop_up';
                 $(div).show();
             }
-            
+
             //ready the data in tables - added by soemyatmyat
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $('#worker_attachment').dataTable();
-            }); 
-            
+            });
+
             //passing data for attachment delete confirm - added by soemyatmyat
-            $(document).on( "click", '.edit_popup',function() {
+            $(document).on("click", '.edit_popup', function() {
                 var attachId = $(this).data('id');
                 var docName = $(this).data('docName');
                 $(".modal-body #InputID").val(attachId);
                 $(".modal-body #InputDocName").val(docName);
-          });
+            });
 
         </script>
     </div>

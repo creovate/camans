@@ -20,75 +20,53 @@
 
 </style>
 <script>
+    //-----initialize jquery date picker-----//
     $(function() {
         $(".dateInput").datepicker({
             dateFormat: 'dd-M-yy',
             changeMonth: true,
-            changeYear: true,
-            maxDate: 0
+            changeYear: true
         });
 
     });
 
-    //for date inputs
-    $(document).ready(function(){
-
-        $('.dateInput').focus(function(){
-
-        $('.dateInput').blur();
-
-        });
-
-    });
-    
+    //-----disable manual input for date input fields-----//
     $(document).ready(function() {
-        $("").dialog({
-            create: function(event, ui) {
-                var widget = $(this).dialog("widget");
-                $(".ui-dialog-titlebar-close span", widget)
-                        .removeClass("ui-icon-closethick")
-                        .addClass("ui-icon-close");
-            }
+
+        $('.dateInput').focus(function() {
+
+            $('.dateInput').blur();
+
         });
+
     });
 
-
+    //-----hiding different compartments-----//
     $(document).ready(function(event) {
-
-        //alert('alert1');
         $('.view_comp').show();
-        //alert('alert2');
         $('.edit_comp').hide();
-        //alert('alert3');
         $('.add_comp').hide();
-
-
         $('.complement_detailed_form').attr("action", "");
-
-
     });
 
+    //-----destroy for cancel buttons-----//
     $('.cancel_btn').click(function() {
         $('#pop_up_content').dialog("destroy");
         $('#pop_up_content').empty();
     });
 
-
-    function editComplement(div_id, category) {
-        //alert("first check");
-        //alert(div_id);
+    //-----on click edit-----//
+    function editComplement(div_id) {
         $(div_id).attr("action", "addBenefit.do");
         $(div_id + " .edit_comp").show();
-        //alert("edit");
         $(div_id + " .view_comp").hide();
         $(div_id + " .add_comp").hide();
         $(div_id + " .add_comp input").prop('disabled', true);
         $(div_id + " .add_comp textarea").prop('disabled', true);
-        //alert("final check");
-
     }
 
-    function add(div_id, category) {
+    //-----on click add-----//
+    function add(div_id) {
         $(div_id).attr("action", "addBenefit.do");
 
         $(div_id + " .add_comp").show();
@@ -157,11 +135,11 @@
                         }
                     }
                 }
-               }
-        }); 
                 
- 
-     //form validation 
+            }
+        });
+    });
+    //form validation 
     $(document).ready(function() {
         $('#add_benefit_pop_up')
                 .bootstrapValidator({
@@ -223,32 +201,22 @@
 
             }
         });
-
-    });
-    //date revalidation
-    $('.dateInput').on('change', function() {
-        $('.complement_detailed_form')
-                .data('bootstrapValidator')             // Get the validator instance
-                .revalidateField('nisDate');                // Revalidate it
-
-    });
-    $('.dateInput').on('change', function() {
-        $('.complement_detailed_form')
-                .data('bootstrapValidator')             // Get the validator instance
-                .revalidateField('isDate');                // Revalidate it
-
     });
     
+    $(document).ready(function(){
+        $('.cancel_btn').addClass('pull-right');
+        $('.form-control').addClass('input-sm');
+    });
 </script>
 
 <%
     /* data collection */
     User userLogin = (User) request.getSession().getAttribute("userLogin");
-    
+
     String worker_fin = request.getParameter("workerFin");
     String jobKey = request.getParameter("jobkey");
-    String probKey = request.getParameter("problemKey");
-
+    String probKey = request.getParameter("probkey");
+    
     String foodbeneId = request.getParameter("foodbene");
     String transpobeneId = request.getParameter("transpobene");
     String medibeneId = request.getParameter("medibene");
@@ -296,8 +264,8 @@
             int id = Integer.parseInt(otherbeneId);
             benefit = BenefitDAO.retrieveBenefitById(id);
         }
-               
- %>
+
+%>
 
 <form method="POST" id='benefit_pop_up' class="form complement_detailed_form" action="addBenefit.do"  style="height:100%">
     <!--h4 class='view_comp'>View Benefit Details</h4>
@@ -356,9 +324,9 @@
         </fieldset>
 
         <div class="form-group btn_group">
-            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#benefit_pop_up", "worker");'>Edit</button>
+            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#benefit_pop_up");'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn view_comp' onclick='add("#benefit_pop_up", "benefit");'>Add</button>                  
+                <button type="button" class="btn modal_btn view_comp" onclick="add('#benefit_pop_up');">Add</button>                
                 <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
             </div>
         </div>
@@ -493,7 +461,7 @@
 } else {
 %>
 
-<form method="POST" id='benefit_pop_up' class="form" action="addBenefit.do"  style="height:100%">
+<form method="POST" id='add_benefit_pop_up' class="form" action="addBenefit.do"  style="height:100%">
     <!--h4 class='view_comp'>View Benefit Details</h4>
     <h4 class='add_comp'>Add A New Benefit </h4>
     <h4 class='edit_comp'>Edit Benefit Details</h4-->
@@ -503,7 +471,8 @@
         <div class='form-group'>
             <label for='nisDate' class="control-label">Issued Date<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control input-append date dateInput" id="nisDate" type='text' name="nisDate" >
+            <input class="form form-control date dateInput" 
+                   type='text' id="nisDate" name="nisDate" required>
         </div>
         <div class='form-group'>
             <label for='ngivenby' class="control-label" >Given By: </label>

@@ -24,18 +24,28 @@ SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" />
         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
+        <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.css">
+
+        <link rel="stylesheet" href="css/jquery-ui.structure.css">
+        <link rel="stylesheet" href="css/jquery-ui.theme.css">
+        
+        <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
+        <!--jasny-bootstrap v3.1.3, added by soemyatmayt-->
+        <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
         <!-- DataTables CSS, added by soemyatmyat -->
         <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
-
-        <script src="js/jquery-2.1.1.js"></script>
+        <script src="js/jquery-2.1.3.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        <script src="js/jquery-ui-1.9.2.custom.js"></script>
         <script src="js/jquery.steps.js"></script>
+        <script src="jquery.ui.position.js"></script>
+        <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>        
+        <!--jasny-bootstrap v3.1.3, added by soemyatmyat-->
+        <script src="js/jasny-bootstrap.js"></script>  
         <!-- DataTables JS, Added by soemyatmyat -->
         <script src="js/jquery.dataTables.js"></script>
-        <script src="js/dataTables.bootstrap.js"></script>     
+        <script src="js/dataTables.bootstrap.js"></script>
 
         <link rel="shortcut icon" href="img/twc_logo.png">
         <title>Case Referral</title>
@@ -62,7 +72,11 @@ if(problemList.size() > 0){
                 java.util.Date probRegDate = problem.getProblemRegisteredDate();
                 ArrayList<Integer> idList = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(worker);
                 WorkerSgPhNum sgPhone = WorkerComplementsDAO.retrieveWorkerSgPhNumById(idList.size()-1);
-                String phNum = sgPhone.getPhNumber();
+                String phNum = "-";
+                if(sgPhone != null){
+                    phNum = sgPhone.getPhNumber();
+                }
+                
                 
                 %>
             <div class="panel panel-default">
