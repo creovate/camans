@@ -3,8 +3,29 @@
     Created on : Dec 19, 2014, 2:33:34 PM
     Author     : pyaephyo
 --%>
-
+<%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    //==========================================//
+    //          Data Collection                 
+    //==========================================//
+
+    User userLogin = (User) request.getSession().getAttribute("userLogin");
+    String userNRIC = userLogin.getNricNumber();
+    String userFullName = userLogin.getFullName();
+    String userAlias = userLogin.getAlias();
+    String username = userLogin.getUsername();
+    String userGender = userLogin.getGender();
+    String userRole = userLogin.getRole();
+    String userEmail = userLogin.getEmailAddress();
+    String userPh = userLogin.getPhoneNumber();
+    String userPhoto = userLogin.getPhotoPath();
+    String userPwd = userLogin.getPassword();
+    
+    //==========================================//
+    //         End of Data Collection                 
+    //==========================================//   
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -47,14 +68,25 @@
                     <div class="form-group">
                         <label class="col-sm-3">NRIC Number <span style="color: red">*</span></label>
                         <div class="col-sm-9">
+                            <label class="col-sm-9"><%=userNRIC%></label>
+                            <a style="color: black" href="" onclick="editField('.edit_nric')" class="edit_nric_editField">
+                                <span data-toggle="tooltip" title="Edit NRIC" class="glyphicon glyphicon-edit"></span>
+                            </a>
+                            <div class="col-sm-6">
                             <input type="text" class="form-control edit_nric" id="InputNRIC" name="nNRIC"
                                 placeholder="Enter NRIC Number" readOnly="readOnly">
-                            </input>
+                            </input><br/>
+                            <button>Update</button>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3" for="InputFullName">Full Name <span style="color: red">*</span></label>
                         <div class="col-sm-9">
+                            <label class="col-sm-9"><%=userFullName%></label>
+                            <a style="color: black" href="" onclick="editField('.edit_nric')" class="edit_nric_editField">
+                                <span data-toggle="tooltip" title="Edit Full Name" class="glyphicon glyphicon-edit"></span>
+                            </a>
                             <input type="text" class="form-control edit_fullName" id="InputFullName" name="nFullName"
                                 placeholder="Enter Full Name">
                         </div>    
@@ -62,6 +94,10 @@
                     <div class="form-group">
                         <label class="col-sm-3" for="InputAlias">Alias</label>
                         <div class="col-sm-9">
+                            <label class="col-sm-9"><%=userAlias%></label>
+                            <a style="color: black" href="" onclick="editField('.edit_nric')" class="edit_nric_editField">
+                                <span data-toggle="tooltip" title="Edit NRIC" class="glyphicon glyphicon-edit"></span>
+                            </a>
                             <input type="text" class="form-control edit_alias" id="InputAlias" name="nAlias"
                                 placeholder="Enter Alia">
                         </div>    
@@ -69,6 +105,10 @@
                     <div class="form-group">
                         <label class="col-sm-3" for="InputUsername">Username<span style="color: red">*</span></label>
                         <div class="col-sm-9">
+                            <label class="col-sm-9"><%=username%></label>
+                            <a style="color: black" href="" onclick="editField('.edit_nric')" class="edit_nric_editField">
+                                <span data-toggle="tooltip" title="Edit NRIC" class="glyphicon glyphicon-edit"></span>
+                            </a>
                             <input type="text" class="form-control edit_username" id="InputUsername" name="nUsername"
                                    placeholder="Username" readOnly="readOnly">
                             <!--<span class="form-control edit_username"></span>-->
@@ -77,6 +117,10 @@
                     <div class="form-group">
                         <label class="col-sm-3" for="InputGender">Gender</label>
                         <div class="col-sm-9">
+                            <label class="col-sm-9"><%=userGender%></label>
+                            <a style="color: black" href="" onclick="editField('.edit_nric')" class="edit_nric_editField">
+                                <span data-toggle="tooltip" title="Edit NRIC" class="glyphicon glyphicon-edit"></span>
+                            </a>
                             <select class="form-control edit_gender" id="InputGender" name="nGender">
                                 <option selected>Male</option>
                                 <option>Female</option>
@@ -86,6 +130,10 @@
                     <div class="form-group">
                         <label class="col-sm-3" for="InputRole">Role</label>
                         <div class="col-sm-9">
+                            <label class="col-sm-9"><%=userRole%></label>
+                            <a style="color: black" href="" onclick="editField('.edit_nric')" class="edit_nric_editField">
+                                <span data-toggle="tooltip" title="Edit NRIC" class="glyphicon glyphicon-edit"></span>
+                            </a>
                             <select class="form-control edit_role" id="InputRole" name="nRole">
                                 <option selected>Associate</option>
                                 <option>Specialist</option>
@@ -98,6 +146,10 @@
                     <div class="form-group">
                         <label class="col-sm-3" for="InputEmail1">Email address<span style="color: red">*</span></label>
                         <div class="col-sm-9">
+                            <label class="col-sm-9"><%=userEmail%></label>
+                            <a style="color: black" href="" onclick="editField('.edit_nric')" class="edit_nric_editField">
+                                <span data-toggle="tooltip" title="Edit NRIC" class="glyphicon glyphicon-edit"></span>
+                            </a>
                             <input type="email" class="form-control edit_email" id="InputEmail1" name="nEmail"
                                 placeholder="Enter email">
                         </div>
@@ -105,6 +157,10 @@
                     <div class="form-group">
                         <label  class="col-sm-3" for="InputPhNum">Phone Number</label>
                         <div class="col-sm-9">
+                            <label class="col-sm-9"><%=userPh%></label>
+                            <a style="color: black" href="" onclick="editField('.edit_nric')" class="edit_nric_editField">
+                                <span data-toggle="tooltip" title="Edit NRIC" class="glyphicon glyphicon-edit"></span>
+                            </a>
                             <input type="text" class="form-control edit_phone" id="InputPhNum" name="nPhNum"
                                    placeholder="Enter Phone Number">
                         </div>    
@@ -114,7 +170,7 @@
                         <label class="col-sm-3" for="InputProfilePic">Profile Picture Upload</label>
                         <div class="col-sm-9 fileinput fileinput-new" data-provides="fileinput">
                           <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                            <img data-src="holder.js/100%x100%" alt="...">
+                            <img data-src="<%=userPhoto%>" alt="...">
                           </div>
                           <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                           <div>
@@ -128,5 +184,11 @@
                    </div>
             </div>
         </div>
+        <script>
+            function editField(div_name) {
+                $(div_name).hide();
+                //$(div_name + '_editField').show();
+            }
+        </script>                    
     </body>     
 </html>

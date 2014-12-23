@@ -1,5 +1,9 @@
 camans
 ======
+<i><b>23rd Dec 1:45pm-soemyatmyat</b></i><br/>
+1. Debugged UAT bugs (view/edit/add workerComplemetns and view/edit/add jobComplements)<br/>
+Working on attachment modules<br/>
+
 <i><b>22nd Dec 8:45pm-soemyatmyat</b></i><br/>
 1. Delete file attachements of worker<br/>
 2. Rename file attachements of worker<br/>

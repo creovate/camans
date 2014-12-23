@@ -310,6 +310,25 @@
                         }
                     }
                 },
+                nNOKPhNum: {
+                    validators: {
+                        stringLength: {
+                            max: 20,
+                            message: 'Phone No must be less than 20 characters.'
+                        },
+                        integer: {
+                            message: 'The value is not an integer'
+                        }                        
+                    }
+                },
+                nNOKAddress: {
+                    validators: {
+                        stringLength: {
+                            max: 300,
+                            message: 'Address must be less than 300 characters.'
+                        }                        
+                    }
+                },
                 name: {
                     validators: {
                         stringLength: {
@@ -353,6 +372,64 @@
                         }
                     }
                 },
+                nokphNum: {
+                    validators: {
+                        stringLength: {
+                            max: 20,
+                            message: 'Phone No must be less than 20 characters.'
+                        },
+                        integer: {
+                            message: 'The value is not an integer'
+                        }                        
+                    }
+                },
+                nokaddress: {
+                    validators: {
+                        stringLength: {
+                            max: 300,
+                            message: 'Address must be less than 300 characters.'
+                        }                        
+                    }
+                },
+                //Family Member
+                nFamilyPhNum: {
+                    validators: {
+                        stringLength: {
+                            max: 20,
+                            message: 'Phone No must be less than 20 characters.'
+                        },
+                        integer: {
+                            message: 'The value is not an integer'
+                        }                        
+                    }
+                },
+                nFamilyAddress: {
+                    validators: {
+                        stringLength: {
+                            max: 300,
+                            message: 'Address must be less than 300 characters.'
+                        }                        
+                    }
+                },
+                familyphNum: {
+                    validators: {
+                        stringLength: {
+                            max: 20,
+                            message: 'Phone No must be less than 20 characters.'
+                        },
+                        integer: {
+                            message: 'The value is not an integer'
+                        }                        
+                    }
+                },
+                familyaddress: {
+                    validators: {
+                        stringLength: {
+                            max: 300,
+                            message: 'Address must be less than 300 characters.'
+                        }                        
+                    }
+                },                
                 //language
                 nMainLanguage: {
                     validators: {
@@ -785,7 +862,7 @@
             <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#sgphonenum_pop_up", "worker")'>Edit</button>
             <div class='pull-right'>
                 <button type='button' class='btn modal_btn view_comp' onclick='add("#sgphonenum_pop_up", "worker")'>Add</button>                  
-                <button type='button' class="btn modal_btn view_comp">Close</button>
+                <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
             </div>
         </div>
     </div>
@@ -887,7 +964,7 @@
             <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#homephonenum_pop_up", "worker")'>Edit</button>
             <div class='pull-right'>
                 <button type='button' class='btn modal_btn view_comp' onclick='add("#homephonenum_pop_up", "worker")'>Add</button>                  
-                <button type='button' class="btn modal_btn view_comp">Close</button>
+                <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
             </div>
         </div>
     </div>
@@ -1187,7 +1264,7 @@
                 <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#digi_pop_up", "worker")'>Edit</button>
                 <div class='pull-right'>
                     <button type='button' class='btn modal_btn view_comp' onclick='add("#digi_pop_up", "worker")'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn cancel_btn">Close</button>
+                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
         </div>
@@ -1424,7 +1501,7 @@
             <div class='form-group'>
                 <label for='nPhNum' class="control-label">Contact Number: </label>
                 <br/>
-                <input class="form-control" type="text" name="nPhNum">
+                <input class="form-control" type="text" name="nNOKPhNum">
             </div>
             <div class='form-group'>
                 <label for='nDigitalContact' class="control-label">Other Contact Details: </label>
@@ -1434,7 +1511,7 @@
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Address: </label>
                 <br/>
-                <textarea class="form-control" name="nAddress" rows="3" maxlength="200" ></textarea>
+                <textarea class="form-control" name="nNOKAddress" rows="3" maxlength="200" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nProofDoc' class="control-label">Attesting Docs: </label>
@@ -1480,7 +1557,7 @@
             <div class='form-group'>
                 <label for='phNum' class="control-label">Contact Number: </label>
                 <br/>
-                <input class="form-control" type="text" name="phNum" value="<%=nokPhone%>">
+                <input class="form-control" type="text" name="nokphNum" value="<%=nokPhone%>">
             </div>
             <div class='form-group'>
                 <label for='digitalContact' class="control-label">Other Contact Details: </label>
@@ -1490,7 +1567,7 @@
             <div class='form-group'>
                 <label for='address' class="control-label">Address: </label>
                 <br/>
-                <textarea class="form-control" name="address" rows="3" maxlength="200"><%=nokAddress%></textarea>
+                <textarea class="form-control" name="nokaddress" rows="3" maxlength="200"><%=nokAddress%></textarea>
             </div>
             <div class='form-group'>
                 <label for='proofDoc' class="control-label">Attesting Docs: </label>
@@ -1612,12 +1689,12 @@
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Address: </label>
                 <br/>
-                <input class="form-control" type='text' name="nAddress">
+                <input class="form-control" type='text' name="nFamilyAddress">
             </div>
             <div class='form-group'>
                 <label for='nPhNum' class="control-label">Contact Number: </label>
                 <br/>
-                <input class="form-control" type="text" name="nPhNum">
+                <input class="form-control" type="text" name="nFamilyPhNum">
             </div>
             <div class='form-group'>
                 <label for='nDigitalContact' class="control-label">Other Contact Details: </label>
@@ -1659,7 +1736,7 @@
             <div class='form-group'>
                 <label for='phNum' class="control-label">Contact Number: </label>
                 <br/>
-                <input class="form-control" type="text" name="phNum" value="<%=contactNum%>">
+                <input class="form-control" type="text" name="familyphNum" value="<%=contactNum%>">
             </div>
             <div class='form-group'>
                 <label for='digitalContact' class="control-label">Other Contact Details: </label>
@@ -1669,7 +1746,7 @@
             <div class='form-group'>
                 <label for='address' class="control-label">Address: </label>
                 <br/>
-                <input class="form-control" type='text' name="address" value="<%=address%>">
+                <input class="form-control" type='text' name="familyaddress" value="<%=address%>">
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark: </label>

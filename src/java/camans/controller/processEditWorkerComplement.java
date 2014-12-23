@@ -215,10 +215,10 @@ public class processEditWorkerComplement extends HttpServlet {
                 //get all the parameters for next of kin
                 String name = request.getParameter("name");
                 String relation = request.getParameter("relation");
-                String phNum = request.getParameter("phNum");
+                String phNum = request.getParameter("nokphNum");
                 String digitalContact = request.getParameter("digitalContact");
                 String docReference = request.getParameter("docReference");
-                String address = request.getParameter("address");
+                String address = request.getParameter("nokaddress");
                 String proofDoc = request.getParameter("proofDoc");
                 String remark = request.getParameter("remark");
                 String obseleteDateStr = request.getParameter("obseleteDate");
@@ -246,8 +246,8 @@ public class processEditWorkerComplement extends HttpServlet {
                 //get all the parameters for next of kin
                 String name = request.getParameter("name");
                 String relation = request.getParameter("relation");
-                String address = request.getParameter("address");
-                String phNum = request.getParameter("phNum");
+                String address = request.getParameter("familyaddress");
+                String phNum = request.getParameter("familyphNum");
                 String digitalContact = request.getParameter("digitalContact");
                 String remark = request.getParameter("remark");
                 String obseleteDateStr = request.getParameter("obseleteDate");

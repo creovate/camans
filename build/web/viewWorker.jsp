@@ -4505,14 +4505,15 @@
                                             <td><%=sdf.format(timeStamp)%></td>
                                             <td><%=submitBy%></td>
                                             <td align="center">
-                                                <a style="color: black" href="">
+                                                <a style="color: black"
+                                                   href="fileUpload.do?action=download&attachId=<%=workerAttachment.getId()%>" >
                                                    <span data-toggle="tooltip" title="Download" class="glyphicon glyphicon-download-alt"></span>
                                                 </a>&nbsp; &nbsp; &nbsp; &nbsp;
-                                                <a style="color: black" href="" class="edit_popup" data-doc='<%=docName.substring(0, docName.indexOf("."))%>'
+                                                <a style="color: black" href="#" class="edit_popup" data-doc='<%=docName.substring(0, docName.indexOf("."))%>'
                                                    data-id='<%=workerAttachment.getId()%>' data-toggle="modal" data-target="#attach_edit_popup">
                                                     <span data-toggle="tooltip" title="Rename" class="glyphicon glyphicon-pencil"></span>
                                                 </a>&nbsp; &nbsp; &nbsp; &nbsp;
-                                                <a style="color: black" href="" class="delete_popup" data-doc='<%=docName%>'
+                                                <a style="color: black" href="#" class="delete_popup" data-doc='<%=docName%>'
                                                    data-id='<%=workerAttachment.getId()%>' data-toggle="modal" data-target="#attach_delete_confirm">
                                                     <span data-toggle="tooltip" title="Delete" class="glyphicon glyphicon-trash"></span>
                                                 </a>    
@@ -4734,7 +4735,7 @@
             });
             
             //reset password form validation check - added by soemyatmyat
-            /*
+            
             $(document).ready(function() {
                 $('#editAttachForm')
                 .bootstrapValidator({
@@ -4756,17 +4757,13 @@
                                 stringLength: {
                                     max:190,
                                     message: 'File name cannot be more than 190 characters.'
-                                },
-                                different: {
-                                    field:'fileName',
-                                    message:'The new file name and old file name cannot be the same.'
                                 }
                             }
                         }
                     }
                 })
             }); 
-            */
+            
             //to reset all the fields whenever the modal is opened - added by soemyatmyat
             $('#attach_edit_popup').on('shown.bs.modal', function() {
                 $('#editAttachForm').bootstrapValidator('resetForm', true);

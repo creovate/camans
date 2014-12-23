@@ -74,17 +74,6 @@
             },
             fields: {
                 //nickname
-                nickName: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'The nickname must be less than 50 characters.'
-                        },
-                        notEmpty: {
-                            message: 'The nickname cannot be empty.'
-                        }
-                    }
-                },
                 nNickName: {
                     validators: {
                         stringLength: {
@@ -119,44 +108,8 @@
                         }
                     }
                 },
-                passportNum: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Passport No. must be less than 20 characters.'
-                        },
-                        notEmpty: {
-                            message: 'Passport No. cannot be empty.'
-                        }
-                    }
-                },
-                passportCountry: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Passport Country must be less than 20 characters.'
-                        },
-                        notEmpty: {
-                            message: 'Passport Country cannot be empty.'
-                        }
-                    }
-                },
                 //sgPhone & homePhone
                 nPhNum: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Phone No must be less than 20 characters.'
-                        },
-                        integer: {
-                            message: 'The value is not an integer'
-                        },
-                        notEmpty: {
-                            message: 'Phone No. cannot be empty.'
-                        }
-                    }
-                },
-                phNum: {
                     validators: {
                         stringLength: {
                             max: 20,
@@ -178,27 +131,8 @@
                         }
                     }
                 },
-                phOwner: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Owner name must be less than 20 characters.'
-                        }
-                    }
-                },
                 //sgAddress & homeCountry Add
                 nAddress: {
-                    validators: {
-                        stringLength: {
-                            max: 300,
-                            message: 'Address must be less than 300 characters.'
-                        },
-                        notEmpty: {
-                            message: 'Address cannot be empty.'
-                        }
-                    }
-                },
-                address: {
                     validators: {
                         stringLength: {
                             max: 300,
@@ -256,52 +190,6 @@
                         }
                     }
                 },
-                digitalContactType: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Contact Type must be less than 20 characters.'
-                        },
-                        notEmpty: {
-                            message: 'Contact Type cannot be empty.'
-                        }
-                    }
-                },
-                digitalMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Contact Type must be less than 50 characters.'
-                        }
-                    }
-                },
-                digitalDetails: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Contact address must be less than 50 characters.'
-                        },
-                        notEmpty: {
-                            message: 'Contact address cannot be empty.'
-                        }
-                    }
-                },
-                digitalOwner: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Owner of Contact must be less than 50 characters.'
-                        }
-                    }
-                },
-                remark: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Remark must be less than 200 characters.'
-                        }
-                    }
-                },
                 //nok & family & Friends
                 nName: {
                     validators: {
@@ -346,47 +234,43 @@
                         }
                     }
                 },
-                name: {
+                nNOKPhNum: {
                     validators: {
                         stringLength: {
-                            max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            max: 20,
+                            message: 'Phone No must be less than 20 characters.'
                         },
-                        notEmpty: {
-                            message: 'The name cannot be empty.'
-                        }
+                        integer: {
+                            message: 'The value is not an integer'
+                        }                        
                     }
                 },
-                relation: {
+                nNOKAddress: {
                     validators: {
                         stringLength: {
-                            max: 50,
-                            message: 'Relationship must be less than 50 characters.'
-                        }
+                            max: 300,
+                            message: 'Address must be less than 300 characters.'
+                        }                        
+                    }
+                },                
+                //Family Member
+                nFamilyPhNum: {
+                    validators: {
+                        stringLength: {
+                            max: 20,
+                            message: 'Phone No must be less than 20 characters.'
+                        },
+                        integer: {
+                            message: 'The value is not an integer'
+                        }                        
                     }
                 },
-                docReference: {
+                nFamilyAddress: {
                     validators: {
                         stringLength: {
-                            max: 200,
-                            message: 'Identity docs/references must be less than 200 characters.'
-                        }
-                    }
-                },
-                digitalContact: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Contact Details must be less than 200 characters.'
-                        }
-                    }
-                },
-                proofDoc: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Attesting Documents must be less than 200 characters.'
-                        }
+                            max: 300,
+                            message: 'Address must be less than 300 characters.'
+                        }                        
                     }
                 },
                 //language
@@ -402,25 +286,6 @@
                     }
                 },
                 nLanguageMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Others must be less than 50 characters.'
-                        }
-                    }
-                },
-                mainLanguage: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Language must be less than 20 characters.'
-                        },
-                        notEmpty: {
-                            message: 'Language cannot be empty.'
-                        }
-                    }
-                },
-                languageMore: {
                     validators: {
                         stringLength: {
                             max: 50,
@@ -502,60 +367,6 @@
                         },
                         notEmpty: {
                             message: 'Name cannot be empty.'
-                        }
-                    }
-                },
-                bankAcctNum: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Account No. must be less than 50 characters.'
-                        },
-                        notEmpty: {
-                            message: 'Account No. cannot be empty.'
-                        }
-                    }
-                },
-                bankName: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Bank name must be less than 50 characters.'
-                        },
-                        notEmpty: {
-                            message: 'Bank name cannot be empty.'
-                        }
-                    }
-                },
-                bankBranch: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Bank branch must be less than 50 characters.'
-                        }
-                    }
-                },
-                bankBranchCode: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Bank branch code must be less than 50 characters.'
-                        }
-                    }
-                },
-                bankBranchAddress: {
-                    validators: {
-                        stringLength: {
-                            max: 300,
-                            message: 'Address must be less than 300 characters.'
-                        }
-                    }
-                },
-                bankSwift: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Bank Swift must be less than 50 characters.'
                         }
                     }
                 }
@@ -3650,7 +3461,7 @@
             <div class='form-group'>
                 <label for='nPhNum' class="control-label">Contact Number: </label>
                 <br/>
-                <input class="form-control" type='text' name="nPhNum">
+                <input class="form-control" type='text' name="nNOKPhNum">
             </div>
             <div class='form-group'>
                 <label for='nDigitalContact' class="control-label">Other Contact Details: </label>
@@ -3660,7 +3471,7 @@
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Address: </label>
                 <br/>
-                <input class="form-control" type='text' name="nAddress">
+                <input class="form-control" type='text' name="nNOKAddress">
             </div>
             <div class='form-group'>
                 <label for='nProofDoc' class="control-label">Attesting Docs: </label>
@@ -3708,12 +3519,12 @@
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Address: </label>
                 <br/>
-                <input class="form-control" type='text' name="nAddress">
+                <input class="form-control" type='text' name="nFamilyAddress">
             </div>
             <div class='form-group'>
                 <label for='nPhNum' class="control-label">Contact Number: </label>
                 <br/>
-                <input class="form-control" type='text' name="nPhNum">
+                <input class="form-control" type='text' name="nFamilyPhNum">
             </div>
             <div class='form-group'>
                 <label for='nDigitalContact' class="control-label">Other Contact Details: </label>

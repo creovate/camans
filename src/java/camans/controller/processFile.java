@@ -9,15 +9,18 @@ import camans.dao.WorkerComplementsDAO;
 import camans.entity.User;
 import camans.entity.WorkerAttachment;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.UUID;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -109,15 +112,16 @@ public class processFile extends HttpServlet {
                                 fileOrign = item.getName();
                                 String fileName = uniqueID + "-xx-" + item.getName();
                                 file = new File(file.getAbsolutePath() + File.separator + fileName);
-                                FileOutputStream fos = new FileOutputStream(file);
-                                InputStream is = item.openStream();
-                                int x = 0;
-                                byte[] b  = new byte[1024];
-                                while((x=is.read(b))!= -1){
-                                    fos.write(b,0,x);
+                                FileOutputStream outStream = new FileOutputStream(file);
+                                InputStream inStream = item.openStream();
+                                int bytesRead = 0;
+                                byte[] buffer  = new byte[1024];
+                                while((bytesRead=inStream.read(buffer))!= -1){
+                                    outStream.write(buffer,0,bytesRead);
                                 }
-                                fos.flush();
-                                fos.close();
+                                outStream.flush();
+                                outStream.close();
+                                inStream.close();
                                 String fileDir = "workers/" + workerFinNum + "/" + fileName;
                                 User _user = (User) request.getSession().getAttribute("userLogin");
                                 WorkerAttachment workerAttachment = new WorkerAttachment(workerFinNum,item.getName(),fileDir,_user.getUsername());
@@ -135,7 +139,7 @@ public class processFile extends HttpServlet {
                     success = fileOrign + " has been successfully uploaded!";
                 }
                 request.getSession().setAttribute("successAttachMsg", success);
-                response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+                response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
                 //==========================================//
                 //          End of Process File Upload 
                 //==========================================//
@@ -146,19 +150,19 @@ public class processFile extends HttpServlet {
                 if (action.equals("delete")) {
                     int id = Integer.parseInt(attachId);
                     WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(id);
-                    //retrieve filePath of the app build folder
+                    //retrieve filePath of the app build folder together with file dir
                     String filePath = getServletContext().getRealPath("/") + File.separator + workerAttachment.getFilePath();
                     File deleteFile = new File(filePath);
                     if (!deleteFile.exists()) {
                         error = "Selected File does not exist. Please check with admin.";
                         request.getSession().setAttribute("errAttachMsg", error);
-                        response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+                        response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
                     } else {
                         if (deleteFile.delete()) {                      
                             success = workerAttachment.getDocumentName() + " has been successfully deleted!";
                             WorkerComplementsDAO.deleteWorkerAttachment(workerAttachment);
                             request.getSession().setAttribute("successAttachMsg", success);
-                            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+                            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
                         } else { //file delete processing error
                             //do not proceed & show error page
                             //log the errors to logs file
@@ -180,7 +184,8 @@ public class processFile extends HttpServlet {
                     if (!oldFile.exists()) {
                         error = "Selected File does not exist. Please check with admin.";
                         request.getSession().setAttribute("errAttachMsg", error);
-                        response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+                        response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum 
+                                +"#attachment_complement");
                     } else {
                         String oldFileName = oldFile.getName();
 
@@ -195,7 +200,7 @@ public class processFile extends HttpServlet {
                             success = oldFileName.substring(oldFileName.lastIndexOf('-')+1) + " has been successfully renamed to " + 
                                     workerAttachment.getDocumentName() + "!";
                             request.getSession().setAttribute("successAttachMsg", success);
-                            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+                            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
                         } else { //file rename processing error
                             //do not proceed & show error page
                             //log the errors to logs file  
@@ -208,6 +213,57 @@ public class processFile extends HttpServlet {
                 //         End of Process File Rename
                 //==========================================//  
                     
+                } else if (action.equals("download")) {
+                //==========================================//
+                //          Process File Download
+                //==========================================//   
+                    //out.println(action);
+                    //out.println(attachId);
+                    int id = Integer.parseInt(attachId);
+                    WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(id);
+                    
+                    //retrieve filePath of the app build folder together with file dir
+                    String filePath = getServletContext().getRealPath("/") + File.separator 
+                            + workerAttachment.getFilePath();
+                    File dlFile = new File(filePath);
+                   //out.println(dlFile.toString());
+                    
+                    if (dlFile.exists()) {
+                        //get MIME type of the file
+                        String mimeType = getServletContext().getMimeType(dlFile.getAbsolutePath());
+                        if (mimeType == null) {
+                            // set to binary type if MIME mapping not found
+                            mimeType = "application/octet-stream";
+                        }
+
+                        //modifies response
+                        response.setContentType(mimeType);
+                        response.setContentLength((int) dlFile.length());
+
+                        // forces download
+                        String headerKey = "Content-Disposition";
+                        String headerValue = String.format("attachment; filename=\"%s\"", workerAttachment.getDocumentName());
+                        response.setHeader(headerKey, headerValue);
+
+                        FileInputStream inStream = new FileInputStream(dlFile);
+                        //obtains the response's output stream
+                        ServletOutputStream outStream = response.getOutputStream();
+
+                        byte[] buffer = new byte[1024];   
+                        int bytesRead = 0;
+
+                        while ((bytesRead = inStream.read(buffer)) != -1) {
+                            outStream.write(buffer, 0, bytesRead);
+                        }
+                        outStream.flush();
+                        inStream.close();
+                        outStream.close();
+                    } else {
+                        error = "Selected File does not exist. Please check with admin.";
+                        request.getSession().setAttribute("errAttachMsg", error);
+                        response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum 
+                                +"#attachment_complement");
+                    }
                 }
             }
         } catch (Exception e) {
