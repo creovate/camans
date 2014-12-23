@@ -47,9 +47,17 @@
         <link rel="shortcut icon" href="img/twc_logo.png">
    
         <title>CAMANS</title>
+        <script>
+            var secondsBeforeExpire = ${pageContext.session.maxInactiveInterval};
+            alert(secondsBeforeExpire);
+            var timeToDecide = 15; // Give client 15 seconds to choose.
+            setTimeout(function() {
+                alert('Your session is about to timeout in ' + timeToDecide + ' seconds!')
+            }, (secondsBeforeExpire - timeToDecide) * 1000);
+        </script>        
     </head>
     
-    <body style='background:white'>
+    <body style='background:white' onload="setTimeout();">
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
         
@@ -413,7 +421,6 @@
 
                       <div class="modal-footer">
                         <input type="hidden" name="action" value="edit"/>  
-                        <input type="hidden" name="page" value="userManagement.jsp"/>
                         <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
                         <button type="submit" class="btn btn-primary">Save</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -555,7 +562,6 @@
                       <div class="modal-footer">
                         <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
                         <input type="hidden" name="action" value="resetPwd"/> 
-                        <input type="hidden" name="page" value="userManagement.jsp"/>
                         <button type="submit" class="btn btn-primary">Reset Password</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <!-- Do NOT use name="submit" or id="submit" for the Submit button -->

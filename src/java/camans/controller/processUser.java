@@ -59,12 +59,14 @@ public class processUser extends HttpServlet {
             String fullName = "";
             String alias = "";
             String username = request.getParameter("nUsername");
-            String pwd = "";
+            String pwd = request.getParameter("nPwd");
             String gender = "";
             String role = "";
             String email = "";
             String phNum = "";
             String photoPath = "";
+            String page = request.getParameter("page");
+            String oldPwd = request.getParameter("nOldPwd");
             
             //check that we have a file upload request
             if (isMultiPart) {
@@ -111,7 +113,9 @@ public class processUser extends HttpServlet {
                            phNum = value;
                         }  else if ("nPhotoPath".equalsIgnoreCase(fieldName)) {
                            photoPath = value;
-                        }    
+                        }  else if ("page".equalsIgnoreCase(fieldName)) {
+                            page = value;
+                        }  
                     } else { //image upload
 
                         if (!item.getName().equals("")) {
@@ -149,7 +153,7 @@ public class processUser extends HttpServlet {
             //==========================================//
 
             //==========================================//
-            // Client Side NRIC and username validation
+            //     Ajax NRIC, username & pwd validation
             //==========================================//
             if (action == null) {
                 User user = null; //tmp user
@@ -159,13 +163,20 @@ public class processUser extends HttpServlet {
                     user = UserDAO.retrieveUserByUsername(username);
                 }
                 JSONObject returnJsonObject = new JSONObject();
-                if (user != null) {//user already exists
-                    returnJsonObject.put("valid", "false");
-                } else {
-                    returnJsonObject.put("valid", "true");
-                }
-                out.println(returnJsonObject);
                 
+                if (oldPwd == null) {
+                    if (user != null) {//user already exists
+                        returnJsonObject.put("valid", "false");
+                    } else {
+                        returnJsonObject.put("valid", "true");
+                    }
+                } else {
+                    user = (User) request.getSession().getAttribute("userLogin");
+                    returnJsonObject.put("valid", user.authenticate(oldPwd));
+                }    
+                //returnJsonObject.put("user", user);
+                out.println(returnJsonObject);
+
             } else if (action != null && (action.equals("add") || action.equals("edit"))) {
                 //either adding new user or editing
                 //=======================================//
@@ -201,6 +212,7 @@ public class processUser extends HttpServlet {
                     pass = false;
                     err += "Invalid email format, ";
                 }
+                
                 //Phone Number //regrex still needs
 
                 //=======================================//
@@ -219,6 +231,7 @@ public class processUser extends HttpServlet {
                      //===============================================//
                     if (action.equals("add")) {
                         //Encrypt password
+                        
                         String encryptedPwd = "";
                         try {
                             encryptedPwd = PasswordHash.createHash(pwd);
@@ -228,6 +241,8 @@ public class processUser extends HttpServlet {
                         //brand-new User :P
                         user = new User(nric, fullName, alias, username, encryptedPwd, email, phNum, gender, 
                             role, photoPath, "Active");
+                        /*user = new User(nric, fullName, alias, username, pwd, email, phNum, gender, 
+                            role, photoPath, "Active");*/
                         UserDAO.addUser(user);
                         success = "User " + user.getUsername() + " has been successfully added!";
 
@@ -247,8 +262,9 @@ public class processUser extends HttpServlet {
                         user.setPhoneNumber(phNum);
                         if (!photoPath.equals("")) { user.setPhotoPath(photoPath); }
                         UserDAO.updateUser(user);
+                        request.getSession().setAttribute("userLogin", user);
                         success = "User " + user.getUsername() + " has been successfully updated!";
-
+                        
                     }
 
                     request.getSession().setAttribute("successMsg", success);
@@ -258,41 +274,45 @@ public class processUser extends HttpServlet {
 
                     request.getSession().setAttribute("errorMsg", err);
                 }
-                response.sendRedirect("userManagement.jsp");
-
-        //=======================================//
-        //      Inactivate/Activate User
-        //=======================================//    
-        } else if (action.equals("inactive") || action.equals("active")) {//need to change to inactivate!
-            String success = "";
-
-            if (action.equals("inactive")) {
-                String inactivateUserName = request.getParameter("nUsername");
-
-                User user = UserDAO.retrieveUserByUsername(inactivateUserName);
-                user.setStatus("Inactive");
-                UserDAO.updateStatus(user);
-                //UserDAO.deleteUser(username);
-                success = "User " + username + " has been successfully inactivated!";
-            } else {
-                String activateUserName = request.getParameter("nUsername");
-
-                User user = UserDAO.retrieveUserByUsername(activateUserName);
-                user.setStatus("Active");
-                UserDAO.updateStatus(user);
-                success = "User " + username + " has been successfully activated!";
-            }
-                request.getSession().setAttribute("successMsg", success);
-                response.sendRedirect("userManagement.jsp");
+                if (!page.equals("")) {
+                    response.sendRedirect(page);
+                } else {
+                    response.sendRedirect("userManagement.jsp");
+                }
 
             //=======================================//
-            //      Reset Password 
+            //      Inactivate/Activate User
+            //=======================================//    
+            } else if (action.equals("inactive") || action.equals("active")) {//need to change to inactivate!
+                String success = "";
+
+                if (action.equals("inactive")) {
+                    String inactivateUserName = request.getParameter("nUsername");
+
+                    User user = UserDAO.retrieveUserByUsername(inactivateUserName);
+                    user.setStatus("Inactive");
+                    UserDAO.updateStatus(user);
+                    //UserDAO.deleteUser(username);
+                    success = "User " + username + " has been successfully inactivated!";
+                } else {
+                    String activateUserName = request.getParameter("nUsername");
+
+                    User user = UserDAO.retrieveUserByUsername(activateUserName);
+                    user.setStatus("Active");
+                    UserDAO.updateStatus(user);
+                    success = "User " + username + " has been successfully activated!";
+                }
+                    request.getSession().setAttribute("successMsg", success);
+                    response.sendRedirect("userManagement.jsp");
+
+            //=======================================//
+            //      Reset/Change Password 
             //=======================================//       
             } else if (action.equals("resetPwd")) {//
                 String success = "";
                 String resetUserName = request.getParameter("nUsername");
 
-                //Encrypt password
+                //Encrypt password           
                 String encryptedPwd = "";
                 try {
                     encryptedPwd = PasswordHash.createHash(pwd);
@@ -302,14 +322,26 @@ public class processUser extends HttpServlet {
 
                 User user = UserDAO.retrieveUserByUsername(resetUserName);
                 user.setPassword(encryptedPwd);
+                //user.setPassword(pwd);
                 UserDAO.updatePassword(user);
+                User _user = (User) request.getSession().getAttribute("userLogin");
+                //this applies only to userprofile
+                if (user.getUsername().equals(_user.getUsername())) {
+                    request.getSession().setAttribute("userLogin", user);
+                }
 
-                success = "User " + resetUserName + "'s password has been reset!";
-                request.getSession().setAttribute("successMsg", success);
-                response.sendRedirect("userManagement.jsp");
+                if (page !=null) {
+                    success = resetUserName + "'s password has been change!";
+                    request.getSession().setAttribute("successMsg", success);
+                    response.sendRedirect(page);
+                } else {
+                    success = "User " + resetUserName + "'s password has been reset!";
+                    request.getSession().setAttribute("successMsg", success);
+                    response.sendRedirect("userManagement.jsp");
+                }
 
 
-            }
+            } 
       
         } catch (Exception e) {
             out.println("error:" + e);
