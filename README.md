@@ -9,7 +9,7 @@ Working on attachment modules<br/>
 2. Rename file attachements of worker<br/>
 Working on attachment modules<br/>
 
-<i><b>22th Dec 2014-nyeinsu</b></i><br/>
+<i><b>22nd Dec 2014-nyeinsu</b></i><br/>
 1. Cosmetic changes in modal boxes.<br/>
 2. Debugged Add/Edit Benefits.<br/>
 3. Changed aggravating loss from <i><b>String</b></i> object to <i><b>double</b></i>.<br/>
@@ -19,7 +19,7 @@ Working on attachment modules<br/>
 1. Upload file attachements of worker<br/>
 Working on attachment modules<br/>
 
-<i><b>-21th Dec 2014-nyeinsu</b></i><br/>
+<i><b>-21st Dec 2014-nyeinsu</b></i><br/>
 1. Cosmetic changes in navigation bar.<br/>
 2. Add Case Referral Function<br/>
 3. Case Referral Notification at top navigation bar (to discuss later whether to change to push)
