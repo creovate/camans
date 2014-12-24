@@ -1,5 +1,9 @@
 camans
 ======
+
+<i><b>25th Dec 2014-nyeinsu<i></b>
+To Change in wica Claim lodged table.<br/>
+
 <i><b>23rd Dec 1:45pm-soemyatmyat</b></i><br/>
 1. Debugged UAT bugs (view/edit/add workerComplemetns and view/edit/add jobComplements)<br/>
 Working on attachment modules<br/>
