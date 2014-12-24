@@ -242,7 +242,7 @@
                         },
                         integer: {
                             message: 'The value is not an integer'
-                        }                        
+                        }
                     }
                 },
                 nNOKAddress: {
@@ -250,9 +250,9 @@
                         stringLength: {
                             max: 300,
                             message: 'Address must be less than 300 characters.'
-                        }                        
+                        }
                     }
-                },                
+                },
                 //Family Member
                 nFamilyPhNum: {
                     validators: {
@@ -262,7 +262,7 @@
                         },
                         integer: {
                             message: 'The value is not an integer'
-                        }                        
+                        }
                     }
                 },
                 nFamilyAddress: {
@@ -270,7 +270,7 @@
                         stringLength: {
                             max: 300,
                             message: 'Address must be less than 300 characters.'
-                        }                        
+                        }
                     }
                 },
                 //language
@@ -3189,8 +3189,13 @@
     String probKey = request.getParameter("problemKey");    //passed from viewWorker.jsp
 %>
 
-
+<!-------------------------->
 <!--- Worker Complements --->
+<!-------------------------->
+
+<!--------------->
+<!-- 1 Nickname-->
+<!--------------->
 <%
     if (complement.equals("nickname")) {
 %>
@@ -3210,7 +3215,11 @@
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-</form>      
+</form> 
+
+<!----------------------->
+<!-- 2 Passport Details-->
+<!----------------------->
 <%
 } else if (complement.equals("passport")) {
 %>
@@ -3230,7 +3239,7 @@
                 <input class="form-control" type='text' name="nPassportCountry" required>
             </div>
             <div class='form-group'>
-                <label for='nPassportIssueDate' class="control-label">Passport Issued Date: </label>
+                <label for='nPassportIssueDate' class="control-label">Passport Issue Date: </label>
                 <br/>
                 <input class="form-control input-append date startDate" type='text' name="nPassportIssueDate" >
             </div>
@@ -3250,6 +3259,9 @@
     </div>
 </form>
 
+<!---------------------->
+<!-- 3 Singapore Phone-->
+<!---------------------->
 <%
 } else if (complement.equals("sgphone")) {
 %>
@@ -3259,13 +3271,13 @@
     <div class='add_comp'>
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Phone No<span style="color: red">*</span>: </label>
+                <label for='nPhNum' class="control-label">SG Phone Number<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nPhNum" required>
             </div>
 
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Obsolete Date: </label>
+                <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate" >
             </div>
@@ -3280,6 +3292,10 @@
     </div>
 
 </form>
+
+<!------------------------->
+<!-- 4 Home Country Phone-->
+<!------------------------->
 <%
 } else if (complement.equals("homephone")) {
 %>
@@ -3289,17 +3305,17 @@
     <div class='add_comp'>
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Phone No<span style="color: red">*</span>: </label>
+                <label for='nPhNum' class="control-label">Home Country Telephone Number<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nPhNum" required>
             </div>
             <div class='form-group'>
-                <label for='nPhOwner' class="control-label">Phone Owner: </label>
+                <label for='nPhOwner' class="control-label">Owner of this number: </label>
                 <br/>
                 <input class="form-control" type='text' name="nPhOwner" >
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Obsolete Date: </label>
+                <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate" >
             </div>
@@ -3314,6 +3330,10 @@
         </div>
     </div>
 </form>
+
+<!------------------------>
+<!-- 5 Singapore Address-->
+<!------------------------>
 <%
 } else if (complement.equals("sgadd")) {
 %>
@@ -3323,13 +3343,13 @@
     <div class='add_comp'>
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Address<span style="color: red">*</span>:</label>
+                <label for='nAddress' class="control-label">Worker Address in Singapore<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="nAddress" required>
             </div>
 
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Obsolete Date: </label>
+                <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate" >
             </div>
@@ -3345,6 +3365,10 @@
     </div>
 
 </form>
+
+<!--------------------------->
+<!-- 6 Home Country Address-->
+<!--------------------------->
 <%
 } else if (complement.equals("homeadd")) {
 %>
@@ -3354,12 +3378,12 @@
     <div class='add_comp'>
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Address<span style="color: red">*</span>:</label>
+                <label for='nAddress' class="control-label">Worker Address in Home Country<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="nAddress" required>
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Obsolete Date: </label>
+                <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate" >
             </div>
@@ -3374,6 +3398,10 @@
     </div>
 
 </form>
+
+<!----------------------->
+<!-- 7 Digital Contacts-->
+<!----------------------->
 <%
 } else if (complement.equals("digcontact")) {
     HashMap<Integer, String> digitalContactList = DropdownDAO.retrieveAllDropdownListOfDigitalContactType();
@@ -3384,7 +3412,7 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nDigitalContactType' class="control-label">Digital Type<span style="color: red">*</span>: </label>
+                <label for='nDigitalContactType' class="control-label">Type of Digital Contact<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nDigitalContactType" required onchange="displayOther(this.id);">
                     <%
@@ -3400,27 +3428,27 @@
             </div>
 
             <div class="form-group" id="digitalContactType_other_div">
-                <label for="nDigitalMore" class="col-md-3 control-label">Explain if above is 'Other'</label>
+                <label for="nDigitalMore" class="col-md-3 control-label">Explain if above is 'Other':</label>
                 <div class=" col-md-6">
                     <input type="text" id="digitalContactType_other_In" class="form-control" name="nDigitalMore"/></div>
             </div>
             <div class='form-group'>
-                <label for='nDigitalDetails' class="control-label">Address<span style="color: red">*</span>: </label>
+                <label for='nDigitalDetails' class="control-label">Email/QQ Address or other details<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nDigitalDetails">
             </div>
             <div class='form-group'>
-                <label for='nDigitalOwner' class="control-label">Owner: </label>
+                <label for='nDigitalOwner' class="control-label">Owner of Electronic Contact: </label>
                 <br/>
                 <input class="form-control" type='text' name="nDigitalOwner">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark: </label>
+                <label for='nRemark' class="control-label">Remark about Digital Contact: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRemark">
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Obsoleted Date: </label>
+                <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate">
             </div>
@@ -3434,6 +3462,10 @@
 
     </div>
 </form>
+
+<!---------->
+<!-- 8 nok-->
+<!---------->           
 <%
 } else if (complement.equals("nok")) {
 %>
@@ -3444,47 +3476,47 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nName' class="control-label">Name<span style="color: red">*</span>: </label>
+                <label for='nName' class="control-label">Name of Next of Kin<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nName" required>
             </div>
             <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship: </label>
+                <label for='nRelation' class="control-label">Relationship of Next of Kin to Worker: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRelation">
             </div>
             <div class='form-group'>
-                <label for='nDocReference' class="control-label">Identity Docs/References: </label>
+                <label for='nDocReference' class="control-label">Identity Docs/References of Next of Kin: </label>
                 <br/>
                 <input class="form-control" type='text' name="nDocReference">
             </div>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Contact Number: </label>
+                <label for='nPhNum' class="control-label">Phone Number of Next of Kin: </label>
                 <br/>
                 <input class="form-control" type='text' name="nNOKPhNum">
             </div>
             <div class='form-group'>
-                <label for='nDigitalContact' class="control-label">Other Contact Details: </label>
+                <label for='nDigitalContact' class="control-label">Other Contact Details of Next of Kin: </label>
                 <br/>
                 <input class="form-control" type='text' name="nDigitalContact">
             </div>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Address: </label>
+                <label for='nAddress' class="control-label">Address of Next of Kin: </label>
                 <br/>
                 <input class="form-control" type='text' name="nNOKAddress">
             </div>
             <div class='form-group'>
-                <label for='nProofDoc' class="control-label">Attesting Docs: </label>
+                <label for='nProofDoc' class="control-label">What Docs Attesting Next of Kin?: </label>
                 <br/>
                 <input class="form-control" type='text' name="nProofDoc">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark: </label>
+                <label for='nRemark' class="control-label">Remark about Next of Kin: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRemark">
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Obsoleted Date: </label>
+                <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate">
             </div>
@@ -3498,6 +3530,10 @@
 
     </div>
 </form>
+
+<!-------------------->
+<!-- 9 family Member-->
+<!-------------------->          
 <%
 } else if (complement.equals("familymember")) {
 %>
@@ -3507,37 +3543,37 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nName' class="control-label">Name<span style="color: red">*</span>: </label>
+                <label for='nName' class="control-label">Name of Family Member<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nName"required>
             </div>
             <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship: </label>
+                <label for='nRelation' class="control-label">Relationship of Family Member to Worker: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRelation">
             </div>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Address: </label>
+                <label for='nAddress' class="control-label">Is the Family Member in Singapore?: </label>
                 <br/>
                 <input class="form-control" type='text' name="nFamilyAddress">
             </div>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Contact Number: </label>
+                <label for='nPhNum' class="control-label">Phone Number of Family Member: </label>
                 <br/>
                 <input class="form-control" type='text' name="nFamilyPhNum">
             </div>
             <div class='form-group'>
-                <label for='nDigitalContact' class="control-label">Other Contact Details: </label>
+                <label for='nDigitalContact' class="control-label">Other Contact Details of Family Member: </label>
                 <br/>
                 <input class="form-control" type='text' name="nDigitalContact">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark: </label>
+                <label for='nRemark' class="control-label">Remark about Family Member: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRemark">
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Obsoleted Date: </label>
+                <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate">
             </div>
@@ -3551,6 +3587,10 @@
 
     </div>
 </form>
+
+<!-------------->
+<!-- 10 sg fri-->
+<!-------------->          
 <%
 } else if (complement.equals("sgfri")) {
 %>
@@ -3558,34 +3598,31 @@
     <h4 class='add_comp'>Add A New Friend </h4>
 
     <div class='form-group'>
-
-
-
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nName' class="control-label">Name<span style="color: red">*</span>: </label>
+                <label for='nName' class="control-label">Name of Friend in Singapore<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nName" required>
             </div>
             <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship: </label>
+                <label for='nRelation' class="control-label">Relationship to Worker: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRelation">
             </div>
 
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Contact Number: </label>
+                <label for='nPhNum' class="control-label">Phone Number of Friend: </label>
                 <br/>
                 <input class="form-control" type='text' name="nPhNum">
             </div>
 
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark: </label>
+                <label for='nRemark' class="control-label">Remark about Friend: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRemark">
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Obsoleted Date: </label>
+                <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate">
             </div>
@@ -3599,6 +3636,10 @@
 
     </div>
 </form>
+
+<!---------------->
+<!-- 11 language-->
+<!---------------->
 <%
 } else if (complement.equals("language")) {
     HashMap<Integer, String> languageList = DropdownDAO.retrieveAllDropdownListOfLanguage();
@@ -3612,7 +3653,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nMainLanguage' class="control-label">Main Language<span style="color: red">*</span>: </label>
+                <label for='nMainLanguage' class="control-label">Worker's Main Language<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="mainLang" name="nMainLanguage" onchange="displayOther(this.id);">
                     <%
@@ -3631,7 +3672,7 @@
                     <input type="text" id="digitalContactType_other_In" class="form-control" name="nLanguageMore"/></div>
             </div>
             <div class='form-group'>
-                <label for='nEnglishStandard' class="control-label">English Standard<span style="color: red">*</span>: </label>
+                <label for='nEnglishStandard' class="control-label">Spoken English Standard<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nEnglishStandard">
                     <%
@@ -3646,7 +3687,7 @@
                 </select>
             </div>
             <div class='form-group'>
-                <label for='fremark' class="control-label">Remark: </label>
+                <label for='fremark' class="control-label">Remark about Language: </label>
                 <br/>
                 <input class="form-control" type='text' name="nremark" 
             </div>
@@ -3662,6 +3703,9 @@
 </div>
 </form>
 
+<!---------------->
+<!-- 12 bank acc-->
+<!---------------->
 <%
 } else if (complement.equals("bankacc")) {
 %>
@@ -3673,12 +3717,12 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nBankAcctName' class="control-label">Account Name<span style="color: red">*</span>: </label>
+                <label for='nBankAcctName' class="control-label">Bank Account Name<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nBankAcctName" required>
             </div>
             <div class='form-group'>
-                <label for='nBankAcctNum' class="control-label">Account Number<span style="color: red">*</span>: </label>
+                <label for='nBankAcctNum' class="control-label">Bank Account Number<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nBankAcctNum" required>
             </div>
@@ -3703,17 +3747,17 @@
                 <input class="form-control" type='text' name="nBankBranchAddress">
             </div>
             <div class='form-group'>
-                <label for='nBankSwift' class="control-label">Bank Swift: </label>
+                <label for='nBankSwift' class="control-label">Bank Swift Code: </label>
                 <br/>
                 <input class="form-control" type='text' name="nBankSwift">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark: </label>
+                <label for='nRemark' class="control-label">Remark about Bank Account: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRemark" >
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Obsoleted Date: </label>
+                <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate">
             </div>
@@ -3727,7 +3771,10 @@
 
     </div>
 </form>   
-<!------------- Job Complements ---------------------------------------->            
+
+<!---------------------->
+<!---Job Complements --->   
+<!---------------------->
 <%
 } else if (complement.equals("passdetails")) {
     HashMap<Integer, String> workpassTypes = DropdownDAO.retrieveAllDropdownListOfWorkpassType();
@@ -4492,7 +4539,10 @@
         </div>
     </div>
 </form>
-<!------------- Problem Complements ---------------------------------------->  
+
+<!------------------------->
+<!---Problem Complements--->  
+<!------------------------->
 <%
 } else if (complement.equals("policareport")) {
     HashMap<Integer, String> complaintWho = DropdownDAO.retrieveAllDropdownListOfComplaint();

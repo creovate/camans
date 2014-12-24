@@ -318,7 +318,7 @@
                         },
                         integer: {
                             message: 'The value is not an integer'
-                        }                        
+                        }
                     }
                 },
                 nNOKAddress: {
@@ -326,7 +326,7 @@
                         stringLength: {
                             max: 300,
                             message: 'Address must be less than 300 characters.'
-                        }                        
+                        }
                     }
                 },
                 name: {
@@ -380,7 +380,7 @@
                         },
                         integer: {
                             message: 'The value is not an integer'
-                        }                        
+                        }
                     }
                 },
                 nokaddress: {
@@ -388,7 +388,7 @@
                         stringLength: {
                             max: 300,
                             message: 'Address must be less than 300 characters.'
-                        }                        
+                        }
                     }
                 },
                 //Family Member
@@ -400,7 +400,7 @@
                         },
                         integer: {
                             message: 'The value is not an integer'
-                        }                        
+                        }
                     }
                 },
                 nFamilyAddress: {
@@ -408,7 +408,7 @@
                         stringLength: {
                             max: 300,
                             message: 'Address must be less than 300 characters.'
-                        }                        
+                        }
                     }
                 },
                 familyphNum: {
@@ -419,7 +419,7 @@
                         },
                         integer: {
                             message: 'The value is not an integer'
-                        }                        
+                        }
                     }
                 },
                 familyaddress: {
@@ -427,9 +427,9 @@
                         stringLength: {
                             max: 300,
                             message: 'Address must be less than 300 characters.'
-                        }                        
+                        }
                     }
-                },                
+                },
                 //language
                 nMainLanguage: {
                     validators: {
@@ -605,7 +605,7 @@
 
     });
 
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('.cancel_btn').addClass('pull-right');
         $('.form-control').addClass('input-sm');
     });
@@ -643,7 +643,9 @@
 
 %>
 
+<!------------>
 <!--nickname-->
+<!------------>
 <form method="POST" id='nickname_pop_up' data-title="View Worker's Nickname" class="form complement_detailed_form worker_pop_up"  >
     <h4 class='view_comp'>View Nickname Details</h4>
     <h4 class='add_comp'>Add A New Nickname </h4>
@@ -701,7 +703,9 @@
     </div>
 </form>
 
+<!------------>
 <!--Passport-->
+<!------------>
 <%
     }
 
@@ -738,7 +742,7 @@
                 <input class="form-control" type='text' name="passportCountry" value="<%=passportCountry%>">
             </div>
             <div class='form-group'>
-                <label for='passportIsDate' class="control-label">Passport Issued Date: </label>
+                <label for='passportIsDate' class="control-label">Passport Issue Date: </label>
                 <br/>
                 <input class="form-control input-append date dateInput" type='text' name="passportIsDate" value="<%=(passportdetails.getPassportIssueDate() == null) ? "" : passportdetails.getPassportIssueDate()%>">
             </div>
@@ -773,7 +777,7 @@
                 <input class="form-control" type='text' name="nPassportCountry" required>
             </div>
             <div class='form-group'>
-                <label for='nPassportIssueDate' class="control-label">Passport Issued Date: </label>
+                <label for='nPassportIssueDate' class="control-label">Passport Issue Date: </label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="nPassportIssueDate" >
             </div>
@@ -806,7 +810,7 @@
             <input class="form-control" type='text' name="passportCountry" value="<%=passportCountry%>" required>
         </div>
         <div class='form-group'>
-            <label for='passportIssueDate' class="control-label">Passport Issued Date: </label>
+            <label for='passportIssueDate' class="control-label">Passport Issue Date: </label>
             <br/>
             <input class="form-control dateInput" type='text' name="passportIssueDate" value="<%=(passportdetails.getPassportIssueDate() == null) ? "" : passportdetails.getPassportIssueDate()%>">
         </div>
@@ -826,7 +830,9 @@
     </div>
 </form>
 
+<!------------>
 <!--Sg Phone-->
+<!------------>
 <%
     }
     if (sgPhoneId != null) {
@@ -846,7 +852,7 @@
     <div class="view_comp">
         <fieldset disabled>
             <div class='form-group'>
-                <label for='phNum' class="control-label">Phone No: </label>
+                <label for='phNum' class="control-label">SG Phone Number: </label>
                 <br/>
                 <input class="form-control" type='text' name="phNum" value="<%=phnum%>">
             </div>
@@ -870,7 +876,7 @@
     <div class='add_comp'>
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Phone No<span style="color: red">*</span>: </label>
+                <label for='nPhNum' class="control-label">SG Phone Number<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nPhNum" required>
             </div>
@@ -894,7 +900,7 @@
 
     <div class='edit_comp'>
         <div class='form-group'>
-            <label for='phNum' class="control-label">Phone No<span style="color: red">*</span>: </label>
+            <label for='phNum' class="control-label">SG Phone Number<span style="color: red">*</span>: </label>
             <br/>
             <input class="form-control" type='text' name="phNum" value="<%=phnum%>" required>
         </div>
@@ -915,7 +921,9 @@
     </div>
 </form>
 
-<!--Home Phone-->       
+<!---------------------->
+<!--Home Country Phone--> 
+<!---------------------->
 <%
         }
     }
@@ -942,12 +950,12 @@
     <div class="view_comp">
         <fieldset disabled>
             <div class='form-group'>
-                <label for='phNum' class="control-label">Phone No: </label>
+                <label for='phNum' class="control-label">Home Country Telephone Number: </label>
                 <br/>
                 <input class="form-control" type='text' name="phNum" value="<%=phnum%>" >
             </div>
             <div class='form-group'>
-                <label for='phOwner' class="control-label">Phone Owner: </label>
+                <label for='phOwner' class="control-label">Owner of this number: </label>
                 <br/>
                 <input class="form-control" type='text' name="phOwner" value="<%=phOwner%>">
             </div>
@@ -972,12 +980,12 @@
     <div class='add_comp'>
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Phone No<span style="color: red">*</span>: </label>
+                <label for='nPhNum' class="control-label">Home Country Telephone Number<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nPhNum" required>
             </div>
             <div class='form-group'>
-                <label for='nPhOwner' class="control-label">Phone Owner: </label>
+                <label for='nPhOwner' class="control-label">Owner of this number: </label>
                 <br/>
                 <input class="form-control" type='text' name="nPhOwner" >
             </div>
@@ -1000,12 +1008,12 @@
 
     <div class='edit_comp'>
         <div class='form-group'>
-            <label for='phNum' class="control-label">Phone No<span style="color: red">*</span>: </label>
+            <label for='phNum' class="control-label">Home Country Telephone Number<span style="color: red">*</span>: </label>
             <br/>
             <input class="form-control" type='text' name="phNum" value="<%=phnum%>" required>
         </div>
         <div class='form-group'>
-            <label for='phOwner' class="control-label">Phone Owner </label>
+            <label for='phOwner' class="control-label">Owner of this number: </label>
             <br/>
             <input class="form-control" type='text' name="phOwner" value="<%=phOwner%>">
         </div>
@@ -1025,7 +1033,9 @@
     </div>
 </form>
 
+<!-------------->
 <!--sg Address-->
+<!-------------->
 <%
         }
     }
@@ -1044,7 +1054,7 @@
     <div class="view_comp">
         <fieldset disabled>
             <div class='form-group'>
-                <label for='address' class="control-label">Address:</label>
+                <label for='address' class="control-label">Worker Address in Singapore:</label>
                 <br/>
                 <textarea class="form-control"name="address" rows="3"><%=address%>
                 </textarea>
@@ -1069,7 +1079,7 @@
     <div class='add_comp'>
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Address<span style="color: red">*</span>:</label>
+                <label for='nAddress' class="control-label">Worker Address in Singapore<span style="color: red">*</span>:</label>
                 <br/>
                 <textarea class="form-control" name="nAddress" rows="3" maxlength="200" required></textarea>
             </div>
@@ -1093,7 +1103,7 @@
 
     <div class='edit_comp'>
         <div class='form-group'>
-            <label for='address' class="control-label">Address<span style="color: red">*</span>: </label>
+            <label for='address' class="control-label">Worker Address in Singapore<span style="color: red">*</span>: </label>
             <br/>
             <textarea class="form-control"name="address" rows="3" maxlength="200" required><%=address%></textarea>
         </div>
@@ -1113,7 +1123,9 @@
     </div>
 </form>
 
-<!--Home Address-->
+<!---------------->
+<!--Home Country Address-->
+<!---------------->
 <%
     }
 
@@ -1127,10 +1139,11 @@
     <h4 class='view_comp'>View Home Country Address Details</h4>
     <h4 class='add_comp'>Add A New Home Country Address </h4>
     <h4 class='edit_comp'>Edit Home Country Address Details</h4>
+
     <div class="view_comp">
         <fieldset disabled>
             <div class='form-group'>
-                <label for='address' class="control-label">Address:</label>
+                <label for='address' class="control-label">Worker Address in Home Country:</label>
                 <br/>
                 <textarea class="form-control"name="address" rows="3" maxlength="200" required><%=address%></textarea>
 
@@ -1150,10 +1163,11 @@
             </div>
         </div>
     </div>
+
     <div class='add_comp'>
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Address<span style="color: red">*</span>:</label>
+                <label for='nAddress' class="control-label">Worker Address in Home Country<span style="color: red">*</span>:</label>
 
                 <br/>
                 <textarea class="form-control"name="nAddress" rows="3"  maxlength="300" required></textarea>
@@ -1177,7 +1191,7 @@
 
     <div class='edit_comp'>
         <div class='form-group'>
-            <label for='address' class="control-label">Address<span style="color: red">*</span>: </label>
+            <label for='address' class="control-label">Worker Address in Home Country<span style="color: red">*</span>: </label>
             <br/>
             <textarea class="form-control"name="address" rows="3" maxlength="300" required><%=address%></textarea>
         </div>
@@ -1197,7 +1211,9 @@
     </div>
 </form>
 
+<!------------------->
 <!--Digital contact-->
+<!------------------->
 <%
     }
 
@@ -1214,7 +1230,7 @@
     <h4 class='edit_comp'>Edit Digital Contact Address Details</h4>
     <div class='form-group'>
 
-        <!--Get nok data using passport name-->
+        <!--Get nok data using  name-->
         <%
             String digiType = digitalContact.getContactType();
             String digiMore = digitalContact.getContactTypeMore();
@@ -1234,22 +1250,22 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='digitalContactType' class="control-label">Type: </label>
+                    <label for='digitalContactType' class="control-label">Type of Digital Contact: </label>
                     <br/>
                     <input class="form-control" type='text' name="digitalContactType" value="<%=digiType%>">
                 </div>
                 <div class='form-group'>
-                    <label for='digiAdd' class="control-label">Address: </label>
+                    <label for='digiAdd' class="control-label">Email/QQ Address or other details: </label>
                     <br/>
                     <input class="form-control" type='text' name="digiAdd" value="<%=digiAdd%>">
                 </div>
                 <div class='form-group'>
-                    <label for='digiOwner' class="control-label">Contact Owner: </label>
+                    <label for='digiOwner' class="control-label">Owner of Electronic Contact: </label>
                     <br/>
                     <input class="form-control" type='text' name="digiOwner" value="<%=digiOwner%>">
                 </div>
                 <div class='form-group'>
-                    <label for='digiRemark' class="control-label">Remark: </label>
+                    <label for='digiRemark' class="control-label">Remark about Digital Contact: </label>
                     <br/>
                     <textarea class="form-control"name="digiRemark" rows="3" maxlength="200"><%=digiRemark%></textarea>
                 </div>
@@ -1272,7 +1288,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nDigitalContactType' class="control-label">Digital Type<span style="color: red">*</span>: </label>
+                <label for='nDigitalContactType' class="control-label">Type of Digital Contact<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nDigitalContactType" required>
                     <%
@@ -1301,17 +1317,17 @@
                     <input type="text" id="digitalContactType_other_In" class="form-control" name="nDigitalMore"/></div>
             </div>
             <div class='form-group'>
-                <label for='nDigitalDetails' class="control-label">Address<span style="color: red">*</span>: </label>
+                <label for='nDigitalDetails' class="control-label">Email/QQ Address or other details<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nDigitalDetails" required>
             </div>
             <div class='form-group'>
-                <label for='nDigitalOwner' class="control-label">Owner: </label>
+                <label for='nDigitalOwner' class="control-label">Owner of Electronic Contact: </label>
                 <br/>
                 <input class="form-control" type='text' name="nDigitalOwner">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark: </label>
+                <label for='nRemark' class="control-label">Remark about Digital Contact: </label>
                 <br/>
                 <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
             </div>
@@ -1332,7 +1348,7 @@
 
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='digitalContactType' class="control-label">Digital Type: </label>
+                <label for='digitalContactType' class="control-label">Type of Digital Contact<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="digitalContactType" required>
                     <%
@@ -1361,17 +1377,17 @@
                 </div>
             </div>
             <div class='form-group'>
-                <label for='digitalDetails' class="control-label">Address<span style="color: red">*</span>: </label>
+                <label for='digitalDetails' class="control-label">Email/QQ Address or other details<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="digitalDetails" value="<%=digiAdd%>" >
             </div>
             <div class='form-group'>
-                <label for='digitalOwner' class="control-label">Owner: </label>
+                <label for='digitalOwner' class="control-label">Owner of Electronic Contact: </label>
                 <br/>
                 <input class="form-control" type='text' name="digitalOwner" value="<%=digiOwner%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
+                <label for='remark' class="control-label">Remark about Digital Contact: </label>
 
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200)"><%=digiRemark%></textarea>
@@ -1393,7 +1409,9 @@
     </div>
 </form>
 
+<!------->
 <!--nok-->
+<!------->
 <%
     }
     if (nokId
@@ -1426,42 +1444,42 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Name: </label>
+                    <label for='name' class="control-label">Name of Next of Kin: </label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=nokName%>">
                 </div>
                 <div class='form-group'>
-                    <label for='relation' class="control-label">Relationship: </label>
+                    <label for='relation' class="control-label">Relationship of Next of Kin to Worker: </label>
                     <br/>
                     <input class="form-control" type='text' name="relation" value="<%=nokRelationship%>">
                 </div>
                 <div class='form-group'>
-                    <label for='nokIdDoc' class="control-label">Identity Docs/References: </label>
+                    <label for='nokIdDoc' class="control-label">Identity Docs/References of Next of Kin: </label>
                     <br/>
                     <textarea class="form-control" name="nokIdDoc" rows="3" maxlength="200"><%=nokIdDoc%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='nokContactNo' class="control-label">Contact Number: </label>
+                    <label for='nokContactNo' class="control-label">Phone Number  of Next of Kin: </label>
                     <br/>
                     <input class="form-control" type='text' name="nokContactNo" value="<%=nokPhone%>">
                 </div>
                 <div class='form-group'>
-                    <label for='nokOtherContact' class="control-label">Other Contact Details: </label>
+                    <label for='nokOtherContact' class="control-label">Other Contact Details of Next of Kin: </label>
                     <br/>
                     <input class="form-control" type='text' name="nokOtherContact" value="<%=nokDigital%>">
                 </div>
                 <div class='form-group'>
-                    <label for='nokAddress' class="control-label">Address: </label>
+                    <label for='nokAddress' class="control-label">Address of Next of Kin: </label>
                     <br/>
                     <textarea class="form-control" name="nokAddress" rows="3" maxlength="200"><%=nokAddress%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='nokProof' class="control-label">Attesting Docs: </label>
+                    <label for='nokProof' class="control-label">What Docs Attesting Next of Kin?: </label>
                     <br/>
                     <input class="form-control" type='text' name="nokProof" value="<%=nokProof%>">
                 </div>
                 <div class='form-group'>
-                    <label for='nokRemark' class="control-label">Remark: </label>
+                    <label for='nokRemark' class="control-label">Remark about Next of Kin:  </label>
                     <br/>
                     <textarea class="form-control" name="nRemark" rows="3" maxlength="200"><%=nokRemark%></textarea>
                 </div>
@@ -1481,45 +1499,44 @@
             </div>
         </div>
 
-
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nName' class="control-label">Name<span style="color: red">*</span>: </label>
+                <label for='nName' class="control-label">Name of Next of Kin<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nName" required>
             </div>
             <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship: </label>
+                <label for='nRelation' class="control-label">Relationship of Next of Kin to Worker: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRelation">
             </div>
             <div class='form-group'>
-                <label for='nDocReference' class="control-label">Identity Docs/References: </label>
+                <label for='nDocReference' class="control-label">Identity Docs/References of Next of Kin: </label>
                 <br/>
                 <input class="form-control" type='text' name="nDocReference">
             </div>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Contact Number: </label>
+                <label for='nPhNum' class="control-label">Phone Number of Next of Kin: </label>
                 <br/>
                 <input class="form-control" type="text" name="nNOKPhNum">
             </div>
             <div class='form-group'>
-                <label for='nDigitalContact' class="control-label">Other Contact Details: </label>
+                <label for='nDigitalContact' class="control-label">Other Contact Details of Next of Kin: </label>
                 <br/>
                 <input class="form-control" type='text' name="nDigitalContact">
             </div>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Address: </label>
+                <label for='nAddress' class="control-label">Address of Next of Kin: </label>
                 <br/>
                 <textarea class="form-control" name="nNOKAddress" rows="3" maxlength="200" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nProofDoc' class="control-label">Attesting Docs: </label>
+                <label for='nProofDoc' class="control-label">What Docs Attesting Next of Kin?: </label>
                 <br/>
                 <input class="form-control" type='text' name="nProofDoc">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark: </label>
+                <label for='nRemark' class="control-label">Remark about Next of Kin:  </label>
                 <br/>
                 <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
             </div>
@@ -1537,45 +1554,44 @@
             </div>
         </div>
 
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='name' class="control-label">Name<span style="color: red">*</span>: </label>
+                <label for='name' class="control-label">Name of Next of Kin<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="name" value="<%=nokName%>" required>
             </div>
             <div class='form-group'>
-                <label for='relation' class="control-label">Relationship: </label>
+                <label for='relation' class="control-label">Relationship of Next of Kin to Worker: </label>
                 <br/>
                 <input class="form-control" type='text' name="relation" value="<%=nokRelationship%>">
             </div>
             <div class='form-group'>
-                <label for='docReference' class="control-label">Identity Docs/References: </label>
+                <label for='docReference' class="control-label">Identity Docs/References of Next of Kin: </label>
                 <br/>
                 <input class="form-control" type='text' name="docReference" value="<%=nokProof%>">
             </div>
             <div class='form-group'>
-                <label for='phNum' class="control-label">Contact Number: </label>
+                <label for='phNum' class="control-label">Phone Number of Next of Kin: </label>
                 <br/>
                 <input class="form-control" type="text" name="nokphNum" value="<%=nokPhone%>">
             </div>
             <div class='form-group'>
-                <label for='digitalContact' class="control-label">Other Contact Details: </label>
+                <label for='digitalContact' class="control-label">Other Contact Details of Next of Kin: </label>
                 <br/>
                 <input class="form-control" type='text' name="digitalContact" value="<%=nokDigital%>">
             </div>
             <div class='form-group'>
-                <label for='address' class="control-label">Address: </label>
+                <label for='address' class="control-label">Address of Next of Kin: </label>
                 <br/>
                 <textarea class="form-control" name="nokaddress" rows="3" maxlength="200"><%=nokAddress%></textarea>
             </div>
             <div class='form-group'>
-                <label for='proofDoc' class="control-label">Attesting Docs: </label>
+                <label for='proofDoc' class="control-label">What Docs Attesting Next of Kin?: </label>
                 <br/>
                 <input class="form-control" type='text' name="proofDoc" value="<%=nokIdDoc%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
+                <label for='remark' class="control-label">Remark about Next of Kin:  </label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=nokRemark%></textarea>
             </div>
@@ -1596,7 +1612,9 @@
     </div>
 </form>
 
-<!--family Member-->
+<!-------------------->
+<!-- 9 family Member-->
+<!-------------------->
 <%
     }
     if (familyMemId != null) {
@@ -1627,33 +1645,33 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='fname' class="control-label">Name: </label>
+                    <label for='fname' class="control-label">Name of Family Member: </label>
                     <br/>
                     <input class="form-control" type='text' name="fname" value="<%=name%>">
                 </div>
                 <div class='form-group'>
-                    <label for='frelation' class="control-label">Relationship: </label>
+                    <label for='frelation' class="control-label">Relationship of Family Member to Worker: </label>
                     <br/>
                     <input class="form-control" type='text' name="frelation" value="<%=relationship%>">
                 </div>
                 <div class='form-group'>
-                    <label for='faddress' class="control-label">Address: </label>
+                    <label for='faddress' class="control-label">Is the Family Member in Singapore?: </label>
                     <br/>
                     <input class="form-control" type='text' name="faddress" value="<%=address%>">
                 </div>
                 <div class='form-group'>
-                    <label for='fcontactNo' class="control-label">Contact Number: </label>
+                    <label for='fcontactNo' class="control-label">Phone Number of Family Member: </label>
                     <br/>
                     <input class="form-control" type='text' name="fcontactNo" value="<%=contactNum%>">
                 </div>
                 <div class='form-group'>
-                    <label for='fdigital' class="control-label">Other Contact Details: </label>
+                    <label for='fdigital' class="control-label">Other Contact Details of Family Member: </label>
                     <br/>
                     <input class="form-control" type='text' name="fdigital" value="<%=contactAdd%>">
                 </div>
 
                 <div class='form-group'>
-                    <label for='fremark' class="control-label">Remark: </label>
+                    <label for='fremark' class="control-label">Remark about Family Member: </label>
                     <br/>
 
                     <textarea class="form-control" name="fremark" rows="3" maxlength="200"><%=remark%></textarea>
@@ -1677,32 +1695,32 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nName' class="control-label">Name<span style="color: red">*</span>: </label>
+                <label for='nName' class="control-label">Name of Family Member<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nName" required>
             </div>
             <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship: </label>
+                <label for='nRelation' class="control-label">Relationship of Family Member to Worker: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRelation">
             </div>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Address: </label>
+                <label for='nAddress' class="control-label">Is the Family Member in Singapore?: </label>
                 <br/>
                 <input class="form-control" type='text' name="nFamilyAddress">
             </div>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Contact Number: </label>
+                <label for='nPhNum' class="control-label">Phone Number of Family Member: </label>
                 <br/>
                 <input class="form-control" type="text" name="nFamilyPhNum">
             </div>
             <div class='form-group'>
-                <label for='nDigitalContact' class="control-label">Other Contact Details: </label>
+                <label for='nDigitalContact' class="control-label">Other Contact Details of Family Member: </label>
                 <br/>
                 <input class="form-control" type='text' name="nDigitalContact">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark: </label>
+                <label for='nRemark' class="control-label">Remark about Family Member: </label>
 
                 <br/>
                 <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
@@ -1724,33 +1742,32 @@
 
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='name' class="control-label">Name<span style="color: red">*</span>: </label>
+                <label for='name' class="control-label">Name of Family Member<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="name" value="<%=name%>" required>
             </div>
             <div class='form-group'>
-                <label for='relation' class="control-label">Relationship: </label>
+                <label for='relation' class="control-label">Relationship of Family Member to Worker: </label>
                 <br/>
                 <input class="form-control" type='text' name="relation" value="<%=relationship%>">
             </div>
             <div class='form-group'>
-                <label for='phNum' class="control-label">Contact Number: </label>
+                <label for='nAddress' class="control-label">Is the Family Member in Singapore?: </label>
+                <br/>
+                <input class="form-control" type='text' name="familyAddress">
+            </div>
+            <div class='form-group'>
+                <label for='phNum' class="control-label">Phone Number of Family Member: </label>
                 <br/>
                 <input class="form-control" type="text" name="familyphNum" value="<%=contactNum%>">
             </div>
             <div class='form-group'>
-                <label for='digitalContact' class="control-label">Other Contact Details: </label>
+                <label for='digitalContact' class="control-label">Other Contact Details of Family Member: </label>
                 <br/>
                 <input class="form-control" type='text' name="digitalContact" value="<%=contactAdd%>">
             </div>
             <div class='form-group'>
-                <label for='address' class="control-label">Address: </label>
-                <br/>
-                <input class="form-control" type='text' name="familyaddress" value="<%=address%>">
-            </div>
-            <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
-                <!--input  id='characterLeft' name="characterLeft" size="3" maxlength="3" value="200" class="characterCounter pull-right"-->
+                <label for='remark' class="control-label">Remark about Family Member: </label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200)"><%=remark%></textarea>
             </div>
@@ -1771,7 +1788,9 @@
     </div>
 </form>
 
-<!--sg fri-->
+<!-------------->
+<!-- 10 sg fri-->
+<!-------------->
 <%
     }
 
@@ -1799,24 +1818,22 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='fname' class="control-label">Name: </label>
+                    <label for='fname' class="control-label">Name of Friend in Singapore: </label>
                     <br/>
                     <input class="form-control" type='text' name="fname" value="<%=name%>">
                 </div>
                 <div class='form-group'>
-                    <label for='frelation' class="control-label">Relationship: </label>
-                    <br/>
-                    <input class="form-control" type='text' name="frelation" value="<%=relationship%>">
-                </div>
-
-                <div class='form-group'>
-                    <label for='fcontactNo' class="control-label">Contact Number: </label>
+                    <label for='fcontactNo' class="control-label">Phone Number of Friend:</label>
                     <br/>
                     <input class="form-control" type='text' name="fcontactNo" value="<%=contactNum%>">
                 </div>
-
                 <div class='form-group'>
-                    <label for='fremark' class="control-label">Remark: </label>
+                    <label for='frelation' class="control-label">Relationship to Worker: </label>
+                    <br/>
+                    <input class="form-control" type='text' name="frelation" value="<%=relationship%>">
+                </div>
+                <div class='form-group'>
+                    <label for='fremark' class="control-label">Remark about Friend: </label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
                 </div>
@@ -1839,27 +1856,24 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nName' class="control-label">Name<span style="color: red">*</span>: </label>
+                <label for='nName' class="control-label">Name of Friend in Singapore<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nName" required>
             </div>
             <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship: </label>
-                <br/>
-                <input class="form-control" type='text' name="nRelation">
-            </div>
-
-            <div class='form-group'>
-                <label for='nPhNum' class="control-label">Contact Number: </label>
+                <label for='nPhNum' class="control-label">Phone Number of Friend:</label>
                 <br/>
                 <input class="form-control" type="text" name="nPhNum">
             </div>
-
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark: </label>
-                <input  id='characterLeft' name="characterLeft" size="3" maxlength="3" value="200" class="characterCounter pull-right">
+                <label for='nRelation' class="control-label">Relationship to Worker: </label>
                 <br/>
-                <textarea class="form-control" name="nRemark" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200);"></textarea>
+                <input class="form-control" type='text' name="nRelation">
+            </div>
+            <div class='form-group'>
+                <label for='nRemark' class="control-label">Remark about Friend: </label>
+                <br/>
+                <textarea class="form-control" name="nRemark" rows="3"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
@@ -1878,25 +1892,25 @@
 
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='name' class="control-label">Name<span style="color: red">*</span>: </label>
+                <label for='name' class="control-label">Name of Friend in Singapore<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="name" value="<%=name%>" required>
             </div>
             <div class='form-group'>
-                <label for='relation' class="control-label">Relationship: </label>
-                <br/>
-                <input class="form-control" type='text' name="relation" value="<%=relationship%>">
-            </div>
-            <div class='form-group'>
-                <label for='phNum' class="control-label">Contact Number: </label>
+                <label for='phNum' class="control-label">Phone Number of Friend: </label>
                 <br/>
                 <input class="form-control" type="text" name="phNum" value="<%=contactNum%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
-                <!--input  id='characterLeft' name="characterLeft" size="3" maxlength="3" value="200" class="characterCounter pull-right"-->
+                <label for='relation' class="control-label">Relationship to Worker: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200);"><%=remark%></textarea>
+                <input class="form-control" type='text' name="relation" value="<%=relationship%>">
+            </div>
+
+            <div class='form-group'>
+                <label for='remark' class="control-label">Remark about Friend: </label>
+                <br/>
+                <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
@@ -1914,7 +1928,9 @@
     </div>
 </form>
 
-<!--language-->
+<!---------------->
+<!-- 11 language-->
+<!---------------->
 <%
     }
 
@@ -1942,7 +1958,7 @@
         <div class="view_comp">
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='mainLanguage' class="control-label">Main Language: </label>
+                    <label for='mainLanguage' class="control-label">Worker's Main Language: </label>
                     <br/>
                     <select class="form-control" id="digitalContactType" name="mainLanguage">
                         <input type="text" value="<%=mainLan%>"/>
@@ -1954,12 +1970,12 @@
                         <input type="text" id="digitalContactType_other_In" class="form-control" name="languageMore"/></div>
                 </div>
                 <div class='form-group'>
-                    <label for='englishStandard' class="control-label">English Standard </label>
+                    <label for='englishStandard' class="control-label">Spoken English Standard </label>
                     <br/>
                     <input type="text" value="<%=workerLanguage.getSpokenLanguageStandard()%>"/>
                 </div>
                 <div class='form-group'>
-                    <label for='fremark' class="control-label">Remark: </label>
+                    <label for='fremark' class="control-label">Remark about Language: </label>
                     <br/>
                     <textarea class="form-control" name="fremark" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200);"><%=remark%></textarea>
                 </div>
@@ -1976,7 +1992,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nMainLanguage' class="control-label">Main Language<span style="color: red">*</span>: </label>
+                <label for='nMainLanguage' class="control-label">Worker's Main Language<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nMainLanguage">
                     <%
@@ -1995,7 +2011,7 @@
                     <input type="text" id="digitalContactType_other_In" class="form-control" name="nLanguageMore"/></div>
             </div>
             <div class='form-group'>
-                <label for='nEnglishStandard' class="control-label"> English Standard<span style="color: red">*</span>: </label>
+                <label for='nEnglishStandard' class="control-label">Spoken English Standard<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nEnglishStandard">
                     <%
@@ -2010,7 +2026,7 @@
                 </select>
             </div>
             <div class='form-group'>
-                <label for='fremark' class="control-label">Remark: </label>
+                <label for='fremark' class="control-label">Remark about Language: </label>
                 <br/>
                 <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
             </div>
@@ -2021,78 +2037,77 @@
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
+        <div class='edit_comp'>
+            <div class='form-group'>
+                <label for='mainLanguage' class="control-label">Worker's Main Language<span style="color: red">*</span>: </label>
+                <br/>
+                <select class="form-control" id="digitalContactType" name="mainLanguage">
+                    <%
+                        for (String languageType : languageList.values()) {
+                            if (workerLanguage.getMainLanguage().equals(languageType)) {
+
+                    %>
+                    <option selected><%=languageType%></option>
+                    <%
+                    } else {
+
+                    %>
+                    <option><%=languageType%></option>
+                    <%
+
+                            }
+                        }
+                    %>  
+                </select>
+            </div>
+            <div class="form-group" id="languageType_other_div" >
+                <label for="languageMore" class="col-md-3 control-label">Explain if above is 'Other'</label>
+                <div class=" col-md-6">
+                    <input type="text" id="digitalContactType_other_In" class="form-control" name="languageMore"/></div>
+            </div>
+            <div class='form-group'>
+                <label for='englishStandard' class="control-label">Spoken English Standard<span style="color: red">*</span>: </label>
+                <br/>
+                <select class="form-control" id="digitalContactType" name="englishStandard">
+                    <%
+                        for (String engStd : spokenEnglishList.values()) {
+                            if (workerLanguage.getSpokenLanguageStandard().equals(engStd)) {
+
+                    %>
+                    <option selected><%=engStd%></option>
+                    <%
+                    } else {
+
+                    %>
+                    <option><%=engStd%></option>
+                    <%
+
+                            }
+                        }
+                    %>  
+                </select>
+            </div>
+            <div class='form-group'>
+                <label for='fremark' class="control-label">Remark about Language: </label>
+                <br/>
+                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
+            </div>
+
+            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
+            <input type="hidden" name="complementName" value="WorkerLanguage"/>
+            <input type="hidden" name="Id" value="<%=id%>"/>
+            <div class="form-group btn_group">
+                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
+                <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+            </div>
+        </div>
     </div>
 
-    <div class='edit_comp'>
-        <div class='form-group'>
-            <label for='mainLanguage' class="control-label">Main Language<span style="color: red">*</span>: </label>
-            <br/>
-            <select class="form-control" id="digitalContactType" name="mainLanguage">
-                <%
-                    for (String languageType : languageList.values()) {
-                        if (workerLanguage.getMainLanguage().equals(languageType)) {
-
-                %>
-                <option selected><%=languageType%></option>
-                <%
-                } else {
-
-                %>
-                <option><%=languageType%></option>
-                <%
-
-                        }
-                    }
-                %>  
-            </select>
-        </div>
-        <div class="form-group" id="languageType_other_div" >
-            <label for="languageMore" class="col-md-3 control-label">Explain if above is 'Other'</label>
-            <div class=" col-md-6">
-                <input type="text" id="digitalContactType_other_In" class="form-control" name="languageMore"/></div>
-        </div>
-        <div class='form-group'>
-            <label for='englishStandard' class="control-label">English Standard<span style="color: red">*</span>: </label>
-            <br/>
-            <select class="form-control" id="digitalContactType" name="englishStandard">
-                <%
-                    for (String engStd : spokenEnglishList.values()) {
-                        if (workerLanguage.getSpokenLanguageStandard().equals(engStd)) {
-
-                %>
-                <option selected><%=engStd%></option>
-                <%
-                } else {
-
-                %>
-                <option><%=engStd%></option>
-                <%
-
-                        }
-                    }
-                %>  
-            </select>
-        </div>
-        <div class='form-group'>
-            <label for='fremark' class="control-label">Remark: </label>
-            <br/>
-            <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
-        <!--input class="form-control" type='text' name="fremark" value="<%=remark%>"-->
-        </div>
-
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="WorkerLanguage"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-        <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-            <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
-
-</div>
 </form>
 
-<!--bank acc-->
+<!---------------->
+<!-- 12 bank acc-->
+<!---------------->
 <%
     }
 
@@ -2126,12 +2141,12 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='accname' class="control-label">Account Name: </label>
+                    <label for='accname' class="control-label">Bank Account Name: </label>
                     <br/>
                     <input class="form-control" type='text' name="accname" value="<%=bankaccName%>">
                 </div>
                 <div class='form-group'>
-                    <label for='accno' class="control-label">Account Number: </label>
+                    <label for='accno' class="control-label">Bank Account Number: </label>
                     <br/>
                     <input class="form-control" type='text' name="accno" value="<%=bankaccNum%>">
                 </div>
@@ -2156,12 +2171,12 @@
                     <textarea class="form-control" name="bhad" rows="3"><%=branchAdd%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='bs' class="control-label">Bank Swift: </label>
+                    <label for='bs' class="control-label">Bank Swift Code: </label>
                     <br/>
                     <input class="form-control" type='text' name="bs" value="<%=swift%>">
                 </div>
                 <div class='form-group'>
-                    <label for='bremark' class="control-label">Remark: </label>
+                    <label for='bremark' class="control-label">Remark about Bank Account: </label>
                     <br/>
                     <textarea class="form-control" name="bremark" rows="3"><%=remark%></textarea>
                         <!--input class="form-control" type='text' name="bremark" value="<%=remark%>"-->
@@ -2185,12 +2200,12 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nBankAcctName' class="control-label">Account Name<span style="color: red">*</span>: </label>
+                <label for='nBankAcctName' class="control-label">Bank Account Name<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nBankAcctName" required>
             </div>
             <div class='form-group'>
-                <label for='nBankAcctNum' class="control-label">Account Number<span style="color: red">*</span>: </label>
+                <label for='nBankAcctNum' class="control-label">Bank Account Number<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nBankAcctNum" required>
             </div>
@@ -2216,12 +2231,12 @@
                 <!--input class="form-control" type='text' name="nBankBranchAddress"-->
             </div>
             <div class='form-group'>
-                <label for='nBankSwift' class="control-label">Bank Swift: </label>
+                <label for='nBankSwift' class="control-label">Bank Swift Code: </label>
                 <br/>
                 <input class="form-control" type='text' name="nBankSwift">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark: </label>
+                <label for='nRemark' class="control-label">Remark about Bank Account: </label>
                 <input  id='characterLeft' name="characterLeft" size="3" maxlength="3" value="200" class="characterCounter pull-right">
                 <br/>
                 <textarea class="form-control" name="nRemark" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200)"></textarea>
@@ -2243,12 +2258,12 @@
 
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='bankAcctName' class="control-label">Account Name<span style="color: red">*</span>: </label>
+                <label for='bankAcctName' class="control-label">Bank Account Name<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="bankAcctName" value="<%=bankaccName%>" required>
             </div>
             <div class='form-group'>
-                <label for='bankAcctNum' class="control-label">Account Number<span style="color: red">*</span>: </label>
+                <label for='bankAcctNum' class="control-label">Bank Account Number<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="bankAcctNum" value="<%=bankaccNum%>" required>
             </div>
@@ -2273,12 +2288,12 @@
                 <textarea class="form-control" name="bankBranchAddress" rows="3" maxlength="300"><%=branchAdd%></textarea>
             </div>
             <div class='form-group'>
-                <label for='bankSwift' class="control-label">Bank Swift: </label>
+                <label for='bankSwift' class="control-label">Bank Swift Code: </label>
                 <br/>
                 <input class="form-control" type='text' name="bankSwift" value="<%=swift%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
+                <label for='remark' class="control-label">Remark about Bank Account: </label>
                 <input  id='characterLeft' name="characterLeft" size="3" maxlength="3" value="200" class="characterCounter pull-right">
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200)"><%=remark%></textarea>
