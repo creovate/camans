@@ -2505,18 +2505,17 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Workplace Type:</label>
+                    <label for='name' class="control-label">Type of Workplace:</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=wpType%>">
                 </div>
-                <!--need to add if other-->
                 <div class='form-group'>
                     <label for='name' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=whose%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Key Person & Contact Details: </label>
+                    <label for='remark' class="control-label">Key Person Controlling Workplace & Contact Details: </label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=personDetails%>">
                 </div>
@@ -2531,27 +2530,27 @@
                     <input class="form-control" type='text' name="remark" value="<%=direct%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Start Date At this Workplace: </label>
+                    <label for='remark' class="control-label">When Start at Workplace?: </label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=start%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">End Date At this Workplace: </label>
+                    <label for='remark' class="control-label">When cease working at Workplace?: </label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=end%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Working Conditions at the Workplace: </label>
+                    <label for='remark' class="control-label">Work Conditions at the Workplace: </label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=condition%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Safety Issues At this Workplace: </label>
+                    <label for='remark' class="control-label">Safety Issues At Workplace: </label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=safety%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks: </label>
+                    <label for='remark' class="control-label">Remarks about Workplace: </label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=remark%>">
                 </div>
@@ -2569,7 +2568,7 @@
         <div class='add_comp'>
             <div class='form-group'>
                 <!--this thing will become dropdown-->
-                <label for='nwpType' class="control-label">Workplace Type<span style="color: red">*</span>:</label>
+                <label for='nwpType' class="control-label">Type of Workplace<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="workplaceType" name="nwpType">
                     <%
@@ -2581,20 +2580,19 @@
                         }
                     %>  
                 </select>
-                <div class='form-group' id="wrokplaceType_other_div" >
-                    <label for='nwpTypeMore' class="control-label">Explain if above is 'Other': </label>
-                    <br/>
-                    <input class="form-control" type='text' name="nwpTypeMore">
-                </div>
             </div>
-            <!--where is other???-->
+            <div class='form-group' id="wrokplaceType_other_div" >
+                <label for='nwpTypeMore' class="control-label">Explain if above is 'Other': </label>
+                <br/>
+                <input class="form-control" type='text' name="nwpTypeMore">
+            </div>
             <div class='form-group'>
                 <label for='nwhose' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
                 <br/>
                 <input class="form-control" type='text' name="nwhose" >
             </div>
             <div class='form-group'>
-                <label for='npersonDetails' class="control-label">Key Person & Contact Details: </label>
+                <label for='npersonDetails' class="control-label">Key Person Controlling Workplace & Contact Details: </label>
                 <br/>
                 <input class="form-control" type='text' name="npersonDetails" >
             </div>
@@ -2624,27 +2622,27 @@
                 <textarea class="form-control" name="ndirectMore" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nstart' class="control-label">Start Date At this Workplace: </label>
+                <label for='nstart' class="control-label">When Start at Workplace?: </label>
                 <br/>
                 <input class="form-control" type='text' name="nstart" >
             </div>
             <div class='form-group'>
-                <label for='nend' class="control-label">End Date At this Workplace: </label>
+                <label for='nend' class="control-label">When cease working at Workplace?: </label>
                 <br/>
                 <input class="form-control" type='text' name="nend" >
             </div>
             <div class='form-group'>
-                <label for='ncondition' class="control-label">Working Conditions at the Workplace: </label>
+                <label for='ncondition' class="control-label">Work Conditions at the Workplace: </label>
                 <br/>
                 <textarea class="form-control" name="ncondition" rows="3" maxlength="500"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nsafety' class="control-label">Safety Issues At this Workplace: </label>
+                <label for='nsafety' class="control-label">Safety Issues At Workplace: </label>
                 <br/>
                 <textarea class="form-control" name="nsafety" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks: </label>
+                <label for='nremark' class="control-label">Remarks about Workplace: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
@@ -2661,8 +2659,7 @@
 
         <div class='edit_comp'>
             <div class='form-group'>
-                <!--this thing will become dropdown-->
-                <label for='wpType' class="control-label">Workplace Type<span style="color: red">*</span>:</label>
+                <label for='wpType' class="control-label">Type of Workplace<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="wpTypeEdit" name="wpType">
                     <%
@@ -2694,7 +2691,7 @@
                 <input class="form-control" type='text' name="whose" value="<%=whose%>">
             </div>
             <div class='form-group'>
-                <label for='personDetails' class="control-label">Key Person & Contact Details: </label>
+                <label for='personDetails' class="control-label">Key Person Controlling Workplace & Contact Details: </label>
                 <br/>
                 <input class="form-control" type='text' name="personDetails" value="<%=personDetails%>">
             </div>
@@ -2732,27 +2729,27 @@
                 <input class="form-control" type='text' name="directMore">
             </div>
             <div class='form-group'>
-                <label for='start' class="control-label">Start Date At this Workplace: </label>
+                <label for='start' class="control-label">When Start at Workplace?: </label>
                 <br/>
                 <input class="form-control" type='text' name="start" value="<%=start%>">
             </div>
             <div class='form-group'>
-                <label for='end' class="control-label">End Date At this Workplace: </label>
+                <label for='end' class="control-label">When cease working at Workplace?: </label>
                 <br/>
                 <input class="form-control" type='text' name="end" value="<%=end%>">
             </div>
             <div class='form-group'>
-                <label for='condition' class="control-label">Working Conditions at the Workplace: </label>
+                <label for='condition' class="control-label">Work Conditions at the Workplace: </label>
                 <br/>
                 <textarea class="form-control" name="condition" rows="3" maxlength="500"><%=condition%></textarea>
             </div>
             <div class='form-group'>
-                <label for='safety' class="control-label">Safety Issues At this Workplace: </label>
+                <label for='safety' class="control-label">Safety Issues At Workplace: </label>
                 <br/>
                 <textarea class="form-control" name="safety" rows="3" maxlength="200"><%=safety%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remarks: </label>
+                <label for='remark' class="control-label">Remarks about Workplace: </label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
             </div>
@@ -2841,7 +2838,7 @@
                     <textarea class="form-control" name="remark" rows="3"><%=prevProb%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks: </label>
+                    <label for='remark' class="control-label">Remarks about Work History: </label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
                 </div>
@@ -2895,7 +2892,6 @@
                 </select>
 
             </div>
-            <!--like other option-->
             <div class='form-group'>
                 <label for='narrivalYear' class="control-label">If not, year in which worker arrived in Singapore for first job</label>
                 <br/>
@@ -2913,7 +2909,7 @@
                 <textarea class="form-control" name="nprevProb" rows="3" maxlength="1000"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks: </label>
+                <label for='nremark' class="control-label">Remarks about Work History: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
@@ -2999,7 +2995,7 @@
                 <textarea class="form-control" name="prevProb" rows="3" maxlength="1000"><%=prevProb%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remarks: </label>
+                <label for='remark' class="control-label">Remarks about Work History: </label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
             </div>
@@ -3094,17 +3090,17 @@
                     <textarea class="form-control" name="remark" rows="3"><%=meal%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Staying at this accommodation from</label>
+                    <label for='remark' class="control-label">When Start Staying Here?:</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=from%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Staying at this accommodation to</label>
+                    <label for='remark' class="control-label">When Stop Staying Here?:</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=to%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks: </label>
+                    <label for='remark' class="control-label">Remarks about Accommodation: </label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
                 </div>
@@ -3190,17 +3186,17 @@
                 <textarea class="form-control" name="nmeal" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nfrom' class="control-label">Staying at this accommodation from</label>
+                <label for='nfrom' class="control-label">When Start Staying Here?:</label>
                 <br/>
                 <input class="form-control" type='text' name="nfrom">
             </div>
             <div class='form-group'>
-                <label for='nto' class="control-label">Staying at this accommodation to</label>
+                <label for='nto' class="control-label">When Stop Staying Here?</label>
                 <br/>
                 <input class="form-control" type='text' name="nto">
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks: </label>
+                <label for='nremark' class="control-label">Remarks about Accommodation: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
@@ -3298,17 +3294,17 @@
                 <textarea class="form-control" name="meal" rows="3" maxlength="200"><%=meal%></textarea>
             </div>
             <div class='form-group'>
-                <label for='from' class="control-label">Staying at this accommodation from</label>
+                <label for='from' class="control-label">When Start Staying Here?:</label>
                 <br/>
                 <input class="form-control" type='text' name="from" value="<%=from%>">
             </div>
             <div class='form-group'>
-                <label for='to' class="control-label">Staying at this accommodation to</label>
+                <label for='to' class="control-label">When Stop Staying Here?</label>
                 <br/>
                 <input class="form-control" type='text' name="to" value="<%=to%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remarks: </label>
+                <label for='remark' class="control-label">Remarks about Accommodation: </label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
             </div>

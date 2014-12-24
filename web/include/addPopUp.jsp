@@ -186,7 +186,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remark must be less than 200 characters.'
+                            message: 'Remarks must be less than 200 characters.'
                         }
                     }
                 },
@@ -428,7 +428,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remark must be less than 200 characters.'
+                            message: 'Remarks must be less than 200 characters.'
                         }
                     }
                 },
@@ -474,7 +474,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remark must be less than 200 characters.'
+                            message: 'Remarks must be less than 200 characters.'
                         }
                     }
                 },
@@ -971,7 +971,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'Remark must be less than 1000 characters.'
+                            message: 'Remarks must be less than 1000 characters.'
                         }
                     }
                 },
@@ -1662,7 +1662,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remark must be less than 200 characters.'
+                            message: 'Remarks must be less than 200 characters.'
                         }
                     }
                 },
@@ -1717,7 +1717,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remark must be less than 200 characters.'
+                            message: 'Remarks must be less than 200 characters.'
                         }
                     }
                 },
@@ -3443,7 +3443,7 @@
                 <input class="form-control" type='text' name="nDigitalOwner">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about Digital Contact: </label>
+                <label for='nRemark' class="control-label">Remarks about Digital Contact: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRemark">
             </div>
@@ -3511,7 +3511,7 @@
                 <input class="form-control" type='text' name="nProofDoc">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about Next of Kin: </label>
+                <label for='nRemark' class="control-label">Remarks about Next of Kin: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRemark">
             </div>
@@ -3568,7 +3568,7 @@
                 <input class="form-control" type='text' name="nDigitalContact">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about Family Member: </label>
+                <label for='nRemark' class="control-label">Remarks about Family Member: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRemark">
             </div>
@@ -3617,7 +3617,7 @@
             </div>
 
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about Friend: </label>
+                <label for='nRemark' class="control-label">Remarks about Friend: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRemark">
             </div>
@@ -3687,7 +3687,7 @@
                 </select>
             </div>
             <div class='form-group'>
-                <label for='fremark' class="control-label">Remark about Language: </label>
+                <label for='fremark' class="control-label">Remarks about Language: </label>
                 <br/>
                 <input class="form-control" type='text' name="nremark" 
             </div>
@@ -3752,7 +3752,7 @@
                 <input class="form-control" type='text' name="nBankSwift">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about Bank Account: </label>
+                <label for='nRemark' class="control-label">Remarks about Bank Account: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRemark" >
             </div>
@@ -3775,10 +3775,15 @@
 <!---------------------->
 <!---Job Complements --->   
 <!---------------------->
+
+<!---------------->
+<!--pass details-->
+<!---------------->
 <%
 } else if (complement.equals("passdetails")) {
     HashMap<Integer, String> workpassTypes = DropdownDAO.retrieveAllDropdownListOfWorkpassType();
 %>
+
 <form method="POST" id='passdetails_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up"  >
     <h4>Add A New Employment Pass Details </h4><br/>
     <div class='form-group'>
@@ -3804,32 +3809,32 @@
                 <input class="form-control" type='text' name="npasstypeMore">
             </div>
             <div class='form-group'>
-                <label for='npassno' class="control-label">Pass No<span style="color: red">*</span>:</label>
+                <label for='npassno' class="control-label">Pass Number<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="npassno" >
             </div>
             <div class='form-group'>
-                <label for='nissuer' class="control-label">Issuing Agency:</label>
-                <br/>
-                <input class="form-control" type='text' name="nissuer" >
-            </div>
-            <div class='form-group'>
-                <label for='napdate' class="control-label">Application Date:</label>
+                <label for='napdate' class="control-label">Pass Application Date:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="napdate" >
             </div>
             <div class='form-group'>
-                <label for='nisdate' class="control-label">Issued Date: </label>
+                <label for='nisdate' class="control-label">Pass Issued Date: </label>
                 <br/>
                 <input class="form-control startDate" type='text' name="nisdate" >
             </div>
             <div class='form-group'>
-                <label for='nexdate' class="control-label">Expiry Date: </label>
+                <label for='nexdate' class="control-label">Pass Expiry Date: </label>
                 <br/>
                 <input class="form-control endDate" type='text' name="nexdate" >
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nissuer' class="control-label">Pass Issuing Agency:</label>
+                <br/>
+                <input class="form-control" type='text' name="nissuer" >
+            </div>
+            <div class='form-group'>
+                <label for='nremark' class="control-label">Remarks about Pass: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200" ></textarea>
             </div>
@@ -3848,40 +3853,45 @@
         </div>
     </div>
 </form>
+
+<!-------------------->
+<!--employer details--> 
+<!-------------------->
 <%
 } else if (complement.equals("empdetails")) {
 %>
+
 <form method="POST" id='empdetails_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up"  >
     <h4>Add A New Employer </h4><br/>
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nname' class="control-label">Employer's Name<span style="color: red">*</span>:</label>
+                <label for='nname' class="control-label">Official Name of Employer<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="nname" required>
             </div>
             <div class='form-group'>
-                <label for='nperson' class="control-label">In-charge Person:</label>
-                <br/>
-                <input class="form-control" type='text' name="nperson">
-            </div>
-            <div class='form-group'>
-                <label for='nempid' class="control-label">Employer's ID:</label>
+                <label for='nempid' class="control-label">ID of Employer:</label>
                 <br/>
                 <input class="form-control" type='text' name="nempid">
             </div>
             <div class='form-group'>
-                <label for='ncontact' class="control-label">Contact No:</label>
-                <br/>
-                <input class="form-control" type='text' name="ncontact">
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Address: </label>
+                <label for='nremark' class="control-label">Employer Address: </label>
                 <br/>
                 <textarea class="form-control" name="naddress" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='ncontact' class="control-label">Employer Phone, Email Contacts:</label>
+                <br/>
+                <input class="form-control" type='text' name="ncontact">
+            </div>
+            <div class='form-group'>
+                <label for='nperson' class="control-label">Key Persons in Employer:</label>
+                <br/>
+                <input class="form-control" type='text' name="nperson">
+            </div>
+            <div class='form-group'>
+                <label for='nremark' class="control-label">Remarks about Employer: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
@@ -3896,9 +3906,14 @@
 
     </div>
 </form>
+
+<!------------------------>
+<!--Employment Contract--->   
+<!------------------------>
 <%
 } else if (complement.equals("empcontract")) {
 %>
+
 <form method="POST" id='contract_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up"  >
     <h4>Add A New Employment Contract Details </h4><br/>
     <div class='form-group'>
@@ -3909,7 +3924,7 @@
                 <input class="form-control dateInput" type='text' name="ncontdate">
             </div>
             <div class='form-group'>
-                <label for='nlocation' class="control-label">Contract Location: </label>
+                <label for='nlocation' class="control-label">Where Contract Signed: </label>
                 <br/>
                 <input class="form-control" type='text' name="nlocation">
             </div>
@@ -3919,17 +3934,17 @@
                 <input class="form-control" type='text' name="nlanguage">
             </div>
             <div class='form-group'>
-                <label for='nopname' class="control-label">Opposite Party's Name<span style="color: red">*</span>:</label>
+                <label for='nopname' class="control-label">Name of Opposite Contracting Party<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="nopname">
             </div>
             <div class='form-group'>
-                <label for='noprelation' class="control-label">Relationship with Opposite Party:</label>
+                <label for='noprelation' class="control-label">Relationship of Opposite Contracting Party to Job: </label>
                 <br/>
                 <input class="form-control" type='text' name="noprelation">
             </div>
             <div class='form-group'>
-                <label for='noccupation' class="control-label">Occupation: </label>
+                <label for='noccupation' class="control-label">Occupation Stated in Contract: </label>
                 <br/>
                 <input class="form-control" type='text' name="noccupation">
             </div>
@@ -3944,12 +3959,12 @@
                 <textarea class="form-control" name="nallowance" rows="3" maxlength="500"></textarea>
             </div>
             <div class='form-group'>
-                <label for='ndeduction' class="control-label">Deduction: </label>
+                <label for='ndeduction' class="control-label">Deductions Details: </label>
                 <br/>
                 <textarea class="form-control" name="ndeduction" rows="3" maxlength="500"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nduration' class="control-label">Contract Duration: </label>
+                <label for='nduration' class="control-label">Length of Contract: </label>
                 <br/>
                 <input class="form-control" type='text' name="nduration">
             </div>
@@ -3959,7 +3974,7 @@
                 <textarea class="form-control" name="nduress" rows="3" maxlength="500"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Remarks about Contract: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
@@ -3973,12 +3988,17 @@
         </div>
     </div>
 </form>
+
+<!---------------------->       
+<!--Intermediary Agent-->    
+<!---------------------->           
 <%
 
 } else if (complement.equals("agent")) {
     HashMap<Integer, String> agentLocations = DropdownDAO.retrieveAllDropdownListOfAgentLocationType();
 
 %>
+
 <form method="POST" id='agent_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up"  >
 
     <h4>Add A New Intermediary Agent</h4><br/>
@@ -4024,17 +4044,17 @@
                 <input class="form-control" type='text' name="ncontact">
             </div>
             <div class='form-group'>
-                <label for='namtowed' class="control-label">Amount Owed To This Agent:</label>
-                <br/>
-                <input class="form-control" type='text' name="namtowed">
-            </div>
-            <div class='form-group'>
-                <label for='namtpaid' class="control-label">Amount Paid To This Agent:</label>
+                <label for='namtpaid' class="control-label">Amount Paid To This Agent(S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="namtpaid">
             </div>
             <div class='form-group'>
-                <label for='nfeeshared' class="control-label">Any Suspicion Fee Shared With Others:</label>
+                <label for='namtowed' class="control-label">Amount Owed To This Agent at the Start of Work(S$):</label>
+                <br/>
+                <input class="form-control" type='text' name="namtowed">
+            </div>
+            <div class='form-group'>
+                <label for='nfeeshared' class="control-label">Any Suspicion Fee was Shared With Others?:</label>
                 <br/>
                 <input class="form-control" type='text' name="nfeeshared">
             </div>
@@ -4069,7 +4089,7 @@
                 <input class="form-control" type='text' name="nemp">
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Agent Remarks: </label>
                 <br/>
                 <textarea class="form-control" name="nagremark" rows="3" maxlength="1000"></textarea>
             </div>
@@ -4084,9 +4104,13 @@
     </div>
 </form>
 
+<!-------------------->
+<!--verbal assurance--> 
+<!-------------------->
 <%
 } else if (complement.equals("assurance")) {
 %>
+
 <form method="POST" id='assurance_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up"  >
 
     <h4>Add A New Verbal Assurance </h4><br/>
@@ -4133,6 +4157,9 @@
     </div>
 </form>
 
+<!------------->
+<!--workplace-->  
+<!------------->
 <%
 } else if (complement.equals("wplace")) {
     HashMap<Integer, String> workplaceTypes = DropdownDAO.retrieveAllDropdownListOfWorkplaceType();
@@ -4148,8 +4175,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <!--this thing will become dropdown-->
-                <label for='nwpType' class="control-label">Workplace Type<span style="color: red">*</span>:</label>
+                <label for='nwpType' class="control-label">Type of Workplace<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="workplaceType" name="nwpType" onchange="displayOther(this.id);">
                     <%
@@ -4161,11 +4187,11 @@
                         }
                     %>  
                 </select>
-                <div class='form-group' id="wrokplaceType_other_div" >
-                    <label for='nwpTypeMore' class="control-label">Explain if above is 'Other': </label>
-                    <br/>
-                    <input class="form-control" type='text' name="nwpTypeMore">
-                </div>
+            </div>
+            <div class='form-group' id="wrokplaceType_other_div" >
+                <label for='nwpTypeMore' class="control-label">Explain if above is 'Other': </label>
+                <br/>
+                <input class="form-control" type='text' name="nwpTypeMore">
             </div>
             <!--where is other???-->
             <div class='form-group'>
@@ -4174,7 +4200,7 @@
                 <input class="form-control" type='text' name="nwhose" >
             </div>
             <div class='form-group'>
-                <label for='npersonDetails' class="control-label">Key Person & Contact Details: </label>
+                <label for='npersonDetails' class="control-label">Key Person Controlling Workplace & Contact Details: </label>
                 <br/>
                 <input class="form-control" type='text' name="npersonDetails" >
             </div>
@@ -4204,27 +4230,27 @@
                 <textarea class="form-control" name="ndirectMore" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nstart' class="control-label">Start Date At this Workplace: </label>
+                <label for='nstart' class="control-label">When Start at Workplace?: </label>
                 <br/>
                 <input class="form-control" type='text' name="nstart" >
             </div>
             <div class='form-group'>
-                <label for='nend' class="control-label">End Date At this Workplace: </label>
+                <label for='nend' class="control-label">When cease working at Workplace?: </label>
                 <br/>
                 <input class="form-control" type='text' name="nend" >
             </div>
             <div class='form-group'>
-                <label for='ncondition' class="control-label">Working Conditions at the Workplace: </label>
+                <label for='ncondition' class="control-label">Work Conditions at the Workplace: </label>
                 <br/>
                 <textarea class="form-control" name="ncondition" rows="3" maxlength="500"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nsafety' class="control-label">Safety Issues At this Workplace: </label>
+                <label for='nsafety' class="control-label">Safety Issues At Workplace: </label>
                 <br/>
                 <textarea class="form-control" name="nsafety" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Remarks about Workplace: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
@@ -4238,10 +4264,15 @@
         </div>
     </div>
 </form>
+
+<!---------------->
+<!--work history-->
+<!---------------->
 <%
 } else if (complement.equals("whistory")) {
     HashMap<Integer, String> workhist = DropdownDAO.retrieveAllDropdownListOfWorkHistoryHowType();
 %>
+
 <form method="POST" id='workhistory_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up" >
 
     <h4>Add A New Work History </h4><br/>
@@ -4283,13 +4314,11 @@
                 </select>
 
             </div>
-            <!--like other option-->
             <div class='form-group' id="nisFirstJob_other_div">
                 <label for='narrivalYear' class="control-label">If not, year in which worker arrived in Singapore for first job</label>
                 <br/>
                 <select class="form-control" name="narrivalYear" id="yearpicker"></select>
             </div>
-
             <div class='form-group'>
                 <label for='nprevJob' class="control-label">Describe previous jobs and home breaks </label>
                 <br/>
@@ -4301,7 +4330,7 @@
                 <textarea class="form-control" name="nprevProb" rows="3" maxlength="1000"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Remarks about Work History: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
@@ -4316,6 +4345,9 @@
     </div>
 </form>
 
+<!---------------->
+<!--accomodation-->
+<!---------------->
 <%
 } else if (complement.equals("waccom")) {
     HashMap<Integer, String> accomTypes = DropdownDAO.retrieveAllDropdownListOfAccomType();
@@ -4397,17 +4429,17 @@
                 <textarea class="form-control" name="nmeal" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nfrom' class="control-label">Staying at this accommodation from</label>
+                <label for='nfrom' class="control-label">When Start Staying Here?:</label>
                 <br/>
                 <input class="form-control" type='text' name="nfrom">
             </div>
             <div class='form-group'>
-                <label for='nto' class="control-label">Staying at this accommodation to</label>
+                <label for='nto' class="control-label">When Stop Staying Here?</label>
                 <br/>
                 <input class="form-control" type='text' name="nto">
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Remarks about Accommodation: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
@@ -4421,6 +4453,10 @@
         </div>
     </div>
 </form>
+
+<!------->
+<!--ipa-->
+<!------->
 <%
 } else if (complement.equals("ipa")) {
     HashMap<Integer, String> ipatypes = DropdownDAO.retrieveAllDropdownListOfIPAPassType();
@@ -4461,54 +4497,54 @@
                 <input class="form-control dateInput input-append date dateInput" type='text' name="nappDate">
             </div>
             <div class='form-group'>
-                <label for='nempName' class="control-label">Employer Name: </label>
+                <label for='nempName' class="control-label">IPA Employer Name: </label>
                 <br/>
                 <input class="form-control" type='text' name="nempName">
             </div>
 
             <div class='form-group'>
-                <label for='nagentName' class="control-label">Agent Name:</label>
+                <label for='nagentName' class="control-label">IPA Agent Name:</label>
                 <br/>
                 <input class="form-control" type='text' name="nagentName">
             </div>
 
             <div class='form-group'>
-                <label for='nindustry' class="control-label">Industry</label>
+                <label for='nindustry' class="control-label">IPA Industry</label>
                 <br/>
                 <input class="form-control" type='text' name="nindustry">
             </div>
             <div class='form-group'>
-                <label for='nipaoccupation' class="control-label">Occupation</label>
+                <label for='nipaoccupation' class="control-label">IPA Occupation</label>
                 <br/>
                 <input class="form-control" type='text' name="nipaoccupation">
             </div>
             <div class='form-group'>
-                <label for='nperiods' class="control-label">IPA Period of Pass(Year)</label>
+                <label for='nperiods' class="control-label">IPA Period of Pass(Years)</label>
                 <br/>
                 <input class="form-control" type='text' name="nperiods">
             </div>
             <div class='form-group'>
-                <label for='nbasicSalary' class="control-label">Basic Monthly Salary (S$):</label>
+                <label for='nbasicSalary' class="control-label">IPA Basic Monthly Salary (S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="nbasicSalary">
             </div>
             <div class='form-group'>
-                <label for='ntotalAllowance' class="control-label">Total Allowance(S$):</label>
+                <label for='ntotalAllowance' class="control-label">IPA Total Allowance(S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="ntotalAllowance">
             </div>
             <div class='form-group'>
-                <label for='nallowanceDetails' class="control-label">Allowance Details:</label>
+                <label for='nallowanceDetails' class="control-label">IPA Allowance Details:</label>
                 <br/>
                 <input class="form-control" type='text' name="nallowanceDetails">
             </div>
             <div class='form-group'>
-                <label for='ndeduction' class="control-label">Total Deduction(S$):</label>
+                <label for='ndeduction' class="control-label">IPA Total Deduction(S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="ndeduction">
             </div>
             <div class='form-group'>
-                <label for='ndeductionDetails' class="control-label">Deduction Details:</label>
+                <label for='ndeductionDetails' class="control-label">IPA Deduction Details:</label>
                 <br/>
                 <input class="form-control" type='text' name="ndeductionDetails">
             </div>
@@ -4516,16 +4552,12 @@
                 <label for='nisHousingProvided' class="control-label">Housing Provided?</label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nisHousingProvided">
-
                     <option selected>No</option>
-
                     <option>Yes</option>
-
                 </select>
-
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Remarks about IPA: </label>
                 <br/>
                 <input class="form-control" type='text' name="nremark">
             </div>
@@ -4579,7 +4611,7 @@
             <textarea class="form-control" name="npoliceReportDetails" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remark: </label>
+            <label for='' class="control-label">Remarks: </label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -4657,7 +4689,7 @@
             <textarea class="form-control" name="ncomplaintDetails" rows="3"></textarea>
         </div>
         <div class='form-group '>
-            <label for='date' class="control-label">Remark: </label>
+            <label for='date' class="control-label">Remarks: </label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -4723,7 +4755,7 @@
             <textarea class="form-control" name="nttrJob" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='nremark' class="control-label">Remark re Transfer, TJS or Repatriation: </label>
+            <label for='nremark' class="control-label">Remarks re Transfer, TJS or Repatriation: </label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -4785,7 +4817,7 @@
             <textarea class="form-control" name="nmilestoneCRSentence" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='remark' class="control-label">Remark re Milestone Reached: </label>
+            <label for='remark' class="control-label">Remarks re Milestone Reached: </label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -4835,7 +4867,7 @@
             <input class="form-control" type='text' name="nmilestoneNCReachedMore">
         </div>
         <div class='form-group'>
-            <label for='milestoneNCRem' class="control-label">Remark re Milestone Reached: </label>
+            <label for='milestoneNCRem' class="control-label">Remarks re Milestone Reached: </label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -5280,7 +5312,7 @@
             <input class="form-control" type='text' name="nexpCum">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remark: </label>
+            <label for='' class="control-label">Remarks: </label>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
@@ -5338,7 +5370,7 @@
             <input class="form-control" type='text' name="nhospDoctor">
         </div>
         <div class='form-group'>
-            <label for='nremark' class="control-label">Remark: </label>
+            <label for='nremark' class="control-label">Remarks: </label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -5393,7 +5425,7 @@
                 <textarea class="form-control" name="nbasis" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark</label>
+                <label for='remark' class="control-label">Remarks</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -5508,7 +5540,7 @@
                 <textarea class="form-control" name="nreason" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark</label>
+                <label for='nremark' class="control-label">Remarks</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -5570,7 +5602,7 @@
                 <textarea class="form-control" name="nworkRelatedYes" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark</label>
+                <label for='nremark' class="control-label">Remarks</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -5656,7 +5688,7 @@
                 </select>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark</label>
+                <label for='nremark' class="control-label">Remarks</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -5766,7 +5798,7 @@
             <textarea class="form-control" name="ndiscussionAction" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remark: </label>
+            <label for='' class="control-label">Remarks: </label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -5895,7 +5927,7 @@
                 <input class="form-control" type='text' name="noneYearLoss">
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Remarks: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -6105,7 +6137,7 @@
                 <input class="form-control" type='text' name="naggravLoss">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark </label>
+                <label for='nRemark' class="control-label">Remarks </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -6139,7 +6171,7 @@
             <input class="form-control" type='text' name="nloss">
         </div>
         <div class='form-group'>
-            <label for='nremark' class="control-label">Remark</label>
+            <label for='nremark' class="control-label">Remarks</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
