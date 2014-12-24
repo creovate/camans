@@ -29,7 +29,7 @@
             $('.dateInput').blur();
         });
     });
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('.cancel_btn').addClass('pull-right');
         $('.form-control').addClass('input-sm');
     });
@@ -86,7 +86,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remark must be less than 200 characters.'
+                            message: 'Remarks must be less than 200 characters.'
                         }
                     }
                 },
@@ -132,7 +132,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remark must be less than 200 characters.'
+                            message: 'Remarks must be less than 200 characters.'
                         }
                     }
                 },
@@ -629,7 +629,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'Remark must be less than 1000 characters.'
+                            message: 'Remarks must be less than 1000 characters.'
                         }
                     }
                 },
@@ -1297,7 +1297,7 @@
         });
 
     });
-    
+
     //date revalidation
     $('.dateInput').on('change', function() {
         $('.complement_detailed_form')
@@ -1312,7 +1312,9 @@
 
     });
 </script>
+<!---------------->
 <!--pass details-->
+<!---------------->
 <%
     /* data collection */
     //worker complement passed data
@@ -1366,35 +1368,35 @@
                     <input class="form-control" type='text' name="passtype" value="<%=passtype%>">
                 </div>
                 <div class='form-group'>
-                    <label for='passno' class="control-label">Pass No:</label>
+                    <label for='passno' class="control-label">Pass Number:</label>
                     <br/>
                     <input class="form-control" type='text' name="passno" value="<%=passnum%>">
                 </div>
                 <div class='form-group'>
-                    <label for='issuer' class="control-label">Issuing Agency:</label>
-                    <br/>
-                    <input class="form-control" type='text' name="issuer" value="<%=issuer%>">
-                </div>
-                <div class='form-group'>
-                    <label for='apdate' class="control-label">Application Date:</label>
+                    <label for='apdate' class="control-label">Pass Application Date:</label>
                     <br/>
                     <input class="form-control" type='text' name="apdate" value="<%=(pass.getPassApplicationDate() == null) ? "" : pass.getPassApplicationDate()%>">
                 </div>
                 <div class='form-group'>
-                    <label for='isdate' class="control-label">Issued Date: </label>
+                    <label for='isdate' class="control-label">Pass Issue Date: </label>
                     <br/>
                     <input class="form-control" type='text' name="isdate" value="<%=(pass.getIssueDate() == null) ? "" : pass.getIssueDate()%>">
                 </div>
                 <div class='form-group'>
-                    <label for='exdate' class="control-label">Expiry Date: </label>
+                    <label for='exdate' class="control-label">Pass Expiry Date: </label>
                     <br/>
                     <input class="form-control" type='text' name="exdate" value="<%=(pass.getExpiryDate() == null) ? "" : pass.getExpiryDate()%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark: </label>
-                    
-                <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
+                    <label for='issuer' class="control-label">Pass Issuing Agency:</label>
+                    <br/>
+                    <input class="form-control" type='text' name="issuer" value="<%=issuer%>">
+                </div>
+                <div class='form-group'>
+                    <label for='remark' class="control-label">Remarks about Pass: </label>
+
+                    <br/>
+                    <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='obsoleteDate' class="control-label">Date Discovered to be Obsolete: </label>
@@ -1434,32 +1436,32 @@
                 <input class="form-control" type='text' name="npasstypeMore">
             </div>
             <div class='form-group'>
-                <label for='npassno' class="control-label">Pass No<span style="color: red">*</span>:</label>
+                <label for='npassno' class="control-label">Pass Number<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="npassno" >
             </div>
             <div class='form-group'>
-                <label for='nissuer' class="control-label">Issuing Agency:</label>
-                <br/>
-                <input class="form-control" type='text' name="nissuer" >
-            </div>
-            <div class='form-group'>
-                <label for='napdate' class="control-label">Application Date:</label>
+                <label for='napdate' class="control-label">Pass Application Date:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="napdate" >
             </div>
             <div class='form-group'>
-                <label for='nisdate' class="control-label">Issued Date: </label>
+                <label for='nisdate' class="control-label">Pass Issue Date: </label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="nisdate" >
             </div>
             <div class='form-group'>
-                <label for='nexdate' class="control-label">Expiry Date: </label>
+                <label for='nexdate' class="control-label">Pass Expiry Date: </label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="nexdate" >
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nissuer' class="control-label">Pass Issuing Agency:</label>
+                <br/>
+                <input class="form-control" type='text' name="nissuer" >
+            </div>
+            <div class='form-group'>
+                <label for='nremark' class="control-label">Remarks about Pass: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200" ></textarea>
             </div>
@@ -1510,32 +1512,32 @@
                 <input class="form-control" type='text' name="passtypeMore">
             </div>
             <div class='form-group'>
-                <label for='passno' class="control-label">Pass No<span style="color: red">*</span>:</label>
+                <label for='passno' class="control-label">Pass Number<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="passno" value="<%=passnum%>">
             </div>
             <div class='form-group'>
-                <label for='issuer' class="control-label">Issuing Agency:</label>
-                <br/>
-                <input class="form-control" type='text' name="issuer" value="<%=issuer%>">
-            </div>
-            <div class='form-group'>
-                <label for='apdate' class="control-label">Application Date:</label>
+                <label for='apdate' class="control-label">Pass Application Date:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="apdate" value="<%=(pass.getPassApplicationDate() == null) ? "" : pass.getPassApplicationDate()%>">
             </div>
             <div class='form-group'>
-                <label for='isdate' class="control-label">Issued Date: </label>
+                <label for='isdate' class="control-label">Pass Issue Date: </label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="isdate" value="<%=(pass.getIssueDate() == null) ? "" : pass.getIssueDate()%>">
             </div>
             <div class='form-group'>
-                <label for='exdate' class="control-label">Expiry Date: </label>
+                <label for='exdate' class="control-label">Pass Expiry Date: </label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="exdate" value="<%=(pass.getExpiryDate() == null) ? "" : pass.getExpiryDate()%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
+                <label for='issuer' class="control-label">Pass Issuing Agency:</label>
+                <br/>
+                <input class="form-control" type='text' name="issuer" value="<%=issuer%>">
+            </div>
+            <div class='form-group'>
+                <label for='remark' class="control-label">Remarks about Pass: </label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
             </div>
@@ -1557,7 +1559,9 @@
     </div>
 </form>
 
-<!--employer details-->        
+<!-------------------->
+<!--employer details--> 
+<!-------------------->
 <%
     }
 
@@ -1587,32 +1591,32 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Employer's Name:</label>
+                    <label for='name' class="control-label">Official Name of Employer:</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=name%>">
                 </div>
                 <div class='form-group'>
-                    <label for='person' class="control-label">In-charge Person:</label>
-                    <br/>
-                    <input class="form-control" type='text' name="person" value="<%=person%>">
-                </div>
-                <div class='form-group'>
-                    <label for='empid' class="control-label">Employer's ID:</label>
+                    <label for='empid' class="control-label">ID of Employer:</label>
                     <br/>
                     <input class="form-control" type='text' name="empid" value="<%=empid%>">
                 </div>
                 <div class='form-group'>
-                    <label for='contact' class="control-label">Contact No:</label>
-                    <br/>
-                    <input class="form-control" type='text' name="contact" value="<%=contact%>">
-                </div>
-                <div class='form-group'>
-                    <label for='contact' class="control-label">Address:</label>
+                    <label for='contact' class="control-label">Employer Address:</label>
                     <br/>
                     <textarea class="form-control" name="address" rows="3" maxlength="200"><%=address%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark: </label>
+                    <label for='contact' class="control-label">Employer Phone, Email Contacts:</label>
+                    <br/>
+                    <input class="form-control" type='text' name="contact" value="<%=contact%>">
+                </div>
+                <div class='form-group'>
+                    <label for='person' class="control-label">Key Persons in Employer:</label>
+                    <br/>
+                    <input class="form-control" type='text' name="person" value="<%=person%>">
+                </div>
+                <div class='form-group'>
+                    <label for='remark' class="control-label">Remarks about Employer: </label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
                 </div>
@@ -1630,36 +1634,36 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nname' class="control-label">Employer's Name<span style="color: red">*</span>:</label>
+                <label for='nname' class="control-label">Official Name of Employer<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="nname" required>
             </div>
             <div class='form-group'>
-                <label for='nperson' class="control-label">In-charge Person:</label>
-                <br/>
-                <input class="form-control" type='text' name="nperson">
-            </div>
-            <div class='form-group'>
-                <label for='nempid' class="control-label">Employer's ID:</label>
+                <label for='nempid' class="control-label">ID of Employer:</label>
                 <br/>
                 <input class="form-control" type='text' name="nempid">
             </div>
             <div class='form-group'>
-                <label for='ncontact' class="control-label">Contact No:</label>
-                <br/>
-                <input class="form-control" type='text' name="ncontact">
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Address: </label>
+                <label for='nremark' class="control-label">Employer Address: </label>
                 <br/>
                 <textarea class="form-control" name="naddress" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='ncontact' class="control-label">Employer Phone, Email Contacts:</label>
+                <br/>
+                <input class="form-control" type='text' name="ncontact">
+            </div>
+            <div class='form-group'>
+                <label for='nperson' class="control-label">Key Persons in Employer:</label>
+                <br/>
+                <input class="form-control" type='text' name="nperson">
+            </div>
+            <div class='form-group'>
+                <label for='nremark' class="control-label">Remarks about Employer: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
-            
+
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="EmployerDetails"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -1673,32 +1677,32 @@
 
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='name' class="control-label">Employer's Name<span style="color: red">*</span>:</label>
+                <label for='name' class="control-label">Official Name of Employer<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="name" value="<%=name%>" required>
             </div>
             <div class='form-group'>
-                <label for='person' class="control-label">In-charge Person:</label>
-                <br/>
-                <input class="form-control" type='text' name="person" value="<%=person%>">
-            </div>
-            <div class='form-group'>
-                <label for='empid' class="control-label">Employer's ID:</label>
+                <label for='empid' class="control-label">ID of Employer:</label>
                 <br/>
                 <input class="form-control" type='text' name="empid" value="<%=empid%>">
             </div>
             <div class='form-group'>
-                <label for='contact' class="control-label">Contact No:</label>
-                <br/>
-                <input class="form-control" type='text' name="contact" value="<%=contact%>">
-            </div>
-            <div class='form-group'>
-                <label for='address' class="control-label">Address: </label>
+                <label for='address' class="control-label">Employer Address: </label>
                 <br/>
                 <textarea class="form-control" name="address" rows="3" maxlength="200"><%=address%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
+                <label for='contact' class="control-label">Employer Phone, Email Contacts:</label>
+                <br/>
+                <input class="form-control" type='text' name="contact" value="<%=contact%>">
+            </div>
+            <div class='form-group'>
+                <label for='person' class="control-label">Key Persons in Employer:</label>
+                <br/>
+                <input class="form-control" type='text' name="person" value="<%=person%>">
+            </div>
+            <div class='form-group'>
+                <label for='remark' class="control-label">Remarks about Employer: </label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
             </div>
@@ -1715,7 +1719,9 @@
     </div>
 </form>
 
-<!--Employment Contract--->            
+<!------------------------>
+<!--Employment Contract--->   
+<!------------------------>
 <%
 
     }
@@ -1757,19 +1763,9 @@
                     <input class="form-control " type='text' name="name" value="<%=(date == null) ? "" : date%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Contract Location: </label>
+                    <label for='remark' class="control-label">Where Contract Signed: </label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=location%>">
-                </div>
-                <div class='form-group'>
-                    <label for='person' class="control-label">Opposite Party's Name:</label>
-                    <br/>
-                    <input class="form-control" type='text' name="person" value="<%=opname%>">
-                </div>
-                <div class='form-group'>
-                    <label for='empid' class="control-label">Relationship with Opposite Party:</label>
-                    <br/>
-                    <input class="form-control" type='text' name="empid" value="<%=oprelation%>">
                 </div>
                 <div class='form-group'>
                     <label for='contact' class="control-label">Contract Language:</label>
@@ -1777,7 +1773,17 @@
                     <input class="form-control" type='text' name="contact" value="<%=language%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Occupation: </label>
+                    <label for='person' class="control-label">Name of Opposite Contracting Party:</label>
+                    <br/>
+                    <input class="form-control" type='text' name="person" value="<%=opname%>">
+                </div>
+                <div class='form-group'>
+                    <label for='empid' class="control-label">Relationship of Opposite Contracting Party to Job:</label>
+                    <br/>
+                    <input class="form-control" type='text' name="empid" value="<%=oprelation%>">
+                </div>
+                <div class='form-group'>
+                    <label for='remark' class="control-label">Occupation Stated in Contract: </label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=occupation%>">
                 </div>
@@ -1792,12 +1798,12 @@
                     <textarea class="form-control"name="remark" rows="3"><%=allowance%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Deduction Details: </label>
+                    <label for='remark' class="control-label">Deductions Details: </label>
                     <br/>
                     <textarea class="form-control"name="remark" rows="3"><%=deduction%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Contract Duration: </label>
+                    <label for='remark' class="control-label">Length of Contract: </label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=duration%>">
                 </div>
@@ -1807,7 +1813,7 @@
                     <textarea class="form-control"name="duresss" rows="3"><%=duress%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark: </label>
+                    <label for='remark' class="control-label">Remarks about Contract: </label>
                     <br/>
                     <textarea class="form-control"name="duresss" rows="3"><%=remark%></textarea>
                 </div>
@@ -1830,7 +1836,7 @@
                 <input class="form-control dateInput" type='text' name="ncontdate">
             </div>
             <div class='form-group'>
-                <label for='nlocation' class="control-label">Contract Location: </label>
+                <label for='nlocation' class="control-label">Where Contract Signed: </label>
                 <br/>
                 <input class="form-control" type='text' name="nlocation">
             </div>
@@ -1840,17 +1846,17 @@
                 <input class="form-control" type='text' name="nlanguage">
             </div>
             <div class='form-group'>
-                <label for='nopname' class="control-label">Opposite Party's Name<span style="color: red">*</span>:</label>
+                <label for='nopname' class="control-label">Name of Opposite Contracting Party<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="nopname">
             </div>
             <div class='form-group'>
-                <label for='noprelation' class="control-label">Relationship with Opposite Party:</label>
+                <label for='noprelation' class="control-label">Relationship of Opposite Contracting Party to Job:</label>
                 <br/>
                 <input class="form-control" type='text' name="noprelation">
             </div>
             <div class='form-group'>
-                <label for='noccupation' class="control-label">Occupation: </label>
+                <label for='noccupation' class="control-label">Occupation Stated in Contract: </label>
                 <br/>
                 <input class="form-control" type='text' name="noccupation">
             </div>
@@ -1865,12 +1871,12 @@
                 <textarea class="form-control" name="nallowance" rows="3" maxlength="500"></textarea>
             </div>
             <div class='form-group'>
-                <label for='ndeduction' class="control-label">Deduction: </label>
+                <label for='ndeduction' class="control-label">Deductions Details: </label>
                 <br/>
                 <textarea class="form-control" name="ndeduction" rows="3" maxlength="500"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nduration' class="control-label">Contract Duration: </label>
+                <label for='nduration' class="control-label">Length of Contract: </label>
                 <br/>
                 <input class="form-control" type='text' name="nduration">
             </div>
@@ -1880,7 +1886,7 @@
                 <textarea class="form-control" name="nduress" rows="3" maxlength="500"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Remarks about Contract: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
@@ -1902,7 +1908,7 @@
                 <input class="form-control dateInput" type='text' name="contdate" value="<%=(date == null) ? "" : date%>">
             </div>
             <div class='form-group'>
-                <label for='location' class="control-label">Contract Location: </label>
+                <label for='location' class="control-label">Where Contract Signed:</label>
                 <br/>
                 <input class="form-control" type='text' name="location" value="<%=location%>">
             </div>
@@ -1912,17 +1918,17 @@
                 <input class="form-control" type='text' name="language" value="<%=language%>">
             </div>
             <div class='form-group'>
-                <label for='opname' class="control-label">Opposite Party's Name<span style="color: red">*</span>:</label>
+                <label for='opname' class="control-label">Name of Opposite Contracting Party<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="opname" value="<%=opname%>">
             </div>
             <div class='form-group'>
-                <label for='oprelation' class="control-label">Relationship with Opposite Party:</label>
+                <label for='oprelation' class="control-label">Relationship of Opposite Contracting Party to Job:</label>
                 <br/>
                 <input class="form-control" type='text' name="oprelation" value="<%=oprelation%>">
             </div>
             <div class='form-group'>
-                <label for='occupation' class="control-label">Occupation: </label>
+                <label for='occupation' class="control-label">Occupation Stated in Contract: </label>
                 <br/>
                 <input class="form-control" type='text' name="occupation" value="<%=occupation%>">
             </div>
@@ -1937,12 +1943,12 @@
                 <textarea class="form-control"name="allowance" rows="3"><%=allowance%></textarea>
             </div>
             <div class='form-group'>
-                <label for='deduction' class="control-label">Deduction Details: </label>
+                <label for='deduction' class="control-label">Deductions Details: </label>
                 <br/>
                 <textarea class="form-control"name="deduction" rows="3"><%=deduction%></textarea>
             </div>
             <div class='form-group'>
-                <label for='duration' class="control-label">Contract Duration: </label>
+                <label for='duration' class="control-label">Length of Contract: </label>
                 <br/>
                 <input class="form-control" type='text' name="duration" value="<%=duration%>">
             </div>
@@ -1952,7 +1958,7 @@
                 <textarea class="form-control"name="duress" rows="3"><%=duress%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
+                <label for='remark' class="control-label">Remarks about Contract: </label>
                 <br/>
                 <textarea class="form-control"name="remark" rows="3"><%=remark%></textarea>
             </div>
@@ -1969,7 +1975,9 @@
     </div>
 </form>
 
-<!--Agent-->          
+<!---------------------->       
+<!--Intermediary Agent-->    
+<!---------------------->
 <%
     }
 
@@ -2037,17 +2045,17 @@
                     <input class="form-control" type='text' name="remark" value="<%=contact%>">
                 </div>
                 <div class='form-group'>
-                    <label for='person' class="control-label">Amount Owed To This Agent:</label>
-                    <br/>
-                    <input class="form-control" type='text' name="person" value="<%=amtOwed%>">
-                </div>
-                <div class='form-group'>
-                    <label for='empid' class="control-label">Amount Paid To This Agent:</label>
+                    <label for='empid' class="control-label">Amount Paid To This Agent(S$):</label>
                     <br/>
                     <input class="form-control" type='text' name="empid" value="<%=amtPaid%>">
                 </div>
                 <div class='form-group'>
-                    <label for='contact' class="control-label">Any Suspicion Fee Shared With Others:</label>
+                    <label for='person' class="control-label">Amount Owed To This Agent at the Start of Work(S$):</label>
+                    <br/>
+                    <input class="form-control" type='text' name="person" value="<%=amtOwed%>">
+                </div>
+                <div class='form-group'>
+                    <label for='contact' class="control-label">Any Suspicion Fee was Shared With Others?:</label>
                     <br/>
                     <input class="form-control" type='text' name="contact" value="<%=feeshared%>">
                 </div>
@@ -2082,14 +2090,14 @@
                     <input class="form-control" type='text' name="remark" value="<%= emp%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark: </label>
+                    <label for='remark' class="control-label">Agent Remarks: </label>
                     <br/>
                     <textarea class="form-control"name="remark" rows="3"><%=remark%></textarea>
                 </div>
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#agent_pop_up", "job")'>Edit</button>
+                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#agent_pop_up", "job");'>Edit</button>
                 <div class='pull-right'>
                     <button type='button' class='btn modal_btn view_comp' onclick='add("#agent_pop_up", "job")'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
@@ -2139,17 +2147,17 @@
                 <input class="form-control" type='text' name="ncontact">
             </div>
             <div class='form-group'>
-                <label for='namtowed' class="control-label">Amount Owed To This Agent:</label>
-                <br/>
-                <input class="form-control" type='text' name="namtowed">
-            </div>
-            <div class='form-group'>
-                <label for='namtpaid' class="control-label">Amount Paid To This Agent:</label>
+                <label for='namtpaid' class="control-label">Amount Paid To This Agent(S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="namtpaid">
             </div>
             <div class='form-group'>
-                <label for='nfeeshared' class="control-label">Any Suspicion Fee Shared With Others:</label>
+                <label for='namtowed' class="control-label">Amount Owed To This Agent at the Start of Work(S$):</label>
+                <br/>
+                <input class="form-control" type='text' name="namtowed">
+            </div>
+            <div class='form-group'>
+                <label for='nfeeshared' class="control-label">Any Suspicion Fee was Shared With Others?:</label>
                 <br/>
                 <input class="form-control" type='text' name="nfeeshared">
             </div>
@@ -2184,7 +2192,7 @@
                 <input class="form-control" type='text' name="nemp">
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Agent Remarks: </label>
                 <br/>
                 <textarea class="form-control" name="nagremark" rows="3" maxlength="1000"></textarea>
             </div>
@@ -2248,17 +2256,17 @@
                 <input class="form-control" type='text' name="contact" value="<%=contact%>">
             </div>
             <div class='form-group'>
-                <label for='amtowed' class="control-label">Amount Owed To This Agent:</label>
-                <br/>
-                <input class="form-control" type='text' name="amtowed" value="<%=amtOwed%>">
-            </div>
-            <div class='form-group'>
-                <label for='amtpaid' class="control-label">Amount Paid To This Agent:</label>
+                <label for='amtpaid' class="control-label">Amount Paid To This Agent(S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="amtpaid" value="<%=amtPaid%>">
             </div>
             <div class='form-group'>
-                <label for='feeshared' class="control-label">Any Suspicion Fee Shared With Others:</label>
+                <label for='amtowed' class="control-label">Amount Owed To This Agent at the Start of Work(S$):</label>
+                <br/>
+                <input class="form-control" type='text' name="amtowed" value="<%=amtOwed%>">
+            </div>
+            <div class='form-group'>
+                <label for='feeshared' class="control-label">Any Suspicion Fee was Shared With Others?:</label>
                 <br/>
                 <input class="form-control" type='text' name="feeshared" value="<%=feeshared%>">
             </div>
@@ -2293,9 +2301,9 @@
                 <input class="form-control" type='text' name="emp" value="<%= emp%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
+                <label for='remark' class="control-label">Agent Remarks: </label>
                 <br/>
-                <textarea class="form-control" name="agremark" rows="3" maxlength="1000" onKeyDown="textCounter(this, 1000);" onKeyUp="textCounter(this, 'characterLeft', 1000)"><%=remark%></textarea>
+                <textarea class="form-control" name="agremark" rows="3"><%=remark%></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="Agent"/>
@@ -2310,7 +2318,9 @@
     </div>
 </form>
 
-<!--verbal assurance-->        
+<!-------------------->
+<!--verbal assurance--> 
+<!-------------------->
 <%
     }
 
@@ -2450,7 +2460,9 @@
     </div>
 </form>
 
-<!--workplace-->           
+<!------------->
+<!--workplace-->  
+<!------------->
 <%
     }
 
@@ -2489,8 +2501,8 @@
         %>  
 
         <div class="view_comp">
-            
-            
+
+
             <fieldset disabled>
                 <div class='form-group'>
                     <label for='name' class="control-label">Workplace Type:</label>
@@ -2539,7 +2551,7 @@
                     <input class="form-control" type='text' name="remark" value="<%=safety%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark: </label>
+                    <label for='remark' class="control-label">Remarks: </label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=remark%>">
                 </div>
@@ -2575,7 +2587,7 @@
                     <input class="form-control" type='text' name="nwpTypeMore">
                 </div>
             </div>
-                <!--where is other???-->
+            <!--where is other???-->
             <div class='form-group'>
                 <label for='nwhose' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
                 <br/>
@@ -2632,7 +2644,7 @@
                 <textarea class="form-control" name="nsafety" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Remarks: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
@@ -2740,7 +2752,7 @@
                 <textarea class="form-control" name="safety" rows="3" maxlength="200"><%=safety%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
+                <label for='remark' class="control-label">Remarks: </label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
             </div>
@@ -2757,7 +2769,9 @@
     </div>
 </form>
 
+<!---------------->
 <!--work history-->
+<!---------------->
 <%
     }
 
@@ -2827,7 +2841,7 @@
                     <textarea class="form-control" name="remark" rows="3"><%=prevProb%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark: </label>
+                    <label for='remark' class="control-label">Remarks: </label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
                 </div>
@@ -2899,7 +2913,7 @@
                 <textarea class="form-control" name="nprevProb" rows="3" maxlength="1000"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Remarks: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
@@ -2977,7 +2991,7 @@
                 <label for='prevJob' class="control-label">Describe previous jobs and home breaks </label>
                 <br/>
                 <textarea class="form-control" name="prevJob" rows="3" maxlength="1000"><%=prevJob%></textarea>
-            
+
             </div>
             <div class='form-group'>
                 <label for='prevProb' class="control-label">Describe problems in previous jobs</label>
@@ -2985,7 +2999,7 @@
                 <textarea class="form-control" name="prevProb" rows="3" maxlength="1000"><%=prevProb%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
+                <label for='remark' class="control-label">Remarks: </label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
             </div>
@@ -3002,7 +3016,9 @@
     </div>
 </form>
 
+<!---------------->
 <!--accomodation-->
+<!---------------->
 <%
     }
 
@@ -3088,7 +3104,7 @@
                     <input class="form-control" type='text' name="remark" value="<%=to%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark: </label>
+                    <label for='remark' class="control-label">Remarks: </label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
                 </div>
@@ -3165,7 +3181,7 @@
             <div class='form-group'>
                 <label for='naccPaid' class="control-label">Cost paid by self per month S$</label>
                 <br/>
-                
+
                 <input class="form-control" type='text' name="naccPaid">
             </div>
             <div class='form-group'>
@@ -3184,7 +3200,7 @@
                 <input class="form-control" type='text' name="nto">
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Remarks: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
@@ -3292,7 +3308,7 @@
                 <input class="form-control" type='text' name="to" value="<%=to%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
+                <label for='remark' class="control-label">Remarks: </label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
             </div>
@@ -3309,7 +3325,9 @@
     </div>
 </form>
 
-<!--ipa -->
+<!------->
+<!--ipa-->
+<!------->
 <%
     }
 
@@ -3361,54 +3379,52 @@
                     <input class="form-control" type='text' name="name" value="<%=appDate%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Employer Name: </label>
+                    <label for='remark' class="control-label">IPA Employer Name: </label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=empName%>">
                 </div>
-
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Agent Name:</label>
+                    <label for='remark' class="control-label">IPA Agent Name:</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=agentName%>">
                 </div>
-
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Industry</label>
+                    <label for='remark' class="control-label">IPA Industry</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=industry%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Occupation</label>
+                    <label for='remark' class="control-label">IPA Occupation</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=occupation%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">IPA Period of Pass(Year)</label>
+                    <label for='remark' class="control-label">IPA Period of Pass(Years)</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=periods%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Basic Monthly Salary (S$):</label>
+                    <label for='remark' class="control-label">IPA Basic Monthly Salary (S$):</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=basicSalary%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Total Allowance(S$):</label>
+                    <label for='remark' class="control-label">IPA Total Allowance(S$):</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=totalAllowance%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Allowance Details:</label>
+                    <label for='remark' class="control-label">IPA Allowance Details:</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=allowanceDetails%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Total Deduction(S$):</label>
+                    <label for='remark' class="control-label">IPA Total Deduction(S$):</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=deduction%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Deduction Details:</label>
+                    <label for='remark' class="control-label">IPA Deduction Details:</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=deductionDetails%>">
                 </div>
@@ -3418,7 +3434,7 @@
                     <input class="form-control" type='text' name="remark" value="<%=isHousingProvided%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark: </label>
+                    <label for='remark' class="control-label">Remarks about IPA: </label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
                 </div>
@@ -3462,54 +3478,54 @@
                 <input class="form-control  dateInput" type='text' name="nappDate">
             </div>
             <div class='form-group'>
-                <label for='nempName' class="control-label">Employer Name: </label>
+                <label for='nempName' class="control-label">IPA Employer Name: </label>
                 <br/>
                 <input class="form-control" type='text' name="nempName">
             </div>
 
             <div class='form-group'>
-                <label for='nagentName' class="control-label">Agent Name:</label>
+                <label for='nagentName' class="control-label">IPA Agent Name:</label>
                 <br/>
                 <input class="form-control" type='text' name="nagentName">
             </div>
 
             <div class='form-group'>
-                <label for='nindustry' class="control-label">Industry</label>
+                <label for='nindustry' class="control-label">IPA Industry:</label>
                 <br/>
                 <input class="form-control" type='text' name="nindustry">
             </div>
             <div class='form-group'>
-                <label for='nipaoccupation' class="control-label">Occupation</label>
+                <label for='nipaoccupation' class="control-label">IPA Occupation:</label>
                 <br/>
                 <input class="form-control" type='text' name="nipaoccupation">
             </div>
             <div class='form-group'>
-                <label for='nperiods' class="control-label">IPA Period of Pass(Year)</label>
+                <label for='nperiods' class="control-label">IPA Period of Pass(Years)</label>
                 <br/>
                 <input class="form-control" type='text' name="nperiods">
             </div>
             <div class='form-group'>
-                <label for='nbasicSalary' class="control-label">Basic Monthly Salary (S$):</label>
+                <label for='nbasicSalary' class="control-label">IPA Basic Monthly Salary (S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="nbasicSalary">
             </div>
             <div class='form-group'>
-                <label for='ntotalAllowance' class="control-label">Total Allowance(S$):</label>
+                <label for='ntotalAllowance' class="control-label">IPA Total Allowance(S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="ntotalAllowance">
             </div>
             <div class='form-group'>
-                <label for='nallowanceDetails' class="control-label">Allowance Details:</label>
+                <label for='nallowanceDetails' class="control-label">IPA Allowance Details:</label>
                 <br/>
                 <input class="form-control" type='text' name="nallowanceDetails">
             </div>
             <div class='form-group'>
-                <label for='ndeduction' class="control-label">Total Deduction(S$):</label>
+                <label for='ndeduction' class="control-label">IPA Total Deduction(S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="ndeduction">
             </div>
             <div class='form-group'>
-                <label for='ndeductionDetails' class="control-label">Deduction Details:</label>
+                <label for='ndeductionDetails' class="control-label">IPA Deduction Details:</label>
                 <br/>
                 <input class="form-control" type='text' name="ndeductionDetails">
             </div>
@@ -3523,7 +3539,7 @@
 
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Remarks about IPA: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
@@ -3573,54 +3589,54 @@
                 <input class="form-control  dateInput" type='text' name="appDate" value="<%=type%>">
             </div>
             <div class='form-group'>
-                <label for='empName' class="control-label">Employer Name: </label>
+                <label for='empName' class="control-label">IPA Employer Name: </label>
                 <br/>
                 <input class="form-control" type='text' name="empName" value="<%=empName%>">
             </div>
 
             <div class='form-group'>
-                <label for='agentName' class="control-label">Agent Name:</label>
+                <label for='agentName' class="control-label">IPA Agent Name:</label>
                 <br/>
                 <input class="form-control" type='text' name="agentName" value="<%=agentName%>">
             </div>
 
             <div class='form-group'>
-                <label for='industry' class="control-label">Industry</label>
+                <label for='industry' class="control-label">IPA Industry:</label>
                 <br/>
                 <input class="form-control" type='text' name="industry" value="<%=industry%>">
             </div>
             <div class='form-group'>
-                <label for='ipaoccupation' class="control-label">Occupation</label>
+                <label for='ipaoccupation' class="control-label">IPA Occupation:</label>
                 <br/>
                 <input class="form-control" type='text' name="ipaoccupation" value="<%=occupation%>">
             </div>
             <div class='form-group'>
-                <label for='periods' class="control-label">IPA Period of Pass(Year)</label>
+                <label for='periods' class="control-label">IPA Period of Pass(Years)</label>
                 <br/>
                 <input class="form-control" type='text' name="periods" value="<%=periods%>">
             </div>
             <div class='form-group'>
-                <label for='basicSalary' class="control-label">Basic Monthly Salary (S$):</label>
+                <label for='basicSalary' class="control-label">IPA Basic Monthly Salary (S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="basicSalary" value="<%=basicSalary%>">
             </div>
             <div class='form-group'>
-                <label for='totalAllowance' class="control-label">Total Allowance(S$):</label>
+                <label for='totalAllowance' class="control-label">IPA Total Allowance(S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="totalAllowance" value="<%=totalAllowance%>">
             </div>
             <div class='form-group'>
-                <label for='allowanceDetails' class="control-label">Allowance Details:</label>
+                <label for='allowanceDetails' class="control-label">IPA Allowance Details:</label>
                 <br/>
                 <input class="form-control" type='text' name="allowanceDetails" value="<%=allowanceDetails%>">
             </div>
             <div class='form-group'>
-                <label for='deduction' class="control-label">Total Deduction(S$):</label>
+                <label for='deduction' class="control-label">IPA Total Deduction(S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="deduction" value="<%=deduction%>">
             </div>
             <div class='form-group'>
-                <label for='deductionDetails' class="control-label">Deduction Details:</label>
+                <label for='deductionDetails' class="control-label">IPA Deduction Details:</label>
                 <br/>
                 <input class="form-control" type='text' name="deductionDetails" value="<%=deductionDetails%>">
             </div>
@@ -3646,9 +3662,9 @@
 
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
+                <label for='remark' class="control-label">Remarks about IPA: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200)"><%=remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="IPA"/>
