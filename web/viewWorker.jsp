@@ -308,10 +308,10 @@
 
                                         <table class="table table-condensed">
                                             <tr>
-                                                <th>Country Issued</th>
-                                                <th>Passport No.</th>
-                                                <th>Issued Date</th>
-                                                <th>Expiry Date</th>
+                                                <th>Passport Country</th>
+                                                <th>Passport nbr</th>
+                                                <th>Issued dt</th>
+                                                <th>Expiry dt</th>
                                                 <th>Action</th>
                                             </tr>
 
@@ -448,9 +448,9 @@
                                         %>
                                         <table class="table table-condensed">
                                             <tr>
-                                                <th>Phone No</th>
-                                                <th>Owner</th>
-                                                <th>Obsolete Date</th>
+                                                <th>Phone nbr</th>
+                                                <th>Owner of nbr</th>
+                                                <th>Obsolete</th>
                                                 <th>Action</th>
                                             </tr>
 
@@ -640,9 +640,9 @@
                                         <table class="table table-condensed">
                                             <tr>
                                                 <th>Type</th>
-                                                <th>Contact Address/No</th>
-                                                <th>Owner</th>
-                                                <th>Obsoleted Date</th>
+                                                <th>Email/QQ etc</th>
+                                                <th>Owner of address</th>
+                                                <th>Obsolete</th>
                                                 <th>Action</th>
                                             </tr>
 
@@ -735,10 +735,10 @@
 
                                         <table class="table table-condensed">
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Relationship</th>
-                                                <th>Contact No</th>
-                                                <th>Other Contacts</th>
+                                                <th>NOK Name</th>
+                                                <th>How related</th>
+                                                <th>NOK phone</th>
+                                                <th>NOK Other Contact</th>
                                                 <th>Action</th>
                                             </tr>
 
@@ -809,10 +809,10 @@
 
                                         <table class="table table-condensed">
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Relationship</th>
-                                                <th>Contact No</th>
-                                                <th>Other Contacts</th>
+                                                <th>FamMem Name</th>
+                                                <th>How related</th>
+                                                <th>FamMem phone</th>
+                                                <th>FamMem Other Contact</th>
                                                 <th>Action</th>
                                             </tr>
 
@@ -879,10 +879,10 @@
 
                                         <table class="table table-condensed">
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Relationship</th>
-                                                <th>Phone No</th>
-                                                <th>Obsolete Date</th>
+                                                <th>Friend Name</th>
+                                                <th>Friend phone</th>
+                                                <th>How related</th>
+                                                <th>Friend remarks</th>
                                                 <th>Action</th>
                                             </tr>
 
@@ -949,9 +949,9 @@
 
                                         <table class="table table-condensed">
                                             <tr>
-                                                <th>Language</th>
-                                                <th>Spoken English Standard</th>
-                                                <th>Remark</th>
+                                                <th>Main Language</th>
+                                                <th>Spoken English</th>
+                                                
                                                 <th>Action</th>
                                             </tr>
 
@@ -960,14 +960,14 @@
                                                     WorkerLanguage language = WorkerComplementsDAO.retrieveWorkerLanguageById(languagueIds.get(i));
                                                     String mlanguage = language.getMainLanguage();
                                                     String engStd = language.getSpokenLanguageStandard();
-                                                    String remark = language.getRemark();
+                                                    //String remark = language.getRemark();
 
                                                     if (i < languagueIds.size() - 1) {
                                             %>
                                             <tr class="other_language moreObjs">
                                                 <td><%=mlanguage%></td>
                                                 <td><%=engStd%></td>
-                                                <td><%=(remark == null) ? "" : remark%></td>
+                                                
                                                 <td><a style="color: black"  data-class="worker" data-value='language' data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
@@ -976,7 +976,7 @@
                                             <tr>
                                                 <td><%=mlanguage%></td>
                                                 <td><%=engStd%></td>
-                                                <td><%=(remark == null) ? "" : remark%></td>
+                                                
                                                 <td><a style="color: black"  data-class="worker" data-value='language' data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
@@ -1016,8 +1016,8 @@
                                             <tr>
                                                 <th>Bank Name</th>
                                                 <th>Account Name</th>
-                                                <th>Bank Acc No</th>
-                                                <th>Obsoleted Date</th>
+                                                <th>Account Nbr</th>
+                                                <th>Obsolete</th>
                                                 <th>Action</th>
                                             </tr>
 
@@ -1160,9 +1160,9 @@
                                             <table class="table table-condensed">
                                                 <tr>
                                                     <th>Pass Type</th>
-                                                    <th>Pass Number</th>
-                                                    <th>Issued Date</th>
-                                                    <th>Expiry Date</th>
+                                                    <th>Pass Nbr</th>
+                                                    <th>Issue dt</th>
+                                                    <th>Expiry dt</th>
                                                     <th>Action</th>
                                                 </tr>
 
@@ -1234,10 +1234,10 @@
 
                                             <table class="table table-condensed">
                                                 <tr>
-                                                    <th>Employer's Name</th>
-                                                    <th>Employer's ID</th>
-                                                    <th>Employer's Contact</th>
-                                                    <th>Key Person</th>
+                                                    <th>Employer Name</th>
+                                                    <th>Employer ID</th>
+                                                    <th>Phone/email</th>
+                                                    <th>Key Persons</th>
                                                     <th>Action</th>
                                                 </tr>
 
@@ -1310,10 +1310,10 @@
 
                                             <table class="table table-condensed">
                                                 <tr>
-                                                    <th>Contract Date</th>
+                                                    <th>Contract Dt</th>
                                                     <th>Where Signed</th>
-                                                    <th>Name of Opposite Party</th>
-                                                    <th>Basic Salary</th>
+                                                    <th>Opposite Party</th>
+                                                    <th>Basic Sal</th>
                                                     <th>Action</th>
                                                 </tr>
 
@@ -1417,8 +1417,8 @@
                                                 <tr>
                                                     <th>Agency Name</th>
                                                     <th>Key Person Name</th>
-                                                    <th>Amount Paid</th>
-                                                    <th>Where Agent Fee Paid</th>
+                                                    <th>S$ Paid</th>
+                                                    <th>Where Paid</th>
                                                     <th>Action</th>
                                                 </tr>
 
@@ -1498,10 +1498,10 @@
 
                                             <table class="table table-condensed">
                                                 <tr>
-                                                    <th>Name of giver of <br/>verbal assurances</th>
-                                                    <th>Relationship of giver to <br/> worker or agent or employer</th>
-                                                    <th>When verbal assurances given</th>
-                                                    <th>Where verbal assurances given</th>
+                                                    <th>Who promised</th>
+                                                    <th>How related</th>
+                                                    <th>When promised</th>
+                                                    <th>Where promised</th>
                                                     <th>Action</th>
                                                 </tr>
 
@@ -1584,9 +1584,9 @@
                                             <table class="table table-condensed">
                                                 <tr>
                                                     <th>Workplace Type</th>
-                                                    <th>Workplace Owner</th>
-                                                    <th>Start Date at the Workplace</th>
-                                                    <th>End Date at the Workplace</th>
+                                                    <th>Employer controlled</th>
+                                                    <th>When start here</th>
+                                                    <th>When cease here</th>
                                                     <th>Action</th>
                                                 </tr>
 
@@ -1665,10 +1665,10 @@
 
                                             <table class="table table-condensed">
                                                 <tr>
-                                                    <th>How did worker get into this job?</th>
-                                                    <th>Date Arrived to Singapore</th>
-                                                    <th>Is this first job in Singapore?</th>
-                                                    <th>If not, state the arrival year to Singapore for the First Job</th>
+                                                    <th>How found this job</th>
+                                                    <th>Dt Arrive Sg</th>
+                                                    <th>This first job here?</th>
+                                                    <th>First came to Sg</th>
                                                     <th>Action</th>
                                                 </tr>
 
@@ -1738,10 +1738,10 @@
 
                                             <table class="table table-condensed">
                                                 <tr>
-                                                    <th>Accommodation provided by employer?</th>
-                                                    <th>Type of accommodation</th>
+                                                    <th>Employer provide?</th>
+                                                    <th>Type</th>
                                                     <th>Location</th>
-                                                    <th>When Existed?</th>
+                                                    <th>When Existed</th>
                                                     <th>Action</th>
                                                 </tr>
 
@@ -1816,10 +1816,10 @@
 
                                             <table class="table table-condensed">
                                                 <tr>
-                                                    <th>Workpass specified in IPA</th>
-                                                    <th>IPA application date </th>
-                                                    <th>IPA employer name</th>
-                                                    <th>Basic Monthly Salary</th>
+                                                    <th>Specified workpass</th>
+                                                    <th>Applic dt</th>
+                                                    <th>Employer</th>
+                                                    <th>Basic Sal</th>
                                                     <th>Action</th>
                                                 </tr>
 
@@ -1963,8 +1963,9 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Aggravating Issues</th>
-                                                                    <th>Monetary Loss/Value</th>
+                                                                    <th>Aggrav Issue</th>
+                                                                    <th>Explain if other</th>
+                                                                    <th>Loss Value</th>
                                                                     <th>Remarks</th>
                                                                     <th>Action</th>
                                                                 </tr>
@@ -2041,9 +2042,9 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Name</th>
-                                                                    <th>Start Date</th>
-                                                                    <th>End Date</th>
+                                                                    <th>Lead</th>
+                                                                    <th>Start Dt</th>
+                                                                    <th>End Dt</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -2153,9 +2154,9 @@
                                                             <table class="table table-condensed">
 
                                                                 <tr>
-                                                                    <th>Name</th>
-                                                                    <th>Start Date</th>
-                                                                    <th>End Date</th>
+                                                                    <th>Auxilliary</th>
+                                                                    <th>Start Dt</th>
+                                                                    <th>End Dt</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -2263,10 +2264,10 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Discussion Date & Time</th>
-                                                                    <th>Mode/Location of Discussion</th>
-                                                                    <th>Consultant</th>
-                                                                    <th>Topic of Discussion</th>
+                                                                    <th>Event dt</th>
+                                                                    <th>Where or how</th>
+                                                                    <th>TWC2 Person</th>
+                                                                    <th>Topic</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -2361,9 +2362,9 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Date of Update</th>
-                                                                    <th>Lawyer Firm</th>
-                                                                    <th>Lawyer Name</th>
+                                                                    <th>Update dt</th>
+                                                                    <th>Law Firm</th>
+                                                                    <th>Lawyer/asst Name</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -2467,10 +2468,10 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Salary & Related History</th>
+                                                                    <th>Prob with basic sal</th>
                                                                     <th>Payment Mode</th>
                                                                     <th>Total Claim</th>
-                                                                    <th>12 Months Claim</th>
+                                                                    <th>12 Mths Claim</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -2550,9 +2551,9 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Salary Claim Date</th>
-                                                                    <th>Salary Claim Loss</th>
-                                                                    <th>Salary Claim Basic</th>
+                                                                    <th>When lodged</th>
+                                                                    <th>Claim Value</th>
+                                                                    
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -2563,7 +2564,7 @@
                                                                         ProblemSalaryClaim salaryClaim = ProblemComplementsDAO.retrieveProblemSalaryClaimById(salaryClaimId);
                                                                         java.util.Date date = salaryClaim.getSalaryClaimDate();
                                                                         double loss = salaryClaim.getSalaryClaimLoss();
-                                                                        String basic = salaryClaim.getSalaryClaimBasis();
+                                                                        //String basic = salaryClaim.getSalaryClaimBasis();
                                                                         if (i < salaryClaimIds.size() - 1) {
                                                                 %>
                                                                 <tr class="other_salaryClaim moreObjs">
@@ -2579,7 +2580,7 @@
                                                                         }
                                                                     %>
                                                                     <td><%=loss%></td>
-                                                                    <td><%=basic%></td>
+                                                                    
                                                                     <td><a style="color: black" data-target="#salarycalim_pop_up" data-class="problem"   data-value='salarycalim' data-salarycalim='<%=salaryClaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
@@ -2598,7 +2599,7 @@
                                                                         }
                                                                     %>
                                                                     <td><%=loss%></td>
-                                                                    <td><%=basic%></td>
+                                                                    
                                                                     <td><a style="color: black" data-target="#salarycalim_pop_up" data-class="problem"   data-value='salarycalim' data-salarycalim='<%=salaryClaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
@@ -2655,10 +2656,10 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Injury Date</th>
+                                                                    <th>Injury Dt</th>
                                                                     <th>Location</th>
-                                                                    <th>Injured Body Part</th>
-                                                                    <th>Initial Treatment</th>
+                                                                    <th>Body Parts</th>
+                                                                    <th>Initially Treated at</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -2753,9 +2754,9 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Start Date</th>
-                                                                    <th>Diagnosed Date</th>
-                                                                    <th>Diagnosed by</th>
+                                                                    <th>When began</th>
+                                                                    <th>When Diagnosed</th>
+                                                                    <th>Who Diagnosed</th>
                                                                     <th>Nature of Illness</th>
                                                                     <th>Action</th>
                                                                 </tr>
@@ -2828,10 +2829,10 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Claim Date</th>
-                                                                    <th>Claim Reference No</th>
-                                                                    <th>Claim Insurer</th>
-                                                                    <th>Policy Number</th>
+                                                                    <th>When lodged</th>
+                                                                    <th>Wica Ref Nbr</th>
+                                                                    <th>Insurer</th>
+                                                                    <th>Policy Nbr</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -2925,10 +2926,10 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Claim Date</th>
-                                                                    <th>Claim Loss</th>
-                                                                    <th>Claim Insurer</th>
-                                                                    <th>Policy Number</th>
+                                                                    <th>Date MOM Notified</th>
+                                                                    <th>Claim Value</th>
+                                                                    <th>Insurer</th>
+                                                                    <th>Policy Nbr</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -3019,10 +3020,10 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Wica Status</th>
-                                                                    <th>Wica Update</th>
+                                                                    <th>Status</th>
+                                                                    <th>Update Dt</th>
                                                                     <th>Wica Points</th>
-                                                                    <th>Wica Compensation</th>
+                                                                    <th>Wica S$ Comp</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -3115,9 +3116,9 @@
                                                             <table class="table table-condensed">
                                                                 <tr>
 
-                                                                    <th>Updated Date</th>
-                                                                    <th>Hospital Name</th>
-                                                                    <th>Doctor</th>
+                                                                    <th>Update Dt</th>
+                                                                    <th>Hospital</th>
+                                                                    <th>Dept/Doctor</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -3213,10 +3214,10 @@
                                                             <table class="table table-condensed">
                                                                 <tr>
 
-                                                                    <th>Date</th>
-                                                                    <th>MC Status</th>
-                                                                    <th>Expire Date</th>
-                                                                    <th>Cumulative MC Days</th>
+                                                                    <th>Update Dt</th>
+                                                                    <th>Current Status</th>
+                                                                    <th>MC Expiry Dt</th>
+                                                                    <th>Cumul MC Days</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -3333,10 +3334,10 @@
                                                             <table class="table table-condensed">
                                                                 <tr>
 
-                                                                    <th>Date</th>
-                                                                    <th>Time</th>
-                                                                    <th>Hospital Name</th>
-                                                                    <th>R2R First Volunteer</th>
+                                                                    <th>Appt Dt</th>
+                                                                    <th>Appt Time</th>
+                                                                    <th>Hospital</th>
+                                                                    <th>R2R 1st Volunteer</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -3444,9 +3445,9 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Description</th>
+                                                                    <th>Describe Prob</th>
                                                                     <th>Claim Value</th>
-                                                                    <th>Remark</th>
+                                                                    
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -3458,13 +3459,13 @@
 
                                                                         String description = otherCase.getOtherProblemDesc();
                                                                         double loss = otherCase.getOtherProblemLoss();
-                                                                        String remark = otherCase.getOtherProblemRemark();
+                                                                        //String remark = otherCase.getOtherProblemRemark();
                                                                         if (i < otherCaseIds.size() - 1) {
                                                                 %>
                                                                 <tr class="other_othercase moreObjs">
                                                                     <td><%=description%></td>
                                                                     <td><%=loss%></td>
-                                                                    <td><%=remark%></td>
+                                                                    
                                                                     <td><a style="color: black" data-target="#othercase_pop_up" data-value='othercase' data-class="problem"   data-othercase='<%=otherCaseId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
@@ -3474,7 +3475,7 @@
                                                                 <tr>
                                                                     <td><%=description%></td>
                                                                     <td><%=loss%></td>
-                                                                    <td><%=remark%></td>
+                                                                    
                                                                     <td><a style="color: black" data-target="#othercase_pop_up" data-value='othercase' data-class="problem"   data-othercase='<%=otherCaseId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
@@ -3597,10 +3598,10 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Report Date</th>
-                                                                    <th>Report Station</th>
-                                                                    <th>Accompanying TWC2 Person</th>
-                                                                    <th>Report Reference</th>
+                                                                    <th>When lodged</th>
+                                                                    <th>Police Station</th>
+                                                                    <th>TWC2 Escort</th>
+                                                                    <th>Report Ref Nbr</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -3689,10 +3690,10 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Complaint Date</th>
-                                                                    <th>Complaint Agency</th>
-                                                                    <th>Lodged By</th>
-                                                                    <th>Mode of Lodging</th>
+                                                                    <th>When Lodged</th>
+                                                                    <th>Complained to</th>
+                                                                    <th>Complainant</th>
+                                                                    <th>How Lodged</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -3787,10 +3788,9 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Milestone Date</th>
+                                                                    <th>Milestone Dt</th>
                                                                     <th>Milestone Reached</th>
-                                                                    <th>Explanation</th>
-                                                                    <th>Remark</th>
+                                                                    
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -3801,7 +3801,7 @@
                                                                         ProblemCaseMilestoneNC casemsNc = ProblemComplementsDAO.retrieveProblemCaseMilestoneNCById(nCaseMSId);
                                                                         java.util.Date date = casemsNc.getMilesNCDate();
                                                                         String reached = casemsNc.getMilesNCReached();
-                                                                        String remark = casemsNc.getMilesNCRem();
+                                                                        //String remark = casemsNc.getMilesNCRem();
 
                                                                         if (reached == null || reached.equals("other") || reached.equals("Other")) {
                                                                             reached = casemsNc.getMilesNCReachedMore();
@@ -3822,7 +3822,7 @@
                                                                         }
                                                                     %>
                                                                     <td><%=reached%></td>
-                                                                    <td><%=remark%></td>
+                                                                    
                                                                     <td>
                                                                         <a style="color: black" data-target="#milestonenc_pop_up"  
                                                                            data-class="problem"  data-value='ncmilestone' 
@@ -3848,7 +3848,7 @@
                                                                         }
                                                                     %>
                                                                     <td><%=reached%></td>
-                                                                    <td><%=remark%></td>
+                                                                    
                                                                     <td><a style="color: black" data-target="#milestonenc_pop_up"  data-class="problem"  data-value='ncmilestone' data-ncmilestone='<%=nCaseMSId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
@@ -3888,10 +3888,9 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Milestone Date</th>
+                                                                    <th>Milestone Datet</th>
                                                                     <th>Milestone Reached</th>
-                                                                    <th>Explanation</th>
-                                                                    <th>Remark</th>
+                                                                    
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -3902,7 +3901,7 @@
                                                                         ProblemCaseMilestoneCR casemsc = ProblemComplementsDAO.retrieveProblemCaseMilestoneCRById(caseMSId);
                                                                         java.util.Date date = casemsc.getMilesCRDate();
                                                                         String reached = casemsc.getMilesCRReached();
-                                                                        String remark = casemsc.getMilesCRRem();
+                                                                        //String remark = casemsc.getMilesCRRem();
 
                                                                         if (reached == null || reached.equals("other") || reached.equals("Other")) {
                                                                             reached = casemsc.getMilesCRReachedMore();
@@ -3923,7 +3922,7 @@
                                                                         }
                                                                     %>
                                                                     <td><%=reached%></td>
-                                                                    <td><%=remark%></td>
+                                                                    
                                                                     <td>
                                                                         <a style="color: black" data-target="#milestonecr_pop_up" 
                                                                            data-value='cmilestone' data-cmilestone='<%=caseMSId%>' 
@@ -3949,7 +3948,7 @@
                                                                         }
                                                                     %>
                                                                     <td><%=reached%></td>
-                                                                    <td><%=remark%></td>
+                                                                    
                                                                     <td>
                                                                         <a style="color: black" data-target="#milestonecr_pop_up" 
                                                                            data-value='cmilestone' data-cmilestone='<%=caseMSId%>' 
@@ -3998,10 +3997,10 @@
 
                                                             <table class="table table-condensed">
                                                                 <tr>
-                                                                    <th>Updated Date</th>
+                                                                    <th>Updated Dt</th>
                                                                     <th>Status</th>
-                                                                    <th>Departure Date</th>
-                                                                    <th>Name of TJS</th>
+                                                                    <th>Depart SG Dt</th>
+                                                                    <th>New Employer</th>
                                                                     <th>Action</th>
                                                                 </tr>
 
@@ -4134,10 +4133,10 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Issued Date</th>
-                                                        <th>Given By</th>
-                                                        <th>Benefit Type</th>
-                                                        <th>Benefit Value(S$)</th>
+                                                        <th>Date Benefit Given</th>
+                                                        <th>Benefit Given By</th>
+                                                        <th>Type</th>
+                                                        <th>Value</th>
                                                         <th>Action</th>
                                                     </tr>
                                                     <%
@@ -4199,10 +4198,10 @@
                                                 %>
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Issued Date</th>
-                                                        <th>Given By</th>
-                                                        <th>Benefit Type</th>
-                                                        <th>Benefit Value(S$)</th>
+                                                        <th>Date Benefit Given</th>
+                                                        <th>Benefit Given By</th>
+                                                        <th>Type</th>
+                                                        <th>Value</th>
                                                         <th>Action</th>
                                                     </tr>
                                                     <%
@@ -4264,10 +4263,10 @@
                                                 %>
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Issued Date</th>
-                                                        <th>Given By</th>
-                                                        <th>Benefit Type</th>
-                                                        <th>Benefit Value(S$)</th>
+                                                        <th>Date Benefit Given</th>
+                                                        <th>Benefit Given By</th>
+                                                        <th>Type</th>
+                                                        <th>Value</th>
                                                         <th>Action</th>
                                                     </tr>
                                                     <%
@@ -4329,10 +4328,10 @@
                                                 %>
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Issued Date</th>
-                                                        <th>Given By</th>
-                                                        <th>Benefit Type</th>
-                                                        <th>Benefit Value(S$)</th>
+                                                        <th>Date Benefit Given</th>
+                                                        <th>Benefit Given By</th>
+                                                        <th>Type</th>
+                                                        <th>Value</th>
                                                         <th>Action</th>
                                                     </tr>
                                                     <%
@@ -4396,12 +4395,10 @@
                                                 %>
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Issued Date</th>
-                                                        <th>Given By</th>
-                                                        <th>Benefit Type</th>
-                                                        <th>Serial No.</th>
-                                                        <th>Purpose/Reason</th>
-                                                        <th>Benefit Value(S$)</th>
+                                                        <th>Date Benefit Given</th>
+                                                        <th>Benefit Given By</th>
+                                                        <th>Type</th>
+                                                        <th>Value</th>
                                                         <th>Action</th>
                                                     </tr>
                                                     <%
