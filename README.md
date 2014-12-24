@@ -1,7 +1,7 @@
 camans
 ======
 
-<i><b>25th Dec 2014-nyeinsu<i></b>
+<i><b>25th Dec 2014-nyeinsu<i></b><br/>
 To Change in wica Claim lodged table.<br/>
 
 <i><b>23rd Dec 1:45pm-soemyatmyat</b></i><br/>
