@@ -2,7 +2,9 @@ camans
 ======
 
 <i><b>25th Dec 2014-nyeinsu<i></b><br/>
-To Change in wica Claim lodged table.<br/>
+1. To Change in wica Claim lodged table.<br/>
+2. Changed labels for All 3 complement pop ups.
+3. Changed labels for all complements from viewWorker.jsp by xm.
 
 <i><b>23rd Dec 1:45pm-soemyatmyat</b></i><br/>
 1. Debugged UAT bugs (view/edit/add workerComplemetns and view/edit/add jobComplements)<br/>
