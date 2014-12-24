@@ -109,7 +109,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remark must be less than 200 characters.'
+                            message: 'Remarks: must be less than 200 characters.'
                         }
                     }
                 },
@@ -164,7 +164,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remark must be less than 200 characters.'
+                            message: 'Remarks: must be less than 200 characters.'
                         }
                     }
                 },
@@ -1617,7 +1617,7 @@
 
     });
 
-$(document).ready(function(){
+    $(document).ready(function() {
         $('.cancel_btn').addClass('pull-right');
         $('.form-control').addClass('input-sm');
     });
@@ -1663,13 +1663,16 @@ $(document).ready(function(){
     //end of data collection
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 %>
+
 <%
     if (injuryCaseId != null) {
         int id = Integer.parseInt(injuryCaseId);
         ProblemInjury pinjury = ProblemComplementsDAO.retrieveProblemInjuryById(id);
 %>
 
-<!--injury-->
+<!------------------>
+<!--injury History-->
+<!------------------>
 <form method="POST" id='injurycase_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <h4 class='view_comp'>View Injury History Details</h4>
     <h4 class='add_comp'>Add A Injury History Accommodation </h4>
@@ -1699,7 +1702,7 @@ $(document).ready(function(){
                                    : sdf.format(injuryDate)%>">
                 </div>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Approximate time of injury</label>
+                    <label for='name' class="control-label">Approx time of injury:</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=(injuryTime == null) ? "" : injuryTime%>">
                 </div>
@@ -1708,13 +1711,11 @@ $(document).ready(function(){
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=(injuryLocation == null) ? "" : injuryLocation%>">
                 </div>
-
                 <div class='form-group'>
                     <label for='remark' class="control-label">Did death ensure?:</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=(injuryDeath == null) ? "" : injuryDeath%>">
                 </div>
-
                 <div class='form-group'>
                     <label for='remark' class="control-label">Body Part(s) Injured</label>
                     <br/>
@@ -1731,7 +1732,7 @@ $(document).ready(function(){
                     <input class="form-control" type='text' name="remark" value="<%=(injuryAmbulance == null) ? "" : injuryAmbulance%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Where initially treated:</label>
+                    <label for='remark' class="control-label">Where (clinic/Hospital) initially treated:</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=(injuryInitialTreatment == null) ? "" : injuryInitialTreatment%>">
                 </div>
@@ -1741,7 +1742,7 @@ $(document).ready(function(){
                     <input class="form-control" type='text' name="remark" value="<%=(injuryWorkRelated == null) ? "" : injuryWorkRelated%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks</label>
+                    <label for='remark' class="control-label">Remarks about Injury History:</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=(injuryRemark == null) ? "" : injuryRemark%></textarea>
                 </div>
@@ -1758,12 +1759,12 @@ $(document).ready(function(){
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date of injury<span style="color: red">*</span></label>
+                <label for='ndate' class="control-label">Date of injury<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ndate" >
             </div>
             <div class='form-group'>
-                <label for='ntime' class="control-label">Approximate time of injury </label>
+                <label for='ntime' class="control-label">Approx time of injury </label>
                 <br/>
                 <input class="form-control" type='text' name="ntime">
             </div>
@@ -1780,19 +1781,16 @@ $(document).ready(function(){
                     <option>Yes</option>
                 </select>
             </div>
-
             <div class='form-group'>
                 <label for='nbodyPart' class="control-label">Body part(s) injured</label>
                 <br/>
                 <textarea class="form-control" name="nbodyPart" rows="3"></textarea>
             </div>
-
             <div class='form-group'>
                 <label for='nhow' class="control-label">How injury happened</label>
                 <br/>
                 <textarea class="form-control" name="nhow" rows="3"></textarea>
             </div>
-
             <div class='form-group'>
                 <label for='nambulance' class="control-label">Was worker conveyed to hospital in ambulance?</label>
                 <br/>
@@ -1802,13 +1800,11 @@ $(document).ready(function(){
                     <option>Don't know</option>
                 </select>
             </div>
-
             <div class='form-group'>
-                <label for='ntreatement' class="control-label">Where initially treated</label>
+                <label for='ntreatement' class="control-label">Where (clinic/Hospital) initially treated</label>
                 <br/>
                 <input class="form-control" type='text' name="ntreatement">
             </div>
-
             <div class='form-group'>
                 <label for='nworkRelated' class="control-label">Does worker consider incident work-related?</label>
                 <br/>
@@ -1818,13 +1814,11 @@ $(document).ready(function(){
                     <option>Don't know</option>
                 </select>
             </div>
-
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark</label>
+                <label for='nremark' class="control-label">Remarks about Injury History:</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
-
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="injurycase"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -1838,7 +1832,6 @@ $(document).ready(function(){
 
 
         <div class='edit_comp'>
-
             <div class='form-group'>
                 <label for='date' class="control-label">Date of Injury:</label>
                 <br/>
@@ -1847,7 +1840,7 @@ $(document).ready(function(){
                                : sdf.format(injuryDate)%>" >
             </div>
             <div class='form-group'>
-                <label for='time' class="control-label">Approximate time of injury </label>
+                <label for='time' class="control-label">Approx time of injury:</label>
                 <br/>
                 <input class="form-control" type='text' name="time" value="<%=(injuryTime == null) ? "" : injuryTime%>">
             </div>
@@ -1856,7 +1849,6 @@ $(document).ready(function(){
                 <br/>
                 <input class="form-control" type='text' name="location" value="<%=(injuryLocation == null) ? "" : injuryLocation%>">
             </div>
-
             <div class='form-group'>
                 <label for='death' class="control-label">Did death ensue?</label>
                 <br/>
@@ -1874,19 +1866,16 @@ $(document).ready(function(){
                     %>
                 </select>
             </div>
-
             <div class='form-group'>
                 <label for='bodyPart' class="control-label">Body part(s) injured</label>
                 <br/>
                 <textarea class="form-control" name="bodyPart" rows="3"><%=(injuryBodyPart == null) ? "" : injuryBodyPart%></textarea>
             </div>
-
             <div class='form-group'>
                 <label for='how' class="control-label">How injury happened</label>
                 <br/>
                 <textarea class="form-control" name="how" rows="3"><%=(injuryHow == null) ? "" : injuryHow%></textarea>
             </div>
-
             <div class='form-group'>
                 <label for='ambulance' class="control-label">Was worker conveyed to hospital in ambulance?</label>
                 <br/>
@@ -1911,13 +1900,11 @@ $(document).ready(function(){
                     %>
                 </select>
             </div>
-
             <div class='form-group'>
-                <label for='treatment' class="control-label">Where initially treated</label>
+                <label for='treatment' class="control-label">Where (clinic/Hospital) initially treated</label>
                 <br/>
                 <input class="form-control" type='text' name="treatement" value="<%=injuryInitialTreatment%>">
             </div>
-
             <div class='form-group'>
                 <label for='workRelated' class="control-label">Does worker consider incident work-related?</label>
                 <br/>
@@ -1942,13 +1929,11 @@ $(document).ready(function(){
                     %>
                 </select>
             </div>
-
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark</label>
+                <label for='remark' class="control-label">Remarks about Injury History:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=(injuryRemark == null) ? "" : injuryRemark%></textarea>
             </div>
-
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="injurycase"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -1963,7 +1948,9 @@ $(document).ready(function(){
     </div>
 </form>
 
-<!--illness-->
+<!------------------->
+<!--illness History-->
+<!------------------->
 <%
     }
     if (illnessCaseId != null) {
@@ -1990,17 +1977,17 @@ $(document).ready(function(){
         <div class="view_comp">
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Illness Start Time</label>
+                    <label for='name' class="control-label">When Illness Begin:</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=(startTime == null) ? "" : startTime%>">
                 </div>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Illness Diagnosed Time</label>
+                    <label for='name' class="control-label">When Illness diagnosed:</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=(diagnoseTime == null) ? "" : diagnoseTime%>">
                 </div>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Illness Diagnosed Person</label>
+                    <label for='name' class="control-label">Who (Doctor/Hospital Name) Diagnosed:</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=(diagnoseWho == null) ? "" : diagnoseWho%>">
                 </div>
@@ -2009,7 +1996,6 @@ $(document).ready(function(){
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=(nature == null) ? "" : nature%>">
                 </div>
-
                 <div class='form-group'>
                     <label for='remark' class="control-label">Does worker consider illness work-related?</label>
                     <br/>
@@ -2021,7 +2007,7 @@ $(document).ready(function(){
                     <textarea class="form-control" name="remark" rows="3"><%=(why == null) ? "" : why%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark</label>
+                    <label for='remark' class="control-label">Remarks about Illness History:</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
                 </div>
@@ -2036,21 +2022,19 @@ $(document).ready(function(){
             </div>
         </div>
 
-
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nstartTime' class="control-label">Illness Start Time<span style="color: red">*</span></label>
+                <label for='nstartTime' class="control-label">When Illness Begin<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="nstartTime">
             </div>
-
             <div class='form-group'>
-                <label for='ndiagnoseTime' class="control-label">Illness diagnosed time</label>
+                <label for='ndiagnoseTime' class="control-label">When Illness diagnosed:</label>
                 <br/>
                 <input class="form-control" type='text' name="ndiagnoseTime">
             </div>
             <div class='form-group'>
-                <label for='ndiagnosePerson' class="control-label">Illness Diagnosed Person</label>
+                <label for='ndiagnosePerson' class="control-label">Who (Doctor/Hospital Name) Diagnosed:</label>
                 <br/>
                 <input class="form-control" type='text' name="ndiagnosePerson">
             </div>
@@ -2059,7 +2043,6 @@ $(document).ready(function(){
                 <br/>
                 <input class="form-control" type='text' name="nnature">
             </div>
-
             <div class='form-group'>
                 <lable for='nworkRelated' class='control-label'>Does worker consider illness work-related?</lable>
                 <br/>
@@ -2075,11 +2058,10 @@ $(document).ready(function(){
                 <textarea class="form-control" name="nworkRelatedYes" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark</label>
+                <label for='nremark' class="control-label">Remarks about Illness History:</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
-
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="illnesscase"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -2093,29 +2075,26 @@ $(document).ready(function(){
 
 
         <div class='edit_comp'>
-
             <div class='form-group'>
-                <label for='startTime' class="control-label">Illness start time</label>
+                <label for='startTime' class="control-label">When Illness Begin<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="startTime" value="<%=(startTime == null) ? "" : startTime%>">
             </div>
             <div class='form-group'>
-                <label for='diagnoseTime' class="control-label">Illness diagnosed time</label>
+                <label for='diagnoseTime' class="control-label">When Illness diagnosed:</label>
                 <br/>
                 <input class="form-control" type='text' name="diagnoseTime" value="<%=(diagnoseTime == null) ? "" : diagnoseTime%>">
             </div>
             <div class='form-group'>
-                <label for='diagnosePerson' class="control-label">Illness diagnosed person</label>
+                <label for='diagnosePerson' class="control-label">Who (Doctor/Hospital Name) Diagnosed:</label>
                 <br/>
                 <input class="form-control" type='text' name="diagnosePerson" value="<%=(diagnoseWho == null) ? "" : diagnoseWho%>">
             </div>
-
             <div class='form-group'>
                 <label for='nature' class="control-label">Nature of illness</label>
                 <br/>
                 <input class="form-control" type='text' name="nature" value="<%=(nature == null) ? "" : nature%>">
             </div>
-
             <div class='form-group'>
                 <label for='workRelated' class="control-label">Does worker consider illness work-related?</label>
                 <br/>
@@ -2140,24 +2119,21 @@ $(document).ready(function(){
                     %>
                 </select>
             </div>
-            <div class='form-group' id='workRelatedYes_div' >
+            <div class='form-group' id='workRelatedYes_div'>
                 <label for='workRelatedYes' class='control-label'>If worker thinks work-related, why?</label>
                 <br/>
                 <textarea class="form-control" name="workRelatedYes" rows="3"><%=why%></textarea>
             </div>
-
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark</label>
+                <label for='remark' class="control-label">Remarks about Illness History:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
             </div>
-
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="illnesscase"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
-
             <div class="form-group btn_group">
                 <button type='submit' class="btn modal_btn edit_comp ">Save</button>
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
@@ -2166,7 +2142,9 @@ $(document).ready(function(){
     </div>
 </form>
 
-<!--other case-->            
+<!---------------------------------------> 
+<!--Details & History of other Problems-->   
+<!---------------------------------------> 
 <%
     }
     if (otherCaseId != null) {
@@ -2199,12 +2177,11 @@ $(document).ready(function(){
                     <input class="form-control" type='text' name="name" value="<%=(loss == 0.0) ? "" : loss%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark</label>
+                    <label for='remark' class="control-label">Remarks about History of Other Problems:</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
                 </div>
             </fieldset>
-
             <div class="form-group btn_group">
                 <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#othercase_pop_up", "problem")'>Edit</button>
                 <div class='pull-right'>
@@ -2214,25 +2191,22 @@ $(document).ready(function(){
             </div>
         </div>
 
-
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nother' class="control-label">Details of problem if it's not salary/injury/illness<span style="color: red">*</span></label>
+                <label for='nother' class="control-label">Details of problem if it's not salary/injury/illness<span style="color: red">*</span>:</label>
                 <br/>
                 <textarea class="form-control" name="nother" rows="3"></textarea>
             </div>
-
             <div class='form-group'>
                 <label for='nloss' class="control-label">Estimated value of claim S$</label>
                 <br/>
                 <input class="form-control" type='text' name="nloss">
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark</label>
+                <label for='nremark' class="control-label">Remarks about History of Other Problems:</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
-
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="othercase"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -2244,9 +2218,7 @@ $(document).ready(function(){
             </div>
         </div>
 
-
         <div class='edit_comp'>
-
             <div class='form-group'>
                 <label for='other' class="control-label">Details of problem if it's not salary/injury/illness</label>
                 <br/>
@@ -2258,7 +2230,7 @@ $(document).ready(function(){
                 <input class="form-control" type='text' name="loss" value="<%=(loss == 0.0) ? "" : loss%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark</label>
+                <label for='remark' class="control-label">Remarks about History of Other Problems:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
             </div>
@@ -2498,7 +2470,7 @@ $(document).ready(function(){
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date of assessment<span style="color: red">*</span></label>
+                <label for='ndate' class="control-label">Date of assessment<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ndate">
             </div>
@@ -3698,7 +3670,9 @@ $(document).ready(function(){
     </div>
 </form>
 
-<!--salary claim-->            
+<!----------------------->
+<!--salary claim lodged--> 
+<!-----------------------> 
 <%
     }
     if (salaryClaimId != null) {
@@ -3751,7 +3725,7 @@ $(document).ready(function(){
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span></label>
+                <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ndate">
             </div>
@@ -3813,7 +3787,9 @@ $(document).ready(function(){
     </div>
 </form> 
 
-<!--wica-->
+<!--------------------->
+<!--wica claim lodged-->
+<!--------------------->
 <%
     }
     if (wicaClaimId != null) {
@@ -3848,29 +3824,29 @@ $(document).ready(function(){
                                    : sdf.format(date)%>">
                 </div>
                 <div class='form-group'>
-                    <label for='refNumber' class="control-label">Reference number</label>
+                    <label for='refNumber' class="control-label">WICA Ref Number:</label>
                     <br/>
                     <input class="form-control" type='text' name="refNumber" value="<%=(refNumber == null) ? "" : refNumber%>">
                 </div>
                 <div class='form-group'>
-                    <label for='insurer' class="control-label">Insurance company</label>
+                    <label for='insurer' class="control-label">WICA Insurance company:</label>
                     <br/>
                     <input class="form-control" type='text' name="insurer" value="<%=(insurer == null) ? "" : insurer%>">
                 </div>
                 <div class='form-group'>
-                    <label for='reason' class="control-label">State whether this claim is for compensation, MC wages, expense reimbursement, etc</label>
+                    <label for='reason' class="control-label">State whether initially lodged by lawyer, worker or TWC2:</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=(reason == null) ? "" : reason%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark</label>
+                    <label for='remark' class="control-label">Remarks about WICA Claim:</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
                 </div>
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#wicaclaim_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#wicaclaim_pop_up", "problem");'>Edit</button>
                 <div class='pull-right'>
                     <button type='button' class='btn modal_btn view_comp' onclick='add("#wicaclaim_pop_up", "problem")'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
@@ -3880,33 +3856,33 @@ $(document).ready(function(){
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span></label>
+                <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ndate">
             </div>
 
             <div class='form-group'>
-                <label for='nrefNumber' class="control-label">Reference number</label>
+                <label for='nrefNumber' class="control-label">WICA Ref number:</label>
                 <br/>
                 <input class="form-control" type='text' name="nrefNumber">
             </div>
             <div class='form-group'>
-                <label for='ninsurer' class="control-label">Insurance company</label>
+                <label for='ninsurer' class="control-label">WICA Insurance company</label>
                 <br/>
                 <input class="form-control" type='text' name="ninsurer">
             </div>
             <div class='form-group'>
-                <label for='npolicyNumber' class="control-label">Insurance policy number</label>
+                <label for='npolicyNumber' class="control-label">WICA Insurance policy number</label>
                 <br/>
                 <input class="form-control" type='text' name="npolicyNumber">
             </div>
             <div class='form-group'>
-                <label for='nreason' class="control-label">State whether this claim is for compensation, MC wages, expense reimbursement, etc</label>
+                <label for='nreason' class="control-label">State whether initially lodged by lawyer, worker or TWC2:</label>
                 <br/>
                 <textarea class="form-control" name="nreason" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark</label>
+                <label for='nremark' class="control-label">Remarks about WICA Claim:</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -3932,27 +3908,27 @@ $(document).ready(function(){
                                : sdf.format(date)%>">
             </div>
             <div class='form-group'>
-                <label for='refNumber' class="control-label">Reference number</label>
+                <label for='refNumber' class="control-label">WICA Reference number</label>
                 <br/>
                 <input class="form-control" type='text' name="refNumber" value="<%=(refNumber == null) ? "" : refNumber%>">
             </div>
             <div class='form-group'>
-                <label for='insurer' class="control-label">Insurance company</label>
+                <label for='insurer' class="control-label">WICA Insurance company</label>
                 <br/>
                 <input class="form-control" type='text' name="insurer" value="<%=(insurer == null) ? "" : insurer%>">
             </div>
             <div class='form-group'>
-                <label for='policyNumber' class="control-label">Insurance policy</label>
+                <label for='policyNumber' class="control-label">WICA Insurance policy</label>
                 <br/>
                 <input class="form-control" type='text' name="policyNumber" value="<%=(policyNumber == null) ? "" : policyNumber%>">
             </div>
             <div class='form-group'>
-                <label for='reason' class="control-label">State whether this claim is for compensation, MC wages, expense reimbursement, etc</label>
+                <label for='reason' class="control-label">State whether initially lodged by lawyer, worker or TWC2:</label>
                 <br/>
                 <textarea class="form-control" name="reason" rows="3"><%=(reason == null) ? "" : reason%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark</label>
+                <label for='remark' class="control-label">Remarks about WICA Claim:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
             </div>
@@ -3971,7 +3947,9 @@ $(document).ready(function(){
     </div>
 </form>
 
-<!--non wica-->
+<!------------------------->
+<!--non wica claim lodged-->
+<!------------------------->
 <%
     }
     if (nonWicaClaimId != null) {
@@ -4024,7 +4002,7 @@ $(document).ready(function(){
                     <textarea class="form-control" name="remark" rows="3"><%=(basis == null) ? "" : basis%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark</label>
+                    <label for='remark' class="control-label">Remarks about Medical Claim:</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
                 </div>
@@ -4042,7 +4020,7 @@ $(document).ready(function(){
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date MOM notified<span style="color: red">*</span></label>
+                <label for='ndate' class="control-label">Date MOM notified<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ndate">
             </div>
@@ -4068,7 +4046,7 @@ $(document).ready(function(){
                 <textarea class="form-control" name="nbasis" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark</label>
+                <label for='remark' class="control-label">Remarks about Medical Claim:</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"><%=remark%></textarea>
             </div>
@@ -4115,7 +4093,7 @@ $(document).ready(function(){
                 <textarea class="form-control" name="basis" rows="3"><%=(basis == null) ? "" : basis%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark</label>
+                <label for='remark' class="control-label">Remarks about Medical Claim:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
             </div>
@@ -4133,7 +4111,9 @@ $(document).ready(function(){
     </div>
 </form>
 
-<!--police report-->
+<!------------------------>
+<!--police report lodged-->
+<!------------------------>
 <%
     }
     if (policeReportId != null) {
@@ -4158,33 +4138,33 @@ $(document).ready(function(){
         <fieldset disabled>
 
             <div class='form-group'>
-                <label for='policeReportDate' class="control-label">Date: </label>
+                <label for='policeReportDate' class="control-label">Date police report made:</label>
                 <br/>
                 <input class="form-control" type='text' name="policeReportDate" 
                        value="<%=(report.getPoliceReportDate() == null) ? "" : sdf.format(report.getPoliceReportDate())%>">
             </div>
             <div class='form-group'>
-                <label for='policeReportStation' class="control-label">Station: </label>
+                <label for='policeReportStation' class="control-label">Police station where report lodged: </label>
                 <br/>
                 <input class="form-control" type='text' name="policeReportStation" value="<%=(station == null) ? "" : station%>">
             </div>
             <div class='form-group'>
-                <label for='policeReportPerson' class="control-label">Person: </label>
+                <label for='policeReportPerson' class="control-label">Accompanying TWC2 person:</label>
                 <br/>
                 <input class="form-control" type='text' name="policeReportPerson" value="<%=(person == null) ? "" : person%>">
             </div>
             <div class='form-group'>
-                <label for='policeReportRefereneNumber' class="control-label">Reference Number : </label>
+                <label for='policeReportRefereneNumber' class="control-label">Police Report Ref Number:</label>
                 <br/>
                 <input class="form-control" type='text' name="policeReportRefereneNumber" value="<%=(refNum == null) ? "" : refNum%>">
             </div>
             <div class='form-group'>
-                <label for='policeReportDetails' class="control-label">Details of police report: </label>
+                <label for='policeReportDetails' class="control-label">Details of police report:</label>
                 <br/>
                 <textarea class="form-control" name="policeReportDetails" rows="3"><%=(details == null) ? "" : details%></textarea>
             </div>
             <div class='form-group'>
-                <label for='policeReportRemark' class="control-label">Remark: </label>
+                <label for='policeReportRemark' class="control-label">Remarks about Police Report:</label>
                 <br/>
                 <textarea class="form-control" name="policeReportRemark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
             </div>
@@ -4202,37 +4182,37 @@ $(document).ready(function(){
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='' class="control-label">Date police report made<span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Date police report made<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" 
                    value="<%=(report.getPoliceReportDate() == null) ? "" : sdf.format(report.getPoliceReportDate())%>" 
                    type='text' name="date" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Police station where report lodged: </label>
+            <label for='' class="control-label">Police station where report lodged:</label>
             <br/>
             <input class="form-control" value='<%= (station == null) ? "" : station%>' 
                    type='text' name="policeReportStation" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Accompanyign TWC2 person: </label>
+            <label for='' class="control-label">Accompanying TWC2 person:</label>
             <br/>
             <input class="form-control" value='<%= (person == null) ? "" : person%>' 
                    type='text' name="person" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Details of police report: </label>
+            <label for='' class="control-label">Police Report Ref Number:</label>
             <br/>
             <input class="form-control" value='<%=(refNum == null) ? "" : refNum%>' 
                    type='text' name="policeReportRefNumber" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Details of police report: </label>
+            <label for='' class="control-label">Details of police report:</label>
             <br/>
             <textarea class="form-control" name="policeReportDetails" rows="3"><%=(details == null) ? "" : details%></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remark: </label>
+            <label for='' class="control-label">Remarks about Police Report:</label>
             <br/>
             <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
         </div>
@@ -4253,32 +4233,32 @@ $(document).ready(function(){
     <div class='add_comp'>
 
         <div class='form-group '>
-            <label for='date' class="control-label">Date police report made<span style="color: red">*</span>: </label>
+            <label for='date' class="control-label">Date police report made<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" >
         </div>
         <div class='form-group '>
-            <label for='date' class="control-label">Police station where report lodged: </label>
+            <label for='date' class="control-label">Police station where report lodged:</label>
             <br/>
             <input class="form-control" type='text' name="npoliceReportStation" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Accompanyign TWC2 person: </label>
+            <label for='' class="control-label">Accompanying TWC2 person:</label>
             <br/>
             <input class="form-control" type='text' name="nperson" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Details of police report: </label>
+            <label for='' class="control-label">Police Report Ref Number:</label>
             <br/>
             <input class="form-control" type='text' name="npoliceReportRefNumber" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Details of police report: </label>
+            <label for='' class="control-label">Details of police report:</label>
             <br/>
             <textarea class="form-control" name="npoliceReportDetails" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remark: </label>
+            <label for='' class="control-label">Remarks about Police Report:</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -4296,7 +4276,9 @@ $(document).ready(function(){
 
 </form>
 
-<!--other complaint-->
+<!-------------------------->
+<!--other complaint lodged-->
+<!-------------------------->
 <%
     }
     if (othercomplaintId != null) {
@@ -4329,13 +4311,13 @@ $(document).ready(function(){
         <fieldset disabled>
 
             <div class='form-group'>
-                <label for='complaintDate' class="control-label">Date other complaint lodged: </label>
+                <label for='complaintDate' class="control-label">Date other complaint lodged:</label>
                 <br/>
                 <input class="form-control" type='text' name="complaintDate" 
                        value="<%=date == null ? "" : sdf.format(date)%>">
             </div>
             <div class='form-group'>
-                <label for='complaintAgency' class="control-label">Agency/authority to whom complaint addressed: </label>
+                <label for='complaintAgency' class="control-label">Agency/authority to whom complaint addressed:</label>
                 <br/>
                 <input class="form-control" type='text' name="complaintAgency" value="<%=(agency == null) ? "" : agency%>">
             </div>
@@ -4350,17 +4332,17 @@ $(document).ready(function(){
                 <input class="form-control" type='text' name="complaintAgency" value="<%=(whoMore == null) ? "" : whoMore%>">
             </div>
             <div class='form-group'>
-                <label for='complaintAgency' class="control-label">Mode of lodging complaint: </label>
+                <label for='complaintAgency' class="control-label">Mode of lodging complaint:</label>
                 <br/>
                 <input class="form-control" type='text' name="complaintAgency" value="<%=mode%>">
             </div>    
             <div class='form-group'>
-                <label for='complaintDetails' class="control-label">Details of complaint lodged: </label>
+                <label for='complaintDetails' class="control-label">Details of complaint lodged:</label>
                 <br/>
                 <textarea class="form-control" name="policeReportRemark" rows="3"><%=(detail == null) ? "" : detail%></textarea>
             </div>
             <div class='form-group'>
-                <label for='complaintRemark' class="control-label">Remarks : </label>
+                <label for='complaintRemark' class="control-label">Remarks about this Complaint:</label>
                 <br/>
                 <textarea class="form-control" name="policeReportRemark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
             </div>
@@ -4378,18 +4360,18 @@ $(document).ready(function(){
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='' class="control-label">Date other complaint lodged <span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Date other complaint lodged <span style="color: red">*</span>:</label>
             <input class="form-control dateInput" 
                    value="<%=date == null ? "" : sdf.format(date)%>"
                    type='text' name="date" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Agency/authority to whom complaint addressed<span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Agency/authority to whom complaint addressed<span style="color: red">*</span>:</label>
             <input class="form-control" value='<%= (agency == null) ? "" : agency%>' 
                    type='text' name="complaintAgency" >
         </div>
         <div class='form-group'>
-            <label for='isProvided' class="control-label">This complaint is lodged by<span style="color: red">*</span></label>
+            <label for='isProvided' class="control-label">This complaint is lodged by<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="complaintTypeView" name="complaintWho" onchange="displayOther(this.id);">
                 <%
@@ -4411,7 +4393,7 @@ $(document).ready(function(){
             </select>
         </div>
         <div class='form-group' id="complaintTypeView_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other': </label>
+            <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="complaintWhoMore" value="<%=(whoMore == null) ? "" : whoMore%>">
         </div>
@@ -4439,18 +4421,18 @@ $(document).ready(function(){
             </select>
         </div>
         <div class='form-group' id="complaintModeView_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other': </label>
+            <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="complaintModeMore" value="<%=(modeMore == null) ? "" : modeMore%>">
         </div>
 
         <div class='form-group'>
-            <label for='' class="control-label">Details of complaint lodged: </label>
+            <label for='' class="control-label">Details of complaint lodged:</label>
             <br/>
             <textarea class="form-control" name="complaintDetails" rows="3"><%=(detail == null) ? "" : detail%></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remark:</label>
+            <label for='' class="control-label">Remarks about this Complaint:</label>
             <br/>
             <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
         </div>
@@ -4470,17 +4452,17 @@ $(document).ready(function(){
     <!--add-->
     <div class='add_comp'>
         <div class='form-group '>
-            <label for='date' class="control-label">Date other complaint lodged<span style="color: red">*</span>: </label>
+            <label for='date' class="control-label">Date other complaint lodged<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
         </div>
         <div class='form-group '>
-            <label for='date' class="control-label">Agency/authority to whom complaint addressed<span style="color: red">*</span>: </label>
+            <label for='date' class="control-label">Agency/authority to whom complaint addressed<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control" type='text' name="ncomplaintAgency" >
         </div>
         <div class='form-group'>
-            <label for='complaintWho' class="control-label">This complaint is lodged by<span style="color: red">*</span></label>
+            <label for='complaintWho' class="control-label">This complaint is lodged by<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="complaintWho" name="ncomplaintWho">
                 <%
@@ -4495,7 +4477,7 @@ $(document).ready(function(){
         </div>
 
         <div class='form-group' id="complaintWho_other_div" >
-            <label for='location' class="control-label">If TWC2 or third party, name of person lodging complaint: </label>
+            <label for='location' class="control-label">If TWC2 or third party, name of person lodging complaint:</label>
             <br/>
             <input class="form-control" type='text' name="ncomplaintWhoMore">
         </div>
@@ -4514,17 +4496,17 @@ $(document).ready(function(){
             </select>
         </div>
         <div class='form-group' id="complaintMode_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other': </label>
+            <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="ncomplaintModeMore">
         </div>
         <div class='form-group '>
-            <label for='date' class="control-label">Details of complaint lodged: </label>
+            <label for='date' class="control-label">Details of complaint lodged:</label>
             <br/>
             <textarea class="form-control" name="ncomplaintDetails" rows="3"></textarea>
         </div>
         <div class='form-group '>
-            <label for='date' class="control-label">Remark: </label>
+            <label for='date' class="control-label">Remarks about this Complaint:</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -4542,7 +4524,9 @@ $(document).ready(function(){
 
 </form>
 
+<!------------------->
 <!--case discussion-->
+<!------------------->
 <%
 
     }
@@ -4576,79 +4560,78 @@ $(document).ready(function(){
     <h4 class='view_comp'>View Case Discussion Details</h4>
     <h4 class='add_comp'>Add A New Case Discussion</h4>
     <h4 class='edit_comp'>Edit Case Discussion Details</h4>
-
-
     <!--view-->
     <div class="view_comp">
         <fieldset disabled>
-
             <div class='form-group'>
-                <label for='discussionDate' class="control-label">Discussion Date: </label>
+                <label for='discussionDate' class="control-label">Date of Discussion, Assistance or Information-Receipt:</label>
                 <br/>
                 <input class="form-control" type='text' name="discussionDate" 
                        value="<%=(dDate == null) ? ""
                                : sdf.format(dDate)%>">
             </div>
             <div class='form-group'>
-                <label for='discussionTime' class="control-label">Approx time of discussion: </label>
+                <label for='discussionTime' class="control-label">Approx time of event:</label>
                 <br/>
                 <input class="form-control" type='text' name="discussionTime" value="<%=dTime%>">
             </div>
             <div class='form-group'>
-                <label for='discussionWhere' class="control-label">Location/Mode of Discussion: </label>
+                <label for='discussionWhere' class="control-label">Mode/Location of Discussion, Assistance or Information-Receipt</label>
                 <br/>
                 <input class="form-control" type='text' name="discussionWhere" value="<%=dWhere%>">
             </div>
             <div class='form-group'>
-                <label for='discussionWorkerPresent' class="control-label">Was worker participating?: </label>
+                <label for='discussionWorkerPresent' class="control-label">Was worker participating?:</label>
                 <br/>
                 <input class="form-control" type='text' name="discussionWorkerPresent" value="<%=workerPresent%>">
             </div>
             <div class='form-group'>
-                <label for='discussionTWCP1' class="control-label">TWC2 Person 1: </label>
+                <label for='discussionTWCP1' class="control-label">TWC2 Person Consulted, Assisting or Informed:</label>
                 <br/>
                 <input class="form-control" type='text' name="discussionTWCP1" value="<%=twcP1%>">
             </div>
             <div class='form-group'>
-                <label for='discussionTWCP2' class="control-label">TWC2 Person 2: </label>
+                <label for='discussionTWCP2' class="control-label">Names of Other TWC2 Persons Present:</label>
                 <br/>
                 <input class="form-control" type='text' name="discussionTime" value="<%=twcP2%>">
             </div>
             <div class='form-group'>
-                <label for='discussionOtherP' class="control-label">Other Person presented: </label>
+                <label for='discussionOtherP' class="control-label">Names of Other Persons Present:</label>
                 <br/>
                 <input class="form-control" type='text' name="discussionOtherP" value="<%=otherP%>">
             </div>
             <div class='form-group'>
-                <label for='discussionTranslator' class="control-label">Translator: </label>
+                <label for='discussionTranslator' class="control-label">Name of Translator(s) Present:</label>
                 <br/>
                 <input class="form-control" type='text' name="discussionTranslator" value="<%=translator%>">
             </div>
             <div class='form-group'>
-                <label for='discussionTopic' class="control-label">Topic: </label>
+                <label for='discussionTopic' class="control-label">Topic of Discussion/Information Received:</label>
                 <br/>
                 <input class="form-control" type='text' name="discussionTopic" value="<%=topic%>">
             </div>
             <div class='form-group'>
-                <label for='discussionGist' class="control-label">Gist: </label>
+                <label for='discussionGist' class="control-label">Gist of Discussion or New Information Received:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="4"><%=gist%></textarea>
             </div>
             <div class='form-group'>
-                <label for='discussionAssist' class="control-label">Assistance/referral provided: </label>
+                <label for='discussionAssist' class="control-label">Immediate Assistance or Referral Provided:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=assist%></textarea>
             </div>
             <div class='form-group'>
-                <label for='discussionCal' class="control-label">Updated calculation of claim value: </label>
+                <label for='discussionCal' class="control-label">Updated calculation of claim value:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=cal%></textarea>
-            </div><div class='form-group'>
-                <label for='discussionAction' class="control-label">Action: </label>
+            </div>
+            <div class='form-group'>
+                <label for='discussionAction' class="control-label">Action:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=action%></textarea>
-            </div><div class='form-group'>
-                <label for='discussionRemark' class="control-label">Remark: </label>
+            </div>
+            <div class='form-group'>
+                <label for='discussionRemark' class="control-label">Internal Remarks about Discussion:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
             </div>
@@ -4666,17 +4649,17 @@ $(document).ready(function(){
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='' class="control-label">Discussion Date: <span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Date of Discussion, Assistance or Information-Receipt<span style="color: red">*</span>:</label>
             <input class="form-control dateInput" 
                    value="<%=(dDate == null) ? ""
                            : sdf.format(dDate)%>" type='text' name="date" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Approx time of dicussion: <span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Approx time of event:</label>
             <input class="form-control" value='<%=dTime%>' type='text' name="discussionTime" >
         </div>
         <div class='form-group'>
-            <label for='discussionWhere' class="control-label">Location:</label>
+            <label for='discussionWhere' class="control-label">Mode/Location of Discussion, Assistance or Information-Receipt<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="discussionWhere" name="discussionWhere" onchange="displayOther(this.id);">
                 <%
@@ -4698,12 +4681,12 @@ $(document).ready(function(){
             </select>
         </div>
         <div class='form-group' id="discussionWhere_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other': </label>
+            <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="discussionWhereOther" value=<%=dWhereMore%>>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Was worker participating?: </label>
+            <label for='' class="control-label">Was worker participating?:</label>
 
             <select class="form-control" id="discussionWhere" name="discussionWorkerPresent">
                 <%
@@ -4720,43 +4703,43 @@ $(document).ready(function(){
             </select>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">TWC2 Person 1<span style="color: red">*</span>: </label>
+            <label for='' class="control-label">TWC2 Person Consulted, Assisting or Informed<span style="color: red">*</span>:</label>
             <input class="form-control" value='<%=twcP1%>' type='text' name="discussionTWC2P1" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">TWC2 Person 2:</label>
+            <label for='' class="control-label">Names of Other TWC2 Persons Present:</label>
             <input class="form-control" value='<%=twcP2%>' type='text' name="discussionTWC2P2" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Other Person presented: </label>
+            <label for='' class="control-label">Names of Other Persons Present:</label>
             <input class="form-control" value='<%=otherP%>' type='text' name="discussionOtherPerson" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Translator:  </label>
+            <label for='' class="control-label">Name of Translator(s) Present:</label>
             <input class="form-control" value='<%=translator%>' type='text' name="discussionTranslator" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Topic<span style="color: red">*</span>:</label>
+            <label for='' class="control-label">Topic of Discussion/Information Received<span style="color: red">*</span>:</label>
             <input class="form-control" value='<%=topic%>' type='text' name="discussionTopic" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Gist:  </label>
+            <label for='' class="control-label">Gist of Discussion or New Information Received: </label>
             <textarea class="form-control" name="discussionGist" rows="4"><%=gist%></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Assistance/referral provided: </label>
+            <label for='' class="control-label">Immediate Assistance or Referral Provided:</label>
             <textarea class="form-control" name="discussionAssist" rows="3"><%=assist%></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Updated calculation of claim value: </label>
+            <label for='' class="control-label">Updated calculation of claim value:</label>
             <textarea class="form-control" name="discussionCal" rows="3"><%=cal%></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Action to follow: </label>
+            <label for='' class="control-label">Action to follow:</label>
             <textarea class="form-control" name="discussionAction" rows="3"><%=action%></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Enter New Remark:</label>
+            <label for='' class="control-label">Internal Remarks about Discussion:</label>
             <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
@@ -4773,19 +4756,18 @@ $(document).ready(function(){
 
     <!--add-->
     <div class='add_comp'>
-
         <div class='form-group'>
-            <label for='' class="control-label">Discussion Date<span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Date of Discussion, Assistance or Information-Receipt<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Approx Time of discussion<span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Approx Time of event:</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTime" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Location<span style="color: red">*</span></label>
+            <label for='' class="control-label">Mode/Location of Discussion, Assistance or Information-Receipt<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="discussionWhere" name="ndiscussionWhere" onchange="displayOther(this.id);">
                 <%
@@ -4798,14 +4780,13 @@ $(document).ready(function(){
                 %>  
             </select>
         </div>
-
         <div class='form-group' id="discussionWhere_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other': </label>
+            <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionWhereMore">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Was worker participating: <span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Was worker participating:</label>
             <br/>
             <select class="form-control" id="isworkerpresent" name="ndiscussionWorkerPresent">
                 <option selected>Yes</option>
@@ -4813,52 +4794,52 @@ $(document).ready(function(){
             </select>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">TWC2 Person 1<span style="color: red">*</span>: </label>
+            <label for='' class="control-label">TWC2 Person Consulted, Assisting or Informed<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTWC2P1" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">TWC2 Person 2:</label>
+            <label for='' class="control-label">Names of Other TWC2 Persons Present:</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTWC2P2" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Other Person Presented:</label>
+            <label for='' class="control-label">Names of Other Persons Present:</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionOtherPerson" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Translator:</label>
+            <label for='' class="control-label">Name of Translator(s) Present:</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTranslator" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Topic<span style="color: red">*</span>:  </label>
+            <label for='' class="control-label">Topic of Discussion/Information Received<span style="color: red">*</span>: </label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTopic" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Gist:</label>
+            <label for='' class="control-label">Gist of Discussion or New Information Received:</label>
             <br/>
             <textarea class="form-control" name="ndiscussionGist" rows="4"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Assistance/referral provided:</label>
+            <label for='' class="control-label">Immediate Assistance or Referral Provided:</label>
             <br/>
             <textarea class="form-control" name="ndiscussionAssist" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Updated Calculation of claim value: </label>
+            <label for='' class="control-label">Updated Calculation of claim value:</label>
             <br/>
             <textarea class="form-control" name="ndiscussionCal" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Action to follow: </label>
+            <label for='' class="control-label">Action to follow:</label>
             <br/>
             <textarea class="form-control" name="ndiscussionAction" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remark: </label>
+            <label for='' class="control-label">Internal Remarks about Discussion:</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -4873,11 +4854,11 @@ $(document).ready(function(){
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-
-
 </form>
 
+<!------------>
 <!--hospital-->
+<!------------>
 <%
 
     }
@@ -4905,24 +4886,24 @@ $(document).ready(function(){
         <fieldset disabled>
 
             <div class='form-group'>
-                <label for='hospitalUpdate' class="control-label">Date of update: </label>
+                <label for='hospitalUpdate' class="control-label">Date of update:</label>
                 <br/>
                 <input class="form-control" type='text' name="hospitalUpdate" 
                        value="<%=(hospUpdate == null) ? ""
                                : sdf.format(hospUpdate)%>">
             </div>
             <div class='form-group'>
-                <label for='hospitalName' class="control-label">Hospital Name: </label>
+                <label for='hospitalName' class="control-label">Current Hospital:</label>
                 <br/>
                 <input class="form-control" type='text' name="hospitalName" value="<%=hospName%>">
             </div>
             <div class='form-group'>
-                <label for='hospitalDoctor' class="control-label">Department/doctor name: </label>
+                <label for='hospitalDoctor' class="control-label">Department/doctor name:</label>
                 <br/>
                 <input class="form-control" type='text' name="hospitalDoctor" value="<%=hospDoctor%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark:</label>
+                <label for='remark' class="control-label">Remarks about Hospital:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
             </div>
@@ -4940,14 +4921,14 @@ $(document).ready(function(){
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='' class="control-label">Date of update: <span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Date of update: <span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" 
                    value="<%=(hospUpdate == null) ? ""
                            : sdf.format(hospUpdate)%>" type='text' name="date" >
         </div>
         <div class='form-group'>
-            <label for='discussionWhere' class="control-label">Hospital Name: <span style="color: red">*</span></label>
+            <label for='discussionWhere' class="control-label">Current Hospital: <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="hospName" name="hospName" onchange="displayOther(this.id);">
                 <%
@@ -4969,17 +4950,17 @@ $(document).ready(function(){
             </select>
         </div>
         <div class='form-group' id="hospName_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other': </label>
+            <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="hospNameMore" value="<%=hospNameMore%>">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Department/Doctor: </label>
+            <label for='' class="control-label">Department/Doctor:</label>
             <br/>
             <input class="form-control" value='<%=hospDoctor%>' type='text' name="hospDoctor" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remark:</label>
+            <label for='' class="control-label">Remarks about Hospital:</label>
             <br/>
             <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
         </div>
@@ -4999,12 +4980,12 @@ $(document).ready(function(){
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='' class="control-label">Date of update<span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Date of update<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Hospital Name<span style="color: red">*</span></label>
+            <label for='' class="control-label">Current Hospital<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nhospName" name="nhospName" onchange="displayOther(this.id);">
                 <%
@@ -5019,17 +5000,17 @@ $(document).ready(function(){
         </div>
 
         <div class='form-group' id="nhospName_other_div" >
-            <label for='nhospNameMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='nhospNameMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="nhospNameMore">
         </div>
         <div class='form-group'>
-            <label for='nhospDoctor' class="control-label">Department/doctor within hospital if known: </label>
+            <label for='nhospDoctor' class="control-label">Department/doctor within hospital if known:</label>
             <br/>
             <input class="form-control" type='text' name="nhospDoctor">
         </div>
         <div class='form-group'>
-            <label for='nremark' class="control-label">Remark: </label>
+            <label for='nremark' class="control-label">Remarks about Hospital:</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -5047,8 +5028,9 @@ $(document).ready(function(){
 
 </form>
 
-
-<!--mc-->
+<!------------->
+<!--mc stauts-->
+<!------------->
 <%
     }
     if (mcId != null) {
@@ -5075,31 +5057,31 @@ $(document).ready(function(){
         <fieldset disabled>
 
             <div class='form-group'>
-                <label for='mcUpdate' class="control-label">Date of Update: </label>
+                <label for='mcUpdate' class="control-label">Date of Update:</label>
                 <br/>
                 <input class="form-control" type='text' name="mcUpdate"
                        value="<%=(mcUpdate == null) ? ""
                                : sdf.format(mcUpdate)%>">
             </div>
             <div class='form-group'>
-                <label for='mcStatus' class="control-label">Status: </label>
+                <label for='mcStatus' class="control-label">Current MC/Light Duty Status:</label>
                 <br/>
                 <input class="form-control" type='text' name="mcStatus" value="<%=status%>">
             </div>
             <div class='form-group'>
-                <label for='mcExpDate' class="control-label">Expiry Date: </label>
+                <label for='mcExpDate' class="control-label">Latest Known Expiry Date:</label>
                 <br/>
                 <input class="form-control" type='text' name="mcExpDate" 
                        value="<%=(exp == null) ? ""
                                : sdf.format(exp)%>">
             </div>
             <div class='form-group'>
-                <label for='mcDaysCum' class="control-label">Cumulative Days: </label>
+                <label for='mcDaysCum' class="control-label">Cumulative MC Days so far:</label>
                 <br/>
                 <input class="form-control" type='text' name="mcDaysCum" value="<%=cum%>">
             </div>
             <div class='form-group'>
-                <label for='mcRem' class="control-label">Remark: </label>
+                <label for='mcRem' class="control-label">Remarks about MC Status:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=mcRem%></textarea>
             </div>
@@ -5117,12 +5099,12 @@ $(document).ready(function(){
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='' class="control-label">Date of Update<span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Date of Update<span style="color: red">*</span>:</label>
                    <input class="form-control dateInput" value="<%=(mcUpdate == null) ? ""
                     : sdf.format(mcUpdate)%>" type='text' name="date" >
         </div>
         <div class='form-group'>
-            <label for='status' class="control-label">MC Status<span style="color: red">*</span></label>
+            <label for='status' class="control-label">Current MC/Light Duty Status<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="status" name="mcStatus" onchange="displayOther(this.id);">
                 <%
@@ -5144,23 +5126,23 @@ $(document).ready(function(){
             </select>
         </div>
         <div class='form-group' id="status_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other': </label>
+            <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="mcStatusMore">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">MC Expiry Date:</label>
+            <label for='' class="control-label">Latest Known MC Expiry Date:</label>
             <br/>
-                   <input class="form-control dateInput" value="<%=(exp == null) ? ""
-                           : sdf.format(exp)%>"  type='text' name="expDate" >
+            <input class="form-control dateInput" value="<%=(exp == null) ? ""
+                    : sdf.format(exp)%>"  type='text' name="expDate" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Number of Cumulative Days: </label>
+            <label for='' class="control-label">Cumulative MC Days so far:</label>
             <br/>
             <input class="form-control" value='<%=cum%>' type='text' name="expCum" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remark: </label>
+            <label for='' class="control-label">Remarks about MC Status:</label>
             <textarea class="form-control" name="remark" rows="3"><%=mcRem%></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
@@ -5180,12 +5162,12 @@ $(document).ready(function(){
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='' class="control-label">Enter New Date: <span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Date of Update<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Enter Status<span style="color: red">*</span></label>
+            <label for='' class="control-label">Current MC/Light Duty Status<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nmcStatus" name="nmcStatus" onchange="displayOther(this.id);">
                 <%
@@ -5200,21 +5182,21 @@ $(document).ready(function(){
         </div>
 
         <div class='form-group' class="nmcStatus_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other': </label>
+            <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="nmcStatusMore">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">MC Expiry Date: </label>
+            <label for='' class="control-label">Latest Known MC Expiry Date:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="nexpDate">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Cumulative MC Days: </label>
+            <label for='' class="control-label">Cumulative MC Days so far:</label>
             <input class="form-control" type='text' name="nexpCum">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remark: </label>
+            <label for='' class="control-label">Remarks about MC Status:</label>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
@@ -5233,12 +5215,9 @@ $(document).ready(function(){
 
 </form>
 
-
-<!---------------------------------->
-<!-------Edit Starts Here----------->
-<!---------------------------------->
-
-<!--r2r-->
+<!------------------->
+<!--r2r Appointment-->
+<!------------------->
 <%
     }
     if (r2rId != null) {
@@ -5270,63 +5249,63 @@ $(document).ready(function(){
         <fieldset disabled>
 
             <div class='form-group'>
-                <label for='r2rDate' class="control-label">Date of Appointment: </label>
+                <label for='r2rDate' class="control-label">Date of Appointment:</label>
                 <br/>
                 <input class="form-control" type='text' name="date" 
                        value="<%=(r2rDate == null) ? "" : sdf.format(r2rDate)%>">
             </div>
             <div class='form-group'>
-                <label for='r2rTime' class="control-label">Time of Appointment: </label>
+                <label for='r2rTime' class="control-label">Time of Appointment:</label>
                 <br/>
                 <input class="form-control" type='text' name="r2rTime" value="<%=r2rTime%>">
             </div>
             <div class='form-group'>
-                <label for='r2rHosp' class="control-label">Hospital for appointment: </label>
+                <label for='r2rHosp' class="control-label">Hospital for appointment:</label>
                 <br/>
                 <input class="form-control" type='text' name="r2rHosp" value="<%=hosp%>">
             </div>
             <div class='form-group'>
-                <label for='r2rDept' class="control-label">Department/doctor for appointment: </label>
+                <label for='r2rDept' class="control-label">Department/doctor for appointment:</label>
                 <br/>
                 <input class="form-control" type='text' name="r2rDept" value="<%=dept%>">
             </div>
             <div class='form-group'>
-                <label for='r2r1' class="control-label">R2R First Volunteer: </label>
+                <label for='r2r1' class="control-label">R2R First Volunteer:</label>
                 <br/>
                 <input class="form-control" type='text' name="r2r1" value="<%=r2r1%>">
             </div>
             <div class='form-group'>
-                <label for='r2r2' class="control-label">R2R Second Volunteer: </label>
+                <label for='r2r2' class="control-label">R2R Second Volunteer:</label>
                 <br/>
                 <input class="form-control" type='text' name="r2r2" value="<%=r2r2%>">
             </div>
             <div class='form-group'>
-                <label for='r2rPurpose' class="control-label">Purpose of Appointment: </label>
+                <label for='r2rPurpose' class="control-label">Purpose of Appointment:</label>
                 <br/>
                 <input class="form-control" type='text' name="r2rPurpose" value="<%=purpose%>">
             </div>
             <div class='form-group'>
-                <label for='r2rPreApptNotes' class="control-label">Pre-appointment Notes: </label>
+                <label for='r2rPreApptNotes' class="control-label">Pre-appointment Notes:</label>
                 <br/>
                 <textarea class="form-control" name="r2rPreApptNotes" rows="3"><%=pre%></textarea>
             </div>
             <div class='form-group'>
-                <label for='r2rPostApptNotes' class="control-label">Post-appointment Notes: </label>
+                <label for='r2rPostApptNotes' class="control-label">Post-appointment Notes:</label>
                 <br/>
                 <textarea class="form-control" name="r2rPostApptNotes" rows="3"><%=post%></textarea>
             </div>
             <div class='form-group'>
-                <label for='r2rFeedback' class="control-label">Feedback: </label>
+                <label for='r2rFeedback' class="control-label">Feedback:</label>
                 <br/>
                 <textarea class="form-control" name="r2rFeedback" rows="3"><%=feedback%></textarea>
             </div>
             <div class='form-group'>
-                <label for='r2rMed' class="control-label">Medical Cost of this Appt: </label>
+                <label for='r2rMed' class="control-label">Medical Cost of this Appt:</label>
                 <br/>
                 <input class="form-control" type='text' name="r2rMed" value="<%=med%>">
             </div>
             <div class='form-group'>
-                <label for='r2rOut' class="control-label">How much paid by volunteer: </label>
+                <label for='r2rOut' class="control-label">How much paid by volunteer:</label>
                 <br/>
                 <input class="form-control" type='text' name="r2rOut" value="<%=outlay%>">
             </div>
@@ -5345,63 +5324,63 @@ $(document).ready(function(){
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='r2rDate' class="control-label">Date of Appointment: <span style="color: red">*</span>:: </label>
+            <label for='r2rDate' class="control-label">Date of Appointment: <span style="color: red">*</span>::</label>
             <br/>
             <input class="form-control dateInput" type='text' name="date" 
                    value="<%=(r2rDate == null) ? "" : sdf.format(r2rDate)%>">
         </div>
         <div class='form-group'>
-            <label for='r2rTime' class="control-label">Time of Appointment: </label>
+            <label for='r2rTime' class="control-label">Time of Appointment:</label>
             <br/>
             <input class="form-control" type='text' name="r2rTime" value="<%=r2rTime%>">
         </div>
         <div class='form-group'>
-            <label for='r2rHosp' class="control-label">Hospital for Appointment: <span style="color: red">*</span>: </label>
+            <label for='r2rHosp' class="control-label">Hospital for Appointment: <span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control" type='text' name="r2rHosp" value="<%=hosp%>">
         </div>
         <div class='form-group'>
-            <label for='r2rDept' class="control-label">Department/doctor for Appointment: </label>
+            <label for='r2rDept' class="control-label">Department/doctor for Appointment:</label>
             <br/>
             <input class="form-control" type='text' name="r2rDept" value="<%=dept%>">
         </div>
         <div class='form-group'>
-            <label for='r2r1' class="control-label">R2R first volunteer: </label>
+            <label for='r2r1' class="control-label">R2R first volunteer:</label>
             <br/>
             <input class="form-control" type='text' name="r2r1" value="<%=r2r1%>">
         </div>
         <div class='form-group'>
-            <label for='r2r2' class="control-label">R2R second volunteer: </label>
+            <label for='r2r2' class="control-label">R2R second volunteer:</label>
             <br/>
             <input class="form-control" type='text' name="r2r2" value="<%=r2r2%>">
         </div>
         <div class='form-group'>
-            <label for='r2rPurpose' class="control-label">Purpose: </label>
+            <label for='r2rPurpose' class="control-label">Purpose:</label>
             <br/>
             <input class="form-control" type='text' name="r2rPurpose" value="<%=purpose%>">
         </div>
         <div class='form-group'>
-            <label for='r2rPreApptNotes' class="control-label">Pre-appointment Notes: </label>
+            <label for='r2rPreApptNotes' class="control-label">Pre-appointment Notes:</label>
             <br/>
             <textarea class="form-control" name="r2rPreApptNotes" rows="3"><%=pre%></textarea>
         </div>
         <div class='form-group'>
-            <label for='r2rPostApptNotes' class="control-label">Post-appointment Notes: </label>
+            <label for='r2rPostApptNotes' class="control-label">Post-appointment Notes:</label>
             <br/>
             <textarea class="form-control" name="r2rPostApptNotes" rows="3"><%=post%></textarea>
         </div>
         <div class='form-group'>
-            <label for='r2rFeedback' class="control-label">Feedback: </label>
+            <label for='r2rFeedback' class="control-label">Feedback:</label>
             <br/>
             <textarea class="form-control" name="r2rFeedback" rows="3"><%=feedback%></textarea>
         </div>
         <div class='form-group'>
-            <label for='r2rMed' class="control-label">Medical Cost of this appt: </label>
+            <label for='r2rMed' class="control-label">Medical Cost of this appt:</label>
             <br/>
             <input class="form-control" type='text' name="r2rMed" value="<%=med%>">
         </div>
         <div class='form-group'>
-            <label for='r2rOut' class="control-label">How much paid by volunteer: </label>
+            <label for='r2rOut' class="control-label">How much paid by volunteer:</label>
             <br/>
             <input class="form-control" type='text' name="r2rOut" value="<%=outlay%>">
         </div>
@@ -5420,62 +5399,62 @@ $(document).ready(function(){
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='r2rDate' class="control-label">Date of Appointment: <span style="color: red">*</span>: </label>
+            <label for='r2rDate' class="control-label">Date of Appointment: <span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" >
         </div>
         <div class='form-group'>
-            <label for='r2rTime' class="control-label">Time of Appointment: </label>
+            <label for='r2rTime' class="control-label">Time of Appointment:</label>
             <br/>
             <input class="form-control" type='text' name="nr2rTime">
         </div>
         <div class='form-group'>
-            <label for='r2rHosp' class="control-label">Hospital for appointment: <span style="color: red">*</span>: </label>
+            <label for='r2rHosp' class="control-label">Hospital for appointment: <span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control" type='text' name="nr2rHosp">
         </div>
         <div class='form-group'>
-            <label for='r2rDept' class="control-label">Department/doctor for appointment: </label>
+            <label for='r2rDept' class="control-label">Department/doctor for appointment:</label>
             <br/>
             <input class="form-control" type='text' name="nr2rDept">
         </div>
         <div class='form-group'>
-            <label for='r2r1' class="control-label">R2R First Volunteer: </label>
+            <label for='r2r1' class="control-label">R2R First Volunteer:</label>
             <br/>
             <input class="form-control" type='text' name="nr2r1">
         </div>
         <div class='form-group'>
-            <label for='r2r2' class="control-label">R2R Second Volunteer: </label>
+            <label for='r2r2' class="control-label">R2R Second Volunteer:</label>
             <br/>
             <input class="form-control" type='text' name="nr2r2">
         </div>
         <div class='form-group'>
-            <label for='r2rPurpose' class="control-label">Purpose of appointment: </label>
+            <label for='r2rPurpose' class="control-label">Purpose of appointment:</label>
             <br/>
             <input class="form-control" type='text' name="nr2rPurpose">
         </div>
         <div class='form-group'>
-            <label for='r2rPreApptNotes' class="control-label">Pre-appointment Notes: </label>
+            <label for='r2rPreApptNotes' class="control-label">Pre-appointment Notes:</label>
             <br/>
             <textarea class="form-control" name="nr2rPreApptNotes" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='r2rPostApptNotes' class="control-label">Post-appointment Notes: </label>
+            <label for='r2rPostApptNotes' class="control-label">Post-appointment Notes:</label>
             <br/>
             <textarea class="form-control" name="nr2rPostApptNotes" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='r2rFeedback' class="control-label">Feedback: </label>
+            <label for='r2rFeedback' class="control-label">Feedback:</label>
             <br/>
             <textarea class="form-control" name="r2rFeedback" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='r2rMed' class="control-label">Medical Cost of this appt: </label>
+            <label for='r2rMed' class="control-label">Medical Cost of this appt:</label>
             <br/>
             <input class="form-control" type='text' name="nr2rMed">
         </div>
         <div class='form-group'>
-            <label for='r2rOut' class="control-label">How much paid by volunteer: </label>
+            <label for='r2rOut' class="control-label">How much paid by volunteer:</label>
             <br/>
             <input class="form-control" type='text' name="nr2rOut">
         </div>
@@ -5491,7 +5470,9 @@ $(document).ready(function(){
     </div>
 </form>
 
+<!--------------->
 <!--Wica status-->
+<!--------------->
 <%
     }
     if (wicaId != null) {
@@ -5520,28 +5501,28 @@ $(document).ready(function(){
         <fieldset disabled>
 
             <div class='form-group'>
-                <label for='wicaUpdate' class="control-label">Date of Update: </label>
+                <label for='wicaUpdate' class="control-label">Date of Update:</label>
                 <br/>
                 <input class="form-control" type='text' name="wicaUpdate" 
                        value="<%=(wUpdate == null) ? "" : sdf.format(wUpdate)%>">
             </div>
             <div class='form-group'>
-                <label for='wicaStatus' class="control-label">Wica Status: </label>
+                <label for='wicaStatus' class="control-label">Wica Status:</label>
                 <br/>
                 <input class="form-control" type='text' name="wicaStatus" value="<%=wStatus%>">
             </div>
             <div class='form-group'>
-                <label for='wicaPoints' class="control-label">Wica Points: </label>
+                <label for='wicaPoints' class="control-label">Wica Points:</label>
                 <br/>
                 <input class="form-control" type='text' name="wicaPoints" value="<%=wPoints%>">
             </div>
             <div class='form-group'>
-                <label for='wicaDollars' class="control-label"> Wica S$ compensation: </label>
+                <label for='wicaDollars' class="control-label"> Wica S$ compensation:</label>
                 <br/>
                 <input class="form-control" type='text' name="wicaDollars" value="<%=wDollars%>">
             </div>
             <div class='form-group'>
-                <label for='wicaRemarks' class="control-label">Remarks re Wica Status : </label>
+                <label for='wicaRemarks' class="control-label">Remarks about WICA Status :</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=wRemarks%></textarea>
             </div>
@@ -5560,13 +5541,13 @@ $(document).ready(function(){
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='wicaUpdate' class="control-label">Date of Update<span style="color: red">*</span>: </label>
+            <label for='wicaUpdate' class="control-label">Date of Update<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="date" 
                    value="<%=(wUpdate == null) ? "" : sdf.format(wUpdate)%>">
         </div>
         <div class='form-group'>
-            <label for='wicaStatus' class="control-label">Wica Status: <span style="color: red">*</span></label>
+            <label for='wicaStatus' class="control-label">Wica Status: <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="wicaStatus" name="wicaStatus" onchange="displayOther(this.id);">
                 <%
@@ -5589,22 +5570,22 @@ $(document).ready(function(){
         </div>
 
         <div class='form-group' id="wicaStatus_other_div" >
-            <label for='wicaStatusMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='wicaStatusMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <textarea class="form-control" name="wicaStatusMore" rows="3"><%=wStatusMore%></textarea>
         </div>
         <div class='form-group'>
-            <label for='wicaPoints' class="control-label">Wica Points: </label>
+            <label for='wicaPoints' class="control-label">Wica Points:</label>
             <br/>
             <input class="form-control" type='text' name="wicaPoints" value="<%=wPoints%>">
         </div>
         <div class='form-group'>
-            <label for='wicaDollars' class="control-label">Wica S$ Compensation: </label>
+            <label for='wicaDollars' class="control-label">Wica S$ Compensation:</label>
             <br/>
             <input class="form-control" type='text' name="wicaDollars" value="<%=wDollars%>">
         </div>
         <div class='form-group'>
-            <label for='wicaRemarks' class="control-label">Remarks re Wica Status: </label>
+            <label for='wicaRemarks' class="control-label">Remarks about WICA Status:</label>
             <br/>
             <textarea class="form-control" name="remark" rows="3"><%=wRemarks%></textarea>
         </div>
@@ -5623,12 +5604,12 @@ $(document).ready(function(){
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='nwicaUpdate' class="control-label">Date of Update<span style="color: red">*</span>: </label>
+            <label for='nwicaUpdate' class="control-label">Date of Update<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate">
         </div>
         <div class='form-group'>
-            <label for='nwicaStatus' class="control-label">Wika Status <span style="color: red">*</span>:</label>
+            <label for='nwicaStatus' class="control-label">WICA Status <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nwicaStatus" name="nwicaStatus" onchange="displayOther(this.id);">
                 <%
@@ -5643,22 +5624,22 @@ $(document).ready(function(){
         </div>
 
         <div class='form-group' id="nwicaStatus_other_div" >
-            <label for='nwicaStatusMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='nwicaStatusMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <textarea class="form-control" name="nwicaStatusMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='nwicaPoints' class="control-label">Wika Points: </label>
+            <label for='nwicaPoints' class="control-label">WICA Points:</label>
             <br/>
             <input class="form-control" type='text' name="nwicaPoints">
         </div>
         <div class='form-group'>
-            <label for='nwicaDollars' class="control-label">Wika S$ Compensation: </label>
+            <label for='nwicaDollars' class="control-label">WICA S$ Compensation:</label>
             <br/>
             <input class="form-control" type='text' name="nwicaDollars">
         </div>
         <div class='form-group'>
-            <label for='nwicaRemarks' class="control-label">Remarks re Wika Status : </label>
+            <label for='nwicaRemarks' class="control-label">Remarks: re WICA Status :</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -5675,7 +5656,9 @@ $(document).ready(function(){
     </div>
 </form>
 
-<!--lawyer-->
+<!------------------->
+<!--law Firm Status-->
+<!------------------->
 <%
     }
 
@@ -5704,28 +5687,28 @@ $(document).ready(function(){
         <fieldset disabled>
 
             <div class='form-group'>
-                <label for='lawyerUpdate' class="control-label">Date of Update: </label>
+                <label for='lawyerUpdate' class="control-label">Date of Update:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="lawyerUpdate" 
                        value="<%=(update == null) ? "" : sdf.format(update)%>">
             </div>
             <div class='form-group'>
-                <label for='lawyerFirm' class="control-label">Current Law Firm: </label>
+                <label for='lawyerFirm' class="control-label">Current Law Firm:</label>
                 <br/>
                 <input class="form-control" type='text' name="lawyerFirm" value="<%=firm%>">
             </div>
             <div class='form-group'>
-                <label for='lawyerFirmMore' class="control-label">Explain if above is 'Other': </label>
+                <label for='lawyerFirmMore' class="control-label">Explain if above is 'Other':</label>
                 <br/>
                 <input class="form-control" type='text' name="lawyerFirmMore" value="<%=firmMore%>">
             </div>
             <div class='form-group'>
-                <label for='lawyerName' class="control-label">Name of lawyer or assistant: </label>
+                <label for='lawyerName' class="control-label">Name of lawyer or assistant:</label>
                 <br/>
                 <input class="form-control" type='text' name="lawyerName" value="<%=lawyerName%>">
             </div>
             <div class='form-group'>
-                <label for='lawyerRemark' class="control-label">Remarks re lawyer law firm status: </label>
+                <label for='lawyerRemark' class="control-label">Remarks: re lawyer law firm status:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
             </div>
@@ -5743,13 +5726,13 @@ $(document).ready(function(){
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='lawyerUpdate' class="control-label">Date of Update<span style="color: red">*</span>: </label>
+            <label for='lawyerUpdate' class="control-label">Date of Update<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="date" 
                    value="<%=(update == null) ? "" : sdf.format(update)%>">
         </div>
         <div class='form-group'>
-            <label for='lawyerFirm' class="control-label">Current Law Firm<span style="color: red">*</span>: </label>
+            <label for='lawyerFirm' class="control-label">Current Law Firm<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nlawyerFirm" name="lawyerFirm" onchange="displayOther(this.id);">
                 <%
@@ -5768,17 +5751,17 @@ $(document).ready(function(){
             </select>
         </div>
         <div class='form-group' id="nlawyerFirm_other_div" >
-            <label for='lawyerFirmMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='lawyerFirmMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <textarea class="form-control" name="lawyerFirmMore" rows="3"><%=firmMore%></textarea>
         </div>
         <div class='form-group'>
-            <label for='lawyerName' class="control-label">Name of lawyer or assistant: </label>
+            <label for='lawyerName' class="control-label">Name of lawyer or assistant:</label>
             <br/>
             <input class="form-control" type='text' name="lawyerName" value="<%=lawyerName%>">
         </div>
         <div class='form-group'>
-            <label for='lawyerRemark' class="control-label">Remarks re lawyer law firm status: </label>
+            <label for='lawyerRemark' class="control-label">Remarks: re lawyer law firm status:</label>
             <br/>
             <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
         </div>
@@ -5798,12 +5781,12 @@ $(document).ready(function(){
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='lawyerUpdate' class="control-label">Date of update<span style="color: red">*</span>: </label>
+            <label for='lawyerUpdate' class="control-label">Date of update<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
         </div>
         <div class='form-group'>
-            <label for='lawyerFirm' class="control-label">Current Law Firm<span style="color: red">*</span>: </label>
+            <label for='lawyerFirm' class="control-label">Current Law Firm<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nlawyerFirm" name="nlawyerFirm" onchange="displayOther(this.id);">
                 <%
@@ -5816,17 +5799,17 @@ $(document).ready(function(){
             </select>
         </div>
         <div class='form-group' id="nlawyerFirm_other_div" >
-            <label for='lawyerHave' class="control-label">Explain if above is 'other': </label>
+            <label for='lawyerHave' class="control-label">Explain if above is 'other':</label>
             <br/>
             <input class="form-control" type='text' name="nlawyerFirmMore">
         </div>
         <div class='form-group'>
-            <label for='lawyerHave' class="control-label">Name of lawyer or assistant: </label>
+            <label for='lawyerHave' class="control-label">Name of lawyer or assistant:</label>
             <br/>
             <input class="form-control" type='text' name="nlawyerName">
         </div>
         <div class='form-group'>
-            <label for='lawyerRemark' class="control-label">Remarks re lawyer law firm status: </label>
+            <label for='lawyerRemark' class="control-label">Remarks: re lawyer law firm status:</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -5842,7 +5825,9 @@ $(document).ready(function(){
     </div>
 </form>
 
+<!-------------------------->
 <!--non criminal milestone-->
+<!-------------------------->
 <%
 
     }
@@ -5869,18 +5854,18 @@ $(document).ready(function(){
         <fieldset disabled>
 
             <div class='form-group'>
-                <label for='milestoneNCDate' class="control-label">Date Milestone Reached: </label>
+                <label for='milestoneNCDate' class="control-label">Date Milestone Reached:</label>
                 <br/>
                 <input class="form-control" type='text' name="milestoneNCDate" 
                        value="<%=(ncDate == null) ? "" : sdf.format(ncDate)%>">
             </div>
             <div class='form-group'>
-                <label for='milestoneNCReached' class="control-label">Milestone Reached: </label>
+                <label for='milestoneNCReached' class="control-label">Milestone Reached:</label>
                 <br/>
                 <input class="form-control" type='text' name="milestoneNCReached" value="<%=ncReached%>">
             </div>
             <div class='form-group'>
-                <label for='milestoneNCRem' class="control-label">Remark re Milestone Reached: </label>
+                <label for='milestoneNCRem' class="control-label">Remarks: re Milestone Reached:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=ncRem%></textarea>
             </div>
@@ -5898,13 +5883,13 @@ $(document).ready(function(){
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='milestoneNCDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>: </label>
+            <label for='milestoneNCDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="date" 
                    value="<%=(ncDate == null) ? "" : sdf.format(ncDate)%>">
         </div>
         <div class='form-group'>
-            <label for='milestoneNCReached' class="control-label">Milestone Reached: <span style="color: red">*</span></label>
+            <label for='milestoneNCReached' class="control-label">Milestone Reached: <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="milestoneNCReached" onchange="displayOther(this.id);">
                 <%
@@ -5926,12 +5911,12 @@ $(document).ready(function(){
             </select>
         </div>
         <div class='form-group' id="ncReached_other_div" >
-            <label for='milestoneNCReachedMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='milestoneNCReachedMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="milestoneNCReachedMore">
         </div>
         <div class='form-group'>
-            <label for='milestoneNCRem' class="control-label">Remark re Milestone Reached: </label>
+            <label for='milestoneNCRem' class="control-label">Remarks: re Milestone Reached:</label>
             <br/>
             <textarea class="form-control" name="remark" rows="3"><%=ncRem%></textarea>
         </div>
@@ -5951,12 +5936,12 @@ $(document).ready(function(){
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='milestoneNCDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>: </label>
+            <label for='milestoneNCDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput input-append date dateInput" type='text' name="ndate">
         </div>
         <div class='form-group'>
-            <label for='nmilestoneNCReached' class="control-label">Milestone Reached: <span style="color: red">*</span></label>
+            <label for='nmilestoneNCReached' class="control-label">Milestone Reached: <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneNCReached" onchange="displayOther(this.id);">
                 <%
@@ -5971,12 +5956,12 @@ $(document).ready(function(){
         </div>
 
         <div class='form-group' id="ncReached_other_div" >
-            <label for='nmilestoneNCReachedMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='nmilestoneNCReachedMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="nmilestoneNCReachedMore">
         </div>
         <div class='form-group'>
-            <label for='milestoneNCRem' class="control-label">Remark re Milestone Reached: </label>
+            <label for='milestoneNCRem' class="control-label">Remarks: re Milestone Reached:</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -5993,7 +5978,9 @@ $(document).ready(function(){
     </div>
 </form>
 
+<!---------------------->
 <!--criminal milestone-->
+<!---------------------->
 <%
 
     }
@@ -6023,28 +6010,28 @@ $(document).ready(function(){
         <fieldset disabled>
 
             <div class='form-group'>
-                <label for='milestoneCRDate' class="control-label">Date Milestone Reached: </label>
+                <label for='milestoneCRDate' class="control-label">Date Milestone Reached:</label>
                 <br/>
                 <input class="form-control" type='text' name="milestoneCRDate" 
                        value="<%=(crDate == null) ? "" : sdf.format(crDate)%>">
             </div>
             <div class='form-group'>
-                <label for='milestoneCRReached' class="control-label">Milestone Reached: </label>
+                <label for='milestoneCRReached' class="control-label">Milestone Reached:</label>
                 <br/>
                 <input class="form-control" type='text' name="milestoneCRReached" value="<%=crReached%>">
             </div>
             <div class='form-group'>
-                <label for='milestoneCRCharge' class="control-label">Details of Charges: </label>
+                <label for='milestoneCRCharge' class="control-label">Details of Charges:</label>
                 <br/>
                 <textarea class="form-control" name="milestoneCRCharges" rows="3"><%=crCharges%></textarea>
             </div>
             <div class='form-group'>
-                <label for='milestoneCRSentence' class="control-label">Details of Sentence: </label>
+                <label for='milestoneCRSentence' class="control-label">Details of Sentence:</label>
                 <br/>
                 <textarea class="form-control" name="milestoneCRSentence" rows="3"><%=crSentence%></textarea>
             </div>
             <div class='form-group'>
-                <label for='milestoneCRRem' class="control-label">Remark re Milestone Reached: </label>
+                <label for='milestoneCRRem' class="control-label">Remarks: re Milestone Reached:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=crRem%></textarea>
             </div>
@@ -6063,13 +6050,13 @@ $(document).ready(function(){
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='milestoneCRDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>: </label>
+            <label for='milestoneCRDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="date" 
                    value="<%=(crDate == null) ? "" : sdf.format(crDate)%>">
         </div>
         <div class='form-group'>
-            <label for='milestoneCRReached' class="control-label">Milestone Reached: <span style="color: red">*</span></label>
+            <label for='milestoneCRReached' class="control-label">Milestone Reached: <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="crReached" name="milestoneCRReached" onchange="displayOther(this.id);">
                 <%
@@ -6092,23 +6079,23 @@ $(document).ready(function(){
         </div>
 
         <div class='form-group' id="crReached_other_div" >
-            <label for='milestoneCRReachedMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='milestoneCRReachedMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="milestoneCRReachedMore">
         </div>
         <div class='form-group'>
-            <label for='milestoneCRCharges' class="control-label">Details of Charges: </label>
+            <label for='milestoneCRCharges' class="control-label">Details of Charges:</label>
             <br/>
             <input class="form-control" type='text' name="milestoneCRCharges" value="<%=crCharges%>">
             <textarea class="form-control" name="remark" rows="3"><%=crRem%></textarea>
         </div>
         <div class='form-group'>
-            <label for='milestoneCRSentence' class="control-label">Details of Sentence: </label>
+            <label for='milestoneCRSentence' class="control-label">Details of Sentence:</label>
             <br/>
             <textarea class="form-control" name="milestoneCRSentence" rows="3"><%=crSentence%></textarea>
         </div>
         <div class='form-group'>
-            <label for='milestoneCRRem' class="control-label">Remark re Milestone Reached: </label>
+            <label for='milestoneCRRem' class="control-label">Remarks: re Milestone Reached:</label>
             <br/>
             <textarea class="form-control" name="remark" rows="3"><%=crRem%></textarea>
         </div>
@@ -6129,12 +6116,12 @@ $(document).ready(function(){
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='nmilestoneCRDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>: </label>
+            <label for='nmilestoneCRDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate">
         </div>
         <div class='form-group'>
-            <label for='nmilestoneCRReached' class="control-label">Miestone Reached: <span style="color: red">*</span></label>
+            <label for='nmilestoneCRReached' class="control-label">Miestone Reached: <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneCRReached" onchange="displayOther(this.id);">
                 <%
@@ -6149,22 +6136,22 @@ $(document).ready(function(){
         </div>
 
         <div class='form-group' id="ncReached_other_div" >
-            <label for='nmilestoneCRReachedMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='nmilestoneCRReachedMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="nmilestoneCRReachedMore">
         </div>
         <div class='form-group'>
-            <label for='milestoneCRCharges' class="control-label">Details of Charges: </label>
+            <label for='milestoneCRCharges' class="control-label">Details of Charges:</label>
             <br/>
             <textarea class="form-control" name="nmilestoneCRCharges" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='milestoneCRSentence' class="control-label">Details of Sentence: </label>
+            <label for='milestoneCRSentence' class="control-label">Details of Sentence:</label>
             <br/>
             <textarea class="form-control" name="nmilestoneCRSentence" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='remark' class="control-label">Remark re Milestone Reached: </label>
+            <label for='remark' class="control-label">Remarks: re Milestone Reached:</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -6180,7 +6167,9 @@ $(document).ready(function(){
     </div>
 </form>
 
+<!------->
 <!--TTR-->
+<!------->
 <%
     }
     if (ttrId != null) {
@@ -6207,35 +6196,35 @@ $(document).ready(function(){
         <fieldset disabled>
 
             <div class='form-group'>
-                <label for='ttrUpdate' class="control-label">Date of Update: <span style="color: red">*</span>: </label>
+                <label for='ttrUpdate' class="control-label">Date of Update: <span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="date" 
                        value="<%=(update == null) ? "" : sdf.format(update)%>">
             </div>
             <div class='form-group'>
-                <label for='ttrStatus' class="control-label">Transfer, TJS or Repatriation Status<span style="color: red">*</span>: </label>
+                <label for='ttrStatus' class="control-label">Transfer, TJS or Repatriation Status<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="ttrStatus" value="<%=status%>">
             </div>
             <div class='form-group'>
-                <label for='ttrDepartureDate' class="control-label">Date of Departure from Singapore: </label>
+                <label for='ttrDepartureDate' class="control-label">Date of Departure from Singapore:</label>
                 <br/>
                 <input class="form-control" type='text' name="ttrDepartureDate" 
                        value="<%=(departureDate == null) ? "" : sdf.format(departureDate)%>">
             </div>
             <div class='form-group'>
-                <label for='ttrEmployerName' class="control-label">Name of TJS or New Employer: </label>
+                <label for='ttrEmployerName' class="control-label">Name of TJS or New Employer:</label>
                 <br/>
                 <input class="form-control" type='text' name="ttrEmployerName" value="<%=employerName%>">
             </div>
             <div class='form-group'>
-                <label for='ttrJob' class="control-label">Description of TJS or new job : </label>
+                <label for='ttrJob' class="control-label">Description of TJS or new job :</label>
                 <br/>
                 <input class="form-control" type='text' name="ttrJob" value="<%=job%>">
                 <textarea class="form-control" name="ttrJob" rows="3"><%=job%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark re Transfer, TJS or Repatriation: </label>
+                <label for='remark' class="control-label">Remarks: re Transfer, TJS or Repatriation:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=ttrRem%></textarea>
             </div>
@@ -6253,13 +6242,13 @@ $(document).ready(function(){
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='ttrUpdate' class="control-label">Date of Update: <span style="color: red">*</span>: </label>
+            <label for='ttrUpdate' class="control-label">Date of Update: <span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="date" 
                    value="<%=(update == null) ? "" : sdf.format(update)%>">
         </div>
         <div class='form-group'>
-            <label for='ttrStatus' class="control-label">Transfer, TJS or Repatriation Status: <span style="color: red">*</span></label>
+            <label for='ttrStatus' class="control-label">Transfer, TJS or Repatriation Status: <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ttrStatus" name="ttrStatus" onchange="displayOther(this.id);">
                 <%
@@ -6282,28 +6271,28 @@ $(document).ready(function(){
         </div>
 
         <div class='form-group' id="ttrStatus_other_div" >
-            <label for='ttrStatusMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='ttrStatusMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="ttrstatusMore">
         </div>
         <div class='form-group'>
-            <label for='ttrDepartureDate' class="control-label">Date of Departure from Singapore: </label>
+            <label for='ttrDepartureDate' class="control-label">Date of Departure from Singapore:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ttrDepartureDate" 
                    value="<%=(departureDate == null) ? "" : sdf.format(departureDate)%>">
         </div>
         <div class='form-group'>
-            <label for='ttrEmployerName' class="control-label">Name of TJS or New Employer: </label>
+            <label for='ttrEmployerName' class="control-label">Name of TJS or New Employer:</label>
             <br/>
             <input class="form-control" type='text' name="ttrEmployerName" value="<%=employerName%>">
         </div>
         <div class='form-group'>
-            <label for='ttrJob' class="control-label">Description of TJS or New Job : </label>
+            <label for='ttrJob' class="control-label">Description of TJS or New Job :</label>
             <br/>
             <textarea class="form-control" name="ttrJob" rows="3"><%=job%></textarea>
         </div>
         <div class='form-group'>
-            <label for='remark' class="control-label">Remark re Transfer, TJS or Repatriation: </label>
+            <label for='remark' class="control-label">Remarks: re Transfer, TJS or Repatriation:</label>
             <br/>
             <textarea class="form-control" name="remark" rows="3"><%=ttrRem%></textarea>
         </div>
@@ -6323,7 +6312,7 @@ $(document).ready(function(){
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='ttrUpdate' class="control-label">Date of Update: <span style="color: red">*</span>: </label>
+            <label for='ttrUpdate' class="control-label">Date of Update: <span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate">
         </div>
@@ -6342,27 +6331,27 @@ $(document).ready(function(){
             </select>
         </div>
         <div class='form-group' id="nttrStatus_other_div" >
-            <label for='nttrStatusMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='nttrStatusMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
             <input class="form-control" type='text' name="nttrStatusMore">
         </div>
         <div class='form-group'>
-            <label for='ttrDepartureDate' class="control-label">Date of Departure from Singapore: </label>
+            <label for='ttrDepartureDate' class="control-label">Date of Departure from Singapore:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="nttrDepartureDate">
         </div>
         <div class='form-group'>
-            <label for='ttrEmployerName' class="control-label">Name of TJS or New Employer: </label>
+            <label for='ttrEmployerName' class="control-label">Name of TJS or New Employer:</label>
             <br/>
             <input class="form-control" type='text' name="nttrEmployerName">
         </div>
         <div class='form-group'>
-            <label for='ttrJob' class="control-label">Description of TJS or New Job : </label>
+            <label for='ttrJob' class="control-label">Description of TJS or New Job :</label>
             <br/>
             <textarea class="form-control" name="nttrJob" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='nremark' class="control-label">Remark re Transfer, TJS or Repatriation: </label>
+            <label for='nremark' class="control-label">Remarks: re Transfer, TJS or Repatriation:</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -6378,11 +6367,10 @@ $(document).ready(function(){
         </div>
     </div>
 </form>
-<!---------------------------------->
-<!------------Edit Ends------------->
-<!---------------------------------->
 
-<!--aggrav Issue-->
+<!--------------------->
+<!--aggravating Issue-->
+<!--------------------->
 <%
 
     }
@@ -6406,7 +6394,7 @@ $(document).ready(function(){
             }
 
             double loss = issue.getAggravatingLoss();
-            
+
             String remark = issue.getAggravatingRemark();
 
             if (remark == null) {
@@ -6423,12 +6411,12 @@ $(document).ready(function(){
                     <input class="form-control" type='text' name="name" value="<%=type%>">
                 </div>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Monetary loss/value S$</label>
+                    <label for='name' class="control-label">Monetary loss/value of this Aggravating Issue S$</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=(loss == 0) ? "0.00" : loss%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark</label>
+                    <label for='remark' class="control-label">Remarks about Aggravating Issue:</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
                 </div>
@@ -6445,7 +6433,7 @@ $(document).ready(function(){
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='naggravissueType' class="control-label">Aggravating issue<span style="color: red">*</span></label>
+                <label for='naggravissueType' class="control-label">Aggravating issue<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="naggravissueType" name="naggravissueType" onchange="displayOther(this.id);">
                     <%
@@ -6466,12 +6454,12 @@ $(document).ready(function(){
                 <input class="form-control" type='text' name="naggravissueTypeMore">
             </div>
             <div class='form-group'>
-                <label for='naggravLoss' class="control-label">Monetary loss/value S$</label>
+                <label for='naggravLoss' class="control-label">Monetary loss/value of this Aggravating Issue S$</label>
                 <br/>
                 <input class="form-control" type='text' name="naggravLoss">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark </label>
+                <label for='nRemark' class="control-label">Remarks about Aggravating Issue:</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -6488,7 +6476,7 @@ $(document).ready(function(){
 
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='aggravissueType' class="control-label">Aggravating issue<span style="color: red">*</span></label>
+                <label for='aggravissueType' class="control-label">Aggravating issue<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="aggravissueType" name="aggravissueType" onchange="displayOther(this.id);">
                     <%
@@ -6516,12 +6504,12 @@ $(document).ready(function(){
                 <input class="form-control" type='text' name="aggravissueTypeMore">
             </div>
             <div class='form-group'>
-                <label for='aggravLoss' class="control-label">Monetary loss/value S$</label>
+                <label for='aggravLoss' class="control-label">Monetary loss/value of this Aggravating Issue S$</label>
                 <br/>
                 <input class="form-control" type='text' name="aggravLoss" value="<%=loss%>">
             </div>
             <div class='form-group'>
-                <label for='aggravRemark' class="control-label">Remark </label>
+                <label for='aggravRemark' class="control-label">Remarks about Aggravating Issue:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
             </div>
@@ -6539,7 +6527,9 @@ $(document).ready(function(){
     </div>
 </form>
 
-<!--Lead Case Worker-->            
+<!-------------------->
+<!--Lead Case Worker--> 
+<!-------------------->
 <%
     }
     if (leadCaseworkerId != null) {
@@ -6567,13 +6557,13 @@ $(document).ready(function(){
                     <input class="form-control" type='text' name="name" value="<%=name%>">
                 </div>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Lead Start Date</label>
+                    <label for='name' class="control-label">Start Date</label>
                     <br/>
                     <input class="form-control" type='text' name="name" 
                            value="<%=(startDate == null) ? "" : sdf.format(startDate)%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Lead End Date </label>
+                    <label for='remark' class="control-label">End Date </label>
                     <br/>
                     <input class="form-control" type='text' name="remark"
                            value="<%=(endDate == null) ? "" : sdf.format(endDate)%>">
@@ -6591,7 +6581,7 @@ $(document).ready(function(){
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nleadCaseWorkerName' class="control-label">Lead Caseworker<span style="color: red">*</span></label>
+                <label for='nleadCaseWorkerName' class="control-label">Lead Caseworker<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nleadCaseWorkerName">
                     <%
@@ -6605,19 +6595,13 @@ $(document).ready(function(){
                 </select>
 
             </div>
-
-            <!--div class='form-group' id='leadCaseWorkerOther' >
-                <label for='nleadCaseWorkerOther' class="control-label">Explain if above is other</label>
-                <br/>
-                <input class="form-control" type='text' name="nleadCaseWorkerOther">
-            </div-->
             <div class='form-group'>
-                <label for='nstartDate' class="control-label">Lead Start Date:</label>
+                <label for='nstartDate' class="control-label">Start Date:</label>
                 <br/>
                 <input class="form-control startDate" type='text' name="nstartDate">
             </div>
             <div class='form-group'>
-                <label for='nendDate' class="control-label">Lead End Date: </label>
+                <label for='nendDate' class="control-label">End Date:</label>
                 <br/>
                 <input class="form-control endDate" type='text' name="nendDate">
             </div>
@@ -6635,7 +6619,7 @@ $(document).ready(function(){
         <div class='edit_comp'>
             <div class='form-group'>
                 <label for='leadCaseWorker' class="control-label">Lead Caseworker
-                    <span style="color: red">*</span></label>
+                    <span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="leadCaseWorkerName">
                     <%
@@ -6654,20 +6638,14 @@ $(document).ready(function(){
                     %>  
                 </select>
             </div>
-            <!--
-            <div class='form-group' id='leadCaseWorkerOther' >
-                <label for='leadCaseWorkerOther' class="control-label">Explain if above is other</label>
-                <br/>
-                <input class="form-control" type='text' name="leadCaseWorkerOther">
-            </div>-->
             <div class='form-group'>
-                <label for='startDate' class="control-label">Lead Start Date:</label>
+                <label for='startDate' class="control-label">Start Date:</label>
                 <br/>
                 <input class="form-control startDate" type='text' name="startDate" 
                        value="<%=(startDate == null) ? "" : sdf.format(startDate)%>">
             </div>
             <div class='form-group'>
-                <label for='endDate' class="control-label">Lead End Date: </label>
+                <label for='endDate' class="control-label">End Date:</label>
                 <br/>
                 <input class="form-control endDate" type='text' name="endDate" 
                        value="<%=(endDate == null) ? "" : sdf.format(endDate)%>">
@@ -6686,7 +6664,9 @@ $(document).ready(function(){
     </div>
 </form>
 
-<!--Auxiliary Case Worker -->            
+<!------------------------->
+<!--Auxiliary Case Worker-->   
+<!------------------------->
 <%
     }
     if (auxCaseworkerId != null) {
@@ -6714,13 +6694,13 @@ $(document).ready(function(){
                     <input class="form-control" type='text' name="name" value="<%=name%>">
                 </div>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Auxiliary Start Date</label>
+                    <label for='name' class="control-label">Start Date:</label>
                     <br/>
                     <input class="form-control" type='text' name="name" 
                            value="<%=(startDate == null) ? "" : sdf.format(startDate)%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Auxiliary End Date </label>
+                    <label for='remark' class="control-label">End Date:</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" 
                            value="<%=(endDate == null) ? "" : sdf.format(endDate)%>">
@@ -6738,7 +6718,7 @@ $(document).ready(function(){
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nauxiliaryCaseWorkerName' class="control-label">Auxiliary Caseworker<span style="color: red">*</span></label>
+                <label for='nauxiliaryCaseWorkerName' class="control-label">Auxiliary Caseworker<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nauxiliaryCaseWorkerName">
                     <%
@@ -6752,20 +6732,13 @@ $(document).ready(function(){
                 </select>
 
             </div>
-            <!--
-        <div class='form-group' id='auxiliaryCaseWorkerOther' >
-            <label for='nauxiliaryCaseWorkerOther' class="control-label">Explain if above is other</label>
-            <br/>
-            <input class="form-control" type='text' name="nauxiliaryCaseWorkerOther">
-        </div>
-            -->
             <div class='form-group'>
-                <label for='nstartDate' class="control-label">Auxiliary Start Date:</label>
+                <label for='nstartDate' class="control-label">Start Date:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="nstartDate">
             </div>
             <div class='form-group'>
-                <label for='nendDate' class="control-label">Auxiliary End Date: </label>
+                <label for='nendDate' class="control-label">End Date:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="nendDate">
             </div>
@@ -6782,7 +6755,7 @@ $(document).ready(function(){
 
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='auxiliaryCaseWorker' class="control-label">Auxiliary Caseworker<span style="color: red">*</span></label>
+                <label for='auxiliaryCaseWorker' class="control-label">Auxiliary Caseworker<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="auxiliaryCaseWorker" name="auxiliaryCaseWorkerName">
                     <%
@@ -6801,20 +6774,14 @@ $(document).ready(function(){
                     %>  
                 </select>
             </div>
-
-            <!--div class='form-group' id='auxiliaryCaseWorkerOther' >
-                <label for='auxiliaryCaseWorkerOther' class="control-label">Explain if above is other</label>
-                <br/>
-                <input class="form-control" type='text' name="auxiliaryCaseWorkerOther">
-            </div-->
             <div class='form-group'>
-                <label for='startDate' class="control-label">Auxiliary Start Date:</label>
+                <label for='startDate' class="control-label">Start Date:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="startDate" 
                        value="<%=(startDate == null) ? "" : sdf.format(startDate)%>">
             </div>
             <div class='form-group'>
-                <label for='endDate' class="control-label">Auxiliary End Date: </label>
+                <label for='endDate' class="control-label">End Date:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="endDate" 
                        value="<%=(endDate == null) ? "" : sdf.format(endDate)%>">
@@ -6833,7 +6800,9 @@ $(document).ready(function(){
     </div>
 </form>
 
-<!--Salary Related History --> 
+<!---------------------------->
+<!--Salary & Related History-->
+<!---------------------------->
 <%
     }
 
@@ -6883,20 +6852,18 @@ $(document).ready(function(){
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=allowance%></textarea>
                 </div>
-
                 <div class='form-group'>
                     <label for='remark' class="control-label">Describe complaint about deductions:</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=deduction%></textarea>
                 </div>
-
                 <div class='form-group'>
                     <label for='remark' class="control-label">Describe complaint about kickbacks:</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=kickbacks%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Other Related Details: </label>
+                    <label for='remark' class="control-label">Other Related Details:</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=other%></textarea>
                 </div>
@@ -6916,7 +6883,7 @@ $(document).ready(function(){
                     <input class="form-control" type='text' name="remark" value="<%=oneYearValue%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remark:</label>
+                    <label for='remark' class="control-label">Remarks about Salary & Related History:</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
                 </div>
@@ -6939,7 +6906,7 @@ $(document).ready(function(){
                 <textarea class="form-control" name="nbasicSal" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='novertime' class="control-label">Describe complaint about overtime incorrect or not paid: </label>
+                <label for='novertime' class="control-label">Describe complaint about overtime incorrect or not paid:</label>
                 <br/>
                 <textarea class="form-control" name="novertime" rows="3"></textarea>
             </div>
@@ -6948,7 +6915,6 @@ $(document).ready(function(){
                 <br/>
                 <textarea class="form-control" name="nallowance" rows="3"></textarea>
             </div>
-
             <div class='form-group'>
                 <label for='ndeduction' class="control-label">Describe complaint about deductions:</label>
                 <br/>
@@ -6978,7 +6944,6 @@ $(document).ready(function(){
                     %>  
                 </select>
             </div>
-
             <div class='form-group' id='nmode_other_div' >
                 <label for='nmodeMore' class="control-label">Explain if above is other</label>
                 <br/>
@@ -6995,7 +6960,7 @@ $(document).ready(function(){
                 <input class="form-control" type='text' name="noneYearLoss">
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remark: </label>
+                <label for='nremark' class="control-label">Remarks about Salary & Related History:</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -7022,13 +6987,11 @@ $(document).ready(function(){
                 <br/>
                 <textarea class="form-control" name="overtime" rows="3"><%=overtime%></textarea>
             </div>
-
             <div class='form-group'>
                 <label for='allowance' class="control-label">Describe complaint about allowance incorrect or not paid:</label>
                 <br/>
                 <textarea class="form-control" name="allowance" rows="3"><%=allowance%></textarea>
             </div>
-
             <div class='form-group'>
                 <label for='deduction' class="control-label">Describe complaint about deductions:</label>
                 <br/>
@@ -7065,7 +7028,6 @@ $(document).ready(function(){
                     %>  
                 </select>
             </div>
-
             <div class='form-group' id='mode_other_div' >
                 <label for='modeMore' class="control-label">Explain if above is other</label><br/>
                 <input class="form-control" type='text' name="modeMore">
@@ -7081,7 +7043,7 @@ $(document).ready(function(){
                 <input class="form-control" type='text' name="oneYearLoss" value="<%=oneYearValue%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark: </label>
+                <label for='remark' class="control-label">Remarks about Salary & Related History:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
             </div>

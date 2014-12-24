@@ -4279,7 +4279,7 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nhow' class="control-label">How did worker get into job defined in Job Profile?<span style="color: red">*</span></label>
+                <label for='nhow' class="control-label">How did worker get into job defined in Job Profile?<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="workhistHow" name="nhow" onchange="displayOther(this.id);">
                     <%
@@ -4361,7 +4361,7 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nisProvided' class="control-label">Accommodation provided by employer?<span style="color: red">*</span></label>
+                <label for='nisProvided' class="control-label">Accommodation provided by employer?<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="accomProvided" name="nisProvided"  onchange="displayOther(this.id);">
                     <%
@@ -4471,7 +4471,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nworkpassType' class="control-label">Workpass specified in IPA<span style="color: red">*</span></label>
+                <label for='nworkpassType' class="control-label">Workpass specified in IPA<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="ipapassType" name="nworkpassType" onchange="displayOther(this.id);">
                     <%
@@ -4575,16 +4575,19 @@
 <!------------------------->
 <!---Problem Complements--->  
 <!------------------------->
+
+<!------------------------>
+<!--police report lodged-->
+<!------------------------>
 <%
 } else if (complement.equals("policareport")) {
     HashMap<Integer, String> complaintWho = DropdownDAO.retrieveAllDropdownListOfComplaint();
     HashMap<Integer, String> complaintMode = DropdownDAO.retrieveAllDropdownListOfComplaintMode();
 %>
+
 <form method="POST" id='policareport_pop_up' action="addProblemComplement.do" class="form complement_detailed_form problem_pop_up"  >
     <h4 class='add_comp'>Add A New Police Report Record </h4>
-    <!--add-->
     <div class='add_comp'>
-
         <div class='form-group '>
             <label for='date' class="control-label">Date police report made<span style="color: red">*</span>: </label>
             <br/>
@@ -4596,12 +4599,12 @@
             <input class="form-control" type='text' name="npoliceReportStation" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Accompanyign TWC2 person: </label>
+            <label for='' class="control-label">Accompanyinf TWC2 person: </label>
             <br/>
             <input class="form-control" type='text' name="nperson" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Details of police report: </label>
+            <label for='' class="control-label">Police Report Ref Number:</label>
             <br/>
             <input class="form-control" type='text' name="npoliceReportRefNumber" >
         </div>
@@ -4611,7 +4614,7 @@
             <textarea class="form-control" name="npoliceReportDetails" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remarks: </label>
+            <label for='' class="control-label">Remarks about Police Report: </label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -4624,14 +4627,17 @@
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-
-
 </form>
+
+<!-------------------------->
+<!--other complaint lodged-->
+<!-------------------------->
 <%
 } else if (complement.equals("othercomplaint")) {
     HashMap<Integer, String> complaintWho = DropdownDAO.retrieveAllDropdownListOfComplaint();
     HashMap<Integer, String> complaintMode = DropdownDAO.retrieveAllDropdownListOfComplaintMode();
 %>
+
 <form method="POST" id='othercomplaint_pop_up' action="addProblemComplement.do"  
       class="form complement_detailed_form problem_pop_up"  >
     <h4 class='add_comp'>Add A New Other Complaint Record</h4>
@@ -4648,7 +4654,7 @@
             <input class="form-control" type='text' name="ncomplaintAgency" >
         </div>
         <div class='form-group'>
-            <label for='complaintWho' class="control-label">This complaint is lodged by<span style="color: red">*</span></label>
+            <label for='complaintWho' class="control-label">This complaint is lodged by<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="complaintWho" name="ncomplaintWho">
                 <%
@@ -4689,7 +4695,7 @@
             <textarea class="form-control" name="ncomplaintDetails" rows="3"></textarea>
         </div>
         <div class='form-group '>
-            <label for='date' class="control-label">Remarks: </label>
+            <label for='date' class="control-label">Remarks about this Complaint: </label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -4705,6 +4711,7 @@
 
 
 </form>
+
 <%
 } else if (complement.equals("ttr")) {
     HashMap<Integer, String> ttrList = DropdownDAO.retrieveAllDropdownListOfTTRStatus();
@@ -4773,9 +4780,14 @@
 
 
 </form> 
+
+<!---------------------->
+<!--criminal milestone-->
+<!---------------------->
 <%} else if (complement.equals("cmilestone")) {
     HashMap<Integer, String> crList = DropdownDAO.retrieveAllDropdownListOfMilestoneCriminal();
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='milestonecr_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <h4 class='add_comp'>Add A New Case Milestone Reached(Criminal) </h4>
     <!--add-->
@@ -4787,7 +4799,7 @@
             <input class="form-control dateInput" type='text' name="ndate">
         </div>
         <div class='form-group'>
-            <label for='nmilestoneCRReached' class="control-label">Miestone Reached: <span style="color: red">*</span></label>
+            <label for='nmilestoneCRReached' class="control-label">Miestone Reached: <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneCRReached">
                 <%
@@ -4833,9 +4845,14 @@
 
 
 </form>
+
+<!-------------------------->
+<!--non criminal milestone-->
+<!-------------------------->
 <%} else if (complement.equals("ncmilestone")) {
     HashMap<Integer, String> ncList = DropdownDAO.retrieveAllDropdownListOfMilestoneNonCriminal();
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='milestonenc_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <h4 class='add_comp'>Add A New Case Milestone Reached(non-criminal) </h4>
     <!--add-->
@@ -4847,7 +4864,7 @@
             <input class="form-control dateInput input-append date dateInput" type='text' name="ndate">
         </div>
         <div class='form-group'>
-            <label for='nmilestoneNCReached' class="control-label">Milestone Reached: <span style="color: red">*</span></label>
+            <label for='nmilestoneNCReached' class="control-label">Milestone Reached: <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneNCReached" onchange="displayOther(this.id);">
                 <%
@@ -4885,8 +4902,13 @@
 
 
 </form>
+
+<!------->
+<!--TTR-->
+<!------->
 <%} else if (complement.equals("trafficking")) {
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='trafficking_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
     <h4 class='add_comp'>Add Trafficking Indicators </h4>
@@ -4895,7 +4917,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date of assessment<span style="color: red">*</span></label>
+                <label for='ndate' class="control-label">Date of assessment<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ndate">
             </div>
@@ -5189,8 +5211,12 @@
     </div>
 </form>
 
+<!------------------->
+<!--r2r Appointment-->
+<!------------------->
 <%} else if (complement.equals("r2r")) {
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='r2r_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <h4 class='add_comp'>Add A New R2R Record </h4>
     <!--add-->
@@ -5269,21 +5295,25 @@
 
 
 </form>
+
+<!------------->
+<!--mc stauts-->
+<!------------->
 <%} else if (complement.equals("mc")) {
     HashMap<Integer, String> statusList = DropdownDAO.retrieveAllDropdownListOfMCStatus();
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='mc_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <h4 class='add_comp'>Add A New MC/Light Duty Record </h4>
     <!--add-->
     <div class='add_comp'>
-
         <div class='form-group'>
-            <label for='' class="control-label">Enter New Date: <span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Date of Update<span style="color: red">*</span>: </label>
             <br/>
             <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Enter Status<span style="color: red">*</span></label>
+            <label for='' class="control-label">Current MC/Light Duty Status<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nmcStatus" name="nmcStatus">
                 <%
@@ -5296,23 +5326,22 @@
                 %>  
             </select>
         </div>
-
         <div class='form-group'>
             <label for='location' class="control-label">Explain if above is 'Other': </label>
             <br/>
             <input class="form-control" type='text' name="nmcStatusMore">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">MC Expiry Date: </label>
+            <label for='' class="control-label">Latest Known MC Expiry Date: </label>
             <br/>
             <input class="form-control dateInput" type='text' name="nexpDate">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Cumulative MC Days: </label>
+            <label for='' class="control-label">Cumulative MC Days so far:</label>
             <input class="form-control" type='text' name="nexpCum">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remarks: </label>
+            <label for='' class="control-label">Remarks about MC Status: </label>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
@@ -5330,6 +5359,10 @@
 
 
 </form>
+
+<!------------>
+<!--hospital-->
+<!------------>
 <%} else if (complement.equals("hospital")) {
     HashMap<Integer, String> names = DropdownDAO.retrieveAllDropdownListOfHosipital();
 %>
@@ -5338,18 +5371,16 @@
     <h4 class='add_comp'>Add A New Hospital Record</h4>
     <!--add-->
     <div class='add_comp'>
-
         <div class='form-group'>
             <label for='' class="control-label">Date of update<span style="color: red">*</span>: </label>
             <br/>
             <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Hospital Name<span style="color: red">*</span></label>
+            <label for='' class="control-label">Current Hospital<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nhospName" name="nhospName" onchange="displayOther(this.id);">
-                <%
-                    for (String name : names.values()) {
+                <%            for (String name : names.values()) {
                 %>
                 <option><%=name%></option>
                 <%
@@ -5358,7 +5389,6 @@
                 %>  
             </select>
         </div>
-
         <div class='form-group' id="nhospName_other_div" >
             <label for='nhospNameMore' class="control-label">Explain if above is 'Other': </label>
             <br/>
@@ -5370,7 +5400,7 @@
             <input class="form-control" type='text' name="nhospDoctor">
         </div>
         <div class='form-group'>
-            <label for='nremark' class="control-label">Remarks: </label>
+            <label for='nremark' class="control-label">Remarks about Hospital: </label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -5378,32 +5408,29 @@
         <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="hospital"/>
-
         <div class="form-group btn_group">
             <button type='submit' class="btn modal_btn add_comp ">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-</div>
-
-
 </form>
 
+<!------------------------->
+<!--non wica claim lodged-->
+<!------------------------->
 <%} else if (complement.equals("nonwicaclaim")) {
 %>
+
 <form method="POST"  action="addProblemComplement.do"  id='nonwicaclaim_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
     <h4 class='add_comp'>Add Non-Wica Claim Details</h4>
     <div class='form-group'>
-
-
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date MOM notified<span style="color: red">*</span></label>
+                <label for='ndate' class="control-label">Date MOM notified<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ndate">
             </div>
-
             <div class='form-group'>
                 <label for='nloss' class="control-label">Initial value of claim S$</label>
                 <br/>
@@ -5425,11 +5452,10 @@
                 <textarea class="form-control" name="nbasis" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remarks</label>
+                <label for='remark' class="control-label">Remarks about Medical Claim:</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
-
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
@@ -5439,16 +5465,18 @@
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
-
     </div>
 </form>
+
+<!--------------->
+<!--Wica status-->
+<!--------------->
 <%} else if (complement.equals("wica")) {
     HashMap<Integer, String> wicaList = DropdownDAO.retrieveAllDropdownListOfWica();
 %>
 
 <form method="POST"  action="addProblemComplement.do"  id='wica_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <h4 class='add_comp'>Add A New WICA Monthly Status</h4>
-    <!--add-->
     <div class='add_comp'>
 
         <div class='form-group'>
@@ -5457,7 +5485,7 @@
             <input class="form-control dateInput" type='text' name="ndate">
         </div>
         <div class='form-group'>
-            <label for='nwicaStatus' class="control-label">Wika Status <span style="color: red">*</span>:</label>
+            <label for='nwicaStatus' class="control-label">WICA Status <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nwicaStatus" name="nwicaStatus" onchange="displayOther(this.id);">
                 <%
@@ -5477,17 +5505,17 @@
             <textarea class="form-control" name="nwicaStatusMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='nwicaPoints' class="control-label">Wika Points: </label>
+            <label for='nwicaPoints' class="control-label">WICA Points: </label>
             <br/>
             <input class="form-control" type='text' name="nwicaPoints">
         </div>
         <div class='form-group'>
-            <label for='nwicaDollars' class="control-label">Wika S$ Compensation: </label>
+            <label for='nwicaDollars' class="control-label">WICA S$ Compensation: </label>
             <br/>
             <input class="form-control" type='text' name="nwicaDollars">
         </div>
         <div class='form-group'>
-            <label for='nwicaRemarks' class="control-label">Remarks re Wika Status : </label>
+            <label for='nwicaRemarks' class="control-label">Remarks about WICA Status : </label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -5502,45 +5530,46 @@
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-
-
-
 </form>
+
+<!--------------------->
+<!--wica claim lodged-->
+<!--------------------->
 <%} else if (complement.equals("wicaclaim")) {
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='wicaclaim_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
     <h4 class='add_comp'>Add Wica Claim Details</h4>
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span></label>
+                <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ndate">
             </div>
-
             <div class='form-group'>
-                <label for='nrefNumber' class="control-label">Reference number</label>
+                <label for='nrefNumber' class="control-label">WICA Ref number:</label>
                 <br/>
                 <input class="form-control" type='text' name="nrefNumber">
             </div>
             <div class='form-group'>
-                <label for='ninsurer' class="control-label">Insurance company</label>
+                <label for='ninsurer' class="control-label">WICA Insurance company:</label>
                 <br/>
                 <input class="form-control" type='text' name="ninsurer">
             </div>
             <div class='form-group'>
-                <label for='npolicyNumber' class="control-label">Insurance policy number</label>
+                <label for='npolicyNumber' class="control-label">WICA Insurance policy number:</label>
                 <br/>
                 <input class="form-control" type='text' name="npolicyNumber">
             </div>
             <div class='form-group'>
-                <label for='nreason' class="control-label">State whether this claim is for compensation, MC wages, expense reimbursement, etc</label>
+                <label for='nreason' class="control-label">State whether initially lodged by lawyer, worker or TWC2:</label>
                 <br/>
                 <textarea class="form-control" name="nreason" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks</label>
+                <label for='nremark' class="control-label">Remarks about WICA Claim:</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -5557,27 +5586,30 @@
 
     </div>
 </form>
+
+<!------------------->
+<!--illness History-->
+<!------------------->
 <%} else if (complement.equals("illnesscase")) {
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='illnesscase_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
     <h4 class='add_comp'>Add A Illness History Accommodation </h4>
     <div class='form-group'>
-
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nstartTime' class="control-label">Illness Start Time<span style="color: red">*</span></label>
+                <label for='nstartTime' class="control-label">When Illness Begin<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="nstartTime">
             </div>
-
             <div class='form-group'>
-                <label for='ndiagnoseTime' class="control-label">Illness diagnosed time</label>
+                <label for='ndiagnoseTime' class="control-label">When Illness diagnosed:</label>
                 <br/>
                 <input class="form-control" type='text' name="ndiagnoseTime">
             </div>
             <div class='form-group'>
-                <label for='ndiagnosePerson' class="control-label">Illness Diagnosed Person</label>
+                <label for='ndiagnosePerson' class="control-label">Who (Doctor/Hospital Name) Diagnosed:</label>
                 <br/>
                 <input class="form-control" type='text' name="ndiagnosePerson">
             </div>
@@ -5586,7 +5618,6 @@
                 <br/>
                 <input class="form-control" type='text' name="nnature">
             </div>
-
             <div class='form-group'>
                 <lable for='nworkRelated' class='control-label'>Does worker consider illness work-related?</lable>
                 <br/>
@@ -5596,13 +5627,13 @@
                     <option>Don't know</option>
                 </select>
             </div>
-            <div class='form-group' id='workRelatedYes_div' style="display: none">
+            <div class='form-group' id='workRelatedYes_div'>
                 <label for='nworkRelatedYes' class='control-label'>If worker thinks work-related, why?</label>
                 <br/>
                 <textarea class="form-control" name="nworkRelatedYes" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks</label>
+                <label for='nremark' class="control-label">Remarks about Illness History:</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -5619,8 +5650,13 @@
 
     </div>
 </form>
+
+<!------------------>
+<!--injury History-->
+<!------------------>
 <%} else if (complement.equals("injurycase")) {
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='injurycase_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
     <h4 class='add_comp'>Add A Injury History Accommodation </h4>
@@ -5628,12 +5664,12 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date of injury<span style="color: red">*</span></label>
+                <label for='ndate' class="control-label">Date of injury<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ndate" >
             </div>
             <div class='form-group'>
-                <label for='ntime' class="control-label">Approximate time of injury </label>
+                <label for='ntime' class="control-label">Approx time of injury: </label>
                 <br/>
                 <input class="form-control" type='text' name="ntime">
             </div>
@@ -5650,19 +5686,16 @@
                     <option>Yes</option>
                 </select>
             </div>
-
             <div class='form-group'>
                 <label for='nbodyPart' class="control-label">Body part(s) injured</label>
                 <br/>
                 <textarea class="form-control" name="nbodyPart" rows="3"></textarea>
             </div>
-
             <div class='form-group'>
                 <label for='nhow' class="control-label">How injury happened</label>
                 <br/>
                 <textarea class="form-control" name="nhow" rows="3"></textarea>
             </div>
-
             <div class='form-group'>
                 <label for='nambulance' class="control-label">Was worker conveyed to hospital in ambulance?</label>
                 <br/>
@@ -5673,11 +5706,10 @@
                 </select>
             </div>
             <div class='form-group'>
-                <label for='ntreatement' class="control-label">Where initially treated</label>
+                <label for='ntreatement' class="control-label">Where (clinic/Hospital) initially treated</label>
                 <br/>
                 <input class="form-control" type='text' name="ntreatement">
             </div>
-
             <div class='form-group'>
                 <label for='nworkRelated' class="control-label">Does worker consider incident work-related?</label>
                 <br/>
@@ -5688,7 +5720,7 @@
                 </select>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks</label>
+                <label for='nremark' class="control-label">Remarks about Injury History:</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -5704,28 +5736,29 @@
 
     </div>
 </form>
+
+<!------------------->
+<!--case discussion-->
+<!------------------->
 <%} else if (complement.equals("casediscussion")) {
     HashMap<Integer, String> locations = DropdownDAO.retrieveAllDropdownListOfDiscussWhere();
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='casediscussion_pop_up' class="form complement_detailed_form problem_pop_up"  >
-
     <h4 class='add_comp'>Add A New Case Discussion</h4>
-
-    <!--add-->
     <div class='add_comp'>
-
         <div class='form-group'>
-            <label for='' class="control-label">Discussion Date<span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Date of Discussion, Assistance or Information-Receipt<span style="color: red">*</span>: </label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Approx Time of discussion<span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Approx Time of event </label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTime" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Location/Mode of discussion<span style="color: red">*</span></label>
+            <label for='' class="control-label">Mode/Location of Discussion, Assistance or Information-Receipt<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="discussionWhere" name="ndiscussionWhere" onchange="displayOther(this.id);">
                 <%
@@ -5738,14 +5771,13 @@
                 %>  
             </select>
         </div>
-
         <div class='form-group' id="discussionWhere_other_div" >
             <label for='location' class="control-label">Explain if above is 'Other': </label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionWhereMore">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Was worker participating: <span style="color: red">*</span>: </label>
+            <label for='' class="control-label">Was worker participating:</label>
             <br/>
             <select class="form-control" id="isworkerpresent" name="ndiscussionWorkerPresent">
                 <option selected>Yes</option>
@@ -5753,37 +5785,37 @@
             </select>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">TWC2 Person 1<span style="color: red">*</span>: </label>
+            <label for='' class="control-label">TWC2 Person Consulted, Assisting or Informed<span style="color: red">*</span>: </label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTWC2P1" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">TWC2 Person 2:</label>
+            <label for='' class="control-label">Names of Other TWC2 Persons Present:</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTWC2P2" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Other Person Presented:</label>
+            <label for='' class="control-label">Names of Other Persons Present:</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionOtherPerson" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Translator:</label>
+            <label for='' class="control-label">Name of Translator(s) Present:</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTranslator" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Topic<span style="color: red">*</span>:  </label>
+            <label for='' class="control-label">Topic of Discussion/Information Received<span style="color: red">*</span>:  </label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTopic" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Gist:</label>
+            <label for='' class="control-label">Gist of Discussion or New Information Received:</label>
             <br/>
             <textarea class="form-control" name="ndiscussionGist" rows="4"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Assistance/referral provided:</label>
+            <label for='' class="control-label">Immediate Assistance or Referral Provided:</label>
             <br/>
             <textarea class="form-control" name="ndiscussionAssist" rows="3"></textarea>
         </div>
@@ -5798,7 +5830,7 @@
             <textarea class="form-control" name="ndiscussionAction" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remarks: </label>
+            <label for='' class="control-label">Internal Remarks about Discussion:</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -5812,12 +5844,15 @@
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-
-
 </form>
+
+<!----------------------->
+<!--salary claim lodged--> 
+<!-----------------------> 
 <%
 } else if (complement.equals("salarycalim")) {
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='salarycalim_pop_up' 
       class="form complement_detailed_form problem_pop_up"  >
 
@@ -5826,7 +5861,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span></label>
+                <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ndate">
             </div>
@@ -5854,16 +5889,18 @@
 
     </div>
 </form>
+
+<!---------------------------->
+<!--Salary & Related History-->
+<!---------------------------->
 <%} else if (complement.equals("salaryhistory")) {
     HashMap<Integer, String> modeOfPayment = DropdownDAO.retrieveAllDropdownListOfSalaryMode();
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='salaryhistory_pop_up' 
       class="form complement_detailed_form problem_pop_up"  >
     <h4 class='add_comp'>Add A New Salary & Related History </h4>
     <div class='form-group'>
-
-
-
         <div class='add_comp'>
             <div class='form-group'>
                 <label for='nbasic' class="control-label">Describe complaint about basic salary incorrect or not paid<span style="color: red">*</span>:</label>
@@ -5880,7 +5917,6 @@
                 <br/>
                 <textarea class="form-control" name="nallowance" rows="3"></textarea>
             </div>
-
             <div class='form-group'>
                 <label for='ndeduction' class="control-label">Describe complaint about deductions:</label>
                 <br/>
@@ -5910,7 +5946,6 @@
                     %>  
                 </select>
             </div>
-
             <div class='form-group' id='mode_other_div' >
                 <label for='nmodeMore' class="control-label">Explain if above is other</label>
                 <br/>
@@ -5927,7 +5962,7 @@
                 <input class="form-control" type='text' name="noneYearLoss">
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks: </label>
+                <label for='nremark' class="control-label">Remarks about Salary & Related History: </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -5940,12 +5975,16 @@
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
-
     </div>
 </form>
+
+<!------------------->
+<!--law Firm Status-->
+<!------------------->
 <%} else if (complement.equals("lawyer")) {
     HashMap<Integer, String> lawFirmNameList = DropdownDAO.retrieveAllDropdownListOfLawFirms();
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='lawyer_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <h4 class='add_comp'>Add A New Law Firm Detail </h4>
     <!--add-->
@@ -5994,20 +6033,22 @@
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-
-
-
 </form>
+
+<!------------------------->
+<!--Auxiliary Case Worker-->   
+<!------------------------->
 <%} else if (complement.equals("auxcaseworker")) {
     HashMap<Integer, String> auxiliaryCaseworkerNameList = DropdownDAO.retrieveAllDropdownListOfCaseworkers();
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='auxcaseworker_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <h4 class='add_comp'>Add A New Auxiliary Caseworker </h4>
     <div class='form-group'>
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nauxiliaryCaseWorkerName' class="control-label">Auxiliary Caseworker<span style="color: red">*</span></label>
+                <label for='nauxiliaryCaseWorkerName' class="control-label">Auxiliary Caseworker<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nauxiliaryCaseWorkerName">
                     <%
@@ -6021,20 +6062,13 @@
                 </select>
 
             </div>
-            <!--
-        <div class='form-group' id='auxiliaryCaseWorkerOther' >
-            <label for='nauxiliaryCaseWorkerOther' class="control-label">Explain if above is other</label>
-            <br/>
-            <input class="form-control" type='text' name="nauxiliaryCaseWorkerOther">
-        </div>
-            -->
             <div class='form-group'>
-                <label for='nstartDate' class="control-label">Auxiliary Start Date:</label>
+                <label for='nstartDate' class="control-label">Start Date:</label>
                 <br/>
                 <input class="form-control startDate" type='text' name="nstartDate">
             </div>
             <div class='form-group'>
-                <label for='nendDate' class="control-label">Auxiliary End Date: </label>
+                <label for='nendDate' class="control-label">End Date: </label>
                 <br/>
                 <input class="form-control endDate" type='text' name="nendDate">
             </div>
@@ -6050,20 +6084,24 @@
 
     </div>
 </form>
+
+<!-------------------->
+<!--Lead Case Worker--> 
+<!-------------------->
 <%} else if (complement.equals("leadcaseworker")) {
     HashMap<Integer, String> leadCaseWorkerNameList = DropdownDAO.retrieveAllDropdownListOfCaseworkers();
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='leadcaseworker_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <h4 class='add_comp'>Add A New Lead Caseworker </h4>
     <div class='form-group'>
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nleadCaseWorkerName' class="control-label">Lead Caseworker<span style="color: red">*</span></label>
+                <label for='nleadCaseWorkerName' class="control-label">Lead Caseworker<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nleadCaseWorkerName">
-                    <%
-                        for (String leadCaseWorkerName : leadCaseWorkerNameList.values()) {
+                    <%            for (String leadCaseWorkerName : leadCaseWorkerNameList.values()) {
                     %>
                     <option><%=leadCaseWorkerName%></option>
                     <%
@@ -6073,19 +6111,13 @@
                 </select>
 
             </div>
-
-            <!--div class='form-group' id='leadCaseWorkerOther' >
-                <label for='nleadCaseWorkerOther' class="control-label">Explain if above is other</label>
-                <br/>
-                <input class="form-control" type='text' name="nleadCaseWorkerOther">
-            </div-->
             <div class='form-group'>
-                <label for='nstartDate' class="control-label">Lead Start Date:</label>
+                <label for='nstartDate' class="control-label">Start Date:</label>
                 <br/>
                 <input class="form-control startDate" type='text' name="nstartDate">
             </div>
             <div class='form-group'>
-                <label for='nendDate' class="control-label">Lead End Date: </label>
+                <label for='nendDate' class="control-label">End Date: </label>
                 <br/>
                 <input class="form-control endDate" type='text' name="nendDate">
             </div>
@@ -6101,9 +6133,14 @@
 
     </div>
 </form>
+
+<!--------------------->
+<!--aggravating Issue-->
+<!--------------------->
 <%} else if (complement.equals("aggravissue")) {
     HashMap<Integer, String> problemTypes = DropdownDAO.retrieveAllDropdownListOfProblems();
 %>
+
 <form method="POST" action="addProblemComplement.do"  id='aggravIssue_pop_up' 
       class="form complement_detailed_form problem_pop_up"  >
     <h4 class='add_comp'>Add A New Aggravating Issue </h4>
@@ -6111,7 +6148,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='naggravissueType' class="control-label">Aggravating issue<span style="color: red">*</span></label>
+                <label for='naggravissueType' class="control-label">Aggravating issue<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="aggravissueType" name="naggravissueType" onchange="displayOther(this.id);">
                     <%
@@ -6132,12 +6169,12 @@
                 <input class="form-control" type='text' name="naggravissueTypeMore">
             </div>
             <div class='form-group'>
-                <label for='naggravLoss' class="control-label">Monetary loss/value S$</label>
+                <label for='naggravLoss' class="control-label">Monetary loss/value of this Aggravating Issue S$</label>
                 <br/>
                 <input class="form-control" type='text' name="naggravLoss">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remarks </label>
+                <label for='nRemark' class="control-label">Remarks about Aggravating Issue </label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -6152,6 +6189,10 @@
         </div>
     </div>
 </form>
+
+<!---------------------------------------> 
+<!--Details & History of other Problems-->   
+<!---------------------------------------> 
 <%    } else if (complement.equals("othercase")) {
 %>
 <form method="POST" action="addProblemComplement.do"  id='othercase_pop_up' class="form complement_detailed_form problem_pop_up"  >
@@ -6160,7 +6201,7 @@
     <div class='form-group'>
 
         <div class='form-group'>
-            <label for='nother' class="control-label">Details of problem if it's not salary/injury/illness<span style="color: red">*</span></label>
+            <label for='nother' class="control-label">Details of problem if it's not salary/injury/illness<span style="color: red">*</span>:</label>
             <br/>
             <textarea class="form-control" name="nother" rows="3"></textarea>
         </div>
@@ -6171,7 +6212,7 @@
             <input class="form-control" type='text' name="nloss">
         </div>
         <div class='form-group'>
-            <label for='nremark' class="control-label">Remarks</label>
+            <label for='nremark' class="control-label">Remarks about History of Other Problems:</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
