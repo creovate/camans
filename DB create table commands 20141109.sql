@@ -1546,14 +1546,14 @@ Drop table if exists tbl_audit;
 Create table tbl_audit (
     Entry_date timestamp not null DEFAULT CURRENT_TIMESTAMP,
     ID int auto_increment not null,
-    NRIC_number varchar (12) not null, /*to indicate who did the action*/
+    username varchar (12) not null, /*to indicate who did the action*/
     Key_log varchar(20) not null, /*to know which key (problem,job or worker) was being edited. If it was on a user, user FIN would be recorded */
     FIN_log varchar (20) not null, /*to indicate the name of the worker or user whose attributes was changed/added */
     Action_type varchar(20) not null, /* Type of action - add, edit, delete, import, export */
 	Action_description_log varchar(255) null, /* descripton of action */
 
 	Primary Key (ID),
-    Foreign Key (NRIC_number) References tbl_user(NRIC_number)
+    Foreign Key (Username) References tbl_user(Username)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB;
 
