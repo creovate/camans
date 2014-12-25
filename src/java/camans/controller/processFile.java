@@ -48,7 +48,7 @@ public class processFile extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        //PrintWriter out = response.getWriter();//comment out because of fileOutputStream confusing
         
         try {
             
@@ -86,7 +86,7 @@ public class processFile extends HttpServlet {
                 String fileOrign = null;
                 while(iter.hasNext()) {
                     FileItemStream item = iter.next();
-                    if (item.isFormField()) {
+                    if (item.isFormField()) { //form items in isMultipart
                         String fieldName = item.getFieldName();
                         InputStream is = item.openStream();
                         byte[] b = new byte[is.available()];
@@ -100,36 +100,48 @@ public class processFile extends HttpServlet {
                         if (!item.getName().equals("")) {//only if there is file
                             //retrieve filePath of the app build folder
                             String filePath = getServletContext().getRealPath("/");
-                            //to append in image file name
+                            //to append in file name
                             String uniqueID = UUID.randomUUID().toString();
+                            FileOutputStream outStream = null;
+                            InputStream inStream = null;
                             try {
                                 File file = new File (filePath + File.separator + "workers");
                                 if (!file.exists()) {file.mkdir();}
                                 file = new File (filePath + File.separator + "workers" + File.separator + workerFinNum);
-                                //create a image fie directory with username
+                                //create a image fie directory with workerFinNumber
                                 if (!file.exists()) {file.mkdir();}
                                 //set the file Name
                                 fileOrign = item.getName();
                                 String fileName = uniqueID + "-xx-" + item.getName();
                                 file = new File(file.getAbsolutePath() + File.separator + fileName);
-                                FileOutputStream outStream = new FileOutputStream(file);
-                                InputStream inStream = item.openStream();
+                                //writing the file data
+                                outStream = new FileOutputStream(file);
+                                inStream = item.openStream();
                                 int bytesRead = 0;
                                 byte[] buffer  = new byte[1024];
                                 while((bytesRead=inStream.read(buffer))!= -1){
                                     outStream.write(buffer,0,bytesRead);
                                 }
-                                outStream.flush();
-                                outStream.close();
-                                inStream.close();
+                                
+                                //update the database
                                 String fileDir = "workers/" + workerFinNum + "/" + fileName;
                                 User _user = (User) request.getSession().getAttribute("userLogin");
                                 WorkerAttachment workerAttachment = new WorkerAttachment(workerFinNum,item.getName(),fileDir,_user.getUsername());
                                 WorkerComplementsDAO.addAttachmentDetails(workerAttachment);
                             } catch (Exception e) {
-                                out.println("Error:" + e);
+                                //think of how to display the error
+                                //do not process and show error page
+                                //log the errors to logs file
+                            } finally {
+                                if (outStream != null) {
+                                    outStream.flush();
+                                    outStream.close();
+                                }
+                                if (inStream != null) {
+                                    inStream.close();
+                                }
                             }
-                        } else {
+                        } else { //no file selected
                             error = "No File Selected";
                             request.getSession().setAttribute("errAttachMsg", error);
                         }
@@ -158,7 +170,8 @@ public class processFile extends HttpServlet {
                         request.getSession().setAttribute("errAttachMsg", error);
                         response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
                     } else {
-                        if (deleteFile.delete()) {                      
+                        if (deleteFile.delete()) {     
+                            //update database
                             success = workerAttachment.getDocumentName() + " has been successfully deleted!";
                             WorkerComplementsDAO.deleteWorkerAttachment(workerAttachment);
                             request.getSession().setAttribute("successAttachMsg", success);
@@ -217,8 +230,6 @@ public class processFile extends HttpServlet {
                 //==========================================//
                 //          Process File Download
                 //==========================================//   
-                    //out.println(action);
-                    //out.println(attachId);
                     int id = Integer.parseInt(attachId);
                     WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(id);
                     
@@ -239,25 +250,36 @@ public class processFile extends HttpServlet {
                         //modifies response
                         response.setContentType(mimeType);
                         response.setContentLength((int) dlFile.length());
-
+ 
                         // forces download
                         String headerKey = "Content-Disposition";
                         String headerValue = String.format("attachment; filename=\"%s\"", workerAttachment.getDocumentName());
                         response.setHeader(headerKey, headerValue);
 
-                        FileInputStream inStream = new FileInputStream(dlFile);
-                        //obtains the response's output stream
-                        ServletOutputStream outStream = response.getOutputStream();
+                        FileInputStream inStream = null;
+                        OutputStream outStream = null;
+                        
+                        try {
+                            inStream = new FileInputStream(dlFile);
+                            //obtains the response's output stream
+                            outStream = response.getOutputStream();
+                        
+                            byte[] buffer = new byte[1024];   
+                            int bytesRead = 0;
 
-                        byte[] buffer = new byte[1024];   
-                        int bytesRead = 0;
-
-                        while ((bytesRead = inStream.read(buffer)) != -1) {
-                            outStream.write(buffer, 0, bytesRead);
-                        }
-                        outStream.flush();
-                        inStream.close();
-                        outStream.close();
+                            while ((bytesRead = inStream.read(buffer)) != -1) {
+                                outStream.write(buffer, 0, bytesRead);
+                            }
+                            } catch (Exception e) {
+                                //need to think of how to display the error
+                                //do not process & show error page
+                                outStream.write("error".getBytes());    
+                            } finally {
+                                outStream.flush();
+                                inStream.close();
+                                outStream.close();
+                            }
+                        
                     } else {
                         error = "Selected File does not exist. Please check with admin.";
                         request.getSession().setAttribute("errAttachMsg", error);
@@ -268,9 +290,11 @@ public class processFile extends HttpServlet {
             }
         } catch (Exception e) {
             //do not process & show error page
-            out.println("error:" + e);    
+            //String tmp = "" + e;
+            //out.println("error:" + e);    
+            
         } finally {            
-            out.close();
+            //out.close();
         }
     }
 

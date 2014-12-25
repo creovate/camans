@@ -1537,59 +1537,24 @@ Create table tbl_benefit (
 )ENGINE = INNODB;
 
 /*
-**======================================
-** Extra 
-**======================================
-
-
-/*
-*=========================
-*Start of tbl_audit_type
-*=========================
-*/
-/*
-Drop table if exists tbl_audit_type;
-Create table tbl_audit_type (
-	ID int auto_increment not null,
-	Audit_type varchar(50) null UNIQUE,
-	Primary Key (ID)
-);
-
-Insert into tbl_audit_type (ID,Audit_type) Values (1, 'ADDED');
-Insert into tbl_audit_type (ID,Audit_type) Values (2, 'EDITED');
-Insert into tbl_audit_type (ID,Audit_type) Values (3, 'APPENEDED'); 
-Insert into tbl_audit_type (ID,Audit_type) Values (4, 'DELETED');
-Insert into tbl_audit_type (ID,Audit_type) Values (5, 'EXPORTED');
-
-
-/*
-*=========================
-*End of tbl_audit_type
-*=========================
-*/
-
-
-/*
 *========================
 * tbl_audit
 *========================
 */
-/*
+
 Drop table if exists tbl_audit;
 Create table tbl_audit (
     Entry_date timestamp not null DEFAULT CURRENT_TIMESTAMP,
     ID int auto_increment not null,
-    NRIC_number varchar (12) not null, //to indicate who did the action 
-    Key_log varchar(20) not null, //to know which key (problem,job or worker) was being edited. If it was on a user, user FIN would be recorded 
-    FIN_log varchar (20) not null, //to indicate the name of the worker or user whose attributes was changed/added 
-    Action_type varchar(20) not null, // Type of action. used for easy search 
-	Action_description_log varchar(255) null, //to know what was being done e.g. edit/ add etc 
+    NRIC_number varchar (12) not null, /*to indicate who did the action*/
+    Key_log varchar(20) not null, /*to know which key (problem,job or worker) was being edited. If it was on a user, user FIN would be recorded */
+    FIN_log varchar (20) not null, /*to indicate the name of the worker or user whose attributes was changed/added */
+    Action_type varchar(20) not null, /* Type of action - add, edit, delete, import, export */
+	Action_description_log varchar(255) null, /* descripton of action */
 
 	Primary Key (ID),
     Foreign Key (NRIC_number) References tbl_user(NRIC_number)
-    ON DELETE CASCADE ON UPDATE CASCADE,
-	Foreign Key (Action_type) References tbl_audit_type (Audit_type)
-	ON DELETE CASCADE ON UPDATE CASCADE
+    ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = INNODB;
 
 
@@ -1942,8 +1907,9 @@ Insert into tbl_dropdown (ID, dropdownType, Name, Other) Values (289, 'Bene_type
 Insert into tbl_user (NRIC_number,Full_name, Alias, Username, Password, Email_address, Phone_number, Gender, Role, Status) 
 	Values ("G1234567A", 'FullName', 'Alias', 'specialist', 'specialist', 'email@email.com', '12345', 'Male', "Specialist", "Active");
 Insert into tbl_user (NRIC_number,Full_name, Alias, Username, Password, Email_address, Phone_number, Gender, Role, Status) 
-	Values ("S0000000S", 'FullName', 'Alias', 'superadmin', 'superadmin', 'email@email.com', '12345', 'Male', "Administrator", "Active");
-	
+	Values ("S0000000S", 'FullName', 'Alias', 'superadmin', '1000:713dd55467268ec15408f4f8ec970d4285179a121ca02ecf:2135aeab9a435c855956a4cdfaef2c7db9d89a808e0494e1', 'email@email.com', '12345', 'Male', "Administrator", "Active");
+
+/*	
 Insert into tbl_user (NRIC_number,Full_name, Alias, Username, Password, Email_address, Phone_number, Gender, Role, Status) 
 	Values ("S0000001A", 'Username1', 'Alias', 'username1', 'username1', 'email@email.com', '12345', 'Male', "Specialist", "Active");
 Insert into tbl_user (NRIC_number,Full_name, Alias, Username, Password, Email_address, Phone_number, Gender, Role, Status) 	
@@ -1958,6 +1924,6 @@ Insert into tbl_user (NRIC_number,Full_name, Alias, Username, Password, Email_ad
 	Values ("S0000006A", 'Username6', 'Alias', 'username6', 'username6', 'email@email.com', '12345', 'Male', "Specialist", "Active");
 Insert into tbl_user (NRIC_number,Full_name, Alias, Username, Password, Email_address, Phone_number, Gender, Role, Status) 	
 	Values ("S0000007A", 'Username7', 'Alias', 'username7', 'username7', 'email@email.com', '12345', 'Male', "Specialist", "Active");
-	
+*/
 
 

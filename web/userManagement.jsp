@@ -43,21 +43,16 @@
         <script src="js/dataTables.bootstrap.js"></script>        
         <!--jasny-bootstrap v3.1.3, added by soemyatmyat-->
         <script src="js/jasny-bootstrap.js"></script>     
+        <!--bootstrap session timeout, added by soemyatmyat-->
+        <script src="js/bootstrap-session-timeout.min.js"></script>  
         
         <link rel="shortcut icon" href="img/twc_logo.png">
    
         <title>CAMANS</title>
-        <script>
-            var secondsBeforeExpire = ${pageContext.session.maxInactiveInterval};
-            alert(secondsBeforeExpire);
-            var timeToDecide = 15; // Give client 15 seconds to choose.
-            setTimeout(function() {
-                alert('Your session is about to timeout in ' + timeToDecide + ' seconds!')
-            }, (secondsBeforeExpire - timeToDecide) * 1000);
-        </script>        
+     
     </head>
     
-    <body style='background:white' onload="setTimeout();">
+    <body style='background:white'>
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
         
@@ -577,6 +572,18 @@
         </div>                
             
         <script>
+            //ready the data in tables
+            $(document).ready(function () {
+                $.sessionTimeout({
+                    message: 'Your session will be expired in one minute.',
+                    keepAliveUrl: 'keep-alive.html',
+                    logoutUrl: 'index.jsp',
+                    redirUrl: 'logout.jsp',
+                    warnAfter: 60000,
+                    redirAfter: 120000
+                });
+            });
+            
             //ready the data in tables
             $(document).ready(function () {
                 $('#users-table').dataTable();

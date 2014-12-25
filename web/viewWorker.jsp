@@ -4437,25 +4437,25 @@
                             <div class="tab-pane active" id="attachment_complement">
                                 <br/><br/>
                                 <!-- Attachments Success & Error Display --->
-                                <% String successMsg = (String) request.getSession().getAttribute("successAttachMsg");
+                                <% String successAttachMsg = (String) request.getSession().getAttribute("successAttachMsg");
                                     request.getSession().removeAttribute("successAttachMsg");
                                     
-                                    String errorMsg = (String) request.getSession().getAttribute("errAttachMsg");
+                                    String errorAttachMsg = (String) request.getSession().getAttribute("errAttachMsg");
                                     request.getSession().removeAttribute("errAttachMsg"); %>
                                     
-                                <% if (successMsg != null)  { %>
+                                <% if (successAttachMsg != null)  { %>
 
                                     <div class="alert alert-info" role="alert">
                                        <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                       <%=successMsg%>
+                                       <%=successAttachMsg%>
                                    </div>
 
                                 <% } %>
-                                <% if (errorMsg != null)  { %>
+                                <% if (errorAttachMsg != null)  { %>
 
                                  <div class="alert alert-danger" role="alert">
                                     <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                    <%=errorMsg%>
+                                    <%=errorAttachMsg%>
                                 </div>
 
                                 <% } %>
@@ -4629,11 +4629,19 @@
 
         <div class="col-md-offset-6" id="complement_header_tab">
             <ul class="nav nav-tabs " role="tablist" id="sub_nav_tabs">
-                <li id="worker_complement_tab" class="complement_tabs active"><a href="#worker_complement" role="tab" data-toggle="tab">Worker</a></li>
-                <li id="job_complement_tab" class="complement_tabs"><a href="#job_complement" role="tab" data-toggle="tab">Job</a></li>
-                <li id="problem_complement_tab" class="complement_tabs"><a href="#problem_complement" role="tab" data-toggle="tab">Problem</a></li>
-                <li id="benefit_complement_tab" class="complement_tabs"><a href="#benefit_complement" role="tab" data-toggle="tab">Benefit</a></li>
-                <li id="attachment_complement_tab" class="complement_tabs"><a href="#attachment_complement" role="tab" data-toggle="tab">Attachment</a></li>
+                <%  if (successAttachMsg != null || errorAttachMsg != null) { %>
+                    <li id="worker_complement_tab" class="complement_tabs"><a href="#worker_complement" role="tab" data-toggle="tab">Worker</a></li>
+                    <li id="job_complement_tab" class="complement_tabs"><a href="#job_complement" role="tab" data-toggle="tab">Job</a></li>
+                    <li id="problem_complement_tab" class="complement_tabs"><a href="#problem_complement" role="tab" data-toggle="tab">Problem</a></li>
+                    <li id="benefit_complement_tab" class="complement_tabs"><a href="#benefit_complement" role="tab" data-toggle="tab">Benefit</a></li>
+                    <li id="attachment_complement_tab" class="complement_tabs active"><a href="#attachment_complement" role="tab" data-toggle="tab">Attachment</a></li>                
+                <%  } else {    %>
+                    <li id="worker_complement_tab" class="complement_tabs active"><a href="#worker_complement" role="tab" data-toggle="tab">Worker</a></li>
+                    <li id="job_complement_tab" class="complement_tabs"><a href="#job_complement" role="tab" data-toggle="tab">Job</a></li>
+                    <li id="problem_complement_tab" class="complement_tabs"><a href="#problem_complement" role="tab" data-toggle="tab">Problem</a></li>
+                    <li id="benefit_complement_tab" class="complement_tabs"><a href="#benefit_complement" role="tab" data-toggle="tab">Benefit</a></li>
+                    <li id="attachment_complement_tab" class="complement_tabs"><a href="#attachment_complement" role="tab" data-toggle="tab">Attachment</a></li>
+                <%  }   %>
             </ul>
         </div>
         <script>
