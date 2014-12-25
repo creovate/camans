@@ -1894,7 +1894,7 @@
                                             <div class="col-md-1">
                                                 <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
                                                 <input type="hidden" name="jobKey" value="<%=latestJob.getJobKey()%>"/>
-                                                <input type="hidden" name="selectedType" value="problem"/>
+                                                <input type="hidden" name="problemKey" value="<%=latestProblem.getProbKey()%>"/>
                                                 <select class="form-control text-capitalize" id="problemSelected" name="selectedProblem" required>
                                                     <%
                                                         for (int i = 0; i < problemIds.size(); i++) {

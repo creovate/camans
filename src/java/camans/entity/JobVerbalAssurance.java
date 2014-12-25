@@ -42,8 +42,6 @@ public class JobVerbalAssurance {
         this.content = content;
     }
     
-    
-
     public int getId() {
         return id;
     }
@@ -107,8 +105,20 @@ public class JobVerbalAssurance {
     public void setJobKey(int jobKey) {
         this.jobKey = jobKey;
     }
+
+    @Override
+    public String toString() {
+        return "JobVerbalAssurance{" + "id=" + id + ", workerFinNum=" + workerFinNum + 
+                ", jobKey=" + jobKey + ", verbalName=" + verbalName + 
+                ", VerbalRelationship=" + VerbalRelationship + ", when=" + when + ", where=" + where + 
+                ", content=" + content + '}';
+    }
     
-    
+    public String toString2() {
+        return "JobVerbalAssurance{" + "WorkerFinNum=" + workerFinNum + ", verbalName=" + verbalName + 
+                ", VerbalRelationship=" + VerbalRelationship + ", when=" + when + ", where=" + where + 
+                ", content=" + content + '}';
+    }
     
             
 }

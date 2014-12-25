@@ -11,125 +11,144 @@ import java.sql.Date;
  * @author Xiaomeng
  */
 public class ProblemWica {
-	private int id;
-	private String workerFinNumber;
-	private int jobKey;
-	private int problemKey;
-	private Date wicaMonthlyUpdate;
-	private String wicaMonthlyStatus;
-	private String wicaMonthlyStatusMore;
-	private double wicaMonthlyPoints;
-	private double wicaMonthlyDollars;
-	private String wicaMonthlyRemarks;
-	
-	//constructor with id
-	public ProblemWica(int id, String workerFinNumber, int jobKey, int problemKey, 
-                Date wicaMonthlyUpdate, String wicaMonthlyStatus, String wicaMonthlyStatusMore, 
-                double wicaMonthlyPoints, double wicaMonthlyDollars, String wicaMonthlyRemarks) {
-		this.id = id;
-		this.workerFinNumber = workerFinNumber;
-		this.jobKey = jobKey;
-		this.problemKey = problemKey;
-		this.wicaMonthlyUpdate = wicaMonthlyUpdate;
-		this.wicaMonthlyStatus = wicaMonthlyStatus;
-		this.wicaMonthlyStatusMore = wicaMonthlyStatusMore;
-		this.wicaMonthlyPoints = wicaMonthlyPoints;
-		this.wicaMonthlyDollars = wicaMonthlyDollars;
-		this.wicaMonthlyRemarks = wicaMonthlyRemarks;
-	}
-	
-	//constructor without id
-	public ProblemWica(String workerFinNumber, int jobKey, int problemKey, Date wicaMonthlyUpdate, 
-                String wicaMonthlyStatus, String wicaMonthlyStatusMore, double wicaMonthlyPoints, 
-                double wicaMonthlyDollars, String wicaMonthlyRemarks) {
-		this.workerFinNumber = workerFinNumber;
-		this.jobKey = jobKey;
-		this.problemKey = problemKey;
-		this.wicaMonthlyUpdate = wicaMonthlyUpdate;
-		this.wicaMonthlyStatus = wicaMonthlyStatus;
-		this.wicaMonthlyStatusMore = wicaMonthlyStatusMore;
-		this.wicaMonthlyPoints = wicaMonthlyPoints;
-		this.wicaMonthlyDollars = wicaMonthlyDollars;
-		this.wicaMonthlyRemarks = wicaMonthlyRemarks;
-	}
+    private int id;
+    private String workerFinNumber;
+    private int jobKey;
+    private int problemKey;
+    private Date wicaMonthlyUpdate;
+    private String wicaMonthlyStatus;
+    private String wicaMonthlyStatusMore;
+    private double wicaMonthlyPoints;
+    private double wicaMonthlyDollars;
+    private String wicaMonthlyRemarks;
 
-	public int getId() {
-		return id;
-	}
+    //constructor with id
+    public ProblemWica(int id, String workerFinNumber, int jobKey, int problemKey, 
+            Date wicaMonthlyUpdate, String wicaMonthlyStatus, String wicaMonthlyStatusMore, 
+            double wicaMonthlyPoints, double wicaMonthlyDollars, String wicaMonthlyRemarks) {
+            this.id = id;
+            this.workerFinNumber = workerFinNumber;
+            this.jobKey = jobKey;
+            this.problemKey = problemKey;
+            this.wicaMonthlyUpdate = wicaMonthlyUpdate;
+            this.wicaMonthlyStatus = wicaMonthlyStatus;
+            this.wicaMonthlyStatusMore = wicaMonthlyStatusMore;
+            this.wicaMonthlyPoints = wicaMonthlyPoints;
+            this.wicaMonthlyDollars = wicaMonthlyDollars;
+            this.wicaMonthlyRemarks = wicaMonthlyRemarks;
+    }
 
-	public String getWorkerFinNumber() {
-		return workerFinNumber;
-	}
+    //constructor without id
+    public ProblemWica(String workerFinNumber, int jobKey, int problemKey, Date wicaMonthlyUpdate, 
+            String wicaMonthlyStatus, String wicaMonthlyStatusMore, double wicaMonthlyPoints, 
+            double wicaMonthlyDollars, String wicaMonthlyRemarks) {
+            this.workerFinNumber = workerFinNumber;
+            this.jobKey = jobKey;
+            this.problemKey = problemKey;
+            this.wicaMonthlyUpdate = wicaMonthlyUpdate;
+            this.wicaMonthlyStatus = wicaMonthlyStatus;
+            this.wicaMonthlyStatusMore = wicaMonthlyStatusMore;
+            this.wicaMonthlyPoints = wicaMonthlyPoints;
+            this.wicaMonthlyDollars = wicaMonthlyDollars;
+            this.wicaMonthlyRemarks = wicaMonthlyRemarks;
+    }
 
-	public int getJobKey() {
-		return jobKey;
-	}
+    public int getId() {
+            return id;
+    }
 
-	public int getProblemKey() {
-		return problemKey;
-	}
+    public String getWorkerFinNumber() {
+            return workerFinNumber;
+    }
 
-	public Date getWicaMonthlyUpdate() {
-		return wicaMonthlyUpdate;
-	}
+    public int getJobKey() {
+            return jobKey;
+    }
 
-	public String getWicaMonthlyStatus() {
-		return wicaMonthlyStatus;
-	}
+    public int getProblemKey() {
+            return problemKey;
+    }
 
-	public String getWicaMonthlyStatusMore() {
-		return wicaMonthlyStatusMore;
-	}
+    public Date getWicaMonthlyUpdate() {
+            return wicaMonthlyUpdate;
+    }
 
-	public double getWicaMonthlyPoints() {
-		return wicaMonthlyPoints;
-	}
+    public String getWicaMonthlyStatus() {
+            return wicaMonthlyStatus;
+    }
 
-	public double getWicaMonthlyDollars() {
-		return wicaMonthlyDollars;
-	}
+    public String getWicaMonthlyStatusMore() {
+            return wicaMonthlyStatusMore;
+    }
 
-	public String getWicaMonthlyRemarks() {
-		return wicaMonthlyRemarks;
-	}
+    public double getWicaMonthlyPoints() {
+            return wicaMonthlyPoints;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public double getWicaMonthlyDollars() {
+            return wicaMonthlyDollars;
+    }
 
-	public void setWorkerFinNumber(String workerFinNumber) {
-		this.workerFinNumber = workerFinNumber;
-	}
+    public String getWicaMonthlyRemarks() {
+            return wicaMonthlyRemarks;
+    }
 
-	public void setJobKey(int jobKey) {
-		this.jobKey = jobKey;
-	}
+    public void setId(int id) {
+            this.id = id;
+    }
 
-	public void setProblemKey(int problemKey) {
-		this.problemKey = problemKey;
-	}
+    public void setWorkerFinNumber(String workerFinNumber) {
+            this.workerFinNumber = workerFinNumber;
+    }
 
-	public void setWicaMonthlyUpdate(Date wicaMonthlyUpdate) {
-		this.wicaMonthlyUpdate = wicaMonthlyUpdate;
-	}
+    public void setJobKey(int jobKey) {
+            this.jobKey = jobKey;
+    }
 
-	public void setWicaMonthlyStatus(String wicaMonthlyStatus) {
-		this.wicaMonthlyStatus = wicaMonthlyStatus;
-	}
+    public void setProblemKey(int problemKey) {
+            this.problemKey = problemKey;
+    }
 
-	public void setWicaMonthlyStatusMore(String wicaMonthlyStatusMore) {
-		this.wicaMonthlyStatusMore = wicaMonthlyStatusMore;
-	}
+    public void setWicaMonthlyUpdate(Date wicaMonthlyUpdate) {
+            this.wicaMonthlyUpdate = wicaMonthlyUpdate;
+    }
 
-	public void setWicaMonthlyPoints(double wicaMonthlyPoints) {
-		this.wicaMonthlyPoints = wicaMonthlyPoints;
-	}
+    public void setWicaMonthlyStatus(String wicaMonthlyStatus) {
+            this.wicaMonthlyStatus = wicaMonthlyStatus;
+    }
 
-	public void setWicaMonthlyDollars(double wicaMonthlyDollars) {
-		this.wicaMonthlyDollars = wicaMonthlyDollars;
-	}
+    public void setWicaMonthlyStatusMore(String wicaMonthlyStatusMore) {
+            this.wicaMonthlyStatusMore = wicaMonthlyStatusMore;
+    }
 
-	public void setWicaMonthlyRemarks(String wicaMonthlyRemarks) {
-		this.wicaMonthlyRemarks = wicaMonthlyRemarks;
-	}
+    public void setWicaMonthlyPoints(double wicaMonthlyPoints) {
+            this.wicaMonthlyPoints = wicaMonthlyPoints;
+    }
+
+    public void setWicaMonthlyDollars(double wicaMonthlyDollars) {
+            this.wicaMonthlyDollars = wicaMonthlyDollars;
+    }
+
+    public void setWicaMonthlyRemarks(String wicaMonthlyRemarks) {
+            this.wicaMonthlyRemarks = wicaMonthlyRemarks;
+    }
+
+    @Override
+    public String toString() {
+        return "ProblemWica{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
+                ", wicaMonthlyUpdate=" + wicaMonthlyUpdate + ", wicaMonthlyStatus=" + wicaMonthlyStatus + 
+                ", wicaMonthlyStatusMore=" + wicaMonthlyStatusMore + 
+                ", wicaMonthlyPoints=" + wicaMonthlyPoints + ", wicaMonthlyDollars=" + wicaMonthlyDollars + 
+                ", wicaMonthlyRemarks=" + wicaMonthlyRemarks + '}';
+    }
+
+    public String toString2() {
+        return "ProblemWica{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", wicaMonthlyUpdate=" + wicaMonthlyUpdate + ", wicaMonthlyStatus=" + wicaMonthlyStatus + 
+                ", wicaMonthlyStatusMore=" + wicaMonthlyStatusMore + 
+                ", wicaMonthlyPoints=" + wicaMonthlyPoints + ", wicaMonthlyDollars=" + wicaMonthlyDollars + 
+                ", wicaMonthlyRemarks=" + wicaMonthlyRemarks + '}';
+    }    
+    
 }

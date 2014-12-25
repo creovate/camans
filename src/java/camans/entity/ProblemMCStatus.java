@@ -21,8 +21,8 @@ public class ProblemMCStatus {
     private String MCStatus;
     private String MCStatusMore ;
     private Date MCExpDate;
-	private int MCDaysCumul;
-	private String MCRem;
+    private int MCDaysCumul;
+    private String MCRem;
 
     
     //constructor with id 
@@ -121,22 +121,36 @@ public class ProblemMCStatus {
         this.MCExpDate = MCExpDate;
     }
 	
-	 public int getMCDaysCumul() {
-        return MCDaysCumul;
-    }
+    public int getMCDaysCumul() {
+   return MCDaysCumul;
+}
 
     public void setMCDaysCumul(int MCDaysCumul) {
         this.MCDaysCumul = MCDaysCumul;
     }
 	
-	 public String getMCRem() {
-        return MCRem;
-    }
+    public String getMCRem() {
+   return MCRem;
+}
 
     public void setMCRem (String MCRem) {
         this.MCRem = MCRem;
     }
+
+    @Override
+    public String toString() {
+        return "ProblemMCStatus{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
+                ", MCUpdate=" + MCUpdate + ", MCStatus=" + MCStatus + 
+                ", MCStatusMore=" + MCStatusMore + ", MCExpDate=" + MCExpDate + 
+                ", MCDaysCumul=" + MCDaysCumul + ", MCRem=" + MCRem + '}';
+    }
 	
-    
+    public String toString2() {
+        return "ProblemMCStatus{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", MCUpdate=" + MCUpdate + ", MCStatus=" + MCStatus + 
+                ", MCStatusMore=" + MCStatusMore + ", MCExpDate=" + MCExpDate + 
+                ", MCDaysCumul=" + MCDaysCumul + ", MCRem=" + MCRem + '}';
+    }    
     
 }

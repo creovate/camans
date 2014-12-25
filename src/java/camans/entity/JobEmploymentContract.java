@@ -202,8 +202,34 @@ public class JobEmploymentContract {
     public void setContractRemarks(String contractRemarks) {
         this.contractRemarks = contractRemarks;
     }
+
+    @Override
+    public String toString() {
+        return "JobEmploymentContract{" + "id=" + id + ", workerFinNum=" + workerFinNum + 
+                ", jobKey=" + jobKey + ", shortName=" + shortName + ", contractDate=" + contractDate + 
+                ", contractWhere=" + contractWhere + ", contractlanguage=" + contractlanguage + 
+                ", contractOppName=" + contractOppName + 
+                ", contractOppRelationship=" + contractOppRelationship + 
+                ", contractOccupation=" + contractOccupation + 
+                ", contractBasicSalary=" + contractBasicSalary + 
+                ", contractAllowances=" + contractAllowances + 
+                ", contractDeductDetails=" + contractDeductDetails + 
+                ", contractDuration=" + contractDuration + ", contractDuress=" + contractDuress + 
+                ", contractRemarks=" + contractRemarks + '}';
+    }
     
-    
+    public String toString2() {
+        return "JobEmploymentContract{" + "WorkerFinNum=" + workerFinNum + ", shortName=" + shortName + 
+                ", contractDate=" + contractDate + ", contractWhere=" + contractWhere + 
+                ", contractlanguage=" + contractlanguage + ", contractOppName=" + contractOppName + 
+                ", contractOppRelationship=" + contractOppRelationship + 
+                ", contractOccupation=" + contractOccupation + 
+                ", contractBasicSalary=" + contractBasicSalary + 
+                ", contractAllowances=" + contractAllowances + 
+                ", contractDeductDetails=" + contractDeductDetails + 
+                ", contractDuration=" + contractDuration + 
+                ", contractDuress=" + contractDuress + ", contractRemarks=" + contractRemarks + '}';
+    }    
       
     
 }

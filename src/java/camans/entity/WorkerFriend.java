@@ -48,7 +48,6 @@ public class WorkerFriend {
         this.workerFinNum = workerFinNum;
     }
 
-
     public int getId() {
         return id;
     }
@@ -101,6 +100,9 @@ public class WorkerFriend {
     public String toString() {
         return "WorkerFriend{" + "workerFinNum=" + workerFinNum + ", id=" + id + ", name=" + name + ", phone=" + phone + ", relation=" + relation + ", remark=" + remark + ", obseleteDate=" + obseleteDate + '}';
     }
-    
+ 
+    public String toString2() {
+        return "WorkerFriend{" + "workerFinNum=" + workerFinNum + ", name=" + name + ", phone=" + phone + ", relation=" + relation + ", remark=" + remark + ", obseleteDate=" + obseleteDate + '}';
+    }    
     
 }

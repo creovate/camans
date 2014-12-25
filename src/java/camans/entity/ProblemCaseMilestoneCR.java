@@ -126,9 +126,9 @@ public class ProblemCaseMilestoneCR {
         this.MilesCRCharges = MilesCRCharges;
     }
 	
-	public String getMilesCRSentence() {
-        return MilesCRSentence;
-    }
+    public String getMilesCRSentence() {
+    return MilesCRSentence;
+}
 
     public void setMilesCRSentence(String MilesCRSentence) {
         this.MilesCRSentence = MilesCRSentence;
@@ -141,8 +141,22 @@ public class ProblemCaseMilestoneCR {
     public void setMilesCRRem(String MilesCRRem) {
         this.MilesNCRem = MilesCRRem;
     }
+
+    @Override
+    public String toString() {
+        return "ProblemCaseMilestoneCR{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
+                ", MilesCRDate=" + MilesCRDate + ", MilesCRReached=" + MilesCRReached + 
+                ", MilesCRReachedMore=" + MilesCRReachedMore + ", MilesCRCharges=" + MilesCRCharges + 
+                ", MilesCRSentence=" + MilesCRSentence + ", MilesNCRem=" + MilesNCRem + '}';
+    }
 	 
-	
+    public String toString2() {
+        return "ProblemCaseMilestoneCR{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", MilesCRDate=" + MilesCRDate + ", MilesCRReached=" + MilesCRReached + 
+                ", MilesCRReachedMore=" + MilesCRReachedMore + ", MilesCRCharges=" + MilesCRCharges + 
+                ", MilesCRSentence=" + MilesCRSentence + ", MilesNCRem=" + MilesNCRem + '}';
+    }    
     
     
 }

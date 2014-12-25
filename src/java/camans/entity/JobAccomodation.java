@@ -182,8 +182,26 @@ public class JobAccomodation {
     public void setJobKey(int jobKey) {
         this.jobKey = jobKey;
     }
+
+    @Override
+    public String toString() {
+        return "JobAccomodation{" + "id=" + id + ", workerFinNum=" + workerFinNum + 
+                ", jobKey=" + jobKey + ", accProvided=" + accProvided + 
+                ", accProvidedMore=" + accProvidedMore + ", accType=" + accType + 
+                ", accTypeMore=" + accTypeMore + ", accLocation=" + accLocation + 
+                ", accCondition=" + accCondition + ", accCharged=" + accCharged + 
+                ", accSelfPaid=" + accSelfPaid + ", accMeals=" + accMeals + ", accStart=" + accStart + 
+                ", accEnd=" + accEnd + ", accRemarks=" + accRemarks + '}';
+    }
     
-    
+    public String toString2() {
+        return "JobAccomodation{" + "WorkerFinNum=" + workerFinNum + ", accProvided=" + accProvided + 
+                ", accProvidedMore=" + accProvidedMore + ", accType=" + accType + 
+                ", accTypeMore=" + accTypeMore + ", accLocation=" + accLocation + 
+                ", accCondition=" + accCondition + ", accCharged=" + accCharged + 
+                ", accSelfPaid=" + accSelfPaid + ", accMeals=" + accMeals + ", accStart=" + accStart + 
+                ", accEnd=" + accEnd + ", accRemarks=" + accRemarks + '}';
+    }    
     
     
 }

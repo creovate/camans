@@ -74,11 +74,6 @@ public class JobPassDetails {
         this.workerFinNum = workerFinNum;
     }
 
-    @Override
-    public String toString() {
-        return "JobPassDetails{" + "id=" + id + ", workerFinNum=" + workerFinNum + ", jobKey=" + jobKey + ", passType=" + passType + ", passTypeMore=" + passTypeMore + ", passNum=" + passNum + ", passApplicationDate=" + passApplicationDate + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", issuer=" + issuer + ", remarks=" + remarks + ", obsoleteDate=" + obsoleteDate + '}';
-    }
-
     public int getJobKey() {
         return jobKey;
     }
@@ -158,7 +153,22 @@ public class JobPassDetails {
     public void setObsoleteDate(Date obsoleteDate) {
         this.obsoleteDate = obsoleteDate;
     }
-    
+ 
+    @Override
+    public String toString() {
+        return "JobPassDetails{" + "id=" + id + ", workerFinNum=" + workerFinNum + ", jobKey=" + 
+                jobKey + ", passType=" + passType + ", passTypeMore=" + passTypeMore + ", passNum=" + 
+                passNum + ", passApplicationDate=" + passApplicationDate + ", issueDate=" 
+                + issueDate + ", expiryDate=" + expiryDate + ", issuer=" + issuer + ", remarks=" + 
+                remarks + ", obsoleteDate=" + obsoleteDate + '}';
+    }
+
+    public String toString2() {
+        return "JobPassDetails{" + "WorkerFinNum=" + workerFinNum + ", passType=" + passType + 
+                ", passTypeMore=" + passTypeMore + ", passNum=" + passNum + ", passApplicationDate=" + 
+                passApplicationDate + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + 
+                ", issuer=" + issuer + ", remarks=" + remarks + ", obsoleteDate=" + obsoleteDate + '}';
+    }
     
     
     

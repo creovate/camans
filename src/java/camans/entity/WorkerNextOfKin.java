@@ -149,6 +149,9 @@ public class WorkerNextOfKin {
     public String toString() {
         return "WorkerNextOfKin{" + "workerFinNum=" + workerFinNum + ", id=" + id + ", name=" + name + ", relation=" + relation + ", document=" + document + ", phoneNumber=" + phoneNumber + ", digital=" + digital + ", address=" + address + ", proof=" + proof + ", remark=" + remark + ", obseleteDate=" + obseleteDate + '}';
     }    
-    
+
+    public String toString2() {
+        return "WorkerNextOfKin{" + "workerFinNum=" + workerFinNum + ", name=" + name + ", relation=" + relation + ", document=" + document + ", phoneNumber=" + phoneNumber + ", digital=" + digital + ", address=" + address + ", proof=" + proof + ", remark=" + remark + ", obseleteDate=" + obseleteDate + '}';
+    }  
     
 }

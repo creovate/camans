@@ -392,7 +392,17 @@ public class ProblemTraffickingIndicator {
     public void setTipi82(String Tipi82) {
         this.Tipi82 = Tipi82;
     }
+
+    @Override
+    public String toString() {
+        return "ProblemTraffickingIndicator{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
+                ", TipiAssessDate=" + TipiAssessDate + ", TipiAssessName=" + TipiAssessName + '}';
+    }
     
-    
+    public String toString2() {
+        return "ProblemTraffickingIndicator{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", TipiAssessDate=" + TipiAssessDate + ", TipiAssessName=" + TipiAssessName + '}';
+    }
     
 }

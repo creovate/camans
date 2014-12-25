@@ -5,7 +5,10 @@
 package camans.controller;
 
 import camans.dao.BenefitDAO;
+import camans.dao.UserAuditLogDAO;
 import camans.entity.Benefit;
+import camans.entity.User;
+import camans.entity.UserAuditLog;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -41,6 +44,9 @@ public class processAddBenefit extends HttpServlet {
             int jobKey = Integer.parseInt(request.getParameter("jobkey"));
             int problemKey = Integer.parseInt(request.getParameter("probKey"));
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+            
+            User _user = (User) request.getSession().getAttribute("userLogin");
+            String auditChange = "";
             if (action.equals("add")) {
                 String beneDateStr = request.getParameter("nisDate");
                 String beneGiver = request.getParameter("ngivenby");
@@ -74,6 +80,13 @@ public class processAddBenefit extends HttpServlet {
                         beneType, beneTypeMore, beneSerial, benePurpose, beneRem, beneValue);
                 //add  to db  
                 BenefitDAO.addBenefit(benefit);
+                
+                //log to audit
+                auditChange = benefit.toString2();
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
+                        workerFinNum, "Added", "Benefit: " + auditChange);
+
+                UserAuditLogDAO.addUserAuditLog(userAuditLog);  
             } else if (action.equals("edit")) {
                 String beneDateStr = request.getParameter("isDate");
                 String beneGiver = request.getParameter("givenby");
@@ -109,10 +122,18 @@ public class processAddBenefit extends HttpServlet {
                 //update to db
                 out.println(benefit.toString());
                 BenefitDAO.updateBenefit(benefit);
-                out.println("here2");
+                
+                //log to audit
+                auditChange = benefit.toString2();
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
+                        workerFinNum, "Added", "Benefit: " + auditChange);
+
+                UserAuditLogDAO.addUserAuditLog(userAuditLog);  
             }
             
-            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + "&selectedBenefit=" + problemKey);
+            
+            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + 
+                    "&selectedBenefit=" + problemKey);
 
         } finally {            
             out.close();

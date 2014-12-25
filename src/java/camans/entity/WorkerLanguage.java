@@ -44,7 +44,6 @@ public class WorkerLanguage {
         this.workerFinNum = workerFinNum;
     }
 
-
     public int getId() {
         return id;
     }
@@ -90,5 +89,7 @@ public class WorkerLanguage {
         return "WorkerLanguage{" + "workerFinNum=" + workerFinNum + ", id=" + id + ", mainLanguage=" + mainLanguage + ", mainLangaugeMore=" + mainLangaugeMore + ", spokenLanguageStandard=" + spokenLanguageStandard + ", remark=" + remark + '}';
     }
     
-    
+    public String toString2() {
+        return "WorkerLanguage{" + "workerFinNum=" + workerFinNum + ", mainLanguage=" + mainLanguage + ", mainLangaugeMore=" + mainLangaugeMore + ", spokenLanguageStandard=" + spokenLanguageStandard + ", remark=" + remark + '}';
+    }    
 }

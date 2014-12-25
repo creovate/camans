@@ -1,4 +1,5 @@
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="camans.entity.*"%>
 <%@page import="camans.dao.*"%>
 <%@page import="java.util.HashMap"%>
@@ -430,6 +431,29 @@
                         }
                     }
                 },
+                //friend
+                nFriendPhNum: {
+                    validators: {
+                        stringLength: {
+                            max: 20,
+                            message: 'Phone No must be less than 20 characters.'
+                        },
+                        integer: {
+                            message: 'The value is not an integer'
+                        }
+                    }
+                },
+                friendPhNum: {
+                    validators: {
+                        stringLength: {
+                            max: 20,
+                            message: 'Phone No must be less than 20 characters.'
+                        },
+                        integer: {
+                            message: 'The value is not an integer'
+                        }
+                    }
+                },
                 //language
                 nMainLanguage: {
                     validators: {
@@ -629,7 +653,9 @@
     String complement = request.getParameter("complement");
 
     //end of data collection
-
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+    
+    
     if (nicknameId != null) {
         int id = Integer.parseInt(nicknameId);
 
@@ -744,12 +770,16 @@
             <div class='form-group'>
                 <label for='passportIsDate' class="control-label">Passport Issue Date: </label>
                 <br/>
-                <input class="form-control input-append date dateInput" type='text' name="passportIsDate" value="<%=(passportdetails.getPassportIssueDate() == null) ? "" : passportdetails.getPassportIssueDate()%>">
+                <input class="form-control input-append date dateInput" type='text' 
+                       name="passportIsDate" value="<%=(passportdetails.getPassportIssueDate() == null) ? "" 
+                       : sdf.format(passportdetails.getPassportIssueDate())%>">
             </div>
             <div class='form-group'>
                 <label for='passportExpDate' class="control-label">Passport Expiry Date: </label>
                 <br/>
-                <input class="form-control" type='text' name="passportExpDate" value="<%=(passportdetails.getPassportExpirtyDate() == null) ? "" : passportdetails.getPassportExpirtyDate()%>">
+                <input class="form-control" type='text' 
+                       name="passportExpDate" value="<%=(passportdetails.getPassportExpirtyDate() == null) ? "" 
+                       : sdf.format(passportdetails.getPassportExpirtyDate())%>">
             </div>
 
 
@@ -759,7 +789,7 @@
             <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#passport_pop_up", "worker")'>Edit</button>
             <div class='pull-right'>
                 <button type='button' class='btn modal_btn view_comp' onclick='add("#passport_pop_up", "worker")'>Add</button>                  
-                <button type='button' class="btn modal_btn view_comp">Close</button>
+                <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
             </div>
         </div>
     </div>
@@ -812,12 +842,16 @@
         <div class='form-group'>
             <label for='passportIssueDate' class="control-label">Passport Issue Date: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="passportIssueDate" value="<%=(passportdetails.getPassportIssueDate() == null) ? "" : passportdetails.getPassportIssueDate()%>">
+            <input class="form-control dateInput" type='text' name="passportIssueDate" 
+                   value="<%=(passportdetails.getPassportIssueDate() == null) ? "" : 
+                       sdf.format(passportdetails.getPassportIssueDate())%>">
         </div>
         <div class='form-group'>
             <label for='passportExpiryDate' class="control-label">Passport Expiry Date: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="passportExpiryDate" value="<%=(passportdetails.getPassportExpirtyDate() == null) ? "" : passportdetails.getPassportExpirtyDate()%>">
+            <input class="form-control dateInput" type='text' name="passportExpiryDate" 
+                   value="<%=(passportdetails.getPassportExpirtyDate() == null) ? "" : 
+                       sdf.format(passportdetails.getPassportExpirtyDate())%>">
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="WorkerPassportDetails"/>
@@ -859,7 +893,9 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control" type='text' name="obseleteDate" value="<%=(sgPhNum.getObseleteDate() == null) ? "" : sgPhNum.getObseleteDate()%>">
+                <input class="form-control" type='text' name="obseleteDate" 
+                       value="<%=(sgPhNum.getObseleteDate() == null) ? "" : 
+                           sdf.format(sgPhNum.getObseleteDate())%>">
             </div>
 
         </fieldset>
@@ -908,7 +944,9 @@
         <div class='form-group'>
             <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="obseleteDate" value="<%=(sgPhNum.getObseleteDate() == null) ? "" : sgPhNum.getObseleteDate()%>">
+            <input class="form-control dateInput" type='text' name="obseleteDate" 
+                   value="<%=(sgPhNum.getObseleteDate() == null) ? "" : 
+                       sdf.format(sgPhNum.getObseleteDate())%>">
         </div>
 
         <input type="hidden" name="complementName" value="WorkerSgPhNum"/>
@@ -962,7 +1000,9 @@
             <div class='form-group'>
                 <label for='homephobdate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control " type='text' name="homephobdate" value="<%=(homeCountryPhNum.getObseleteDate() == null) ? "" : homeCountryPhNum.getObseleteDate()%>">
+                <input class="form-control " type='text' name="homephobdate" 
+                       value="<%=(homeCountryPhNum.getObseleteDate() == null) ? "" : 
+                           sdf.format(homeCountryPhNum.getObseleteDate())%>">
             </div>
 
 
@@ -1020,7 +1060,9 @@
         <div class='form-group'>
             <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="obseleteDate" value="<%=(homeCountryPhNum.getObseleteDate() == null) ? "" : homeCountryPhNum.getObseleteDate()%>">
+            <input class="form-control dateInput" type='text' name="obseleteDate" 
+                   value="<%=(homeCountryPhNum.getObseleteDate() == null) ? "" : 
+                       sdf.format(homeCountryPhNum.getObseleteDate())%>">
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="WorkerHomeCountryPhNum"/>
@@ -1062,7 +1104,9 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control" type='text' name="obseleteDate" value="<%=(sgAddress.getObseleteDate() == null) ? "" : sgAddress.getObseleteDate()%>">
+                <input class="form-control" type='text' name="obseleteDate" 
+                       value="<%=(sgAddress.getObseleteDate() == null) ? "" : 
+                           sdf.format(sgAddress.getObseleteDate())%>">
             </div>
 
         </fieldset>
@@ -1110,7 +1154,9 @@
         <div class='form-group'>
             <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete:</label>
             <br/>
-            <input class="form-control dateInput" type='text' name="obseleteDate" value="<%=(sgAddress.getObseleteDate() == null) ? "" : sgAddress.getObseleteDate()%>">
+            <input class="form-control dateInput" type='text' name="obseleteDate" 
+                   value="<%=(sgAddress.getObseleteDate() == null) ? "" : 
+                       sdf.format(sgAddress.getObseleteDate())%>">
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="WorkerSgAddress"/>
@@ -1198,7 +1244,9 @@
         <div class='form-group'>
             <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete:</label>
             <br/>
-            <input class="form-control dateInput" type='text' name="obseleteDate" value="<%=(homeCountryAddress.getObseleteDate() == null) ? "" : homeCountryAddress.getObseleteDate()%>">
+            <input class="form-control dateInput" type='text' name="obseleteDate" 
+                   value="<%=(homeCountryAddress.getObseleteDate() == null) ? "" : 
+                       sdf.format(homeCountryAddress.getObseleteDate())%>">
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="WorkerHomeCountryAddress"/>
@@ -1395,7 +1443,9 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="obseleteDate" value="<%=(digitalContact.getObseleteDate() == null) ? "" : digitalContact.getObseleteDate()%>">
+                <input class="form-control dateInput" type='text' name="obseleteDate" 
+                       value="<%=(digitalContact.getObseleteDate() == null) ? "" : 
+                           sdf.format(digitalContact.getObseleteDate())%>">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerDigitalContact"/>
@@ -1486,7 +1536,9 @@
                 <div class='form-group'>
                     <label for='nokObDate' class="control-label">Date Discovered to be Obsolete: </label>
                     <br/>
-                    <input class="form-control" type='text' name="nokObDate" value="<%=(nextOfKin.getObseleteDate() == null) ? "" : nextOfKin.getObseleteDate()%>">
+                    <input class="form-control" type='text' name="nokObDate" 
+                           value="<%=(nextOfKin.getObseleteDate() == null) ? "" : 
+                               sdf.format(nextOfKin.getObseleteDate())%>">
                 </div>
             </fieldset>
 
@@ -1598,7 +1650,9 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="obseleteDate" value="<%=(nextOfKin.getObseleteDate() == null) ? "" : nextOfKin.getObseleteDate()%>">
+                <input class="form-control dateInput" type='text' name="obseleteDate" 
+                       value="<%=(nextOfKin.getObseleteDate() == null) ? "" : 
+                           sdf.format(nextOfKin.getObseleteDate())%>">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerNextOfKin"/>
@@ -1679,7 +1733,9 @@
                 <div class='form-group'>
                     <label for='nokObDate' class="control-label">Date Discovered to be Obsolete: </label>
                     <br/>
-                    <input class="form-control" type='text' name="nokObDate" value="<%=(familyMember.getObseleteDate() == null) ? "" : familyMember.getObseleteDate()%>">
+                    <input class="form-control" type='text' name="nokObDate" 
+                           value="<%=(familyMember.getObseleteDate() == null) ? "" : 
+                               sdf.format(familyMember.getObseleteDate())%>">
                 </div>
             </fieldset>
 
@@ -1774,7 +1830,9 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="obseleteDate" value="<%=(familyMember.getObseleteDate() == null) ? "" : familyMember.getObseleteDate()%>">
+                <input class="form-control dateInput" type='text' name="obseleteDate" 
+                       value="<%=(familyMember.getObseleteDate() == null) ? "" : 
+                           sdf.format(familyMember.getObseleteDate())%>">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerFamilyMember"/>
@@ -1840,7 +1898,9 @@
                 <div class='form-group'>
                     <label for='nokObDate' class="control-label">Date Discovered to be Obsolete: </label>
                     <br/>
-                    <input class="form-control" type='text' name="ObDate" value="<%=(friend.getObseleteDate() == null) ? "" : friend.getObseleteDate()%>">
+                    <input class="form-control" type='text' name="ObDate" 
+                           value="<%=(friend.getObseleteDate() == null) ? "" : 
+                               sdf.format(friend.getObseleteDate())%>">
                 </div>
             </fieldset>
 
@@ -1863,7 +1923,7 @@
             <div class='form-group'>
                 <label for='nPhNum' class="control-label">Phone Number of Friend:</label>
                 <br/>
-                <input class="form-control" type="text" name="nPhNum">
+                <input class="form-control" type="text" name="nFriendPhNum">
             </div>
             <div class='form-group'>
                 <label for='nRelation' class="control-label">Relationship to Worker: </label>
@@ -1899,7 +1959,7 @@
             <div class='form-group'>
                 <label for='phNum' class="control-label">Phone Number of Friend: </label>
                 <br/>
-                <input class="form-control" type="text" name="phNum" value="<%=contactNum%>">
+                <input class="form-control" type="text" name="friendPhNum" value="<%=contactNum%>">
             </div>
             <div class='form-group'>
                 <label for='relation' class="control-label">Relationship to Worker: </label>
@@ -1915,7 +1975,9 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="obseleteDate" value="<%=(friend.getObseleteDate() == null) ? "" : friend.getObseleteDate()%>">
+                <input class="form-control dateInput" type='text' name="obseleteDate" 
+                       value="<%=(friend.getObseleteDate() == null) ? "" : 
+                           sdf.format(friend.getObseleteDate())%>">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerFriend"/>
@@ -2184,7 +2246,9 @@
                 <div class='form-group'>
                     <label for='bkObDate' class="control-label">Date Discovered to be Obsolete: </label>
                     <br/>
-                    <input class="form-control dateInput" type='text' name="bkObDate" value="<%=(workerBankAcc.getObseleteDate() == null) ? "" : workerBankAcc.getObseleteDate()%>">
+                    <input class="form-control dateInput" type='text' name="bkObDate" 
+                           value="<%=(workerBankAcc.getObseleteDate() == null) ? "" : 
+                               sdf.format(workerBankAcc.getObseleteDate())%>">
                 </div>
             </fieldset>
 
@@ -2301,7 +2365,9 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="obseleteDate" value="<%=(workerBankAcc.getObseleteDate() == null) ? "" : workerBankAcc.getObseleteDate()%>">
+                <input class="form-control dateInput" type='text' name="obseleteDate" 
+                       value="<%=(workerBankAcc.getObseleteDate() == null) ? "" : 
+                           sdf.format(workerBankAcc.getObseleteDate())%>">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerBankAcct"/>

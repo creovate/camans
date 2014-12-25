@@ -130,22 +130,36 @@ public class ProblemTTR {
         this.newEmployerName = newEmployerName;
     }
 	
-	 public String getNewJob() {
-        return newJob;
-    }
+    public String getNewJob() {
+   return newJob;
+}
 
     public void setNewJob (String newJob) {
         this.newJob = newJob;
     }
 	
-	 public String getTTRRem() {
-        return TTRRem;
-    }
+    public String getTTRRem() {
+   return TTRRem;
+}
 
     public void setTTRRem (String TTRRem) {
         this.TTRRem = TTRRem;
     }
+
+    @Override
+    public String toString() {
+        return "ProblemTTR{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
+                ", TTRUpdate=" + TTRUpdate + ", TTRStatus=" + TTRStatus + 
+                ", TTRStatusMore=" + TTRStatusMore + ", departureDate=" + departureDate + 
+                ", newEmployerName=" + newEmployerName + ", newJob=" + newJob + ", TTRRem=" + TTRRem + '}';
+    }
 	
-    
+    public String toString2() {
+        return "ProblemTTR{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", TTRUpdate=" + TTRUpdate + ", TTRStatus=" + TTRStatus + 
+                ", TTRStatusMore=" + TTRStatusMore + ", departureDate=" + departureDate + 
+                ", newEmployerName=" + newEmployerName + ", newJob=" + newJob + ", TTRRem=" + TTRRem + '}';
+    }
     
 }

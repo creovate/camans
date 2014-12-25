@@ -4,6 +4,7 @@
     Author     : Nyein Su
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="camans.dao.DropdownDAO"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.HashMap"%>
@@ -270,6 +271,18 @@
                         stringLength: {
                             max: 300,
                             message: 'Address must be less than 300 characters.'
+                        }
+                    }
+                },
+                //friend
+                nFriendPhNum: {
+                    validators: {
+                        stringLength: {
+                            max: 20,
+                            message: 'Phone No must be less than 20 characters.'
+                        },
+                        integer: {
+                            message: 'The value is not an integer'
                         }
                     }
                 },
@@ -3180,13 +3193,16 @@
         $('.cancel_btn').addClass('pull-right');
         $('.form-control').addClass('input-sm');
     });
+    
+    
 </script>
 
 <%
     String workerFin = request.getParameter("workerFin");   //passed from viewWorker.jsp
     String complement = request.getParameter("complement"); //passed from viewWorker.jsp
     String jobKey = request.getParameter("jobkey");         //passed from viewWorker.jsp
-    String probKey = request.getParameter("problemKey");    //passed from viewWorker.jsp
+    String probKey = request.getParameter("probkey");    //passed from viewWorker.jsp
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 %>
 
 <!-------------------------->
@@ -3613,7 +3629,7 @@
             <div class='form-group'>
                 <label for='nPhNum' class="control-label">Phone Number of Friend: </label>
                 <br/>
-                <input class="form-control" type='text' name="nPhNum">
+                <input class="form-control" type='text' name="nFriendPhNum">
             </div>
 
             <div class='form-group'>
@@ -6068,7 +6084,7 @@
                 <input class="form-control startDate" type='text' name="nstartDate">
             </div>
             <div class='form-group'>
-                <label for='nendDate' class="control-label">End Date: </label>
+                <label for='nendDate' class="control-label">End Date:<%=probKey%> </label>
                 <br/>
                 <input class="form-control endDate" type='text' name="nendDate">
             </div>

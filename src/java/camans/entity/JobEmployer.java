@@ -118,8 +118,22 @@ public class JobEmployer {
     public void setEmployerRemarks(String employerRemarks) {
         this.employerRemarks = employerRemarks;
     }
+
+    @Override
+    public String toString() {
+        return "JobEmployer{" + "id=" + id + ", workerFinNum=" + workerFinNum + 
+                ", jobKey=" + jobKey + ", employerOfficialName=" + employerOfficialName + 
+                ", employerID=" + employerID + ", employerAddress=" + employerAddress + 
+                ", employerContacts=" + employerContacts + ", employerPersons=" + employerPersons + 
+                ", employerRemarks=" + employerRemarks + '}';
+    }
     
-    
+    public String toString2() {
+        return "JobEmployer{" + "WorkerFinNum=" + workerFinNum + 
+                ", employerOfficialName=" + employerOfficialName + ", employerID=" + employerID + 
+                ", employerAddress=" + employerAddress + ", employerContacts=" + employerContacts + 
+                ", employerPersons=" + employerPersons + ", employerRemarks=" + employerRemarks + '}';
+    }   
     
     
 }

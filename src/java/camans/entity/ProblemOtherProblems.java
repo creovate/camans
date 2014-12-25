@@ -95,6 +95,19 @@ public class ProblemOtherProblems {
     public void setOtherProblemRemark(String otherProblemRemark) {
         this.otherProblemRemark = otherProblemRemark;
     }
+
+    @Override
+    public String toString() {
+        return "ProblemOtherProblems{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
+                ", otherProblemDesc=" + otherProblemDesc + ", otherProblemLoss=" + otherProblemLoss + 
+                ", otherProblemRemark=" + otherProblemRemark + '}';
+    }
     
+    public String toString2() {
+        return "ProblemOtherProblems{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", otherProblemDesc=" + otherProblemDesc + ", otherProblemLoss=" + otherProblemLoss + 
+                ", otherProblemRemark=" + otherProblemRemark + '}';
+    }    
     
 }

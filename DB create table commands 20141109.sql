@@ -1550,7 +1550,7 @@ Create table tbl_audit (
     Key_log varchar(20) not null, /*to know which key (problem,job or worker) was being edited. If it was on a user, user FIN would be recorded */
     FIN_log varchar (20) not null, /*to indicate the name of the worker or user whose attributes was changed/added */
     Action_type varchar(20) not null, /* Type of action - add, edit, delete, import, export */
-	Action_description_log varchar(255) null, /* descripton of action */
+	Action_description_log varchar(8000) null, /* descripton of action */
 
 	Primary Key (ID),
     Foreign Key (Username) References tbl_user(Username)

@@ -4,21 +4,18 @@
  */
 package camans.controller;
 
-import camans.dao.ConnectionManager;
 import camans.dao.ProblemComplementsDAO;
+import camans.dao.UserAuditLogDAO;
 import camans.entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -45,8 +42,11 @@ public class processAddProblemComplement extends HttpServlet {
             String complementName = request.getParameter("complementName");
             String workerFinNum = request.getParameter("workerFinNum");
             int jobKey = Integer.parseInt(request.getParameter("jobkey"));
-            int problemKey = Integer.parseInt(request.getParameter("jobkey"));
+            int problemKey = Integer.parseInt(request.getParameter("probKey"));
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+            
+            User _user = (User) request.getSession().getAttribute("userLogin");
+            String auditChange = "";
             //=======================================//
             //          Common Problem Complements  
             //=======================================//
@@ -71,7 +71,9 @@ public class processAddProblemComplement extends HttpServlet {
                 ProblemAggravatingIssue problemAggraIssue = new ProblemAggravatingIssue(workerFinNum,
                         jobKey, problemKey, aggraIssue, aggraIssueMore, aggraLoss, aggraRemark);
                 //add to db
-                ProblemComplementsDAO.addProblemAggravatingIssue(problemAggraIssue);               
+                ProblemComplementsDAO.addProblemAggravatingIssue(problemAggraIssue);  
+                //log the audit
+                auditChange = problemAggraIssue.toString2();
             //=======================================//
             //          2. Lead Case Worker
             //=======================================//    
@@ -105,6 +107,8 @@ public class processAddProblemComplement extends HttpServlet {
                         jobKey, problemKey, leadName, leadStart, leadEnd);
                 //add into db
                 ProblemComplementsDAO.addProblemLeadCaseWorker(problemLeadCaseWrk);
+                //log the audit
+                auditChange = problemLeadCaseWrk.toString2();
             //=======================================//    
             //          3. Auxiliary Case Worker
             //=======================================//    
@@ -140,6 +144,8 @@ public class processAddProblemComplement extends HttpServlet {
                 //add to db
                 ProblemComplementsDAO.addProblemAuxiliaryCaseWorker(problemAuxiCaseWrk);
             
+                //log the audit
+                auditChange = problemAuxiCaseWrk.toString2();
             //=======================================//    
             //          4. Case Discussion  
             //=======================================//    
@@ -179,6 +185,8 @@ public class processAddProblemComplement extends HttpServlet {
                 //add to db
                 ProblemComplementsDAO.addProblemCaseDiscussion(problemCaseDiscuss);
             
+                //log the audit
+                auditChange = problemCaseDiscuss.toString2();
             //=======================================//    
             //          5. Lawyer  
             //=======================================//    
@@ -204,6 +212,8 @@ public class processAddProblemComplement extends HttpServlet {
                         lawFirmDate,lawFirmName, lawFirmNameMore,lawFirmLawyer, lawFirmRem);
                 //add to db
                 ProblemComplementsDAO.addProblemLawyer(problemLawyer);
+                //log the audit
+                auditChange = problemLawyer.toString2();
             }
             //=======================================//
             //          Salary Problem Complements  
@@ -249,7 +259,9 @@ public class processAddProblemComplement extends HttpServlet {
                           salLossYear, salHistRemark);
                   //add to db
                   ProblemComplementsDAO.addProblemSalaryRelatedHistory(salHist);
-
+                  
+                  //log the audit
+                auditChange = salHist.toString2();;
             
             //=======================================//      
             //          7. Salary Claimed Lodged    
@@ -283,6 +295,8 @@ public class processAddProblemComplement extends HttpServlet {
                 //add to db
                 ProblemComplementsDAO.addProblemSalaryClaim(salaryClaim);
 
+                //log the audit
+                auditChange = salaryClaim.toString2();
                 
             }    
             //=======================================//
@@ -321,6 +335,9 @@ public class processAddProblemComplement extends HttpServlet {
                 
                 //add to db
                 ProblemComplementsDAO.addProblemInjury(injury);
+                
+                //log the audit
+                auditChange = injury.toString2();
             //=======================================//
             //          9. Illness History  
             //=======================================//
@@ -340,6 +357,9 @@ public class processAddProblemComplement extends HttpServlet {
                 
                 //addto db
                 ProblemComplementsDAO.addProblemIllness(illness);
+                
+                //log the audit
+                auditChange = illness.toString2();;
                 
             //=======================================//
             //          10. WICA Claim Lodged    
@@ -368,6 +388,9 @@ public class processAddProblemComplement extends HttpServlet {
                         wicaClaimReason, wicaClaimRemark);
                 //add to db
                 ProblemComplementsDAO.addProblemWicaClaim(wicaClaim);
+                
+                //log the audit
+                auditChange = wicaClaim.toString2();
             //=======================================//
             //          11. Non-WICA Claim Lodged  
             //=======================================//    
@@ -405,7 +428,8 @@ public class processAddProblemComplement extends HttpServlet {
                 
                 ProblemComplementsDAO.addProblemNonWicaClaim(problemNonWicaClaim);
                 
-                
+                //log the audit
+                auditChange = problemNonWicaClaim.toString2();
                 
             //=======================================//
             //          12. WICA Monthly Status   
@@ -450,6 +474,9 @@ public class processAddProblemComplement extends HttpServlet {
                         wicaUpdateDate, wicaStatus, wicaStatusMore, wicaPoints, wicaDollars,
                         wicaRemarks);
                 ProblemComplementsDAO.addProblemWica(problemWica);
+                
+                //log the audit
+                auditChange = problemWica.toString2();
                
             //=======================================//
             //          13. Hospital Providing Treatment  
@@ -476,6 +503,9 @@ public class processAddProblemComplement extends HttpServlet {
                 
                 //add into db
                 ProblemComplementsDAO.addProblemHospital(hospital);
+                
+                //log the audit
+                auditChange = hospital.toString2();
             //=======================================//
             //          14. MC/Light Duty Status 
             //=======================================//    
@@ -526,6 +556,8 @@ public class processAddProblemComplement extends HttpServlet {
                 
                 ProblemComplementsDAO.addProblemMCStatus(problemMCStatus);
                
+                //log the audit
+                auditChange = problemMCStatus.toString2();
                 
             //=======================================//
             //          15. R2R Appointments  
@@ -578,6 +610,8 @@ public class processAddProblemComplement extends HttpServlet {
                 //add to db
                 ProblemComplementsDAO.addProblemR2R(problemR2R);
             
+                //log the audit
+                auditChange = problemR2R.toString2();
             }
             //=======================================//
             //          Other Complements   
@@ -605,6 +639,8 @@ public class processAddProblemComplement extends HttpServlet {
                 
                 ProblemComplementsDAO.addProblemOtherProblems(other);
                 
+                //log the audit
+                auditChange = other.toString2();
             //=======================================//
             //      17. Trafficking Indication   
             //=======================================//    
@@ -659,6 +695,8 @@ public class processAddProblemComplement extends HttpServlet {
                 //add to db
                 ProblemComplementsDAO.addProblemTraffickingIndicator(problemTraffickingIndicator);
 
+                //log the audit
+                auditChange = problemTraffickingIndicator.toString2();
             //=======================================//
             //          18. Police Report Lodged  
             //=======================================//
@@ -687,6 +725,9 @@ public class processAddProblemComplement extends HttpServlet {
                 
                 //add to db
                 ProblemComplementsDAO.addProblemPoliceReport(policeReport);
+                
+                //log the audit
+                auditChange = policeReport.toString2();
             //=======================================//
             //          19. Other Complaint Lodged
             //=======================================//    
@@ -717,6 +758,9 @@ public class processAddProblemComplement extends HttpServlet {
                         otherComplaintDetails, otherComplaintRemark);
                 //add to db
                 ProblemComplementsDAO.addProblemOtherComplaint(otherComplaint);
+                
+                //log the audit
+                auditChange = otherComplaint.toString2();
             //=======================================//
             //20. Case Milestone Reached(non-criminal) 
             //=======================================//    
@@ -742,6 +786,9 @@ public class processAddProblemComplement extends HttpServlet {
                         ncmileStoneRemark);
                 //add to db
                 ProblemComplementsDAO.addProblemCaseMilestoneNC(problemCaseMilestoneNC);
+                
+                //log the audit
+                auditChange = problemCaseMilestoneNC.toString2();
                 
             //=======================================//
             //21. Case Milestone Reached(Criminal)     
@@ -771,6 +818,8 @@ public class processAddProblemComplement extends HttpServlet {
                 //add to db
                 ProblemComplementsDAO.addProblemCaseMilestoneCR(problemCaseMilestoneCR);
                
+                //log the audit
+                auditChange = problemCaseMilestoneCR.toString2();
                 
             //=======================================//
             //      22. Transfer, TJS & Repatriation    
@@ -811,7 +860,15 @@ public class processAddProblemComplement extends HttpServlet {
                 //add to db
                 ProblemComplementsDAO.addProblemTTR(problemTTR);
               
+                //log the audit
+                auditChange = problemTTR.toString2();
             }
+            
+            //log to audit
+            UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
+                    workerFinNum, "Added", "Problem Complement: " + auditChange);
+
+            UserAuditLogDAO.addUserAuditLog(userAuditLog);              
            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + "&selectedProb=" + problemKey);
         } finally {            
             out.close();

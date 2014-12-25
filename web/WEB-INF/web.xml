@@ -110,7 +110,7 @@
     </servlet-mapping>
     <session-config>
         <session-timeout>
-            1 <!-- in minutes -->
+            30 <!-- in minutes -->
         </session-timeout>
     </session-config>
 </web-app>

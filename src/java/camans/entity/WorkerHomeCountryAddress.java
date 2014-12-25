@@ -70,5 +70,8 @@ public class WorkerHomeCountryAddress {
         return "WorkerHomeCountryAddress{" + "workerFinNum=" + workerFinNum + ", id=" + id + ", address=" + address + ", obseleteDate=" + obseleteDate + '}';
     }
     
+     public String toString2() {
+        return "WorkerHomeCountryAddress{" + "workerFinNum=" + workerFinNum + ", address=" + address + ", obseleteDate=" + obseleteDate + '}';
+    }   
     
 }

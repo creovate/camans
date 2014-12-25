@@ -218,5 +218,29 @@ public class JobIPADetails {
     public void setIpaRemarks(String ipaRemarks) {
         this.ipaRemarks = ipaRemarks;
     }
+
+    @Override
+    public String toString() {
+        return "JobIPADetails{" + "id=" + id + ", workerFinNum=" + workerFinNum + ", jobKey=" + jobKey + 
+                ", ipaPassType=" + ipaPassType + ", ipaPassTypeMore=" + ipaPassTypeMore + 
+                ", ipaApplicationDate=" + ipaApplicationDate + ", ipaEmployerName=" + ipaEmployerName + 
+                ", ipaAgentName=" + ipaAgentName + ", industry=" + industry + 
+                ", occuupation=" + occuupation + ", periodYears=" + periodYears + 
+                ", basicSalary=" + basicSalary + ", ipaAllowances=" + ipaAllowances + 
+                ", ipaAllowancesDetails=" + ipaAllowancesDetails + ", ipaDeduction=" + ipaDeduction + 
+                ", ipaDeductionDetails=" + ipaDeductionDetails + ", housingProvided=" + housingProvided + 
+                ", ipaRemarks=" + ipaRemarks + '}';
+    }
+    
+    public String toString2() {
+        return "JobIPADetails{" + "WorkerFinNum=" + workerFinNum + ", ipaPassType=" + ipaPassType + 
+                ", ipaPassTypeMore=" + ipaPassTypeMore + ", ipaApplicationDate=" + ipaApplicationDate + 
+                ", ipaEmployerName=" + ipaEmployerName + ", ipaAgentName=" + ipaAgentName + 
+                ", industry=" + industry + ", occuupation=" + occuupation + 
+                ", periodYears=" + periodYears + ", basicSalary=" + basicSalary + 
+                ", ipaAllowances=" + ipaAllowances + ", ipaAllowancesDetails=" + ipaAllowancesDetails + 
+                ", ipaDeduction=" + ipaDeduction + ", ipaDeductionDetails=" + ipaDeductionDetails + 
+                ", housingProvided=" + housingProvided + ", ipaRemarks=" + ipaRemarks + '}';
+    }    
     
 }

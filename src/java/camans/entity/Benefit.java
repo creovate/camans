@@ -159,10 +159,21 @@ public class Benefit {
 
     @Override
     public String toString() {
-        return "Benefit{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + ", jobKey=" + jobKey + ", problemKey=" + problemKey + ", issueDate=" + issueDate + ", benefitGiver=" + benefitGiver + ", benefitType=" + benefitType + ", benefitTypeMore=" + benefitTypeMore + ", benefitSerial=" + benefitSerial + ", benefitPurpose=" + benefitPurpose + ", benefitRemark=" + benefitRemark + ", benefitValue=" + benefitValue + '}';
+        return "Benefit{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
+                ", issueDate=" + issueDate + ", benefitGiver=" + benefitGiver + 
+                ", benefitType=" + benefitType + ", benefitTypeMore=" + benefitTypeMore + 
+                ", benefitSerial=" + benefitSerial + ", benefitPurpose=" + benefitPurpose + 
+                ", benefitRemark=" + benefitRemark + ", benefitValue=" + benefitValue + '}';
     }
     
-    
+    public String toString2() {
+        return "Benefit{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", issueDate=" + issueDate + ", benefitGiver=" + benefitGiver + 
+                ", benefitType=" + benefitType + ", benefitTypeMore=" + benefitTypeMore + 
+                ", benefitSerial=" + benefitSerial + ", benefitPurpose=" + benefitPurpose + 
+                ", benefitRemark=" + benefitRemark + ", benefitValue=" + benefitValue + '}';
+    }    
     
     
 }

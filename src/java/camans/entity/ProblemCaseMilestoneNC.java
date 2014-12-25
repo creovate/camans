@@ -106,15 +106,29 @@ public class ProblemCaseMilestoneNC {
         this.MilesNCReachedMore = MilesNCReachedMore;
     }
 	
-	public String getMilesNCRem() {
-        return MilesNCRem;
-    }
+    public String getMilesNCRem() {
+    return MilesNCRem;
+}
 
     public void setMilesNCRem(String MilesNCRem) {
         this.MilesNCRem = MilesNCRem;
     }
-	 
-	
+
+    @Override
+    public String toString() {
+        return "ProblemCaseMilestoneNC{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + ", MilesNCDate=" + MilesNCDate + 
+                ", MilesNCReached=" + MilesNCReached + ", MilesNCReachedMore=" + MilesNCReachedMore + 
+                ", MilesNCRem=" + MilesNCRem + '}';
+    }
+    
+    public String toString2() {
+        return "ProblemCaseMilestoneNC{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", MilesNCDate=" + MilesNCDate + 
+                ", MilesNCReached=" + MilesNCReached + ", MilesNCReachedMore=" + MilesNCReachedMore + 
+                ", MilesNCRem=" + MilesNCRem + '}';
+    }	 
+
     
     
 }

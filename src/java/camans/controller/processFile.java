@@ -5,8 +5,10 @@
 package camans.controller;
 
 import camans.dao.ConnectionManager;
+import camans.dao.UserAuditLogDAO;
 import camans.dao.WorkerComplementsDAO;
 import camans.entity.User;
+import camans.entity.UserAuditLog;
 import camans.entity.WorkerAttachment;
 import java.io.File;
 import java.io.FileInputStream;
@@ -60,6 +62,8 @@ public class processFile extends HttpServlet {
             String action = request.getParameter("action");
             String workerFinNum = request.getParameter("workerFin");
             String newFileName = request.getParameter("nFileName");
+            User userLogin = (User) request.getSession().getAttribute("userLogin");
+            String auditChange = "";
             
             //==========================================//
             //          Success & Error Display
@@ -128,6 +132,8 @@ public class processFile extends HttpServlet {
                                 User _user = (User) request.getSession().getAttribute("userLogin");
                                 WorkerAttachment workerAttachment = new WorkerAttachment(workerFinNum,item.getName(),fileDir,_user.getUsername());
                                 WorkerComplementsDAO.addAttachmentDetails(workerAttachment);
+                                //log to audit
+                                auditChange = workerAttachment.toString2();
                             } catch (Exception e) {
                                 //think of how to display the error
                                 //do not process and show error page
@@ -150,6 +156,11 @@ public class processFile extends HttpServlet {
                 if (fileOrign != null) {
                     success = fileOrign + " has been successfully uploaded!";
                 }
+                //log to audit
+                UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), workerFinNum + "", 
+                        workerFinNum, "Added", "Attachment: " + auditChange);
+
+                UserAuditLogDAO.addUserAuditLog(userAuditLog);  
                 request.getSession().setAttribute("successAttachMsg", success);
                 response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
                 //==========================================//
@@ -175,6 +186,12 @@ public class processFile extends HttpServlet {
                             success = workerAttachment.getDocumentName() + " has been successfully deleted!";
                             WorkerComplementsDAO.deleteWorkerAttachment(workerAttachment);
                             request.getSession().setAttribute("successAttachMsg", success);
+                            //log to audit
+                            auditChange = workerAttachment.toString2();
+                            UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), workerFinNum + "", 
+                            workerFinNum, "Deleted", "Attachment: " + auditChange);
+                            UserAuditLogDAO.addUserAuditLog(userAuditLog);
+                            
                             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
                         } else { //file delete processing error
                             //do not proceed & show error page
@@ -213,6 +230,12 @@ public class processFile extends HttpServlet {
                             success = oldFileName.substring(oldFileName.lastIndexOf('-')+1) + " has been successfully renamed to " + 
                                     workerAttachment.getDocumentName() + "!";
                             request.getSession().setAttribute("successAttachMsg", success);
+                            //log to audit
+                            auditChange = workerAttachment.toString2();
+                            UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), workerFinNum + "", 
+                            workerFinNum, "Modified", "Attachment: " + auditChange);
+
+                            UserAuditLogDAO.addUserAuditLog(userAuditLog);
                             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
                         } else { //file rename processing error
                             //do not proceed & show error page

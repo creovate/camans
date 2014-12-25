@@ -123,5 +123,8 @@ public class WorkerFamilyMember {
         return "WorkerFamilyMember{" + "workerFinNum=" + workerFinNum + ", id=" + id + ", name=" + name + ", relation=" + relation + ", address=" + address + ", phoneNumber=" + phoneNumber + ", digital=" + digital + ", remark=" + remark + ", obseleteDate=" + obseleteDate + '}';
     }
 
+    public String toString2() {
+        return "WorkerFamilyMember{" + "workerFinNum=" + workerFinNum + ", name=" + name + ", relation=" + relation + ", address=" + address + ", phoneNumber=" + phoneNumber + ", digital=" + digital + ", remark=" + remark + ", obseleteDate=" + obseleteDate + '}';
+    }
     
 }

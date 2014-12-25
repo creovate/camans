@@ -60,8 +60,6 @@ public class WorkerBankAcct {
         this.workerFinNum = workerFinNum;
     }
 
-
-
     public int getId() {
         return id;
     }
@@ -146,6 +144,9 @@ public class WorkerBankAcct {
     public String toString() {
         return "WorkerBankAcct{" + "workerFinNum=" + workerFinNum + ", id=" + id + ", bankAcctName=" + bankAcctName + ", bankAcctNumber=" + bankAcctNumber + ", bankName=" + bankName + ", bankBranchName=" + bankBranchName + ", bankBranchAddress=" + bankBranchAddress + ", bankBranchCode=" + bankBranchCode + ", bankSwiftCode=" + bankSwiftCode + ", remark=" + remark + ", obseleteDate=" + obseleteDate + '}';
     }
-    
+ 
+    public String toString2() {
+        return "WorkerBankAcct{" + "workerFinNum=" + workerFinNum + ", bankAcctName=" + bankAcctName + ", bankAcctNumber=" + bankAcctNumber + ", bankName=" + bankName + ", bankBranchName=" + bankBranchName + ", bankBranchAddress=" + bankBranchAddress + ", bankBranchCode=" + bankBranchCode + ", bankSwiftCode=" + bankSwiftCode + ", remark=" + remark + ", obseleteDate=" + obseleteDate + '}';
+    }    
     
 }

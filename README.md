@@ -1,5 +1,9 @@
 camans
 ======
+<i><b>25th Dec 2014-soemyatmyat<i></b><br/>
+1. Download Attachment<br/>
+2. Fixed date format view/edit complement to DD/MMM/YYYY format<br/>
+3. Audit Log Function<br/>
 
 <i><b>25th Dec 2014-nyeinsu<i></b><br/>
 1. To Change in wica Claim lodged table.<br/>
@@ -19,7 +23,6 @@ Working on attachment modules<br/>
 1. Cosmetic changes in modal boxes.<br/>
 2. Debugged Add/Edit Benefits.<br/>
 3. Changed aggravating loss from <i><b>String</b></i> object to <i><b>double</b></i>.<br/>
-
 
 <i><b>22nd Dec 2014-soemyatmyat</b></i><br/>
 1. Upload file attachements of worker<br/>

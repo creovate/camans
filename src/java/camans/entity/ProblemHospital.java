@@ -124,6 +124,21 @@ public class ProblemHospital {
     public void setHospitalDoctor(String hospitalDoctor) {
         this.hospitalDoctor = hospitalDoctor;
     }
+
+    @Override
+    public String toString() {
+        return "ProblemHospital{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
+                ", hospitalUpdate=" + hospitalUpdate + ", hospitalName=" + hospitalName + 
+                ", hospitalNameMore=" + hospitalNameMore + ", hospitalDoctor=" + hospitalDoctor + 
+                ", hospitalRemark=" + hospitalRemark + '}';
+    }
     
+    public String toString2() {
+        return "ProblemHospital{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", hospitalUpdate=" + hospitalUpdate + ", hospitalName=" + hospitalName + 
+                ", hospitalNameMore=" + hospitalNameMore + ", hospitalDoctor=" + hospitalDoctor + 
+                ", hospitalRemark=" + hospitalRemark + '}';
+    }    
     
 }

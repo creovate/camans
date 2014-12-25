@@ -49,7 +49,7 @@
                             <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
                                 <li><a href="userManagement.jsp" tabindex="-1">User Management</a></li>
                                 <li ><a href="#" tabindex="-1">Configurations</a></li>
-                                <li ><a href="#" tabindex="-1">Audit Trail  </a></li>
+                                <li ><a href="auditLog.jsp" tabindex="-1">Audit Log  </a></li>
                             </ul>
                         </li>
                         <%                            }

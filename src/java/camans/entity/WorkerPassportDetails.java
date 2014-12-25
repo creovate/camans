@@ -91,6 +91,8 @@ public class WorkerPassportDetails {
         return "WorkerPassportDetails{" + "workerFinNum=" + workerFinNum + ", id=" + id + ", passportNumber=" + passportNumber + ", passportCountry=" + passportCountry + ", passportIssueDate=" + passportIssueDate + ", passportExpirtyDate=" + passportExpirtyDate + '}';
     }
     
-    
+    public String toString2() {
+        return "WorkerPassportDetails{" + "workerFinNum=" + workerFinNum + ", passportNumber=" + passportNumber + ", passportCountry=" + passportCountry + ", passportIssueDate=" + passportIssueDate + ", passportExpirtyDate=" + passportExpirtyDate + '}';
+    }    
     
 }

@@ -45,7 +45,8 @@ public class processAddJobComplement extends HttpServlet {
             int jobKey = Integer.parseInt(request.getParameter("jobkey"));
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
             
-            //SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
+            User _user = (User) request.getSession().getAttribute("userLogin");
+            String auditChange = "";
 
             /*Job Pass Details*/
             if (complementName.equals("JobPassDetails")) {
@@ -75,7 +76,7 @@ public class processAddJobComplement extends HttpServlet {
                 if (!isDateStr.equals("")) {
                     try {
                         java.util.Date tmp = sdf.parse(isDateStr);
-                        apDate = new java.sql.Date(tmp.getTime());
+                        isDate = new java.sql.Date(tmp.getTime());
                     } catch (ParseException ex) {
                         out.println(ex);
                     }
@@ -94,8 +95,8 @@ public class processAddJobComplement extends HttpServlet {
                 java.sql.Date obDate = null;
                 if (!obsoleteDateStr.equals("")) {
                     try {
-                        java.util.Date tmp = sdf.parse(exDateStr);
-                        exDate = new java.sql.Date(tmp.getTime());
+                        java.util.Date tmp = sdf.parse(obsoleteDateStr);
+                        obDate = new java.sql.Date(tmp.getTime());
                     } catch (ParseException ex) {
                         out.println(ex);
                     }
@@ -107,7 +108,10 @@ public class processAddJobComplement extends HttpServlet {
 
                 //add into db
                 JobComplementsDAO.addJobPassDetails(pass);
-             
+ 
+                //log the audit
+                auditChange = pass.toString2();
+                
              /* Employer Details */   
             } else if (complementName.equals("EmployerDetails")) {
                 //get all the parameters
@@ -122,7 +126,9 @@ public class processAddJobComplement extends HttpServlet {
 
                 //add into db
                 JobComplementsDAO.addJobEmployer(employer);
-
+                //log the audit
+                auditChange = employer.toString2();
+                
             /* Contract Details */    
             } else if (complementName.equals("ContractDetails")) {
                 //get all the parameters
@@ -158,7 +164,9 @@ public class processAddJobComplement extends HttpServlet {
 
                 //add into db
                 JobComplementsDAO.addJobEmploymentContract(contract);
-                
+                //log the audit
+                auditChange = contract.toString2();
+
              
             /*Intermediary Agent */
             } else if (complementName.equals("Agent")) {
@@ -199,6 +207,8 @@ public class processAddJobComplement extends HttpServlet {
                 JobIntermediaryAgent agent = new JobIntermediaryAgent(workerFinNum, jobKey, agentCompany, agentPersonName, agentLocation, agentlocationMore, agentAddress, agentContact, agentAmtPaid, agentAmtOwed, agentFeeShared, agentFeeTraining, agentFeeAirfare, agentFeeWhere, agentFeeWhen, agentFeeRepay, agentEmployer, agentRemarks);
                 //add into db
                 JobComplementsDAO.addJobIntermediaryAgent(agent);
+                //log the audit
+                auditChange = agent.toString2();
                 
             /*Verbal Assurance of Previous Job */    
             } else if (complementName.equals("VerbalAssurance")) {
@@ -215,6 +225,8 @@ public class processAddJobComplement extends HttpServlet {
                 JobVerbalAssurance assurance = new JobVerbalAssurance(workerFinNum, jobKey, verbalName, VerbalRelationship, when, where, content);
                 //add into db
                 JobComplementsDAO.addJobVerbalAssurance(assurance);
+                //log the audit
+                auditChange = assurance.toString2();
                 
             /*Work Place Details*/    
             } else if (complementName.equals("WorkPlace")) {
@@ -236,6 +248,8 @@ public class processAddJobComplement extends HttpServlet {
                 JobWorkplace jobWorkplace = new JobWorkplace(workerFinNum, jobKey, workplaceType, workplaceTypeMore, workplaceWhose, workplacePerson, workplaceRelationship, workplaceDirect, workplaceDirectMore, workplaceStart, workplaceEnd, workplaceCondition, workplaceSafety, workplaceRemark);
                 //add to db
                 JobComplementsDAO.addJobWorkplace(jobWorkplace);
+                //log the audit
+                auditChange = jobWorkplace.toString2();
                 
             /*Work History */    
             } else if (complementName.equals("WorkHistory")) {
@@ -263,6 +277,9 @@ public class processAddJobComplement extends HttpServlet {
                         histDate, workHistFirst, workHistYearArrive, workHistPreviousJob, workHistPreviousProb, 
                         workHistRemark);
                 JobComplementsDAO.addJobWorkHistory(hist);
+                //log the audit
+                auditChange = hist.toString2();
+                
             /*Accommodation During Work */            
             } else if (complementName.equals("Accommodation")) {
 
@@ -303,6 +320,8 @@ public class processAddJobComplement extends HttpServlet {
 
                 //add to db
                 JobComplementsDAO.addJobAccomodation(accomodation);
+                //log the audit
+                auditChange = accomodation.toString2();
               
             /*IPA Details */    
             } else if (complementName.equals("IPA")) {
@@ -367,7 +386,15 @@ public class processAddJobComplement extends HttpServlet {
                         ipaHousingProvided, ipaRemark);
                  //add to db
                 JobComplementsDAO.addJobIPADetails(ipa);
+                //log the audit
+                auditChange = ipa.toString2();
             }
+            
+            //log to audit
+            UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), jobKey + "", 
+                    workerFinNum, "Added", "Job Complement: " + auditChange);
+
+            UserAuditLogDAO.addUserAuditLog(userAuditLog);            
             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + "&selectedJob=" + jobKey);
         } finally {
             out.close();

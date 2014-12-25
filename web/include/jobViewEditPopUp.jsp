@@ -3,6 +3,7 @@
     Created on : Nov 6, 2014, 5:24:37 PM
     Author     : Nyein Su
 --%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="camans.dao.*"%>
 <%@page import="camans.entity.*"%>
@@ -1334,7 +1335,7 @@
     String ipa = request.getParameter("ipa");
 
     //end of data collection
-
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
     if (passId != null) {
         int id = Integer.parseInt(passId);
         JobPassDetails pass = JobComplementsDAO.retrieveJobPassDetailsById(id);
@@ -1375,17 +1376,23 @@
                 <div class='form-group'>
                     <label for='apdate' class="control-label">Pass Application Date:</label>
                     <br/>
-                    <input class="form-control" type='text' name="apdate" value="<%=(pass.getPassApplicationDate() == null) ? "" : pass.getPassApplicationDate()%>">
+                    <input class="form-control" type='text' name="apdate" 
+                           value="<%=(pass.getPassApplicationDate() == null) ? "" : 
+                               sdf.format(pass.getPassApplicationDate())%>">
                 </div>
                 <div class='form-group'>
                     <label for='isdate' class="control-label">Pass Issue Date: </label>
                     <br/>
-                    <input class="form-control" type='text' name="isdate" value="<%=(pass.getIssueDate() == null) ? "" : pass.getIssueDate()%>">
+                    <input class="form-control" type='text' name="isdate" 
+                           value="<%=(pass.getIssueDate() == null) ? "" : 
+                               sdf.format(pass.getIssueDate())%>">
                 </div>
                 <div class='form-group'>
                     <label for='exdate' class="control-label">Pass Expiry Date: </label>
                     <br/>
-                    <input class="form-control" type='text' name="exdate" value="<%=(pass.getExpiryDate() == null) ? "" : pass.getExpiryDate()%>">
+                    <input class="form-control" type='text' name="exdate" 
+                           value="<%=(pass.getExpiryDate() == null) ? "" : 
+                               sdf.format(pass.getExpiryDate())%>">
                 </div>
                 <div class='form-group'>
                     <label for='issuer' class="control-label">Pass Issuing Agency:</label>
@@ -1401,7 +1408,9 @@
                 <div class='form-group'>
                     <label for='obsoleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                     <br/>
-                    <input class="form-control" type='text' name="obsoleteDate" value="<%=(pass.getObsoleteDate() == null) ? "" : pass.getObsoleteDate()%>">
+                    <input class="form-control" type='text' name="obsoleteDate" 
+                           value="<%=(pass.getObsoleteDate() == null) ? "" : 
+                               sdf.format(pass.getObsoleteDate())%>">
                 </div>
             </fieldset>
 
@@ -1519,17 +1528,23 @@
             <div class='form-group'>
                 <label for='apdate' class="control-label">Pass Application Date:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="apdate" value="<%=(pass.getPassApplicationDate() == null) ? "" : pass.getPassApplicationDate()%>">
+                <input class="form-control dateInput" type='text' name="apdate" 
+                       value="<%=(pass.getPassApplicationDate() == null) ? "" : 
+                           sdf.format(pass.getPassApplicationDate())%>">
             </div>
             <div class='form-group'>
                 <label for='isdate' class="control-label">Pass Issue Date: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="isdate" value="<%=(pass.getIssueDate() == null) ? "" : pass.getIssueDate()%>">
+                <input class="form-control dateInput" type='text' name="isdate" 
+                       value="<%=(pass.getIssueDate() == null) ? "" : 
+                           sdf.format(pass.getIssueDate())%>">
             </div>
             <div class='form-group'>
                 <label for='exdate' class="control-label">Pass Expiry Date: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="exdate" value="<%=(pass.getExpiryDate() == null) ? "" : pass.getExpiryDate()%>">
+                <input class="form-control dateInput" type='text' name="exdate" 
+                       value="<%=(pass.getExpiryDate() == null) ? "" : 
+                           sdf.format(pass.getExpiryDate())%>">
             </div>
             <div class='form-group'>
                 <label for='issuer' class="control-label">Pass Issuing Agency:</label>
@@ -1544,7 +1559,9 @@
             <div class='form-group'>
                 <label for='obsoleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="obsoleteDate" value="<%=(pass.getObsoleteDate() == null) ? "" : pass.getObsoleteDate()%>">
+                <input class="form-control dateInput" type='text' name="obsoleteDate" 
+                       value="<%=(pass.getObsoleteDate() == null) ? "" : 
+                           sdf.format(pass.getObsoleteDate())%>">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="JobPassDetails"/>
@@ -1760,7 +1777,8 @@
                 <div class='form-group'>
                     <label for='name' class="control-label">Contract Date:</label>
                     <br/>
-                    <input class="form-control " type='text' name="name" value="<%=(date == null) ? "" : date%>">
+                    <input class="form-control " type='text' name="name" 
+                           value="<%=(date == null) ? "" : sdf.format(date)%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Where Contract Signed: </label>
@@ -1905,7 +1923,8 @@
             <div class='form-group'>
                 <label for='contdate' class="control-label">Contract Date<span style="color: red">*</span>:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="contdate" value="<%=(date == null) ? "" : date%>">
+                <input class="form-control dateInput" type='text' name="contdate" 
+                       value="<%=(date == null) ? "" : sdf.format(date)%>">
             </div>
             <div class='form-group'>
                 <label for='location' class="control-label">Where Contract Signed:</label>
@@ -3372,7 +3391,8 @@
                 <div class='form-group'>
                     <label for='name' class="control-label">IPA application Date:</label>
                     <br/>
-                    <input class="form-control" type='text' name="name" value="<%=appDate%>">
+                    <input class="form-control" type='text' name="name" 
+                           value="<%=sdf.format(appDate)%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA Employer Name: </label>
@@ -3582,7 +3602,8 @@
             <div class='form-group'>
                 <label for='appDate' class="control-label">IPA application date:</label>
                 <br/>
-                <input class="form-control  dateInput" type='text' name="appDate" value="<%=type%>">
+                <input class="form-control  dateInput" type='text' name="appDate" 
+                       value="<%=sdf.format(appDate)%>">
             </div>
             <div class='form-group'>
                 <label for='empName' class="control-label">IPA Employer Name: </label>

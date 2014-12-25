@@ -11,143 +11,170 @@ import java.sql.Date;
  * @author Xiaomeng
  */
 public class ProblemOtherComplaint {
-	private int id;
-	private String workerFinNumber;
-	private int jobKey;
-	private int problemKey;
-	private Date otherComplaintDate;
-	private String otherComplaintAgency;
-	private String otherComplaintWho;
-	private String otherComplaintWhoMore;
-	private String otherComplaintMode;
-	private String otherComplaintModeMore;
-	private String otherComplaintDetails;
-	private String otherComplaintRemark;
-	
-	//constructor with id
-	public ProblemOtherComplaint(int id, String workerFinNumber, int jobKey, int problemKey, Date otherComplaintDate, String otherComplaintAgency, String otherComplaintWho, String otherComplaintWhoMore, String otherComplaintMode, String otherComplaintModeMore, String otherComplaintDetails, String otherComplaintRemark) {
-		this.id = id;
-		this.workerFinNumber = workerFinNumber;
-		this.jobKey = jobKey;
-		this.problemKey = problemKey;
-		this.otherComplaintDate = otherComplaintDate;
-		this.otherComplaintAgency = otherComplaintAgency;
-		this.otherComplaintWho = otherComplaintWho;
-		this.otherComplaintWhoMore = otherComplaintWhoMore;
-		this.otherComplaintMode = otherComplaintMode;
-		this.otherComplaintModeMore = otherComplaintModeMore;
-		this.otherComplaintDetails = otherComplaintDetails;
-		this.otherComplaintRemark = otherComplaintRemark;
-	}
-	
-	//constructor without id
-	public ProblemOtherComplaint(String workerFinNumber, int jobKey, int problemKey, Date otherComplaintDate, String otherComplaintAgency, String otherComplaintWho, String otherComplaintWhoMore, String otherComplaintMode, String otherComplaintModeMore, String otherComplaintDetails, String otherComplaintRemark) {
-		this.workerFinNumber = workerFinNumber;
-		this.jobKey = jobKey;
-		this.problemKey = problemKey;
-		this.otherComplaintDate = otherComplaintDate;
-		this.otherComplaintAgency = otherComplaintAgency;
-		this.otherComplaintWho = otherComplaintWho;
-		this.otherComplaintWhoMore = otherComplaintWhoMore;
-		this.otherComplaintMode = otherComplaintMode;
-		this.otherComplaintModeMore = otherComplaintModeMore;
-		this.otherComplaintDetails = otherComplaintDetails;
-		this.otherComplaintRemark = otherComplaintRemark;
-	}
+    private int id;
+    private String workerFinNumber;
+    private int jobKey;
+    private int problemKey;
+    private Date otherComplaintDate;
+    private String otherComplaintAgency;
+    private String otherComplaintWho;
+    private String otherComplaintWhoMore;
+    private String otherComplaintMode;
+    private String otherComplaintModeMore;
+    private String otherComplaintDetails;
+    private String otherComplaintRemark;
 
-	public int getId() {
-		return id;
-	}
+    //constructor with id
+    public ProblemOtherComplaint(int id, String workerFinNumber, int jobKey, int problemKey, Date otherComplaintDate, String otherComplaintAgency, String otherComplaintWho, String otherComplaintWhoMore, String otherComplaintMode, String otherComplaintModeMore, String otherComplaintDetails, String otherComplaintRemark) {
+            this.id = id;
+            this.workerFinNumber = workerFinNumber;
+            this.jobKey = jobKey;
+            this.problemKey = problemKey;
+            this.otherComplaintDate = otherComplaintDate;
+            this.otherComplaintAgency = otherComplaintAgency;
+            this.otherComplaintWho = otherComplaintWho;
+            this.otherComplaintWhoMore = otherComplaintWhoMore;
+            this.otherComplaintMode = otherComplaintMode;
+            this.otherComplaintModeMore = otherComplaintModeMore;
+            this.otherComplaintDetails = otherComplaintDetails;
+            this.otherComplaintRemark = otherComplaintRemark;
+    }
 
-	public String getWorkerFinNumber() {
-		return workerFinNumber;
-	}
+    //constructor without id
+    public ProblemOtherComplaint(String workerFinNumber, int jobKey, int problemKey, Date otherComplaintDate, String otherComplaintAgency, String otherComplaintWho, String otherComplaintWhoMore, String otherComplaintMode, String otherComplaintModeMore, String otherComplaintDetails, String otherComplaintRemark) {
+            this.workerFinNumber = workerFinNumber;
+            this.jobKey = jobKey;
+            this.problemKey = problemKey;
+            this.otherComplaintDate = otherComplaintDate;
+            this.otherComplaintAgency = otherComplaintAgency;
+            this.otherComplaintWho = otherComplaintWho;
+            this.otherComplaintWhoMore = otherComplaintWhoMore;
+            this.otherComplaintMode = otherComplaintMode;
+            this.otherComplaintModeMore = otherComplaintModeMore;
+            this.otherComplaintDetails = otherComplaintDetails;
+            this.otherComplaintRemark = otherComplaintRemark;
+    }
 
-	public int getJobKey() {
-		return jobKey;
-	}
+    public int getId() {
+            return id;
+    }
 
-	public int getProblemKey() {
-		return problemKey;
-	}
+    public String getWorkerFinNumber() {
+            return workerFinNumber;
+    }
 
-	public Date getOtherComplaintDate() {
-		return otherComplaintDate;
-	}
+    public int getJobKey() {
+            return jobKey;
+    }
 
-	public String getOtherComplaintAgency() {
-		return otherComplaintAgency;
-	}
+    public int getProblemKey() {
+            return problemKey;
+    }
 
-	public String getOtherComplaintWho() {
-		return otherComplaintWho;
-	}
+    public Date getOtherComplaintDate() {
+            return otherComplaintDate;
+    }
 
-	public String getOtherComplaintWhoMore() {
-		return otherComplaintWhoMore;
-	}
+    public String getOtherComplaintAgency() {
+            return otherComplaintAgency;
+    }
 
-	public String getOtherComplaintMode() {
-		return otherComplaintMode;
-	}
+    public String getOtherComplaintWho() {
+            return otherComplaintWho;
+    }
 
-	public String getOtherComplaintModeMore() {
-		return otherComplaintModeMore;
-	}
+    public String getOtherComplaintWhoMore() {
+            return otherComplaintWhoMore;
+    }
 
-	public String getOtherComplaintDetails() {
-		return otherComplaintDetails;
-	}
+    public String getOtherComplaintMode() {
+            return otherComplaintMode;
+    }
 
-	public String getOtherComplaintRemark() {
-		return otherComplaintRemark;
-	}
+    public String getOtherComplaintModeMore() {
+            return otherComplaintModeMore;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public String getOtherComplaintDetails() {
+            return otherComplaintDetails;
+    }
 
-	public void setWorkerFinNumber(String workerFinNumber) {
-		this.workerFinNumber = workerFinNumber;
-	}
+    public String getOtherComplaintRemark() {
+            return otherComplaintRemark;
+    }
 
-	public void setJobKey(int jobKey) {
-		this.jobKey = jobKey;
-	}
+    public void setId(int id) {
+            this.id = id;
+    }
 
-	public void setProblemKey(int problemKey) {
-		this.problemKey = problemKey;
-	}
+    public void setWorkerFinNumber(String workerFinNumber) {
+            this.workerFinNumber = workerFinNumber;
+    }
 
-	public void setOtherComplaintDate(Date otherComplaintDate) {
-		this.otherComplaintDate = otherComplaintDate;
-	}
+    public void setJobKey(int jobKey) {
+            this.jobKey = jobKey;
+    }
 
-	public void setOtherComplaintAgency(String otherComplaintAgency) {
-		this.otherComplaintAgency = otherComplaintAgency;
-	}
+    public void setProblemKey(int problemKey) {
+            this.problemKey = problemKey;
+    }
 
-	public void setOtherComplaintWho(String otherComplaintWho) {
-		this.otherComplaintWho = otherComplaintWho;
-	}
+    public void setOtherComplaintDate(Date otherComplaintDate) {
+            this.otherComplaintDate = otherComplaintDate;
+    }
 
-	public void setOtherComplaintWhoMore(String otherComplaintWhoMore) {
-		this.otherComplaintWhoMore = otherComplaintWhoMore;
-	}
+    public void setOtherComplaintAgency(String otherComplaintAgency) {
+            this.otherComplaintAgency = otherComplaintAgency;
+    }
 
-	public void setOtherComplaintMode(String otherComplaintMode) {
-		this.otherComplaintMode = otherComplaintMode;
-	}
+    public void setOtherComplaintWho(String otherComplaintWho) {
+            this.otherComplaintWho = otherComplaintWho;
+    }
 
-	public void setOtherComplaintModeMore(String otherComplaintModeMore) {
-		this.otherComplaintModeMore = otherComplaintModeMore;
-	}
+    public void setOtherComplaintWhoMore(String otherComplaintWhoMore) {
+            this.otherComplaintWhoMore = otherComplaintWhoMore;
+    }
 
-	public void setOtherComplaintDetails(String otherComplaintDetails) {
-		this.otherComplaintDetails = otherComplaintDetails;
-	}
+    public void setOtherComplaintMode(String otherComplaintMode) {
+            this.otherComplaintMode = otherComplaintMode;
+    }
 
-	public void setOtherComplaintRemark(String otherComplaintRemark) {
-		this.otherComplaintRemark = otherComplaintRemark;
-	}
+    public void setOtherComplaintModeMore(String otherComplaintModeMore) {
+            this.otherComplaintModeMore = otherComplaintModeMore;
+    }
+
+    public void setOtherComplaintDetails(String otherComplaintDetails) {
+            this.otherComplaintDetails = otherComplaintDetails;
+    }
+
+    public void setOtherComplaintRemark(String otherComplaintRemark) {
+            this.otherComplaintRemark = otherComplaintRemark;
+    }
+
+    @Override
+    public String toString() {
+        return "ProblemOtherComplaint{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
+                ", otherComplaintDate=" + otherComplaintDate + 
+                ", otherComplaintAgency=" + otherComplaintAgency + 
+                ", otherComplaintWho=" + otherComplaintWho + 
+                ", otherComplaintWhoMore=" + otherComplaintWhoMore + 
+                ", otherComplaintMode=" + otherComplaintMode + 
+                ", otherComplaintModeMore=" + otherComplaintModeMore + 
+                ", otherComplaintDetails=" + otherComplaintDetails + 
+                ", otherComplaintRemark=" + otherComplaintRemark + '}';
+    }
+
+    public String toString2() {
+        return "ProblemOtherComplaint{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", otherComplaintDate=" + otherComplaintDate + 
+                ", otherComplaintAgency=" + otherComplaintAgency + 
+                ", otherComplaintWho=" + otherComplaintWho + 
+                ", otherComplaintWhoMore=" + otherComplaintWhoMore + 
+                ", otherComplaintMode=" + otherComplaintMode + 
+                ", otherComplaintModeMore=" + otherComplaintModeMore + 
+                ", otherComplaintDetails=" + otherComplaintDetails + 
+                ", otherComplaintRemark=" + otherComplaintRemark + '}';
+    }    
+    
 }

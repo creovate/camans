@@ -42,7 +42,6 @@ public class WorkerHomeCountryPhNum {
         this.workerFinNum = workerFinNum;
     }
 
-
     public int getId() {
         return id;
     }
@@ -80,5 +79,7 @@ public class WorkerHomeCountryPhNum {
         return "WorkerHomeCountryPhNum{" + "workerFinNum=" + workerFinNum + ", id=" + id + ", phNumber=" + phNumber + ", phOwner=" + phOwner + ", obseleteDate=" + obseleteDate + '}';
     }
     
-    
+    public String toString2() {
+        return "WorkerHomeCountryPhNum{" + "workerFinNum=" + workerFinNum + ", phNumber=" + phNumber + ", phOwner=" + phOwner + ", obseleteDate=" + obseleteDate + '}';
+    }    
 }

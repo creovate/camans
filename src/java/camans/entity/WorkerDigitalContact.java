@@ -113,5 +113,8 @@ public class WorkerDigitalContact {
         return "WorkerDigitalContact{" + "workerFinNum=" + workerFinNum + ", id=" + id + ", contactType=" + contactType + ", contactTypeMore=" + contactTypeMore + ", contactInfo=" + contactInfo + ", owner=" + owner + ", remark=" + remark + ", obseleteDate=" + obseleteDate + '}';
     }
     
+    public String toString2() {
+        return "WorkerDigitalContact{" + "workerFinNum=" + workerFinNum + ", contactType=" + contactType + ", contactTypeMore=" + contactTypeMore + ", contactInfo=" + contactInfo + ", owner=" + owner + ", remark=" + remark + ", obseleteDate=" + obseleteDate + '}';
+    }
     
 }

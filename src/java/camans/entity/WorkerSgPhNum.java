@@ -39,8 +39,6 @@ public class WorkerSgPhNum {
         this.workerFinNum = workerFinNum;
     }
 
-
-
     public int getId() {
         return id;
     }
@@ -57,7 +55,6 @@ public class WorkerSgPhNum {
         this.phNumber = phNumber;
     }
 
-
     public Date getObseleteDate() {
         return obseleteDate;
     }
@@ -71,6 +68,8 @@ public class WorkerSgPhNum {
         return "WorkerSgPhNum{" + "workerFinNum=" + workerFinNum + ", id=" + id + ", phNumber=" + phNumber + ", obseleteDate=" + obseleteDate + '}';
     }
     
-    
+    public String toString2() {
+        return "WorkerSgPhNum{" + "workerFinNum=" + workerFinNum + ", phNumber=" + phNumber + ", obseleteDate=" + obseleteDate + '}';
+    }    
     
 }

@@ -159,33 +159,33 @@ public class ProblemR2R {
         this.R2R1 = R2R1;
     }
 	
-	public String getR2R2() {
-        return R2R2;
-    }
+    public String getR2R2() {
+    return R2R2;
+}
 
     public void setR2R2(String R2R2) {
         this.R2R2 = R2R2;
     }
 	
-	 public String getR2RPurpose() {
-        return R2RPurpose;
-    }
+    public String getR2RPurpose() {
+   return R2RPurpose;
+}
 
     public void setR2RPurpose (String R2RPurpose) {
         this.R2RPurpose = R2RPurpose;
     }
 	
-	public String getR2RPreApptNotes(){
-        return R2RPreApptNotes;
-    }
+    public String getR2RPreApptNotes(){
+    return R2RPreApptNotes;
+}
 
     public void setR2RPreApptNotes(String R2RPreApptNotes) {
         this.R2RPreApptNotes = R2RPreApptNotes;
     }
 	
-	public String getR2RPostApptNotes() {
-        return R2RPostApptNotes;
-    }
+    public String getR2RPostApptNotes() {
+    return R2RPostApptNotes;
+}
 
     public void setR2RPostApptNotes(String R2RPostApptNotes) {
         this.R2RPostApptNotes = R2RPostApptNotes;
@@ -214,5 +214,24 @@ public class ProblemR2R {
     public void setR2ROutlay(float R2ROutlay) {
         this.R2ROutlay = R2ROutlay;
     }
-	 
+
+    @Override
+    public String toString() {
+        return "ProblemR2R{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
+                ", R2RDate=" + R2RDate + ", R2RTime=" + R2RTime + 
+                ", R2RHosp=" + R2RHosp + ", R2RDept=" + R2RDept + ", R2R1=" + R2R1 + ", R2R2=" + R2R2 + 
+                ", R2RPurpose=" + R2RPurpose + ", R2RPreApptNotes=" + R2RPreApptNotes + 
+                ", R2RPostApptNotes=" + R2RPostApptNotes + ", R2RFeedback=" + R2RFeedback + 
+                ", R2RMedCost=" + R2RMedCost + ", R2ROutlay=" + R2ROutlay + '}';
+    }
+	
+    public String toString2() {
+        return "ProblemR2R{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", R2RDate=" + R2RDate + ", R2RTime=" + R2RTime + 
+                ", R2RHosp=" + R2RHosp + ", R2RDept=" + R2RDept + ", R2R1=" + R2R1 + ", R2R2=" + R2R2 + 
+                ", R2RPurpose=" + R2RPurpose + ", R2RPreApptNotes=" + R2RPreApptNotes + 
+                ", R2RPostApptNotes=" + R2RPostApptNotes + ", R2RFeedback=" + R2RFeedback + 
+                ", R2RMedCost=" + R2RMedCost + ", R2ROutlay=" + R2ROutlay + '}';
+    }    
 }

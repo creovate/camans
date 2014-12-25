@@ -96,8 +96,20 @@ public class ProblemLeadCaseWorker {
     public void setLeadEnd(Date leadEnd) {
         this.leadEnd = leadEnd;
     }
+
+    @Override
+    public String toString() {
+        return "ProblemLeadCaseWorker{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
+                ", leadCaseWorker=" + leadCaseWorker + ", leadStart=" + leadStart + 
+                ", leadEnd=" + leadEnd + '}';
+    }
     
-    
+    public String toString2() {
+        return "ProblemLeadCaseWorker{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", leadCaseWorker=" + leadCaseWorker + ", leadStart=" + leadStart + 
+                ", leadEnd=" + leadEnd + '}';
+    }
 
    
     

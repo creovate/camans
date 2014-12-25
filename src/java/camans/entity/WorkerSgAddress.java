@@ -68,6 +68,9 @@ public class WorkerSgAddress {
     public String toString() {
         return "WorkerSgAddress{" + "workerFinNum=" + workerFinNum + ", id=" + id + ", address=" + address + ", obseleteDate=" + obseleteDate + '}';
     }
-    
+ 
+    public String toString2() {
+        return "WorkerSgAddress{" + "workerFinNum=" + workerFinNum + ", address=" + address + ", obseleteDate=" + obseleteDate + '}';
+    }    
     
 }

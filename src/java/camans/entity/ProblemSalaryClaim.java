@@ -11,91 +11,106 @@ import java.sql.Date;
  * @author Xiaomeng
  */
 public class ProblemSalaryClaim {
-	//attribute
-	private int id;
-	private String workerFinNumber;
-	private int jobKey;
-	private int problemKey;
-	private Date salaryClaimDate;
-	private double salaryClaimLoss;
-	private String salaryClaimBasis;
+    //attribute
+    private int id;
+    private String workerFinNumber;
+    private int jobKey;
+    private int problemKey;
+    private Date salaryClaimDate;
+    private double salaryClaimLoss;
+    private String salaryClaimBasis;
 
-	//constructor with id
-	public ProblemSalaryClaim(int id, String workerFinNumber, int jobKey, int problemKey, Date salaryClaimDate, double salaryClaimLoss, String salaryClaimBasis) {
-		this.id = id;
-		this.workerFinNumber = workerFinNumber;
-		this.jobKey = jobKey;
-		this.problemKey = problemKey;
-		this.salaryClaimDate = salaryClaimDate;
-		this.salaryClaimLoss = salaryClaimLoss;
-		this.salaryClaimBasis = salaryClaimBasis;
-	}
-	
-	//constructor without id
-	public ProblemSalaryClaim(String workerFinNumber, int jobKey, int problemKey, Date salaryClaimDate, double salaryClaimLoss, String salaryClaimBasis) {
-		this.workerFinNumber = workerFinNumber;
-		this.jobKey = jobKey;
-		this.problemKey = problemKey;
-		this.salaryClaimDate = salaryClaimDate;
-		this.salaryClaimLoss = salaryClaimLoss;
-		this.salaryClaimBasis = salaryClaimBasis;
-	}
+    //constructor with id
+    public ProblemSalaryClaim(int id, String workerFinNumber, int jobKey, int problemKey, Date salaryClaimDate, double salaryClaimLoss, String salaryClaimBasis) {
+            this.id = id;
+            this.workerFinNumber = workerFinNumber;
+            this.jobKey = jobKey;
+            this.problemKey = problemKey;
+            this.salaryClaimDate = salaryClaimDate;
+            this.salaryClaimLoss = salaryClaimLoss;
+            this.salaryClaimBasis = salaryClaimBasis;
+    }
 
-	public int getId() {
-		return id;
-	}
+    //constructor without id
+    public ProblemSalaryClaim(String workerFinNumber, int jobKey, int problemKey, Date salaryClaimDate, double salaryClaimLoss, String salaryClaimBasis) {
+            this.workerFinNumber = workerFinNumber;
+            this.jobKey = jobKey;
+            this.problemKey = problemKey;
+            this.salaryClaimDate = salaryClaimDate;
+            this.salaryClaimLoss = salaryClaimLoss;
+            this.salaryClaimBasis = salaryClaimBasis;
+    }
 
-	public String getWorkerFinNumber() {
-		return workerFinNumber;
-	}
+    public int getId() {
+            return id;
+    }
 
-	public int getJobKey() {
-		return jobKey;
-	}
+    public String getWorkerFinNumber() {
+            return workerFinNumber;
+    }
 
-	public int getProblemKey() {
-		return problemKey;
-	}
+    public int getJobKey() {
+            return jobKey;
+    }
 
-	public Date getSalaryClaimDate() {
-		return salaryClaimDate;
-	}
+    public int getProblemKey() {
+            return problemKey;
+    }
 
-	public double getSalaryClaimLoss() {
-		return salaryClaimLoss;
-	}
+    public Date getSalaryClaimDate() {
+            return salaryClaimDate;
+    }
 
-	public String getSalaryClaimBasis() {
-		return salaryClaimBasis;
-	}
+    public double getSalaryClaimLoss() {
+            return salaryClaimLoss;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public String getSalaryClaimBasis() {
+            return salaryClaimBasis;
+    }
 
-	public void setWorkerFinNumber(String workerFinNumber) {
-		this.workerFinNumber = workerFinNumber;
-	}
+    public void setId(int id) {
+            this.id = id;
+    }
 
-	public void setJobKey(int jobKey) {
-		this.jobKey = jobKey;
-	}
+    public void setWorkerFinNumber(String workerFinNumber) {
+            this.workerFinNumber = workerFinNumber;
+    }
 
-	public void setProblemKey(int problemKey) {
-		this.problemKey = problemKey;
-	}
+    public void setJobKey(int jobKey) {
+            this.jobKey = jobKey;
+    }
 
-	public void setSalaryClaimDate(Date salaryClaimDate) {
-		this.salaryClaimDate = salaryClaimDate;
-	}
+    public void setProblemKey(int problemKey) {
+            this.problemKey = problemKey;
+    }
 
-	public void setSalaryClaimLoss(double salaryClaimLoss) {
-		this.salaryClaimLoss = salaryClaimLoss;
-	}
+    public void setSalaryClaimDate(Date salaryClaimDate) {
+            this.salaryClaimDate = salaryClaimDate;
+    }
 
-	public void setSalaryClaimBasis(String salaryClaimBasis) {
-		this.salaryClaimBasis = salaryClaimBasis;
-	}				
+    public void setSalaryClaimLoss(double salaryClaimLoss) {
+            this.salaryClaimLoss = salaryClaimLoss;
+    }
+
+    public void setSalaryClaimBasis(String salaryClaimBasis) {
+            this.salaryClaimBasis = salaryClaimBasis;
+    }				
+
+    @Override
+    public String toString() {
+        return "ProblemSalaryClaim{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
+                ", salaryClaimDate=" + salaryClaimDate + ", salaryClaimLoss=" + salaryClaimLoss + 
+                ", salaryClaimBasis=" + salaryClaimBasis + '}';
+    }
+
+    public String toString2() {
+        return "ProblemSalaryClaim{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", salaryClaimDate=" + salaryClaimDate + ", salaryClaimLoss=" + salaryClaimLoss + 
+                ", salaryClaimBasis=" + salaryClaimBasis + '}';
+    }
+    
 }
 	
 	

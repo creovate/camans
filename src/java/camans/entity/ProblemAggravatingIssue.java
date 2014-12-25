@@ -110,6 +110,20 @@ public class ProblemAggravatingIssue {
     public void setAggravatingRemark(String AggravatingRemark) {
         this.AggravatingRemark = AggravatingRemark;
     }
+
+    @Override
+    public String toString() {
+        return "ProblemAggravatingIssue{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
+                ", AggravatingIssue=" + AggravatingIssue + 
+                ", AggravatingIssueMore=" + AggravatingIssueMore + 
+                ", AggravatingLoss=" + AggravatingLoss + ", AggravatingRemark=" + AggravatingRemark + '}';
+    }
     
-    
+    public String toString2() {
+        return "ProblemAggravatingIssue{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", AggravatingIssue=" + AggravatingIssue + 
+                ", AggravatingIssueMore=" + AggravatingIssueMore + ", AggravatingLoss=" + AggravatingLoss + 
+                ", AggravatingRemark=" + AggravatingRemark + '}';
+    }
 }

@@ -57,6 +57,10 @@ public class WorkerNickname {
         return "WorkerNickname{" + "workerFinNum=" + workerFinNum + ", id=" + id + ", nickname=" + nickname + '}';
     }
     
+    public String toString2() {
+        return "WorkerNickname{" + "workerFinNum=" + workerFinNum + ", nickname=" + nickname + '}';
+    }    
+    
     
     
 }

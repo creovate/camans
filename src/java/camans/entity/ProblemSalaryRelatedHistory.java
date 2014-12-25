@@ -188,6 +188,25 @@ public class ProblemSalaryRelatedHistory {
     public void setSalHisRemarks(String salHisRemarks) {
         this.salHisRemarks = salHisRemarks;
     }
+
+    @Override
+    public String toString() {
+        return "ProblemSalaryRelatedHistory{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + ", salHistBasic=" + salHistBasic + 
+                ", salHistOt=" + salHistOt + ", salHistAllowances=" + salHistAllowances + 
+                ", salHistDeductions=" + salHistDeductions + ", salHistKickbacks=" + salHistKickbacks + 
+                ", salHistOther=" + salHistOther + ", salMode=" + salMode + 
+                ", salModeMore=" + salModeMore + ", salLossTotal=" + salLossTotal + 
+                ", salLoss1Year=" + salLoss1Year + ", salHisRemarks=" + salHisRemarks + '}';
+    }
     
-    
+    public String toString2() {
+        return "ProblemSalaryRelatedHistory{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", salHistBasic=" + salHistBasic + 
+                ", salHistOt=" + salHistOt + ", salHistAllowances=" + salHistAllowances + 
+                ", salHistDeductions=" + salHistDeductions + ", salHistKickbacks=" + salHistKickbacks + 
+                ", salHistOther=" + salHistOther + ", salMode=" + salMode + 
+                ", salModeMore=" + salModeMore + ", salLossTotal=" + salLossTotal + 
+                ", salLoss1Year=" + salLoss1Year + ", salHisRemarks=" + salHisRemarks + '}';
+    }    
 }

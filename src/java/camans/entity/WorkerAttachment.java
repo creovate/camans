@@ -71,7 +71,17 @@ public class WorkerAttachment {
     public void setSubmitBy(String submitBy) {
         this.submitBy = submitBy;
     }
+
+    @Override
+    public String toString() {
+        return "WorkerAttachment{" + "workerFinNum=" + workerFinNum + ", id=" + id + 
+                ", documentName=" + documentName + ", filePath=" + filePath + 
+                ", submitBy=" + submitBy + '}';
+    }
     
-    
+    public String toString2() {
+        return "WorkerAttachment{" + "workerFinNum=" + workerFinNum +
+                ", documentName=" + documentName + '}';
+    }
     
 }

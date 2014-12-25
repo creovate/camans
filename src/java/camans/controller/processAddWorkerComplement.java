@@ -4,19 +4,9 @@
  */
 package camans.controller;
 
+import camans.dao.UserAuditLogDAO;
 import camans.dao.WorkerComplementsDAO;
-import camans.entity.WorkerBankAcct;
-import camans.entity.WorkerDigitalContact;
-import camans.entity.WorkerFamilyMember;
-import camans.entity.WorkerFriend;
-import camans.entity.WorkerHomeCountryAddress;
-import camans.entity.WorkerHomeCountryPhNum;
-import camans.entity.WorkerLanguage;
-import camans.entity.WorkerNextOfKin;
-import camans.entity.WorkerNickname;
-import camans.entity.WorkerPassportDetails;
-import camans.entity.WorkerSgAddress;
-import camans.entity.WorkerSgPhNum;
+import camans.entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -44,24 +34,33 @@ public class processAddWorkerComplement extends HttpServlet {
             throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String success = null;
+        String error = null;
         try {
 
             String complementName = request.getParameter("complementName");
             String workerFinNum = request.getParameter("workerFinNum");
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-            //SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
+            User _user = (User) request.getSession().getAttribute("userLogin");
+            String auditChange = "";
+            
             //=======================================//
             //          Nick Name 
             //=======================================//            
             if (complementName.equals("WorkerNickname")) {
                 //get all the parameters for Nickname
                 String nickName = request.getParameter("nNickName");
-
+                
                 //create nickname object
                 WorkerNickname workerNickname = new WorkerNickname(workerFinNum, nickName);
                 //addInto Database
                 WorkerComplementsDAO.addNickname(workerNickname);
+
+                //log the audit
+                auditChange = workerNickname.toString2();
                 
+                //success display
+                success = "Worker Nickname has been succesfully added!";
             //=======================================//
             //          Passport Details  
             //=======================================// 
@@ -72,33 +71,29 @@ public class processAddWorkerComplement extends HttpServlet {
                 String passportNum = request.getParameter("nPassportNum");
                 String passportIssueDateStr = request.getParameter("nPassportIssueDate");
                 String passportExpiryDateStr = request.getParameter("nPassportExpiryDate");
+                
                 java.sql.Date passportIssueDate = null;
                 if (!passportIssueDateStr.equals("")) {
-                    try {
-                        java.util.Date tmp = sdf.parse(passportIssueDateStr);
-                        passportIssueDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        out.println(ex);
-                    }
+                    java.util.Date tmp = sdf.parse(passportIssueDateStr);
+                    passportIssueDate = new java.sql.Date(tmp.getTime());
                 }
                 java.sql.Date passportExpiryDate = null;
                 if (!passportIssueDateStr.equals("")) {
-                    try {
-                        java.util.Date tmp = sdf.parse(passportExpiryDateStr);
-                        passportExpiryDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        out.println(ex);
-                    }
+                    java.util.Date tmp = sdf.parse(passportExpiryDateStr);
+                    passportExpiryDate = new java.sql.Date(tmp.getTime());
                 }
-
-
+               
 
                 //create passport object
                 WorkerPassportDetails workerPassportDetails = new WorkerPassportDetails(workerFinNum,
                         passportNum, passportCountry, passportIssueDate, passportExpiryDate);
                 //addInto Database
                 WorkerComplementsDAO.addWorkerPassportDetails(workerPassportDetails);
+                //log the audit
+                auditChange = workerPassportDetails.toString2();
                 
+                //success display
+                success = "Worker Passport Details has been succesfully added!";
             //=======================================//
             //          Home Country Phone Number  
             //=======================================//
@@ -109,14 +104,11 @@ public class processAddWorkerComplement extends HttpServlet {
                 String phOwner = request.getParameter("nPhOwner");
                 String obseleteDateStr = request.getParameter("nObseleteDate");
 
+                boolean pass = true; //date validation 
                 java.sql.Date obseleteDate = null;
                 if (!obseleteDateStr.equals("")) {
-                    try {
-                        java.util.Date tmp = sdf.parse(obseleteDateStr);
-                        obseleteDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        out.println(ex);
-                    }
+                    java.util.Date tmp = sdf.parse(obseleteDateStr);
+                    obseleteDate = new java.sql.Date(tmp.getTime());
                 }
 
 
@@ -125,7 +117,11 @@ public class processAddWorkerComplement extends HttpServlet {
                         phNum, phOwner, obseleteDate);
                 //add into db
                 WorkerComplementsDAO.addWorkerHomeCountryPhNum(obj);
-
+                //log the audit
+                auditChange = obj.toString2();
+                             
+                //success display
+                success = "Home Country Phone Number has been succesfully added!";
             //=======================================//
             //          Singapore Phone Number  
             //=======================================//
@@ -135,20 +131,17 @@ public class processAddWorkerComplement extends HttpServlet {
                 String obseleteDateStr = request.getParameter("nObseleteDate");
                 java.sql.Date obseleteDate = null;
                 if (!obseleteDateStr.equals("")) {
-                    try {
-                        java.util.Date tmp = sdf.parse(obseleteDateStr);
-                        obseleteDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        out.println(ex);
-                    }
+                    java.util.Date tmp = sdf.parse(obseleteDateStr);
+                    obseleteDate = new java.sql.Date(tmp.getTime());
                 }
-
-
 
                 WorkerSgPhNum obj = new WorkerSgPhNum(workerFinNum, phNum, obseleteDate);
                 //add into db
                 WorkerComplementsDAO.addWorkerSgPhNum(obj);
-
+                //log the audit
+                auditChange = obj.toString2();
+                //success display
+                success = "Worker's Singapore Phone Number has been succesfully added!";
             //=======================================//
             //          Singapore Address  
             //=======================================//
@@ -159,20 +152,17 @@ public class processAddWorkerComplement extends HttpServlet {
 
                 java.sql.Date obseleteDate = null;
                 if (!obseleteDateStr.equals("")) {
-                    try {
-                        java.util.Date tmp = sdf.parse(obseleteDateStr);
-                        obseleteDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        out.println(ex);
-                    }
+                    java.util.Date tmp = sdf.parse(obseleteDateStr);
+                    obseleteDate = new java.sql.Date(tmp.getTime());
                 }
-
-
 
                 //add into db//create object
                 WorkerSgAddress obj = new WorkerSgAddress(workerFinNum, address, obseleteDate);
                 WorkerComplementsDAO.addWorkerSgAddress(obj);
-
+                //log the audit
+                auditChange = obj.toString2();
+                //success display
+                success = "Worker's Singapore Address has been succesfully added!";
             //=======================================//
             //          Home Country Address   
             //=======================================//
@@ -183,18 +173,17 @@ public class processAddWorkerComplement extends HttpServlet {
 
                 java.sql.Date obseleteDate = null;
                 if (!obseleteDateStr.equals("")) {
-                    try {
-                        java.util.Date tmp = sdf.parse(obseleteDateStr);
-                        obseleteDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        out.println(ex);
-                    }
+                    java.util.Date tmp = sdf.parse(obseleteDateStr);
+                    obseleteDate = new java.sql.Date(tmp.getTime());
                 }
 
                 //add into db
                 WorkerHomeCountryAddress obj = new WorkerHomeCountryAddress(workerFinNum, address, obseleteDate);
                 WorkerComplementsDAO.addWorkerHomeCountryAddress(obj);
-
+                //log the audit
+                auditChange = obj.toString2();
+                //success display
+                success = "Worker's Home Country Address has been succesfully added!";
             //=======================================//
             //          Digital Contacts  
             //=======================================//
@@ -225,7 +214,8 @@ public class processAddWorkerComplement extends HttpServlet {
 
                 //add into db
                 WorkerComplementsDAO.addWorkerDigitalContact(obj);
-
+                //log the audit
+                auditChange = obj.toString2();
             //=======================================//
             //          Next of Kin  
             //=======================================//
@@ -259,7 +249,8 @@ public class processAddWorkerComplement extends HttpServlet {
                         relation, docReference, phNum, digitalContact, address,
                         proofDoc, remark, obseleteDate);
                 WorkerComplementsDAO.addWorkerNextOfKin(obj);
-
+                //log the audit
+                auditChange = obj.toString2();
             //=======================================//
             //          Family Members   
             //=======================================//                
@@ -289,7 +280,8 @@ public class processAddWorkerComplement extends HttpServlet {
                 WorkerFamilyMember obj = new WorkerFamilyMember(workerFinNum, name,
                         relation, address, phNum, digitalContact, remark, obseleteDate);
                 WorkerComplementsDAO.addWorkerFamilyMember(obj);
-
+                //log the audit
+                auditChange = obj.toString2();
             //=======================================//
             //          Friends In Singapore 
             //=======================================//               
@@ -298,18 +290,14 @@ public class processAddWorkerComplement extends HttpServlet {
                 //get all the parameters for next of kin
                 String name = request.getParameter("nName");
                 String relation = request.getParameter("nRelation");
-                String phNum = request.getParameter("nPhNum");
+                String phNum = request.getParameter("nFriendPhNum");
                 String remark = request.getParameter("nRemark");
                 String obseleteDateStr = request.getParameter("nObseleteDate");
 
                 java.sql.Date obseleteDate = null;
                 if (!obseleteDateStr.equals("")) {
-                    try {
-                        java.util.Date tmp = sdf.parse(obseleteDateStr);
-                        obseleteDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        out.println(ex);
-                    }
+                    java.util.Date tmp = sdf.parse(obseleteDateStr);
+                    obseleteDate = new java.sql.Date(tmp.getTime());
                 }
 
 
@@ -317,7 +305,10 @@ public class processAddWorkerComplement extends HttpServlet {
                 WorkerFriend obj = new WorkerFriend(workerFinNum, name,
                         phNum, relation, remark, obseleteDate);
                 WorkerComplementsDAO.addWorkerFriend(obj);
-
+                //log the audit
+                auditChange = obj.toString2();
+                //success display
+                success = "Worker's Friend record has been succesfully added!";
             //=======================================//
             //          Language 
             //=======================================//
@@ -334,7 +325,10 @@ public class processAddWorkerComplement extends HttpServlet {
                 WorkerLanguage obj = new WorkerLanguage(workerFinNum, mainLanguage,
                         languageMore, englishStandard, remark);
                 WorkerComplementsDAO.addWorkerLanguage(obj);
-
+                //log the audit
+                auditChange = obj.toString2();
+                //success display
+                success = "Worker's Language has been succesfully added!";
             //=======================================//
             //          Bank Account Details  
             //=======================================//
@@ -367,10 +361,24 @@ public class processAddWorkerComplement extends HttpServlet {
                         bankBranchCode, bankSwift, remark, obseleteDate);
                 WorkerComplementsDAO.addWorkerBankAccountDetails(obj);
 
-
-
+                //log the audit
+                auditChange = obj.toString2();
+                //success display
+                success = "Worker's Bank Account Details has been succesfully added!";
             }
+            
+            //log to audit
+            
+            UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), workerFinNum, 
+                    workerFinNum, "Added", "Worker Complement: " + auditChange);
+            
+            UserAuditLogDAO.addUserAuditLog(userAuditLog);       
+            //request.getSession().setAttribute("successWrkCompMsg", success);
             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+        } catch (Exception e) {
+            error = "Worker Complement is not added. There is a parsing error.";
+            //log to logfile
+            
         } finally {
             out.close();
         }

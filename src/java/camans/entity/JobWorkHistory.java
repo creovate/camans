@@ -151,7 +151,14 @@ public class JobWorkHistory {
                 workHistRemarks + '}';
     }
     
-    
+    public String toString2() {
+        return "JobWorkHistory{" + "WorkerFinNum=" + workerFinNum + 
+                ", workHistHow=" + workHistHow + ", workHistHowMore=" + 
+                workHistHowMore + ", workHistDate=" + workHistDate + ", workHistFirst=" + 
+                workHistFirst + ", workHistYearArrive=" + workHistYearArrive + ", workHistPrevious=" + 
+                workHistPrevious + ", workHistPrevProblems=" + workHistPrevProblems + ", workHistRemarks=" + 
+                workHistRemarks + '}';
+    }    
     
     
 }

@@ -95,6 +95,14 @@ public class ProblemAuxiliaryCaseWorker {
         this.auxEnd = auxEnd;
     }
 
-    
+    @Override
+    public String toString() {
+        return "ProblemAuxiliaryCaseWorker{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + ", jobKey=" + jobKey + ", problemKey=" + problemKey + ", auxName=" + auxName + ", auxStart=" + auxStart + ", auxEnd=" + auxEnd + '}';
+    }
+
+    public String toString2() {
+        return "ProblemAuxiliaryCaseWorker{" + "WorkerFinNumber=" + workerFinNumber +
+                ", auxName=" + auxName + ", auxStart=" + auxStart + ", auxEnd=" + auxEnd + '}';
+    }    
     
 }

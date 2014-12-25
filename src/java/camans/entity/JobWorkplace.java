@@ -183,7 +183,28 @@ public class JobWorkplace {
     public void setWorkplaceRemarks(String workplaceRemarks) {
         this.workplaceRemarks = workplaceRemarks;
     }
+
+    @Override
+    public String toString() {
+        return "JobWorkplace{" + "id=" + id + ", workerFinNum=" + workerFinNum + ", jobKey=" + jobKey + 
+                ", workplaceType=" + workplaceType + ", workplaceTypeMore=" + workplaceTypeMore + 
+                ", workplaceWhose=" + workplaceWhose + ", workpladePersons=" + workpladePersons + 
+                ", workplaceEmployerRelationship=" + workplaceEmployerRelationship + 
+                ", workplaceDirect=" + workplaceDirect + ", workplaceDirectMore=" + workplaceDirectMore + 
+                ", workplaceStart=" + workplaceStart + ", workplaceEnd=" + workplaceEnd + 
+                ", workplaceCondition=" + workplaceCondition + ", workplaceSafety=" + workplaceSafety + 
+                ", workplaceRemarks=" + workplaceRemarks + '}';
+    }
     
-    
+    public String toString2() {
+        return "JobWorkplace{" + "@orkerFinNum=" + workerFinNum + ", workplaceType=" + workplaceType + 
+                ", workplaceTypeMore=" + workplaceTypeMore + ", workplaceWhose=" + workplaceWhose + 
+                ", workpladePersons=" + workpladePersons + 
+                ", workplaceEmployerRelationship=" + workplaceEmployerRelationship + 
+                ", workplaceDirect=" + workplaceDirect + ", workplaceDirectMore=" + workplaceDirectMore + 
+                ", workplaceStart=" + workplaceStart + ", workplaceEnd=" + workplaceEnd + 
+                ", workplaceCondition=" + workplaceCondition + ", workplaceSafety=" + workplaceSafety + 
+                ", workplaceRemarks=" + workplaceRemarks + '}';
+    }
     
 }

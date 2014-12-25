@@ -183,7 +183,29 @@ public class ProblemInjury {
     public void setInjuryRemarks(String injuryRemarks) {
         this.injuryRemarks = injuryRemarks;
     }
-    
+
+    @Override
+    public String toString() {
+        return "ProblemInjury{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + ", injuryDate=" + injuryDate + 
+                ", injuryTime=" + injuryTime + ", injuryLocation=" + injuryLocation + 
+                ", injuryDeath=" + injuryDeath + ", injuryBodyPart=" + injuryBodyPart + 
+                ", injuryHow=" + injuryHow + ", injuryAmbulance=" + injuryAmbulance + 
+                ", initialTreatment=" + initialTreatment + 
+                ", initialTreatmentMore=" + initialTreatmentMore + 
+                ", injuryWorkRelated=" + injuryWorkRelated + ", injuryRemarks=" + injuryRemarks + '}';
+    }
+
+    public String toString2() {
+        return "ProblemInjury{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", injuryDate=" + injuryDate + 
+                ", injuryTime=" + injuryTime + ", injuryLocation=" + injuryLocation + 
+                ", injuryDeath=" + injuryDeath + ", injuryBodyPart=" + injuryBodyPart + 
+                ", injuryHow=" + injuryHow + ", injuryAmbulance=" + injuryAmbulance + 
+                ", initialTreatment=" + initialTreatment + 
+                ", initialTreatmentMore=" + initialTreatmentMore + 
+                ", injuryWorkRelated=" + injuryWorkRelated + ", injuryRemarks=" + injuryRemarks + '}';
+    }
     
     
 }

@@ -57,7 +57,7 @@
         <jsp:include page="include/navbarside.jsp"/>
         
         <div class="page-header">
-            <center><h1 style="color:#2980b9">User Management</h1></center>    
+            <center><h2 style="color:#2980b9">User Management</h2></center>    
         </div>
         <div class="main_div">
             <div class="col-md-10">

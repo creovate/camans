@@ -138,6 +138,22 @@ public class ProblemIllness {
     public void setIllnessRemark(String illnessRemark) {
         this.illnessRemark = illnessRemark;
     }
-    
+
+    @Override
+    public String toString() {
+        return "ProblemIllness{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + ", illnessStart=" + illnessStart + 
+                ", illnessDiagWhen=" + illnessDiagWhen + ", illnessDiagWho=" + illnessDiagWho + 
+                ", illnessNature=" + illnessNature + ", illnessWorkRelated=" + illnessWorkRelated + 
+                ", illnessWhy=" + illnessWhy + ", illnessRemark=" + illnessRemark + '}';
+    }
+
+    public String toString2() {
+        return "ProblemIllness{" + "WorkerFinNumber=" + workerFinNumber + 
+                ", illnessStart=" + illnessStart + 
+                ", illnessDiagWhen=" + illnessDiagWhen + ", illnessDiagWho=" + illnessDiagWho + 
+                ", illnessNature=" + illnessNature + ", illnessWorkRelated=" + illnessWorkRelated + 
+                ", illnessWhy=" + illnessWhy + ", illnessRemark=" + illnessRemark + '}';
+    }    
     
 }

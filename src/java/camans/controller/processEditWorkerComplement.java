@@ -42,16 +42,21 @@ public class processEditWorkerComplement extends HttpServlet {
             String complementName = request.getParameter("complementName");
             String workerFinNum = request.getParameter("workerFinNum");
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-            //SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
+            User _user = (User) request.getSession().getAttribute("userLogin");
+            String auditChange = "";
+            
             
             if (complementName.equals("WorkerNickname")) {
                 //get all the parameters for Nickname
                 String nickName = request.getParameter("nickName");
                 
-                    int id = Integer.parseInt(request.getParameter("Id"));
-                    WorkerNickname workerNickname = new WorkerNickname(workerFinNum,id, nickName);
-                    //update in the Database
-                    WorkerComplementsDAO.updateNickname(workerNickname); 
+                int id = Integer.parseInt(request.getParameter("Id"));
+                WorkerNickname workerNickname = new WorkerNickname(workerFinNum,id, nickName);
+                //update in the Database
+                WorkerComplementsDAO.updateNickname(workerNickname); 
+
+                //log the audit
+                auditChange = workerNickname.toString2();
                 
             } else if (complementName.equals("WorkerPassportDetails")) {
 
@@ -87,6 +92,9 @@ public class processEditWorkerComplement extends HttpServlet {
                 //update in the Database
                 WorkerComplementsDAO.updatePassportDetails(workerPassportDetails);
     
+                //log the audit
+                auditChange = workerPassportDetails.toString2();
+                
             } else if (complementName.equals("WorkerHomeCountryPhNum")) {
                 
                 //get all the parameters for HomeCountry
@@ -110,7 +118,8 @@ public class processEditWorkerComplement extends HttpServlet {
                 //update in the Database
                 WorkerComplementsDAO.updateWorkerHomeCountryPhNum(obj);
 
-                
+                //log the audit
+                auditChange = obj.toString2();
             } else if (complementName.equals("WorkerSgPhNum")) {
                 //get all the parameters for HomeCountry
                 String phNum = request.getParameter("phNum");
@@ -126,12 +135,13 @@ public class processEditWorkerComplement extends HttpServlet {
                 }
                 
                 
-
                 int id = Integer.parseInt(request.getParameter("Id"));
                 WorkerSgPhNum obj = new WorkerSgPhNum(workerFinNum, id, phNum,obseleteDate);
                 //update in the Database
                 WorkerComplementsDAO.updateWorkerSgPhNum(obj);
 
+                //log the audit
+                auditChange = obj.toString2();
      
             } else if (complementName.equals("WorkerSgAddress")) {
                  //get all the parameters for HomeCountry
@@ -155,6 +165,8 @@ public class processEditWorkerComplement extends HttpServlet {
                 //update in the Database
                 WorkerComplementsDAO.updateWorkerSgAddress(obj);
  
+                //log the audit
+                auditChange = obj.toString2();
              
             } else if (complementName.equals("WorkerHomeCountryAddress")) {
                   //get all the parameters for HomeCountry
@@ -178,7 +190,8 @@ public class processEditWorkerComplement extends HttpServlet {
                 //update in the Database
                 WorkerComplementsDAO.updateWorkerHomeCountryAddress(obj);
                
-   
+                //log the audit
+                auditChange = obj.toString2();
                 
             } else if (complementName.equals("WorkerDigitalContact")) {
                 
@@ -210,6 +223,9 @@ public class processEditWorkerComplement extends HttpServlet {
                 //update in the Database
                 WorkerComplementsDAO.updateWorkerDigitalContact(obj);
  
+                //log the audit
+                auditChange = obj.toString2();
+                
             } else if (complementName.equals("WorkerNextOfKin")) {
  
                 //get all the parameters for next of kin
@@ -241,6 +257,9 @@ public class processEditWorkerComplement extends HttpServlet {
                         proofDoc, remark, obseleteDate);
                 WorkerComplementsDAO.updateWorkerNextOfKin(obj);
 
+                //log the audit
+                auditChange = obj.toString2();
+                
             } else if (complementName.equals("WorkerFamilyMember")) {
                 
                 //get all the parameters for next of kin
@@ -263,20 +282,20 @@ public class processEditWorkerComplement extends HttpServlet {
                 }
 
                 
-
-
                 int id = Integer.parseInt(request.getParameter("Id"));
                 WorkerFamilyMember obj = new WorkerFamilyMember(workerFinNum, id, name,
                         relation, address,phNum, digitalContact, remark, obseleteDate);                    
                 //update in the Database
                 WorkerComplementsDAO.updateWorkerFamilyMember(obj);
 
+                //log the audit
+                auditChange = obj.toString2();
             } else if (complementName.equals("WorkerFriend")) {
                 
                 //get all the parameters for next of kin
                 String name = request.getParameter("name");
                 String relation = request.getParameter("relation");
-                String phNum = request.getParameter("phNum");
+                String phNum = request.getParameter("friendPhNum");
                 String remark = request.getParameter("remark");
                 String obseleteDateStr = request.getParameter("obseleteDate");
                 
@@ -290,13 +309,13 @@ public class processEditWorkerComplement extends HttpServlet {
                     }
                 }
                 
-
-
                 int id = Integer.parseInt(request.getParameter("Id"));
                 WorkerFriend obj = new WorkerFriend(workerFinNum, id, name,
                         phNum, relation, remark, obseleteDate);
                 WorkerComplementsDAO.updateWorkerFriend(obj);
 
+                //log the audit
+                auditChange = obj.toString2();
             } else if (complementName.equals("WorkerLanguage")) {
 
                 //get all the parameters for next of kin
@@ -312,6 +331,8 @@ public class processEditWorkerComplement extends HttpServlet {
                         languageMore, englishStandard, remark);
                 WorkerComplementsDAO.updateWorkerLanguage(obj);
 
+                //log the audit
+                auditChange = obj.toString2();         
                 
             } else if (complementName.equals("WorkerBankAcct")) {
                 //get all the parameters for next of kin
@@ -342,10 +363,18 @@ public class processEditWorkerComplement extends HttpServlet {
                         bankAcctNum, bankName,bankBranch, bankBranchAddress,
                         bankBranchCode,bankSwift , remark,obseleteDate);                    
                 WorkerComplementsDAO.updateWorkerBankAccountDetails(obj);
-             
+                
+                //log the audit
+                auditChange = obj.toString2();
 
             }
-             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+            
+            //log to audit  
+            UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), workerFinNum, 
+                    workerFinNum, "Modified", "Worker Complement: " + auditChange);
+            
+            UserAuditLogDAO.addUserAuditLog(userAuditLog);
+            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
         } finally {            
             out.close();
         }

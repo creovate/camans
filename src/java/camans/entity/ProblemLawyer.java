@@ -137,8 +137,20 @@ public class ProblemLawyer {
     public void setLawyerRemarks(String LawyerRemarks) {
         this.LawyerRemarks = LawyerRemarks;
     }
+
+    @Override
+    public String toString() {
+        return "ProblemLawyer{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + ", LawyerUpdate=" + LawyerUpdate + 
+                ", LawyerFirm=" + LawyerFirm + ", LawyerFirmMore=" + LawyerFirmMore + 
+                ", LawyerName=" + LawyerName + ", LawyerRemarks=" + LawyerRemarks + '}';
+    }
 	
-	 
+    public String toString2() {
+        return "ProblemLawyer{" + "WorkerFinNumber=" + workerFinNumber + ", LawyerUpdate=" + LawyerUpdate + 
+                ", LawyerFirm=" + LawyerFirm + ", LawyerFirmMore=" + LawyerFirmMore + 
+                ", LawyerName=" + LawyerName + ", LawyerRemarks=" + LawyerRemarks + '}';
+    }	 
 	
     
     
