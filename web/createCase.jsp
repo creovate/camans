@@ -80,19 +80,20 @@
             function swapDiv(div_id, curr_id, num) {
                 var curr_div_id = "#" + curr_id;
                 var val = 0;
-                if (num === 1) {
-                    $('.required', curr_div_id).each(function() {
-                        if (this.value.trim() === '') {
-                            //alert(this);
-                            val = 1;
-                        }
-                    });
+                var missing_input_field = "";
+                if(num === 1){
+                $('.required',curr_div_id).each(function() {
+                    if (this.value.trim() === '') {
+                        missing_input_field = $(this).attr('name');
+                        val = 1;
+                    }
+                });
                 }
                 if (val === 0) {
                     $('.sub_div').hide();
                     document.getElementById(div_id).style.display = 'block';
                     var li_id = 'progtrckr_' + div_id;
-                    if (num == 1) {
+                    if (num === 1) {
                         var div = document.getElementById(li_id);
                         div.setAttribute("class", 'progtrckr-done');
                     } else {
@@ -100,8 +101,17 @@
                         var div = document.getElementById(li_id);
                         div.setAttribute("class", 'progtrckr-todo');
                     }
+                    //$('.next_btn').prop('disabled',false);
                 } else {
-                    alert("Some fields are missing. Please enter all the required fields.");
+                    //$('.next_btn').prop('disabled',true);
+                    if(missing_input_field === "finNum"){
+                        alert("FIN Number is required.");
+                    }else if(missing_input_field === "workerName"){
+                        alert("Worker Name is required.")
+                    }else if(missing_input_field === 'employerName'){
+                        alert("Employer Name is required.")
+                    }
+                    //alert("Some fields are missing. Please enter all the required fields.");
                 }
             }
 
@@ -118,6 +128,7 @@
     <body id="createCase">
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
+        <!-- Progress Tracker -->
         <div class="col-md-10">
             <div class="col-md-offset-3 col-md-6" id="progtrckr">
                 <ol class="progtrckr" data-progtrckr-steps="3">
@@ -127,7 +138,7 @@
                 </ol>
             </div>
         </div>
-
+        <!-- Create Case From -->
         <div class="col-md-10">
             <div class="col-xs-12 col-md-12" >
                 <%
@@ -169,9 +180,9 @@
 
 
                         <div class="form-group">
-                            <label for="worker_name" class="col-md-3 control-label" >Name of Worker <span class="required_input">*</span> </label>
+                            <label for="worker_name" class="col-md-3 control-label " >Name of Worker <span class="required_input">*</span> </label>
                             <div class=" col-md-6">
-                                <input type="text" class="form-control" name="workerName"/>
+                                <input type="text" class="form-control required" name="workerName"/>
                             </div>
                         </div>
 
@@ -179,7 +190,7 @@
                         <div class="form-group">
                             <label for="worker_fin" class="col-md-3 control-label">FIN <span class="required_input">*</span></label>
                             <div id="fin" class=" col-md-4">
-                                <input type="text" id="finNum"  class="form-control" name="finNum"/>
+                                <input type="text" id="finNum"  class="form-control required" name="finNum"/>
                             </div>
                             <div id="finButton" class="col-md-4">
                                 <button type="" id="generateTWC2Fin" class="btn btn-default">Generate FIN</button>
@@ -232,7 +243,7 @@
 
                         <div class="form-group btn-div col-md-12" >
                             <span class="required_input">* Required field</span>
-                            <button type='button' onclick="swapDiv('job_profile', 'worker_profile', 1)" class="btn btn-default pull-right" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+                            <button type='button' onclick="swapDiv('job_profile', 'worker_profile', 1);" class="btn btn-default pull-right next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
                         </div>
                     </div>
 
@@ -246,14 +257,14 @@
                         <div class="form-group">
                             <label for="emp_name" class="col-md-3 control-label" >Name of Employer <span class="required_input">*</span> </label>
                             <div class=" col-md-6">
-                                <input type="text" class="form-control" name="employerName" /></div>
+                                <input type="text" class="form-control required" id="employerName" name="employerName" /></div>
                         </div>
 
 
                         <div class="form-group">
                             <label for="job_pass_type" class="col-md-3 control-label">Work pass type that comes with the job<span class="required_input">*</span></label>
                             <div class=" col-md-6">
-                                <select name="workpassType" class="form-control" id="job_pass_type" onchange="displayOther(this.id)">
+                                <select name="workpassType" class="form-control" id="job_pass_type" onchange="displayOther(this.id);">
                                     <%
                                         for (String passTypeStr : passTypeList.values()) {
                                     %>
@@ -277,7 +288,7 @@
                         <div class="form-group">
                             <label for="job_sector" class="col-md-3 control-label">Job Sector</label>
                             <div class=" col-md-6">
-                                <select class="form-control" name="jobSector" id="job_sector" onchange="displayOther(this.id)" >
+                                <select class="form-control" name="jobSector" id="job_sector" onchange="displayOther(this.id);" >
                                     <%
                                         for (String jobSectorStr : jobSectorList.values()) {
                                     %>
@@ -300,20 +311,20 @@
                         <div class="form-group">
                             <label for="occupation" class="col-md-3 control-label" >Occupation</label>
                             <div class=" col-md-6">
-                                <input type="text" class="form-control" name="occupation" maxlength="50"/></div>
+                                <input type="text" class="form-control" name="occupation"/></div>
                         </div>
 
 
                         <div class="form-group">
                             <label for="job_start_date" class="col-md-3 control-label" >Job Start Date</label>
                             <div class=" col-md-3">
-                                <input type="text" class="form-control" name="jobStartDate" maxlength="50"/></div>
+                                <input type="text" class="form-control" name="jobStartDate"/></div>
                         </div>
 
                         <div class="form-group">
                             <label for="job_end_date" class="col-md-3 control-label">Job End Date </label>
                             <div class=" col-md-3">
-                                <input type="text"  class="form-control" name="jobEndDate" maxlength="50" /></div>
+                                <input type="text"  class="form-control" name="jobEndDate"/></div>
                         </div>
 
 
@@ -331,7 +342,7 @@
                         <div class="form-group" id="job_sector_other_div">
                             <label for="job_remark" class="col-md-3 control-label">Remark</label>
                             <div class=" col-md-6">
-                                <input type="text" class="form-control" name="jobRemark" maxlength="50"/> 
+                                <input type="text" class="form-control" name="jobRemark"/> 
                             </div>
                         </div>
 
@@ -340,7 +351,7 @@
                             <span class="required_input">* Required field</span>
                             <div class="pull-right">
                                 <button type='button' onclick="swapDiv('worker_profile', 'job_profile', -1);" class="btn btn-default" style="bottom: 0">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
-                                <button type='button' onclick="swapDiv('prob_profile', 'job_profile', 1);" class="btn btn-default " style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+                                <button type='button' onclick="swapDiv('prob_profile', 'job_profile', 1);" class="btn btn-default next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
                             </div>
                         </div>
 
@@ -398,7 +409,7 @@
                             <div class="form-group">
                                 <label for="prob_hospital" class="col-md-3 control-label">Current Hospital</label>
                                 <div class=" col-md-6">
-                                    <select class="form-control" name="currentHosptial" id="prob_hospital" onchange="displayOther(this.id)" >
+                                    <select class="form-control" name="currentHosptial" id="prob_hospital" onchange="displayOther(this.id);" >
                                         <%
                                             for (String hospitalStr : hospitalList.values()) {
                                         %>
@@ -450,8 +461,8 @@
                         <div class="form-group btn-div col-md-12">
                             <span class="required_input">* Required field</span>
                             <div class="pull-right">
-                                <button  type='button' onclick="swapDiv('job_profile', 'prob_profile', -1)" class="btn btn-default">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
-                                <button type='button' onclick="swapDiv('face_pic', 'prob_profile', 1)" class="btn btn-default ">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+                                <button  type='button' onclick="swapDiv('job_profile', 'prob_profile', -1);" class="btn btn-default">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
+                                <button type='button' onclick="swapDiv('face_pic', 'prob_profile', 1);" class="btn btn-default next_btn">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
                             </div>
                         </div>
                     </div>
@@ -486,14 +497,10 @@
                             </div>
                         </div>
 
-
-
-                        <!--- -->
-
                         <div class="form-group btn-div col-md-12">
                             <span class="required_input">* Required field</span>
                             <div class="pull-right">
-                                <button  type='button' onclick="swapDiv('prob_profile', 'face_pic', -1)" class="btn btn-default">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
+                                <button  type='button' onclick="swapDiv('prob_profile', 'face_pic', -1);" class="btn btn-default">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
                                 <button  type='submit' class="btn btn-default">Submit</button>
 
                             </div>
@@ -520,6 +527,7 @@
     </body>
 </html>
 <script>
+
             //form validation 
             $(document).ready(function() {
 
@@ -607,10 +615,10 @@
                                 }
                             }
                         },
-                        /**
                         occupation: {
                             validators: {
                                 stringLength: {
+                                    min: 0,
                                     max: 50,
                                     message: 'This field must be less than 50 characters.'
                                 }
@@ -619,6 +627,7 @@
                         jobStartDate: {
                             validators: {
                                 stringLength: {
+                                    min: 0,
                                     max: 50,
                                     message: 'This field must be less than 50 characters.'
                                 }
@@ -627,6 +636,7 @@
                         jobEndDate: {
                             validators: {
                                 stringLength: {
+                                    min: 0,
                                     max: 50,
                                     message: 'This field must be less than 50 characters.'
                                 }
@@ -635,11 +645,12 @@
                         jobRemark: {
                             validators: {
                                 stringLength: {
+                                    min: 0,
                                     max: 50,
                                     message: 'This field must be less than 50 characters.'
                                 }
                             }
-                        },**/
+                        },
                         //problem profile
                         problemMore: {
                             validators: {
@@ -657,13 +668,12 @@
                                 }
                             }
                         }
-                    },
-                    submitButtons: "button[type='button']"
+                    }
 
                 });
 
-
             });
+
 
 <!--added by soemyatmyat for generating TWC2 In-house FinNumber-->
 
