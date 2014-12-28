@@ -50,6 +50,9 @@
         $('#pop_up_content').empty();
     });
 
+    /**
+     * Add Job & Problem particulars validation
+     **/
     $(document).ready(function() {
         $('#addCase')
                 .bootstrapValidator({
@@ -144,14 +147,50 @@
         });
 
     });
-    
+
+    /**
+     * Edit worker particulars validation
+     **/
     $(document).ready(function() {
         $('#worker_stub')
                 .bootstrapValidator({
             fields: {
-                //worker
-                //job Profile
-                passMore: {
+                wkerName: {
+                    validators: {
+                        notEmpty: {
+                            message: 'This field cannot be empty.'
+                        },
+                        stringLength: {
+                            max: 50,
+                            message: 'This field must be less than 50 characters.'
+                        }
+                    }
+                },
+                workerFin: {
+                    validators: {
+                        stringLength: {
+                            max: 12,
+                            message: 'This field must be less than 12 characters.'
+                        },
+                        notEmpty: {
+                            message: 'This field cannot be empty.'
+                        },
+                        regexp: {
+                            regexp: /^[A-Z][0-9]{7}[A-Z]/,
+                            message: 'FIN must start with an alphabet followed by 7 digits and ends with an alphabet.'
+                        },
+                        remote: {
+                            message: 'The FIN Number already exists.',
+                            url: 'processValidate',
+                            data: function(validator) {
+                                return {
+                                    finNum: validator.getFieldElements('finNum').val()
+                                };
+                            }
+                        }
+                    }
+                },
+                nationalityMore: {
                     validators: {
                         stringLength: {
                             max: 50,
@@ -159,7 +198,34 @@
                         }
                     }
                 },
-                employerName: {
+                createdFor: {
+                    validators: {
+                        stringLength: {
+                            max: 20,
+                            message: 'This field must be less than 20 characters.'
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+    /**
+     * Edit Job particulars validation
+     **/
+    $(document).ready(function() {
+        $('#job_stub')
+                .bootstrapValidator({
+            fields: {
+                wpMore: {
+                    validators: {
+                        stringLength: {
+                            max: 50,
+                            message: 'This field must be less than 50 characters.'
+                        }
+                    }
+                },
+                empName: {
                     validators: {
                         stringLength: {
                             max: 50,
@@ -209,15 +275,18 @@
                             message: 'This field must be less than 50 characters.'
                         }
                     }
-                },
-                //problem profile
-                problem: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
+                }
+            }
+        });
+    });
+
+    /**
+     * Edit Problem particulars validation
+     **/
+    $(document).ready(function() {
+        $('#problem_stub')
+                .bootstrapValidator({
+            fields: {
                 problemMore: {
                     validators: {
                         stringLength: {
@@ -234,19 +303,19 @@
                         }
                     }
                 }
-            },
-            submitButtons: "button[type='button']"
-        });
 
+            }
+        });
     });
 
     function swapDiv(div_id, curr_id, num) {
         var curr_div_id = "#" + curr_id;
         var val = 0;
+        var missing_input_field = "";
         if (num === 1) {
             $('.required', curr_div_id).each(function() {
                 if (this.value.trim() === '') {
-                    //alert(this);
+                    missing_input_field = $(this).attr('name');
                     val = 1;
                 }
             });
@@ -254,12 +323,29 @@
         if (val === 0) {
             $('.sub_div').hide();
             document.getElementById(div_id).style.display = 'block';
-
+            var li_id = 'progtrckr_' + div_id;
+            if (num === 1) {
+                var div = document.getElementById(li_id);
+                div.setAttribute("class", 'progtrckr-done');
+            } else {
+                li_id = 'progtrckr_' + curr_id;
+                var div = document.getElementById(li_id);
+                div.setAttribute("class", 'progtrckr-todo');
+            }
+            //$('.next_btn').prop('disabled',false);
         } else {
-            alert("Some fields are missing. Please enter all the required fields.");
+            //$('.next_btn').prop('disabled',true);
+            var missing_inputStr = "";
+            if (missing_input_field === "finNum") {
+                missing_inputStr = "FIN Number is required.";
+            } else if (missing_input_field === "workerName") {
+                missing_inputStr = "Worker Name is required.";
+            } else if (missing_input_field === 'employerName') {
+                missing_inputStr = "Employer Name is required.";
+            }
+            $(".alert-danger").text(missing_inputStr);
         }
     }
-    ;
 
 </script>
 
@@ -486,6 +572,7 @@
             <br/>
         </div><br/>
     </fieldset>
+    <p class="alert-danger"></p>
     <input type="hidden" id="stub_name" name="stub" value="worker"/>
     <button type='button' onclick="edit('worker_stub', 'Worker Stub');" class="btn modal_btn edit_btn">Edit</button>
     <button style="display:none" type='submit' class="btn modal_btn save_btn">Save</button>
@@ -568,7 +655,7 @@
                 <label for="jSecotr_other_In" class="control-label">Explain if above is other</label>
             </div>
             <div class='col-md-7'>
-                <input type="text" class="form-control" name="jobSecotrMore" value="<%=wpMore%>">
+                <input type="text" class="form-control" name="jobSectorMore" value="<%=wpMore%>">
             </div>
             <br/>
             <br/>
@@ -619,6 +706,7 @@
             <br/>
         </div><br/>
     </fieldset>
+    <p class="alert-danger"></p>
     <input type="hidden" id="stub_name" name="stub" value="job"/>
     <input type="hidden" id="job_name" name="workerFin" value="<%=workerFin%>"/>
     <input type="hidden" id="job_name" name="jobKey" value="<%=jobKey%>"/>
@@ -686,6 +774,7 @@
             <br/>
         </div><br/>
     </fieldset>
+    <p class="alert-danger"></p>
     <input type="hidden" id="stub_name" name="stub" value="problem"/>
     <input type="hidden" id="job_name" name="workerFin" value="<%=workerFin%>"/>
     <input type="hidden" id="job_name" name="jobKey" value="<%=jobKey%>"/>
@@ -714,7 +803,7 @@
         <div class="form-group">
             <label for="emp_name" class="col-md-5 control-label" >Name of Employer <span class="required_input">*</span> </label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="employerName"/></div><br/><br/>
+                <input type="text" class="form-control required" name="employerName"/></div><br/><br/>
         </div>
 
 
@@ -804,7 +893,7 @@
             </div><br/><br/>
         </div>
 
-
+        <p class="alert-danger"></p>
         <div class="form-group btn-div col-md-12" style='position: relative'>
             <span class="required_input">* Required field</span>
             <div class="pull-right">
@@ -925,7 +1014,6 @@
     function add(stub) {
 
         $('#pop_up_content').empty();
-
         $("#pop_up_content").load('include/createcaseForm.jsp?workerFin=<%=workerFin%>&jobkey=<%=jobKey%>&probkey=<%=probKey%>&profile=' + stub + '&action=add').dialog({modal: true, minHeight: $(window).height() - 350, minWidth: $(window).width() - 750, width: (window).width() - 200, resizable: false, title: div_title, draggable: false, close: function() {
                 $(this).dialog('destroy');
                 $('#pop_up_content').empty();
