@@ -1,11 +1,14 @@
 camans
 ======
+<i><b>28th Dec 2014-nyeinsu</i></b><br/>
+1. Debugged Create Case Validation<br/>
+
 <i><b>25th Dec 2014-soemyatmyat<i></b><br/>
 1. Download Attachment<br/>
 2. Fixed date format view/edit complement to DD/MMM/YYYY format<br/>
 3. Audit Log Function<br/>
 
-<i><b>25th Dec 2014-nyeinsu<i></b><br/>
+<i><b>25th Dec 2014-nyeinsu</i></b><br/>
 1. To Change in wica Claim lodged table.<br/>
 2. Changed labels for All 3 complement pop ups.<br/>
 3. Changed labels for all complements from viewWorker.jsp by xm.<br/>
