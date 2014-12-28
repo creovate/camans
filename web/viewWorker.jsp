@@ -1919,6 +1919,7 @@
                                             </div>
 
                                             <button type='submit' onclick="" class="btn btn-default  col-md-1">Submit</button>
+                                            <button type='button' onclick="" id="case_ref_btn" data-title="Case Referral" class="btn btn-default  col-md-1">Submit</button>
                                             <button type='button' data-title="Add New Problem" data-action="add" data-value="problem" class="btn btn-default profile_details  pull-right">Add New Problem</button>
 
                                         </div>
