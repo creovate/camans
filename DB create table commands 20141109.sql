@@ -44,7 +44,7 @@ CREATE TABLE tbl_worker (
 	Nationality varchar(50)  NULL, 
 	Nationality_more varchar(50) null, 
 	Date_of_birth Date  NULL , 
-
+	Photo varchar(255) null,
 	Primary Key(FIN_number)
 );
 
