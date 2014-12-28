@@ -712,6 +712,10 @@ CREATE TABLE tbl_problem(
 	Chief_problem varchar(50) not null,
 	Chief_problem_more varchar(50)  null,
 	Chief_problem_remarks varchar(200) null,
+    Referred_by varchar(10) null,
+    Referred_to varchar(10) null,
+    Referred_date Date null,
+    Description varchar(200) null,
 
 	PRIMARY KEY (Prob_key),
 	FOREIGN KEY (Worker_FIN_number) 
@@ -720,7 +724,15 @@ CREATE TABLE tbl_problem(
 
 	FOREIGN KEY (Job_key)
       REFERENCES tbl_job(Job_key)
-		ON DELETE CASCADE ON UPDATE CASCADE
+		ON DELETE CASCADE ON UPDATE CASCADE,
+    
+    FOREIGN KEY (Referred_by)
+      REFERENCES tbl_user(NRIC_number)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    
+    FOREIGN KEY (Referred_to)
+      REFERENCES tbl_user(NRIC_number)
+        ON DELETE CASCADE ON UPDATE CASCADE
 		
 )ENGINE = INNODB;
 
