@@ -39,6 +39,7 @@ public class processAddBenefit extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            out.println("here");
             String action = request.getParameter("action");
             String workerFinNum = request.getParameter("workerFinNum");
             int jobKey = Integer.parseInt(request.getParameter("jobkey"));

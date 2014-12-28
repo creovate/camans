@@ -81,6 +81,7 @@
 
                  <div class="alert alert-danger" role="alert">
                     <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <%=errorMsg%>
                 </div>
 
@@ -155,7 +156,7 @@
                                         &nbsp; &nbsp; &nbsp; &nbsp;
                                         <a style="color: black" href="" class="delete_popup" data-username='<%=username%>'
                                            data-toggle="modal" data-target="#user_delete_confirm">
-                                            <span data-toggle="tooltip" title="Inactivate" class="glyphicon glyphicon-remove"></span>
+                                            <span data-toggle="tooltip" title="Deactivate" class="glyphicon glyphicon-remove"></span>
                                         </a>&nbsp; &nbsp; &nbsp; &nbsp;
                                         <a style="color: black" href="" class="user_reset_pwd" data-username='<%=username%>'
                                            data-toggle="modal" data-target="#user_reset_pwd">
@@ -278,7 +279,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-3" for="InputProfilePic">Profile Picture Upload</label>
+                                <label class="col-sm-3" for="InputProfilePic">Profile Picture Upload
+                                    <span style ="color: red"><br/><br/>Only '.jpeg', '.jpg', '.png', '.bmp' formats are allowed.</span>
+                                </label>
                                 <div class="col-sm-9 fileinput fileinput-new" data-provides="fileinput">
                                   <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
                                     <img data-src="holder.js/100%x100%" alt="...">
@@ -287,7 +290,7 @@
                                   <div>
                                     <span class="btn btn-default btn-file">
                                         <span class="fileinput-new">Select image</span>
-                                        <span class="fileinput-exists">Change</span><input type="file" name="facePic">
+                                        <span class="fileinput-exists">Change</span><input type="file" name="facePic" accept="image/*">
                                     </span>
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                   </div>
@@ -393,7 +396,9 @@
                             </div>
                             
                             <div class="form-group">
-                                <label class="col-sm-3" for="InputProfilePic">Profile Picture Upload</label>
+                                <label class="col-sm-3" for="InputProfilePic">Profile Picture Upload
+                                    <span style ="color: red"><br/><br/>Only '.jpeg', '.jpg', '.png', '.bmp' formats are allowed.</span>
+                                </label>
                                 <!--
                                 <div class="col-sm-4">
                                     <img id="InputPhoto" src="" id=""style="width: 150px; height: 150px;">
@@ -406,7 +411,7 @@
                                   <div>
                                     <span class="btn btn-default btn-file">
                                         <span class="fileinput-new">Select image</span>
-                                        <span class="fileinput-exists">Change</span><input type="file" name="nPhotoPath">
+                                        <span class="fileinput-exists">Change</span><input type="file" name="nPhotoPath" accept="image/*">
                                     </span>
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                   </div>
@@ -439,14 +444,14 @@
                             <span class="sr-only">Close</span>
                         </button>
                         <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
-                            Inactivate User
+                            Deactivate User
                         </h3>
                       </div> <!--modal-header-->
                       <form id="deleteConfirmForm" method="post" action="processUser.do" class="form-horizontal">
                         <div class="modal-body">
                             <!--<input type="hidden" name="deleteUserName" id="deleteUserName" value=""/>-->
                             
-                            Are you sure you want to inactivate this user?<br/><br/>
+                            Are you sure you want to deactivate this user?<br/><br/>
                             <div class="form-group">
                                 <label class="col-sm-3" for="InputUsername">Username<span style="color: red">*</span></label>
                                 <div class="col-sm-9">

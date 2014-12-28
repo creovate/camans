@@ -33,7 +33,7 @@ public class WorkerDAO {
         try {
             conn = ConnectionManager.getConnection();
             sql = "SELECT Name_of_worker, Worker_registration_date, Created_by, Create_for, Gender,"
-                    + "Nationality, Nationality_more, Date_of_birth"
+                    + "Nationality, Nationality_more, Date_of_birth, Photo"
                     + " FROM tbl_worker where FIN_number = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, finNumber);
@@ -47,8 +47,9 @@ public class WorkerDAO {
                 String nationality = rs.getString(6);
                 String nationalityMore = rs.getString(7);
                 Date dob = rs.getDate(8);
+                String photoPath = rs.getString(9);
                 worker = new Worker(finNumber, name, registeredDate, createdBy, createdFor, gender,
-                        nationality, nationalityMore, dob);
+                        nationality, nationalityMore, dob, photoPath);
             }
             
         } catch (SQLException ex) {
@@ -66,8 +67,9 @@ public class WorkerDAO {
         try {
             conn = ConnectionManager.getConnection();
             sql = "INSERT INTO tbl_worker (FIN_number, Name_of_Worker, Worker_registration_date, "
-                    + "Created_by, Create_for, Gender, Nationality, Nationality_more, Date_of_birth) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?)";
+                    + "Created_by, Create_for, Gender, Nationality, Nationality_more, "
+                    + "Date_of_birth, Photo) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
             
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, worker.getFinNumber());
@@ -79,6 +81,7 @@ public class WorkerDAO {
             pstmt.setString(7, worker.getNationality());
             pstmt.setString(8, worker.getNationalityMore());
             pstmt.setDate(9, worker.getDateOfBirth());
+            pstmt.setString(10, worker.getPhotoPath());
             
             pstmt.executeUpdate();
         } catch (SQLException ex) {
@@ -99,7 +102,7 @@ public class WorkerDAO {
             conn = ConnectionManager.getConnection();
             sql = "SELECT FIN_number, Name_of_worker, Worker_registration_date, Created_by, "
                     + "Create_for, Gender,"
-                    + "Nationality, Nationality_more, Date_of_birth"
+                    + "Nationality, Nationality_more, Date_of_birth, Photo"
                     + " FROM tbl_worker order by Entry_date DESC limit 12;";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -113,8 +116,9 @@ public class WorkerDAO {
                 String nationality = rs.getString(7);
                 String nationalityMore = rs.getString(8);
                 Date dob = rs.getDate(9);
+                String photoPath = rs.getString(10);
                 Worker worker = new Worker(finNumber, name, registeredDate, createdBy, createdFor, gender,
-                        nationality, nationalityMore, dob);
+                        nationality, nationalityMore, dob, photoPath);
                 workerList.add(worker);
             }
             
@@ -188,7 +192,25 @@ public class WorkerDAO {
         
         return workerList;
     }
-      
+     
+    public static void updateWorkerPhotoPath(Worker worker ){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "UPDATE tbl_worker SET Photo = ? WHERE FIN_number = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, worker.getPhotoPath());
+            pstmt.setString(2, worker.getFinNumber());
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker={" + worker + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        } 
+    }
+    
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
       String msg = "Unable to access data; SQL=" + sql + "\n";
       for (String parameter : parameters) {
@@ -204,7 +226,9 @@ public class WorkerDAO {
         String sql = "";
         try {
             conn = ConnectionManager.getConnection();
-            sql = "UPDATE tbl_worker SET Name_of_Worker = ?, Worker_registration_date = ? , Created_by = ?, Create_for = ?, Gender = ?, Nationality = ?, Nationality_more = ?, Date_of_birth = ? WHERE FIN_number = ?";
+            sql = "UPDATE tbl_worker SET Name_of_Worker = ?, Worker_registration_date = ? , "
+                    + "Created_by = ?, Create_for = ?, Gender = ?, Nationality = ?, "
+                    + "Nationality_more = ?, Date_of_birth = ? WHERE FIN_number = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1,worker.getName());
             stmt.setDate(2,worker.getRegistrationDate());
@@ -223,4 +247,5 @@ public class WorkerDAO {
             ConnectionManager.close(conn, stmt, null);
         }        
     }
+    
 }

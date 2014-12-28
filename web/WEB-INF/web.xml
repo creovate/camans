@@ -52,6 +52,10 @@
         <servlet-name>processFile</servlet-name>
         <servlet-class>camans.controller.processFile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>processAddBenefit</servlet-name>
+        <servlet-class>camans.controller.processAddBenefit</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>processAddWorkerComplements</servlet-name>
         <url-pattern>/addWorkerComplement.do</url-pattern>
@@ -107,6 +111,10 @@
     <servlet-mapping>
         <servlet-name>processFile</servlet-name>
         <url-pattern>/fileUpload.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>processAddBenefit</servlet-name>
+        <url-pattern>/addBenefit.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

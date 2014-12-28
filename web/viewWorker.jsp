@@ -53,6 +53,13 @@
         selectedProb = null;
         selectedJob = null;
     }
+    
+    
+    String successAttachMsg = (String) request.getSession().getAttribute("successAttachMsg");
+    request.getSession().removeAttribute("successAttachMsg");
+                                    
+    String errorAttachMsg = (String) request.getSession().getAttribute("errAttachMsg");
+    request.getSession().removeAttribute("errAttachMsg");
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 
 
@@ -117,6 +124,15 @@
                     $("#benefit_complement_tab").addClass("active");
                     $("#benefit_complement").addClass("active");
                 }
+                if (<%=successAttachMsg%> !== null || <%=errorAttachMsg%> !== null) {  
+                    $(".complement_tabs").removeClass("active");
+                    $("#worker_complement").removeClass("active");
+                    $("#job_complement").removeClass("active");
+                    $("#benefit_complement").removeClass("active");
+                    $("#attachment_complement_tab").addClass("active");
+                    $("#attachment_complement").addClass("active");
+                }
+                
             });
 
             $(document).ready(function() {
@@ -166,7 +182,11 @@
                     <!-- Face Picture -->
                     <br/>
                     <div id="worker_profile_pic" class="text-center">
+                        <% if (worker.getPhotoPath() == null) { %>
                         <img src="img/profile_pic.jpg" style="max-width: 40%"> <!--get image from db also -->
+                        <% } else { %>
+                        <img src="<%=worker.getPhotoPath()%>" style="max-width: 40%"> 
+                        <% } %>
                     </div>
                     <br/>
 
@@ -223,7 +243,11 @@
                     <div  id="content" style="padding: 3% 1%">
                         <div class="tab-content ">
                             <!----Worker Complement Tab---> 
-                            <div class="tab-pane active" id="worker_complement">
+                            <% if (successAttachMsg != null || errorAttachMsg != null) {%>
+                            <div class="tab-pane" id="worker_complement">
+                            <% } else { %>    
+                            <div class="tab-pane active" id="worker_complement"> 
+                            <% } %>    
                                 <br/>
 
 
@@ -1919,7 +1943,6 @@
                                             </div>
 
                                             <button type='submit' onclick="" class="btn btn-default  col-md-1">Submit</button>
-                                            <button type='button' onclick="" id="case_ref_btn" data-title="Case Referral" class="btn btn-default  col-md-1">Submit</button>
                                             <button type='button' data-title="Add New Problem" data-action="add" data-value="problem" class="btn btn-default profile_details  pull-right">Add New Problem</button>
 
                                         </div>
@@ -4434,15 +4457,14 @@
                                 </div>
                             </div>
 
-                            <!----Attachments Complement Tab--->                
+                            <!----Attachments Complement Tab--->          
+                            <% if (successAttachMsg != null || errorAttachMsg != null) {%>
                             <div class="tab-pane active" id="attachment_complement">
+                            <% } else { %>    
+                            <div class="tab-pane" id="attachment_complement"> 
+                            <% } %> 
                                 <br/><br/>
                                 <!-- Attachments Success & Error Display --->
-                                <% String successAttachMsg = (String) request.getSession().getAttribute("successAttachMsg");
-                                    request.getSession().removeAttribute("successAttachMsg");
-                                    
-                                    String errorAttachMsg = (String) request.getSession().getAttribute("errAttachMsg");
-                                    request.getSession().removeAttribute("errAttachMsg"); %>
                                     
                                 <% if (successAttachMsg != null)  { %>
 
@@ -4494,7 +4516,7 @@
                                             WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(workerAttachList.get(i));
                                             String docName = workerAttachment.getDocumentName();
                                             java.util.Date timeStamp = WorkerComplementsDAO.retrieveTimeStamp(workerAttachment);
-                                            String submitBy = workerAttachment.getSubmitBy();
+                                            String submitBy = workerAttachment.getSubmitBy(); 
                                             //docName.substring(0, docName.indexOf("."));
                                     %>
                                         <tr bgcolor="">
@@ -4503,6 +4525,16 @@
                                             <td><%=sdf.format(timeStamp)%></td>
                                             <td><%=submitBy%></td>
                                             <td align="center">
+                                                <% String extension = docName.substring(docName.lastIndexOf(".")+1);
+                                                if (extension.equalsIgnoreCase("jpeg") || extension.equalsIgnoreCase("jpg") ||
+                                                    extension.equalsIgnoreCase("png") || extension.equalsIgnoreCase("bmp")) {
+                                                    if (!worker.getPhotoPath().equals(workerAttachment.getFilePath())) { %>
+                                                        <a style="color: black" href="#" class="photo_popup" data-docpath='<%=workerAttachment.getFilePath()%>'
+                                                            data-id='<%=workerAttachment.getId()%>' data-toggle="modal" data-target="#attach_photo_confirm">
+                                                           <span data-toggle="tooltip" title="Make as Profile Picture" class="glyphicon glyphicon-user"></span>
+                                                        </a>&nbsp; &nbsp; &nbsp; &nbsp;  
+                                                <%  }                                            
+                                                } %>
                                                 <a style="color: black"
                                                    href="fileUpload.do?action=download&attachId=<%=workerAttachment.getId()%>" >
                                                    <span data-toggle="tooltip" title="Download" class="glyphicon glyphicon-download-alt"></span>
@@ -4616,6 +4648,47 @@
                   </div> <!--modal dialog -->
                 </div>                  
                  <!-- End of Rename Attachment Modal -->
+            
+                <!-- Photo Profile Confirm Modal -->
+                <div class="modal fade" id="attach_photo_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" 
+                     aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h3 class="modal-title" id="attach_pop_up_label" style="color:#2980b9" align="center">
+                            Profile Photo
+                        </h3>
+                      </div> <!--modal-header-->
+                      <form id="photoAttachForm" method="post" action="fileUpload.do" class="form-horizontal">
+                        <div class="modal-body">
+                           
+                            Are you sure you want to set this image as profile picture? <br/><br/>
+                            
+                            <div class="fileinput-new thumbnail" style="width: 150px; height: 150px;">
+                                <img id="InputDocPath" data-src="">
+                            </div>
+                            
+                        </div> <!--modal body -->
+
+                        <div class="modal-footer">
+                                                      
+                          <input type="hidden" name="attachId" id="InputID" value=""/>
+                          <input type="hidden" name="action" value="profilepic"/>
+                          <input type="hidden" name="workerFin" value="<%=workerFin%>"/>  
+                          <button type="submit" class="btn btn-success">Ok</button>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+
+                    </div> <!--modal content -->
+                  </div> <!--modal dialog -->
+                </div>                  
+                 <!-- End of Photo Profile Confirm Modal -->
             </div>
 
         </div>
@@ -4700,7 +4773,6 @@
                 }
             });
 
-
             $(document).ready(function() {
                 $('.other').hide();
             });
@@ -4738,6 +4810,15 @@
                 $(".modal-footer #InputID").val(attachId);
                 //document.getElementById("InputDocName").innerHTML = attachDocName;
                 $(".modal-body #InputDocName").val(attachDocName);
+            });
+            
+            //passing data for profile picture popup - added by soemyatmyat
+            $(document).on( "click", '.photo_popup',function() {
+                var attachId = $(this).data('id');
+                var attachDocPath = $(this).data('docpath');
+                $(".modal-footer #InputID").val(attachId);
+                //document.getElementById("InputDocName").innerHTML = attachDocName;
+                $(".modal-body #InputDocPath").attr('src', attachDocPath);
             });
             
             //reset password form validation check - added by soemyatmyat

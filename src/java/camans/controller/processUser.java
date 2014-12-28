@@ -66,6 +66,13 @@ public class processUser extends HttpServlet {
             String page = request.getParameter("page");
             String oldPwd = request.getParameter("nOldPwd");
             
+            //=======================================//
+            //   Server Side Validation Parameters
+            //=======================================//
+            boolean pass = true; //Assume validaiton pass first
+            String err = null; //to store error msg
+            String success = null;//to store success msg
+            
             //check that we have a file upload request
             if (isMultiPart) {
                 //==========================================//
@@ -116,36 +123,55 @@ public class processUser extends HttpServlet {
                         }  
                     } else { //image upload
 
-                        if (!item.getName().equals("")) {
-                            //retrieve filePath of the app build folder
-                            String filePath = getServletContext().getRealPath("/");
-                            //to append in image file name
-                            String uniqueID = UUID.randomUUID().toString();
-                            try {
-                                File file = new File (filePath + File.separator + "img" + File.separator + username);
-                                //create a image fie directory with username
-                                if (!file.exists()) {file.mkdir();}
-                                //set the file Name
-                                String fileName = uniqueID + "-xx-" + item.getName();
-                                file = new File(file.getAbsolutePath() + File.separator + fileName);
-                                FileOutputStream fos = new FileOutputStream(file);
-                                InputStream is = item.openStream();
-                                int x = 0;
-                                byte[] b  = new byte[1024];
-                                while((x=is.read(b))!= -1){
-                                    fos.write(b,0,x);
+                        if (!item.getName().equals("")) { //only if there is file
+                            String extension = item.getName().substring(item.getName().lastIndexOf(".")+1);
+                            
+                            if (extension.equalsIgnoreCase("jpeg") || extension.equalsIgnoreCase("jpg") ||
+                                    extension.equalsIgnoreCase("png")|| extension.equalsIgnoreCase("bmp")) {
+                       
+                                //retrieve filePath of the app build folder
+                                String filePath = getServletContext().getRealPath("/");
+                                //to append in image file name
+                                String uniqueID = UUID.randomUUID().toString();
+                                FileOutputStream outStream = null;
+                                InputStream inStream = null;
+                                try {
+                                    File file = new File (filePath + File.separator + "img" + File.separator + username);
+                                    //create a image fie directory with username
+                                    if (!file.exists()) {file.mkdir();}
+                                    //set the file Name
+                                    String fileName = uniqueID + "-xx-" + item.getName();
+                                    file = new File(file.getAbsolutePath() + File.separator + fileName);
+                                    outStream = new FileOutputStream(file);
+                                    inStream = item.openStream();
+                                    int bytesRead = 0;
+                                    byte[] buffer  = new byte[1024];
+                                    while((bytesRead = inStream.read(buffer))!= -1){
+                                        outStream.write(buffer,0,bytesRead);
+                                    }
+                                    //set the photoPath for database update
+                                    photoPath = "img/" + username + "/" + fileName;
+                                } catch (Exception e) {
+                                    out.println("Error:" + e);
+                                } finally {
+                                    if (outStream != null) {
+                                        outStream.flush();
+                                        outStream.close();
+                                    }
+                                    if (inStream != null) {
+                                        inStream.close();
+                                    }
                                 }
-                                fos.flush();
-                                fos.close();
-                                photoPath = "img/" + username + "/" + fileName;
-                            } catch (Exception e) {
-                                out.println("Error:" + e);
-                            }
+                            } else { //invalid image file
+                                err = "Invalid Image File. Only '.jpeg', '.jpg', "
+                                        + "'.png', '.bmp' formats are allowed.";
+                                pass = false;
+                            }     
                         }    
 
                     } //image upload
                 } //while iter.hasNext
-            }
+            } //isMultiPart
             //==========================================//
             //          End of Data Collection
             //==========================================//
@@ -168,7 +194,7 @@ public class processUser extends HttpServlet {
                     } else {
                         returnJsonObject.put("valid", "true");
                     }
-                } else {
+                } else { //oldPassword validation for change password
                     user = (User) request.getSession().getAttribute("userLogin");
                     returnJsonObject.put("valid", user.authenticate(oldPwd));
                 }    
@@ -178,11 +204,9 @@ public class processUser extends HttpServlet {
             } else if (action != null && (action.equals("add") || action.equals("edit"))) {
                 //either adding new user or editing
                 //=======================================//
-                //        Server Side Validation
+                //    Server Side Validation process
                 //=======================================//
-                boolean pass = true; //Assume validaiton pass first
-                String err = ""; //to store error msg
-                String success = "";//to store success msg
+
                 //nric
                 if (nric == null || nric.length() >9 || !nric.matches("^[A-Z][0-9]{7}[A-Z]")) {
                     pass = false;
@@ -260,7 +284,12 @@ public class processUser extends HttpServlet {
                         user.setPhoneNumber(phNum);
                         if (!photoPath.equals("")) { user.setPhotoPath(photoPath); }
                         UserDAO.updateUser(user);
-                        request.getSession().setAttribute("userLogin", user);
+                        
+                        //only if user is modifying its own profile
+                        if (((User) request.getSession().getAttribute("userLogin"))
+                                .getUsername().equals(user.getUsername())) {
+                            request.getSession().setAttribute("userLogin", user);
+                        }
                         success = "User " + user.getUsername() + " has been successfully updated!";
                         
                     }
@@ -272,7 +301,7 @@ public class processUser extends HttpServlet {
 
                     request.getSession().setAttribute("errorMsg", err);
                 }
-                if (!page.equals("")) {
+                if (page != null) {
                     response.sendRedirect(page);
                 } else {
                     response.sendRedirect("userManagement.jsp");
@@ -282,7 +311,6 @@ public class processUser extends HttpServlet {
             //      Inactivate/Activate User
             //=======================================//    
             } else if (action.equals("inactive") || action.equals("active")) {//need to change to inactivate!
-                String success = "";
 
                 if (action.equals("inactive")) {
                     String inactivateUserName = request.getParameter("nUsername");
@@ -307,7 +335,6 @@ public class processUser extends HttpServlet {
             //      Reset/Change Password 
             //=======================================//       
             } else if (action.equals("resetPwd")) {//
-                String success = "";
                 String resetUserName = request.getParameter("nUsername");
 
                 //Encrypt password           

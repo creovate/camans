@@ -81,7 +81,8 @@ public class processEditStubs extends HttpServlet {
                     }
                 }
                 
-                Worker worker = new Worker(workerFinNum, workerName, registeredDate, createdBy, createdFor, gender, nationality, nationalityMore, dob);
+                Worker worker = new Worker(workerFinNum, workerName, registeredDate, createdBy, 
+                        createdFor, gender, nationality, nationalityMore, dob, null);
                 
                 WorkerDAO.updateWorkerProfile(worker);
                 

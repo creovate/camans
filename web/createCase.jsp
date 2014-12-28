@@ -147,7 +147,8 @@
                         SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 
                 %>
-                <form method="post" action="createNewCase.do" class="form-horizontal col-md-offset-1 col-md-10" id="createworker_form" role="form">
+                <form method="post" action="createNewCase.do" class="form-horizontal col-md-offset-1 col-md-10" 
+                      id="createworker_form" role="form" enctype="multipart/form-data">
 
                     <!--worker profile-->
                     <div class="sub_div" id="worker_profile">
@@ -316,13 +317,13 @@
 
 
                         <div class="form-group">
-                            <label for="job_start_date" class="col-md-3 control-label" >Job Start Date</label>
+                            <label for="job_start_date" class="col-md-3 control-label" >When Job Start?</label>
                             <div class=" col-md-3">
                                 <input type="text" class="form-control" name="jobStartDate"/></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="job_end_date" class="col-md-3 control-label">Job End Date </label>
+                            <label for="job_end_date" class="col-md-3 control-label">When Job End?</label>
                             <div class=" col-md-3">
                                 <input type="text"  class="form-control" name="jobEndDate"/></div>
                         </div>
@@ -646,8 +647,8 @@
                             validators: {
                                 stringLength: {
                                     min: 0,
-                                    max: 50,
-                                    message: 'This field must be less than 50 characters.'
+                                    max: 200,
+                                    message: 'This field must be less than 200 characters.'
                                 }
                             }
                         },

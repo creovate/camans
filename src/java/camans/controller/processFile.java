@@ -4,11 +4,12 @@
  */
 package camans.controller;
 
-import camans.dao.ConnectionManager;
 import camans.dao.UserAuditLogDAO;
 import camans.dao.WorkerComplementsDAO;
+import camans.dao.WorkerDAO;
 import camans.entity.User;
 import camans.entity.UserAuditLog;
+import camans.entity.Worker;
 import camans.entity.WorkerAttachment;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,9 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -110,10 +108,10 @@ public class processFile extends HttpServlet {
                             InputStream inStream = null;
                             try {
                                 File file = new File (filePath + File.separator + "workers");
-                                if (!file.exists()) {file.mkdir();}
+                                if (!file.exists()) {file.mkdir();} //workers file
                                 file = new File (filePath + File.separator + "workers" + File.separator + workerFinNum);
                                 //create a image fie directory with workerFinNumber
-                                if (!file.exists()) {file.mkdir();}
+                                if (!file.exists()) {file.mkdir();} //workers/workerFinNumber files
                                 //set the file Name
                                 fileOrign = item.getName();
                                 String fileName = uniqueID + "-xx-" + item.getName();
@@ -185,6 +183,13 @@ public class processFile extends HttpServlet {
                             //update database
                             success = workerAttachment.getDocumentName() + " has been successfully deleted!";
                             WorkerComplementsDAO.deleteWorkerAttachment(workerAttachment);
+                            Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFinNum);
+                            //if the file to be deleted is profile picture
+                            if (worker.getPhotoPath().equals(workerAttachment.getFilePath())) {
+                                String photoPath = null;
+                                worker.setPhotoPath(photoPath);
+                                WorkerDAO.updateWorkerPhotoPath(worker);
+                            } //end if 
                             request.getSession().setAttribute("successAttachMsg", success);
                             //log to audit
                             auditChange = workerAttachment.toString2();
@@ -209,6 +214,14 @@ public class processFile extends HttpServlet {
                     WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(id);
                     
                     String fileDir = workerAttachment.getFilePath(); 
+                    
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFinNum);
+                    
+                    //note to  change the profile pic directory if it's the same file
+                    boolean change = false;
+                    if (worker.getPhotoPath().equals(fileDir)) {
+                        change = true;
+                    } //end note
                     String oldFilePath = getServletContext().getRealPath("/") + File.separator + fileDir; 
                     File oldFile = new File(oldFilePath);
                     if (!oldFile.exists()) {
@@ -230,6 +243,11 @@ public class processFile extends HttpServlet {
                             success = oldFileName.substring(oldFileName.lastIndexOf('-')+1) + " has been successfully renamed to " + 
                                     workerAttachment.getDocumentName() + "!";
                             request.getSession().setAttribute("successAttachMsg", success);
+                            
+                            if (change) {
+                                worker.setPhotoPath(workerAttachment.getFilePath());
+                                WorkerDAO.updateWorkerPhotoPath(worker);
+                            }
                             //log to audit
                             auditChange = workerAttachment.toString2();
                             UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), workerFinNum + "", 
@@ -309,6 +327,19 @@ public class processFile extends HttpServlet {
                         response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum 
                                 +"#attachment_complement");
                     }
+                } else if (action.equals("profilepic")) {
+                    //==========================================//
+                    //          Set As Profile Picture
+                    //==========================================// 
+                    int id = Integer.parseInt(attachId);
+                    WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(id);
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFinNum);
+                    worker.setPhotoPath(workerAttachment.getFilePath());
+                    WorkerDAO.updateWorkerPhotoPath(worker);
+                    success = workerAttachment.getDocumentName() + " has been set as profile picture.";
+                    request.getSession().setAttribute("successAttachMsg", success);
+                    response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum 
+                                +"#attachment_complement");
                 }
             }
         } catch (Exception e) {

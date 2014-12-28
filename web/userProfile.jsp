@@ -220,11 +220,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3" for="InputProfilePic">Profile Picture Upload</label>
-                        <!--
-                        <div class="col-sm-4">
-                            <img id="InputPhoto" src="" id=""style="width: 150px; height: 150px;">
-                        </div>-->
+                        <label class="col-sm-3" for="InputProfilePic">Profile Picture Upload
+                            <span style ="color: red"><br/><br/>Only '.jpeg', '.jpg', '.png', '.bmp' formats are allowed.</span>
+                        </label>
                         <div class="col-sm-4 fileinput fileinput-new" data-provides="fileinput">
                           <div class="fileinput-new thumbnail" style="width: 150px; height: 150px;">
                             <img id="InputPhoto" data-src="">
@@ -232,8 +230,8 @@
                           <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 150px; max-height: 150px;"></div>
                           <div>
                             <span class="btn btn-default btn-file">
-                                <span class="fileinput-new">Select image</span>
-                                <span class="fileinput-exists">Change</span><input type="file" name="nPhotoPath">
+                                <span class="fileinput-new">Select image </span>
+                                <span class="fileinput-exists">Change</span><input type="file" name="nPhotoPath" accept="image/*">>
                             </span>
                             <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                           </div>

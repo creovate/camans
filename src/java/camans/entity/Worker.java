@@ -22,9 +22,11 @@ public class Worker {
     private String nationality;
     private String nationalityMore;
     private Date dateOfBirth;
+    private String photoPath;
 
     public Worker(String finNumber, String name, Date registrationDate, String createdBy, 
-            String createdFor, String gender, String nationality, String nationalityMore, Date dateOfBirth) {
+            String createdFor, String gender, String nationality, String nationalityMore, 
+            Date dateOfBirth, String photoPath) {
         this.finNumber = finNumber;
         this.name = name;
         this.registrationDate = registrationDate;
@@ -34,6 +36,15 @@ public class Worker {
         this.nationality = nationality;
         this.nationalityMore = nationalityMore;
         this.dateOfBirth = dateOfBirth;
+        this.photoPath = photoPath;
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 
     public String getFinNumber() {
