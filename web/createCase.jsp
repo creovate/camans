@@ -3,6 +3,7 @@
     Created on : Oct 23, 2014, 11:15:04 AM
     Author     : soemyatmyat
 --%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="camans.entity.Worker"%>
@@ -12,12 +13,12 @@
 <%@page import="camans.entity.User"%>
 <%
     User userLogin = (User) request.getSession().getAttribute("userLogin");
-    HashMap<Integer, String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
-    HashMap<Integer, String> problemList = DropdownDAO.retrieveAllDropdownListOfProblems();
-    HashMap<Integer, String> passTypeList = DropdownDAO.retrieveAllDropdownListOfPassType();
-    HashMap<Integer, String> jobSectorList = DropdownDAO.retrieveAllDropdownListOfJobSector();
-    HashMap<Integer, String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
-    HashMap<Integer, String> lawFirmList = DropdownDAO.retrieveAllDropdownListOfLawFirms();
+    ArrayList<String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
+    ArrayList<String> problemList = DropdownDAO.retrieveAllDropdownListOfProblems();
+    ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListOfPassType();
+    ArrayList<String> jobSectorList = DropdownDAO.retrieveAllDropdownListOfJobSector();
+    ArrayList<String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
+    ArrayList<String> lawFirmList = DropdownDAO.retrieveAllDropdownListOfLawFirms();
 
     String status = (String) request.getSession().getAttribute("status");
     request.getSession().removeAttribute("status");
@@ -215,7 +216,7 @@
                             <div class="col-md-6">
                                 <select class="form-control" id="worker_nationality" name="nationality" onchange="displayOther(this.id);"/>
                                 <%
-                                    for (String nationalityStr : nationalityList.values()) {
+                                    for (String nationalityStr : nationalityList) {
                                 %>
                                 <option><%=nationalityStr%></option>
                                 <%
@@ -267,7 +268,7 @@
                             <div class=" col-md-6">
                                 <select name="workpassType" class="form-control" id="job_pass_type" onchange="displayOther(this.id);">
                                     <%
-                                        for (String passTypeStr : passTypeList.values()) {
+                                        for (String passTypeStr : passTypeList) {
                                     %>
                                     <option><%=passTypeStr%></option>
                                     <%
@@ -291,7 +292,7 @@
                             <div class=" col-md-6">
                                 <select class="form-control" name="jobSector" id="job_sector" onchange="displayOther(this.id);" >
                                     <%
-                                        for (String jobSectorStr : jobSectorList.values()) {
+                                        for (String jobSectorStr : jobSectorList) {
                                     %>
                                     <option><%=jobSectorStr%></option>
                                     <%
@@ -369,7 +370,7 @@
                             <div class=" col-md-6"> 
                                 <select name="problem" id="prob_type" class="form-control" onchange="displayOther(this.id);">
                                     <%
-                                        for (String problemStr : problemList.values()) {
+                                        for (String problemStr : problemList) {
                                     %>
                                     <option><%=problemStr%></option>
                                     <%
@@ -412,7 +413,7 @@
                                 <div class=" col-md-6">
                                     <select class="form-control" name="currentHosptial" id="prob_hospital" onchange="displayOther(this.id);" >
                                         <%
-                                            for (String hospitalStr : hospitalList.values()) {
+                                            for (String hospitalStr : hospitalList) {
                                         %>
                                         <option><%=hospitalStr%></option>
                                         <%
@@ -447,7 +448,7 @@
                             <div class=" col-md-6">
                                 <select class="form-control" name="lawfirmName" id="lawfirmName" >
                                     <%
-                                        for (String lawFirmStr : lawFirmList.values()) {
+                                        for (String lawFirmStr : lawFirmList) {
                                     %>
                                     <option><%=lawFirmStr%></option>
                                     <%

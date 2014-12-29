@@ -12,10 +12,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-    HashMap<Integer, String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
-    HashMap<Integer, String> passTypeList = DropdownDAO.retrieveAllDropdownListOfPassType();
-    HashMap<Integer, String> problemList = DropdownDAO.retrieveAllDropdownListOfProblems();
-    HashMap<Integer, String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
+    ArrayList<String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
+    ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListOfPassType();
+    ArrayList<String> problemList = DropdownDAO.retrieveAllDropdownListOfProblems();
+    ArrayList<String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
     
     ArrayList<Worker> searchWorkers = (ArrayList<Worker>) request.getSession().getAttribute("searchWorkers");
     request.getSession().removeAttribute("searchWorkers");
@@ -96,7 +96,7 @@
         
         <title>CAMANS</title>
     </head>
-    <body id="home">
+    <body>
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
             
@@ -108,7 +108,7 @@
                 <!-- SEARCH FILTERS -->
                 
                 <!--<div id="schwker_box" class="col-md-11 sub_div_w_bg" style="padding:2% 1%">-->
-                <div id="worker_filter_div" class="col-md-12"> 
+                <div id="worker_filter_div" class="col-md-11"> 
                     <div class="panel panel-default">
                         <div class="panel-body"> 
                 <!--<div class="col-mid-9 panel panel-default sub_div_w_bg" style="padding:2% 1%">-->    
@@ -158,7 +158,7 @@
                                         <select class="form-control" id="workerNationality_In" name="nationality">
                                             <option value="" default selected>Nationality</option>
                                         <%
-                                            for (String nationalityStr : nationalityList.values()) {
+                                            for (String nationalityStr : nationalityList) {
                                                 if (nationalityIn !=null && nationalityIn.equals(nationalityStr)) {
                                         %>
                                             <option selected><%=nationalityStr%></option>
@@ -209,7 +209,7 @@
                                         <select class="form-control" id="workerWPType_In" name="workPassType">
                                             <option value="" default selected>Work Pass Type</option>
                                         <%
-                                            for (String passTypeStr : passTypeList.values()) {
+                                            for (String passTypeStr : passTypeList) {
                                                 if (workPassIn !=null && workPassIn.equals(passTypeStr)) {
                                         %>
                                             <option selected><%=passTypeStr%></option>
@@ -229,7 +229,7 @@
                                         <select class="form-control" id="workerProblem_In" name="problemType">
                                             <option value="" default selected>Problem Type</option>
                                        <%
-                                            for (String problemListStr : problemList.values()) {
+                                            for (String problemListStr : problemList) {
                                                 if (problemTypeIn !=null && problemTypeIn.equals(problemListStr)) {
                                         %>
                                             <option selected><%=problemListStr%></option>
@@ -249,7 +249,7 @@
                                         <select class="form-control" id="workerIssue_In" name="aggravatingIssue">
                                             <option value="" default selected>Aggravating Issue</option>
                                        <%
-                                            for (String problemListStr : problemList.values()) {
+                                            for (String problemListStr : problemList) {
                                                 if (aggravatingIssueIn !=null && aggravatingIssueIn.equals(problemListStr)) {
                                         %>
                                             <option selected><%=problemListStr%></option>
@@ -268,7 +268,7 @@
                                     <select class="form-control" id="workerHospital_In" name="hospital">
                                         <option value="" default selected>Hospital</option>
                                         <%
-                                            for (String hosptialStr : hospitalList.values()) {
+                                            for (String hosptialStr : hospitalList) {
                                                 if (hospitalIn !=null && hospitalIn.equals(hosptialStr)) {
                                         %>
                                             <option selected><%=hosptialStr%></option>
@@ -326,7 +326,7 @@
                 <!-- End of search filters -->
 
                 <!-- search Results -->
-                <div id="worker_search_result_div" class="col-md-12">
+                <div id="worker_search_result_div" class="col-md-11">
                     <!--div class="col-md-3 pull-right"> 
                         <input type="text" id="search_in_recent" placeholder="Search..." class="form-control"/>
                     </div-->

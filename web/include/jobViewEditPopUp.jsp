@@ -3,6 +3,7 @@
     Created on : Nov 6, 2014, 5:24:37 PM
     Author     : Nyein Su
 --%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="camans.dao.*"%>
@@ -1339,7 +1340,7 @@
     if (passId != null) {
         int id = Integer.parseInt(passId);
         JobPassDetails pass = JobComplementsDAO.retrieveJobPassDetailsById(id);
-        HashMap<Integer, String> workpassTypes = DropdownDAO.retrieveAllDropdownListOfWorkpassType();
+        ArrayList<String> workpassTypes = DropdownDAO.retrieveAllDropdownListOfWorkpassType();
 %>
 
 <form method="POST" id='passdetails_pop_up' class="form complement_detailed_form job_pop_up"  >
@@ -1430,7 +1431,7 @@
                 <br/>
                 <select class="form-control" id="passtype" name="npasstype">
                     <%
-                        for (String workpassType : workpassTypes.values()) {
+                        for (String workpassType : workpassTypes) {
                     %>
                     <option><%=workpassType%></option>
                     <%
@@ -1496,7 +1497,7 @@
                 <br/>
                 <select class="form-control" id="passtypeEdit" name="passtype">
                     <%
-                        for (String workpassType : workpassTypes.values()) {
+                        for (String workpassType : workpassTypes) {
                             if (passtype.equals(workpassType)) {
 
                     %>
@@ -2003,7 +2004,7 @@
     if (agent != null) {
         int id = Integer.parseInt(agent);
         JobIntermediaryAgent wagent = JobComplementsDAO.retrieveJobIntermediaryAgentById(id);
-        HashMap<Integer, String> agentLocations = DropdownDAO.retrieveAllDropdownListOfAgentLocationType();
+        ArrayList<String> agentLocations = DropdownDAO.retrieveAllDropdownListOfAgentLocationType();
 %>
 
 <form method="POST" id='agent_pop_up' class="form complement_detailed_form job_pop_up"  >
@@ -2141,7 +2142,7 @@
                 <br/>
                 <select class="form-control" id="agentLocation" name="naglocation">
                     <%
-                        for (String agentLocation : agentLocations.values()) {
+                        for (String agentLocation : agentLocations) {
                     %>
                     <option><%=agentLocation%></option>
                     <%
@@ -2242,7 +2243,7 @@
                 <br/>
                 <select class="form-control" id="agentLocationEdit" name="aglocation">
                     <%
-                        for (String agentLocation : agentLocations.values()) {
+                        for (String agentLocation : agentLocations) {
                             if (location.equals(agentLocation)) {
 
                     %>
@@ -2489,8 +2490,8 @@
         int id = Integer.parseInt(wplace);
         JobWorkplace workplace = JobComplementsDAO.retrieveJobWorkplaceById(id);
         //to get a list from dropdown dao//
-        HashMap<Integer, String> workplaceTypes = DropdownDAO.retrieveAllDropdownListOfWorkplaceType();
-        HashMap<Integer, String> workplacedirects = DropdownDAO.retrieveAllDropdownListOfWorkplaceDirectType();
+        ArrayList<String> workplaceTypes = DropdownDAO.retrieveAllDropdownListOfWorkplaceType();
+        ArrayList<String> workplacedirects = DropdownDAO.retrieveAllDropdownListOfWorkplaceDirectType();
 %>
 
 <form method="POST" id='workplace_pop_up' class="form complement_detailed_form job_pop_up"  >
@@ -2591,7 +2592,7 @@
                 <br/>
                 <select class="form-control" id="workplaceType" name="nwpType">
                     <%
-                        for (String type : workplaceTypes.values()) {
+                        for (String type : workplaceTypes) {
                     %>
                     <option><%=type%></option>
                     <%
@@ -2625,7 +2626,7 @@
                 <br/>
                 <select class="form-control" id="direct" name="ndirect">
                     <%
-                        for (String workplacedirect : workplacedirects.values()) {
+                        for (String workplacedirect : workplacedirects) {
                     %>
                     <option><%=workplacedirect%></option>
                     <%
@@ -2682,7 +2683,7 @@
                 <br/>
                 <select class="form-control" id="wpTypeEdit" name="wpType">
                     <%
-                        for (String type : workplaceTypes.values()) {
+                        for (String type : workplaceTypes) {
                             if (wpType.equals(type)) {
 
                     %>
@@ -2724,7 +2725,7 @@
                 <br/>
                 <select class="form-control" id="directEdit" name="direct">
                     <%
-                        for (String workplacedirect : workplacedirects.values()) {
+                        for (String workplacedirect : workplacedirects) {
                             if (direct.equals(workplacedirect)) {
 
                     %>
@@ -2794,7 +2795,7 @@
     if (whistory != null) {
         int id = Integer.parseInt(whistory);
         JobWorkHistory history = JobComplementsDAO.retrieveJobWorkHistoryById(id);
-        HashMap<Integer, String> workhist = DropdownDAO.retrieveAllDropdownListOfWorkHistoryHowType();
+        ArrayList<String> workhist = DropdownDAO.retrieveAllDropdownListOfWorkHistoryHowType();
 %>
 
 <form method="POST" id='whistory_pop_up' class="form complement_detailed_form job_pop_up"  >
@@ -2879,7 +2880,7 @@
                 <br/>
                 <select class="form-control" id="workhistHow" name="nhow">
                     <%
-                        for (String type : workhist.values()) {
+                        for (String type : workhist) {
                     %>
                     <option><%=type%></option>
                     <%
@@ -2949,7 +2950,7 @@
                 <br/>
                 <select class="form-control" id="howEdit" name="how">
                     <%
-                        for (String type : workhist.values()) {
+                        for (String type : workhist) {
                             if (how.equals(type)) {
 
                     %>
@@ -3040,8 +3041,8 @@
     if (waccom != null) {
         int id = Integer.parseInt(waccom);
         JobAccomodation accom = JobComplementsDAO.retrieveJobAccomodationById(id);
-        HashMap<Integer, String> accomTypes = DropdownDAO.retrieveAllDropdownListOfAccomType();
-        HashMap<Integer, String> accomProvideds = DropdownDAO.retrieveAllDropdownListOfAccomProvidedType();
+        ArrayList<String> accomTypes = DropdownDAO.retrieveAllDropdownListOfAccomType();
+        ArrayList<String> accomProvideds = DropdownDAO.retrieveAllDropdownListOfAccomProvidedType();
 
 %>
 
@@ -3141,7 +3142,7 @@
                 <br/>
                 <select class="form-control" id="accomProvided" name="nisProvided">
                     <%
-                        for (String accomProvided : accomProvideds.values()) {
+                        for (String accomProvided : accomProvideds) {
                     %>
                     <option><%=accomProvided%></option>
                     <%
@@ -3162,7 +3163,7 @@
 
                 <select class="form-control" id="accomType" name="ntype">
                     <%
-                        for (String accomtype : accomTypes.values()) {
+                        for (String accomtype : accomTypes) {
                     %>
                     <option><%=accomtype%></option>
                     <%
@@ -3236,7 +3237,7 @@
                 <br/>
                 <select class="form-control" id="accomProvidedView" name="isProvided">
                     <%
-                        for (String provided : accomProvideds.values()) {
+                        for (String provided : accomProvideds) {
                             if (isProvided.equals(provided)) {
 
                     %>
@@ -3263,7 +3264,7 @@
                 <br/>
                 <select class="form-control" id="accomtypeView" name="type">
                     <%
-                        for (String acoomtype : accomTypes.values()) {
+                        for (String acoomtype : accomTypes) {
                             if (type.equals(acoomtype)) {
 
                     %>
@@ -3349,7 +3350,7 @@
     if (ipa != null) {
         int id = Integer.parseInt(ipa);
         JobIPADetails jipa = JobComplementsDAO.retrieveJobIPADetailsById(id);
-        HashMap<Integer, String> ipatypes = DropdownDAO.retrieveAllDropdownListOfIPAPassType();
+        ArrayList<String> ipatypes = DropdownDAO.retrieveAllDropdownListOfIPAPassType();
 %>
 
 <form method="POST" id='ipa_pop_up' class="form complement_detailed_form job_pop_up"  >
@@ -3472,7 +3473,7 @@
                 <br/>
                 <select class="form-control" id="ipapassType" name="nworkpassType">
                     <%
-                        for (String ipatype : ipatypes.values()) {
+                        for (String ipatype : ipatypes) {
                     %>
                     <option><%=ipatype%></option>
                     <%
@@ -3576,7 +3577,7 @@
                 <br/>
                 <select class="form-control" id="ipapassTypeView" name="workpassType">
                     <%
-                        for (String provided : ipatypes.values()) {
+                        for (String provided : ipatypes) {
                             if (type.equals(provided)) {
 
                     %>

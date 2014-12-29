@@ -23,8 +23,8 @@ import java.util.logging.Logger;
 public class DropdownDAO {
     
    
-    public static HashMap<Integer, String> retrieveAllDropdownListOfNationalities() {
-        HashMap<Integer,String> nationalityList = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfNationalities() {
+        ArrayList<String> nationalityList = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -32,14 +32,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Nationality_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String nationality = rs.getString(2);
-                nationalityList.put(id, nationality);
+                String nationality = rs.getString(1);
+                nationalityList.add(nationality);
             }
             
         } catch (SQLException ex) {
@@ -50,8 +49,8 @@ public class DropdownDAO {
         return nationalityList;
     }
         
-    public static HashMap<Integer,String> retrieveAllDropdownListOfProblems() {
-        HashMap<Integer,String> problemList = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfProblems() {
+        ArrayList<String> problemList = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -59,14 +58,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Problem_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String problem = rs.getString(2);
-                problemList.put(id, problem);
+                String problem = rs.getString(1);
+                problemList.add(problem);
             }
 
         } catch (SQLException ex) {
@@ -77,8 +75,8 @@ public class DropdownDAO {
         return problemList;
     }
 
-    public static HashMap<Integer,String> retrieveAllDropdownListOfPassType() {
-        HashMap<Integer,String> passTypeList = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfPassType() {
+        ArrayList<String> passTypeList = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -86,14 +84,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Pass_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String passType = rs.getString(2);
-                passTypeList.put(id, passType);
+                String passType = rs.getString(1);
+                passTypeList.add(passType);
             }
 
         } catch (SQLException ex) {
@@ -104,8 +101,8 @@ public class DropdownDAO {
         return passTypeList;       
     }
 
-    public static HashMap<Integer,String> retrieveAllDropdownListOfJobSector() {
-        HashMap<Integer,String> jobSectorList = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfJobSector() {
+        ArrayList<String> jobSectorList = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -113,14 +110,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Job_sector_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String jobSector = rs.getString(2);
-                jobSectorList.put(id, jobSector);
+                String jobSector = rs.getString(1);
+                jobSectorList.add(jobSector);
             }
 
         } catch (SQLException ex) {
@@ -131,8 +127,8 @@ public class DropdownDAO {
         return jobSectorList;       
     }
 
-    public static HashMap<Integer,String> retrieveAllDropdownListOfHosptialType() {
-        HashMap<Integer,String> hosptialList = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfHosptialType() {
+        ArrayList<String> hosptialList = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -140,14 +136,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Hospital_name");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String hospital = rs.getString(2);
-                hosptialList.put(id, hospital);
+                String hospital = rs.getString(1);
+                hosptialList.add(hospital);
             }
 
         } catch (SQLException ex) {
@@ -158,8 +153,8 @@ public class DropdownDAO {
         return hosptialList;       
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfDigitalContactType() {
-        HashMap<Integer,String> digitalContactList = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfDigitalContactType() {
+        ArrayList<String> digitalContactList = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -167,14 +162,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "DigitalType");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String contactType = rs.getString(2);
-                digitalContactList.put(id, contactType);
+                String contactType = rs.getString(1);
+                digitalContactList.add(contactType);
             }
 
         } catch (SQLException ex) {
@@ -185,8 +179,8 @@ public class DropdownDAO {
         return digitalContactList;            
     }
 
-    public static HashMap<Integer,String> retrieveAllDropdownListOfLanguage() {
-    HashMap<Integer,String> languageList = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfLanguage() {
+    ArrayList<String> languageList = new ArrayList<String>();
     Connection conn = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
@@ -194,14 +188,13 @@ public class DropdownDAO {
 
     try {
         conn = ConnectionManager.getConnection();
-        sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+        sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
         pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, "MainLang");
         rs = pstmt.executeQuery();
         while (rs.next()) {
-            int id = rs.getInt(1);
-            String language = rs.getString(2);
-            languageList.put(id, language);
+            String language = rs.getString(1);
+            languageList.add(language);
         }
 
     } catch (SQLException ex) {
@@ -212,8 +205,8 @@ public class DropdownDAO {
     return languageList;            
 }
 
-    public static HashMap<Integer,String> retrieveAllDropdownListOfSpokenEnglish() {
-        HashMap<Integer,String> spokenEnglishStandards = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfSpokenEnglish() {
+        ArrayList<String> spokenEnglishStandards = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -221,14 +214,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Spoken_english_standard");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String standard = rs.getString(2);
-                spokenEnglishStandards.put(id, standard);
+                String standard = rs.getString(1);
+                spokenEnglishStandards.add(standard);
             }
 
         } catch (SQLException ex) {
@@ -239,8 +231,8 @@ public class DropdownDAO {
         return spokenEnglishStandards; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfWorkpassType() {
-        HashMap<Integer,String> workpassTypes = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfWorkpassType() {
+        ArrayList<String> workpassTypes = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -248,14 +240,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Work_pass_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                workpassTypes.put(id, type);
+                String type = rs.getString(1);
+                workpassTypes.add(type);
             }
 
         } catch (SQLException ex) {
@@ -266,8 +257,8 @@ public class DropdownDAO {
         return workpassTypes; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfIPAPassType() {
-        HashMap<Integer,String> ipapassTypes = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfIPAPassType() {
+        ArrayList<String> ipapassTypes = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -275,14 +266,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "IPA_pass_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                ipapassTypes.put(id, type);
+                String type = rs.getString(1);
+                ipapassTypes.add(type);
             }
 
         } catch (SQLException ex) {
@@ -293,8 +283,8 @@ public class DropdownDAO {
         return ipapassTypes; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfAgentLocationType() {
-        HashMap<Integer,String> agentLocationTypes = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfAgentLocationType() {
+        ArrayList<String> agentLocationTypes = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -302,14 +292,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Agent_location_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                agentLocationTypes.put(id, type);
+                String type = rs.getString(1);
+                agentLocationTypes.add(type);
             }
 
         } catch (SQLException ex) {
@@ -320,8 +309,8 @@ public class DropdownDAO {
         return agentLocationTypes; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfWorkplaceType() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfWorkplaceType() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -329,14 +318,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Workplace_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -347,8 +335,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfWorkplaceDirectType() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfWorkplaceDirectType() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -356,14 +344,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Workplace_direct_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -374,8 +361,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfWorkHistoryHowType() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfWorkHistoryHowType() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -383,14 +370,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Work_history_how_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -401,8 +387,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfAccomProvidedType() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfAccomProvidedType() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -410,14 +396,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Accom_provided_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -428,8 +413,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfAccomType() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfAccomType() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -437,14 +422,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Accommodation_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -455,8 +439,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfCaseworkers() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfCaseworkers() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -468,9 +452,8 @@ public class DropdownDAO {
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(5);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -481,8 +464,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfSalaryMode() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfSalaryMode() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -490,14 +473,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Salary_payment_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -508,8 +490,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfComplaint() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfComplaint() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -517,14 +499,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Complaint_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -535,8 +516,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfComplaintMode() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfComplaintMode() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -544,14 +525,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Complaint_mode_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -562,8 +542,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfDiscussWhere() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfDiscussWhere() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -571,14 +551,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Discuss_where_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -589,8 +568,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfHosipital() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfHosipital() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -598,14 +577,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Hospital_name");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -616,8 +594,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfMCStatus() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfMCStatus() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -625,14 +603,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "MC_status_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -643,8 +620,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfWica() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfWica() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -652,14 +629,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Wicamon_status");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -670,8 +646,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfMilestoneNonCriminal() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfMilestoneNonCriminal() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -679,14 +655,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Miles_nc_reached");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -697,8 +672,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfMilestoneCriminal() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfMilestoneCriminal() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -706,14 +681,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Casemilestone_criminal_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -724,8 +698,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfTTRStatus() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfTTRStatus() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -733,14 +707,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Ttr_status_type");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -751,8 +724,8 @@ public class DropdownDAO {
         return types; 
     }
     
-    public static HashMap<Integer,String> retrieveAllDropdownListOfLawFirms() {
-        HashMap<Integer,String> types = new HashMap<Integer,String>();
+    public static ArrayList<String> retrieveAllDropdownListOfLawFirms() {
+        ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -760,14 +733,13 @@ public class DropdownDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID, Name FROM tbl_dropdown where dropdownType = ? order by Name ASC;";
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Lawyer_firm");
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String type = rs.getString(2);
-                types.put(id, type);
+                String type = rs.getString(1);
+                types.add(type);
             }
 
         } catch (SQLException ex) {
@@ -788,7 +760,7 @@ public class DropdownDAO {
         try {
             conn = ConnectionManager.getConnection();
             sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? and "
-                    + "Other = ? order by Name ASC;";
+                    + "Remark = ? order by Name ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Bene_Type");
             pstmt.setString(2, benefitType);

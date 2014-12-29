@@ -34,10 +34,17 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/profile_pic.jpg" ><%=_user.getUsername()%> <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="userProfile.jsp">Profile</a></li>
+                            <li><a href="userProfile.jsp">
+                                    <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                    Profile Setting
+                                </a>
+                            </li>
 
                             <li class="divider"></li>
-                            <li><a href="logout.jsp">Log Out</a></li>
+                            <li><a href="logout.jsp">
+                                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                                    Log Out
+                                </a></li>
                         </ul>
                     </li>
                 </ul>

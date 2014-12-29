@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="camans.entity.*"%>
@@ -406,11 +407,11 @@
     String pRemark = problem.getProblemRemark();
 
     //get Dropdown data
-    HashMap<Integer, String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
-    HashMap<Integer, String> problemList = DropdownDAO.retrieveAllDropdownListOfProblems();
-    HashMap<Integer, String> passTypeList = DropdownDAO.retrieveAllDropdownListOfPassType();
-    HashMap<Integer, String> jobSectorList = DropdownDAO.retrieveAllDropdownListOfJobSector();
-    HashMap<Integer, String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
+    ArrayList<String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
+    ArrayList<String> problemList = DropdownDAO.retrieveAllDropdownListOfProblems();
+    ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListOfPassType();
+    ArrayList<String> jobSectorList = DropdownDAO.retrieveAllDropdownListOfJobSector();
+    ArrayList<String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
     //javascript method to blur the input fields if the action is view
     //if the action is view, 
     /**
@@ -535,7 +536,7 @@
             <div class='col-md-7'>
                 <select class="form-control" id="worker_nationality" name="nationality" onchange="displayOther(this.id);">
                     <%
-                        for (String nationalityStr : nationalityList.values()) {
+                        for (String nationalityStr : nationalityList) {
                             if (nationality.equals(nationalityStr)) {
                     %>
                     <option selected><%=nationalityStr%></option>
@@ -601,7 +602,7 @@
             <div class='col-md-7'>
                 <select class="form-control" id="workpass" name="wpType" onchange="displayOther(this.id);">
                     <%
-                        for (String passTypeStr : passTypeList.values()) {
+                        for (String passTypeStr : passTypeList) {
                             if (wpType.equals(passTypeStr)) {
                     %>
                     <option selected><%=passTypeStr%></option>
@@ -634,7 +635,7 @@
             <div class='col-md-7'>
                 <select class="form-control" id="jSector" name="jobSector" onchange="displayOther(this.id);">
                     <%
-                        for (String jobSectorStr : jobSectorList.values()) {
+                        for (String jobSectorStr : jobSectorList) {
                             if (jSector.equals(jobSectorStr)) {
                     %>
                     <option selected><%=jobSectorStr%></option>
@@ -738,7 +739,7 @@
             <div class='col-md-7'>
                 <select class="form-control" id="workpass" name="problem" onchange="displayOther(this.id);">
                     <%
-                        for (String problemStr : problemList.values()) {
+                        for (String problemStr : problemList) {
                             if (problemType.equals(problemStr)) {
                     %>
                     <option selected><%=problemStr%></option>
@@ -812,7 +813,7 @@
             <div class=" col-md-7">
                 <select name="workpassType" class="form-control" id="job_pass_type" onchange="displayOther(this.id)">
                     <%
-                        for (String passTypeStr : passTypeList.values()) {
+                        for (String passTypeStr : passTypeList) {
                     %>
                     <option><%=passTypeStr%></option>
                     <%
@@ -836,7 +837,7 @@
             <div class=" col-md-7">
                 <select class="form-control" name="jobSector" id="job_sector" onchange="displayOther(this.id)" >
                     <%
-                        for (String jobSectorStr : jobSectorList.values()) {
+                        for (String jobSectorStr : jobSectorList) {
                     %>
                     <option><%=jobSectorStr%></option>
                     <%
@@ -916,7 +917,7 @@
             <div class=" col-md-7"> 
                 <select name="problem" id="prob_type" class="form-control" onchange="displayOther(this.id);">
                     <%
-                        for (String problemStr : problemList.values()) {
+                        for (String problemStr : problemList) {
                     %>
                     <option><%=problemStr%></option>
                     <%
@@ -959,7 +960,7 @@
                 <div class=" col-md-7">
                     <select class="form-control" name="currentHosptial" id="prob_hospital" onchange="displayOther(this.id)" >
                         <%
-                            for (String hospitalStr : hospitalList.values()) {
+                            for (String hospitalStr : hospitalList) {
                         %>
                         <option><%=hospitalStr%></option>
                         <%

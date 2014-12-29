@@ -318,7 +318,7 @@ public class processCreateNewCase extends HttpServlet {
                     worker = new Worker(finNum, workerName,registeredDate, createdBy, createdFor,
                             gender, nationality, nationalityMore, dob, photoPath);
                     WorkerDAO.addWorker(worker);
-                    if (photoPath != null || !photoPath.equals("")) {
+                    if (photoPath != null) {
                         //update the attachment database
                         User _user = (User) request.getSession().getAttribute("userLogin");
                         WorkerAttachment workerAttachment = 

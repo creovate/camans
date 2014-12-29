@@ -1,4 +1,5 @@
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="camans.entity.*"%>
 <%@page import="camans.dao.*"%>
@@ -1269,7 +1270,7 @@
 
         int id = Integer.parseInt(digiId);
         WorkerDigitalContact digitalContact = WorkerComplementsDAO.retrieveWorkerDigitalContactById(id);
-        HashMap<Integer, String> digitalContactList = DropdownDAO.retrieveAllDropdownListOfDigitalContactType();
+        ArrayList<String> digitalContactList = DropdownDAO.retrieveAllDropdownListOfDigitalContactType();
 %>
 
 <form method="POST" id='digi_pop_up' class="form complement_detailed_form worker_pop_up"  >
@@ -1340,7 +1341,7 @@
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nDigitalContactType" required>
                     <%
-                        for (String contactType : digitalContactList.values()) {
+                        for (String contactType : digitalContactList) {
                             if (digitalContact.getContactType().equals(contactType)) {
 
                     %>
@@ -1400,7 +1401,7 @@
                 <br/>
                 <select class="form-control" id="digitalContactType" name="digitalContactType" required>
                     <%
-                        for (String contactType : digitalContactList.values()) {
+                        for (String contactType : digitalContactList) {
                             if (digitalContact.getContactType().equals(contactType)) {
 
                     %>
@@ -2000,8 +2001,8 @@
 
         int id = Integer.parseInt(languageId);
         WorkerLanguage workerLanguage = WorkerComplementsDAO.retrieveWorkerLanguageById(id);
-        HashMap<Integer, String> languageList = DropdownDAO.retrieveAllDropdownListOfLanguage();
-        HashMap<Integer, String> spokenEnglishList = DropdownDAO.retrieveAllDropdownListOfSpokenEnglish();
+        ArrayList<String> languageList = DropdownDAO.retrieveAllDropdownListOfLanguage();
+        ArrayList<String> spokenEnglishList = DropdownDAO.retrieveAllDropdownListOfSpokenEnglish();
 %>
 
 <form method="POST" id='language_pop_up' class="form complement_detailed_form worker_pop_up"  >
@@ -2058,7 +2059,7 @@
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nMainLanguage">
                     <%
-                        for (String languageType : languageList.values()) {
+                        for (String languageType : languageList) {
                     %>
                     <option><%=languageType%></option>
                     <%
@@ -2077,7 +2078,7 @@
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nEnglishStandard">
                     <%
-                        for (String engStd : spokenEnglishList.values()) {
+                        for (String engStd : spokenEnglishList) {
                     %> 
                     <option><%=engStd%></option>
                     <%
@@ -2105,7 +2106,7 @@
                 <br/>
                 <select class="form-control" id="digitalContactType" name="mainLanguage">
                     <%
-                        for (String languageType : languageList.values()) {
+                        for (String languageType : languageList) {
                             if (workerLanguage.getMainLanguage().equals(languageType)) {
 
                     %>
@@ -2132,7 +2133,7 @@
                 <br/>
                 <select class="form-control" id="digitalContactType" name="englishStandard">
                     <%
-                        for (String engStd : spokenEnglishList.values()) {
+                        for (String engStd : spokenEnglishList) {
                             if (workerLanguage.getSpokenLanguageStandard().equals(engStd)) {
 
                     %>

@@ -3,6 +3,7 @@
     Created on : Nov 6, 2014, 5:12:37 PM
     Author     : Nyein Su
 --%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="camans.dao.*"%>
@@ -4285,8 +4286,8 @@
 
         int id = Integer.parseInt(othercomplaintId);
         ProblemOtherComplaint complaint = ProblemComplementsDAO.retrieveProblemOtherComplaintById(id);
-        HashMap<Integer, String> complaintWho = DropdownDAO.retrieveAllDropdownListOfComplaint();
-        HashMap<Integer, String> complaintMode = DropdownDAO.retrieveAllDropdownListOfComplaintMode();
+        ArrayList<String> complaintWho = DropdownDAO.retrieveAllDropdownListOfComplaint();
+        ArrayList<String> complaintMode = DropdownDAO.retrieveAllDropdownListOfComplaintMode();
 
 %>
 
@@ -4375,7 +4376,7 @@
             <br/>
             <select class="form-control" id="complaintTypeView" name="complaintWho" onchange="displayOther(this.id);">
                 <%
-                    for (String complaintT : complaintWho.values()) {
+                    for (String complaintT : complaintWho) {
                         if (who.equals(complaintT)) {
 
                 %>
@@ -4403,7 +4404,7 @@
             <br/>
             <select class="form-control" id="complaintModeView" name="complaintMode" onchange="displayOther(this.id);">
                 <%
-                    for (String complaintM : complaintMode.values()) {
+                    for (String complaintM : complaintMode) {
                         if (mode.equals(complaintM)) {
 
                 %>
@@ -4466,7 +4467,7 @@
             <br/>
             <select class="form-control" id="complaintWho" name="ncomplaintWho">
                 <%
-                    for (String complaintType : complaintWho.values()) {
+                    for (String complaintType : complaintWho) {
                 %>
                 <option><%=complaintType%></option>
                 <%
@@ -4486,7 +4487,7 @@
             <br/>
             <select class="form-control" id="complaintMode" name="ncomplaintMode">
                 <%
-                    for (String complaintM : complaintMode.values()) {
+                    for (String complaintM : complaintMode) {
                 %>
                 <option><%=complaintM%></option>
                 <%
@@ -4551,7 +4552,7 @@
         String action = discussion.getCaseDiscussionAction();
         String remark = discussion.getCaseDiscussionRemark();
 
-        HashMap<Integer, String> locations = DropdownDAO.retrieveAllDropdownListOfDiscussWhere();
+        ArrayList<String> locations = DropdownDAO.retrieveAllDropdownListOfDiscussWhere();
 
 %>
 
@@ -4663,7 +4664,7 @@
             <br/>
             <select class="form-control" id="discussionWhere" name="discussionWhere" onchange="displayOther(this.id);">
                 <%
-                    for (String location : locations.values()) {
+                    for (String location : locations) {
                         if (dWhere.equals(location)) {
 
                 %>
@@ -4771,7 +4772,7 @@
             <br/>
             <select class="form-control" id="discussionWhere" name="ndiscussionWhere" onchange="displayOther(this.id);">
                 <%
-                    for (String location : locations.values()) {
+                    for (String location : locations) {
                 %>
                 <option><%=location%></option>
                 <%
@@ -4871,7 +4872,7 @@
         String hospNameMore = hosp.getHospitalNameMore();
         String hospDoctor = hosp.getHospitalDoctor();
         String remark = hosp.getHospitalRemark();
-        HashMap<Integer, String> names = DropdownDAO.retrieveAllDropdownListOfHosipital();
+        ArrayList<String> names = DropdownDAO.retrieveAllDropdownListOfHosipital();
 
 %>
 
@@ -4932,7 +4933,7 @@
             <br/>
             <select class="form-control" id="hospName" name="hospName" onchange="displayOther(this.id);">
                 <%
-                    for (String name : names.values()) {
+                    for (String name : names) {
                         if (hospName.equals(name)) {
 
                 %>
@@ -4989,7 +4990,7 @@
             <br/>
             <select class="form-control" id="nhospName" name="nhospName" onchange="displayOther(this.id);">
                 <%
-                    for (String name : names.values()) {
+                    for (String name : names) {
                 %>
                 <option><%=name%></option>
                 <%
@@ -5043,7 +5044,7 @@
         int cum = mcStatus.getMCDaysCumul();
         String mcRem = mcStatus.getMCRem();
 
-        HashMap<Integer, String> statusList = DropdownDAO.retrieveAllDropdownListOfMCStatus();
+        ArrayList<String> statusList = DropdownDAO.retrieveAllDropdownListOfMCStatus();
 
 %>
 
@@ -5108,7 +5109,7 @@
             <br/>
             <select class="form-control" id="status" name="mcStatus" onchange="displayOther(this.id);">
                 <%
-                    for (String statusObj : statusList.values()) {
+                    for (String statusObj : statusList) {
                         if (status.equals(statusObj)) {
 
                 %>
@@ -5171,7 +5172,7 @@
             <br/>
             <select class="form-control" id="nmcStatus" name="nmcStatus" onchange="displayOther(this.id);">
                 <%
-                    for (String statusObj : statusList.values()) {
+                    for (String statusObj : statusList) {
                 %>
                 <option><%=statusObj%></option>
                 <%
@@ -5487,7 +5488,7 @@
         double wDollars = wica.getWicaMonthlyDollars();
         String wRemarks = wica.getWicaMonthlyRemarks();
 
-        HashMap<Integer, String> wicaList = DropdownDAO.retrieveAllDropdownListOfWica();
+        ArrayList<String> wicaList = DropdownDAO.retrieveAllDropdownListOfWica();
 
 %>
 
@@ -5551,7 +5552,7 @@
             <br/>
             <select class="form-control" id="wicaStatus" name="wicaStatus" onchange="displayOther(this.id);">
                 <%
-                    for (String tempStatus : wicaList.values()) {
+                    for (String tempStatus : wicaList) {
                         if (wStatus.equals(tempStatus)) {
 
                 %>
@@ -5613,7 +5614,7 @@
             <br/>
             <select class="form-control" id="nwicaStatus" name="nwicaStatus" onchange="displayOther(this.id);">
                 <%
-                    for (String tempStatus : wicaList.values()) {
+                    for (String tempStatus : wicaList) {
                 %>
                 <option><%=tempStatus%></option>
                 <%
@@ -5673,7 +5674,7 @@
         String firmMore = lawyer.getLawyerFirmMore();
         String lawyerName = lawyer.getLawyerName();
         String remark = lawyer.getLawyerRemarks();
-        HashMap<Integer, String> lawFirmNameList = DropdownDAO.retrieveAllDropdownListOfLawFirms();
+        ArrayList<String> lawFirmNameList = DropdownDAO.retrieveAllDropdownListOfLawFirms();
 %>
 
 <form method="POST" id='lawyer_pop_up' class="form complement_detailed_form problem_pop_up"  >
@@ -5736,7 +5737,7 @@
             <br/>
             <select class="form-control" id="nlawyerFirm" name="lawyerFirm" onchange="displayOther(this.id);">
                 <%
-                    for (String lawFirmName : lawFirmNameList.values()) {
+                    for (String lawFirmName : lawFirmNameList) {
                         if (lawFirmName.equals(firm)) {
                 %>
                 <option selected><%=lawFirmName%></option>
@@ -5790,7 +5791,7 @@
             <br/>
             <select class="form-control" id="nlawyerFirm" name="nlawyerFirm" onchange="displayOther(this.id);">
                 <%
-                    for (String lawFirmName : lawFirmNameList.values()) {
+                    for (String lawFirmName : lawFirmNameList) {
                 %>
                 <option><%=lawFirmName%></option>
                 <%
@@ -5840,7 +5841,7 @@
         String ncReached = nc.getMilesNCReached();
         String ncRem = nc.getMilesNCRem();
 
-        HashMap<Integer, String> ncList = DropdownDAO.retrieveAllDropdownListOfMilestoneNonCriminal();
+        ArrayList<String> ncList = DropdownDAO.retrieveAllDropdownListOfMilestoneNonCriminal();
 
 %>
 
@@ -5893,7 +5894,7 @@
             <br/>
             <select class="form-control" id="ncReached" name="milestoneNCReached" onchange="displayOther(this.id);">
                 <%
-                    for (String reached : ncList.values()) {
+                    for (String reached : ncList) {
                         if (ncReached.equals(reached)) {
 
                 %>
@@ -5945,7 +5946,7 @@
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneNCReached" onchange="displayOther(this.id);">
                 <%
-                    for (String reached : ncList.values()) {
+                    for (String reached : ncList) {
                 %>
                 <option><%=reached%></option>
                 <%
@@ -5995,7 +5996,7 @@
         String crSentence = cr.getMilesCRSentence();
         String crRem = cr.getMilesCRRem();
 
-        HashMap<Integer, String> crList = DropdownDAO.retrieveAllDropdownListOfMilestoneCriminal();
+        ArrayList<String> crList = DropdownDAO.retrieveAllDropdownListOfMilestoneCriminal();
 
 %>
 
@@ -6060,7 +6061,7 @@
             <br/>
             <select class="form-control" id="crReached" name="milestoneCRReached" onchange="displayOther(this.id);">
                 <%
-                    for (String reached : crList.values()) {
+                    for (String reached : crList) {
                         if (crReached.equals(reached)) {
 
                 %>
@@ -6125,7 +6126,7 @@
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneCRReached" onchange="displayOther(this.id);">
                 <%
-                    for (String reached : crList.values()) {
+                    for (String reached : crList) {
                 %>
                 <option><%=reached%></option>
                 <%
@@ -6184,7 +6185,7 @@
         String job = ttr.getNewJob();
         String ttrRem = ttr.getTTRRem();
 
-        HashMap<Integer, String> ttrList = DropdownDAO.retrieveAllDropdownListOfTTRStatus();
+        ArrayList<String> ttrList = DropdownDAO.retrieveAllDropdownListOfTTRStatus();
 %>
 
 <form method="POST" id='ttr_pop_up' class="form complement_detailed_form problem_pop_up"  >
@@ -6252,7 +6253,7 @@
             <br/>
             <select class="form-control" id="ttrStatus" name="ttrStatus" onchange="displayOther(this.id);">
                 <%
-                    for (String tempStatus : ttrList.values()) {
+                    for (String tempStatus : ttrList) {
                         if (status.equals(tempStatus)) {
 
                 %>
@@ -6321,7 +6322,7 @@
             <br/>
             <select class="form-control" id="nttrStatus" name="nttrStatus" onchange="displayOther(this.id);">
                 <%
-                    for (String tempStatus : ttrList.values()) {
+                    for (String tempStatus : ttrList) {
                 %>
                 <option><%=tempStatus%></option>
                 <%
@@ -6377,7 +6378,7 @@
     if (aggravIssueId != null) {
         int id = Integer.parseInt(aggravIssueId);
         ProblemAggravatingIssue issue = ProblemComplementsDAO.retrieveProblemAggravatingIssueById(id);
-        HashMap<Integer, String> problemTypes = DropdownDAO.retrieveAllDropdownListOfProblems();
+        ArrayList<String> problemTypes = DropdownDAO.retrieveAllDropdownListOfProblems();
 %>
 <form method="POST" id='aggravIssue_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
@@ -6437,7 +6438,7 @@
                 <br/>
                 <select class="form-control" id="naggravissueType" name="naggravissueType" onchange="displayOther(this.id);">
                     <%
-                        for (String aggravissueType : problemTypes.values()) {
+                        for (String aggravissueType : problemTypes) {
                     %>
                     <option><%=aggravissueType%></option>
                     <%
@@ -6480,7 +6481,7 @@
                 <br/>
                 <select class="form-control" id="aggravissueType" name="aggravissueType" onchange="displayOther(this.id);">
                     <%
-                        for (String provided : problemTypes.values()) {
+                        for (String provided : problemTypes) {
                             if (type.equals(provided)) {
 
                     %>
@@ -6535,7 +6536,7 @@
     if (leadCaseworkerId != null) {
         int id = Integer.parseInt(leadCaseworkerId);
         ProblemLeadCaseWorker leadCaseWorker = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(id);
-        HashMap<Integer, String> leadCaseWorkerNameList = DropdownDAO.retrieveAllDropdownListOfCaseworkers();
+        ArrayList<String> leadCaseWorkerNameList = DropdownDAO.retrieveAllDropdownListOfCaseworkers();
 %>
 <form method="POST" id='leadcaseworker_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <h4 class='view_comp'>View Lead Caseworker Details</h4>
@@ -6585,7 +6586,7 @@
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nleadCaseWorkerName">
                     <%
-                        for (String leadCaseWorkerName : leadCaseWorkerNameList.values()) {
+                        for (String leadCaseWorkerName : leadCaseWorkerNameList) {
                     %>
                     <option><%=leadCaseWorkerName%></option>
                     <%
@@ -6623,7 +6624,7 @@
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="leadCaseWorkerName">
                     <%
-                        for (String providname : leadCaseWorkerNameList.values()) {
+                        for (String providname : leadCaseWorkerNameList) {
                             if (name.equals(providname)) {
                     %>
                     <option selected><%=providname%></option>
@@ -6672,7 +6673,7 @@
     if (auxCaseworkerId != null) {
         int id = Integer.parseInt(auxCaseworkerId);
         ProblemAuxiliaryCaseWorker auxiliaryCaseworker = ProblemComplementsDAO.retrieveProblemAuxiliaryCaseWorkerById(id);
-        HashMap<Integer, String> auxiliaryCaseworkerNameList = DropdownDAO.retrieveAllDropdownListOfCaseworkers();
+        ArrayList<String> auxiliaryCaseworkerNameList = DropdownDAO.retrieveAllDropdownListOfCaseworkers();
 %>
 <form method="POST" id='auxcaseworker_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <h4 class='view_comp'>View Auxiliary Caseworker Details</h4>
@@ -6722,7 +6723,7 @@
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nauxiliaryCaseWorkerName">
                     <%
-                        for (String auxiliaryCaseWorkerName : auxiliaryCaseworkerNameList.values()) {
+                        for (String auxiliaryCaseWorkerName : auxiliaryCaseworkerNameList) {
                     %>
                     <option><%=auxiliaryCaseWorkerName%></option>
                     <%
@@ -6759,7 +6760,7 @@
                 <br/>
                 <select class="form-control" id="auxiliaryCaseWorker" name="auxiliaryCaseWorkerName">
                     <%
-                        for (String providname : auxiliaryCaseworkerNameList.values()) {
+                        for (String providname : auxiliaryCaseworkerNameList) {
                             if (name.equals(providname)) {
                     %>
                     <option selected><%=providname%></option>
@@ -6809,7 +6810,7 @@
     if (salaryCaseId != null) {
         int id = Integer.parseInt(salaryCaseId);
         ProblemSalaryRelatedHistory psalary = ProblemComplementsDAO.retrieveProblemSalaryRelatedHistoryById(id);
-        HashMap<Integer, String> modeOfPayment = DropdownDAO.retrieveAllDropdownListOfSalaryMode();
+        ArrayList<String> modeOfPayment = DropdownDAO.retrieveAllDropdownListOfSalaryMode();
 %>
 <form method="POST" id='salaryhistory_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <h4 class='view_comp'>View Salary & Related History Details</h4>
@@ -6935,7 +6936,7 @@
                 <br/>
                 <select class="form-control" id="nmode" name="nmode" onchange="displayOther(this.id);">
                     <%
-                        for (String pmode : modeOfPayment.values()) {
+                        for (String pmode : modeOfPayment) {
                     %>
                     <option><%=pmode%></option>
                     <%
@@ -7012,7 +7013,7 @@
                 <br/>
                 <select class="form-control" id="mode" name="mode" onchange="displayOther(this.id);">
                     <%
-                        for (String provided : modeOfPayment.values()) {
+                        for (String provided : modeOfPayment) {
                             if (mode.equals(provided)) {
 
                     %>

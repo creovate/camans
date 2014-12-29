@@ -1147,7 +1147,7 @@
 
                                             <button type='submit' onclick="" class="btn btn-default  col-md-1">Submit</button>
                                             <button type='button' data-title="Add New Job" data-action="add" data-value="job" class="btn btn-default profile_details  pull-right">Add New Job</button>
-
+                                            <button type='button' onclick="" id="case_ref_btn" data-title="Case Referral" class="btn btn-default  col-md-1">Submit</button>
                                         </div>
                                     </form>
                                     <!--need to change the vlaue of job id when the user change the dropdown value-->
@@ -4528,7 +4528,7 @@
                                                 <% String extension = docName.substring(docName.lastIndexOf(".")+1);
                                                 if (extension.equalsIgnoreCase("jpeg") || extension.equalsIgnoreCase("jpg") ||
                                                     extension.equalsIgnoreCase("png") || extension.equalsIgnoreCase("bmp")) {
-                                                    if (!worker.getPhotoPath().equals(workerAttachment.getFilePath())) { %>
+                                                    if (worker.getPhotoPath() == null || !worker.getPhotoPath().equals(workerAttachment.getFilePath())) { %>
                                                         <a style="color: black" href="#" class="photo_popup" data-docpath='<%=workerAttachment.getFilePath()%>'
                                                             data-id='<%=workerAttachment.getId()%>' data-toggle="modal" data-target="#attach_photo_confirm">
                                                            <span data-toggle="tooltip" title="Make as Profile Picture" class="glyphicon glyphicon-user"></span>
