@@ -1,5 +1,8 @@
 camans
 ======
+<i><b>29th Dec 2014-soemyatmyat</i></b><br/>
+1. Profile Picture upload worker<br/>
+
 <i><b>28th Dec 2014-nyeinsu</i></b><br/>
 1. Debugged Create Case Validation<br/>
 
