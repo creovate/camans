@@ -52,13 +52,14 @@
         <servlet-name>processAssignCase</servlet-name>
         <servlet-class>camans.controller.processAssignCase</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>processFile</servlet-name>
         <servlet-class>camans.controller.processFile</servlet-class>
     </servlet>
-    
-    
-    
+    <servlet>
+        <servlet-name>processReferCase</servlet-name>
+        <servlet-class>camans.controller.processReferCase</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>processAddWorkerComplements</servlet-name>
         <url-pattern>/addWorkerComplement.do</url-pattern>
@@ -111,9 +112,13 @@
         <servlet-name>processAssignCase</servlet-name>
         <url-pattern>/assignCase.do</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>processFile</servlet-name>
         <url-pattern>/fileUpload.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>processReferCase</servlet-name>
+        <url-pattern>/referCase.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
