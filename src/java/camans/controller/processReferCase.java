@@ -4,8 +4,12 @@
  */
 package camans.controller;
 
+import camans.dao.*;
+import camans.entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,17 +36,47 @@ public class processReferCase extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet processReferCase</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet processReferCase at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+            String workerFinNum = request.getParameter("workerFin");
+            String jobKeyStr = request.getParameter("jobkey");
+            String probKeyStr = request.getParameter("probkey");
+            String referredBy = request.getParameter("referredBy");
+            String referredDateStr = request.getParameter("refDate");
+
+            String referredDescription = request.getParameter("refDesc");
+            int jobKey = 0;
+            int probKey = 0;
+            try {
+                jobKey = Integer.parseInt(jobKeyStr);
+                probKey = Integer.parseInt(probKeyStr);
+            } catch (Exception e) {
+                out.println(e);
+            }
+            java.sql.Date refDate = null;
+            if (!referredDateStr.equals("")) {
+                try {
+                    java.util.Date tmp = sdf.parse(referredDateStr);
+                    refDate = new java.sql.Date(tmp.getTime());
+                } catch (ParseException ex) {
+                    out.println(ex);
+                }
+            }
+
+
+            Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFinNum);
+            Job job = null;
+            Problem problem = null;
+            if (jobKey > 0 && probKey > 0) {
+                job = JobDAO.retrieveJobByJobId(jobKey);
+                problem = ProblemDAO.retrieveProblemByProblemId(probKey);
+
+                ProblemDAO.referCase(workerFinNum, jobKey, probKey, refDate, referredBy, referredDescription);
+
+            }
+
+
+
+        } finally {
             out.close();
         }
     }

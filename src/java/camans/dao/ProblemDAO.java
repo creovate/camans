@@ -153,31 +153,26 @@ public class ProblemDAO {
         }        
     }
     
-    public static void updateCaseworker(Problem problem){
+    public static void referCase(String workerFin, int jobKey, int probKey, Date referredDate, String referredBy, String description){
         Connection conn = null;
         PreparedStatement stmt = null;
         String sql = "";
         try {
             conn = ConnectionManager.getConnection();
-            sql = "UPDATE tbl_problem SET Chief_problem_date = ?, Chief_problem = ? , Chief_problem_more = ?, Chief_problem_remarks = ?, Referred_by = ?, Referred_to = ?, Referred_date = ?, Description = ? WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
+            sql = "UPDATE tbl_problem SET Referred_by = ?, Referred_date = ?, Description = ? WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
             
             stmt = conn.prepareStatement(sql);
             
-            stmt.setDate(1, problem.getProblemRegisteredDate());
-            stmt.setString(2, problem.getProblem());
-            stmt.setString(3, problem.getProblemMore());
-            stmt.setString(4, problem.getProblemRemark());
-            stmt.setString(5, problem.getReferredBy());
-            stmt.setString(6, problem.getReferredTo());
-            stmt.setDate(7, problem.getReferredDate());
-            stmt.setString(8, problem.getReferralDescription());
-            stmt.setString(9, problem.getWorkerFinNum());
-            stmt.setInt(10, problem.getJobKey());
-            stmt.setInt(11, problem.getProbKey());
+            stmt.setString(1, referredBy);
+            stmt.setDate(2, referredDate);
+            stmt.setString(3, description);
+            stmt.setString(4, workerFin);
+            stmt.setInt(5, jobKey);
+            stmt.setInt(6, probKey);
             
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            handleSQLException(ex, sql, "problem={" + problem + "}");
+            handleSQLException(ex, sql, "case referral={" + probKey + "}");
         } finally {
             ConnectionManager.close(conn, stmt, null);
         }

@@ -84,7 +84,7 @@
 
     });
 </script>
-<form method="POST" action="caseReferral.do"  id='caseReferral_form' class="form" >
+<form method="POST" action="referCase.do"  id='caseReferral_form' class="form" >
 
     <div class='form-group'>
         <label for='refDate' id="refDate_lbl" class="control-label">Referred Date<span style="color: red">*</span>:</label>
@@ -122,7 +122,7 @@
         <input class="form-control" type='text' name="refDesc">
     </div>
     <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-    <input type="hidden" name="probKey" value="<%=probKey%>"/>
+    <input type="hidden" name="probkey" value="<%=probKey%>"/>
     <input type="hidden" name="referredBy" value="<%=referredByNRIC%>"/>
     <div class="form-group btn_group">
         <button type='submit' class="btn modal_btn ">Save</button>
