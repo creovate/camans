@@ -60,7 +60,7 @@ public class ProblemDAO {
         
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT Worker_FIN_number, Job_key, Prob_key, Chief_problem_date, Chief_problem, Chief_problem_more, Chief_problem_remarks "
+            sql = "SELECT Worker_FIN_number, Job_key, Prob_key, Chief_problem_date, Chief_problem, Chief_problem_more, Chief_problem_remarks, Referred_by, Referred_to, Referred_date, Description "
                     + " FROM tbl_problem where Prob_key=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, problemId);
@@ -73,9 +73,13 @@ public class ProblemDAO {
                 String problemStr = rs.getString(5);
                 String problemMore = rs.getString(6);
                 String problemRemark = rs.getString(7);
+                String referredBy = rs.getString(8);
+                String referredTo = rs.getString(9);
+                Date referredDate = rs.getDate(10);
+                String refDescription = rs.getString(11);
 
                 problem = new Problem(workerFinNumber, jobKey, probKey, problemRegisteredDate, 
-                        problemStr, problemMore, problemRemark);
+                        problemStr, problemMore, problemRemark, referredBy, referredTo, referredDate, refDescription);
             }
 
            
@@ -147,5 +151,35 @@ public class ProblemDAO {
         } finally {
             ConnectionManager.close(conn, stmt, null);
         }        
+    }
+    
+    public static void updateCaseworker(Problem problem){
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "UPDATE tbl_problem SET Chief_problem_date = ?, Chief_problem = ? , Chief_problem_more = ?, Chief_problem_remarks = ?, Referred_by = ?, Referred_to = ?, Referred_date = ?, Description = ? WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
+            
+            stmt = conn.prepareStatement(sql);
+            
+            stmt.setDate(1, problem.getProblemRegisteredDate());
+            stmt.setString(2, problem.getProblem());
+            stmt.setString(3, problem.getProblemMore());
+            stmt.setString(4, problem.getProblemRemark());
+            stmt.setString(5, problem.getReferredBy());
+            stmt.setString(6, problem.getReferredTo());
+            stmt.setDate(7, problem.getReferredDate());
+            stmt.setString(8, problem.getReferralDescription());
+            stmt.setString(9, problem.getWorkerFinNum());
+            stmt.setInt(10, problem.getJobKey());
+            stmt.setInt(11, problem.getProbKey());
+            
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "problem={" + problem + "}");
+        } finally {
+            ConnectionManager.close(conn, stmt, null);
+        }
     }
 }

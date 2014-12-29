@@ -20,6 +20,10 @@ public class Problem {
     private String problem;
     private String problemMore;
     private String problemRemark;
+    private String referredBy;
+    private String referredTo;
+    private Date referredDate;
+    private String referralDescription;
     private static int COUNT = 200;
 
     public Problem(String workerFinNum, int jobKey, int probKey, Date problemRegisteredDate, String problem, String problemMore, String problemRemark) {
@@ -39,8 +43,33 @@ public class Problem {
         this.problem = problem;
         this.problemMore = problemMore;
         this.problemRemark = problemRemark;
-        COUNT++;
-        this.probKey = COUNT;
+    }
+
+    public Problem(String workerFinNum, int jobKey, int probKey, Date problemRegisteredDate, String problem, String problemMore, String problemRemark, String referredBy, String referredTo, Date referredDate, String referralDescription) {
+        this.workerFinNum = workerFinNum;
+        this.jobKey = jobKey;
+        this.probKey = probKey;
+        this.problemRegisteredDate = problemRegisteredDate;
+        this.problem = problem;
+        this.problemMore = problemMore;
+        this.problemRemark = problemRemark;
+        this.referredBy = referredBy;
+        this.referredTo = referredTo;
+        this.referredDate = referredDate;
+        this.referralDescription = referralDescription;
+    }
+
+    public Problem(String workerFinNum, int jobKey, Date problemRegisteredDate, String problem, String problemMore, String problemRemark, String referredBy, String referredTo, Date referredDate, String referralDescription) {
+        this.workerFinNum = workerFinNum;
+        this.jobKey = jobKey;
+        this.problemRegisteredDate = problemRegisteredDate;
+        this.problem = problem;
+        this.problemMore = problemMore;
+        this.problemRemark = problemRemark;
+        this.referredBy = referredBy;
+        this.referredTo = referredTo;
+        this.referredDate = referredDate;
+        this.referralDescription = referralDescription;
     }
 
     public String getWorkerFinNum() {
@@ -101,9 +130,41 @@ public class Problem {
         this.problemRemark = problemRemark;
     }
 
+    public String getReferredBy() {
+        return referredBy;
+    }
+
+    public void setReferredBy(String referredBy) {
+        this.referredBy = referredBy;
+    }
+
+    public String getReferredTo() {
+        return referredTo;
+    }
+
+    public void setReferredTo(String referredTo) {
+        this.referredTo = referredTo;
+    }
+
+    public Date getReferredDate() {
+        return referredDate;
+    }
+
+    public void setReferredDate(Date referredDate) {
+        this.referredDate = referredDate;
+    }
+
+    public String getReferralDescription() {
+        return referralDescription;
+    }
+
+    public void setReferralDescription(String referralDescription) {
+        this.referralDescription = referralDescription;
+    }
+    
     @Override
     public String toString() {
-        return "Problem{" + "workerFinNum=" + workerFinNum + ", jobKey=" + jobKey + ", probKey=" + probKey + ", problemRegisteredDate=" + problemRegisteredDate + ", problem=" + problem + ", problemMore=" + problemMore + ", problemRemark=" + problemRemark + '}';
+        return "Problem{" + "workerFinNum=" + workerFinNum + ", jobKey=" + jobKey + ", probKey=" + probKey + ", problemRegisteredDate=" + problemRegisteredDate + ", problem=" + problem + ", problemMore=" + problemMore + ", problemRemark=" + problemRemark + ", referredBy=" + referredBy + ", referredTo=" + referredTo + ", referredDate=" + referredDate + ", referralDescription=" + referralDescription + '}';
     }
     
     
