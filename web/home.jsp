@@ -96,7 +96,7 @@
         
         <title>CAMANS</title>
     </head>
-    <body>
+    <body id="home">
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
             
@@ -108,9 +108,8 @@
                 <!-- SEARCH FILTERS -->
                 
                 <!--<div id="schwker_box" class="col-md-11 sub_div_w_bg" style="padding:2% 1%">-->
-                <div id="worker_filter_div" class="col-md-11"> 
-                    <div class="panel panel-default">
-                        <div class="panel-body"> 
+                <div id="worker_filter_div" class="col-md-12" style="border: 1px solid #ddd"> 
+                    <div >
                 <!--<div class="col-mid-9 panel panel-default sub_div_w_bg" style="padding:2% 1%">-->    
                             <h3>Search Criteria</h3>  
                             <%
@@ -319,25 +318,23 @@
                                     </div>
                                 </div> <!--end of row 5--> 
                             </form> <!-- form close -->
-                        </div> <!-- panel body -->
-                    </div>  <!-- panel close -->  
+                        </div>
                 </div>
                    
                 <!-- End of search filters -->
 
                 <!-- search Results -->
-                <div id="worker_search_result_div" class="col-md-11">
+                <div id="worker_search_result_div" class="col-md-12" style="border: 1px solid #ddd; margin-top: 2%;">
                     <!--div class="col-md-3 pull-right"> 
                         <input type="text" id="search_in_recent" placeholder="Search..." class="form-control"/>
                     </div-->
                     <!--<table class="table" id="worker_search_result">-->
-                    <div class="panel panel-default">
-                        <div class="panel-body">  
+                        <div>  
                             
                             <%
                                 ArrayList<Worker> workersList = new ArrayList<Worker>();
                                 if (searchWorkers == null) {
-                                    workersList = WorkerDAO.retrieveWorkersByUser(userLogin.getFullName());
+                                    workersList = WorkerDAO.retrieveWorkersByUser(userLogin.getNricNumber());
                                 } else {
                                     workersList = searchWorkers;
                                 } 
@@ -349,7 +346,7 @@
                             
                                     } else {
                               
-                                        out.println("<h3>Assigned Cases</h3>");    
+                                        out.println("<h3>Assigned Cases</h3>"); 
                                         out.println("There is no case assigned to you!");
                             
                                     }
@@ -429,7 +426,6 @@
                             }
                         %>    
                         </div>
-                    </div>
                 </div>
                 <!-- End of search Results -->      
             </div> <!--search worker -->
@@ -456,6 +452,11 @@
             
             
         </script>
+        <style>
+            .page-header{
+                padding-bottom: 0;
+            }
+        </style>
     </body>
 </html>
  
