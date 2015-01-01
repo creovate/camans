@@ -15,7 +15,7 @@
     User userLogin = (User) request.getSession().getAttribute("userLogin");
     String userNric = userLogin.getNricNumber();
     String userName = userLogin.getFullName();
-    ArrayList<Problem> problemList = CaseManagementDAO.getUnassignedCases();
+    ArrayList<Problem> problemList = CaseManagementDAO.retrieveUnassignedCases();
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 %>
 <html>
@@ -57,7 +57,7 @@
         <div class="col-md-10 panel-group" id="content" role="tablist" aria-multiselectable="true">
 
             <%
-                if (problemList.size() > 0) {
+                if (problemList != null &&  problemList.size() > 0) {
                     for (int i = problemList.size() - 1; i >= 0; i--) {
                         Problem problem = problemList.get(i);
                         String workerFin = problem.getWorkerFinNum();

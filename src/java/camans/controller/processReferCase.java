@@ -53,14 +53,15 @@ public class processReferCase extends HttpServlet {
                 out.println(e);
             }
             java.sql.Date refDate = null;
-            if (!referredDateStr.equals("")) {
-                try {
-                    java.util.Date tmp = sdf.parse(referredDateStr);
+            //if (!referredDateStr.equals("")) {
+                //try {
+                    //java.util.Date tmp = sdf.parse(referredDateStr);
+                    java.util.Date tmp = new java.util.Date();
                     refDate = new java.sql.Date(tmp.getTime());
-                } catch (ParseException ex) {
-                    out.println(ex);
-                }
-            }
+                //} catch (ParseException ex) {
+                 //   out.println(ex);
+               // }
+            //}
 
 
             Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFinNum);

@@ -9,8 +9,8 @@
 <%@page import="camans.entity.User"%>
 <%
     User _user = (User) session.getAttribute("userLogin");
-    //ArrayList<Problem> problemList = CaseManagementDAO.getUnassignedCases();
-    ArrayList<Problem> problemList = new ArrayList<Problem>();
+    ArrayList<Problem> problemList = CaseManagementDAO.retrieveUnassignedCases();
+    //ArrayList<Problem> problemList = new ArrayList<Problem>();
 %>
 
 <div class="row">

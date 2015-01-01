@@ -29,7 +29,9 @@ public class CaseManagementDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT T1.Prob_key FROM tbl_problem AS T1 LEFT OUTER JOIN tbl_lead_case_worker AS T2 ON (T1.Worker_FIN_number = T2.Worker_FIN_number AND T1.Job_key = T2.Job_key AND T1.Prob_key = T2.Prob_key) WHERE T2.Lead_case_worker IS NULL";
+            //sql = "SELECT T1.Prob_key FROM tbl_problem AS T1 LEFT OUTER JOIN tbl_lead_case_worker AS T2 ON (T1.Worker_FIN_number = T2.Worker_FIN_number AND T1.Job_key = T2.Job_key AND T1.Prob_key = T2.Prob_key) WHERE T2.Lead_case_worker IS NULL";
+
+            sql = "SELECT DISTINCT t1.Prob_key FROM tbl_problem AS t1 LEFT OUTER JOIN tbl_lead_case_worker AS t2 ON (T1.Worker_FIN_number = T2.Worker_FIN_number AND T1.Job_key = T2.Job_key AND t1.Prob_key = t2.Prob_key) WHERE (t1.Entry_date > ( NOW() - INTERVAL 1 MONTH ) OR  t2.Entry_date > ( NOW() - INTERVAL 1 MONTH )) AND t1.Referred_to IS NULL";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -53,13 +55,16 @@ public class CaseManagementDAO {
         String sql = "";
         try {
             conn = ConnectionManager.getConnection();
-            sql = "INSERT INTO tbl_benefit (Bene_date, Bene_giver, Bene_type,Bene_type_more,"
-                    + "Bene_serial, Bene_purpose,Bene_rem,Bene_value, "
-                    + "Worker_FIN_number, Job_key, Prob_key) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-
+            sql = "UPDATE tbl_problem SET Referred_to = ? WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
+            
             pstmt = conn.prepareStatement(sql);
-
+            
+            pstmt.setString(1, userlogin.getNricNumber());
+            pstmt.setString(2, problem.getWorkerFinNum());
+            pstmt.setInt(3, problem.getJobKey());
+            pstmt.setInt(4, problem.getProbKey());
+            
+            pstmt.executeUpdate();
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             handleSQLException(ex, sql, "Case: " + userlogin + "}");
@@ -72,7 +77,28 @@ public class CaseManagementDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         String sql = "";
+
         try {
+
+            Problem problem_temp = ProblemDAO.retrieveProblemByProblemId(probKey);
+            ArrayList<Integer> leadCaseWorkerList = ProblemComplementsDAO.retrieveProblemLawyerIdsOfProblem(problem_temp);
+            User referredBy_user = UserDAO.retrieveUserByNRIC(referredBy);
+            String referredBy_username = referredBy_user.getUsername();
+
+            for (int i = 0; i < leadCaseWorkerList.size(); i++) {
+                ProblemLeadCaseWorker leadCaseWorker = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(i);
+                int lcwId = leadCaseWorker.getId();
+                String lcwName = leadCaseWorker.getLeadCaseWorker();
+                if (lcwName.equals(referredBy_username)) {
+                    java.sql.Date lcwStart = leadCaseWorker.getLeadStart();
+                    java.util.Date endDate = new java.util.Date();
+                    java.sql.Date lcwEnd = new java.sql.Date(endDate.getTime());
+
+                    leadCaseWorker = new ProblemLeadCaseWorker(lcwId, workerFin, jobKey, probKey, lcwName, lcwStart, lcwEnd);
+                    ProblemComplementsDAO.updateProblemLeadCaseWorker(leadCaseWorker);
+                }
+            }
+
             conn = ConnectionManager.getConnection();
             sql = "UPDATE tbl_problem SET Referred_by = ?, Referred_date = ?, Description = ? WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
 
@@ -91,6 +117,29 @@ public class CaseManagementDAO {
         } finally {
             ConnectionManager.close(conn, stmt, null);
         }
+    }
+
+    private static void terminateLeadCaseWorker(String workerFin, int jobKey, int probKey, String referredBy) {
+
+        Problem problem_temp = ProblemDAO.retrieveProblemByProblemId(probKey);
+        ArrayList<Integer> leadCaseWorkerList = ProblemComplementsDAO.retrieveProblemLawyerIdsOfProblem(problem_temp);
+        User referredBy_user = UserDAO.retrieveUserByNRIC(referredBy);
+        String referredBy_username = referredBy_user.getUsername();
+
+        for (int i = 0; i < leadCaseWorkerList.size(); i++) {
+            ProblemLeadCaseWorker leadCaseWorker = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(i);
+            int lcwId = leadCaseWorker.getId();
+            String lcwName = leadCaseWorker.getLeadCaseWorker();
+            if (lcwName.equals(referredBy_username)) {
+                java.sql.Date lcwStart = leadCaseWorker.getLeadStart();
+                java.util.Date endDate = new java.util.Date();
+                java.sql.Date lcwEnd = new java.sql.Date(endDate.getTime());
+
+                leadCaseWorker = new ProblemLeadCaseWorker(lcwId, workerFin, jobKey, probKey, lcwName, lcwStart, lcwEnd);
+                ProblemComplementsDAO.updateProblemLeadCaseWorker(leadCaseWorker);
+            }
+        }
+
     }
 
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {

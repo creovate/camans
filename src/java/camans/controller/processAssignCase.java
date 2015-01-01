@@ -46,10 +46,12 @@ public class processAssignCase extends HttpServlet {
             java.sql.Date leadStart = new java.sql.Date(tempDate.getTime());
             
             User user = UserDAO.retrieveUserByNRIC(userLogin);
-            Problem prob = ProblemDAO.retrieveProblemByProblemId(probKey);
+            
             ProblemLeadCaseWorker leadCaseWorker = new ProblemLeadCaseWorker(workerFin, jobKey, probKey, userLogin, leadStart, null);
             
             ProblemComplementsDAO.addProblemLeadCaseWorker(leadCaseWorker);
+            
+            CaseManagementDAO.assignCase(user, problem);
             request.getSession().setAttribute("userLogin", user);
             response.sendRedirect("caseReferral.jsp?worker=" + workerFin + "&selectedProb=" + probKey);
         } finally {            
