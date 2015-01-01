@@ -2,6 +2,7 @@ camans
 ======
 <i><b>1st Jan 2015-nyeinsu</i></b><br/>
 1. Case Referral<br/>
+2. Debugged Assigned Case<br/>
 
 <i><b>29th Dec 2014 15:00-soemyatmyat</i></b><br/>
 1. Update sql script for dropdown config<br/>
