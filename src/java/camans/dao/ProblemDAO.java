@@ -153,28 +153,4 @@ public class ProblemDAO {
         }        
     }
     
-    public static void referCase(String workerFin, int jobKey, int probKey, Date referredDate, String referredBy, String description){
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        String sql = "";
-        try {
-            conn = ConnectionManager.getConnection();
-            sql = "UPDATE tbl_problem SET Referred_by = ?, Referred_date = ?, Description = ? WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
-            
-            stmt = conn.prepareStatement(sql);
-            
-            stmt.setString(1, referredBy);
-            stmt.setDate(2, referredDate);
-            stmt.setString(3, description);
-            stmt.setString(4, workerFin);
-            stmt.setInt(5, jobKey);
-            stmt.setInt(6, probKey);
-            
-            stmt.executeUpdate();
-        } catch (SQLException ex) {
-            handleSQLException(ex, sql, "case referral={" + probKey + "}");
-        } finally {
-            ConnectionManager.close(conn, stmt, null);
-        }
-    }
 }

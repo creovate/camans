@@ -12,11 +12,11 @@
 <!DOCTYPE html>
 
 <%
-User userLogin = (User) request.getSession().getAttribute("userLogin");
-String userNric = userLogin.getNricNumber();
-String userName = userLogin.getFullName();
-ArrayList<Problem> problemList = CaseManagementDAO.getUnassignedCases();
-SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+    User userLogin = (User) request.getSession().getAttribute("userLogin");
+    String userNric = userLogin.getNricNumber();
+    String userName = userLogin.getFullName();
+    ArrayList<Problem> problemList = CaseManagementDAO.getUnassignedCases();
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 %>
 <html>
     <head>
@@ -28,7 +28,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 
         <link rel="stylesheet" href="css/jquery-ui.structure.css">
         <link rel="stylesheet" href="css/jquery-ui.theme.css">
-        
+
         <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
         <!--jasny-bootstrap v3.1.3, added by soemyatmayt-->
         <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
@@ -53,32 +53,32 @@ SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
     <body>
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
-        
+
         <div class="col-md-10 panel-group" id="content" role="tablist" aria-multiselectable="true">
-            
+
             <%
-if(problemList.size() > 0){
-            for(int i=problemList.size()-1; i >= 0; i--){
-                Problem problem = problemList.get(i);
-                String workerFin = problem.getWorkerFinNum();
-                Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);
-                String workerName = worker.getName();
-                int probKey = problem.getProbKey();
-                int jobKey = problem.getJobKey();
-                Job job = JobDAO.retrieveJobByJobId(jobKey);
-                String empName = job.getEmployerName();
-                String jobStartDate = job.getJobStartDate();
-                String chiefProb = problem.getProblem();
-                java.util.Date probRegDate = problem.getProblemRegisteredDate();
-                ArrayList<Integer> idList = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(worker);
-                WorkerSgPhNum sgPhone = WorkerComplementsDAO.retrieveWorkerSgPhNumById(idList.size()-1);
-                String phNum = "-";
-                if(sgPhone != null){
-                    phNum = sgPhone.getPhNumber();
-                }
-                
-                
-                %>
+                if (problemList.size() > 0) {
+                    for (int i = problemList.size() - 1; i >= 0; i--) {
+                        Problem problem = problemList.get(i);
+                        String workerFin = problem.getWorkerFinNum();
+                        Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);
+                        String workerName = worker.getName();
+                        int probKey = problem.getProbKey();
+                        int jobKey = problem.getJobKey();
+                        Job job = JobDAO.retrieveJobByJobId(jobKey);
+                        String empName = job.getEmployerName();
+                        String jobStartDate = job.getJobStartDate();
+                        String chiefProb = problem.getProblem();
+                        java.util.Date probRegDate = problem.getProblemRegisteredDate();
+                        ArrayList<Integer> idList = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(worker);
+                        WorkerSgPhNum sgPhone = WorkerComplementsDAO.retrieveWorkerSgPhNumById(idList.size() - 1);
+                        String phNum = "-";
+                        if (sgPhone != null) {
+                            phNum = sgPhone.getPhNumber();
+                        }
+
+
+            %>
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingOne">
                     <h4 class="panel-title">
@@ -90,28 +90,28 @@ if(problemList.size() > 0){
                 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
                         <form method="post" action="assignCase.do">
-                        <table>
-                            <tr>
-                                <td>Worker Name: </td>
-                                <td><%=workerName%></td>
-                            </tr>
-                            <tr>
-                                <td>Worker FIN Number: </td>
-                                <td><%=workerFin%></td>
-                            </tr>
-                            <tr>
-                                <td>Worker's Phone Number: </td>
-                                <td><%=phNum%></td>
-                            </tr>
-                            <tr>
-                                <td>Employer: </td>
-                                <td><%=empName%></td>
-                            </tr>
-                            <tr>
-                                <td>Chief Problem: </td>
-                                <td><%=chiefProb%></td>
-                            </tr>
-                        </table>
+                            <table>
+                                <tr>
+                                    <td>Worker Name: </td>
+                                    <td><%=workerName%></td>
+                                </tr>
+                                <tr>
+                                    <td>Worker FIN Number: </td>
+                                    <td><%=workerFin%></td>
+                                </tr>
+                                <tr>
+                                    <td>Worker's Phone Number: </td>
+                                    <td><%=phNum%></td>
+                                </tr>
+                                <tr>
+                                    <td>Employer: </td>
+                                    <td><%=empName%></td>
+                                </tr>
+                                <tr>
+                                    <td>Chief Problem: </td>
+                                    <td><%=chiefProb%></td>
+                                </tr>
+                            </table>
                             <input type="hidden" name="workerFin" value="<%=workerFin%>">
                             <input type="hidden" name="userLogin" value="<%=userNric%>">
                             <input type="hidden" name="probKey" value="<%=probKey%>">
@@ -121,19 +121,19 @@ if(problemList.size() > 0){
                 </div>
             </div>
             <%
-                
-            }
-}else{
-    %>
-            <div class="jumbotron">
-  <h3>Dear, <%=userName%>!</h3>
-  <p>There's no new case available now! Please check at a later time!</p>
-</div>
-            
-            <%
-}
+
+                }
+            } else {
             %>
-            
+            <div class="jumbotron">
+                <h3>Dear, <%=userName%>!</h3>
+                <p>There's no new case available now! Please check at a later time!</p>
+            </div>
+
+            <%
+                }
+            %>
+
         </div>
     </body>
 </html>

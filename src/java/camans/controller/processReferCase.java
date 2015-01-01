@@ -70,11 +70,11 @@ public class processReferCase extends HttpServlet {
                 job = JobDAO.retrieveJobByJobId(jobKey);
                 problem = ProblemDAO.retrieveProblemByProblemId(probKey);
 
-                ProblemDAO.referCase(workerFinNum, jobKey, probKey, refDate, referredBy, referredDescription);
+                CaseManagementDAO.referCase(workerFinNum, jobKey, probKey, refDate, referredBy, referredDescription);
 
             }
 
-
+            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + "&selectedProb=" + probKey);
 
         } finally {
             out.close();
