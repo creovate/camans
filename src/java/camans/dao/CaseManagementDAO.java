@@ -4,6 +4,7 @@
  */
 package camans.dao;
 
+import static camans.dao.WorkerDAO.retrieveWorkerbyFinNumber;
 import camans.entity.*;
 import java.sql.Connection;
 import java.sql.Date;
@@ -31,7 +32,7 @@ public class CaseManagementDAO {
             conn = ConnectionManager.getConnection();
             //sql = "SELECT T1.Prob_key FROM tbl_problem AS T1 LEFT OUTER JOIN tbl_lead_case_worker AS T2 ON (T1.Worker_FIN_number = T2.Worker_FIN_number AND T1.Job_key = T2.Job_key AND T1.Prob_key = T2.Prob_key) WHERE T2.Lead_case_worker IS NULL";
 
-            sql = "SELECT DISTINCT t1.Prob_key FROM tbl_problem AS t1 LEFT OUTER JOIN tbl_lead_case_worker AS t2 ON (T1.Worker_FIN_number = T2.Worker_FIN_number AND T1.Job_key = T2.Job_key AND t1.Prob_key = t2.Prob_key) WHERE (t1.Entry_date > ( NOW() - INTERVAL 1 MONTH ) OR  t2.Entry_date > ( NOW() - INTERVAL 1 MONTH )) AND t1.Referred_to IS NULL";
+            sql = "SELECT DISTINCT t1.Prob_key FROM tbl_problem AS t1 LEFT OUTER JOIN tbl_lead_case_worker AS t2 ON (T1.Worker_FIN_number = T2.Worker_FIN_number AND T1.Job_key = T2.Job_key AND t1.Prob_key = t2.Prob_key) WHERE (t1.Entry_date > ( NOW() - INTERVAL 1 MONTH ) OR  t2.Entry_date > ( NOW() - INTERVAL 1 MONTH )) AND t1.Referred_to IS NULL AND t1.Referred_by IS NOT NULL";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -56,14 +57,14 @@ public class CaseManagementDAO {
         try {
             conn = ConnectionManager.getConnection();
             sql = "UPDATE tbl_problem SET Referred_to = ? WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
-            
+
             pstmt = conn.prepareStatement(sql);
-            
-            pstmt.setString(1, userlogin.getNricNumber());
+
+            pstmt.setString(1, userlogin.getUsername());
             pstmt.setString(2, problem.getWorkerFinNum());
             pstmt.setInt(3, problem.getJobKey());
             pstmt.setInt(4, problem.getProbKey());
-            
+
             pstmt.executeUpdate();
             pstmt.executeUpdate();
         } catch (SQLException ex) {
@@ -71,6 +72,33 @@ public class CaseManagementDAO {
         } finally {
             ConnectionManager.close(conn, pstmt);
         }
+    }
+
+    public static ArrayList<Problem> retrieveRecentAssignedCases(String userloginName) {
+        ArrayList<Problem> problemList = new ArrayList<Problem>();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT t1.Prob_key FROM tbl_problem AS t1 JOIN tbl_lead_case_worker AS t2 ON t1.Prob_key = t2.Prob_key WHERE Lead_case_worker = ? AND t2.Entry_date > ( NOW() - INTERVAL 1 MONTH ) ";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userloginName);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int probKey = rs.getInt(1);
+                Problem problemTemp = ProblemDAO.retrieveProblemByProblemId(probKey);
+                problemList.add(problemTemp);
+            }
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "ProblemList={" + problemList + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+
+        return problemList;
     }
 
     public static void referCase(String workerFin, int jobKey, int probKey, Date referredDate, String referredBy, String description) {

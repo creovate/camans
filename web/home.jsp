@@ -398,14 +398,17 @@
                                             if (!leadCaseIds.isEmpty()) {
                                                 ProblemLeadCaseWorker latestLeadCaseWkr = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById
                                                         (leadCaseIds.get(leadCaseIds.size()-1));
-                                                leadCaseWorker = latestLeadCaseWkr.getLeadCaseWorker();
+                                                User tempUser = UserDAO.retrieveUserByNRIC(latestLeadCaseWkr.getLeadCaseWorker());
+                                                leadCaseWorker = tempUser.getFullName();
                                             }
                                             ArrayList<Integer> auxiCaseIds = ProblemComplementsDAO.retrieveProblemAuxiliaryCaseWorkerIdsOfProblem(latestProblem);
                                             String auxiCaseWorker = "-";
                                             if (!auxiCaseIds.isEmpty()) {
                                                 ProblemAuxiliaryCaseWorker latestAuxiCaseWkr = ProblemComplementsDAO.retrieveProblemAuxiliaryCaseWorkerById
                                                         (auxiCaseIds.get(auxiCaseIds.size()-1));
-                                                auxiCaseWorker = latestAuxiCaseWkr.getAuxName();
+                                                User tempUser = UserDAO.retrieveUserByNRIC(latestAuxiCaseWkr.getAuxName());
+                                                auxiCaseWorker = tempUser.getFullName();
+                                                
                                             }
                                     %>
                                     <tr onclick="location.href = 'viewWorker.jsp?worker=<%=fin%>'" style="cursor: pointer">
