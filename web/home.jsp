@@ -334,7 +334,7 @@
                             <%
                                 ArrayList<Worker> workersList = new ArrayList<Worker>();
                                 if (searchWorkers == null) {
-                                    workersList = WorkerDAO.retrieveWorkersByUser(userLogin.getNricNumber());
+                                    workersList = WorkerDAO.retrieveWorkersByUser(userLogin.getUsername());
                                 } else {
                                     workersList = searchWorkers;
                                 } 
@@ -398,7 +398,7 @@
                                             if (!leadCaseIds.isEmpty()) {
                                                 ProblemLeadCaseWorker latestLeadCaseWkr = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById
                                                         (leadCaseIds.get(leadCaseIds.size()-1));
-                                                User tempUser = UserDAO.retrieveUserByNRIC(latestLeadCaseWkr.getLeadCaseWorker());
+                                                User tempUser = UserDAO.retrieveUserByUsername(latestLeadCaseWkr.getLeadCaseWorker());
                                                 leadCaseWorker = tempUser.getFullName();
                                             }
                                             ArrayList<Integer> auxiCaseIds = ProblemComplementsDAO.retrieveProblemAuxiliaryCaseWorkerIdsOfProblem(latestProblem);
@@ -406,7 +406,7 @@
                                             if (!auxiCaseIds.isEmpty()) {
                                                 ProblemAuxiliaryCaseWorker latestAuxiCaseWkr = ProblemComplementsDAO.retrieveProblemAuxiliaryCaseWorkerById
                                                         (auxiCaseIds.get(auxiCaseIds.size()-1));
-                                                User tempUser = UserDAO.retrieveUserByNRIC(latestAuxiCaseWkr.getAuxName());
+                                                User tempUser = UserDAO.retrieveUserByUsername(latestAuxiCaseWkr.getAuxName());
                                                 auxiCaseWorker = tempUser.getFullName();
                                                 
                                             }

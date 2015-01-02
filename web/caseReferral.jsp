@@ -18,7 +18,7 @@
     String userFullName = userLogin.getFullName();
     ArrayList<Problem> problemList = CaseManagementDAO.retrieveUnassignedCases();
 
-    ArrayList<Problem> recentAssignedProblems = CaseManagementDAO.retrieveRecentAssignedCases(userNric);
+    ArrayList<Problem> recentAssignedProblems = CaseManagementDAO.retrieveRecentAssignedCasesByLCW(username);
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 %>
 <html>
@@ -68,8 +68,8 @@
                 for (int i = problemList.size() - 1; i >= 0; i--) {
                     Problem problem = problemList.get(i);
 
-                    String referredByFin = problem.getReferredBy();
-                    User referredByUser = UserDAO.retrieveUserByNRIC(referredByFin);
+                    String referredByUsername = problem.getReferredBy();
+                    User referredByUser = UserDAO.retrieveUserByUsername(referredByUsername);
                     String referredByFullName = referredByUser.getFullName();
                     java.util.Date referredDate = problem.getReferredDate();
                     String refDescription = problem.getReferralDescription();

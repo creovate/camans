@@ -45,7 +45,7 @@ public class processAssignCase extends HttpServlet {
             java.util.Date tempDate = new java.util.Date();
             java.sql.Date leadStart = new java.sql.Date(tempDate.getTime());
             
-            User user = UserDAO.retrieveUserByNRIC(userLogin);
+            User user = UserDAO.retrieveUserByUsername(userLogin);
             
             ProblemLeadCaseWorker leadCaseWorker = new ProblemLeadCaseWorker(workerFin, jobKey, probKey, userLogin, leadStart, null);
             
