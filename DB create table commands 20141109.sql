@@ -727,11 +727,11 @@ CREATE TABLE tbl_problem(
 		ON DELETE CASCADE ON UPDATE CASCADE,
     
     FOREIGN KEY (Referred_by)
-      REFERENCES tbl_user(NRIC_number)
+      REFERENCES tbl_user(Username)
         ON DELETE CASCADE ON UPDATE CASCADE,
     
     FOREIGN KEY (Referred_to)
-      REFERENCES tbl_user(NRIC_number)
+      REFERENCES tbl_user(Username)
         ON DELETE CASCADE ON UPDATE CASCADE
 		
 )ENGINE = INNODB;
