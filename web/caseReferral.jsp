@@ -18,7 +18,7 @@
     String userFullName = userLogin.getFullName();
     ArrayList<Problem> problemList = CaseManagementDAO.retrieveUnassignedCases();
 
-    ArrayList<Problem> recentAssignedProblems = CaseManagementDAO.retrieveRecentAssignedCasesByLCW(username);
+    ArrayList<Problem> recentAssignedProblems = CaseManagementDAO.retrieveRecentAssignedCases(username);
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 %>
 <html>
