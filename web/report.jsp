@@ -3,7 +3,7 @@
     Created on : Jan 3, 2015, 11:56:04 PM
     Author     : Nyein Su
 --%>
-
+<%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -53,16 +53,16 @@
                     <div class="col-md-3">
                         <select class="form-control" id="reportType" name="reportType"> 
                             <option disabled selected>Choose a report type..</option>
-                            <option>type 1</option>
-                            <option>type 2</option>
+                            <option>Case Summary</option>
+                            <option>Benefit Summary</option>
                         </select>
                     </div>
-                    <label class="col-md-1" for="year">Year: </label>
+                    <label class="col-md-1 text-right" for="year">Year: </label>
                     <div class="col-md-3">
                         <select class="form-control" id="year" name="year"> 
-                            <option disabled selected>Choose a report type..</option>
-                            <option>type 1</option>
-                            <option>type 2</option>
+                            <option disabled selected>Year..</option>
+                            <option>2013</option>
+                            <option>2014</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-default">Generate Report</button>
