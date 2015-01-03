@@ -13,8 +13,6 @@
 <style>
     .selected{
         background: #e7e7e7;
-       
-        
     }
 </style>
 <script>
@@ -38,7 +36,7 @@
                     <ul class="nav navbar-nav nav-tabs col-md-12" role="tablist" id="nav_maintabs">
                         <li id='home_tab' class=''><a class='' href="home.jsp" role="tab" active>Search Worker</a></li>
                         <li id='createCase_tab'><a href="createCase.jsp" role="tab">Create Worker</a></li>
-                        <li id='report_tab'><a href="#report" role="tab" >Reports</a></li>
+                        <li id='report_tab'><a href="report.jsp" role="tab" >Reports</a></li>
                             <%
                                 if (_user.getRole().equals("Administrator")) {
                             %>
