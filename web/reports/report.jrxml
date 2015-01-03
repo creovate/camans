@@ -23,7 +23,68 @@
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
 	<subDataset name="Table Dataset 1" uuid="4ef2a04b-21e6-43c1-9dfc-66e3b7b5c022"/>
+	<subDataset name="New Dataset 1" uuid="23b24820-1d5b-4dd6-b23a-ed9ba79d46d9"/>
+	<subDataset name="dataset1" uuid="f7fec988-c38a-49c8-a3bb-73efd1ac622a"/>
+	<queryString>
+		<![CDATA[SELECT Name as ProblemType, COALESCE(m, 0), COALESCE(f, 0) , (COALESCE(m, 0) + COALESCE(f, 0) )
+FROM (
+SELECT Name
+FROM tbl_dropdown
+WHERE dropdownType =  'Problem_type'
+) AS t1
+LEFT JOIN (
+SELECT Chief_problem, SUM( IF( Gender =  'Male', 1, 0 ) ) AS m, SUM( IF( Gender =  'Female', 1, 0 ) )  AS f
+FROM tbl_problem
+LEFT JOIN tbl_worker ON Worker_FIN_number = FIN_number
+WHERE Gender =  'Male'
+GROUP BY Chief_problem
+) AS t2 ON ( t1.Name = t2.Chief_problem )]]>
+	</queryString>
+	<field name="ProblemType" class="java.lang.String"/>
+	<field name="COALESCE(m, 0)" class="java.math.BigDecimal"/>
+	<field name="COALESCE(f, 0)" class="java.math.BigDecimal"/>
+	<field name="(COALESCE(m, 0) + COALESCE(f, 0) )" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -34,10 +95,52 @@
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="2782eee9-bb17-414f-8bc6-97a5ad21fcd7"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ProblemType]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="2" width="100" height="20" uuid="014957b0-a89b-4fc2-9672-9819309834b6"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Male]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="2" width="100" height="20" uuid="06d18f04-5640-46b3-b534-4fa73f06c03b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Female]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="2" width="100" height="20" uuid="20211767-8206-4719-8578-d83c2cc7bcd1"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="171" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="26e62f60-8fcf-4efb-9512-93053576b74a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ProblemType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="0" width="100" height="20" uuid="f6cf779d-08bd-44e2-8d59-452de66b0ed0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{COALESCE(m, 0)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="0" width="100" height="20" uuid="8b0fee36-d909-4b97-bc7d-99a0c457be06"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{COALESCE(f, 0)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="364" y="0" width="100" height="20" uuid="41ba3204-edd4-40ee-a8d6-d896ab7a93bf"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{(COALESCE(m, 0) + COALESCE(f, 0) )}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
