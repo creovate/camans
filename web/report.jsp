@@ -63,6 +63,7 @@
                             <option disabled selected>Year..</option>
                             <option>2013</option>
                             <option>2014</option>
+                            <option>2015</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-default">Generate Report</button>

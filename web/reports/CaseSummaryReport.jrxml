@@ -15,8 +15,9 @@ LEFT JOIN (
 
 SELECT Chief_problem, SUM( IF( Gender =  'Male', 1, 0 ) ) AS m, SUM( IF( Gender =  'Female', 1, 0 ) )  AS f
 FROM tbl_problem
-LEFT JOIN tbl_worker ON Worker_FIN_number = FIN_number
-WHERE Gender =  'Male'
+LEFT JOIN tbl_worker 
+ON Worker_FIN_number = FIN_number
+WHERE Year(tbl_problem.Entry_date) = $P{year}
 GROUP BY Chief_problem
 ) AS t2 ON ( t1.Name = t2.Chief_problem )]]>
 	</queryString>
@@ -110,6 +111,6 @@ GROUP BY Chief_problem
 		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="44" splitType="Stretch"/>
 	</summary>
 </jasperReport>

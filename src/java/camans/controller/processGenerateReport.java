@@ -4,12 +4,22 @@
  */
 package camans.controller;
 
+import camans.dao.ConnectionManager;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 /**
  *
@@ -36,15 +46,31 @@ public class processGenerateReport extends HttpServlet {
             String reportType = request.getParameter("reportType");
             String reportYear = request.getParameter("year");
             
-            if(reportType.equals("Case Summary")){
-                //call method with parameter year
-                
-            }else{
-                //call method with parameter year
-            }
+            HashMap map = new HashMap();
+            JasperPrint jasperPrint = null;
+            String printFileName = null;
+            Connection conn = ConnectionManager.getConnection();
+            map.put("year", reportYear);
+
             
+            
+            if (reportType.equals("Case Summary")) {
+                //call method with parameter year
+                JasperReport jasperReport = JasperCompileManager.compileReport("web/reports/CaseSummaryReport.jrxml");
+                jasperPrint = JasperFillManager.fillReport(jasperReport,map,conn);
+            } else {
+                //call method with parameter year
+                jasperPrint = JasperFillManager.fillReport("BenefitSummaryReport.jasper",map,conn);
+            }
+            JasperExportManager.exportReportToPdfFile(jasperPrint,
+                  "C://sample_report.pdf");
+
             response.sendRedirect("report.jsp");
-        } finally {            
+        }catch (JRException e){
+            e.printStackTrace();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
             out.close();
         }
     }
