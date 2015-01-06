@@ -20,6 +20,9 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -44,33 +47,43 @@ public class processGenerateReport extends HttpServlet {
         try {
             /* TODO output your page here. You may use following sample code. */
             String reportType = request.getParameter("reportType");
-            String reportYear = request.getParameter("year");
+            String reportYearStr = request.getParameter("year");
+            
             
             HashMap map = new HashMap();
             JasperPrint jasperPrint = null;
             String printFileName = null;
             Connection conn = ConnectionManager.getConnection();
+            if(reportYearStr != null && reportYearStr.length() > 0){
+            int reportYear = Integer.parseInt(reportYearStr);
             map.put("year", reportYear);
+            }
+            
 
-            
-            
+
+
             if (reportType.equals("Case Summary")) {
                 //call method with parameter year
-                JasperReport jasperReport = JasperCompileManager.compileReport("web/reports/CaseSummaryReport.jrxml");
-                jasperPrint = JasperFillManager.fillReport(jasperReport,map,conn);
+                //JasperCompileManager.compileReportToFile("reports/CaseSummaryReport.jrxml");
+                JasperReport jasperReport = JasperCompileManager.compileReport("C:\\Users\\Nyein Su\\Desktop\\app\\camans\\reports\\CaseSummaryReport.jrxml");
+                jasperPrint = JasperFillManager.fillReport(jasperReport, map, conn);
+                
             } else {
                 //call method with parameter year
-                jasperPrint = JasperFillManager.fillReport("BenefitSummaryReport.jasper",map,conn);
+                //JasperDesign jd  = JRXmlLoader.load("C:\\Users\\Nyein Su\\Desktop\\app\\camans\\reports\\BenefitSummaryReport.jasper");
+                //JasperDesign jd  = JRXmlLoader.load("reports/BenefitSummaryReport.jasper");
+                jasperPrint = JasperFillManager.fillReport("C:\\Users\\Nyein Su\\Desktop\\app\\camans\\reports\\BenefitSummaryReport.jasper", map, conn);
             }
-            JasperExportManager.exportReportToPdfFile(jasperPrint,
-                  "C://sample_report.pdf");
-
-            response.sendRedirect("report.jsp");
-        }catch (JRException e){
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint);
+            jasperViewer.setVisible(true);
+            //JasperExportManager.exportReportToPdfFile(jasperPrint,"C://sample_report.pdf");
+            //request.getSession().setAttribute("userLogin", user);
+            response.sendRedirect("home.jsp");
+        } catch (JRException e) {
             e.printStackTrace();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             out.close();
         }
     }
