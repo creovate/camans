@@ -1,5 +1,8 @@
 camans
 ======
+<i><b>7th Jan 2015-nyeinsu</i></b><br/>
+1. Basic reports<br/>
+
 <i><b>3rd Jan 2015-nyeinsu</i></b><br/>
 1. Need to install iReport Plugin to your netbeans.<br/>
 2. JasperReport Library is requried.<br/>
