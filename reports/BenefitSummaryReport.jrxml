@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6c920122-7eca-4b79-a2e5-ff629028214e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+        <parameter name ="year" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select Name, COALESCE(client, 0), COALESCE(benes, 0), COALESCE(amt, 0) from 
+(select Name from tbl_dropdown
+where dropdownType = "Bene_type" order by displayRank) as t1
+left join 
+(select Count(ID) as benes, Count(distinct(Worker_FIN_number)) as client, SUM(Bene_value) as amt, Bene_type from tbl_benefit where YEAR(Entry_date) = $P{year}
+group by Bene_type) as t2
+on t1.Name = t2.Bene_type]]>
+	</queryString>
+	<field name="Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COALESCE(client, 0)" class="java.lang.Long"/>
+	<field name="COALESCE(benes, 0)" class="java.lang.Long"/>
+	<field name="COALESCE(amt, 0)" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="a0cfec46-bd96-411e-8966-2b5972262d46"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Type of Benefit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="131" y="0" width="100" height="20" uuid="3ebeff1a-f0e4-4862-a1d5-a351cdaa82d6"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Number of Clients]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="0" width="100" height="20" uuid="5d7435fe-8116-4b8d-a61e-8da97c73f79c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Number of Benefections]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="0" width="100" height="20" uuid="20f2081d-cb92-45ff-bd75-721d892eb247"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Value of Benefit/Refund]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="c23d9a11-0c1a-475f-ab07-e14dbeb80a64"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="131" y="0" width="100" height="20" uuid="5c53c1a5-1f7a-4b14-8b7e-afaf6cdbc120"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{COALESCE(client, 0)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="0" width="100" height="20" uuid="efacf9ea-82c1-44bd-8d17-ee5cd67bb519"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{COALESCE(benes, 0)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="0" width="100" height="20" uuid="c881974d-0177-448a-96af-20f767a578eb"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{COALESCE(amt, 0)}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
