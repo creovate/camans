@@ -132,7 +132,7 @@ public class CaseManagementDAO {
 
             stmt = conn.prepareStatement(sql);
 
-            stmt.setString(1, referredBy);
+            stmt.setString(1, referredBy_username);
             stmt.setDate(2, referredDate);
             stmt.setString(3, description);
             stmt.setString(4, workerFin);
