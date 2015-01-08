@@ -220,13 +220,29 @@
 
                     <!--Problem Stub-->
                     <p class="worker_profile_header text-center">Problem Stub<a id="problem_profile_details" style="color: white"  data-value='problem' href="#" data-title="View/Edit Problem Stub" data-toggle="modal" data-action="view" class="profile_details"><span class="glyphicon glyphicon-eye-open pull-right" pull-right></span></a></p>
-
+                            <%
+                                ArrayList<Integer> injuryList = ProblemComplementsDAO.retrieveProblemInjuryIdsOfProblem(latestProblem);
+                                ProblemInjury injuryObj = null;
+                                java.util.Date injuryDate = null;
+                                if (injuryList != null && injuryList.size() > 0) {
+                                    injuryObj = ProblemComplementsDAO.retrieveProblemInjuryById(injuryList.size()-1);
+                                    injuryDate = injuryObj.getInjuryDate();
+                                }
+                                
+                                ArrayList<Integer> leadCaseWorkerList = ProblemComplementsDAO.retrieveLeadCaseWorkerIdsOfProblem(latestProblem);
+                                ProblemLeadCaseWorker leadCaseWorkerObj = null;
+                                String leadCaseWorkerName = null;
+                                if (leadCaseWorkerList != null && leadCaseWorkerList.size() > 0) {
+                                    leadCaseWorkerObj = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(leadCaseWorkerList.size()-1);
+                                    leadCaseWorkerName = leadCaseWorkerObj.getLeadCaseWorker();
+                                }
+                                
+                            %>
                     <div class="worker_profile_content text-capitalize">
                         <p>Problem: <%=latestProblem.getProblem()%></p>
                         <p>Registered Date: <%=sdf.format(latestProblem.getProblemRegisteredDate())%></p>
-                        <p>Chief problem:</p>
-                        <p>Date of Injury:<%=(latestJob.getJobStartDate() == null) ? "-" : latestJob.getJobStartDate()%></p>
-                        <p>Lead Caseworker:</p>
+                        <p>Date of Injury: <%=(injuryDate == null) ? "-" : injuryDate%></p>
+                        <p>Lead Caseworker: <%=(leadCaseWorkerName == null) ? "-" : leadCaseWorkerName%></p>
                     </div>
                 </div>
             </div>
@@ -1917,7 +1933,7 @@
                                                     <input type="hidden" name="problemKey" value="<%=latestProblem.getProbKey()%>"/>
                                                     <select class="form-control text-capitalize" id="problemSelected" name="selectedProblem" required>
                                                         <%
-                                                            for (int i = problemIds.size() - 1 ; i > 0 ; i--) {
+                                                            for (int i = problemIds.size() - 1; i > 0; i--) {
                                                                 int Id = problemIds.get(i);
                                                                 Problem tempProb = ProblemDAO.retrieveProblemByProblemId(Id);
                                                                 String problemType = tempProb.getProblem();
@@ -4515,7 +4531,7 @@
                                                         java.util.Date timeStamp = WorkerComplementsDAO.retrieveTimeStamp(workerAttachment);
                                                         String submitBy = workerAttachment.getSubmitBy();
                                                         //docName.substring(0, docName.indexOf("."));
-%>
+                                                %>
                                                 <tr bgcolor="">
                                                     <td><%=i + 1%></td>
                                                     <td><%=docName%></td>
@@ -4768,9 +4784,9 @@
                         }});
                 }
             });
-            
+
             function referCase() {
-                $("#pop_up_content").load('include/referCase.jsp?workerFin=<%=workerFin%>&jobkey=<%=latestJob.getJobKey()%>&probkey=<%=latestProblem.getProbKey()%>&user=<%= userLogin.getNricNumber() %>').dialog({modal: true, minHeight: $(window).height() - 350,minWidth: $(window).width() - 750, title: "Case Referral", resizable: false, draggable: false, close: function() {
+                $("#pop_up_content").load('include/referCase.jsp?workerFin=<%=workerFin%>&jobkey=<%=latestJob.getJobKey()%>&probkey=<%=latestProblem.getProbKey()%>&user=<%= userLogin.getNricNumber()%>').dialog({modal: true, minHeight: $(window).height() - 350, minWidth: $(window).width() - 750, title: "Case Referral", resizable: false, draggable: false, close: function() {
                         $(this).dialog('destroy');
                         $('#pop_up_content').empty();
                     }});
