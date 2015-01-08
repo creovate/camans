@@ -1917,7 +1917,7 @@
                                                     <input type="hidden" name="problemKey" value="<%=latestProblem.getProbKey()%>"/>
                                                     <select class="form-control text-capitalize" id="problemSelected" name="selectedProblem" required>
                                                         <%
-                                                            for (int i = 0; i < problemIds.size(); i++) {
+                                                            for (int i = problemIds.size() - 1 ; i > 0 ; i--) {
                                                                 int Id = problemIds.get(i);
                                                                 Problem tempProb = ProblemDAO.retrieveProblemByProblemId(Id);
                                                                 String problemType = tempProb.getProblem();
