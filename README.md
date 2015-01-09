@@ -1,5 +1,9 @@
 camans
 ======
+<i><b>9th Jan 2015-soemyatmyat<i></b><br/>
+1. Dropdown Configurations
+2. Minor changes in user management
+
 <i><b>7th Jan 2015-nyeinsu</i></b><br/>
 1. Basic reports<br/>
 
