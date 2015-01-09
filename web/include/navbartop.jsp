@@ -32,7 +32,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="caseReferral.jsp">Referred Cases <span class="badge"><%=problemList.size()%></span></a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/profile_pic.jpg" ><%=_user.getUsername()%> <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<%=(_user.getPhotoPath()==null)?"img/profile_pic.jpg":_user.getPhotoPath()%>"><%=_user.getUsername()%> <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="userProfile.jsp">
                                     <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>

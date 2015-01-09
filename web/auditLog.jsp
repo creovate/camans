@@ -1,7 +1,7 @@
 <%-- 
     Document   : auditLog
     Created on : Dec 26, 2014, 2:28:33 AM
-    Author     : pyaephyo
+    Author     : soemyatmyat
 --%>
 
 <%@page import="camans.entity.UserAuditLog"%>
@@ -50,79 +50,77 @@
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
         
-        <div class="page-header">
-            <center><h2 style="color:#2980b9">Audit Logs</h2></center>    
-        </div>
-        <div class="main_div">
-            <div class="col-md-10">
+        <div class="col-md-10">
 
-                <div class="panel panel-default">
-                    <p bgcolor="#3579BC" class="worker_profile_header text-center">Search By</p>
-                    <div class="panel-body">
-                        <div class="form-group col-sm-3">
-                            <label>Start Date</label>
-                            <input type="text" id="reg_StartDate_In" name="startDate" 
-                                               class="form-control input-append date dateInput" data-date-format="dd-mm-yyyy"
-                                               value="">
-                        </div>
-                        <div class="form-group col-sm-3">
-                            <label>End Date</label>
-                            <input type="text" id="reg_StartDate_In" name="endDate" 
-                                               class="form-control input-append date dateInput" data-date-format="dd-mm-yyyy"
-                                               value="">
-                        </div>
+            <div class="page-header">
+                <center><h2 style="color:#2980b9">Audit Logs</h2></center>    
+            </div>
+            <div class="panel panel-default">
+                <p bgcolor="#3579BC" class="worker_profile_header text-center">Search By</p>
+                <div class="panel-body">
+                    <div class="form-group col-sm-3">
+                        <label>Start Date</label>
+                        <input type="text" id="reg_StartDate_In" name="startDate" 
+                                           class="form-control input-append date dateInput" data-date-format="dd-mm-yyyy"
+                                           value="">
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label>End Date</label>
+                        <input type="text" id="reg_StartDate_In" name="endDate" 
+                                           class="form-control input-append date dateInput" data-date-format="dd-mm-yyyy"
+                                           value="">
+                    </div>
+                    <br/>
+                    <div class="form-group col-sm-3">
                         <br/>
-                        <div class="form-group col-sm-3">
-                            <br/>
-                            <button class="btn btn-default" id="btnSearch">Search</button>
-                            <button class="btn btn-default" id="btnReset" 
-                                                type="reset" onClick="window.location.href=window.location.href">Reset</button>
-                        </div>
+                        <button class="btn btn-default" id="btnSearch">Search</button>
+                        <button class="btn btn-default" id="btnReset" 
+                                            type="reset" onClick="window.location.href=window.location.href">Reset</button>
                     </div>
                 </div>
-                <!-- Audit Log Table -->
-                <h4 style="color:#2980b9">Audit Logs</h4>
-                <!--<div class="panel panel-default">
-                    <div class="panel-body">-->       
-                        <table class="table table-striped table-bordered table-hover" id="auditLogs-table">
-                            <thead bgcolor="#3579BC">
-                                <tr>
-                                    <th><font color="#FFF">Date & Time</font></th>
-                                    <th><font color="#FFF">Username</font></th>
-                                    <th><font color="#FFF">Worker Fin Number</font></th>
-                                    <th><font color="#FFF">Action Type</font></th>
-                                    <th><font color="#FFF">Action Description</font></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <%
-                                    ArrayList<Integer> ids = UserAuditLogDAO.retrieveUserAuditLogIds();                                    
-                                    
-                                    for (int i = ids.size()-1; i >= 0; i--) {
-                                        UserAuditLog userAuditLog = UserAuditLogDAO.retrieveUserAduitLogById(ids.get(i));
-                                        java.util.Date timeStamp = UserAuditLogDAO.retrieveTimeStamp(userAuditLog);
-                                        String username = userAuditLog.getUsername();
-                                        String workerFinNum = userAuditLog.getWorkerFin();
-                                        String actionType = userAuditLog.getActionType();
-                                        String actionDesc = userAuditLog.getActionDesc();
-                                       
-                                %>
-                                <tr>
-                                    <td><%=timeStamp%></td>
-                                    <td><%=username%></td>
-                                    <td><%=workerFinNum%></td>
-                                    <td><%=actionType%></td>
-                                    <td><%=actionDesc%></td>
-                                </tr>
-                                <%  }   %>
-                            </tbody>
-                        </table>
-                    <!--</div> //panel body
-                </div>//panel -->
-                <!-- End of Users Table -->    
-                   
-            </div>    
-        </div>                
+            </div>
+            <!-- Audit Log Table -->
+            <h4 style="color:#2980b9">Audit Logs</h4>
+            <!--<div class="panel panel-default">
+                <div class="panel-body">-->       
+                    <table class="table table-striped table-bordered table-hover" id="auditLogs-table">
+                        <thead bgcolor="#3579BC">
+                            <tr>
+                                <th><font color="#FFF">Date & Time</font></th>
+                                <th><font color="#FFF">Username</font></th>
+                                <th><font color="#FFF">Worker Fin Number</font></th>
+                                <th><font color="#FFF">Action Type</font></th>
+                                <th><font color="#FFF">Action Description</font></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                                ArrayList<Integer> ids = UserAuditLogDAO.retrieveUserAuditLogIds();                                    
+
+                                for (int i = ids.size()-1; i >= 0; i--) {
+                                    UserAuditLog userAuditLog = UserAuditLogDAO.retrieveUserAduitLogById(ids.get(i));
+                                    java.util.Date timeStamp = UserAuditLogDAO.retrieveTimeStamp(userAuditLog);
+                                    String username = userAuditLog.getUsername();
+                                    String workerFinNum = userAuditLog.getWorkerFin();
+                                    String actionType = userAuditLog.getActionType();
+                                    String actionDesc = userAuditLog.getActionDesc();
+
+                            %>
+                            <tr>
+                                <td><%=timeStamp%></td>
+                                <td><%=username%></td>
+                                <td><%=workerFinNum%></td>
+                                <td><%=actionType%></td>
+                                <td><%=actionDesc%></td>
+                            </tr>
+                            <%  }   %>
+                        </tbody>
+                    </table>
+                <!--</div> //panel body
+            </div>//panel -->
+            <!-- End of Users Table -->    
+
+        </div>                 
             
         <script>
             //ready the data in tables

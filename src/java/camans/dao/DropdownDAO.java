@@ -4,6 +4,7 @@
  */
 package camans.dao;
 
+import camans.entity.Dropdown;
 import camans.entity.User;
 import camans.entity.Worker;
 import java.sql.Connection;
@@ -777,13 +778,189 @@ public class DropdownDAO {
         }
         return list;
     }
+   
+    public static ArrayList<String> retrieveAllDropdownType() {
+        ArrayList<String> types = new ArrayList<String>();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT distinct dropdownType FROM tbl_dropdown;";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                String type = rs.getString(1);
+                types.add(type);
+            }
+
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql);           
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        } 
+        return types;   
+    }
+    
+    public static ArrayList<String> retrieveAllDropdownListByType(String dropdownType) {
+        ArrayList<String> types = new ArrayList<String>();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? order by displayRank ASC;";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,dropdownType );
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                String type = rs.getString(1);
+                types.add(type);
+            }
+
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql);           
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        } 
+        return types;         
+    }
+        
+    public static Dropdown retrieveDropdownItem(String dropdownType, String name) {
+        Dropdown dropdownItem = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT ID, Remark, displayRank FROM tbl_dropdown "
+                    + "where dropdownType = ? and Name = ?;";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, dropdownType);
+            pstmt.setString(2, name);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String remark = rs.getString(2);
+                int displayRank = rs.getInt(3);
+                dropdownItem = new Dropdown(id, dropdownType, name, remark, displayRank);
+            }
+ 
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "DropdownItem={" + dropdownItem + "}");         
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        return dropdownItem;
+    }
+    
+    public static Dropdown retrieveDropdownItemById(int id) {
+        Dropdown dropdownItem = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT dropdownType, Name, Remark, displayRank FROM tbl_dropdown "
+                    + "where ID = ?;";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                String dropdownType = rs.getString(1);
+                String name = rs.getString(2);
+                String remark = rs.getString(3);
+                int displayRank = rs.getInt(4);
+                dropdownItem = new Dropdown(id, dropdownType, name, remark, displayRank);
+            }
+ 
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "DropdownItem={" + dropdownItem + "}");         
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        return dropdownItem;
+    }
+    
+    public static void updateDropdownItem(Dropdown dropdown){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "UPDATE tbl_dropdown SET dropdownType =?, Name = ? , Remark = ?,"
+                    + "displayRank =? "
+                    + "WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, dropdown.getDropdownType());
+            pstmt.setString(2, dropdown.getName());
+            pstmt.setString(3, dropdown.getRemark());
+            pstmt.setInt(4, dropdown.getDisplayRank());
+            pstmt.setInt(5, dropdown.getId());
+
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Dropdown={" + dropdown + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
+    public static void addDropdownItem (Dropdown dropdown) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "INSERT INTO tbl_dropdown (dropdownType, Name, Remark, displayRank) "
+                    + "VALUES (?,?,?,?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, dropdown.getDropdownType());
+            pstmt.setString(2, dropdown.getName());
+            pstmt.setString(3, dropdown.getRemark());
+            pstmt.setInt(4, dropdown.getDisplayRank());
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Dropdown={" + dropdown + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
+    public static void deleteDropdownItem (Dropdown dropdown) {
+    Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_dropdown WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, dropdown.getId());
+            
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Dropdown=" + dropdown);
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }    
+    }
     
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
       String msg = "Unable to access data; SQL=" + sql + "\n";
       for (String parameter : parameters) {
         msg += "," + parameter + ex.getMessage();
       }
-      Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, msg, ex);
+      Logger.getLogger(DropdownDAO.class.getName()).log(Level.SEVERE, msg, ex);
       throw new RuntimeException(msg, ex);
     }    
 }

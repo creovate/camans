@@ -100,7 +100,7 @@
                     <p class="worker_profile_header text-center">Profile    </p>
                     <div class="panel-body">
                         <div class="text-center">
-                            <img src="<%=userPhoto%>" style="width: 150px; height: 150px;"/>
+                            <img src="<%=(userPhoto==null)?"img/profile_pic.jpg":userPhoto%>" style="width: 150px; height: 150px;"/>
                         </div>
                     </div>
                  

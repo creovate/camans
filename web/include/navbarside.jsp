@@ -45,8 +45,9 @@
                                 Admin Special Modules <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                                <li><a href="admin.jsp" tabindex="-1">Admin Dashboard</a></li>
                                 <li><a href="userManagement.jsp" tabindex="-1">User Management</a></li>
-                                <li ><a href="#" tabindex="-1">Dropdown Settings</a></li>
+                                <li ><a href="dropdownSetting.jsp" tabindex="-1">Dropdown Settings</a></li>
                                 <li ><a href="auditLog.jsp" tabindex="-1">Audit Log  </a></li>
                             </ul>
                         </li>
