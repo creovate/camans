@@ -4,17 +4,6 @@
  */
 package camans.entity;
 
-import camans.dao.ConnectionManager;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author soemyatmyat
@@ -169,10 +158,22 @@ public class Job {
 
     @Override
     public String toString() {
-        return "Job{" + "workerFinNum=" + workerFinNum + ", jobKey=" + jobKey + ", employerName=" + employerName + ", workPassType=" + workPassType + ", workPassMore=" + workPassMore + ", jobSector=" + jobSector + ", jobSectorMore=" + jobSectorMore + ", occupation=" + occupation + ", jobStartDate=" + jobStartDate + ", jobEndDate=" + jobEndDate + ", jobTJS=" + jobTJS + ", jobRemark=" + jobRemark + '}';
+        return "Job{" + "workerFinNum=" + workerFinNum + ", jobKey=" + jobKey + 
+                ", employerName=" + employerName + ", workPassType=" + workPassType + 
+                ", workPassMore=" + workPassMore + ", jobSector=" + jobSector + 
+                ", jobSectorMore=" + jobSectorMore + ", occupation=" + occupation + 
+                ", jobStartDate=" + jobStartDate + ", jobEndDate=" + jobEndDate + 
+                ", jobTJS=" + jobTJS + ", jobRemark=" + jobRemark + '}';
     }
 
-
+    public String toString2() {
+        return "Job{" + "workerFinNum=" + workerFinNum + 
+                ", employerName=" + employerName + ", workPassType=" + workPassType + 
+                ", workPassMore=" + workPassMore + ", jobSector=" + jobSector + 
+                ", jobSectorMore=" + jobSectorMore + ", occupation=" + occupation + 
+                ", jobStartDate=" + jobStartDate + ", jobEndDate=" + jobEndDate + 
+                ", jobTJS=" + jobTJS + ", jobRemark=" + jobRemark + '}';
+    }
     
     
 }

@@ -1,7 +1,7 @@
 <%-- 
     Document   : userProfile
     Created on : Dec 19, 2014, 2:33:34 PM
-    Author     : pyaephyo
+    Author     : soemyatmyat
 --%>
 <%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -64,29 +64,31 @@
     <body style='background:white'>
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
-        <div class="page-header">
-            <center><h2 style="color:#2980b9">User Profile Page</h1></center>    
-        </div>
-        <div class="main_div">
-            <div class="col-md-10">
-                <!-- success & error display -->
-                <% if (successMsg != null)  { %>
 
-                 <div class="alert alert-info" role="alert">
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    <%=successMsg%>
-                </div>
+        <div class="col-md-10">
+            
+            <div class="page-header">
+                <center><h2 style="color:#2980b9">User Profile Page</h1></center>    
+            </div>
+            <!-- success & error display -->
+            <% if (successMsg != null)  { %>
 
-                <% } %>
-                <% if (errorMsg != null)  { %>
+             <div class="alert alert-info" role="alert">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <%=successMsg%>
+            </div>
 
-                 <div class="alert alert-danger" role="alert">
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    <%=errorMsg%>
-                </div>
+            <% } %>
+            <% if (errorMsg != null)  { %>
 
-                <% } %>
-                <!-- End of success & error display -->
+             <div class="alert alert-danger" role="alert">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <%=errorMsg%>
+            </div>
+
+            <% } %>
+            <!-- End of success & error display -->
+            <div class="col-md-12" >
                 <button class="pull-right changePwd_popup" data-username='<%=username%>' 
                         data-toggle="modal" data-target="#user_change_pwd">Change Password</button>
                 <button class="pull-right edit_popup" data-nric='<%=userNRIC%>' data-fullname='<%=userFullName%>' 
@@ -96,6 +98,7 @@
                         data-photo='<%=userPhoto%>' data-toggle="modal" data-target="#user_pop_up">
                     Edit Profile
                 </button><br/><br/>
+
                 <div class="panel panel-default">
                     <p class="worker_profile_header text-center">Profile    </p>
                     <div class="panel-body">
@@ -103,7 +106,7 @@
                             <img src="<%=(userPhoto==null)?"img/profile_pic.jpg":userPhoto%>" style="width: 150px; height: 150px;"/>
                         </div>
                     </div>
-                 
+
                     <p class="worker_profile_header text-center">Basic Information</p>
                     <div class="panel-body">
                         <div class="form-horizontal col-md-offset-1 col-md-10">
@@ -131,8 +134,8 @@
                             <label><%=userPh%></label>
                         </div>
                     </div>
-                </div>      
-            </div>
+                </div>    
+            </div>            
         </div>
                      
         <!-- Edit User Modal -->

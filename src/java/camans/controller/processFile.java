@@ -233,7 +233,7 @@ public class processFile extends HttpServlet {
                         String oldFileName = oldFile.getName();
 
                         newFileName = oldFileName.substring(0, oldFileName.indexOf("-xx-")) + "-xx-" 
-                                + newFileName + oldFileName.substring(oldFileName.indexOf("."));
+                                + newFileName + oldFileName.substring(oldFileName.lastIndexOf("."));
                         String newFilePath = oldFile.getParent() + File.separator + newFileName;
                         File newFile = new File(newFilePath);
                         if (oldFile.renameTo(newFile)) {

@@ -6,10 +6,12 @@ package camans.controller;
 
 import camans.dao.JobDAO;
 import camans.dao.ProblemDAO;
+import camans.dao.UserAuditLogDAO;
 import camans.dao.WorkerDAO;
 import camans.entity.Job;
 import camans.entity.Problem;
 import camans.entity.User;
+import camans.entity.UserAuditLog;
 import camans.entity.Worker;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -47,9 +49,9 @@ public class processEditStubs extends HttpServlet {
             String jobKeyStr = request.getParameter("jobKey");
             String probKeyStr = request.getParameter("probKey");
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+            User userLogin = (User) request.getSession().getAttribute("userLogin");
             
             if(complement.equals("worker")){
-                User userLogin = (User) request.getSession().getAttribute("userLogin");
                 String registeredDateStr = request.getParameter("date");
                 String createdBy = request.getParameter("createdBy");
                 String createdFor = request.getParameter("createdFor");
@@ -86,6 +88,14 @@ public class processEditStubs extends HttpServlet {
                 
                 WorkerDAO.updateWorkerProfile(worker);
                 
+                //audit log
+                String auditChange = worker.toString();
+                UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), workerFinNum, 
+                        workerFinNum, "Modified", "Worker: " + auditChange);
+
+                UserAuditLogDAO.addUserAuditLog(userAuditLog); 
+                //end of audit log
+                
             }else if(complement.equals("job")){
                 int jobKey = Integer.parseInt(jobKeyStr);
                 //this should be in the user complements, but don't hv db table
@@ -109,6 +119,15 @@ public class processEditStubs extends HttpServlet {
                         jobSector, jobSectorMore, occupation, jobStartDateStr, jobEndDateStr,
                         tjs, jobRemark);
                 JobDAO.updateJob(job);
+                
+                //audit log
+                String auditChange = job.toString2();
+                UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), job.getJobKey()+"", 
+                        workerFinNum, "Modified", "Job: " + auditChange);
+
+                UserAuditLogDAO.addUserAuditLog(userAuditLog); 
+                //end of audit log
+                
             }else if(complement.equals("problem")){
                 java.util.Date date = new java.util.Date();
                 String registeredDateStr = request.getParameter("pRegDate");
@@ -135,6 +154,14 @@ public class processEditStubs extends HttpServlet {
                         problemName, problemMore, problemRemark);
                 
                 ProblemDAO.updateProblem(problem);
+                
+                //audit log
+                String auditChange = problem.toString2();
+                UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), problem.getProbKey()+"", 
+                        workerFinNum, "Modified", "Problem: " + auditChange);
+
+                UserAuditLogDAO.addUserAuditLog(userAuditLog); 
+                //end of audit log
             }
             response.sendRedirect("viewWorker.jsp?worker="+workerFinNum);
         } finally {            

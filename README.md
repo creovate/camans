@@ -1,8 +1,11 @@
 camans
 ======
-<i><b>9th Jan 2015-soemyatmyat<i></b><br/>
-1. Dropdown Configurations
-2. Minor changes in user management
+<i><b>10th Jan 2015 12:00 pm -soemyatmyat</i></b><br/>
+1. Added audit trails for processAssignCase, processCreateNewCase, processEditStubs and processReferCase <br/>
+
+<i><b>9th Jan 2015-soemyatmyat</i></b><br/>
+1. Dropdown Configurations<br/>
+2. Minor changes in user management<br/>
 
 <i><b>7th Jan 2015-nyeinsu</i></b><br/>
 1. Basic reports<br/>
@@ -58,7 +61,7 @@ Working on attachment modules<br/>
 2. Add Case Referral Function<br/>
 3. Case Referral Notification at top navigation bar (to discuss later whether to change to push)
 
-<i><b>20th Dec 2014-soemyatmyat<i><br/>
+<i><b>20th Dec 2014-soemyatmyat</i><br/>
 1. Encrypt password<br/>
 2. Add Status for user (Active, Inactive)<br/>
 3. Forgot Password function<br/>
@@ -68,7 +71,7 @@ Working on attachment modules<br/>
 Working on attachment modules<br/>
 
 
-<i><b>==Completed==<i><br/>
+<i><b>==Completed==</i><br/>
 1. create case (worker+job+problem)<br/>
 2. add/view/update worker complements<br/>
 3. add/view/update job complements<br/>

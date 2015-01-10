@@ -39,16 +39,26 @@ public class processAddBenefit extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            out.println("here");
             String action = request.getParameter("action");
             String workerFinNum = request.getParameter("workerFinNum");
             int jobKey = Integer.parseInt(request.getParameter("jobkey"));
             int problemKey = Integer.parseInt(request.getParameter("probKey"));
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
             
+            //server side validation parameters
+            boolean pass = true; //Assume validaiton pass first
+            String err = null; //to store error msg
+            String success = null;//to store success msg
+            
+            //audit paratmeters
             User _user = (User) request.getSession().getAttribute("userLogin");
             String auditChange = "";
+            //===============================================//
+            //     Add New Benefit
+            //===============================================//
             if (action.equals("add")) {
+                
+                //Data Collection
                 String beneDateStr = request.getParameter("nisDate");
                 String beneGiver = request.getParameter("ngivenby");
                 String beneType = request.getParameter("nbenetype");
@@ -57,15 +67,41 @@ public class processAddBenefit extends HttpServlet {
                 String benePurpose = request.getParameter("npurpose");
                 String beneRem = request.getParameter("nremark");
                 String beneValueStr = request.getParameter("nvalue");
+                //End of Data Collection
                 
+                //Server side validation
                 java.sql.Date beneDate = null;
-                if (!beneDateStr.equals("")) {
+                if (beneDateStr == null || beneDateStr.equals("")) {
+                    pass = false;
+                    err = "Benefit Issue Date cannot be empty.";
+                } else {        
                     try {
                         java.util.Date tmp = sdf.parse(beneDateStr);
                         beneDate = new java.sql.Date(tmp.getTime());
                     } catch (ParseException ex) {
-                        out.println(ex);
+                        //do not proceed & show error page
+                        err = "Benefit Iusse Date format is not correct.";
                     }
+                }
+                
+                if (beneType == null || beneType.equals("")) {
+                    pass = false;
+                    err += "Benefit Type cannot be empty.";
+                }
+                
+                if (beneSerial != null && beneSerial.length() > 30) {
+                    pass = false;
+                    err += "Benefit Serial cannot be more than 30 characters.";
+                }
+                
+                if (benePurpose != null && benePurpose.length() > 200) {
+                    pass = false;
+                    err += "Benefit Purpose cannot be more than 200 characerers.";
+                }
+                
+                if (beneRem != null && beneRem.length() > 500) {
+                    pass = false;
+                    err += "Benefit Remark cannot be more than 500 characters.";
                 }
                 
                 Double beneValue = 0.0;
@@ -73,21 +109,35 @@ public class processAddBenefit extends HttpServlet {
                     try {
                         beneValue = Double.parseDouble(beneValueStr);
                     } catch (Exception ex) {
-                        out.println(ex);
+                        pass = false;
+                        err += "Benefit Value must have maximum 2 decimal place.";
+                        
                     }
                 }
-                //create object
-                Benefit benefit = new Benefit(workerFinNum, jobKey, problemKey, beneDate, beneGiver,
-                        beneType, beneTypeMore, beneSerial, benePurpose, beneRem, beneValue);
-                //add  to db  
-                BenefitDAO.addBenefit(benefit);
                 
-                //log to audit
-                auditChange = benefit.toString2();
-                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
-                        workerFinNum, "Added", "Benefit: " + auditChange);
+                if (pass) {
+                    //create object
+                    Benefit benefit = new Benefit(workerFinNum, jobKey, problemKey, beneDate, beneGiver,
+                            beneType, beneTypeMore, beneSerial, benePurpose, beneRem, beneValue);
+                    //add  to db  
+                    BenefitDAO.addBenefit(benefit);
 
-                UserAuditLogDAO.addUserAuditLog(userAuditLog);  
+                    //log to audit
+                    auditChange = benefit.toString2();
+                    UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
+                            workerFinNum, "Added", "Benefit: " + auditChange);
+
+                    UserAuditLogDAO.addUserAuditLog(userAuditLog);
+                    
+                    //sucesss
+                    //success = benefit.getBenefitType() + " has been created succesfully.";
+                    //request.getSession().setAttribute("succBenefitMsg", success);
+                } else {
+                    //request.getSession().setAttribute("errBenefitMsg", err);
+                }
+            //===============================================//
+            //     Edit Benefit
+            //===============================================//    
             } else if (action.equals("edit")) {
                 String beneDateStr = request.getParameter("isDate");
                 String beneGiver = request.getParameter("givenby");
@@ -130,6 +180,7 @@ public class processAddBenefit extends HttpServlet {
                         workerFinNum, "Added", "Benefit: " + auditChange);
 
                 UserAuditLogDAO.addUserAuditLog(userAuditLog);  
+
             }
             
             

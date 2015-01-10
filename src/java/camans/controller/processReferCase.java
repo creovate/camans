@@ -74,7 +74,16 @@ public class processReferCase extends HttpServlet {
                 CaseManagementDAO.referCase(workerFinNum, jobKey, probKey, refDate, referredBy, referredDescription);
 
             }
-
+            
+            //log to audit
+            String auditChange = problem.toString2();
+            //referredBy is the same as userLogin
+            User _user = (User) request.getSession().getAttribute("userLogin");
+            UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), probKey + "", 
+                    workerFinNum, "Referred", "Referred Case: " + auditChange);
+            UserAuditLogDAO.addUserAuditLog(userAuditLog); 
+            //End log to audit
+            
             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + "&selectedProb=" + probKey);
 
         } finally {

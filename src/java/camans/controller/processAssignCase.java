@@ -36,7 +36,8 @@ public class processAssignCase extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String userLogin = request.getParameter("userLogin");
+            //String userLogin = request.getParameter("userLogin");
+            User _user = (User) request.getSession().getAttribute("userLogin");
             String probKeyStr = request.getParameter("probKey");
             int probKey = Integer.parseInt(probKeyStr);
             Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
@@ -45,15 +46,22 @@ public class processAssignCase extends HttpServlet {
             java.util.Date tempDate = new java.util.Date();
             java.sql.Date leadStart = new java.sql.Date(tempDate.getTime());
             
-            User user = UserDAO.retrieveUserByUsername(userLogin);
             
-            ProblemLeadCaseWorker leadCaseWorker = new ProblemLeadCaseWorker(workerFin, jobKey, probKey, userLogin, leadStart, null);
+            ProblemLeadCaseWorker leadCaseWorker = new ProblemLeadCaseWorker(workerFin, jobKey, 
+                    probKey, _user.getFullName(), leadStart, null);
             
-            ProblemComplementsDAO.addProblemLeadCaseWorker(leadCaseWorker);
+            ProblemComplementsDAO.addProblemLeadCaseWorker(leadCaseWorker); 
+            CaseManagementDAO.assignCase(_user, problem);
             
-            CaseManagementDAO.assignCase(user, problem);
-            request.getSession().setAttribute("userLogin", user);
+            //log to audit
+            String auditChange = leadCaseWorker.toString2();
+            UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), probKey + "", 
+                    workerFin, "Added", "Case Taken: " + auditChange);
+            UserAuditLogDAO.addUserAuditLog(userAuditLog); 
+            //End log to audit
+            
             response.sendRedirect("caseReferral.jsp?worker=" + workerFin + "&selectedProb=" + probKey);
+            
         } finally {            
             out.close();
         }

@@ -7,17 +7,13 @@ package camans.controller;
 import camans.entity.*;
 import camans.dao.*;
 import java.io.*;
-import java.net.URL;
-import java.sql.Date;
 import java.text.*;
 import java.util.*;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -98,11 +94,13 @@ public class processCreateNewCase extends HttpServlet {
             String problemName = request.getParameter("problem");
             String problemMore = request.getParameter("problemMore");
             String problemRemark = request.getParameter("problemRemark");
+            // to confirm these 
             String injuryDate = request.getParameter("injuryDate");
             String injuryBodyPart = request.getParameter("injuryBodyPart");
             String currentHosptial = request.getParameter("currentHosptial");
             String hospitalMore = request.getParameter("hospitalMore");
             String lawfirmName = request.getParameter("lawfirmName");
+            // end of to confirm these
             Problem problem = null;
             
             //=======================================//
@@ -245,7 +243,7 @@ public class processCreateNewCase extends HttpServlet {
                     pass = false;
                     err += "Worker Name cannot be longer than 50 characters, ";
                 }
-                if (!finNum.matches("^[G][0-9]{7}[A-Z]") && !finNum.matches("^GEN[0-9]{6}")) {
+                if (!finNum.matches("^[G][0-9]{7}[A-Z]") || !finNum.matches("^GEN[0-9]{6}")) {
                     pass = false; 
                     err += "Invalid Fin Number,";
                 }
@@ -345,7 +343,21 @@ public class processCreateNewCase extends HttpServlet {
             
             
                 ProblemDAO.addProblem(worker, job, problem);
+                
+                //===============================================//
+                //     Audit Log
+                //===============================================//
+                User _user = (User) request.getSession().getAttribute("userLogin");
+                String auditChange = job.toString() + "," + problem.toString();
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), finNum, 
+                        finNum, "Added", "New Case: " + auditChange);
 
+                UserAuditLogDAO.addUserAuditLog(userAuditLog); 
+                
+                //===============================================//
+                //     End of Audit Log
+                //===============================================//
+                
             } else { //validation fail
                 request.getSession().setAttribute("errorMsg", err);
                 response.sendRedirect("createCase.jsp");

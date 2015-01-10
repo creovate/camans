@@ -164,9 +164,21 @@ public class Problem {
     
     @Override
     public String toString() {
-        return "Problem{" + "workerFinNum=" + workerFinNum + ", jobKey=" + jobKey + ", probKey=" + probKey + ", problemRegisteredDate=" + problemRegisteredDate + ", problem=" + problem + ", problemMore=" + problemMore + ", problemRemark=" + problemRemark + ", referredBy=" + referredBy + ", referredTo=" + referredTo + ", referredDate=" + referredDate + ", referralDescription=" + referralDescription + '}';
+        return "Problem{" + "workerFinNum=" + workerFinNum + ", jobKey=" + jobKey + 
+                ", probKey=" + probKey + ", problemRegisteredDate=" + problemRegisteredDate + 
+                ", problem=" + problem + ", problemMore=" + problemMore + 
+                ", problemRemark=" + problemRemark + ", referredBy=" + referredBy + 
+                ", referredTo=" + referredTo + ", referredDate=" + referredDate + 
+                ", referralDescription=" + referralDescription + '}';
     }
     
+    public String toString2() {
+        return "Problem{" + "workerFinNum=" + workerFinNum + ", problemRegisteredDate=" + problemRegisteredDate + 
+                ", problem=" + problem + ", problemMore=" + problemMore + 
+                ", problemRemark=" + problemRemark + ", referredBy=" + referredBy + 
+                ", referredTo=" + referredTo + ", referredDate=" + referredDate + 
+                ", referralDescription=" + referralDescription + '}';
+    }
     
 
     
