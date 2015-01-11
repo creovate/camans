@@ -1,5 +1,10 @@
 camans
 ======
+<i><b>11th Jan 2015 -nyeinsu</b></i><br/>
+1. Debugged Case Referral<br/>
+2. Changes UI for Reports<br/>
+3. PDF display for reprots<br/>
+
 <i><b>10th Jan 2015 12:00 pm -soemyatmyat</i></b><br/>
 1. Added audit trails for processAssignCase, processCreateNewCase, processEditStubs and processReferCase <br/>
 
