@@ -1,5 +1,13 @@
 camans
 ======
+<i><b>11th Jan 2015</b></i><br/>
+1. debugged iter 6 bugs<br/>
+2. audit trail search function<br/>
+3. time out script to all jsp pages<br/>
+4. display date & time for attachment upload and audit logs<br/>
+5. bootstrap - worker, job, problem, worker complements, job complements<br/>
+
+
 <i><b>11th Jan 2015 11:22pm -nyeinsu</b></i><br/>
 1. Debugged form validations<br/>
 2. Added non selectable row in dropdowns. <br/>
