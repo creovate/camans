@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -49,16 +50,19 @@ public class processFile extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //PrintWriter out = response.getWriter();//comment out because of fileOutputStream confusing
+        String workerFinNum = "";
         
         try {
             
             boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
+            int maxSize = 10*1024*1024;
+            String tmpDir = "/tmp/";
             //==========================================//
             //          Data Collection
             //==========================================//
             String attachId = request.getParameter("attachId");
             String action = request.getParameter("action");
-            String workerFinNum = request.getParameter("workerFin");
+                   workerFinNum = request.getParameter("workerFin");
             String newFileName = request.getParameter("nFileName");
             User userLogin = (User) request.getSession().getAttribute("userLogin");
             String auditChange = "";
@@ -76,8 +80,14 @@ public class processFile extends HttpServlet {
                 //==========================================//
                 // Create a factory for disk-based file items
                 DiskFileItemFactory diskFactory = new DiskFileItemFactory();
+                // Set the file size threshold, above which the content will be stored on disk
+                diskFactory.setSizeThreshold(maxSize);
+                // Set the temporary directory to store the uploaded files of size above threshold
+                diskFactory.setRepository(new File(tmpDir));
                 // File Upload Handler
                 ServletFileUpload uploader = new ServletFileUpload(diskFactory);
+                // Set the file max size
+                uploader.setSizeMax(maxSize);
                 // Put all the fields request into iter
                 FileItemIterator iter = uploader.getItemIterator(request);
 
@@ -342,6 +352,11 @@ public class processFile extends HttpServlet {
                                 +"#attachment_complement");
                 }
             }
+        } catch (FileUploadException ex) {
+            String error = "System only support max 10 MB File";
+            request.getSession().setAttribute("errAttachMsg", error);
+            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum 
+                                +"#attachment_complement");
         } catch (Exception e) {
             //do not process & show error page
             //String tmp = "" + e;

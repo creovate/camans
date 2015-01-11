@@ -13,26 +13,14 @@
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" />
         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
-        <!-- DataTables CSS, added by soemyatmyat -->
-        <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-        <!-- Bootstrap Validator CSS, Added by soemyatmyat -->
-        <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
-        <!--jasny-bootstrap v3.1.3, added by soemyatmayt-->
-        <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
 
         <script src="js/jquery-2.1.1.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <script src="js/jquery.steps.js"></script>
-        <!-- DataTables JS, Added by soemyatmyat -->
-        <script src="js/jquery.dataTables.js"></script>
-        <script src="js/dataTables.bootstrap.js"></script> 
-        <!-- BootstrapValidator JS, Added by soemyatmyat-->
-        <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
-        <!--jasny-bootstrap v3.1.3, added by soemyatmyat-->
-        <script src="js/jasny-bootstrap.js"></script>  
-
+        <!--bootstrap session timeout, added by soemyatmyat-->
+        <script src="js/bootstrap-session-timeout.min.js"></script> 
+        
         <link rel="shortcut icon" href="img/twc_logo.png">
         <title>Camans : Reports</title>
         
@@ -69,5 +57,18 @@
                     <button type="submit" class="btn btn-default">Generate Report</button>
             </form>
         </div>
+        <script>
+            //session time out
+            $(document).ready(function () {
+                $.sessionTimeout({
+                    message: 'Your session will be expired in one minute.',
+                    keepAliveUrl: 'keep-alive.html',
+                    logoutUrl: 'index.jsp',
+                    redirUrl: 'logout.jsp',
+                    warnAfter: 900000,
+                    redirAfter: 120000
+                });
+            });
+        </script>        
     </body>
 </html>

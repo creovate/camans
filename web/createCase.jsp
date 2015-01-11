@@ -45,7 +45,9 @@
         <script src="js/jquery.steps.js"></script>
         <!--jasny-bootstrap v3.1.3 added by smm-->
         <script src="js/jasny-bootstrap.js"></script>    
-
+        <!--bootstrap session timeout, added by soemyatmyat-->
+        <script src="js/bootstrap-session-timeout.min.js"></script> 
+        
         <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
 
         <link rel="shortcut icon" href="img/twc_logo.png">
@@ -669,7 +671,17 @@
                                     message: 'This field must be less than 200 characters.'
                                 }
                             }
-                        }
+                        },
+                        facePic: {
+                           validators: {
+                               file: {
+                                   extension: 'png,jpeg,jpg,bmp',
+                                   type: 'image/png,image/jpeg,image/jpg,image/bmp',
+                                   maxSize: 1024*1024,
+                                   message: 'Please choose an image file with a size less than 1M only.'
+                               }
+                           }
+                       }
                     }
 
                 });
@@ -690,6 +702,18 @@
                         //$("#finButton").html("<button type=\"button\" id=\"inputFin\" class=\"btn btn-default\">" + 
                         //     "Input Fin</button>");
                     }
+                });
+            });
+            
+            //session time out
+            $(document).ready(function () {
+                $.sessionTimeout({
+                    message: 'Your session will be expired in one minute.',
+                    keepAliveUrl: 'keep-alive.html',
+                    logoutUrl: 'index.jsp',
+                    redirUrl: 'logout.jsp',
+                    warnAfter: 900000,
+                    redirAfter: 120000
                 });
             });
 

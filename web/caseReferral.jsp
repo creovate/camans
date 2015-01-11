@@ -8,6 +8,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="camans.dao.*"%>
 <%@page import="camans.entity.*"%>
+<%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -31,12 +32,7 @@
 
         <link rel="stylesheet" href="css/jquery-ui.structure.css">
         <link rel="stylesheet" href="css/jquery-ui.theme.css">
-
         <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
-        <!--jasny-bootstrap v3.1.3, added by soemyatmayt-->
-        <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
-        <!-- DataTables CSS, added by soemyatmyat -->
-        <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
 
         <script src="js/jquery-2.1.3.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -44,11 +40,10 @@
         <script src="js/jquery.steps.js"></script>
         <script src="jquery.ui.position.js"></script>
         <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>        
-        <!--jasny-bootstrap v3.1.3, added by soemyatmyat-->
-        <script src="js/jasny-bootstrap.js"></script>  
-        <!-- DataTables JS, Added by soemyatmyat -->
-        <script src="js/jquery.dataTables.js"></script>
-        <script src="js/dataTables.bootstrap.js"></script>
+
+
+        <!--bootstrap session timeout, added by soemyatmyat-->
+        <script src="js/bootstrap-session-timeout.min.js"></script> 
 
         <link rel="shortcut icon" href="img/twc_logo.png">
         <title>Case Referral</title>
@@ -278,5 +273,18 @@
 
             </div>
         </div>
+        <script>
+            //session time out
+            $(document).ready(function () {
+                $.sessionTimeout({
+                    message: 'Your session will be expired in one minute.',
+                    keepAliveUrl: 'keep-alive.html',
+                    logoutUrl: 'index.jsp',
+                    redirUrl: 'logout.jsp',
+                    warnAfter: 900000,
+                    redirAfter: 120000
+                });
+            });
+        </script>
     </body>
 </html>

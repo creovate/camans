@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,33 +50,62 @@ public class UserAuditLogDAO {
         return ids;
     }
 
-    public static ArrayList<Integer> retrieveUserAuditLogIds() {
-    ArrayList<Integer> ids = new ArrayList<Integer>();
+    public static ArrayList<Integer> retrievelast7daysUserAuditLogIds() {
+        ArrayList<Integer> ids = new ArrayList<Integer>();
 
-    Connection conn = null;
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-    String sql = "";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
 
-    try {
-        conn = ConnectionManager.getConnection();
-        sql = "SELECT ID FROM tbl_audit";
-        pstmt = conn.prepareStatement(sql);
-        rs = pstmt.executeQuery();
-        while (rs.next()) {
-            int id = rs.getInt(1);
-            ids.add(id);
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT ID FROM tbl_audit where Entry_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                ids.add(id);
+            }
+
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql);
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
         }
 
-    } catch (SQLException ex) {
-        handleSQLException(ex, sql);
-    } finally {
-        ConnectionManager.close(conn, pstmt, rs);
+        return ids;
     }
 
-    return ids;
-}
+    public static ArrayList<Integer> retrieveUserAduitLogIdsBySearch(java.util.Date startDate, 
+            java.util.Date endDate) {
+    ArrayList<Integer> ids = new ArrayList<Integer>();
 
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT ID FROM tbl_audit where Entry_date >='" + startDate + "' AND Entry_date < '"
+                    + endDate + "' + INTERVAL 1 DAY;";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                ids.add(id);
+            }
+
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql);
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+
+        return ids;    
+    }
+    
     public static UserAuditLog retrieveUserAduitLogById(int id) {
         UserAuditLog userAuditLog = null;
 
@@ -133,8 +163,8 @@ public class UserAuditLogDAO {
         }
     }
 
-    public static Date retrieveTimeStamp(UserAuditLog userAuditLog) {
-        Date timeStamp = null;
+    public static Timestamp retrieveTimeStamp(UserAuditLog userAuditLog) {
+        Timestamp timeStamp = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -147,7 +177,7 @@ public class UserAuditLogDAO {
             pstmt.setInt(1, userAuditLog.getId());
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                timeStamp = rs.getDate(1);
+                timeStamp = rs.getTimestamp(1);
             }
             return timeStamp;
             
@@ -159,6 +189,24 @@ public class UserAuditLogDAO {
     
         
         return timeStamp;
+    }
+    
+    public static void deleteAll(){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_audit";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from tbl_audit Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
     }
     
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {

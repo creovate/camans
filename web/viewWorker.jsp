@@ -92,7 +92,9 @@
         <!-- DataTables JS, Added by soemyatmyat -->
         <script src="js/jquery.dataTables.js"></script>
         <script src="js/dataTables.bootstrap.js"></script>
-
+        <!--bootstrap session timeout, added by soemyatmyat-->
+        <script src="js/bootstrap-session-timeout.min.js"></script> 
+        
         <link rel="shortcut icon" href="img/twc_logo.png">
         <title>CAMANS</title>
 
@@ -4500,7 +4502,7 @@
                                 <!-- End of Attachments Success & Error Display --->
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <form action="fileUpload.do" method="post" enctype="multipart/form-data"> 
+                                        <form id="uploadAttachForm" action="fileUpload.do" method="post" enctype="multipart/form-data"> 
                                             <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
                                             <label>File Upload</label><br/>
                                             Select file to upload: <input type="file" name="fileInput"/><br/> 
@@ -4530,14 +4532,14 @@
                                         for (int i = 0; i < workerAttachList.size(); i++ ) {
                                             WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(workerAttachList.get(i));
                                             String docName = workerAttachment.getDocumentName();
-                                            java.util.Date timeStamp = WorkerComplementsDAO.retrieveTimeStamp(workerAttachment);
+                                            java.sql.Timestamp timeStamp = WorkerComplementsDAO.retrieveTimeStamp(workerAttachment);
                                             String submitBy = workerAttachment.getSubmitBy(); 
-                                            //docName.substring(0, docName.indexOf("."));
+                                            SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MMM-yyyy hh:mm a");
                                     %>
                                         <tr bgcolor="">
                                             <td><%=i+1%></td>
                                             <td><%=docName%></td>
-                                            <td><%=sdf.format(timeStamp)%></td>
+                                            <td><%=sdf2.format(timeStamp)%></td>
                                             <td><%=submitBy%></td>
                                             <td align="center">
                                                 <% String extension = docName.substring(docName.lastIndexOf(".")+1);
@@ -4843,8 +4845,28 @@
                 $(".modal-body #InputDocPath").attr('src', attachDocPath);
             });
             
-            //reset password form validation check - added by soemyatmyat
-            
+            //
+            $(document).ready(function() {
+                $('#uploadAttachForm')
+                .bootstrapValidator({
+                   live: 'enabled',
+                   fields: {
+                       fileInput: {
+                           validators: {
+                               file: {
+                                   maxSize: 10*1024*1024,
+                                   message: 'Please choose a file with a size less than 10M only.'
+                               }
+                           }
+                       }
+                   }
+                })
+            })
+            .on('success.form.fv', function(e) {
+                e.preventDefault();
+                $('#uploadAttachForm').data('formValidation').disableSubmitButtons(true);
+            });
+            //reset password form validation check - added by soemyatmyat  
             $(document).ready(function() {
                 $('#editAttachForm')
                 .bootstrapValidator({
@@ -4876,6 +4898,18 @@
             //to reset all the fields whenever the modal is opened - added by soemyatmyat
             $('#attach_edit_popup').on('shown.bs.modal', function() {
                 $('#editAttachForm').bootstrapValidator('resetForm', true);
+            });
+            
+            //session time out
+            $(document).ready(function () {
+                $.sessionTimeout({
+                    message: 'Your session will be expired in one minute.',
+                    keepAliveUrl: 'keep-alive.html',
+                    logoutUrl: 'index.jsp',
+                    redirUrl: 'logout.jsp',
+                    warnAfter: 900000,
+                    redirAfter: 120000
+                });
             });
 
         </script>
