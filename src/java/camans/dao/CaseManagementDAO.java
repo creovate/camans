@@ -83,9 +83,10 @@ public class CaseManagementDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT t1.Prob_key FROM tbl_problem AS t1 JOIN tbl_lead_case_worker AS t2 ON t1.Prob_key = t2.Prob_key WHERE Lead_case_worker = ? AND t2.Entry_date > ( NOW() - INTERVAL 1 MONTH ) ";
+            sql = "SELECT t1.Prob_key FROM tbl_problem AS t1 JOIN tbl_lead_case_worker AS t2 ON t1.Prob_key = t2.Prob_key WHERE Lead_case_worker = ? AND Referred_to = ? and t2.Entry_date > ( NOW() - INTERVAL 1 MONTH ) ";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, userloginName);
+            pstmt.setString(2, userloginName);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 int probKey = rs.getInt(1);
@@ -107,14 +108,16 @@ public class CaseManagementDAO {
         String sql = "";
 
         try {
-
+            
             Problem problem_temp = ProblemDAO.retrieveProblemByProblemId(probKey);
-            ArrayList<Integer> leadCaseWorkerList = ProblemComplementsDAO.retrieveProblemLawyerIdsOfProblem(problem_temp);
+            ArrayList<Integer> leadCaseWorkerList = ProblemComplementsDAO.retrieveLeadCaseWorkerIdsOfProblem(problem_temp);
             User referredBy_user = UserDAO.retrieveUserByNRIC(referredBy);
             String referredBy_username = referredBy_user.getUsername();
 
+            //add lead case end date if the current lead case worker is referring back
+            //set current lead case worker as null
             for (int i = 0; i < leadCaseWorkerList.size(); i++) {
-                ProblemLeadCaseWorker leadCaseWorker = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(i);
+                ProblemLeadCaseWorker leadCaseWorker = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(leadCaseWorkerList.get(i));
                 int lcwId = leadCaseWorker.getId();
                 String lcwName = leadCaseWorker.getLeadCaseWorker();
                 if (lcwName.equals(referredBy_username)) {
@@ -124,11 +127,12 @@ public class CaseManagementDAO {
 
                     leadCaseWorker = new ProblemLeadCaseWorker(lcwId, workerFin, jobKey, probKey, lcwName, lcwStart, lcwEnd);
                     ProblemComplementsDAO.updateProblemLeadCaseWorker(leadCaseWorker);
+                    
                 }
             }
 
             conn = ConnectionManager.getConnection();
-            sql = "UPDATE tbl_problem SET Referred_by = ?, Referred_date = ?, Description = ? WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
+            sql = "UPDATE tbl_problem SET Referred_by = ?, Referred_date = ?, Description = ?, Referred_to = null WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
 
             stmt = conn.prepareStatement(sql);
 
@@ -145,29 +149,6 @@ public class CaseManagementDAO {
         } finally {
             ConnectionManager.close(conn, stmt, null);
         }
-    }
-
-    private static void terminateLeadCaseWorker(String workerFin, int jobKey, int probKey, String referredBy) {
-
-        Problem problem_temp = ProblemDAO.retrieveProblemByProblemId(probKey);
-        ArrayList<Integer> leadCaseWorkerList = ProblemComplementsDAO.retrieveProblemLawyerIdsOfProblem(problem_temp);
-        User referredBy_user = UserDAO.retrieveUserByNRIC(referredBy);
-        String referredBy_username = referredBy_user.getUsername();
-
-        for (int i = 0; i < leadCaseWorkerList.size(); i++) {
-            ProblemLeadCaseWorker leadCaseWorker = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(i);
-            int lcwId = leadCaseWorker.getId();
-            String lcwName = leadCaseWorker.getLeadCaseWorker();
-            if (lcwName.equals(referredBy_username)) {
-                java.sql.Date lcwStart = leadCaseWorker.getLeadStart();
-                java.util.Date endDate = new java.util.Date();
-                java.sql.Date lcwEnd = new java.sql.Date(endDate.getTime());
-
-                leadCaseWorker = new ProblemLeadCaseWorker(lcwId, workerFin, jobKey, probKey, lcwName, lcwStart, lcwEnd);
-                ProblemComplementsDAO.updateProblemLeadCaseWorker(leadCaseWorker);
-            }
-        }
-
     }
 
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {

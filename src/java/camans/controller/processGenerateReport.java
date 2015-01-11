@@ -5,21 +5,26 @@
 package camans.controller;
 
 import camans.dao.ConnectionManager;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
@@ -42,49 +47,53 @@ public class processGenerateReport extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
             String reportType = request.getParameter("reportType");
             String reportYearStr = request.getParameter("year");
-            
-            
+
+            ServletOutputStream servletOutputStream = response.getOutputStream();
             HashMap map = new HashMap();
-            JasperPrint jasperPrint = null;
-            String printFileName = null;
-            Connection conn = ConnectionManager.getConnection();
-            if(reportYearStr != null && reportYearStr.length() > 0){
-            int reportYear = Integer.parseInt(reportYearStr);
-            map.put("year", reportYear);
-            }
             
-
-
-
-            if (reportType.equals("Case Summary")) {
-                //call method with parameter year
-                //JasperCompileManager.compileReportToFile("reports/CaseSummaryReport.jrxml");
-                JasperReport jasperReport = JasperCompileManager.compileReport("C:\\Users\\Nyein Su\\Desktop\\app\\camans\\reports\\CaseSummaryReport.jrxml");
-                jasperPrint = JasperFillManager.fillReport(jasperReport, map, conn);
-                
-            } else {
-                //call method with parameter year
-                //JasperDesign jd  = JRXmlLoader.load("C:\\Users\\Nyein Su\\Desktop\\app\\camans\\reports\\BenefitSummaryReport.jasper");
-                //JasperDesign jd  = JRXmlLoader.load("reports/BenefitSummaryReport.jasper");
-                jasperPrint = JasperFillManager.fillReport("C:\\Users\\Nyein Su\\Desktop\\app\\camans\\reports\\BenefitSummaryReport.jasper", map, conn);
+            Connection conn = ConnectionManager.getConnection();
+            if (reportYearStr != null && reportYearStr.length() > 0) {
+                int reportYear = Integer.parseInt(reportYearStr);
+                map.put("year", reportYear);
             }
-            JasperViewer jasperViewer = new JasperViewer(jasperPrint);
-            jasperViewer.setVisible(true);
-            //JasperExportManager.exportReportToPdfFile(jasperPrint,"C://sample_report.pdf");
-            //request.getSession().setAttribute("userLogin", user);
-            response.sendRedirect("home.jsp");
+
+
+            String filePath = null;
+            byte[] bytes = null;
+            
+            if (reportType.equals("Case Summary")) {
+                //get the file path
+                filePath = getServletContext().getRealPath("/reports/CaseSummaryReport.jasper");
+
+                //generate report
+                bytes = JasperRunManager.runReportToPdf(filePath, map,conn);
+
+
+            } else {
+                //get the file path
+                filePath = getServletContext().getRealPath("/reports/BenefitSummaryReport.jasper");
+                
+                //generate report
+                bytes = JasperRunManager.runReportToPdf(filePath, map, conn);
+                
+            }
+         
+            response.setContentType("application/pdf");
+            response.setContentLength(bytes.length);
+            servletOutputStream.write(bytes, 0, bytes.length);
+            servletOutputStream.flush();
+            servletOutputStream.close();
+           
         } catch (JRException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            out.close();
+           //out.close();
         }
     }
 
