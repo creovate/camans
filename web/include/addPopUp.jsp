@@ -117,8 +117,9 @@
                             max: 20,
                             message: 'Phone No must be less than 20 characters.'
                         },
-                        integer: {
-                            message: 'The value is not an integer'
+                        regexp: {
+                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
+                            message: 'This value can contain space,-,(),+ and digits only.'
                         },
                         notEmpty: {
                             message: 'Phone No. cannot be empty.'
@@ -148,10 +149,6 @@
                 //digitalcontact & remark for all
                 nDigitalContactType: {
                     validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Contact Type must be less than 20 characters.'
-                        },
                         notEmpty: {
                             message: 'Contact Type cannot be empty.'
                         }
@@ -242,8 +239,9 @@
                             max: 20,
                             message: 'Phone No must be less than 20 characters.'
                         },
-                        integer: {
-                            message: 'The value is not an integer'
+                        regexp: {
+                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
+                            message: 'This value can contain space,-,(),+ and digits only.'
                         }
                     }
                 },
@@ -282,18 +280,15 @@
                             max: 20,
                             message: 'Phone No must be less than 20 characters.'
                         },
-                        integer: {
-                            message: 'The value is not an integer'
+                        regexp: {
+                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
+                            message: 'Phone can contain space,-,(),+ and digits only.'
                         }
                     }
                 },
                 //language
                 nMainLanguage: {
                     validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Language must be less than 20 characters.'
-                        },
                         notEmpty: {
                             message: 'Language cannot be empty.'
                         }
@@ -400,58 +395,8 @@
             },
             fields: {
                 //pass details
-                passtype: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Pass Type must be less than 20 characters.'
-                        },
-                        notEmpty: {
-                            message: 'Pass Type cannot be empty.'
-                        }
-                    }
-                },
-                passtypeMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Pass Type must be less than 50 characters.'
-                        }
-                    }
-                },
-                passno: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Pass number must be less than 20 characters.'
-                        },
-                        notEmpty: {
-                            message: 'Pass number cannot be empty.'
-                        }
-                    }
-                },
-                issuer: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Agency name must be less than 20 characters.'
-                        }
-                    }
-                },
-                remark: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Remarks must be less than 200 characters.'
-                        }
-                    }
-                },
                 npasstype: {
                     validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Pass Type must be less than 20 characters.'
-                        },
                         notEmpty: {
                             message: 'Pass Type cannot be empty.'
                         }
@@ -493,49 +438,6 @@
                     }
                 },
                 //emp details
-                name: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'The name must be less than 50 characters.'
-                        },
-                        notEmpty: {
-                            message: 'The name cannot be empty.'
-                        }
-                    }
-                },
-                empid: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Employer ID must be less than 50 characters.'
-                        }
-                    }
-                },
-                address: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Address must be less than 200 characters.'
-                        }
-                    }
-                },
-                contact: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Contact details must be less than 200 characters.'
-                        }
-                    }
-                },
-                person: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Key person name must be less than 200 characters.'
-                        }
-                    }
-                },
                 nname: {
                     validators: {
                         stringLength: {
@@ -580,95 +482,6 @@
                     }
                 },
                 //employment contract
-                contdate: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Contract date cannot be empty.'
-                        }
-                    }
-                },
-                location: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'The name must be less than 50 characters.'
-                        }
-                    }
-                },
-                language: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Language must be less than 20 characters.'
-                        }
-                    }
-                },
-                opname: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'The name must be less than 50 characters.'
-                        },
-                        notEmpty: {
-                            message: 'The name cannot be empty.'
-                        }
-                    }
-                },
-                relationship: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Relationship must be less than 200 characters.'
-                        }
-                    }
-                },
-                occupation: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'occupation must be less than 200 characters.'
-                        }
-                    }
-                },
-                salary: {
-                    validators: {
-                        numeric: {
-                            message: 'Salary must be a number'
-                        }
-                    }
-                },
-                allowance: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'Allowance Details must be less than 500 characters.'
-                        }
-                    }
-                },
-                deduction: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'Deduction Details must be less than 500 characters.'
-                        }
-                    }
-                },
-                duration: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'Deduction Details must be less than 500 characters.'
-                        }
-                    }
-                },
-                duress: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'Deduction Details must be less than 500 characters.'
-                        }
-                    }
-                },
                 ncontdate: {
                     validators: {
                         notEmpty: {
@@ -763,119 +576,6 @@
                     }
                 },
                 //agent
-                company: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Company name must be less than 50 characters.'
-                        },
-                        notEmpty: {
-                            message: 'Company name cannot be empty.'
-                        }
-                    }
-                },
-                agperson: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Agent key person name must be less than 50 characters.'
-                        }
-                    }
-                },
-                aglocationMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Agent location must be less than 50 characters.'
-                        }
-                    }
-                },
-                amtowed: {
-                    validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
-                amtpaid: {
-                    validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
-                feeshared: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                feetraining: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Training expense details must be less than 50 characters.'
-                        }
-                    }
-                },
-                feeairfare: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Airfare fee must be less than 50 characters.'
-                        }
-                    }
-                },
-                feewhen: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                feewhere: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                feerepay: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Repayment plan must be less than 200 characters.'
-                        }
-                    }
-                },
-                emp: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Employer name must be less than 200 characters.'
-                        }
-                    }
-                },
-                agremark: {
-                    validators: {
-                        stringLength: {
-                            max: 1000,
-                            message: 'Employer name must be less than 1000 characters.'
-                        }
-                    }
-                },
                 ncompany: {
                     validators: {
                         stringLength: {
@@ -990,30 +690,6 @@
                     }
                 },
                 //verbal assurance
-                vaWhen: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                vaWhere: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                vaContent: {
-                    validators: {
-                        stringLength: {
-                            max: 1000,
-                            message: 'Content must be less than 1000 characters.'
-                        }
-                    }
-                },
                 nvaWhen: {
                     validators: {
                         stringLength: {
@@ -1039,92 +715,6 @@
                     }
                 },
                 //workplace
-                wpType: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Type cannot be empty.'
-                        }
-                    }
-                },
-                wpTypeMore: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Type must be less than 200 characters.'
-                        }
-                    }
-                },
-                whose: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                personDetails: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Key person details must be less than 200 characters.'
-                        }
-                    }
-                },
-                relation: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                direct: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                directMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                start: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                end: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                condition: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'Working conditions must be less than 500 characters.'
-                        }
-                    }
-                },
-                safety: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Safety issues must be less than 200 characters.'
-                        }
-                    }
-                },
                 nwpType: {
                     validators: {
                         notEmpty: {
@@ -1212,42 +802,6 @@
                     }
                 },
                 //work history
-                how: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                howMore: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                arrivalYear: {
-                    validators: {
-                        //gonna change it to year dropdown
-                    }
-                },
-                prevJob: {
-                    validators: {
-                        stringLength: {
-                            max: 1000,
-                            message: 'This field must be less than 1000 characters.'
-                        }
-                    }
-                },
-                prevProb: {
-                    validators: {
-                        stringLength: {
-                            max: 1000,
-                            message: 'This field must be less than 1000 characters.'
-                        }
-                    }
-                },
                 nhow: {
                     validators: {
                         notEmpty: {
@@ -1285,75 +839,6 @@
                     }
                 },
                 //accommodation
-                isProvided: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                isProvidedMore: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                typeMore: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                accCharged: {
-                    validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
-                accPaid: {
-                    validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
-                meal: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                from: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                to: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
                 nisProvided: {
                     validators: {
                         notEmpty: {
@@ -1431,113 +916,6 @@
                     }
                 },
                 //ipa
-                workpassType: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                workpassTypeMore: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                empName: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'The name must be less than 50 characters.'
-                        }
-                    }
-                },
-                agentName: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'The name must be less than 50 characters.'
-                        }
-                    }
-                },
-                industry: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Industry must be less than 20 characters.'
-                        }
-                    }
-                },
-                ipaoccupation: {
-                    validators: {
-                        stringLength: {
-                            max: 30,
-                            message: 'Occupation must be less than 30 characters.'
-                        }
-                    }
-                },
-                periods: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Period of pass must be less than 20 characters.'
-                        },
-                        numeric: {
-                            message: 'Period of pass must be a number.'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
-                basicSalary: {
-                    validators: {
-                        numeric: {
-                            message: 'Salary must be a number.'
-                        }
-                    }
-                },
-                totalAllowance: {
-                    validators: {
-                        numeric: {
-                            message: 'Total allowance must be a number.'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
-                allowanceDetails: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                deducation: {
-                    validators: {
-                        numeric: {
-                            message: 'Deducation must be a number.'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
-                deducationDetails: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
                 nworkpassType: {
                     validators: {
                         notEmpty: {
@@ -1665,21 +1043,6 @@
             },
             fields: {
                 //injury
-                date: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Date of injury cannot be empty.'
-                        }
-                    }
-                },
-                remark: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'Remarks must be less than 200 characters.'
-                        }
-                    }
-                },
                 ndate: {
                     validators: {
                         notEmpty: {
@@ -1713,9 +1076,8 @@
                 },
                 nhow: {
                     validators: {
-                        stringLength: {
-                            max: 1000,
-                            message: 'Body part(s) must be less than 1000 characters.'
+                        notEmpty: {
+                            message: 'Date of injury cannot be empty.'
                         }
                     }
                 },
@@ -1736,17 +1098,6 @@
                     }
                 },
                 //illness
-                startTime: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        },
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
                 nstartTime: {
                     validators: {
                         stringLength: {
@@ -1791,29 +1142,6 @@
                     }
                 },
                 //other case
-                other: {
-                    validators: {
-                        stringLength: {
-                            max: 1000,
-                            message: 'This field must be less than 1000 characters.'
-                        },
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                loss: {
-                    validators: {
-                        numeric: {
-                            message: 'Salary must be a number'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-
-                    }
-                },
                 nother: {
                     validators: {
                         stringLength: {
@@ -1836,64 +1164,7 @@
                         }
                     }
                 },
-                //trafficking
-                person: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'This field must be less than 20 characters.'
-                        }
-                    }
-                },
-                tipi81: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
-                        }
-                    }
-                },
-                tipi82: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
-                        }
-                    }
-                },
-                nperson: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'This field must be less than 20 characters.'
-                        }
-                    }
-                },
-                ntipi81: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
-                        }
-                    }
-                },
-                ntipi82: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
-                        }
-                    }
-                },
                 //salary claim
-                basis: {
-                    validators: {
-                        stringLength: {
-                            max: 1000,
-                            message: 'This field must be less than 1000 characters.'
-                        }
-                    }
-                },
                 nbasis: {
                     validators: {
                         stringLength: {
@@ -1903,38 +1174,6 @@
                     }
                 },
                 //wica claim & non wica claim
-                refNumber: {
-                    validators: {
-                        stringLength: {
-                            max: 30,
-                            message: 'Reference number must be less than 30 characters.'
-                        }
-                    }
-                },
-                insurer: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Insurance company name must be less than 50 characters.'
-                        }
-                    }
-                },
-                policyNumber: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Insurance policy no must be less than 50 characters.'
-                        }
-                    }
-                },
-                reason: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
                 nrefNumber: {
                     validators: {
                         stringLength: {
@@ -1992,73 +1231,7 @@
                         }
                     }
                 },
-                policeReportStation: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'Police station name must be less than 50 characters.'
-                        }
-                    }
-                },
-                policeReportRefNumber: {
-                    validators: {
-                        stringLength: {
-                            max: 30,
-                            message: 'Reference Number must be less than 30 characters.'
-                        }
-                    }
-                },
-                policeReportDetails: {
-                    validators: {
-                        stringLength: {
-                            max: 1000,
-                            message: 'This field must be less than 1000 characters.'
-                        }
-                    }
-                },
                 //other complaint
-                complaintAgency: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        },
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                complaintWho: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                compleintWhoMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                compaintModeMore: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                complaintDetails: {
-                    validators: {
-                        stringLength: {
-                            max: 1000,
-                            message: 'This field must be less than 1000 characters.'
-                        }
-                    }
-                },
                 ncomplaintAgency: {
                     validators: {
                         stringLength: {
@@ -2102,107 +1275,6 @@
                     }
                 },
                 //case discussion
-                discussionTime: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'This field must be less than 20 characters.'
-                        }
-                    }
-                },
-                discussionWhere: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                discussionWhereMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                discussionTWC2P1: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'This field must be less than 20 characters.'
-                        },
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                discussionTWC2P2: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                discussionOtherPerson: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                discussionTranslator: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                discussionTopic: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        },
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                discussionGist: {
-                    validators: {
-                        stringLength: {
-                            max: 1000,
-                            message: 'This field must be less than 1000 characters.'
-                        }
-                    }
-                },
-                discussionAssist: {
-                    validators: {
-                        stringLength: {
-                            max: 1000,
-                            message: 'This field must be less than 1000 characters.'
-                        }
-                    }
-                },
-                discussionCal: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
-                        }
-                    }
-                },
-                discussionAction: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
-                        }
-                    }
-                },
                 ndiscussionTime: {
                     validators: {
                         stringLength: {
@@ -2305,29 +1377,6 @@
                     }
                 },
                 //hospital
-                hospName: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                hospNameMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                hospDoctor: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
                 nhospName: {
                     validators: {
                         notEmpty: {
@@ -2352,28 +1401,6 @@
                     }
                 },
                 //mc
-                mcStatus: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                mcStatusMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                expCum: {
-                    validators: {
-                        integer: {
-                            message: 'This field must be a number.'
-                        }
-                    }
-                },
                 nmcStatus: {
                     validators: {
                         notEmpty: {
@@ -2397,111 +1424,6 @@
                     }
                 },
                 //r2r
-                r2rTime: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'This field must be less than 20 characters.'
-                        }
-                    }
-                },
-                r2rHosp: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'This field must be less than 20 characters.'
-                        },
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                r2rDept: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                r2r1: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'This field must be less than 20 characters.'
-                        }
-                    }
-                },
-                r2r2: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'This field must be less than 20 characters.'
-                        }
-                    }
-                },
-                r2rPurpose: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                r2rPreApptNotes: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                r2rPostApptNotes: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                r2rFeedback: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                r2rMed: {
-                    validators: {
-                        numeric: {
-                            message: 'This field must be a number.'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
-                r2rOut: {
-                    validators: {
-                        numeric: {
-                            message: 'This field must be a number.'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
-                nr2rTime: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'This field must be less than 20 characters.'
-                        }
-                    }
-                },
                 nr2rHosp: {
                     validators: {
                         stringLength: {
@@ -2592,43 +1514,6 @@
                     }
                 },
                 //wica status
-                wicaStatus: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                wicaStatusMore: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                wicaPoints: {
-                    validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
-                wicaDollars: {
-                    validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
                 nwicaStatus: {
                     validators: {
                         notEmpty: {
@@ -2667,29 +1552,6 @@
                     }
                 },
                 //lawyer
-                lawyerFirm: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                lawyerFirmMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                lawyerName: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
                 nlawyerFirm: {
                     validators: {
                         notEmpty: {
@@ -2729,21 +1591,6 @@
                         }
                     }
                 },
-                milestoneNCReached: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                milestoneNCReachedMore: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
                 //criminal milestone
                 nmilestoneCRReached: {
                     validators: {
@@ -2776,77 +1623,7 @@
                         }
                     }
                 },
-                milestoneCRReached: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                milestoneCRReachedMore: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                milestoneCRCharges: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                milestoneCRSentence: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
                 //ttr
-                ttrStatus: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                ttrStatusMore: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
-                ttrDepartureDate: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                ttrEmployerName: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                ttrJob: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                },
                 nttrStatus: {
                     validators: {
                         notEmpty: {
@@ -2887,32 +1664,6 @@
                     }
                 },
                 //aggravating issues
-                aggravissueType: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                aggravissueTypeMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                aggravLoss: {
-                    validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
                 naggravissueType: {
                     validators: {
                         notEmpty: {
@@ -2940,13 +1691,6 @@
                     }
                 },
                 //leadcase worker
-                leadCaseWorkerName: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
                 nleadCaseWorkerName: {
                     validators: {
                         notEmpty: {
@@ -2955,13 +1699,6 @@
                     }
                 },
                 //auxiliary caseworker
-                auxiliaryCaseWorkerName: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
                 nauxiliaryCaseWorkerName: {
                     validators: {
                         notEmpty: {
@@ -2970,87 +1707,6 @@
                     }
                 },
                 //salary related
-                basisSal: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
-                        },
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                overtime: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
-                        }
-                    }
-                },
-                allowance: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
-                        }
-                    }
-                },
-                deduction: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
-                        }
-                    }
-                },
-                kickbacks: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
-                        }
-                    }
-                },
-                otherSal: {
-                    validators: {
-                        stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
-                        }
-                    }
-                },
-                modeMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                totalLoss: {
-                    validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
-                oneYearLoss: {
-                    validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
-                        regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                            message: 'This value must have maximum 2 decimal place.'
-                        }
-                    }
-                },
                 nbasisSal: {
                     validators: {
                         stringLength: {
@@ -3151,21 +1807,6 @@
 
     });
 
-    //explain if above is Other
-    /**function displayOther(div_id) {
-     var div = document.getElementById(div_id);
-     
-     if (document.getElementById(div_id).value == 'Other') {
-     var other_div = div_id + "_other_div";
-     //document.getElementById(other_div).style.display = 'block';
-     $("#" + other_div).show();
-     }else{
-     var other_div = div_id + "_other_div";
-     //document.getElementById(other_div).style.display = 'block';
-     $("#" + other_div).hide();
-     }
-     };**/
-
     //hide the year dropdwon
     function hideOther(div_id) {
         var div = document.getElementById(div_id);
@@ -3194,8 +1835,8 @@
         $('.cancel_btn').addClass('pull-right');
         $('.form-control').addClass('input-sm');
     });
-    
-    
+
+
 </script>
 
 <%
@@ -3431,12 +2072,13 @@
             <div class='form-group'>
                 <label for='nDigitalContactType' class="control-label">Type of Digital Contact<span style="color: red">*</span>: </label>
                 <br/>
-                <select class="form-control" id="digitalContactType" name="nDigitalContactType" required onchange="displayOther(this.id);">
+                <select class="form-control" id="digitalContactType" name="nDigitalContactType">
+                    <option value="">Select Contact Type:</option>
                     <%
                         for (String contactType : digitalContactList) {
 
                     %>
-                    <option><%=contactType%></option>
+                    <option value="<%=contactType%>"><%=contactType%></option>
                     <%
 
                         }
@@ -3445,9 +2087,8 @@
             </div>
 
             <div class="form-group" id="digitalContactType_other_div">
-                <label for="nDigitalMore" class="col-md-3 control-label">Explain if above is 'Other':</label>
-                <div class=" col-md-6">
-                    <input type="text" id="digitalContactType_other_In" class="form-control" name="nDigitalMore"/></div>
+                <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
+                <textarea class="form-control" name="nDigitalMore" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nDigitalDetails' class="control-label">Email/QQ Address or other details<span style="color: red">*</span>: </label>
@@ -3672,11 +2313,12 @@
             <div class='form-group'>
                 <label for='nMainLanguage' class="control-label">Worker's Main Language<span style="color: red">*</span>: </label>
                 <br/>
-                <select class="form-control" id="mainLang" name="nMainLanguage" onchange="displayOther(this.id);">
+                <select class="form-control" id="mainLang" name="nMainLanguage">
+                    <option value="">Select Language:</option>
                     <%
                         for (String languageType : languageList) {
                     %>
-                    <option><%=languageType%></option>
+                    <option value="<%=languageType%>"><%=languageType%></option>
                     <%
 
                         }
@@ -3684,18 +2326,19 @@
                 </select>
             </div>
             <div class="form-group" id="mainLang_other_div" >
-                <label for="nLanguageMore" class="col-md-3 control-label">Explain if above is 'Other'</label>
-                <div class=" col-md-6">
-                    <input type="text" id="digitalContactType_other_In" class="form-control" name="nLanguageMore"/></div>
+                <label for="nLanguageMore" class="control-label">Explain if above is 'Other'</label>
+                <br/>
+                <textarea class="form-control" name="nLanguageMore" rows="3"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nEnglishStandard' class="control-label">Spoken English Standard<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nEnglishStandard">
+                    <option value="">Select English Standard:</option>
                     <%
                         for (String engStd : spokenEnglishList) {
                     %> 
-                    <option><%=engStd%></option>
+                    <option value="<%=engStd%>"><%=engStd%></option>
                     <%
 
 
@@ -3809,11 +2452,12 @@
             <div class='form-group'>
                 <label for='npasstype' class="control-label">Pass Type<span style="color: red">*</span>:</label>
                 <br/>
-                <select class="form-control" id="passtype" name="npasstype" onchange="displayOther(this.id);">
+                <select class="form-control" id="passtype" name="npasstype">
+                    <option value="">Select from list:</option>
                     <%
                         for (String workpassType : workpassTypes) {
                     %>
-                    <option><%=workpassType%></option>
+                    <option value="<%=workpassType%>"><%=workpassType%></option>
                     <%
 
                         }
@@ -4034,11 +2678,12 @@
             <div class='form-group'>
                 <label for='nlocation' class="control-label">Location of Agent: </label>
                 <br/>
-                <select class="form-control" id="agentLocation" name="naglocation" onchange="displayOther(this.id);">
+                <select class="form-control" id="agentLocation" name="naglocation">
+                    <option value="">Select from list:</option>
                     <%
                         for (String agentLocation : agentLocations) {
                     %>
-                    <option><%=agentLocation%></option>
+                    <option value="<%=agentLocation%>"><%=agentLocation%></option>
                     <%
 
                         }
@@ -4194,11 +2839,12 @@
             <div class='form-group'>
                 <label for='nwpType' class="control-label">Type of Workplace<span style="color: red">*</span>:</label>
                 <br/>
-                <select class="form-control" id="workplaceType" name="nwpType" onchange="displayOther(this.id);">
+                <select class="form-control" id="workplaceType" name="nwpType" >
+                    <option value="">Select from list:</option>
                     <%
                         for (String type : workplaceTypes) {
                     %>
-                    <option><%=type%></option>
+                    <option value="<%=type%>"><%=type%></option>
                     <%
 
                         }
@@ -4229,11 +2875,12 @@
             <div class='form-group'>
                 <label for='ndirect' class="control-label">Who directed worker to this workplace?<span style="color: red">*</span>: </label>
                 <br/>
-                <select class="form-control" id="direct" name="ndirect" onchange="displayOther(this.id);">
+                <select class="form-control" id="direct" name="ndirect" >
+                    <option value="">Select from list:</option>
                     <%
                         for (String workplacedirect : workplacedirects) {
                     %>
-                    <option><%=workplacedirect%></option>
+                    <option value="<%=workplacedirect%>"><%=workplacedirect%></option>
                     <%
 
                         }
@@ -4298,11 +2945,12 @@
             <div class='form-group'>
                 <label for='nhow' class="control-label">How did worker get into job defined in Job Profile?<span style="color: red">*</span>:</label>
                 <br/>
-                <select class="form-control" id="workhistHow" name="nhow" onchange="displayOther(this.id);">
+                <select class="form-control" id="workhistHow" name="nhow" >
+                    <option value="">Select from list:</option>
                     <%
                         for (String type : workhist) {
                     %>
-                    <option><%=type%></option>
+                    <option value="<%=type%>"><%=type%></option>
                     <%
 
                         }
@@ -4380,13 +3028,18 @@
             <div class='form-group'>
                 <label for='nisProvided' class="control-label">Accommodation provided by employer?<span style="color: red">*</span>:</label>
                 <br/>
-                <select class="form-control" id="accomProvided" name="nisProvided"  onchange="displayOther(this.id);">
+                <select class="form-control" id="accomProvided" name="nisProvided"  >
                     <%
                         for (String accomProvided : accomProvideds) {
+                            if(accomProvided.equals("Provided")){
+                                %>
+                                <option selected><%=accomProvided%></option>
+                    <%
+                            }else{
                     %>
                     <option><%=accomProvided%></option>
                     <%
-
+                            }
                         }
                     %>  
                 </select>
@@ -4401,11 +3054,12 @@
                 <label for='ntype' class="control-label">Type of Accommodation:</label>
                 <br/>
 
-                <select class="form-control" id="accomType" name="ntype"  onchange="displayOther(this.id);">
+                <select class="form-control" id="accomType" name="ntype"  >
+                    <option value="">Select from list:</option>
                     <%
                         for (String accomtype : accomTypes) {
                     %>
-                    <option><%=accomtype%></option>
+                    <option value="<%=accomtype%>"><%=accomtype%></option>
                     <%
 
                         }
@@ -4490,11 +3144,12 @@
             <div class='form-group'>
                 <label for='nworkpassType' class="control-label">Workpass specified in IPA<span style="color: red">*</span>:</label>
                 <br/>
-                <select class="form-control" id="ipapassType" name="nworkpassType" onchange="displayOther(this.id);">
+                <select class="form-control" id="ipapassType" name="nworkpassType">
+                    <option value="">Select from list:</option>
                     <%
                         for (String ipatype : ipatypes) {
                     %>
-                    <option><%=ipatype%></option>
+                    <option value="<%=ipatype%>"><%=ipatype%></option>
                     <%
 
                         }
@@ -4676,9 +3331,15 @@
             <select class="form-control" id="complaintWho" name="ncomplaintWho">
                 <%
                     for (String complaintType : complaintWho) {
+                        if(complaintType.equals("Worker")){
+                            %>
+                            <option selected><%=complaintType%></option>
+                            <%
+                        }else{
                 %>
                 <option><%=complaintType%></option>
-                <%}%>  
+                <%}
+                    }%>  
             </select>
         </div>
 
@@ -4690,11 +3351,12 @@
         <div class='form-group'>
             <label for='complaintMode' class="control-label">Mode of lodging complaint:</label>
             <br/>
-            <select class="form-control" id="complaintMode" name="ncomplaintMode" onchange="displayOther(this.id);">
+            <select class="form-control" id="complaintMode" name="ncomplaintMode" >
+                <option value="">Select from list:</option>
                 <%
                     for (String complaintM : complaintMode) {
                 %>
-                <option><%=complaintM%></option>
+                <option value="<%=complaintM%>"><%=complaintM%></option>
                 <%
 
                     }
@@ -4747,11 +3409,12 @@
         <div class='form-group'>
             <label for='nttrStatus' class="control-label">Transfer, TJS or Repatriation Status<span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="ttrStatus" name="nttrStatus" onchange="displayOther(this.id);">
+            <select class="form-control" id="ttrStatus" name="nttrStatus" >
+                <option value="">Select from list:</option>
                 <%
                     for (String tempStatus : ttrList) {
                 %>
-                <option><%=tempStatus%></option>
+                <option value="<%=tempStatus%>"><%=tempStatus%></option>
                 <%
 
                     }
@@ -4819,10 +3482,11 @@
             <label for='nmilestoneCRReached' class="control-label">Miestone Reached: <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneCRReached">
+                <option value="">Select from list:</option>
                 <%
                     for (String reached : crList) {
                 %>
-                <option><%=reached%></option>
+                <option value="<%=reached%>"><%=reached%></option>
                 <%
 
                     }
@@ -4883,11 +3547,12 @@
         <div class='form-group'>
             <label for='nmilestoneNCReached' class="control-label">Milestone Reached: <span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="ncReached" name="nmilestoneNCReached" onchange="displayOther(this.id);">
+            <select class="form-control" id="ncReached" name="nmilestoneNCReached" >
+                <option value="">Select from list:</option>
                 <%
                     for (String reached : ncList) {
                 %>
-                <option><%=reached%></option>
+                <option value="<%=reached%>"><%=reached%></option>
                 <%
 
                     }
@@ -4921,7 +3586,7 @@
 </form>
 
 <!------->
-<!--TTR-->
+<!--Trafficking-->
 <!------->
 <%} else if (complement.equals("trafficking")) {
 %>
@@ -5330,13 +3995,14 @@
             <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Current MC/Light Duty Status<span style="color: red">*</span>:</label>
+            <label for='' class="control-label">Current MC or Light Duty Status<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nmcStatus" name="nmcStatus">
+                <option value="">Select from list:</option>
                 <%
                     for (String statusObj : statusList) {
                 %>
-                <option><%=statusObj%></option>
+                <option value="<%=statusObj%>"><%=statusObj%></option>
                 <%
 
                     }
@@ -5396,10 +4062,11 @@
         <div class='form-group'>
             <label for='' class="control-label">Current Hospital<span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="nhospName" name="nhospName" onchange="displayOther(this.id);">
+            <select class="form-control" id="nhospName" name="nhospName" >
+                <option value="">Select from list:</option>
                 <%            for (String name : names) {
                 %>
-                <option><%=name%></option>
+                <option value="<%=name%>"><%=name%></option>
                 <%
 
                     }
@@ -5504,11 +4171,12 @@
         <div class='form-group'>
             <label for='nwicaStatus' class="control-label">WICA Status <span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="nwicaStatus" name="nwicaStatus" onchange="displayOther(this.id);">
+            <select class="form-control" id="nwicaStatus" name="nwicaStatus" >
+                <option value="">Select from list:</option>
                 <%
                     for (String tempStatus : wicaList) {
                 %>
-                <option><%=tempStatus%></option>
+                <option value="<%=tempStatus%>"><%=tempStatus%></option>
                 <%
 
                     }
@@ -5777,11 +4445,12 @@
         <div class='form-group'>
             <label for='' class="control-label">Mode/Location of Discussion, Assistance or Information-Receipt<span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="discussionWhere" name="ndiscussionWhere" onchange="displayOther(this.id);">
+            <select class="form-control" id="discussionWhere" name="ndiscussionWhere" >
+                <option value="">Select from list:</option>
                 <%
                     for (String location : locations) {
                 %>
-                <option><%=location%></option>
+                <option value="<%=location%>"><%=location%></option>
                 <%
 
                     }
@@ -5952,11 +4621,12 @@
             <div class='form-group'>
                 <label for='nmode' class="control-label">Mode of Salary Payment</label>
                 <br/>
-                <select class="form-control" id="mode" name="nmode" onchange="displayOther(this.id);">
+                <select class="form-control" id="mode" name="nmode" >
+                    <option value="">Select from list:</option>
                     <%
                         for (String pmode : modeOfPayment) {
                     %>
-                    <option><%=pmode%></option>
+                    <option value="<%=pmode%>"><%=pmode%></option>
                     <%
 
                         }
@@ -6015,11 +4685,12 @@
         <div class='form-group'>
             <label for='lawyerFirm' class="control-label">Current Law Firm<span style="color: red">*</span>: </label>
             <br/>
-            <select class="form-control" id="nlawyerFirm" name="nlawyerFirm" onchange="displayOther(this.id);">
+            <select class="form-control" id="nlawyerFirm" name="nlawyerFirm" >
+                <option value="">Select from list:</option>
                 <%
                     for (String lawFirmName : lawFirmNameList) {
                 %>
-                <option><%=lawFirmName%></option>
+                <option value="<%=lawFirmName%>"><%=lawFirmName%></option>
                 <%
                     }
                 %>
@@ -6068,10 +4739,11 @@
                 <label for='nauxiliaryCaseWorkerName' class="control-label">Auxiliary Caseworker<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nauxiliaryCaseWorkerName">
+                    <option value="">Select from list:</option>
                     <%
                         for (String auxiliaryCaseWorkerName : auxiliaryCaseworkerNameList) {
                     %>
-                    <option><%=auxiliaryCaseWorkerName%></option>
+                    <option value="<%=auxiliaryCaseWorkerName%>"><%=auxiliaryCaseWorkerName%></option>
                     <%
 
                         }
@@ -6118,9 +4790,11 @@
                 <label for='nleadCaseWorkerName' class="control-label">Lead Caseworker<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nleadCaseWorkerName">
-                    <%            for (String leadCaseWorkerName : leadCaseWorkerNameList) {
+                    <option value="">Select from list:</option>
+                    <%            
+    for (String leadCaseWorkerName : leadCaseWorkerNameList) {
                     %>
-                    <option><%=leadCaseWorkerName%></option>
+                    <option value="<%=leadCaseWorkerName%>"><%=leadCaseWorkerName%></option>
                     <%
 
                         }
@@ -6167,11 +4841,12 @@
             <div class='form-group'>
                 <label for='naggravissueType' class="control-label">Aggravating issue<span style="color: red">*</span>:</label>
                 <br/>
-                <select class="form-control" id="aggravissueType" name="naggravissueType" onchange="displayOther(this.id);">
+                <select class="form-control" id="aggravissueType" name="naggravissueType" >
+                    <option value="">Select from list:</option>
                     <%
                         for (String aggravissueType : problemTypes) {
                     %>
-                    <option><%=aggravissueType%></option>
+                    <option value="<%=aggravissueType%>"><%=aggravissueType%></option>
                     <%
 
                         }

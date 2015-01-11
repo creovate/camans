@@ -82,13 +82,13 @@
                 var curr_div_id = "#" + curr_id;
                 var val = 0;
                 var missing_input_field = "";
-                if(num === 1){
-                $('.required',curr_div_id).each(function() {
-                    if (this.value.trim() === '') {
-                        missing_input_field = $(this).attr('name');
-                        val = 1;
-                    }
-                });
+                if (num === 1) {
+                    $('.required', curr_div_id).each(function() {
+                        if (this.value.trim() === '') {
+                            missing_input_field = $(this).attr('name');
+                            val = 1;
+                        }
+                    });
                 }
                 if (val === 0) {
                     $('.sub_div').hide();
@@ -105,11 +105,11 @@
                     //$('.next_btn').prop('disabled',false);
                 } else {
                     //$('.next_btn').prop('disabled',true);
-                    if(missing_input_field === "finNum"){
+                    if (missing_input_field === "finNum") {
                         alert("FIN Number is required.");
-                    }else if(missing_input_field === "workerName"){
+                    } else if (missing_input_field === "workerName") {
                         alert("Worker Name is required.")
-                    }else if(missing_input_field === 'employerName'){
+                    } else if (missing_input_field === 'employerName') {
                         alert("Employer Name is required.")
                     }
                     //alert("Some fields are missing. Please enter all the required fields.");
@@ -215,10 +215,11 @@
                             <label for="worker_nationality" class="col-md-3 control-label">Nationality</label>
                             <div class="col-md-6">
                                 <select class="form-control" id="worker_nationality" name="nationality" onchange="displayOther(this.id);"/>
+                                <option value="">Select Nationality:</option>
                                 <%
                                     for (String nationalityStr : nationalityList) {
                                 %>
-                                <option><%=nationalityStr%></option>
+                                <option value="<%=nationalityStr%>"><%=nationalityStr%></option>
                                 <%
                                     }
                                 %>                                               
@@ -266,11 +267,12 @@
                         <div class="form-group">
                             <label for="job_pass_type" class="col-md-3 control-label">Work pass type that comes with the job<span class="required_input">*</span></label>
                             <div class=" col-md-6">
-                                <select name="workpassType" class="form-control" id="job_pass_type" onchange="displayOther(this.id);">
+                                <select name="workpassType" class="form-control" id="job_pass_type">
+                                    <option value="">Select Work Pass Type:</option>
                                     <%
                                         for (String passTypeStr : passTypeList) {
                                     %>
-                                    <option><%=passTypeStr%></option>
+                                    <option value="<%=passTypeStr%>"><%=passTypeStr%></option>
                                     <%
                                         }
                                     %>   
@@ -280,7 +282,7 @@
 
 
                         <!--this to appear only if above is selected as other-->
-                        <div class="form-group" id="job_pass_type_other_div" style="display:none">
+                        <div class="form-group" id="job_pass_type_other_div">
                             <label for="job_pass_type_other_In" class="col-md-3 control-label">Explain if above is 'Other'</label>
                             <div class=" col-md-6">
                                 <input type="text" class="form-control" name="workpassMore"/></div>
@@ -291,10 +293,11 @@
                             <label for="job_sector" class="col-md-3 control-label">Job Sector</label>
                             <div class=" col-md-6">
                                 <select class="form-control" name="jobSector" id="job_sector" onchange="displayOther(this.id);" >
+                                    <option value="">Select Job Sector:</option>
                                     <%
                                         for (String jobSectorStr : jobSectorList) {
                                     %>
-                                    <option><%=jobSectorStr%></option>
+                                    <option value="<%=jobSectorStr%>"><%=jobSectorStr%></option>
                                     <%
                                         }
                                     %>   
@@ -304,7 +307,7 @@
 
 
                         <!--this to appear only if above is selected as other-->
-                        <div class="form-group" id="job_sector_other_div" style="display:none">
+                        <div class="form-group" id="job_sector_other_div">
                             <label for="job_sector_other_In" class="col-md-3 control-label">Explain if above is other</label>
                             <div class=" col-md-6">
                                 <input type="text" class="form-control" name="jobSectorMore" /></div>
@@ -342,7 +345,7 @@
 
 
                         <div class="form-group" id="job_sector_other_div">
-                            <label for="job_remark" class="col-md-3 control-label">Remark</label>
+                            <label for="job_remark" class="col-md-3 control-label">Remark about Job:</label>
                             <div class=" col-md-6">
                                 <input type="text" class="form-control" name="jobRemark"/> 
                             </div>
@@ -366,13 +369,14 @@
                         <br/>
 
                         <div class="form-group">
-                            <label for="prob_type" class="col-md-3 control-label">Problem Type<span class="required_input">*</span></label>
+                            <label for="prob_type" class="col-md-3 control-label">Problem Presented<span class="required_input">*</span></label>
                             <div class=" col-md-6"> 
-                                <select name="problem" id="prob_type" class="form-control" onchange="displayOther(this.id);">
+                                <select name="problem" id="prob_type" class="form-control">
+                                    <option value="">Select Problem:</option>
                                     <%
                                         for (String problemStr : problemList) {
                                     %>
-                                    <option><%=problemStr%></option>
+                                    <option value="<%=problemStr%>"><%=problemStr%></option>
                                     <%
                                         }
                                     %>                   
@@ -382,7 +386,7 @@
 
 
                         <!--this to appear only if above is selected as other-->
-                        <div class="form-group" id="prob_type_other_div" style="display:none">
+                        <div class="form-group" id="prob_type_other_div">
                             <label for="worker_pass_type_other_In" class="col-md-3 control-label">Explain if above is other</label>
                             <div class=" col-md-6">
                                 <input type="text" class="form-control" name="problemMore" /></div>
@@ -390,7 +394,7 @@
 
 
                         <div class="form-group" id="job_sector_other_div" >
-                            <label for="prob_remark" class="col-md-3 control-label">Remark</label>
+                            <label for="prob_remark" class="col-md-3 control-label">Remark about Problem:</label>
                             <div class=" col-md-6">
                                 <input type="text" class="form-control" name="problemRemark" /></div>
                         </div>
@@ -529,38 +533,48 @@
     </body>
 </html>
 <script>
-
+            
             //form validation 
             $(document).ready(function() {
 
-
-                $('#createworker_form')
-                        .bootstrapValidator({
-                    fields: {
-                        //worker
-                        workerName: {
-                            validators: {
+            
+                    $('#createworker_form')
+            .bootstrapValidator({
+            fields: {
+            //worker
+            workerName: {
+            validators: {
+            notEmpty: {
+            message: 'This field cannot be empty.'
+                    },
+            stringLength: {
+                    max: 50,
+            message: 'This field must be less than 50 characters.'
+            }
+            }
+                    },
+            finNum: {
+            validators: {
+            stringLength: {
+                                    max: 12,                       message: 'This field must be less than 12 characters.'
+                                },
                                 notEmpty: {
                                     message: 'This field cannot be empty.'
                                 },
-                                stringLength: {
-                                    max: 50,
-                                    message: 'This field must be less than 50 characters.'
-                                }
-                            }
-                        },
-                        finNum: {
-                            validators: {
-                                stringLength: {
-                                    max: 12,
-                                    message: 'This field must be less than 12 characters.'
-                                },
-                                notEmpty: {
-                                    message: 'This field cannot be empty.'
-                                },
-                                regexp: {
-                                    regexp: /^[A-Z][0-9]{7}[A-Z]/,
-                                    message: 'FIN must start with an alphabet followed by 7 digits and ends with an alphabet.'
+                                callback: {
+                                    message: 'Wrong answer',
+                                    callback: function(value, validator, $field) {
+                                        var finType1 = /^[G][0-9]{7}[A-Z]$/;
+                                        var finType2 = /^GEN[0-9]{6}$/;
+                                        var finType1Res = finType1.test(value);
+                                        if (finType1.test(value) === false && finType2.test(value) === false) {
+                                            return {
+                                                valid: false,
+                                                message: 'FIN number is incorrect. Please Check again.'
+                                            };
+                                        }
+                                        return true;
+                                    }
                                 },
                                 remote: {
                                     message: 'The FIN Number already exists.',
@@ -598,6 +612,13 @@
                                 stringLength: {
                                     max: 50,
                                     message: 'This field must be less than 50 characters.'
+                                }
+                            }
+                        },
+                        workpassType: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'This field cannot be empty.'
                                 }
                             }
                         },
@@ -654,6 +675,13 @@
                             }
                         },
                         //problem profile
+                         problem: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'This field cannot be empty.'
+                                }
+                            }
+                        },
                         problemMore: {
                             validators: {
                                 stringLength: {
@@ -674,6 +702,7 @@
 
                 });
 
+
             });
 
 
@@ -685,13 +714,20 @@
                     url: "generateTWC2Fin.do",
                     success: function(msg)
                     {
-                        $("#fin").html("<input type=\"text\" id=\"finNum\" class=\"form-control\" name=\"finNum\" value="
-                                + msg + "/>").fadeIn("slow");
+
+                        var elem = document.getElementById("finNum");
+                        elem.value = msg;
+                        //document.getElementById("fin").value = msg;
+                        // $("#fin").html("<input type=\"text\" id=\"finNum\" class=\"form-control\" name=\"finNum\" value="
+                        // + msg + "/>").fadeIn("slow");
                         //$("#finButton").html("<button type=\"button\" id=\"inputFin\" class=\"btn btn-default\">" + 
                         //     "Input Fin</button>");
+                        $('#createworker_form').formValidation('revalidateField', 'finNum');
+
                     }
                 });
             });
+
 
 
 </script>  

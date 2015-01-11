@@ -35,12 +35,21 @@
 
         <link rel="shortcut icon" href="img/twc_logo.png">
         <title>Camans : Reports</title>
-        
+
         <style>
             .col-md-1{
                 width:10vw;
             }
         </style>
+        <script>
+            //year dropdown
+            $(document).ready(function() {
+                for (i = new Date().getFullYear(); i > 2000; i--)
+                {
+                    $('#year').append($('<option />').val(i).html(i));
+                }
+            });
+        </script>
     </head>
     <body id="report">
         <jsp:include page="include/navbartop.jsp"/>
@@ -48,25 +57,22 @@
 
         <div class="col-md-10" id="content">
             <br/>
-            <form method="POST" action="generateReport.do" class="form col-sm-12">
-                    <label class="col-md-1" for="reportType">Report Type: </label>
-                    <div class="col-md-3">
-                        <select class="form-control" id="reportType" name="reportType"> 
-                            <option disabled selected>Choose a report type..</option>
-                            <option>Case Summary</option>
-                            <option>Benefit Summary</option>
-                        </select>
-                    </div>
-                    <label class="col-md-1 text-right" for="year">Year: </label>
-                    <div class="col-md-3">
-                        <select class="form-control" id="year" name="year"> 
-                            <option disabled selected>Year..</option>
-                            <option>2013</option>
-                            <option>2014</option>
-                            <option>2015</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-default">Generate Report</button>
+            <form method="POST" action="generateReport.do" id="report_generate_form" class="form col-sm-12">
+                <label class="col-md-1" for="reportType">Report Type: </label>
+                <div class="col-md-3">
+                    <select class="form-control" id="reportType" name="reportType" required> 
+                        <option value="" disabled selected>Choose a report type..</option>
+                        <option value ="Case Summary">Case Summary</option>
+                        <option value ="Benefit Summary">Benefit Summary</option>
+                    </select>
+                </div>
+                <label class="col-md-1 text-right" for="year">Year: </label>
+                <div class="col-md-3">
+                    <select class="form-control" id="year" name="year" required> 
+                        <option value="" disabled selected>Year..</option>
+                    </select>
+                </div>
+                <button id="generateSubmitbtn" type="submit" class="btn btn-default">Generate Report</button>
             </form>
         </div>
     </body>

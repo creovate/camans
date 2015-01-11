@@ -4374,7 +4374,7 @@
         <div class='form-group'>
             <label for='isProvided' class="control-label">This complaint is lodged by<span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="complaintTypeView" name="complaintWho" onchange="displayOther(this.id);">
+            <select class="form-control" id="complaintTypeView" name="complaintWho" >
                 <%
                     for (String complaintT : complaintWho) {
                         if (who.equals(complaintT)) {
@@ -4402,7 +4402,7 @@
         <div class='form-group'>
             <label for='complaintMode' class="control-label">Complaint Mode:</label>
             <br/>
-            <select class="form-control" id="complaintModeView" name="complaintMode" onchange="displayOther(this.id);">
+            <select class="form-control" id="complaintModeView" name="complaintMode" >
                 <%
                     for (String complaintM : complaintMode) {
                         if (mode.equals(complaintM)) {
@@ -4468,10 +4468,13 @@
             <select class="form-control" id="complaintWho" name="ncomplaintWho">
                 <%
                     for (String complaintType : complaintWho) {
+                        if(complaintType.equals("Worker")){
+                            <option selected><%=complaintType%></option>
+                        }else{
                 %>
                 <option><%=complaintType%></option>
                 <%
-
+                        }
                     }
                 %>  
             </select>
@@ -4486,10 +4489,11 @@
             <label for='complaintMode' class="control-label">Mode of lodging complaint:</label>
             <br/>
             <select class="form-control" id="complaintMode" name="ncomplaintMode">
+                <option value="">Select from list:</option>
                 <%
                     for (String complaintM : complaintMode) {
                 %>
-                <option><%=complaintM%></option>
+                <option value="<%=compleintM%>"><%=complaintM%></option>
                 <%
 
                     }
@@ -4662,7 +4666,8 @@
         <div class='form-group'>
             <label for='discussionWhere' class="control-label">Mode/Location of Discussion, Assistance or Information-Receipt<span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="discussionWhere" name="discussionWhere" onchange="displayOther(this.id);">
+            <select class="form-control" id="discussionWhere" name="discussionWhere" >
+                
                 <%
                     for (String location : locations) {
                         if (dWhere.equals(location)) {
@@ -4770,11 +4775,12 @@
         <div class='form-group'>
             <label for='' class="control-label">Mode/Location of Discussion, Assistance or Information-Receipt<span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="discussionWhere" name="ndiscussionWhere" onchange="displayOther(this.id);">
+            <select class="form-control" id="discussionWhere" name="ndiscussionWhere">
+                <option value="">Select from list:</option>
                 <%
                     for (String location : locations) {
                 %>
-                <option><%=location%></option>
+                <option value="<%=location%>"><%=location%></option>
                 <%
 
                     }
@@ -4931,7 +4937,7 @@
         <div class='form-group'>
             <label for='discussionWhere' class="control-label">Current Hospital: <span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="hospName" name="hospName" onchange="displayOther(this.id);">
+            <select class="form-control" id="hospName" name="hospName" >
                 <%
                     for (String name : names) {
                         if (hospName.equals(name)) {
@@ -4988,11 +4994,12 @@
         <div class='form-group'>
             <label for='' class="control-label">Current Hospital<span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="nhospName" name="nhospName" onchange="displayOther(this.id);">
+            <select class="form-control" id="nhospName" name="nhospName">
+                <option value="">Select from list:</option>
                 <%
                     for (String name : names) {
                 %>
-                <option><%=name%></option>
+                <option value="<%=name%>"><%=name%></option>
                 <%
 
                     }
@@ -5107,7 +5114,7 @@
         <div class='form-group'>
             <label for='status' class="control-label">Current MC/Light Duty Status<span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="status" name="mcStatus" onchange="displayOther(this.id);">
+            <select class="form-control" id="status" name="mcStatus" >
                 <%
                     for (String statusObj : statusList) {
                         if (status.equals(statusObj)) {
@@ -5170,11 +5177,12 @@
         <div class='form-group'>
             <label for='' class="control-label">Current MC/Light Duty Status<span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="nmcStatus" name="nmcStatus" onchange="displayOther(this.id);">
+            <select class="form-control" id="nmcStatus" name="nmcStatus">
+                <option value="">Select from list:</option>
                 <%
                     for (String statusObj : statusList) {
                 %>
-                <option><%=statusObj%></option>
+                <option value="<%=statusObj%>"><%=statusObj%></option>
                 <%
 
                     }
@@ -5550,7 +5558,7 @@
         <div class='form-group'>
             <label for='wicaStatus' class="control-label">Wica Status: <span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="wicaStatus" name="wicaStatus" onchange="displayOther(this.id);">
+            <select class="form-control" id="wicaStatus" name="wicaStatus" >
                 <%
                     for (String tempStatus : wicaList) {
                         if (wStatus.equals(tempStatus)) {
@@ -5612,11 +5620,12 @@
         <div class='form-group'>
             <label for='nwicaStatus' class="control-label">WICA Status <span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="nwicaStatus" name="nwicaStatus" onchange="displayOther(this.id);">
+            <select class="form-control" id="nwicaStatus" name="nwicaStatus">
+                <option value="">Select from list:</option>
                 <%
                     for (String tempStatus : wicaList) {
                 %>
-                <option><%=tempStatus%></option>
+                <option value="<%=tempStatus%>"><%=tempStatus%></option>
                 <%
 
                     }
@@ -5735,7 +5744,7 @@
         <div class='form-group'>
             <label for='lawyerFirm' class="control-label">Current Law Firm<span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="nlawyerFirm" name="lawyerFirm" onchange="displayOther(this.id);">
+            <select class="form-control" id="nlawyerFirm" name="lawyerFirm" >
                 <%
                     for (String lawFirmName : lawFirmNameList) {
                         if (lawFirmName.equals(firm)) {
@@ -5789,11 +5798,12 @@
         <div class='form-group'>
             <label for='lawyerFirm' class="control-label">Current Law Firm<span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="nlawyerFirm" name="nlawyerFirm" onchange="displayOther(this.id);">
+            <select class="form-control" id="nlawyerFirm" name="nlawyerFirm" >
+                <option value="">Select from list:</option>
                 <%
                     for (String lawFirmName : lawFirmNameList) {
                 %>
-                <option><%=lawFirmName%></option>
+                <option value="<%=lawFirmName%>"><%=lawFirmName%></option>
                 <%
                     }
                 %>
@@ -5892,7 +5902,7 @@
         <div class='form-group'>
             <label for='milestoneNCReached' class="control-label">Milestone Reached: <span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="ncReached" name="milestoneNCReached" onchange="displayOther(this.id);">
+            <select class="form-control" id="ncReached" name="milestoneNCReached" >
                 <%
                     for (String reached : ncList) {
                         if (ncReached.equals(reached)) {
@@ -5917,7 +5927,7 @@
             <input class="form-control" type='text' name="milestoneNCReachedMore">
         </div>
         <div class='form-group'>
-            <label for='milestoneNCRem' class="control-label">Remarks: re Milestone Reached:</label>
+            <label for='milestoneNCRem' class="control-label">Remarks re Milestone Reached:</label>
             <br/>
             <textarea class="form-control" name="remark" rows="3"><%=ncRem%></textarea>
         </div>
@@ -5944,11 +5954,12 @@
         <div class='form-group'>
             <label for='nmilestoneNCReached' class="control-label">Milestone Reached: <span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="ncReached" name="nmilestoneNCReached" onchange="displayOther(this.id);">
+            <select class="form-control" id="ncReached" name="nmilestoneNCReached" >
+                <option value="">Select from list:</option>
                 <%
                     for (String reached : ncList) {
                 %>
-                <option><%=reached%></option>
+                <option value="<%=reached%>"><%=reached%></option>
                 <%
 
                     }
@@ -6059,7 +6070,7 @@
         <div class='form-group'>
             <label for='milestoneCRReached' class="control-label">Milestone Reached: <span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="crReached" name="milestoneCRReached" onchange="displayOther(this.id);">
+            <select class="form-control" id="crReached" name="milestoneCRReached" >
                 <%
                     for (String reached : crList) {
                         if (crReached.equals(reached)) {
@@ -6124,11 +6135,12 @@
         <div class='form-group'>
             <label for='nmilestoneCRReached' class="control-label">Miestone Reached: <span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="ncReached" name="nmilestoneCRReached" onchange="displayOther(this.id);">
+            <select class="form-control" id="ncReached" name="nmilestoneCRReached" >
+                <option value="">Select from list:</option>
                 <%
                     for (String reached : crList) {
                 %>
-                <option><%=reached%></option>
+                <option value="<%=reached%>"><%=reached%></option>
                 <%
 
                     }
@@ -6251,7 +6263,7 @@
         <div class='form-group'>
             <label for='ttrStatus' class="control-label">Transfer, TJS or Repatriation Status: <span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="ttrStatus" name="ttrStatus" onchange="displayOther(this.id);">
+            <select class="form-control" id="ttrStatus" name="ttrStatus" >
                 <%
                     for (String tempStatus : ttrList) {
                         if (status.equals(tempStatus)) {
@@ -6320,11 +6332,12 @@
         <div class='form-group'>
             <label for='nttrStatus' class="control-label">Transfer, TJS or Repatriation Status<span style="color: red">*</span>:</label>
             <br/>
-            <select class="form-control" id="nttrStatus" name="nttrStatus" onchange="displayOther(this.id);">
+            <select class="form-control" id="nttrStatus" name="nttrStatus" >
+                <option value="">Select from list:</option>
                 <%
                     for (String tempStatus : ttrList) {
                 %>
-                <option><%=tempStatus%></option>
+                <option value="<%=tempStatus%>"><%=tempStatus%></option>
                 <%
 
                     }
@@ -6436,11 +6449,12 @@
             <div class='form-group'>
                 <label for='naggravissueType' class="control-label">Aggravating issue<span style="color: red">*</span>:</label>
                 <br/>
-                <select class="form-control" id="naggravissueType" name="naggravissueType" onchange="displayOther(this.id);">
+                <select class="form-control" id="naggravissueType" name="naggravissueType">
+                    <option value="">Select from list:</option>
                     <%
                         for (String aggravissueType : problemTypes) {
                     %>
-                    <option><%=aggravissueType%></option>
+                    <option value="<%=aggravissueType%>"><%=aggravissueType%></option>
                     <%
 
                         }
@@ -6479,7 +6493,7 @@
             <div class='form-group'>
                 <label for='aggravissueType' class="control-label">Aggravating issue<span style="color: red">*</span>:</label>
                 <br/>
-                <select class="form-control" id="aggravissueType" name="aggravissueType" onchange="displayOther(this.id);">
+                <select class="form-control" id="aggravissueType" name="aggravissueType" >
                     <%
                         for (String provided : problemTypes) {
                             if (type.equals(provided)) {
@@ -6585,10 +6599,11 @@
                 <label for='nleadCaseWorkerName' class="control-label">Lead Caseworker<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nleadCaseWorkerName">
+                    <option value="">Select from list:</option>
                     <%
                         for (String leadCaseWorkerName : leadCaseWorkerNameList) {
                     %>
-                    <option><%=leadCaseWorkerName%></option>
+                    <option value="<%=leadCaseWorkerName%>"><%=leadCaseWorkerName%></option>
                     <%
 
                         }
@@ -6722,10 +6737,11 @@
                 <label for='nauxiliaryCaseWorkerName' class="control-label">Auxiliary Caseworker<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nauxiliaryCaseWorkerName">
+                    <option value="">Select from list:</option>
                     <%
                         for (String auxiliaryCaseWorkerName : auxiliaryCaseworkerNameList) {
                     %>
-                    <option><%=auxiliaryCaseWorkerName%></option>
+                    <option value="<%=auxiliaryCaseWorkerName%>"><%=auxiliaryCaseWorkerName%></option>
                     <%
 
                         }
@@ -6934,11 +6950,12 @@
             <div class='form-group'>
                 <label for='nmode' class="control-label">Mode of Salary Payment</label>
                 <br/>
-                <select class="form-control" id="nmode" name="nmode" onchange="displayOther(this.id);">
+                <select class="form-control" id="nmode" name="nmode">
+                    <option value="">Select from list:</option>
                     <%
                         for (String pmode : modeOfPayment) {
                     %>
-                    <option><%=pmode%></option>
+                    <option value="<%=pmode%>"><%=pmode%></option>
                     <%
 
                         }
@@ -7011,7 +7028,7 @@
             <div class='form-group'>
                 <label for='mode' class="control-label">Mode of Salary Payment</label>
                 <br/>
-                <select class="form-control" id="mode" name="mode" onchange="displayOther(this.id);">
+                <select class="form-control" id="mode" name="mode" >
                     <%
                         for (String provided : modeOfPayment) {
                             if (mode.equals(provided)) {
