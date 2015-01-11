@@ -1,5 +1,9 @@
 camans
 ======
+<i><b>11th Jan 2015 11:22pm -nyeinsu</b></i><br/>
+1. Debugged form validations<br/>
+2. Added non selectable row in dropdowns. <br/>
+
 <i><b>11th Jan 2015 -nyeinsu</b></i><br/>
 1. Debugged Case Referral<br/>
 2. Changes UI for Reports<br/>
