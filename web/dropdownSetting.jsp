@@ -6,6 +6,7 @@
 <%@page import="camans.dao.DropdownDAO"%>
 <%@page import="camans.entity.Dropdown"%>
 <%@page import="java.util.ArrayList"%>
+<%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     ArrayList<String> dropdownType = DropdownDAO.retrieveAllDropdownType();
@@ -23,9 +24,11 @@
         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
           
         <script src="js/jquery-2.1.1.js"></script>
-        <script src="js/bootstrap.min.js"></script>         
+        <script src="js/bootstrap.min.js"></script>    
         <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-
+        <!--bootstrap session timeout, added by soemyatmyat-->
+        <script src="js/bootstrap-session-timeout.min.js"></script> 
+        
         <link rel="shortcut icon" href="img/twc_logo.png">
         
         <title>CAMANS</title>    
@@ -344,6 +347,9 @@
             %>               
             </div> <!--col-md-6-->
             
+            <div class="col-md-6">
+                
+            </div>
             <!-- Add new Item Modal -->
             <div class="modal fade" id="add_new_item" tabindex="-1" role="dialog" 
                  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -429,6 +435,18 @@
                     }
                })
              }
+             
+             //session time out
+            $(document).ready(function () {
+                $.sessionTimeout({
+                    message: 'Your session will be expired in one minute.',
+                    keepAliveUrl: 'keep-alive.html',
+                    logoutUrl: 'index.jsp',
+                    redirUrl: 'logout.jsp',
+                    warnAfter: 900000,
+                    redirAfter: 120000
+                });
+            });
 
         </script>
     </body>

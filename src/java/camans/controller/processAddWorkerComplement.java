@@ -34,8 +34,7 @@ public class processAddWorkerComplement extends HttpServlet {
             throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String success = null;
-        String error = null;
+
         try {
 
             String complementName = request.getParameter("complementName");
@@ -45,22 +44,39 @@ public class processAddWorkerComplement extends HttpServlet {
             String auditChange = "";
             
             //=======================================//
+            //   Server Side Validation Parameters
+            //=======================================//
+            String err = ""; //to store error msg
+            String success = "";//to store success msgf
+            
+            //=======================================//
             //          Nick Name 
             //=======================================//            
             if (complementName.equals("WorkerNickname")) {
                 //get all the parameters for Nickname
                 String nickName = request.getParameter("nNickName");
                 
-                //create nickname object
-                WorkerNickname workerNickname = new WorkerNickname(workerFinNum, nickName);
-                //addInto Database
-                WorkerComplementsDAO.addNickname(workerNickname);
-
-                //log the audit
-                auditChange = workerNickname.toString2();
+                //server side validaton 
+                if (nickName.equals("")) {
+                    err += "Nick name is blank,";
+                }
+                if (nickName.length() > 50) {
+                    err += "worker nickname cannot be longer than 50 characters,";
+                }
                 
-                //success display
-                success = "Worker Nickname has been succesfully added!";
+                if (err.equals("")) {
+                    //create nickname object
+                    WorkerNickname workerNickname = new WorkerNickname(workerFinNum, nickName);
+                    //addInto Database
+                    WorkerComplementsDAO.addNickname(workerNickname);
+
+                    //log the audit
+                    auditChange = workerNickname.toString2();
+
+                    //success display
+                    success = "Worker Nickname has been succesfully added!";
+                    request.setAttribute("successWrkCompMsg", success);
+                }    
             //=======================================//
             //          Passport Details  
             //=======================================// 
@@ -376,7 +392,7 @@ public class processAddWorkerComplement extends HttpServlet {
             //request.getSession().setAttribute("successWrkCompMsg", success);
             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
         } catch (Exception e) {
-            error = "Worker Complement is not added. There is a parsing error.";
+            //error = "Worker Complement is not added. There is a parsing error.";
             //log to logfile
             
         } finally {

@@ -32,8 +32,7 @@
         <!--jasny-bootstrap v3.1.3, added by soemyatmayt-->
         <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
-        
-        
+           
         <script src="js/jquery-2.1.1.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <!-- BootstrapValidator JS, Added by soemyatmyat-->
@@ -582,7 +581,7 @@
                     keepAliveUrl: 'keep-alive.html',
                     logoutUrl: 'index.jsp',
                     redirUrl: 'logout.jsp',
-                    warnAfter: 60000,
+                    warnAfter: 900000,
                     redirAfter: 120000
                 });
             });
@@ -777,12 +776,22 @@
                         nPhNum: {
                             validators: {
                                 regexp: {
-                                    regexp: /^[0-9.()-]{8,25}$/, //[***still need to revisit this regex]
-                                    message: 'This field only allows numbers,parentheses(),hypens, periods, (+)' + 
+                                    regexp: /[0-9.()-]{8,25}$/, //[***still need to revisit this regex]
+                                    message: 'This field only allows numbers,parentheses(),hyphen, (+)' + 
                                         'sign in the beginning and whitespace in between.'
                                 }
                             }
-                        }
+                        },
+                        facePic: {
+                           validators: {
+                               file: {
+                                   extension: 'png,jpeg,jpg,bmp',
+                                   type: 'image/png,image/jpeg,image/jpg,image/bmp',
+                                   maxSize: 1024*1024,
+                                   message: 'Please choose an image file with a size less than 1M only.'
+                               }
+                           }
+                       }
                     }
                 })
                 /*
@@ -848,7 +857,17 @@
                                         'sign in the beginning and whitespace in between.'
                                 }
                             }
-                        }
+                        },
+                        nPhotoPath: {
+                           validators: {
+                               file: {
+                                   extension: 'png,jpeg,jpg,bmp',
+                                   type: 'image/png,image/jpeg,image/jpg,image/bmp',
+                                   maxSize: 1024*1024,
+                                   message: 'Please choose an image file with a size less than 1M only.'
+                               }
+                           }
+                       }
                     }
                 })
 

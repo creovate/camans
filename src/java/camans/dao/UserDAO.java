@@ -280,6 +280,24 @@ public class UserDAO {
         return registeredDate;
     }
     
+    public static void deleteAllUsers() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_user";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from User Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }         
+    }
+    
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
       String msg = "Unable to access data; SQL=" + sql + "\n";
       for (String parameter : parameters) {

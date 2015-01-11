@@ -4,19 +4,19 @@
  */
 package camans.dao;
 
+import au.com.bytecode.opencsv.CSVReader;
 import camans.entity.*;
-import camans.entity.Worker;
-import camans.entity.WorkerHomeCountryAddress;
-import camans.entity.WorkerHomeCountryPhNum;
-import camans.entity.WorkerNickname;
-import camans.entity.WorkerPassportDetails;
-import camans.entity.WorkerSgAddress;
-import camans.entity.WorkerSgPhNum;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +35,6 @@ public class WorkerComplementsDAO {
      * @param parameters Textual representation of the parameters passed in to
      * PreparedStatement
      */
-    
     /*Nickname*/
     public static ArrayList<Integer> retrieveNickNameIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -133,6 +132,90 @@ public class WorkerComplementsDAO {
         } finally {
             ConnectionManager.close(conn, stmt, null);
         }        
+    }
+    
+    public static void deleteAllNicknames() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_worker_nickname";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker-Nickname Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
+    public static ArrayList<String> validateAndAddNickname(String nickNameFileName) 
+            throws IOException{
+        
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader(nickNameFileName));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String nickname = fields[1].trim();
+                
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                if (nickname.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    // check for any existing worker  with the same finNum. 
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    }
+                    
+                    if (nickname.length() > 50) {
+                        errorMsg += "worker nickname cannot be longer than 50 characters,";
+                    }
+
+                }    
+
+                // if there is an error, the line number of the error and its relevant message is added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    WorkerNickname workerNickname = new WorkerNickname(finNum, nickname);
+                    addNickname(workerNickname);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
     }
     
     /*PassportDetails*/
@@ -246,6 +329,123 @@ public class WorkerComplementsDAO {
         }        
     }
     
+    public static void deleteAllPassportDetails() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_worker_passport_details";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker-Passport Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
+    public static ArrayList<String> validateAndAddPassportDetails(String passportFile) 
+            throws IOException{
+        
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader(passportFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String passportNum = fields[1].trim();
+                String passportcountry = fields[2].trim();
+                String issueDateStr = fields[3].trim();
+                String expiryDateStr = fields[4].trim();
+                java.sql.Date issueDate = null;
+                java.sql.Date expiryDate = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                if (passportNum.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+                if (passportcountry.equals("")) {
+                    errorMsg += header[2] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    // check for any existing worker  with the same finNum. 
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    }
+                    
+                    if (passportNum.length() > 20) {
+                        errorMsg += "passport num cannot be longer than 20 characters,";
+                    }
+                    
+                    if (passportcountry.length() > 30) {
+                        errorMsg += "passport country cannot be longer than 30 characters,";
+                    }
+                    
+                    if (!issueDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(issueDateStr);
+                            issueDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Issue Date Format,";
+                        } 
+                    }
+                    
+                    if (!expiryDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(expiryDateStr);
+                            expiryDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Expiry Date Format,";
+                        } 
+                    }
+
+                }   //pass 
+
+                // if there is an error, the line number of the error and its relevant message is 
+                // added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    WorkerPassportDetails workerPassportDetails = new WorkerPassportDetails
+                            (finNum, passportNum, passportcountry, issueDate, expiryDate);
+                    addWorkerPassportDetails(workerPassportDetails);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
+    }
+    
     /*HomeCountryPhNumber*/
     public static ArrayList<Integer> retrieveHomeCountryPhoneNumIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -354,6 +554,109 @@ public class WorkerComplementsDAO {
         }        
     }
 
+    public static void deleteAllHomeCountryPhoneNums() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_home_country_phone_number";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker-Homecountryphnum Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
+    public static ArrayList<String> validateAndAddHomeCountryPhoneNum(String homeCountryPhFile) 
+            throws IOException{
+        
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader(homeCountryPhFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String homecountryph = fields[1].trim();
+                String owner = fields[2].trim();
+                String obseleteDateStr = fields[3].trim();
+                java.sql.Date obseleteDate = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                if (homecountryph.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    // check for any existing worker  with the same finNum. 
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    }
+                    
+                    if (!homecountryph.matches("^[\\d|\\s|(|)|-|+]+$")) {
+                        errorMsg += "invalid phone number, ";
+                    }
+                    
+                    if (!owner.equals("") && owner.length() > 20) {
+                        errorMsg += "Owner name cannot be longer than 20 characters,";
+                    }
+                    
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+                    
+
+                }   //pass 
+
+                // if there is an error, the line number of the error and its relevant message is 
+                // added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    WorkerHomeCountryPhNum workerHomeCountryPhNum = new WorkerHomeCountryPhNum
+                            (finNum, homecountryph, owner, obseleteDate);
+                    addWorkerHomeCountryPhNum(workerHomeCountryPhNum);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
+    }
+    
     /*SgPhNum*/
     public static ArrayList<Integer> retrieveSgCountryPhoneNumIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -459,6 +762,103 @@ public class WorkerComplementsDAO {
         }        
     }
     
+    public static void deleteAllSgPhoneNums() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_sg_phone_number";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker-Sg Phone Number Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
+    public static ArrayList<String> validateAndAddSgPhoneNum(String sgPhFile) 
+            throws IOException{
+        
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader(sgPhFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String sgPh = fields[1].trim();
+                String obseleteDateStr = fields[2].trim();
+                java.sql.Date obseleteDate = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                if (sgPh.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    // check for any existing worker  with the same finNum. 
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    }
+                    
+                    if (!sgPh.matches("^[\\d|\\s|(|)|-|+]+$")) {
+                        errorMsg += "invalid phone number, ";
+                    }
+                    
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+                    
+
+                }   //pass 
+
+                // if there is an error, the line number of the error and its relevant message is 
+                // added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    WorkerSgPhNum workerSgPhNum = new WorkerSgPhNum
+                            (finNum, sgPh, obseleteDate);
+                    addWorkerSgPhNum(workerSgPhNum);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
+    }
     
     /*SgAddress*/
     public static ArrayList<Integer> retrieveWorkerSgAddressIdsOfWorker (Worker worker) {
@@ -565,6 +965,104 @@ public class WorkerComplementsDAO {
         }        
     }
      
+    public static void deleteAllWorkerSgAddresses() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_sg_address";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker-SG Address Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
+    public static ArrayList<String> validateAndAddSgAddress(String sgAddressFile) 
+            throws IOException{
+        
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader(sgAddressFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String sgAddress = fields[1].trim();
+                String obseleteDateStr = fields[2].trim();
+                java.sql.Date obseleteDate = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                if (sgAddress.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    // check for any existing worker  with the same finNum. 
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    }
+                    
+                    if (sgAddress.length()>200) {
+                        errorMsg += "sg address cannot be more than 200 characters, ";
+                    }
+                    
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+                    
+
+                }   //pass 
+
+                // if there is an error, the line number of the error and its relevant message is 
+                // added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    WorkerSgAddress workerSgAddress = new WorkerSgAddress
+                            (finNum, sgAddress, obseleteDate);
+                    addWorkerSgAddress(workerSgAddress);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
+    }
+    
     /*HomeCountryAddress*/
     public static ArrayList<Integer> retrieveWorkerHomeCountryAddressIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -670,6 +1168,104 @@ public class WorkerComplementsDAO {
         }        
     }
 
+    public static void deleteAllHomeCountryAddresses() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_home_country_address";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker-Home Country Address Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
+    public static ArrayList<String> validateAndAddHomeCountryAddress(String homeCountryAddressFile) 
+            throws IOException{
+        
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader(homeCountryAddressFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String homeCountryAddress = fields[1].trim();
+                String obseleteDateStr = fields[2].trim();
+                java.sql.Date obseleteDate = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                if (homeCountryAddress.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    // check for any existing worker  with the same finNum. 
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    }
+                    
+                    if (homeCountryAddress.length()>200) {
+                        errorMsg += "home country address cannot be more than 200 characters, ";
+                    }
+                    
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+                    
+
+                }   //pass 
+
+                // if there is an error, the line number of the error and its relevant message is 
+                // added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    WorkerHomeCountryAddress workerHomeCountryAddress = new WorkerHomeCountryAddress
+                            (finNum, homeCountryAddress, obseleteDate);
+                    addWorkerHomeCountryAddress(workerHomeCountryAddress);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
+    }
+    
     /*DigitalContact*/
     public static ArrayList<Integer> retrieveDigitalContactIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -789,6 +1385,138 @@ public class WorkerComplementsDAO {
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }        
+    }
+    
+    public static void deleteAllDigitalContacts() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_digital_contact";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker-Digtial Contact Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
+    public static ArrayList<String> validateAndAddWorkerDigitalContact(String digitalContactFile) 
+            throws IOException{
+        
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader(digitalContactFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String digitalType = fields[1].trim();
+                String digitalTypeOther = fields[2].trim();
+                String digitalDetail = fields[3].trim();
+                String digitalOwner = fields[4].trim();
+                String digitalRemark = fields[5].trim();
+                String obseleteDateStr = fields[6].trim();
+                java.sql.Date obseleteDate = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                if (digitalType.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+                if (digitalDetail.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    // check for any existing worker  with the same finNum. 
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    }
+                    
+                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfDigitalContactType();
+                    boolean exit = false;
+                    for (String tmp: list) {
+                        if (tmp.equalsIgnoreCase(digitalType)) {
+                            exit = true;
+                            break;
+                        }
+                    }
+                    
+                    if (!exit) {
+                        errorMsg += "Invalid Digital Type, ";
+                    }
+                    
+                    if (!digitalTypeOther.equals("") && digitalTypeOther.length()>50) {
+                        errorMsg += header[2]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (digitalDetail.length() > 50) {
+                        errorMsg += header[3]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!digitalOwner.equals("") && digitalOwner.length() > 50) {
+                        errorMsg += header[4]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!digitalRemark.equals("") && digitalRemark.length() > 200) {
+                        errorMsg += header[5]  + " cannot be more than 200 characters, ";
+                    }
+                    
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+                    
+
+                }   //pass 
+
+                // if there is an error, the line number of the error and its relevant message is 
+                // added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    WorkerDigitalContact workerDigitalContact = new WorkerDigitalContact
+                            (finNum, digitalType, digitalTypeOther,digitalDetail, digitalOwner,
+                            digitalRemark,obseleteDate );
+                    addWorkerDigitalContact(workerDigitalContact);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
     }
     
     /*NextofKin*/
@@ -924,6 +1652,140 @@ public class WorkerComplementsDAO {
         }        
     }
     
+    public static void deleteAllNextOfKins() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_kin";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker-Next of Kin Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
+    public static ArrayList<String> validateAndAddWorkerNextOfKin(String nextOfKinFile) 
+            throws IOException{
+        
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader(nextOfKinFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String kinName = fields[1].trim();
+                String kinRel = fields[2].trim();
+                String kinDoc = fields[3].trim();
+                String kinPhone = fields[4].trim();
+                String kinDigital = fields[5].trim();
+                String kinAddr = fields[6].trim();
+                String kinProof = fields[7].trim();
+                String kinRemark = fields[8].trim();
+                String obseleteDateStr = fields[9].trim();
+                java.sql.Date obseleteDate = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                if (kinName.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    // check for any existing worker  with the same finNum. 
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    }
+                    
+                    if (kinName.length() > 50) {
+                        errorMsg += header[1] + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!kinDoc.equals("") && kinDoc.length()>50) {
+                        errorMsg += header[3]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!kinRel.equals("") && kinRel.length() > 50) {
+                        errorMsg += header[2]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!kinPhone.equals("") && kinPhone.matches("^[\\d|\\s|(|)|-|+]+$")) {
+                        errorMsg += header[4]  + " - invalid format, ";
+                    }
+                    
+                    if (!kinDigital.equals("") && kinDigital.length() > 200) {
+                        errorMsg += header[5]  + " cannot be more than 200 characters, ";
+                    }
+                    
+                    if (!kinAddr.equals("") && kinAddr.length() > 200) {
+                        errorMsg += header[6]  + " cannot be more than 200 characters, ";
+                    }
+                    
+                    if (!kinProof.equals("") && kinProof.length() > 200) {
+                        errorMsg += header[7]  + " cannot be more than 200 characters, ";
+                    }
+                    
+                    if (!kinRemark.equals("") && kinRemark.length() > 200) {
+                        errorMsg += header[8]  + " cannot be more than 200 characters, ";
+                    }
+                    
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+                    
+
+                }   //pass 
+
+                // if there is an error, the line number of the error and its relevant message is 
+                // added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    WorkerNextOfKin workerNextOfKin = new WorkerNextOfKin
+                            (finNum, kinName, kinRel ,kinDoc , kinPhone ,
+                            kinDigital ,kinAddr ,kinProof ,kinRemark, obseleteDate );
+                    addWorkerNextOfKin(workerNextOfKin);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
+    }
+    
     /*Famiy Member*/
     public static ArrayList<Integer> retrieveFamilyMemberIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1049,6 +1911,130 @@ public class WorkerComplementsDAO {
         }        
     }
     
+    public static void deleteAllFamilyMembers() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_family_member";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker-Family Member Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
+    public static ArrayList<String> validateAndAddWorkerFamilyMember(String familyMemberFile) 
+            throws IOException{
+        
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader(familyMemberFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String famMemName = fields[1].trim();
+                String famMemRel = fields[2].trim();
+                String famMemWhere = fields[3].trim();
+                String famMemPhone = fields[4].trim();
+                String famMemDigital = fields[5].trim();
+                String famMemRem = fields[6].trim();
+                String obseleteDateStr = fields[7].trim();
+                java.sql.Date obseleteDate = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                if (famMemName.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    // check for any existing worker  with the same finNum. 
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    }
+                    
+                    if (famMemName.length() > 50) {
+                        errorMsg += header[1] + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!famMemRel.equals("") && famMemRel.length()>50) {
+                        errorMsg += header[2]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!famMemWhere.equals("") && famMemWhere.length() > 200) {
+                        errorMsg += header[3]  + " cannot be more than 200 characters, ";
+                    }
+                    
+                    if (!famMemPhone.equals("") && famMemPhone.matches("^[\\d|\\s|(|)|-|+]+$")) {
+                        errorMsg += header[4]  + " - invalid format, ";
+                    }
+                    
+                    if (!famMemDigital.equals("") && famMemDigital.length() > 200) {
+                        errorMsg += header[5]  + " cannot be more than 200 characters, ";
+                    }
+                    
+                    if (!famMemRem.equals("") && famMemRem.length() > 200) {
+                        errorMsg += header[6]  + " cannot be more than 200 characters, ";
+                    }
+                    
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+                    
+
+                }   //pass 
+
+                // if there is an error, the line number of the error and its relevant message is 
+                // added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    WorkerFamilyMember workerFamilyMember = new WorkerFamilyMember
+                            (finNum, famMemName, famMemRel, famMemWhere, famMemPhone,
+                            famMemDigital, famMemRem, obseleteDate );
+                    addWorkerFamilyMember(workerFamilyMember);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
+    }
+    
     /*Friend*/
     public static ArrayList<Integer> retrieveFriendIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1167,7 +2153,120 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }        
     }
-       
+    
+    public static void deleteAllFriends() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_sg_friend";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker-Friend Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
+    public static ArrayList<String> validateAndAddWorkerFriend(String friendFile) 
+            throws IOException{
+        
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader(friendFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String frdName = fields[1].trim();
+                String frdPh = fields[2].trim();
+                String frdRel = fields[3].trim();
+                String frdRemark = fields[4].trim();
+                String obseleteDateStr = fields[5].trim();
+                java.sql.Date obseleteDate = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                if (frdName.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    // check for any existing worker  with the same finNum. 
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    }
+                    
+                    if (frdName.length() > 50) {
+                        errorMsg += header[1] + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!frdPh.equals("") && frdPh.matches("^[\\d|\\s|(|)|-|+]+$")) {
+                        errorMsg += header[2]  + "- invalid format, ";
+                    }
+                    
+                    if (!frdRel.equals("") && frdRel.length() > 50) {
+                        errorMsg += header[3]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!frdRemark.equals("") && frdRemark.length() > 200) {
+                        errorMsg += header[4]  + " cannot be more than 200 characters, ";
+                    }
+                         
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+                    
+
+                }   //pass 
+
+                // if there is an error, the line number of the error and its relevant message is 
+                // added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    WorkerFriend workerFriend = new WorkerFriend
+                            (finNum, frdName, frdPh, frdRel, frdRemark, obseleteDate);
+                    addWorkerFriend(workerFriend);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
+    }
+    
     /*Language*/
     public static ArrayList<Integer> retrieveLanguageIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1283,7 +2382,128 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }        
     }
-       
+    
+    public static void deleteAllLanguages() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_language";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker-Language Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
+    public static ArrayList<String> validateAndAddWorkerLanguage(String workerLanguageFile) 
+            throws IOException{
+        
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader(workerLanguageFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String langType = fields[1].trim();
+                String langTypeOther = fields[2].trim();
+                String spokenEnglish = fields[3].trim();
+                String langRemark = fields[4].trim();
+                
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                if (langType.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    // check for any existing worker  with the same finNum. 
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    }
+                    
+                    ArrayList<String> langList = DropdownDAO.retrieveAllDropdownListOfLanguage();
+                    boolean exit = false;
+                    for (String tmp: langList) {
+                        if (tmp.equalsIgnoreCase(langType)) {
+                            exit = true;
+                            break;
+                        }
+                    }
+                    if (!exit) {
+                        errorMsg += "Invalid Language Type, ";
+                    }
+                    
+                    if (!langTypeOther.equals("") && langTypeOther.length() > 50) {
+                        errorMsg += header[2]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!spokenEnglish.equals("")) {
+                        ArrayList<String> spokenEngStand = DropdownDAO.retrieveAllDropdownListOfSpokenEnglish();
+                        for (String tmp: spokenEngStand) {
+                            if (tmp.equalsIgnoreCase(spokenEnglish)) {
+                                exit = true;
+                                break;
+                            }
+                        }
+                        if (!exit) {
+                            errorMsg += "Invalid Language Type, ";
+                        }
+                    }
+                    
+                    
+                    if (!langRemark.equals("") && langRemark.length() > 200) {
+                        errorMsg += header[4]  + " cannot be more than 200 characters, ";
+                    }
+                         
+                    
+
+                }   //pass 
+
+                // if there is an error, the line number of the error and its relevant message is 
+                // added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    WorkerLanguage workerLanguage = new WorkerLanguage
+                            (finNum, langType, langTypeOther, spokenEnglish, langRemark);
+                    addWorkerLanguage(workerLanguage);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
+    }
+    
     /*Bank Account Details*/
     public static ArrayList<Integer> retrieveBankAccountDetailsIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1420,6 +2640,150 @@ public class WorkerComplementsDAO {
         }        
     }
        
+    public static void deleteAllBankAccountDetails() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_bank_acc_details";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker-Bank Account Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
+    public static ArrayList<String> validateAndAddWorkerBankAccountDetails(String bankAcctFile) 
+            throws IOException{
+        
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader(bankAcctFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String bankAcctName = fields[1].trim();
+                String bankAcctNum = fields[2].trim();
+                String bankName = fields[3].trim();
+                String branchName = fields[4].trim();
+                String branchAddress = fields[5].trim();
+                String branchCode = fields[6].trim();
+                String swiftCode = fields[7].trim();
+                String remark = fields[8].trim();
+                String obseleteDateStr = fields[9].trim();
+                java.sql.Date obseleteDate = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                if (bankAcctName.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+                
+                if (bankAcctNum.equals("")) {
+                    errorMsg += header[2] + " is blank,";
+                    pass = false;
+                }
+                
+                if (bankName.equals("")) {
+                    errorMsg += header[3] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    // check for any existing worker  with the same finNum. 
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    }
+                 
+                    if (bankAcctName.length() > 50) {
+                        errorMsg += header[1]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (bankAcctNum.length() > 50) {
+                        errorMsg += header[2]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (bankName.length() > 50) {
+                        errorMsg += header[3]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!branchName.equals("") && branchName.length() > 50) {
+                        errorMsg += header[4]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!branchAddress.equals("") && branchAddress.length() > 300) {
+                        errorMsg += header[5]  + " cannot be more than 300 characters, ";
+                    }
+                    
+                    if (!branchCode.equals("") && branchCode.length() > 50) {
+                        errorMsg += header[6]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!swiftCode.equals("") && swiftCode.length() > 50) {
+                        errorMsg += header[7]  + " cannot be more than 50 characters, ";
+                    }
+                    
+                    if (!remark.equals("") && remark.length() > 200) {
+                        errorMsg += header[8]  + " cannot be more than 200 characters, ";
+                    }
+                    
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+
+                }   //pass 
+
+                // if there is an error, the line number of the error and its relevant message is 
+                // added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                  else {
+                    errorMsg = ""; // reset errorMsg variable
+                    WorkerBankAcct workerBankAcct = new WorkerBankAcct
+                            (finNum, bankAcctName, bankAcctNum, bankName, branchName,
+                            branchAddress, branchCode , swiftCode, remark,obseleteDate );
+                    addWorkerBankAccountDetails(workerBankAcct);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
+    }
+    
     /*Worker Attachments*/
     public static ArrayList<Integer> retrieveAttachmentIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1529,8 +2893,8 @@ public class WorkerComplementsDAO {
         }        
     }    
     
-    public static Date retrieveTimeStamp(WorkerAttachment workerAttachment) {
-        Date timeStamp = null;
+    public static Timestamp retrieveTimeStamp(WorkerAttachment workerAttachment) {
+        Timestamp timeStamp = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -1543,7 +2907,7 @@ public class WorkerComplementsDAO {
             pstmt.setInt(1, workerAttachment.getId());
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                timeStamp = rs.getDate(1);
+                timeStamp = rs.getTimestamp(1);
             }
             return timeStamp;
             
@@ -1571,6 +2935,41 @@ public class WorkerComplementsDAO {
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }        
+    }
+    
+    public static void deleteAllWorkerAttachments() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_worker_attachment";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker-Attachment Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+        
+    /*General*/
+    public static void deleteAll() {
+        deleteAllNicknames();
+        deleteAllPassportDetails();
+        deleteAllHomeCountryPhoneNums();
+        deleteAllSgPhoneNums();
+        deleteAllWorkerSgAddresses();
+        deleteAllHomeCountryAddresses();
+        deleteAllDigitalContacts();
+        deleteAllNextOfKins();
+        deleteAllFamilyMembers();
+        deleteAllFriends();
+        deleteAllLanguages();
+        deleteAllBankAccountDetails();
+        deleteAllWorkerAttachments();
     }
     
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {

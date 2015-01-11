@@ -243,7 +243,8 @@ public class processCreateNewCase extends HttpServlet {
                     pass = false;
                     err += "Worker Name cannot be longer than 50 characters, ";
                 }
-                if (!finNum.matches("^[G][0-9]{7}[A-Z]") || !finNum.matches("^GEN[0-9]{6}")) {
+                if (finNum.matches("^[G][0-9]{7}[A-Z]") || finNum.matches("^GEN[0-9]{6}")) {
+                } else {
                     pass = false; 
                     err += "Invalid Fin Number,";
                 }

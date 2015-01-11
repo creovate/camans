@@ -27,7 +27,7 @@ CREATE TABLE tbl_user (
 
 /*
 **====================================
-**Worker & its complements  Table [15]
+**Worker & its complements  Table [14]
 **====================================
 */
 
@@ -94,7 +94,7 @@ CREATE table tbl_worker_passport_details(
 **============================
 ** Face Picture
 **============================
-*/
+*
 
 Drop table if exists tbl_worker_facepic;
 Create table tbl_worker_facepic (
@@ -376,7 +376,7 @@ Create table tbl_job (
 	Job_start_date varchar(500) null,
 	Job_end_date varchar(500) null,
 	Job_whether_TJS varchar(10) null,
-	Job_remarks varchar (400) null,
+	Job_remarks varchar (200) null,
 
 
 	Primary Key (Job_Key),

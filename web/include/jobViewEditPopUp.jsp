@@ -94,6 +94,10 @@
                 },
                 npasstype: {
                     validators: {
+                        stringLength: {
+                            max: 20,
+                            message: 'Pass Type must be less than 20 characters.'
+                        },
                         notEmpty: {
                             message: 'Pass Type cannot be empty.'
                         }
@@ -1426,11 +1430,10 @@
                 <label for='npasstype' class="control-label">Pass Type<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="passtype" name="npasstype">
-                    <option value="">Select Pass Type:</option>
                     <%
                         for (String workpassType : workpassTypes) {
                     %>
-                    <option vlue="<%=workpassType%>"><%=workpassType%></option>
+                    <option><%=workpassType%></option>
                     <%
 
                         }
@@ -2138,11 +2141,10 @@
                 <label for='nlocation' class="control-label">Location of Agent: </label>
                 <br/>
                 <select class="form-control" id="agentLocation" name="naglocation">
-                    <option value="">Select location:</option>
                     <%
                         for (String agentLocation : agentLocations) {
                     %>
-                    <option value="<%=agentLocation%>"><%=agentLocation%></option>
+                    <option><%=agentLocation%></option>
                     <%
 
                         }
@@ -2589,11 +2591,10 @@
                 <label for='nwpType' class="control-label">Type of Workplace<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="workplaceType" name="nwpType">
-                    <option value="">Select from list:</option>
                     <%
                         for (String type : workplaceTypes) {
                     %>
-                    <option value="<%=type%>"><%=type%></option>
+                    <option><%=type%></option>
                     <%
 
                         }
@@ -2624,11 +2625,10 @@
                 <label for='ndirect' class="control-label">Who directed worker to this workplace?<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="direct" name="ndirect">
-                    <option value="">Select from list:</option>
                     <%
                         for (String workplacedirect : workplacedirects) {
                     %>
-                    <option value="<%=workplacedirect%>"><%=workplacedirect%></option>
+                    <option><%=workplacedirect%></option>
                     <%
 
                         }
@@ -2879,11 +2879,10 @@
                 <label for='nhow' class="control-label">How did worker get into the job defined in Job Profile?<span style="color: red">*</span></label>
                 <br/>
                 <select class="form-control" id="workhistHow" name="nhow">
-                    <option value="">Select from list:</option>
                     <%
                         for (String type : workhist) {
                     %>
-                    <option value="<%=type%>"><%=type%></option>
+                    <option><%=type%></option>
                     <%
 
                         }
@@ -2892,8 +2891,9 @@
             </div>
             <div class='form-group' id="workhistHow_other_div" >
                 <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
+                <input  id='characterLeft' name="characterLeft" size="3" maxlength="3" value="200" class="characterCounter pull-right">
                 <br/>
-                <textarea class="form-control" name="nhowMore" rows="3"></textarea>
+                <textarea class="form-control" name="nhowMore" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200)"></textarea>
             </div>
             <div class='form-group'>
                 <label for='narrivalDate' class="control-label">Date arrived Singapore for this job:</label>
@@ -3140,18 +3140,13 @@
             <div class='form-group'>
                 <label for='nisProvided' class="control-label">Accommodation provided by employer?<span style="color: red">*</span></label>
                 <br/>
-                <select class="form-control" id="accomProvided" name="nisProvided"  >
+                <select class="form-control" id="accomProvided" name="nisProvided">
                     <%
                         for (String accomProvided : accomProvideds) {
-                            if(accomProvided.equals("Provided")){
-                                %>
-                                <option selected><%=accomProvided%></option>
-                    <%
-                            }else{
                     %>
                     <option><%=accomProvided%></option>
                     <%
-                            }
+
                         }
                     %>  
                 </select>
@@ -3167,11 +3162,10 @@
                 <br/>
 
                 <select class="form-control" id="accomType" name="ntype">
-                    <option value="">Select from list:</option>
                     <%
                         for (String accomtype : accomTypes) {
                     %>
-                    <option value="<%=accomtype%>"><%=accomtype%></option>
+                    <option><%=accomtype%></option>
                     <%
 
                         }
@@ -3478,11 +3472,10 @@
                 <label for='nworkpassType' class="control-label">Workpass specified in IPA<span style="color: red">*</span></label>
                 <br/>
                 <select class="form-control" id="ipapassType" name="nworkpassType">
-                    <option value="">Select Workpass:</option>
                     <%
                         for (String ipatype : ipatypes) {
                     %>
-                    <option value="<%=ipatype%>"><%=ipatype%></option>
+                    <option><%=ipatype%></option>
                     <%
 
                         }

@@ -92,7 +92,9 @@
         <!-- DataTables JS, Added by soemyatmyat -->
         <script src="js/jquery.dataTables.js"></script>
         <script src="js/dataTables.bootstrap.js"></script>
-
+        <!--bootstrap session timeout, added by soemyatmyat-->
+        <script src="js/bootstrap-session-timeout.min.js"></script> 
+        
         <link rel="shortcut icon" href="img/twc_logo.png">
         <title>CAMANS</title>
 
@@ -233,7 +235,7 @@
                                 ProblemLeadCaseWorker leadCaseWorkerObj = null;
                                 String leadCaseWorkerName = null;
                                 if (leadCaseWorkerList != null && leadCaseWorkerList.size() > 0) {
-                                    leadCaseWorkerObj = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(leadCaseWorkerList.get(leadCaseWorkerList.size()-1));
+                                    leadCaseWorkerObj = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(leadCaseWorkerList.size()-1);
                                     leadCaseWorkerName = leadCaseWorkerObj.getLeadCaseWorker();
                                 }
                                 
@@ -1173,7 +1175,10 @@
 
                                 <!--job complements here-->
                                 <div class="row">
-                                    
+
+                                    <%
+
+                                    %>
                                     <!--Pass Details-->
                                     <div class="panel panel-default">
 
@@ -1248,72 +1253,65 @@
                                             %>
                                         </div>
                                     </div>
-                                    
-                                    <!--IPA Details-->
+
+
+                                    <!--Employer Details-->
                                     <div class="panel panel-default">
 
                                         <div class="panel-heading">
 
-                                            <h4 class="panel-title">IPA Details
-                                                <a style="color: black" data-value='ipa' data-ipa='' href="" data-toggle="modal" data-class="job"  data-target="#ipa_pop_up" data-action="add" class="view_btn pop_up_open">
+                                            <h4 class="panel-title">Employer Details
+                                                <a style="color: black" data-class="job"  data-value='empdetails' data-empdetails='' href="" data-toggle="modal" data-target="#empdetails_pop_up" data-action="add" class="view_btn pop_up_open">
                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                         </div>
 
                                         <div class="panel-body text-capitalize">
                                             <%
-                                                ArrayList<Integer> ipaIdList = JobComplementsDAO.retrieveIPADetailsIdsOfJob(latestJob);
-                                                if (ipaIdList != null && !ipaIdList.isEmpty()) {
+                                                ArrayList<Integer> empIdsList = JobComplementsDAO.retrieveJobEmployerIdsOfJob(latestJob);
+                                                if (empIdsList != null && !empIdsList.isEmpty()) {
 
                                             %>
 
                                             <table class="table table-condensed">
                                                 <tr>
-                                                    <th>Specified workpass</th>
-                                                    <th>Applic dt</th>
-                                                    <th>Employer</th>
-                                                    <th>Basic Sal</th>
+                                                    <th>Employer Name</th>
+                                                    <th>Employer ID</th>
+                                                    <th>Phone/email</th>
+                                                    <th>Key Persons</th>
                                                     <th>Action</th>
                                                 </tr>
 
                                                 <%
-                                                    for (int i = ipaIdList.size() - 1; i >= 0; i--) {
-                                                        JobIPADetails ipa = JobComplementsDAO.retrieveJobIPADetailsById(ipaIdList.get(i));
-                                                        String ipaPass = ipa.getIpaPassType();
-                                                        String ipaIndustry = ipa.getIndustry();
-                                                        String empName = ipa.getIpaEmployerName();
-                                                        String ipaAgent = ipa.getIpaAgentName();
-                                                        java.util.Date ipaAppDate = ipa.getIpaApplicationDate();
-                                                        double salary = ipa.getBasicSalary();
+                                                    for (int i = empIdsList.size() - 1; i >= 0; i--) {
+                                                        JobEmployer jobEmp = JobComplementsDAO.retrieveJobEmployerById(empIdsList.get(i));
+                                                        String empName = jobEmp.getEmployerOfficialName();
+                                                        String empId = jobEmp.getEmployerID();
+                                                        String empAddress = jobEmp.getEmployerAddress();
+                                                        String empContact = jobEmp.getEmployerContacts();
+                                                        String empKeyPerson = jobEmp.getEmployerPersons();
 
-                                                        if (i < ipaIdList.size() - 1) {
+                                                        if (i < empIdsList.size() - 1) {
                                                 %>
-                                                <tr class="other_ipa moreObjs">
-                                                    <td><%=ipaPass%></td>
-                                                    <td><%=(ipaAppDate == null) ? "-" : sdf.format(ipaAppDate)%></td>
+                                                <tr class="other_employer moreObjs">
                                                     <td><%=empName%></td>
-                                                    <td><%=salary%></td>
-                                                    <td>
-                                                        <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' 
-                                                           data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
-                                                           data-action="viewedit" class="view_btn pop_up_open">
-                                                            <span class="glyphicon glyphicon-eye-open"></span>
-                                                        </a></td>
+                                                    <td><%=empId%></td>
+                                                    <td><%=empContact%></td>
+                                                    <td><%=empKeyPerson%></td>
+                                                    <td><a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
+                                                           href="" data-toggle="modal" data-target="#empdetails_pop_up" data-action="viewedit" 
+                                                           class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                                 <%
                                                 } else {
                                                 %>
                                                 <tr>
-                                                    <td><%=ipaPass%></td>
-                                                    <td><%=(ipaAppDate == null) ? "-" : sdf.format(ipaAppDate)%></td>
                                                     <td><%=empName%></td>
-                                                    <td><%=salary%></td>
-                                                    <td>
-                                                        <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' 
-                                                           data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
-                                                           data-action="viewedit" class="view_btn pop_up_open">
-                                                            <span class="glyphicon glyphicon-eye-open"></span>
-                                                        </a>
-                                                    </td>
+                                                    <td><%=empId%></td>
+                                                    <td><%=empContact%></td>
+                                                    <td><%=empKeyPerson%></td>
+                                                    <td><a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
+                                                           href="" data-toggle="modal" data-target="#empdetails_pop_up" data-action="viewedit" 
+                                                           class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                                 <%
                                                         }
@@ -1321,101 +1319,18 @@
                                                 %>
                                             </table>
                                             <%
-                                                if (ipaIdList.size() > 1) {
+                                                if (empIdsList.size() > 1) {
                                             %>
 
-                                            <a href="#" class="text-center col-sm-12 seemore_btn other_ipa_seemore" onclick="seemore('.other_ipa')">See more</a>
-                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_ipa_seemore" onclick="seemore('.other_ipa')">View Less</a>
+                                            <a href="#" class="text-center col-sm-12 seemore_btn other_employer_seemore" onclick="seemore('.other_employer')">See more</a>
+                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_employer_seemore" onclick="seemore('.other_employer')">View Less</a>
                                             <%                                                            }
                                                 }
                                             %>
                                         </div>
                                     </div>
-                                    
-                                        <!--Verbal Assurance of Previous Job-->
-                                    <div class="panel panel-default">
 
-                                        <div class="panel-heading">
 
-                                            <h4 class="panel-title">Verbal Assurance of Previous Job
-                                                <a style="color: black" data-value='assurance' data-assurance='' href=""  data-class="job" data-toggle="modal" data-target="#assurance_pop_up" data-action="add" class="view_btn pop_up_open">
-                                                    <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
-                                        </div>
-
-                                        <div class="panel-body text-capitalize">
-                                            <%
-                                                ArrayList<Integer> verbalIdsList = JobComplementsDAO.retrieveVerbalAssuranceOfJob(latestJob);
-                                                if (verbalIdsList != null && !verbalIdsList.isEmpty()) {
-
-                                            %>
-
-                                            <table class="table table-condensed">
-                                                <tr>
-                                                    <th>Who promised</th>
-                                                    <th>How related</th>
-                                                    <th>When promised</th>
-                                                    <th>Where promised</th>
-                                                    <th>Action</th>
-                                                </tr>
-
-                                                <%
-                                                    for (int i = verbalIdsList.size() - 1; i >= 0; i--) {
-                                                        JobVerbalAssurance assurance = JobComplementsDAO.retrieveVerbalAssuranceDetailsById(verbalIdsList.get(i));
-
-                                                        String verbalName = assurance.getVerbalName();
-                                                        String verbalRelation = assurance.getVerbalRelationship();
-                                                        String verbalWhen = assurance.getWhen();
-                                                        String verbalWhere = assurance.getWhere();
-                                                        String verbalContent = assurance.getContent();
-
-                                                        if (i < verbalIdsList.size() - 1) {
-                                                %>
-                                                <tr class="other_va moreObjs">
-
-                                                    <td><%=verbalName%></td>
-                                                    <td><%=verbalRelation%></td>
-                                                    <td><%=verbalWhen%></td>
-                                                    <td><%=verbalWhere%></td>
-                                                    <td>
-                                                        <a style="color: black" data-value='assurance' data-assurance='<%=assurance.getId()%>'  data-class="job" 
-                                                           href="" data-toggle="modal" data-target="#assurance_pop_up" data-action="viewedit" 
-                                                           class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <%
-                                                } else {
-                                                %>
-                                                <tr>
-
-                                                    <td><%=verbalName%></td>
-                                                    <td><%=verbalRelation%></td>
-                                                    <td><%=verbalWhen%></td>
-                                                    <td><%=verbalWhere%></td>
-                                                    <td>
-                                                        <a style="color: black" data-value='assurance' data-assurance='<%=assurance.getId()%>'  data-class="job" 
-                                                           href="" data-toggle="modal" data-target="#assurance_pop_up" data-action="viewedit" 
-                                                           class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <%
-                                                        }
-                                                    }
-                                                %>
-                                            </table>
-                                            <%
-                                                if (verbalIdsList.size() > 1) {
-                                            %>
-
-                                            <a href="#" class="text-center col-sm-12 seemore_btn other_va_seemore" onclick="seemore('.other_va')">See more</a>
-                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_va_seemore" onclick="seemore('.other_va')">View Less</a>
-                                            <%                                                            }
-                                                }
-                                            %>
-                                        </div>
-                                    </div>
-                                      
                                     <!--Employment Contract-->
                                     <div class="panel panel-default">
 
@@ -1519,7 +1434,8 @@
                                             %>
                                         </div>
                                     </div>
-                                        
+
+
                                     <!--Intermediary Agent-->
                                     <div class="panel panel-default">
 
@@ -1602,64 +1518,73 @@
                                             %>
                                         </div>
                                     </div>
-                                      
-                                       <!--Employer Details-->
+
+                                    <!--Verbal Assurance of Previous Job-->
                                     <div class="panel panel-default">
 
                                         <div class="panel-heading">
 
-                                            <h4 class="panel-title">Employer Details
-                                                <a style="color: black" data-class="job"  data-value='empdetails' data-empdetails='' href="" data-toggle="modal" data-target="#empdetails_pop_up" data-action="add" class="view_btn pop_up_open">
+                                            <h4 class="panel-title">Verbal Assurance of Previous Job
+                                                <a style="color: black" data-value='assurance' data-assurance='' href=""  data-class="job" data-toggle="modal" data-target="#assurance_pop_up" data-action="add" class="view_btn pop_up_open">
                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                         </div>
 
                                         <div class="panel-body text-capitalize">
                                             <%
-                                                ArrayList<Integer> empIdsList = JobComplementsDAO.retrieveJobEmployerIdsOfJob(latestJob);
-                                                if (empIdsList != null && !empIdsList.isEmpty()) {
+                                                ArrayList<Integer> verbalIdsList = JobComplementsDAO.retrieveVerbalAssuranceOfJob(latestJob);
+                                                if (verbalIdsList != null && !verbalIdsList.isEmpty()) {
 
                                             %>
 
                                             <table class="table table-condensed">
                                                 <tr>
-                                                    <th>Employer Name</th>
-                                                    <th>Employer ID</th>
-                                                    <th>Phone/email</th>
-                                                    <th>Key Persons</th>
+                                                    <th>Who promised</th>
+                                                    <th>How related</th>
+                                                    <th>When promised</th>
+                                                    <th>Where promised</th>
                                                     <th>Action</th>
                                                 </tr>
 
                                                 <%
-                                                    for (int i = empIdsList.size() - 1; i >= 0; i--) {
-                                                        JobEmployer jobEmp = JobComplementsDAO.retrieveJobEmployerById(empIdsList.get(i));
-                                                        String empName = jobEmp.getEmployerOfficialName();
-                                                        String empId = jobEmp.getEmployerID();
-                                                        String empAddress = jobEmp.getEmployerAddress();
-                                                        String empContact = jobEmp.getEmployerContacts();
-                                                        String empKeyPerson = jobEmp.getEmployerPersons();
+                                                    for (int i = verbalIdsList.size() - 1; i >= 0; i--) {
+                                                        JobVerbalAssurance assurance = JobComplementsDAO.retrieveVerbalAssuranceDetailsById(verbalIdsList.get(i));
 
-                                                        if (i < empIdsList.size() - 1) {
+                                                        String verbalName = assurance.getVerbalName();
+                                                        String verbalRelation = assurance.getVerbalRelationship();
+                                                        String verbalWhen = assurance.getWhen();
+                                                        String verbalWhere = assurance.getWhere();
+                                                        String verbalContent = assurance.getContent();
+
+                                                        if (i < verbalIdsList.size() - 1) {
                                                 %>
-                                                <tr class="other_employer moreObjs">
-                                                    <td><%=empName%></td>
-                                                    <td><%=empId%></td>
-                                                    <td><%=empContact%></td>
-                                                    <td><%=empKeyPerson%></td>
-                                                    <td><a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
-                                                           href="" data-toggle="modal" data-target="#empdetails_pop_up" data-action="viewedit" 
-                                                           class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <tr class="other_va moreObjs">
+
+                                                    <td><%=verbalName%></td>
+                                                    <td><%=verbalRelation%></td>
+                                                    <td><%=verbalWhen%></td>
+                                                    <td><%=verbalWhere%></td>
+                                                    <td>
+                                                        <a style="color: black" data-value='assurance' data-assurance='<%=assurance.getId()%>'  data-class="job" 
+                                                           href="" data-toggle="modal" data-target="#assurance_pop_up" data-action="viewedit" 
+                                                           class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                                 <%
                                                 } else {
                                                 %>
                                                 <tr>
-                                                    <td><%=empName%></td>
-                                                    <td><%=empId%></td>
-                                                    <td><%=empContact%></td>
-                                                    <td><%=empKeyPerson%></td>
-                                                    <td><a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
-                                                           href="" data-toggle="modal" data-target="#empdetails_pop_up" data-action="viewedit" 
-                                                           class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+
+                                                    <td><%=verbalName%></td>
+                                                    <td><%=verbalRelation%></td>
+                                                    <td><%=verbalWhen%></td>
+                                                    <td><%=verbalWhere%></td>
+                                                    <td>
+                                                        <a style="color: black" data-value='assurance' data-assurance='<%=assurance.getId()%>'  data-class="job" 
+                                                           href="" data-toggle="modal" data-target="#assurance_pop_up" data-action="viewedit" 
+                                                           class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                                 <%
                                                         }
@@ -1667,17 +1592,18 @@
                                                 %>
                                             </table>
                                             <%
-                                                if (empIdsList.size() > 1) {
+                                                if (verbalIdsList.size() > 1) {
                                             %>
 
-                                            <a href="#" class="text-center col-sm-12 seemore_btn other_employer_seemore" onclick="seemore('.other_employer')">See more</a>
-                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_employer_seemore" onclick="seemore('.other_employer')">View Less</a>
+                                            <a href="#" class="text-center col-sm-12 seemore_btn other_va_seemore" onclick="seemore('.other_va')">See more</a>
+                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_va_seemore" onclick="seemore('.other_va')">View Less</a>
                                             <%                                                            }
                                                 }
                                             %>
                                         </div>
                                     </div>
-                                       
+
+
                                     <!--Work Place Details-->
                                     <div class="panel panel-default">
 
@@ -1832,6 +1758,7 @@
                                         </div>
                                     </div>
 
+
                                     <!--Accommodation During Work-->
                                     <div class="panel panel-default">
 
@@ -1910,6 +1837,89 @@
                                         </div>
                                     </div>
 
+                                    <!--IPA Details-->
+                                    <div class="panel panel-default">
+
+                                        <div class="panel-heading">
+
+                                            <h4 class="panel-title">IPA Details
+                                                <a style="color: black" data-value='ipa' data-ipa='' href="" data-toggle="modal" data-class="job"  data-target="#ipa_pop_up" data-action="add" class="view_btn pop_up_open">
+                                                    <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
+                                        </div>
+
+                                        <div class="panel-body text-capitalize">
+                                            <%
+                                                ArrayList<Integer> ipaIdList = JobComplementsDAO.retrieveIPADetailsIdsOfJob(latestJob);
+                                                if (ipaIdList != null && !ipaIdList.isEmpty()) {
+
+                                            %>
+
+                                            <table class="table table-condensed">
+                                                <tr>
+                                                    <th>Specified workpass</th>
+                                                    <th>Applic dt</th>
+                                                    <th>Employer</th>
+                                                    <th>Basic Sal</th>
+                                                    <th>Action</th>
+                                                </tr>
+
+                                                <%
+                                                    for (int i = ipaIdList.size() - 1; i >= 0; i--) {
+                                                        JobIPADetails ipa = JobComplementsDAO.retrieveJobIPADetailsById(ipaIdList.get(i));
+                                                        String ipaPass = ipa.getIpaPassType();
+                                                        String ipaIndustry = ipa.getIndustry();
+                                                        String empName = ipa.getIpaEmployerName();
+                                                        String ipaAgent = ipa.getIpaAgentName();
+                                                        java.util.Date ipaAppDate = ipa.getIpaApplicationDate();
+                                                        double salary = ipa.getBasicSalary();
+
+                                                        if (i < ipaIdList.size() - 1) {
+                                                %>
+                                                <tr class="other_ipa moreObjs">
+                                                    <td><%=ipaPass%></td>
+                                                    <td><%=(ipaAppDate == null) ? "-" : sdf.format(ipaAppDate)%></td>
+                                                    <td><%=empName%></td>
+                                                    <td><%=salary%></td>
+                                                    <td>
+                                                        <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' 
+                                                           data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
+                                                           data-action="viewedit" class="view_btn pop_up_open">
+                                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                                        </a></td>
+                                                </tr>
+                                                <%
+                                                } else {
+                                                %>
+                                                <tr>
+                                                    <td><%=ipaPass%></td>
+                                                    <td><%=(ipaAppDate == null) ? "-" : sdf.format(ipaAppDate)%></td>
+                                                    <td><%=empName%></td>
+                                                    <td><%=salary%></td>
+                                                    <td>
+                                                        <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' 
+                                                           data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
+                                                           data-action="viewedit" class="view_btn pop_up_open">
+                                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <%
+                                                        }
+                                                    }
+                                                %>
+                                            </table>
+                                            <%
+                                                if (ipaIdList.size() > 1) {
+                                            %>
+
+                                            <a href="#" class="text-center col-sm-12 seemore_btn other_ipa_seemore" onclick="seemore('.other_ipa')">See more</a>
+                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_ipa_seemore" onclick="seemore('.other_ipa')">View Less</a>
+                                            <%                                                            }
+                                                }
+                                            %>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -1920,15 +1930,14 @@
                                 <div class="row">
                                     <form method="POST" action='changeToSelected'>
                                         <div class="form-group">
-                                            <label for="probSelected" class="col-md-1 control-label">Select Problem:</label>
+                                            <label for="probSelected" class="col-md-1 control-label">Select Job:</label>
                                             <div class="col-md-1">
                                                 <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
-                                                <input type="hidden" name="selectedType" value="problem"/>
                                                 <input type="hidden" name="jobKey" value="<%=latestJob.getJobKey()%>"/>
                                                 <input type="hidden" name="problemKey" value="<%=latestProblem.getProbKey()%>"/>
                                                 <select class="form-control text-capitalize" id="problemSelected" name="selectedProblem" required>
                                                     <%
-                                                        for (int i = problemIds.size()-1 ; i >= 0; i--) {
+                                                        for (int i = 0; i < problemIds.size(); i++) {
                                                             int Id = problemIds.get(i);
                                                             Problem tempProb = ProblemDAO.retrieveProblemByProblemId(Id);
                                                             String problemType = tempProb.getProblem();
@@ -2478,7 +2487,7 @@
                                                     </a>
                                                 </h4>
                                             </div>
-                                            <div id="salaryComps" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                            <div id="salaryComps" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                                 <div class="panel-body">
 
                                                     <!--salary related history-->
@@ -2664,7 +2673,7 @@
                                                     </a>
                                                 </h4>
                                             </div>
-                                            <div id="medicalComps" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                                            <div id="medicalComps" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                                 <div class="panel-body">
 
                                                     <!--Injury History-->
@@ -3455,7 +3464,7 @@
                                                     </a>
                                                 </h4>
                                             </div>
-                                            <div id="otherComps" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                                            <div id="otherComps" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                                 <div class="panel-body">
 
                                                     <!--Details & History of Other Problem-->
@@ -3520,13 +3529,96 @@
                                                             %>
 
                                                             <a href="#" class="text-center col-sm-12 seemore_btn other_othercase_seemore" onclick="seemore('.other_othercase')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_othercase_seemore" onclick="seemore('.other_othercase');">View Less</a>
+                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_othercase_seemore" onclick="seemore('.other_othercase')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
                                                         </div>
                                                     </div>
 
+                                                    <!--Trafficking Indication  -->
+                                                    <!--div class="panel panel-default">
+
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title">Trafficking Indication
+                                                                <a href="" id="traffickingAddBtn" data-toggle="modal" data-action = "add"  data-class="problem"   data-target="#trafficking_pop_up" data-value='trafficking' data-trafficking='' class="add_btn pop_up_open pull-right">
+                                                                    <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="panel-body text-capitalize">
+                                                    <%
+                                                        ArrayList<Integer> traffickingIds = ProblemComplementsDAO.retrieveTraffickingIndicatorIdsOfProblem(latestProblem);
+
+                                                        if (traffickingIds != null && !traffickingIds.isEmpty()) {
+                                                    %>
+
+                                                    <table class="table table-condensed">
+                                                        <tr>
+                                                            <th>Assess Date</th>
+                                                            <th>Assess Name</th>
+                                                            <th>Action</th>
+                                                        </tr>
+
+                                                    <%
+                                                        for (int i = traffickingIds.size() - 1; i >= 0; i--) {
+                                                            int traffickingId = traffickingIds.get(i);
+
+                                                            ProblemTraffickingIndicator traffickingIndi = ProblemComplementsDAO.retrieveProblemTraffickingIndicatorById(traffickingId);
+                                                            java.util.Date date = traffickingIndi.getTipiAssessDate();
+                                                            String name = traffickingIndi.getTipiAssessName();
+
+                                                            if (i < traffickingIds.size() - 1) {
+                                                    %>
+                                                    <tr class="other_trafficking moreObjs">
+                                                    <%
+                                                        if (date == null) {
+                                                    %>
+                                                    <td>-</td>
+                                                    <%                                                                    } else {
+                                                        String dateStr = sdf.format(date);
+                                                    %>
+                                                    <td><%=dateStr%></td>
+                                                    <%
+                                                        }
+                                                    %>
+                                                    <td><%=name%></td>
+                                                    <td><a style="color: black" data-target="#trafficking_pop_up" data-value='trafficking' data-class="problem"   data-trafficking='<%=traffickingId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                </tr>
+                                                    <%
+                                                    } else {
+                                                    %>
+                                                    <tr>
+                                                    <%
+                                                        if (date == null) {
+                                                    %>
+                                                    <td>-</td>
+                                                    <%                                                                    } else {
+                                                        String dateStr = sdf.format(date);
+                                                    %>
+                                                    <td><%=dateStr%></td>
+                                                    <%
+                                                        }
+                                                    %>
+                                                    <td><%=name%></td>
+                                                    <td><a style="color: black" data-target="#trafficking_pop_up" data-value='trafficking' data-class="problem"   data-trafficking='<%=traffickingId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                </tr>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
+                                                </table>
+                                                    <%
+                                                        if (traffickingIds.size() > 1) {
+                                                    %>
+
+                                                    <a href="#" class="text-center col-sm-12 seemore_btn other_trafficking_seemore" onclick="seemore('.other_trafficking')">See more</a>
+                                                    <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_trafficking_seemore" onclick="seemore('.other_trafficking')">View Less</a>
+                                                    <%                                                            }
+                                                        }
+                                                    %>
+                                                </div>
+                                            </div-->
 
                                                     <!--Police Report Lodged-->
                                                     <div class="panel panel-default">
@@ -4410,7 +4502,7 @@
                                 <!-- End of Attachments Success & Error Display --->
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <form action="fileUpload.do" method="post" enctype="multipart/form-data"> 
+                                        <form id="uploadAttachForm" action="fileUpload.do" method="post" enctype="multipart/form-data"> 
                                             <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
                                             <label>File Upload</label><br/>
                                             Select file to upload: <input type="file" name="fileInput"/><br/> 
@@ -4440,14 +4532,14 @@
                                         for (int i = 0; i < workerAttachList.size(); i++ ) {
                                             WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(workerAttachList.get(i));
                                             String docName = workerAttachment.getDocumentName();
-                                            java.util.Date timeStamp = WorkerComplementsDAO.retrieveTimeStamp(workerAttachment);
+                                            java.sql.Timestamp timeStamp = WorkerComplementsDAO.retrieveTimeStamp(workerAttachment);
                                             String submitBy = workerAttachment.getSubmitBy(); 
-                                            //docName.substring(0, docName.indexOf("."));
+                                            SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MMM-yyyy hh:mm a");
                                     %>
                                         <tr bgcolor="">
                                             <td><%=i+1%></td>
                                             <td><%=docName%></td>
-                                            <td><%=sdf.format(timeStamp)%></td>
+                                            <td><%=sdf2.format(timeStamp)%></td>
                                             <td><%=submitBy%></td>
                                             <td align="center">
                                                 <% String extension = docName.substring(docName.lastIndexOf(".")+1);
@@ -4753,8 +4845,28 @@
                 $(".modal-body #InputDocPath").attr('src', attachDocPath);
             });
             
-            //reset password form validation check - added by soemyatmyat
-            
+            //
+            $(document).ready(function() {
+                $('#uploadAttachForm')
+                .bootstrapValidator({
+                   live: 'enabled',
+                   fields: {
+                       fileInput: {
+                           validators: {
+                               file: {
+                                   maxSize: 10*1024*1024,
+                                   message: 'Please choose a file with a size less than 10M only.'
+                               }
+                           }
+                       }
+                   }
+                })
+            })
+            .on('success.form.fv', function(e) {
+                e.preventDefault();
+                $('#uploadAttachForm').data('formValidation').disableSubmitButtons(true);
+            });
+            //reset password form validation check - added by soemyatmyat  
             $(document).ready(function() {
                 $('#editAttachForm')
                 .bootstrapValidator({
@@ -4786,6 +4898,18 @@
             //to reset all the fields whenever the modal is opened - added by soemyatmyat
             $('#attach_edit_popup').on('shown.bs.modal', function() {
                 $('#editAttachForm').bootstrapValidator('resetForm', true);
+            });
+            
+            //session time out
+            $(document).ready(function () {
+                $.sessionTimeout({
+                    message: 'Your session will be expired in one minute.',
+                    keepAliveUrl: 'keep-alive.html',
+                    logoutUrl: 'index.jsp',
+                    redirUrl: 'logout.jsp',
+                    warnAfter: 900000,
+                    redirAfter: 120000
+                });
             });
 
         </script>

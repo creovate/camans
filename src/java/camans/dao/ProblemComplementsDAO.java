@@ -140,6 +140,24 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemAggravatingIssues() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_aggravating_issue";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-Aggravating Issue Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+       
     /*Problem Lead Case Worker*/
     public static ArrayList<Integer> retrieveLeadCaseWorkerIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -261,6 +279,24 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemLeadCaseWorkers() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_lead_case_worker";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_lead_case_worker Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem Auxiliary CaseWorker*/
     public static ArrayList<Integer> retrieveProblemAuxiliaryCaseWorkerIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -379,6 +415,24 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemAuxiliaryCaseWorkers() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_auxillarycaseworker";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from tbl_auxillarycaseworker Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem Salary Related History*/
     public static ArrayList<Integer> retrieveProblemSalaryRelatedHistoryIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -528,6 +582,24 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemSalaryRelatedHistories() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_salary_history";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_salary_history Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem Injury*/
     public static ArrayList<Integer> retrieveProblemInjuryIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -680,6 +752,24 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemInjuries() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_injury";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_injury. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem Illness*/
     public static ArrayList<Integer> retrieveIllnessIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -813,6 +903,24 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemIllness() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_illness";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_illness Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem Other Problem*/
     public static ArrayList<Integer> retrieveOtherProblemIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -930,6 +1038,24 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemtherProblems() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_other_problems";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-Other problems Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*PProblem Trafficking Indicator*/
     public static ArrayList<Integer> retrieveTraffickingIndicatorIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1138,6 +1264,25 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemTraffickingIndicators() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_trafficking_indicators";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from "
+                    + "Problem-tbl_trafficking_indicators Issue Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem salary claim Issue*/
     public static ArrayList<Integer> retrieveSalaryClaimIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1255,6 +1400,170 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemSalaryClaims() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_salary_claim_lodged";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from "
+                    + "Problem-tbl_salary_claim_lodged Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
+        /*Problem wica */
+    public static ArrayList<Integer> retrieveWicaIdsOfProblem(Problem problem) {
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT ID FROM tbl_wica where Worker_FIN_number = ? AND Job_key =? "
+                    + "AND Prob_key=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, problem.getWorkerFinNum());
+            pstmt.setInt(2, problem.getJobKey());
+            pstmt.setInt(3, problem.getProbKey());
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                ids.add(id);
+            }
+
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql);
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+
+        return ids;
+    }
+
+    public static ProblemWica retrieveProblemWicaById(int id) {
+        ProblemWica problemWica = null;
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT Wicamon_update, Wicamon_status, Wicamon_status_more, Wicamon_points, "
+                    + " Wicamon_dollars, Wicamon_remarks,"
+                    + "Worker_FIN_number, Job_key, Prob_key"
+                    + " FROM tbl_wica where ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Date wicaMonthlyUpdate = rs.getDate(1);
+                String wicaMonthlyStatus = rs.getString(2);
+                String wicaMonthlyStatusMore = rs.getString(3);
+                double wicaMonthlyPoints = rs.getDouble(4);
+                double wicaMonthlyDollars = rs.getDouble(5);
+                String wicaMonthlyRemarks = rs.getString(6);
+                String workerFinNumber = rs.getString(7);
+                int jobKey = rs.getInt(8);
+                int probKey = rs.getInt(9);
+                problemWica = new ProblemWica(id, workerFinNumber, jobKey, probKey,
+                        wicaMonthlyUpdate, wicaMonthlyStatus, wicaMonthlyStatusMore, wicaMonthlyPoints,
+                        wicaMonthlyDollars, wicaMonthlyRemarks);
+            }
+
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "ProblemWica={" + problemWica + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        return problemWica;
+    }
+
+    public static void addProblemWica(ProblemWica problemWica) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "INSERT INTO tbl_wica (Wicamon_update, Wicamon_status, Wicamon_status_more, "
+                    + "Wicamon_points,  "
+                    + "Wicamon_dollars, Wicamon_remarks, "
+                    + "Worker_FIN_number, Job_key, Prob_key) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?)";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setDate(1, problemWica.getWicaMonthlyUpdate());
+            pstmt.setString(2, problemWica.getWicaMonthlyStatus());
+            pstmt.setString(3, problemWica.getWicaMonthlyStatusMore());
+            pstmt.setDouble(4, problemWica.getWicaMonthlyPoints());
+            pstmt.setDouble(5, problemWica.getWicaMonthlyDollars());
+            pstmt.setString(6, problemWica.getWicaMonthlyRemarks());
+            pstmt.setString(7, problemWica.getWorkerFinNumber());
+            pstmt.setInt(8, problemWica.getJobKey());
+            pstmt.setInt(9, problemWica.getProblemKey());
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "ProblemWica: " + problemWica + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt);
+        }
+    }
+
+    public static void updateProblemWica(ProblemWica problemWica) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "UPDATE tbl_wica SET Wicamon_update=?, Wicamon_status=?, Wicamon_status_more=?, "
+                    + "Wicamon_points=?, Wicamon_dollars=?, Wicamon_remarks=? "
+                    + "WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setDate(1, problemWica.getWicaMonthlyUpdate());
+            pstmt.setString(2, problemWica.getWicaMonthlyStatus());
+            pstmt.setString(3, problemWica.getWicaMonthlyStatusMore());
+            pstmt.setDouble(4, problemWica.getWicaMonthlyPoints());
+            pstmt.setDouble(5, problemWica.getWicaMonthlyDollars());
+            pstmt.setString(6, problemWica.getWicaMonthlyRemarks());
+            pstmt.setInt(7,problemWica.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "ProblemWica={" + problemWica + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+
+    public static void deleteAllProblemWicas() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_wica";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_wica Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem wica claim Issue*/
     public static ArrayList<Integer> retrieveWicaClaimIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1381,6 +1690,24 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemWicaClaims() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_wica_claim";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_wica_claim Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem non-wica claim Issue*/
     public static ArrayList<Integer> retrieveNonWicaClaimIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1507,6 +1834,24 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemNonWicaClaims() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_non_wica_claim";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_non_wica_claim Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem police report*/
     public static ArrayList<Integer> retrievePoliceReportIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1634,6 +1979,24 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemPoliceReports() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_police_report";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_police_report Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem other complaint*/
     public static ArrayList<Integer> retrieveOtherComplaintIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1769,6 +2132,24 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemOtherComplaints() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_other_complaint";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_other_complaint Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem case discussion*/
     public static ArrayList<Integer> retrieveCaseDiscussionIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1927,6 +2308,24 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteAllProblemCaseDiscussions() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_case_discussion";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_case_discussion Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem Hospital*/
     public static ArrayList<Integer> retrieveProblemHospitalIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2052,6 +2451,24 @@ public class ProblemComplementsDAO {
     }
     //End of ProblemHospital Methods
 
+    public static void deleteAllProblemHospitals() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_hospital";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_hospital Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem MC_status*/
     public static ArrayList<Integer> retrieveProblemMCStatusIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2180,6 +2597,24 @@ public class ProblemComplementsDAO {
     }
     //End of ProblemMCStatus Methods
 
+    public static void deleteAllProblemMCStatus() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_MC_status";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_MC_status Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem R2R*/
     public static ArrayList<Integer> retrieveProblemR2RIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2331,6 +2766,24 @@ public class ProblemComplementsDAO {
     }
     //End of ProblemR2R Methods
 
+    public static void deleteAllProblemR2Rs() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_R2R";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_R2R Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem Lawyer*/
     public static ArrayList<Integer> retrieveProblemLawyerIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2454,6 +2907,24 @@ public class ProblemComplementsDAO {
     }
     //End of ProblemLawyer Methods
 
+    public static void deleteAllProblemLawyers() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_lawyer";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_lawyer Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem Case Milestone Non criminal*/
     public static ArrayList<Integer> retrieveProblemCaseMilestoneNCIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2574,6 +3045,24 @@ public class ProblemComplementsDAO {
     }
     //End of ProblemCaseMilestoneNC Methods
 
+    public static void deleteAllProblemCaseMilestoneNCs() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_casemilestone_noncriminal";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_casemilestone_noncriminal Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem Case Milestone Criminal*/
     public static ArrayList<Integer> retrieveProblemCaseMilestoneCRIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2700,6 +3189,24 @@ public class ProblemComplementsDAO {
     }
     //End of ProblemCaseMilestoneCR Methods   
 
+    public static void deleteAllProblemCaseMilestoneCRs() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_casemilestone_criminal";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_casemilestone_criminal Table.");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     /*Problem TTR*/
     public static ArrayList<Integer> retrieveProblemTTRIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2831,135 +3338,51 @@ public class ProblemComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    //End of ProblemTTR Methods
 
-    /*Problem wica */
-    public static ArrayList<Integer> retrieveWicaIdsOfProblem(Problem problem) {
-        ArrayList<Integer> ids = new ArrayList<Integer>();
-
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        String sql = "";
-
-        try {
-            conn = ConnectionManager.getConnection();
-            sql = "SELECT ID FROM tbl_wica where Worker_FIN_number = ? AND Job_key =? "
-                    + "AND Prob_key=?";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, problem.getWorkerFinNum());
-            pstmt.setInt(2, problem.getJobKey());
-            pstmt.setInt(3, problem.getProbKey());
-            rs = pstmt.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt(1);
-                ids.add(id);
-            }
-
-        } catch (SQLException ex) {
-            handleSQLException(ex, sql);
-        } finally {
-            ConnectionManager.close(conn, pstmt, rs);
-        }
-
-        return ids;
-    }
-
-    public static ProblemWica retrieveProblemWicaById(int id) {
-        ProblemWica problemWica = null;
-
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        String sql = "";
-
-        try {
-            conn = ConnectionManager.getConnection();
-            sql = "SELECT Wicamon_update, Wicamon_status, Wicamon_status_more, Wicamon_points, "
-                    + " Wicamon_dollars, Wicamon_remarks,"
-                    + "Worker_FIN_number, Job_key, Prob_key"
-                    + " FROM tbl_wica where ID = ?";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, id);
-            rs = pstmt.executeQuery();
-            while (rs.next()) {
-                Date wicaMonthlyUpdate = rs.getDate(1);
-                String wicaMonthlyStatus = rs.getString(2);
-                String wicaMonthlyStatusMore = rs.getString(3);
-                double wicaMonthlyPoints = rs.getDouble(4);
-                double wicaMonthlyDollars = rs.getDouble(5);
-                String wicaMonthlyRemarks = rs.getString(6);
-                String workerFinNumber = rs.getString(7);
-                int jobKey = rs.getInt(8);
-                int probKey = rs.getInt(9);
-                problemWica = new ProblemWica(id, workerFinNumber, jobKey, probKey,
-                        wicaMonthlyUpdate, wicaMonthlyStatus, wicaMonthlyStatusMore, wicaMonthlyPoints,
-                        wicaMonthlyDollars, wicaMonthlyRemarks);
-            }
-
-        } catch (SQLException ex) {
-            handleSQLException(ex, sql, "ProblemWica={" + problemWica + "}");
-        } finally {
-            ConnectionManager.close(conn, pstmt, rs);
-        }
-        return problemWica;
-    }
-
-    public static void addProblemWica(ProblemWica problemWica) {
+    public static void deleteAllProblemTTRs() {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql = "";
+        
         try {
             conn = ConnectionManager.getConnection();
-            sql = "INSERT INTO tbl_wica (Wicamon_update, Wicamon_status, Wicamon_status_more, "
-                    + "Wicamon_points,  "
-                    + "Wicamon_dollars, Wicamon_remarks, "
-                    + "Worker_FIN_number, Job_key, Prob_key) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?)";
-
+            
+            sql = "DELETE FROM tbl_ttr";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setDate(1, problemWica.getWicaMonthlyUpdate());
-            pstmt.setString(2, problemWica.getWicaMonthlyStatus());
-            pstmt.setString(3, problemWica.getWicaMonthlyStatusMore());
-            pstmt.setDouble(4, problemWica.getWicaMonthlyPoints());
-            pstmt.setDouble(5, problemWica.getWicaMonthlyDollars());
-            pstmt.setString(6, problemWica.getWicaMonthlyRemarks());
-            pstmt.setString(7, problemWica.getWorkerFinNumber());
-            pstmt.setInt(8, problemWica.getJobKey());
-            pstmt.setInt(9, problemWica.getProblemKey());
             pstmt.executeUpdate();
         } catch (SQLException ex) {
-            handleSQLException(ex, sql, "ProblemWica: " + problemWica + "}");
-        } finally {
-            ConnectionManager.close(conn, pstmt);
-        }
-    }
-
-    public static void updateProblemWica(ProblemWica problemWica) {
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        String sql = "";
-        try {
-            conn = ConnectionManager.getConnection();
-            sql = "UPDATE tbl_wica SET Wicamon_update=?, Wicamon_status=?, Wicamon_status_more=?, "
-                    + "Wicamon_points=?, Wicamon_dollars=?, Wicamon_remarks=? "
-                    + "WHERE ID = ?";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setDate(1, problemWica.getWicaMonthlyUpdate());
-            pstmt.setString(2, problemWica.getWicaMonthlyStatus());
-            pstmt.setString(3, problemWica.getWicaMonthlyStatusMore());
-            pstmt.setDouble(4, problemWica.getWicaMonthlyPoints());
-            pstmt.setDouble(5, problemWica.getWicaMonthlyDollars());
-            pstmt.setString(6, problemWica.getWicaMonthlyRemarks());
-            pstmt.setInt(7,problemWica.getId());
-            pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            handleSQLException(ex, sql, "ProblemWica={" + problemWica + "}");
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_ttr Table. ");
         } finally {
             ConnectionManager.close(conn, pstmt, null);
-        }
+        }     
     }
-
+    
+    /*general*/
+    public static void deleteAll() {
+        deleteAllProblemAggravatingIssues();
+        deleteAllProblemLeadCaseWorkers();
+        deleteAllProblemAuxiliaryCaseWorkers();
+        deleteAllProblemSalaryRelatedHistories();
+        deleteAllProblemInjuries();
+        deleteAllProblemIllness();
+        deleteAllProblemtherProblems();
+        deleteAllProblemTraffickingIndicators();
+        deleteAllProblemSalaryClaims();
+        deleteAllProblemWicas();
+        deleteAllProblemWicaClaims();
+        deleteAllProblemNonWicaClaims();
+        deleteAllProblemPoliceReports();
+        deleteAllProblemOtherComplaints();
+        deleteAllProblemCaseDiscussions();
+        deleteAllProblemHospitals();
+        deleteAllProblemMCStatus();
+        deleteAllProblemR2Rs();
+        deleteAllProblemLawyers();
+        deleteAllProblemCaseMilestoneNCs();
+        deleteAllProblemCaseMilestoneCRs();
+        deleteAllProblemTTRs();
+    }
+    
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
         String msg = "Unable to access data; SQL=" + sql + "\n";
         for (String parameter : parameters) {

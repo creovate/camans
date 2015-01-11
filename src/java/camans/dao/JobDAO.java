@@ -4,13 +4,18 @@
  */
 package camans.dao;
 
+import au.com.bytecode.opencsv.CSVReader;
 import camans.entity.Job;
 import camans.entity.User;
 import camans.entity.Worker;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +25,7 @@ import java.util.logging.Logger;
  * @author soemyatmyat
  */
 public class JobDAO {
-
+    
     public static ArrayList<Integer> retrieveJobIdsOfWorker (Worker worker) {
         ArrayList<Integer> jobIds = new ArrayList<Integer>();
         
@@ -123,6 +128,188 @@ public class JobDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }  
+    
+    public static void deleteAll() {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_job";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Job Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        } 
+    }
+    
+    public static ArrayList<String> validateAndAddJob(String jobFileName) throws IOException {
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        try {
+            CSVReader csvReader = new CSVReader(new FileReader(jobFileName));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+            Worker worker = null;
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String jobKeyStr = fields[1].trim();
+                String employerName = fields[2].trim();
+                String workPassType = fields[3].trim();
+                String workPassOther = fields[4].trim();
+                String jobSector = fields[5].trim();
+                String jobSectorOther = fields[6].trim();
+                String occupation = fields[7].trim();
+                String jobStartDate = fields[8].trim();
+                String jobEndDate = fields[9].trim();
+                String jobTJS = fields[10].trim();
+                String jobRemark = fields[11].trim();
+                int jobKey = 0;
+
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                if (jobKeyStr.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+                if (employerName.equals("")) {
+                    errorMsg += header[2] + " is blank,";
+                    pass = false;
+                }
+                if (workPassType.equals("")) {
+                    errorMsg += header[3] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    boolean exist = false; //assume fin does not exist in workerList first
+                    // check for any existing worker  with the same finNum. 
+                    worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    } 
+
+                    try {
+                        jobKey = Integer.parseInt(jobKeyStr);
+                        Job tmpJob = JobDAO.retrieveJobByJobId(jobKey);
+                        if (tmpJob != null) {
+                            errorMsg += "duplicate jobKey, ";
+                        }
+                    } catch (Exception ex) {
+                        errorMsg += "Invalid Job Key Format,";
+                    }
+
+                    if (employerName.length() > 50) {
+                        errorMsg += "Employer Name is longer than 50 characters,";
+                    }
+
+                    ArrayList<String> workPassList = DropdownDAO.retrieveAllDropdownListOfWorkpassType();
+                    exist = false;
+                    for (String tmp: workPassList) {
+                        if (tmp.equalsIgnoreCase(workPassType)) {
+                            exist = true;
+                            break;
+                        }
+                    }
+                    if (!exist) {
+                        errorMsg += "Invalid Worker Pass Type, ";
+                    }
+
+                    if (!workPassOther.equals("") && workPassOther.length() > 50) {
+                        errorMsg += header[4] + " cannot be more than 50 characters,";
+                    }
+
+                    if (!jobSector.equals("")) {
+                        ArrayList<String> jobSectorList = DropdownDAO.retrieveAllDropdownListOfJobSector();
+                        exist = false;
+                        for (String tmp: jobSectorList) {
+                            if (tmp.equalsIgnoreCase(jobSector)) {
+                                exist = true;
+                                break;
+                            }
+                        }
+                        if (!exist) {
+                            errorMsg += "Invalid Job Sector, ";
+                        }
+                    }
+
+                    if (!jobSectorOther.equals("") && jobSectorOther.length() > 50) {
+                        errorMsg += header[6] + " cannot be more than 50 characters,";
+                    }
+
+                    if (!occupation.equals("") && occupation.length() > 50) {
+                        errorMsg += header[7] + " cannot be more than 50 characters,";
+                    }
+
+                    if (!jobStartDate.equals("") && jobStartDate.length() > 50) {
+                        errorMsg += header[8] + " cannot be more than 500 characters,";
+                    }
+
+                    if (!jobEndDate.equals("") && jobEndDate.length() > 50) {
+                        errorMsg += header[9] + " cannot be more than 500 characters,";
+                    }
+
+                    if (!jobTJS.equals("")) {
+                        if (jobTJS.equalsIgnoreCase("Yes") || jobTJS.equalsIgnoreCase("No")) {
+
+                        } else {
+                            errorMsg += "Invalid TJS Format. Should be either 'Yes' or 'No, ";
+                        }
+                    }
+
+
+                    if (!jobRemark.equals("") && jobRemark.length() > 500) {
+                        errorMsg += header[11] + " cannot be more than 500 characters,";
+                    }
+
+                }    
+
+                // if there is an error, the line number of the error and its relevant message is added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    Job job = new Job(finNum, jobKey, employerName, workPassType, workPassOther, jobSector, 
+                                jobSectorOther, occupation, jobStartDate, jobEndDate, jobTJS, jobRemark);
+                    addJob(worker, job);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExceptin
+        }
+        return errList;
+    }
+        
+    public static void addAll(ArrayList<Job> jobList) {
+        if (jobList != null && !jobList.isEmpty()) {
+            for (Job job: jobList) {
+                Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(job.getWorkerFinNum());
+                addJob(worker, job);
+            }
+            
+        }        
+    }
     
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
       String msg = "Unable to access data; SQL=" + sql + "\n";

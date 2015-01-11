@@ -64,6 +64,10 @@
         <servlet-name>processGenerateReport</servlet-name>
         <servlet-class>camans.controller.processGenerateReport</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>processSearchAuditLog</servlet-name>
+        <servlet-class>camans.controller.processSearchAuditLog</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>processAddWorkerComplements</servlet-name>
         <url-pattern>/addWorkerComplement.do</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>processGenerateReport</servlet-name>
         <url-pattern>/generateReport.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>processSearchAuditLog</servlet-name>
+        <url-pattern>/searchAuditLog.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
