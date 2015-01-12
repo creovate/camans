@@ -176,9 +176,21 @@
                         notEmpty: {
                             message: 'This field cannot be empty.'
                         },
-                        regexp: {
-                            regexp: /^[A-Z][0-9]{7}[A-Z]/,
-                            message: 'FIN must start with an alphabet followed by 7 digits and ends with an alphabet.'
+                        callback: {
+                            message: 'FIN number is incorrect. Please Check again.',
+                            callback: function(value, validator) {
+                                var finType1 = /^[G][0-9]{7}[A-Z]$/;
+                                var finType2 = /^GEN[0-9]{6}$/;
+                                var finType1Res = finType.test(value);
+                                if (finType1.test(value) === false || finType2.test(value) === false) {
+                                    return {
+                                        valid: false,
+                                        message: 'FIN number is incorrect. Please Check again.'
+                                    };
+                                }
+                                return true;
+
+                            }
                         },
                         remote: {
                             message: 'The FIN Number already exists.',

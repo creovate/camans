@@ -114,10 +114,11 @@
                             max: 20,
                             message: 'Phone No must be less than 20 characters.'
                         },
-                        integer: {
-                            message: 'The value is not an integer'
-                        },
-                        notEmpty: {
+                        regexp: {
+                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
+                            message: 'Phone Number can contain space,-,(),+ and digits only.'
+                        }, ,
+                                notEmpty: {
                             message: 'Phone No. cannot be empty.'
                         }
                     }
@@ -128,8 +129,9 @@
                             max: 20,
                             message: 'Phone No must be less than 20 characters.'
                         },
-                        integer: {
-                            message: 'The value is not an integer'
+                        regexp: {
+                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
+                            message: 'Phone Number can contain space,-,(),+ and digits only.'
                         },
                         notEmpty: {
                             message: 'Phone No. cannot be empty.'
@@ -178,10 +180,6 @@
                 //digitalcontact & remark for all
                 nDigitalContactType: {
                     validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Contact Type must be less than 20 characters.'
-                        },
                         notEmpty: {
                             message: 'Contact Type cannot be empty.'
                         }
@@ -224,10 +222,6 @@
                 },
                 digitalContactType: {
                     validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Contact Type must be less than 20 characters.'
-                        },
                         notEmpty: {
                             message: 'Contact Type cannot be empty.'
                         }
@@ -318,8 +312,9 @@
                             max: 20,
                             message: 'Phone No must be less than 20 characters.'
                         },
-                        integer: {
-                            message: 'The value is not an integer'
+                        regexp: {
+                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
+                            message: 'Phone can contain space,-,(),+ and digits only.'
                         }
                     }
                 },
@@ -380,8 +375,9 @@
                             max: 20,
                             message: 'Phone No must be less than 20 characters.'
                         },
-                        integer: {
-                            message: 'The value is not an integer'
+                        regexp: {
+                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
+                            message: 'Phone can contain space,-,(),+ and digits only.'
                         }
                     }
                 },
@@ -400,8 +396,9 @@
                             max: 20,
                             message: 'Phone No must be less than 20 characters.'
                         },
-                        integer: {
-                            message: 'The value is not an integer'
+                        regexp: {
+                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
+                            message: 'Phone can contain space,-,(),+ and digits only.'
                         }
                     }
                 },
@@ -419,8 +416,9 @@
                             max: 20,
                             message: 'Phone No must be less than 20 characters.'
                         },
-                        integer: {
-                            message: 'The value is not an integer'
+                        regexp: {
+                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
+                            message: 'Phone can contain space,-,(),+ and digits only.'
                         }
                     }
                 },
@@ -439,8 +437,9 @@
                             max: 20,
                             message: 'Phone No must be less than 20 characters.'
                         },
-                        integer: {
-                            message: 'The value is not an integer'
+                        regexp: {
+                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
+                            message: 'Phone can contain space,-,(),+ and digits only.'
                         }
                     }
                 },
@@ -450,18 +449,15 @@
                             max: 20,
                             message: 'Phone No must be less than 20 characters.'
                         },
-                        integer: {
-                            message: 'The value is not an integer'
+                        regexp: {
+                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
+                            message: 'Phone can contain space,-,(),+ and digits only.'
                         }
                     }
                 },
                 //language
                 nMainLanguage: {
                     validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Language must be less than 20 characters.'
-                        },
                         notEmpty: {
                             message: 'Language cannot be empty.'
                         }
@@ -477,10 +473,6 @@
                 },
                 mainLanguage: {
                     validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Language must be less than 20 characters.'
-                        },
                         notEmpty: {
                             message: 'Language cannot be empty.'
                         }
@@ -655,8 +647,8 @@
 
     //end of data collection
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-    
-    
+
+
     if (nicknameId != null) {
         int id = Integer.parseInt(nicknameId);
 
@@ -772,15 +764,15 @@
                 <label for='passportIsDate' class="control-label">Passport Issue Date: </label>
                 <br/>
                 <input class="form-control input-append date dateInput" type='text' 
-                       name="passportIsDate" value="<%=(passportdetails.getPassportIssueDate() == null) ? "" 
-                       : sdf.format(passportdetails.getPassportIssueDate())%>">
+                       name="passportIsDate" value="<%=(passportdetails.getPassportIssueDate() == null) ? ""
+                               : sdf.format(passportdetails.getPassportIssueDate())%>">
             </div>
             <div class='form-group'>
                 <label for='passportExpDate' class="control-label">Passport Expiry Date: </label>
                 <br/>
                 <input class="form-control" type='text' 
-                       name="passportExpDate" value="<%=(passportdetails.getPassportExpirtyDate() == null) ? "" 
-                       : sdf.format(passportdetails.getPassportExpirtyDate())%>">
+                       name="passportExpDate" value="<%=(passportdetails.getPassportExpirtyDate() == null) ? ""
+                               : sdf.format(passportdetails.getPassportExpirtyDate())%>">
             </div>
 
 
@@ -844,15 +836,15 @@
             <label for='passportIssueDate' class="control-label">Passport Issue Date: </label>
             <br/>
             <input class="form-control dateInput" type='text' name="passportIssueDate" 
-                   value="<%=(passportdetails.getPassportIssueDate() == null) ? "" : 
-                       sdf.format(passportdetails.getPassportIssueDate())%>">
+                   value="<%=(passportdetails.getPassportIssueDate() == null) ? ""
+                           : sdf.format(passportdetails.getPassportIssueDate())%>">
         </div>
         <div class='form-group'>
             <label for='passportExpiryDate' class="control-label">Passport Expiry Date: </label>
             <br/>
             <input class="form-control dateInput" type='text' name="passportExpiryDate" 
-                   value="<%=(passportdetails.getPassportExpirtyDate() == null) ? "" : 
-                       sdf.format(passportdetails.getPassportExpirtyDate())%>">
+                   value="<%=(passportdetails.getPassportExpirtyDate() == null) ? ""
+                           : sdf.format(passportdetails.getPassportExpirtyDate())%>">
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="WorkerPassportDetails"/>
@@ -895,8 +887,8 @@
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control" type='text' name="obseleteDate" 
-                       value="<%=(sgPhNum.getObseleteDate() == null) ? "" : 
-                           sdf.format(sgPhNum.getObseleteDate())%>">
+                       value="<%=(sgPhNum.getObseleteDate() == null) ? ""
+                               : sdf.format(sgPhNum.getObseleteDate())%>">
             </div>
 
         </fieldset>
@@ -946,8 +938,8 @@
             <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
             <br/>
             <input class="form-control dateInput" type='text' name="obseleteDate" 
-                   value="<%=(sgPhNum.getObseleteDate() == null) ? "" : 
-                       sdf.format(sgPhNum.getObseleteDate())%>">
+                   value="<%=(sgPhNum.getObseleteDate() == null) ? ""
+                           : sdf.format(sgPhNum.getObseleteDate())%>">
         </div>
 
         <input type="hidden" name="complementName" value="WorkerSgPhNum"/>
@@ -1002,8 +994,8 @@
                 <label for='homephobdate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control " type='text' name="homephobdate" 
-                       value="<%=(homeCountryPhNum.getObseleteDate() == null) ? "" : 
-                           sdf.format(homeCountryPhNum.getObseleteDate())%>">
+                       value="<%=(homeCountryPhNum.getObseleteDate() == null) ? ""
+                               : sdf.format(homeCountryPhNum.getObseleteDate())%>">
             </div>
 
 
@@ -1062,8 +1054,8 @@
             <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
             <br/>
             <input class="form-control dateInput" type='text' name="obseleteDate" 
-                   value="<%=(homeCountryPhNum.getObseleteDate() == null) ? "" : 
-                       sdf.format(homeCountryPhNum.getObseleteDate())%>">
+                   value="<%=(homeCountryPhNum.getObseleteDate() == null) ? ""
+                           : sdf.format(homeCountryPhNum.getObseleteDate())%>">
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="WorkerHomeCountryPhNum"/>
@@ -1106,8 +1098,8 @@
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control" type='text' name="obseleteDate" 
-                       value="<%=(sgAddress.getObseleteDate() == null) ? "" : 
-                           sdf.format(sgAddress.getObseleteDate())%>">
+                       value="<%=(sgAddress.getObseleteDate() == null) ? ""
+                               : sdf.format(sgAddress.getObseleteDate())%>">
             </div>
 
         </fieldset>
@@ -1156,8 +1148,8 @@
             <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="obseleteDate" 
-                   value="<%=(sgAddress.getObseleteDate() == null) ? "" : 
-                       sdf.format(sgAddress.getObseleteDate())%>">
+                   value="<%=(sgAddress.getObseleteDate() == null) ? ""
+                           : sdf.format(sgAddress.getObseleteDate())%>">
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="WorkerSgAddress"/>
@@ -1246,8 +1238,8 @@
             <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="obseleteDate" 
-                   value="<%=(homeCountryAddress.getObseleteDate() == null) ? "" : 
-                       sdf.format(homeCountryAddress.getObseleteDate())%>">
+                   value="<%=(homeCountryAddress.getObseleteDate() == null) ? ""
+                           : sdf.format(homeCountryAddress.getObseleteDate())%>">
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="WorkerHomeCountryAddress"/>
@@ -1339,21 +1331,14 @@
             <div class='form-group'>
                 <label for='nDigitalContactType' class="control-label">Type of Digital Contact<span style="color: red">*</span>: </label>
                 <br/>
-                <select class="form-control" id="digitalContactType" name="nDigitalContactType" required>
+                <select class="form-control" id="digitalContactType" name="nDigitalContactType">
+                    <option value="">Select Contact Type:</option>
                     <%
                         for (String contactType : digitalContactList) {
-                            if (digitalContact.getContactType().equals(contactType)) {
-
                     %>
-                    <option selected><%=contactType%></option>
-                    <%
-                    } else {
-
-                    %>
-                    <option><%=contactType%></option>
+                    <option value="<%=contactType%>"><%=contactType%></option>
                     <%
 
-                            }
                         }
                     %>  
 
@@ -1445,8 +1430,8 @@
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="obseleteDate" 
-                       value="<%=(digitalContact.getObseleteDate() == null) ? "" : 
-                           sdf.format(digitalContact.getObseleteDate())%>">
+                       value="<%=(digitalContact.getObseleteDate() == null) ? ""
+                               : sdf.format(digitalContact.getObseleteDate())%>">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerDigitalContact"/>
@@ -1538,8 +1523,8 @@
                     <label for='nokObDate' class="control-label">Date Discovered to be Obsolete: </label>
                     <br/>
                     <input class="form-control" type='text' name="nokObDate" 
-                           value="<%=(nextOfKin.getObseleteDate() == null) ? "" : 
-                               sdf.format(nextOfKin.getObseleteDate())%>">
+                           value="<%=(nextOfKin.getObseleteDate() == null) ? ""
+                                   : sdf.format(nextOfKin.getObseleteDate())%>">
                 </div>
             </fieldset>
 
@@ -1652,8 +1637,8 @@
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="obseleteDate" 
-                       value="<%=(nextOfKin.getObseleteDate() == null) ? "" : 
-                           sdf.format(nextOfKin.getObseleteDate())%>">
+                       value="<%=(nextOfKin.getObseleteDate() == null) ? ""
+                               : sdf.format(nextOfKin.getObseleteDate())%>">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerNextOfKin"/>
@@ -1735,8 +1720,8 @@
                     <label for='nokObDate' class="control-label">Date Discovered to be Obsolete: </label>
                     <br/>
                     <input class="form-control" type='text' name="nokObDate" 
-                           value="<%=(familyMember.getObseleteDate() == null) ? "" : 
-                               sdf.format(familyMember.getObseleteDate())%>">
+                           value="<%=(familyMember.getObseleteDate() == null) ? ""
+                                   : sdf.format(familyMember.getObseleteDate())%>">
                 </div>
             </fieldset>
 
@@ -1832,8 +1817,8 @@
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="obseleteDate" 
-                       value="<%=(familyMember.getObseleteDate() == null) ? "" : 
-                           sdf.format(familyMember.getObseleteDate())%>">
+                       value="<%=(familyMember.getObseleteDate() == null) ? ""
+                               : sdf.format(familyMember.getObseleteDate())%>">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerFamilyMember"/>
@@ -1900,8 +1885,8 @@
                     <label for='nokObDate' class="control-label">Date Discovered to be Obsolete: </label>
                     <br/>
                     <input class="form-control" type='text' name="ObDate" 
-                           value="<%=(friend.getObseleteDate() == null) ? "" : 
-                               sdf.format(friend.getObseleteDate())%>">
+                           value="<%=(friend.getObseleteDate() == null) ? ""
+                                   : sdf.format(friend.getObseleteDate())%>">
                 </div>
             </fieldset>
 
@@ -1977,8 +1962,8 @@
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="obseleteDate" 
-                       value="<%=(friend.getObseleteDate() == null) ? "" : 
-                           sdf.format(friend.getObseleteDate())%>">
+                       value="<%=(friend.getObseleteDate() == null) ? ""
+                               : sdf.format(friend.getObseleteDate())%>">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerFriend"/>
@@ -2023,14 +2008,12 @@
                 <div class='form-group'>
                     <label for='mainLanguage' class="control-label">Worker's Main Language: </label>
                     <br/>
-                    <select class="form-control" id="digitalContactType" name="mainLanguage">
-                        <input type="text" value="<%=mainLan%>"/>
-                    </select>
+                    <input type="text" class="form_control" name="mainLanguage" value="<%=mainLan%>"/>
                 </div>
                 <div class="form-group" id="languageType_other_div" >
                     <label for="languageMore" class="col-md-3 control-label">Explain if above is 'Other'</label>
-                    <div class=" col-md-6">
-                        <input type="text" id="digitalContactType_other_In" class="form-control" name="languageMore"/></div>
+                    <br/>
+                    <input type="text" id="digitalContactType_other_In" class="form-control" name="languageMore"/>
                 </div>
                 <div class='form-group'>
                     <label for='englishStandard' class="control-label">Spoken English Standard </label>
@@ -2040,7 +2023,7 @@
                 <div class='form-group'>
                     <label for='fremark' class="control-label">Remark about Language: </label>
                     <br/>
-                    <textarea class="form-control" name="fremark" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200);"><%=remark%></textarea>
+                    <textarea class="form-control" name="fremark" rows="3"><%=remark%></textarea>
                 </div>
             </fieldset>
 
@@ -2058,10 +2041,11 @@
                 <label for='nMainLanguage' class="control-label">Worker's Main Language<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nMainLanguage">
+                    <option value="">Select Language:</option>
                     <%
                         for (String languageType : languageList) {
                     %>
-                    <option><%=languageType%></option>
+                    <option value="<%=languageType%>"><%=languageType%></option>
                     <%
 
                         }
@@ -2069,18 +2053,19 @@
                 </select>
             </div>
             <div class="form-group" id="languageType_other_div" >
-                <label for="nLanguageMore" class="col-md-3 control-label">Explain if above is 'Other'</label>
-                <div class=" col-md-6">
-                    <input type="text" id="digitalContactType_other_In" class="form-control" name="nLanguageMore"/></div>
+                <label for="nLanguageMore" class="control-label">Explain if above is 'Other'</label><br/>
+                <textarea class="form-control" name="nLanguageMore" rows="3" maxlength="200"></textarea>
+
             </div>
             <div class='form-group'>
                 <label for='nEnglishStandard' class="control-label">Spoken English Standard<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nEnglishStandard">
+                    <option value="">Select Spoken English Standard:</option>
                     <%
                         for (String engStd : spokenEnglishList) {
                     %> 
-                    <option><%=engStd%></option>
+                    <option value="<%=engStd%>"><%=engStd%></option>
                     <%
 
 
@@ -2248,8 +2233,8 @@
                     <label for='bkObDate' class="control-label">Date Discovered to be Obsolete: </label>
                     <br/>
                     <input class="form-control dateInput" type='text' name="bkObDate" 
-                           value="<%=(workerBankAcc.getObseleteDate() == null) ? "" : 
-                               sdf.format(workerBankAcc.getObseleteDate())%>">
+                           value="<%=(workerBankAcc.getObseleteDate() == null) ? ""
+                                   : sdf.format(workerBankAcc.getObseleteDate())%>">
                 </div>
             </fieldset>
 
@@ -2367,8 +2352,8 @@
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="obseleteDate" 
-                       value="<%=(workerBankAcc.getObseleteDate() == null) ? "" : 
-                           sdf.format(workerBankAcc.getObseleteDate())%>">
+                       value="<%=(workerBankAcc.getObseleteDate() == null) ? ""
+                               : sdf.format(workerBankAcc.getObseleteDate())%>">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerBankAcct"/>
