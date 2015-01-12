@@ -7,7 +7,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="camans.entity.Worker"%>
-<%@ include file="protect.jsp"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="camans.dao.DropdownDAO"%>
 <%@page import="camans.entity.User"%>

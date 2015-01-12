@@ -2,7 +2,6 @@
 <%@page import="camans.entity.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="camans.dao.*"%>
-<%@ include file="protect.jsp"%>
 
 <%
     User userLogin = (User) session.getAttribute("userLogin");
@@ -4684,7 +4683,7 @@
                 }
                 if (div_action_val === 'viewedit' || div_class === 'benefection') {
                     $("#pop_up_content").load('include/' + url + '?workerFin=<%=workerFin%>&' + div_id + '=' + div_value
-                            + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + "&action=" + div_action_val).dialog({modal: true,
+                            + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>&" + div_id + "=" + div_value + "&" + "&action=" + div_action_val).dialog({modal: true,
                         minWidth: $(window).width() - 750, resizable: false, title: div_title, draggable: false, close: function() {
                             $(this).dialog('destroy');
                             $('#pop_up_content').empty();

@@ -105,9 +105,9 @@ public class processBootstrap extends HttpServlet {
             String filePath = getServletContext().getRealPath("/");
             // Creating folder to store the zip file
             File file = new File(filePath + File.separator + "data");
+            if (!file.exists()) {file.mkdir();} //data file
             // delete the files inside the directory
             FileUtils.cleanDirectory(file);
-            if (!file.exists()) {file.mkdir();} //data file
             filePath = filePath + File.separator + "data" + File.separator;
             file = new File(filePath + fileName);
             // Write uploaded file to disk
@@ -236,8 +236,8 @@ public class processBootstrap extends HttpServlet {
                     errList.put("bankacct.csv", tmp);
                 }
                 
-                
-                
+                request.getSession().setAttribute("bootstrapResult", errList);
+                response.sendRedirect("admin.jsp");
             } catch (IOException ex) {
                 out.println("Bootstrap Failed - File IO exception occured: " + ex.getMessage());
                 return;

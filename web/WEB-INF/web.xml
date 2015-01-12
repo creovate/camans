@@ -52,7 +52,7 @@
         <servlet-name>processAssignCase</servlet-name>
         <servlet-class>camans.controller.processAssignCase</servlet-class>
     </servlet>
-    <servlet>
+     <servlet>
         <servlet-name>processFile</servlet-name>
         <servlet-class>camans.controller.processFile</servlet-class>
     </servlet>
@@ -61,13 +61,11 @@
         <servlet-class>camans.controller.processReferCase</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>processGenerateReport</servlet-name>
-        <servlet-class>camans.controller.processGenerateReport</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>processSearchAuditLog</servlet-name>
         <servlet-class>camans.controller.processSearchAuditLog</servlet-class>
     </servlet>
+    
+    
     <servlet-mapping>
         <servlet-name>processAddWorkerComplements</servlet-name>
         <url-pattern>/addWorkerComplement.do</url-pattern>
@@ -120,17 +118,13 @@
         <servlet-name>processAssignCase</servlet-name>
         <url-pattern>/assignCase.do</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
+     <servlet-mapping>
         <servlet-name>processFile</servlet-name>
         <url-pattern>/fileUpload.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>processReferCase</servlet-name>
         <url-pattern>/referCase.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>processGenerateReport</servlet-name>
-        <url-pattern>/generateReport.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>processSearchAuditLog</servlet-name>

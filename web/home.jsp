@@ -8,7 +8,6 @@
 <%@page import="camans.dao.*"%>
 <%@page import="camans.entity.*"%>
 <%@page import="java.util.ArrayList"%>
-<%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
@@ -74,6 +73,10 @@
         <!-- DataTables CSS, added by soemyatmyat -->
         <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+        <!-- Bootstrap Validator CSS, Added by soemyatmyat -->
+        <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
+        <!--jasny-bootstrap v3.1.3, added by soemyatmayt-->
+        <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
         
         <script src="js/jquery-2.1.1.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -82,19 +85,21 @@
         <!-- DataTables JS, Added by soemyatmyat -->
         <script src="js/jquery.dataTables.js"></script>
         <script src="js/dataTables.bootstrap.js"></script> 
-        <!--bootstrap session timeout, added by soemyatmyat-->
-        <script src="js/bootstrap-session-timeout.min.js"></script>
+        <!-- BootstrapValidator JS, Added by soemyatmyat-->
+        <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
+        <!--jasny-bootstrap v3.1.3, added by soemyatmyat-->
+        <script src="js/jasny-bootstrap.js"></script>  
         
         <link rel="shortcut icon" href="img/twc_logo.png">
         
         
         <title>CAMANS</title>
     </head>
-    <body id="home">
+    <body>
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
             
-        <div class="col-md-10">
+        <div class="col-md-10" id="content">
             <div class="page-header">
                 <center><h2>Search Worker</h2></center>    
             </div>
@@ -102,8 +107,9 @@
                 <!-- SEARCH FILTERS -->
                 
                 <!--<div id="schwker_box" class="col-md-11 sub_div_w_bg" style="padding:2% 1%">-->
-                <div id="worker_filter_div" class="col-md-12" style="border: 1px solid #ddd"> 
-                    <div >
+                <div id="worker_filter_div" class="col-md-11"> 
+                    <div class="panel panel-default">
+                        <div class="panel-body"> 
                 <!--<div class="col-mid-9 panel panel-default sub_div_w_bg" style="padding:2% 1%">-->    
                             <h3>Search Criteria</h3>  
                             <%
@@ -305,30 +311,32 @@
                                 </div> <!--end of row 4--> 
 
                                 <div clas="row"> <!-- row 5 -->
-                                    <div class="form-group col-sm-12 text-right">
+                                    <div class="form-group col-sm-3 pull-right">
                                         <button class="btn btn-default" id="btnSearch" onclick="search()">Search</button>
-                                        <button class="btn btn-default" id="btnReset" 
+                                        <button class="btn btn-default pull-right" id="btnReset" 
                                                 type="reset" onClick="window.location.href=window.location.href">Reset</button>
                                     </div>
                                 </div> <!--end of row 5--> 
                             </form> <!-- form close -->
-                        </div>
+                        </div> <!-- panel body -->
+                    </div>  <!-- panel close -->  
                 </div>
                    
                 <!-- End of search filters -->
 
                 <!-- search Results -->
-                <div id="worker_search_result_div" class="col-md-12" style="border: 1px solid #ddd; margin-top: 2%;">
+                <div id="worker_search_result_div" class="col-md-11">
                     <!--div class="col-md-3 pull-right"> 
                         <input type="text" id="search_in_recent" placeholder="Search..." class="form-control"/>
                     </div-->
                     <!--<table class="table" id="worker_search_result">-->
-                        <div>  
+                    <div class="panel panel-default">
+                        <div class="panel-body">  
                             
                             <%
                                 ArrayList<Worker> workersList = new ArrayList<Worker>();
                                 if (searchWorkers == null) {
-                                    workersList = WorkerDAO.retrieveWorkersByUser(userLogin.getUsername());
+                                    workersList = WorkerDAO.retrieveWorkersByUser(userLogin.getFullName());
                                 } else {
                                     workersList = searchWorkers;
                                 } 
@@ -340,8 +348,8 @@
                             
                                     } else {
                               
-                                        out.println("<h3>Assigned Cases</h3>"); 
-                                        out.println("There is no case assigned to you!<br/>");
+                                        out.println("<h3>Assigned Cases</h3>");    
+                                        out.println("There is no case assigned to you!");
                             
                                     }
                             
@@ -392,17 +400,14 @@
                                             if (!leadCaseIds.isEmpty()) {
                                                 ProblemLeadCaseWorker latestLeadCaseWkr = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById
                                                         (leadCaseIds.get(leadCaseIds.size()-1));
-                                                User tempUser = UserDAO.retrieveUserByUsername(latestLeadCaseWkr.getLeadCaseWorker());
-                                                leadCaseWorker = tempUser.getFullName();
+                                                leadCaseWorker = latestLeadCaseWkr.getLeadCaseWorker();
                                             }
                                             ArrayList<Integer> auxiCaseIds = ProblemComplementsDAO.retrieveProblemAuxiliaryCaseWorkerIdsOfProblem(latestProblem);
                                             String auxiCaseWorker = "-";
                                             if (!auxiCaseIds.isEmpty()) {
                                                 ProblemAuxiliaryCaseWorker latestAuxiCaseWkr = ProblemComplementsDAO.retrieveProblemAuxiliaryCaseWorkerById
                                                         (auxiCaseIds.get(auxiCaseIds.size()-1));
-                                                User tempUser = UserDAO.retrieveUserByUsername(latestAuxiCaseWkr.getAuxName());
-                                                auxiCaseWorker = tempUser.getFullName();
-                                                
+                                                auxiCaseWorker = latestAuxiCaseWkr.getAuxName();
                                             }
                                     %>
                                     <tr onclick="location.href = 'viewWorker.jsp?worker=<%=fin%>'" style="cursor: pointer">
@@ -423,6 +428,7 @@
                             }
                         %>    
                         </div>
+                    </div>
                 </div>
                 <!-- End of search Results -->      
             </div> <!--search worker -->
@@ -447,25 +453,8 @@
                 $('#workers-table').dataTable();
             }); 
             
-            //session time out
-            $(document).ready(function () {
-                $.sessionTimeout({
-                    message: 'Your session will be expired in one minute.',
-                    keepAliveUrl: 'keep-alive.html',
-                    logoutUrl: 'index.jsp',
-                    redirUrl: 'logout.jsp',
-                    warnAfter: 900000,
-                    redirAfter: 120000
-                });
-            });
-            
             
         </script>
-        <style>
-            .page-header{
-                padding-bottom: 0;
-            }
-        </style>
     </body>
 </html>
  

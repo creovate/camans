@@ -26,6 +26,21 @@ public class Benefit {
     private String benefitRemark;
     private double benefitValue;
 
+    /*
+     * constructor
+     * @param id identifier of benefit 
+     * @param workerFinNumber to whom this benefit belongs to
+     * @param jobKey to whom the benefit belongs to
+     * @param problemKey to whom the problem belongs to
+     * @param issue Date 
+     * @param benefitGiver who gives the benefit
+     * @param benefit type 
+     * @param benefit type other - a desc if benefit type is selected as other
+     * @param benefit serial number
+     * @param benefit purpose 
+     * @param benefit remark
+     * @param benefit value - the amount given to the worker
+     */
     //constructor with id 
     public Benefit(int id, String workerFinNumber, int jobKey, int problemKey, Date issueDate, 
             String benefitGiver, String benefitType, String benefitTypeMore, String benefitSerial, 

@@ -8,7 +8,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="camans.dao.UserAuditLogDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy hh:mm a");

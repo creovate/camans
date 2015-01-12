@@ -8,7 +8,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="camans.dao.*"%>
 <%@page import="camans.entity.*"%>
-<%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 

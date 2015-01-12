@@ -4469,7 +4469,9 @@
                 <%
                     for (String complaintType : complaintWho) {
                         if(complaintType.equals("Worker")){
+                %>
                             <option selected><%=complaintType%></option>
+                <%
                         }else{
                 %>
                 <option><%=complaintType%></option>
@@ -4493,7 +4495,7 @@
                 <%
                     for (String complaintM : complaintMode) {
                 %>
-                <option value="<%=compleintM%>"><%=complaintM%></option>
+                <option value="<%=complaintM%>"><%=complaintM%></option>
                 <%
 
                     }

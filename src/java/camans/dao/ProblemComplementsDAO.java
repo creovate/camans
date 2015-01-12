@@ -4,12 +4,18 @@
  */
 package camans.dao;
 
+import au.com.bytecode.opencsv.CSVReader;
 import camans.entity.*;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -158,6 +164,148 @@ public class ProblemComplementsDAO {
         }     
     }
        
+    public static ArrayList<String> validateAndAddProblemAggravatingIsssue(String probAggravFile) 
+            throws IOException{
+        
+        // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        try {
+            csvReader = new CSVReader(new FileReader(probAggravFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+
+            // Loops through each line of the csv with an array of String
+            while ((fields = csvReader.readNext()) != null) {
+                lineNum++;
+                // Assigning each field with its appropriate name
+                String finNum = fields[0].trim();
+                String jobKeyStr = fields[1].trim();
+                String probKeyStr = fields[2].trim();
+                String aggraIssue = fields[3].trim();
+                String aggraIssueMore = fields[4].trim();
+                String aggraLossStr = fields[5].trim();
+                String aggraRemark = fields[6].trim();
+                
+                int jobKey = 0;
+                int probKey = 0;
+                double aggraLoss = 0;
+                /**
+                 * Validations for empty fields
+                 */
+                boolean pass = true; //assume validation pass first;
+                if (finNum.equals("")) {
+                    errorMsg += header[0] + " is blank,";
+                    pass = false;
+                }
+                
+                if (jobKeyStr.equals("")) {
+                    errorMsg += header[1] + " is blank,";
+                    pass = false;
+                }
+                if (probKeyStr.equals("")) {
+                    errorMsg += header[2] + " is blank,";
+                    pass = false;
+                }
+                if (aggraIssue.equals("")) {
+                    errorMsg += header[3] + " is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    // check for any existing worker  with the same finNum. 
+                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                    if (worker == null) {
+                        errorMsg += "invalid FinNumber, ";
+                    }
+                    
+                    try {
+                        jobKey = Integer.parseInt(jobKeyStr);
+                        Job job = JobDAO.retrieveJobByJobId(jobKey);
+                        if (job == null) {
+                            errorMsg += "invalid job key, ";
+                        } else {
+                            if (worker != null && 
+                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
+                                errorMsg += "invalid finNumber for this job key, ";
+                            }
+                        }
+                    } catch (Exception ex) {
+                        errorMsg += "invalid job key, ";
+                    }
+                    
+                    try {
+                        probKey = Integer.parseInt(probKeyStr);
+                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
+                        if (problem == null) {
+                            errorMsg += "invalid problem key, ";
+                        } else {
+                            if (worker != null && 
+                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
+                                errorMsg += "invalid finNumber for this problem key, ";
+                            }
+                        }
+                    } catch (Exception ex) {
+                        errorMsg += "invalid problem key, ";
+                    }
+                    
+                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfProblems();
+                    boolean exit = false;
+                    for (String tmp: list) {
+                        if (tmp.equalsIgnoreCase(aggraIssue)) {
+                            exit = true;
+                            break;
+                        }
+                    }
+                    
+                    if (!exit) {
+                        errorMsg += "invalid Aggravating Issue Type, ";
+                    }
+                    
+                    if (!aggraIssueMore.equals("") && aggraIssueMore.length() > 50){
+                        errorMsg += header[4] + " cannot be more than 50 characters,";
+                    }
+                    
+                    if (!aggraLossStr.equals("") && !aggraLossStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
+                        errorMsg += header[5] + " must have maximum 2 decimal places,";
+                    } else {
+                        try {
+                            aggraLoss = Double.parseDouble(aggraLossStr);
+                        } catch (Exception ex) {
+                            errorMsg += header[5] + " - invalid format,";
+                        }
+                    }
+                    
+                    if (!aggraRemark.equals("") && aggraRemark.length() > 200) {
+                        errorMsg += header[6] + " cannot be longer than 200 characters,";
+                    }
+
+                }   //pass 
+
+                // if there is an error, the line number of the error and its relevant message is 
+                // added into the errorList
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    ProblemAggravatingIssue problemAggravatingIssue = new ProblemAggravatingIssue
+                            (finNum, jobKey, probKey, aggraIssue, aggraIssueMore, aggraLoss, aggraRemark);
+                    addProblemAggravatingIssue(problemAggravatingIssue);
+                }    
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
+    }
+     
     /*Problem Lead Case Worker*/
     public static ArrayList<Integer> retrieveLeadCaseWorkerIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
