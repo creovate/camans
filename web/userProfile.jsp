@@ -3,6 +3,7 @@
     Created on : Dec 19, 2014, 2:33:34 PM
     Author     : soemyatmyat
 --%>
+<%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     //==========================================//

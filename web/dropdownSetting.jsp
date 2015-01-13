@@ -7,6 +7,7 @@
 <%@page import="camans.entity.Dropdown"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file="protect.jsp"%>
 <%
     ArrayList<String> dropdownType = DropdownDAO.retrieveAllDropdownType();
     String dropdownname = request.getParameter("name");

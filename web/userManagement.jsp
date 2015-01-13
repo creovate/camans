@@ -8,6 +8,7 @@
 <%@page import="camans.dao.*"%>
 <%@page import="java.util.*"%>
 <%@page import="camans.entity.*"%>
+<%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");

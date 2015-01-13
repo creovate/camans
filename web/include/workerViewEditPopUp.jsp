@@ -117,7 +117,7 @@
                         regexp: {
                             regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
                             message: 'Phone Number can contain space,-,(),+ and digits only.'
-                        }, ,
+                        }, 
                                 notEmpty: {
                             message: 'Phone No. cannot be empty.'
                         }

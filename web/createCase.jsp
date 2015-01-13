@@ -10,6 +10,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="camans.dao.DropdownDAO"%>
 <%@page import="camans.entity.User"%>
+<%@ include file="protect.jsp"%>
 <%
     User userLogin = (User) request.getSession().getAttribute("userLogin");
     ArrayList<String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
