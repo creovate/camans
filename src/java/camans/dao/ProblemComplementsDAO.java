@@ -445,6 +445,126 @@ public class ProblemComplementsDAO {
         }     
     }
     
+    public static ArrayList<String> validateAndAddLeadCaseWorker(String leadCaseWorkerFile) throws IOException {
+        //attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        
+        try {
+            csvReader = new CSVReader(new FileReader(leadCaseWorkerFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+            
+            //loop through each line of the csv with an array of String
+            while ((fields=csvReader.readNext()) != null) {
+                lineNum++;
+                //assigning each field with its approriate name
+                String finNum = fields[0].trim();
+                String jobKeyStr = fields[1].trim();
+                String probKeyStr = fields[2].trim();
+                String leadName = fields[3].trim();
+                String leadStartStr = fields[4].trim();
+                String leadEndStr = fields[5].trim();
+                
+                int jobKey = 0;
+                int probKey = 0;
+                java.sql.Date leadStart = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                
+                //validations for emplty fields
+                boolean pass = true;
+                if(finNum.equals("")) {
+                    errorMsg += header[0]+" is blank,";
+                    pass = false;
+                }
+                
+                if (jobKeyStr.equals("")) {
+                    errorMsg += header[1]+" is blank,";
+                    pass = false;
+                }
+                
+                if (probKeyStr.equals("")) {
+                    errorMsg += header[2]+" is blank,";
+                    pass = false;
+                }
+                
+                if (leadName.equals("")) {
+                    errorMsg += header[3]+" is blank,";
+                    pass = false;
+                }
+                
+                //proceed only after empty fields validation is passed
+                if (pass) {
+                    //check for any existing worker with the same finNum
+                    Worker worker = WorderDAO.retriveWorkerbyFinNumber(finNum);
+                    if (worker==null) {
+                        errorMsg += "invalid FinNumber,";
+                    }
+                    
+                    try {
+                        jobKey = Integer.parseInt(jobKeyStr);
+                        Job job = JobDAO.retrieveJobByJobId(jobKey);
+                        if (job==null) {
+                            errorMsg += "invalid job key,";
+                        } else {
+                            if(worker!=null &&
+                            !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
+                                errorMsg += "invalid FinNumber for this job key,";
+                            }
+                        }
+                    } catch (Exception ex) {
+                        errorMsg += "invalid job key,";
+                    }
+                    
+                    try {
+                        probKey = Integer.parseInt(probKeyStr);
+                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
+                        if(problem==null) {
+                            errorMsg += "invalid problem key,";
+                        } else {
+                            if(worker!=null &&
+                            !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
+                                errorMsg += "invalid finNumber for this problem key,";
+                            }
+                        }
+                    } catch (Exception ex) {
+                        errorMsg += "invalid problem key,";
+                    }
+                
+                    //dropdown list of existing users
+                    //ArrayList<String> list = DropdownDAO.
+                    boolean exit = faluse;
+                    
+                    //need to add "loop through dropdown codes here
+                    
+                    if(!exit) {
+                        errorMsg += "invalid job key,";
+                    }
+                    
+                    if (!leadStartStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(leadStartStr);
+                            leadStart = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid leadStart Date Format,";
+                        } 
+                    }
+                    
+                    if (!leadEndStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(leadEndStr);
+                            leadEnd = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid leadEnd Date Format,";
+                        } 
+                    }
+                } 
+            }
+        }
+    }
+    
     /*Problem Auxiliary CaseWorker*/
     public static ArrayList<Integer> retrieveProblemAuxiliaryCaseWorkerIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
