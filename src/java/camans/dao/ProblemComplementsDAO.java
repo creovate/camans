@@ -534,10 +534,14 @@ public class ProblemComplementsDAO {
                     }
                 
                     //dropdown list of existing users
-                    //ArrayList<String> list = DropdownDAO.
-                    boolean exit = faluse;
-                    
-                    //need to add "loop through dropdown codes here
+                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfCaseworkers();
+                    boolean exit = false;
+                    for(String tmp:list) {
+                        if (tmp.equalsIgnoreCase(leadName)) {
+                            exit=true;
+                            break;
+                        }
+                    }
                     
                     if(!exit) {
                         errorMsg += "invalid job key,";
@@ -560,9 +564,26 @@ public class ProblemComplementsDAO {
                             errorMsg += "Invalid leadEnd Date Format,";
                         } 
                     }
-                } 
+                } //pass
+                
+                // if there is an error, the line number of the error and its relevant message is added into the errorList
+                
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    ProblemLeadCaseWorker problemLeadCaseWorker = new ProblemLeadCaseWorker
+                            (finNum, jobKey, probKey, leadName, leadStart, leadEnd );
+                    addProblemLeadCaseWorker(problemLeadCaseWorker);
+                }    
             }
+            csvReader.close();
+        } catch (FilenotFoundException ex) {
+            //fileNotFoundExcepton
         }
+        return errList;
     }
     
     /*Problem Auxiliary CaseWorker*/
