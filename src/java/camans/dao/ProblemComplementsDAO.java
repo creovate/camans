@@ -471,6 +471,7 @@ public class ProblemComplementsDAO {
                 int jobKey = 0;
                 int probKey = 0;
                 java.sql.Date leadStart = null;
+                java.sql.Date leadEnd = null;
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 
                 //validations for emplty fields
@@ -722,6 +723,148 @@ public class ProblemComplementsDAO {
         }     
     }
     
+    public static ArrayList<String> validateAndAddAuxiliaryCaseWorker(String auxiliaryCaseWorkerFile) throws IOException {
+        //attributes
+        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        
+        try {
+            csvReader = new CSVReader(new FileReader(auxiliaryCaseWorkerFile));
+            String[] header = csvReader.readNext();
+            String[] fields;
+            int lineNum = 1;
+            String errorMsg = "";
+            
+            //loop through each line of the csv with an array of String
+            while ((fields=csvReader.readNext()) != null) {
+                lineNum++;
+                //assigning each field with its approriate name
+                String finNum = fields[0].trim();
+                String jobKeyStr = fields[1].trim();
+                String probKeyStr = fields[2].trim();
+                String auxName = fields[3].trim();
+                String auxStartStr = fields[4].trim();
+                String auxEndStr = fields[5].trim();
+                
+                int jobKey = 0;
+                int probKey = 0;
+                java.sql.Date auxStart = null;
+                java.sql.Date auxEnd = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                
+                //validations for emplty fields
+                boolean pass = true;
+                if(finNum.equals("")) {
+                    errorMsg += header[0]+" is blank,";
+                    pass = false;
+                }
+                
+                if (jobKeyStr.equals("")) {
+                    errorMsg += header[1]+" is blank,";
+                    pass = false;
+                }
+                
+                if (probKeyStr.equals("")) {
+                    errorMsg += header[2]+" is blank,";
+                    pass = false;
+                }
+                
+                if (auxName.equals("")) {
+                    errorMsg += header[3]+" is blank,";
+                    pass = false;
+                }
+                
+                //proceed only after empty fields validation is passed
+                if (pass) {
+                    //check for any existing worker with the same finNum
+                    Worker worker = WorderDAO.retriveWorkerbyFinNumber(finNum);
+                    if (worker==null) {
+                        errorMsg += "invalid FinNumber,";
+                    }
+                    
+                    try {
+                        jobKey = Integer.parseInt(jobKeyStr);
+                        Job job = JobDAO.retrieveJobByJobId(jobKey);
+                        if (job==null) {
+                            errorMsg += "invalid job key,";
+                        } else {
+                            if(worker!=null &&
+                            !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
+                                errorMsg += "invalid FinNumber for this job key,";
+                            }
+                        }
+                    } catch (Exception ex) {
+                        errorMsg += "invalid job key,";
+                    }
+                    
+                    try {
+                        probKey = Integer.parseInt(probKeyStr);
+                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
+                        if(problem==null) {
+                            errorMsg += "invalid problem key,";
+                        } else {
+                            if(worker!=null &&
+                            !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
+                                errorMsg += "invalid finNumber for this problem key,";
+                            }
+                        }
+                    } catch (Exception ex) {
+                        errorMsg += "invalid problem key,";
+                    }
+                
+                    //dropdown list of existing users
+                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfCaseworkers();
+                    boolean exit = false;
+                    for(String tmp:list) {
+                        if (tmp.equalsIgnoreCase(leadName)) {
+                            exit=true;
+                            break;
+                        }
+                    }
+                    
+                    if(!exit) {
+                        errorMsg += "invalid job key,";
+                    }
+                    
+                    if (!auxStartStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(auxStartStr);
+                            auxStart = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid auxStart Date Format,";
+                        } 
+                    }
+                    
+                    if (!auxEndStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(auxEndStr);
+                            auxEnd = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid auxEnd Date Format,";
+                        } 
+                    }
+                } //pass
+                
+                // if there is an error, the line number of the error and its relevant message is added into the errorList
+                
+                if (!errorMsg.equals("")) {
+                    errList.add(lineNum + ":" + errorMsg);
+                    errorMsg = ""; // reset errorMsg variable
+                } // if there is no error, a new Worker object is created and added to the workerList
+                else {
+                    errorMsg = ""; // reset errorMsg variable
+                    ProblemAuxiliaryCaseWorker problemAuxiliaryCaseWorker = new ProblemAuxiliaryCaseWorker
+                            (finNum, jobKey, probKey, auxName, auxStart, auxEnd );
+                    addProblemAuxiiaryCaseWorker(problemAuxiliaryCaseWorker);
+                }    
+            }
+            csvReader.close();
+        } catch (FilenotFoundException ex) {
+            //fileNotFoundExcepton
+        }
+        return errList;
+    }
+    
     /*Problem Salary Related History*/
     public static ArrayList<Integer> retrieveProblemSalaryRelatedHistoryIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -888,6 +1031,8 @@ public class ProblemComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }     
     }
+    
+    public static ArrayList<String> validateAndAddProblemSalaryRelatedHistory
     
     /*Problem Injury*/
     public static ArrayList<Integer> retrieveProblemInjuryIdsOfProblem(Problem problem) {
