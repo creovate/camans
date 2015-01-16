@@ -118,8 +118,8 @@
                             message: 'Phone No must be less than 20 characters.'
                         },
                         regexp: {
-                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
-                            message: 'This value can contain space,-,(),+ and digits only.'
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
                         },
                         notEmpty: {
                             message: 'Phone No. cannot be empty.'
@@ -197,7 +197,7 @@
                             message: 'The name must be less than 50 characters.'
                         },
                         notEmpty: {
-                            message: 'The nickname cannot be empty.'
+                            message: 'The name cannot be empty.'
                         }
                     }
                 },
@@ -240,8 +240,8 @@
                             message: 'Phone No must be less than 20 characters.'
                         },
                         regexp: {
-                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
-                            message: 'This value can contain space,-,(),+ and digits only.'
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
                         }
                     }
                 },
@@ -260,8 +260,9 @@
                             max: 20,
                             message: 'Phone No must be less than 20 characters.'
                         },
-                        integer: {
-                            message: 'The value is not an integer'
+                        regexp: {
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
                         }
                     }
                 },
@@ -281,8 +282,8 @@
                             message: 'Phone No must be less than 20 characters.'
                         },
                         regexp: {
-                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
-                            message: 'Phone can contain space,-,(),+ and digits only.'
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
                         }
                     }
                 },
@@ -299,6 +300,13 @@
                         stringLength: {
                             max: 50,
                             message: 'Others must be less than 50 characters.'
+                        }
+                    }
+                },
+                nEnglishStandard: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Spoken English Standard cannot be empty.'
                         }
                     }
                 },
@@ -854,13 +862,6 @@
                         }
                     }
                 },
-                ntype: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
                 ntypeMore: {
                     validators: {
                         stringLength: {
@@ -1008,10 +1009,10 @@
                         }
                     }
                 },
-                ndeducation: {
+                ntotalDeduction: {
                     validators: {
                         numeric: {
-                            message: 'Deducation must be a number.'
+                            message: 'Deduction must be a number.'
                         },
                         regexp: {
                             regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
@@ -1793,20 +1794,6 @@
 
     });
 
-    //date revalidation
-    $('.dateInput').on('change', function() {
-        $('.complement_detailed_form')
-                .data('bootstrapValidator')             // Get the validator instance
-                .revalidateField('date');                // Revalidate it
-
-    });
-    $('.dateInput').on('change', function() {
-        $('.complement_detailed_form')
-                .data('bootstrapValidator')             // Get the validator instance
-                .revalidateField('ndate');                // Revalidate it
-
-    });
-
     //hide the year dropdwon
     function hideOther(div_id) {
         var div = document.getElementById(div_id);
@@ -1937,7 +1924,7 @@
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate" >
+                <input class="form-control dateInput" type='text' name="nObseleteDate" >
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerSgPhNum"/>
@@ -1975,7 +1962,7 @@
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate" >
+                <input class="form-control dateInput" type='text' name="nObseleteDate" >
             </div>
 
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
@@ -2003,13 +1990,13 @@
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Worker Address in Singapore<span style="color: red">*</span>:</label>
                 <br/>
-                <input class="form-control" type='text' name="nAddress" required>
+                <textarea class="form-control" name="nAddress" rows="3" maxlength="200" required></textarea>
             </div>
 
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate" >
+                <input class="form-control dateInput" type='text' name="nObseleteDate" >
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerSgAddress"/>
@@ -2038,12 +2025,12 @@
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Worker Address in Home Country<span style="color: red">*</span>:</label>
                 <br/>
-                <input class="form-control" type='text' name="nAddress" required>
+                <textarea class="form-control" name="nAddress" rows="3"  maxlength="300" required></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate" >
+                <input class="form-control dateInput" type='text' name="nObseleteDate" >
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerHomeCountryAddress"/>
@@ -2101,14 +2088,14 @@
                 <input class="form-control" type='text' name="nDigitalOwner">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remarks about Digital Contact: </label>
+                <label for='nRemark' class="control-label">Remark about Digital Contact: </label>
                 <br/>
-                <input class="form-control" type='text' name="nRemark">
+                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate">
+                <input class="form-control dateInput" type='text' name="nObseleteDate">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerDigitalContact"/>
@@ -2134,49 +2121,40 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nName' class="control-label">Name of Next of Kin<span style="color: red">*</span>: </label>
+                <label for='nName' class="control-label">Name of Family Member<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nName" required>
             </div>
             <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship of Next of Kin to Worker: </label>
+                <label for='nRelation' class="control-label">Relationship of Family Member to Worker: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRelation">
             </div>
             <div class='form-group'>
-                <label for='nDocReference' class="control-label">Identity Docs/References of Next of Kin: </label>
+                <label for='nAddress' class="control-label">Is the Family Member in Singapore?: </label>
                 <br/>
-                <input class="form-control" type='text' name="nDocReference">
+                <input class="form-control" type='text' name="nFamilyAddress">
             </div>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Phone Number of Next of Kin: </label>
+                <label for='nPhNum' class="control-label">Phone Number of Family Member: </label>
                 <br/>
-                <input class="form-control" type='text' name="nNOKPhNum">
+                <input class="form-control" type="text" name="nFamilyPhNum">
             </div>
             <div class='form-group'>
-                <label for='nDigitalContact' class="control-label">Other Contact Details of Next of Kin: </label>
+                <label for='nDigitalContact' class="control-label">Other Contact Details of Family Member: </label>
                 <br/>
                 <input class="form-control" type='text' name="nDigitalContact">
             </div>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Address of Next of Kin: </label>
+                <label for='nRemark' class="control-label">Remark about Family Member: </label>
+
                 <br/>
-                <input class="form-control" type='text' name="nNOKAddress">
-            </div>
-            <div class='form-group'>
-                <label for='nProofDoc' class="control-label">What Docs Attesting Next of Kin?: </label>
-                <br/>
-                <input class="form-control" type='text' name="nProofDoc">
-            </div>
-            <div class='form-group'>
-                <label for='nRemark' class="control-label">Remarks about Next of Kin: </label>
-                <br/>
-                <input class="form-control" type='text' name="nRemark">
+                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate">
+                <input class="form-control dateInput" type='text' name="nObseleteDate">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerNextOfKin"/>
@@ -2203,7 +2181,7 @@
             <div class='form-group'>
                 <label for='nName' class="control-label">Name of Family Member<span style="color: red">*</span>: </label>
                 <br/>
-                <input class="form-control" type='text' name="nName"required>
+                <input class="form-control" type='text' name="nName" required>
             </div>
             <div class='form-group'>
                 <label for='nRelation' class="control-label">Relationship of Family Member to Worker: </label>
@@ -2218,7 +2196,7 @@
             <div class='form-group'>
                 <label for='nPhNum' class="control-label">Phone Number of Family Member: </label>
                 <br/>
-                <input class="form-control" type='text' name="nFamilyPhNum">
+                <input class="form-control" type="text" name="nFamilyPhNum">
             </div>
             <div class='form-group'>
                 <label for='nDigitalContact' class="control-label">Other Contact Details of Family Member: </label>
@@ -2226,14 +2204,15 @@
                 <input class="form-control" type='text' name="nDigitalContact">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remarks about Family Member: </label>
+                <label for='nRemark' class="control-label">Remark about Family Member: </label>
+
                 <br/>
-                <input class="form-control" type='text' name="nRemark">
+                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate">
+                <input class="form-control dateInput" type='text' name="nObseleteDate">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerFamilyMember"/>
@@ -2263,26 +2242,24 @@
                 <input class="form-control" type='text' name="nName" required>
             </div>
             <div class='form-group'>
+                <label for='nPhNum' class="control-label">Phone Number of Friend:</label>
+                <br/>
+                <input class="form-control" type="text" name="nFriendPhNum">
+            </div>
+            <div class='form-group'>
                 <label for='nRelation' class="control-label">Relationship to Worker: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRelation">
             </div>
-
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Phone Number of Friend: </label>
+                <label for='nRemark' class="control-label">Remark about Friend: </label>
                 <br/>
-                <input class="form-control" type='text' name="nFriendPhNum">
-            </div>
-
-            <div class='form-group'>
-                <label for='nRemark' class="control-label">Remarks about Friend: </label>
-                <br/>
-                <input class="form-control" type='text' name="nRemark">
+                <textarea class="form-control" name="nRemark" rows="3"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate">
+                <input class="form-control dateInput" type='text' name="nObseleteDate">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerFriend"/>
@@ -2347,9 +2324,9 @@
                 </select>
             </div>
             <div class='form-group'>
-                <label for='fremark' class="control-label">Remarks about Language: </label>
+                <label for='fremark' class="control-label">Remark about Language: </label>
                 <br/>
-                <input class="form-control" type='text' name="nremark" 
+                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerLanguage"/>
@@ -2394,7 +2371,7 @@
             <div class='form-group'>
                 <label for='nBankBranch' class="control-label">Bank Branch Name: </label>
                 <br/>
-                <input class="form-control" type='text' name="nBankBranch">
+                <input class="form-control" type="text" name="nBankBranch">
             </div>
             <div class='form-group'>
                 <label for='nBankBranchCode' class="control-label">Bank Branch Code: </label>
@@ -2404,7 +2381,7 @@
             <div class='form-group'>
                 <label for='nBankBranchAddress' class="control-label">Bank Branch Address: </label>
                 <br/>
-                <input class="form-control" type='text' name="nBankBranchAddress">
+                <textarea class="form-control" name="nBankBranchAddress" rows="3" maxlength="300"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nBankSwift' class="control-label">Bank Swift Code: </label>
@@ -2412,14 +2389,14 @@
                 <input class="form-control" type='text' name="nBankSwift">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remarks about Bank Account: </label>
+                <label for='nRemark' class="control-label">Remark about Bank Account: </label>
                 <br/>
-                <input class="form-control" type='text' name="nRemark" >
+                <textarea class="form-control" name="nRemark"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control dateInput input-append date dateInput" type='text' name="nObseleteDate">
+                <input class="form-control dateInput" type='text' name="nObseleteDate">
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerBankAcct"/>
@@ -2464,11 +2441,12 @@
                     %>  
                 </select>
             </div>
-            <div class='form-group' id="passtype_other_div" >
-                <label for='passtypeMore' class="control-label">Explain if above is 'Other': </label>
-                <br/>
-                <input class="form-control" type='text' name="npasstypeMore">
+                
+            <div class="form-group" id="passtype_other_div">
+                <label for="passtypeMore" class="control-label">Explain if above is 'Other':</label><br/>
+                <textarea class="form-control" name="npasstypeMore" rows="3" maxlength="200"></textarea>
             </div>
+                
             <div class='form-group'>
                 <label for='npassno' class="control-label">Pass Number<span style="color: red">*</span>:</label>
                 <br/>
@@ -3029,17 +3007,13 @@
                 <label for='nisProvided' class="control-label">Accommodation provided by employer?<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="accomProvided" name="nisProvided"  >
+                    <option value="">Select from list:</option>
                     <%
                         for (String accomProvided : accomProvideds) {
-                            if(accomProvided.equals("Provided")){
-                                %>
-                                <option selected><%=accomProvided%></option>
+                    %>        
+                    <option value="<%=accomProvided%>"><%=accomProvided%></option>
                     <%
-                            }else{
-                    %>
-                    <option><%=accomProvided%></option>
-                    <%
-                            }
+                            
                         }
                     %>  
                 </select>
@@ -3161,7 +3135,7 @@
             <div class='form-group' id='ipapassType_other_div' >
                 <label for='nworkpassTypeMore' class="control-label">Explain if above is other</label>
                 <br/>
-                <input class="form-control" type='text' name="nworkpassTypeMore">
+                <textarea class="form-control" name="nworkpassTypeMore" maxlength="50"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nappDate' class="control-label">IPA application date:</label>
@@ -3213,7 +3187,7 @@
             <div class='form-group'>
                 <label for='ndeduction' class="control-label">IPA Total Deduction(S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="ndeduction">
+                <input class="form-control" type='text' name="ntotalDeduction">
             </div>
             <div class='form-group'>
                 <label for='ndeductionDetails' class="control-label">IPA Deduction Details:</label>

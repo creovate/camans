@@ -672,65 +672,6 @@ public class processEditProblemComplement extends HttpServlet {
                 ProblemComplementsDAO.updateProblemOtherProblems(other);
                 //log the audit
                 auditChange = other.toString2();
-                
-            //=======================================//
-            //      17. Trafficking Indication   
-            //=======================================//    
-            } else if (complementName.equals("trafficking")) {
-                String assessDateStr = request.getParameter("date");
-                String assessName = request.getParameter("person");
-                String tipi21 = request.getParameter("tipi21");
-                String tipi22 = request.getParameter("tipi22");
-                String tipi23 = request.getParameter("tipi23");
-                String tipi24 = request.getParameter("tipi24");
-                String tipi25 = request.getParameter("tipi25");
-                String tipi26 = request.getParameter("tipi26");
-                String tipi27 = request.getParameter("tipi27");
-                String tipi28 = request.getParameter("tipi28");
-                String tipi41 = request.getParameter("tipi41");
-                String tipi42 = request.getParameter("tipi42");
-                String tipi43 = request.getParameter("tipi43");
-                String tipi44 = request.getParameter("tipi44");
-                String tipi45 = request.getParameter("tipi45");
-                String tipi46 = request.getParameter("tipi46");
-                String tipi47 = request.getParameter("tipi47");
-                String tipi48 = request.getParameter("tipi48");
-                String tipi49 = request.getParameter("tipi49");
-                String tipi50 = request.getParameter("tipi50");
-                String tipi51 = request.getParameter("tipi51");
-                String tipi61 = request.getParameter("tipi61");
-                String tipi62 = request.getParameter("tipi62");
-                String tipi63 = request.getParameter("tipi63");
-                String tipi64 = request.getParameter("tipi64");
-                String tipi65 = request.getParameter("tipi65");
-                String tipi66 = request.getParameter("tipi66");
-                String tipi67 = request.getParameter("tipi67");
-                String tipi81 = request.getParameter("tipi81");
-                String tipi82 = request.getParameter("tipi82");
-                
-                java.sql.Date assessDate = null;
-                if (!assessDateStr.equals("")) {
-                    try {
-                        java.util.Date tmp = sdf.parse(assessDateStr);
-                        assessDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        out.println(ex);
-                    }
-                }
-                
-                int id = Integer.parseInt(request.getParameter("Id"));
-                //create object
-                ProblemTraffickingIndicator problemTraffickingIndicator = new ProblemTraffickingIndicator(
-                        id, workerFinNum, jobKey,
-                        problemKey, assessDate, assessName, tipi21,tipi22,tipi23,tipi24,tipi25,tipi26,
-                        tipi27,tipi28,tipi41,tipi42,tipi43,tipi44,tipi45,tipi46,tipi47,
-                        tipi48,tipi49,tipi50,tipi51,tipi61,tipi62,tipi63,tipi64,tipi65,tipi66,tipi67,tipi81,
-                        tipi82); 
-                //add to db
-                ProblemComplementsDAO.updateProblemTraffickingIndicator(problemTraffickingIndicator);
-                //log the audit
-                auditChange = problemTraffickingIndicator.toString2();
-                
 
             //=======================================//
             //          18. Police Report Lodged  

@@ -1,6 +1,19 @@
 camans
 ======
-<i><b>11th Jan 2015</b></i><br/>
+<i><b>16th Jan 2015 - soemyatmyat</b></i><br/>
+1. debugged iteration8 bugs<br/>
+	(a) search worker = no bugs<br/>
+	(b) worker complements = done & standardize the add/view/edits forms for all worker complemetns <br/>
+	(c) job complements = done <br/>
+	(d) benefits = not yet <br/>
+	(e) attachment = done <br/>
+	(f) user management = no bugs <br/>
+	(g) audit trails = no bugs<br/>
+	(h) dropdown configuration = no bugs<br/>
+2. import & export function <br/>
+	(a) update ProblemComplementsDAO.java<br/>
+
+<i><b>11th Jan 2015 - soemyatmyat</b></i><br/>
 1. debugged iter 6 bugs<br/>
 2. audit trail search function<br/>
 3. time out script to all jsp pages<br/>

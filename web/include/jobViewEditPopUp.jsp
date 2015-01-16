@@ -1011,13 +1011,6 @@
                         }
                     }
                 },
-                ntype: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
                 ntypeMore: {
                     validators: {
                         stringLength: {
@@ -1161,10 +1154,10 @@
                         }
                     }
                 },
-                deducation: {
+                totalDeduction: {
                     validators: {
                         numeric: {
-                            message: 'Deducation must be a number.'
+                            message: 'Deduction must be a number.'
                         },
                         regexp: {
                             regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
@@ -1272,10 +1265,10 @@
                         }
                     }
                 },
-                ndeducation: {
+                ntotalDeduction: {
                     validators: {
                         numeric: {
-                            message: 'Deducation must be a number.'
+                            message: 'Deduction must be a number.'
                         },
                         regexp: {
                             regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
@@ -1296,19 +1289,6 @@
 
     });
 
-    //date revalidation
-    $('.dateInput').on('change', function() {
-        $('.complement_detailed_form')
-                .data('bootstrapValidator')             // Get the validator instance
-                .revalidateField('date');                // Revalidate it
-
-    });
-    $('.dateInput').on('change', function() {
-        $('.complement_detailed_form')
-                .data('bootstrapValidator')             // Get the validator instance
-                .revalidateField('ndate');                // Revalidate it
-
-    });
 </script>
 <!---------------->
 <!--pass details-->
@@ -1348,9 +1328,7 @@
 
         <%
             String passtype = pass.getPassType();
-            if (passtype.equals("other")) {
-                passtype = pass.getPassTypeMore();
-            }
+            String passtypeMore = pass.getPassTypeMore();
             String passnum = pass.getPassNum();
             String issuer = pass.getIssuer();
             String remark = pass.getRemarks();
@@ -1364,6 +1342,13 @@
                     <label for='passtype' class="control-label">Pass Type:</label>
                     <br/>
                     <input class="form-control" type='text' name="passtype" value="<%=passtype%>">
+                </div>
+                
+                <div class="form-group" id="passtype_other_div">
+                    <label for="passtypeMore" class="control-label">Explain if above is 'Other':</label><br/>
+                    <textarea class="form-control" name="npasstypeMore" rows="3" maxlength="200">
+                        <%=(passtypeMore==null)?"":passtypeMore%>
+                    </textarea>
                 </div>
                 <div class='form-group'>
                     <label for='passno' class="control-label">Pass Number:</label>
@@ -1437,11 +1422,11 @@
                     %>  
                 </select>
             </div>
-            <div class='form-group' id="passtype_other_div" >
-                <label for='passtypeMore' class="control-label">Explain if above is 'Other': </label>
-                <br/>
-                <input class="form-control" type='text' name="npasstypeMore">
-            </div>
+
+            <div class="form-group" id="passtype_other_div">
+                <label for="passtypeMore" class="control-label">Explain if above is 'Other':</label><br/>
+                <textarea class="form-control" name="npasstypeMore" rows="3" maxlength="200"></textarea>
+            </div>    
             <div class='form-group'>
                 <label for='npassno' class="control-label">Pass Number<span style="color: red">*</span>:</label>
                 <br/>
@@ -1480,7 +1465,6 @@
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="JobPassDetails"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -1513,11 +1497,11 @@
 
 
             </div>
-            <div class='form-group' id="passtypeEdit_other_div" >
-                <label for='passtypeMore' class="control-label">Explain if above is 'Other': </label>
-                <br/>
-                <input class="form-control" type='text' name="passtypeMore">
-            </div>
+            <div class="form-group" id="passtype_other_div">
+                <label for="passtypeMore" class="control-label">Explain if above is 'Other':</label><br/>
+                <textarea class="form-control" name="passtypeMore" rows="3" maxlength="200">
+                    <%=(passtypeMore==null)?"":passtypeMore%></textarea>
+            </div>     
             <div class='form-group'>
                 <label for='passno' class="control-label">Pass Number<span style="color: red">*</span>:</label>
                 <br/>
@@ -1682,7 +1666,6 @@
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="EmployerDetails"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -1909,7 +1892,6 @@
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="ContractDetails"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2016,9 +1998,7 @@
             String person = wagent.getAgentPersonName();
             String address = wagent.getAgentAddress();
             String location = wagent.getAgentLocation();
-            if (location == null) {
-                location = wagent.getAgentlocationMore();
-            }
+            String locationMore = wagent.getAgentlocationMore();
             String contact = wagent.getAgentContact();
             double amtPaid = wagent.getAgentAmtPaid();
             double amtOwed = wagent.getAgentAmtOwed();
@@ -2051,6 +2031,12 @@
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=location%>">
                 </div>
+                <div class="form-group" id="location_other_div">
+                    <label for="locationMore" class="control-label">Explain if above is 'Other':</label><br/>
+                    <textarea class="form-control" name="locationMore" rows="3" maxlength="200">
+                        <%=(locationMore==null)?"":locationMore%>
+                    </textarea>
+                </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Agent Address: </label>
                     <br/>
@@ -2059,7 +2045,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Agent Phone/Email Contact: </label>
                     <br/>
-                    <input class="form-control" type='text' name="remark" value="<%=contact%>">
+                    <input class="form-control" type='text' name="remark" value="<%=(contact==null)?"":contact%>">
                 </div>
                 <div class='form-group'>
                     <label for='empid' class="control-label">Amount Paid To This Agent(S$):</label>
@@ -2149,11 +2135,12 @@
                     %>  
                 </select>
             </div>
-            <div class='form-group' id="agentLocation_other_div" >
-                <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
-                <br/>
-                <input class="form-control" type='text' name="naglocationMore">
-            </div>
+            <div class="form-group" id="location_other_div">
+                <label for="locationMore" class="control-label">Explain if above is 'Other':</label><br/>
+                <textarea class="form-control" name="naglocationMore" rows="3" maxlength="50">
+                    <%=(locationMore==null)?"":locationMore%>
+                </textarea>
+            </div>    
             <div class='form-group'>
                 <label for='naddress' class="control-label">Agent Address: </label>
                 <br/>
@@ -2217,7 +2204,6 @@
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="Agent"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2240,17 +2226,18 @@
                 <label for='location' class="control-label">Location of Agent: </label>
                 <br/>
                 <select class="form-control" id="agentLocationEdit" name="aglocation">
+                    <option value="" selected>Select Location:</option>
                     <%
                         for (String agentLocation : agentLocations) {
                             if (location.equals(agentLocation)) {
 
                     %>
-                    <option selected><%=agentLocation%></option>
+                            <option selected><%=agentLocation%></option>
                     <%
-                    } else {
+                            } else {
 
                     %>
-                    <option><%=agentLocation%></option>
+                            <option><%=agentLocation%></option>
                     <%
 
                             }
@@ -2258,11 +2245,12 @@
                     %>  
                 </select>
             </div>
-            <div class='form-group' id="agentLocationEdit_other_div" >
-                <label for='locationMore' class="control-label">Explain if above is 'Other': </label>
-                <br/>
-                <input class="form-control" type='text' name="aglocationMore">
-            </div>
+            <div class="form-group" id="agentLocationEdit_other_div">
+                <label for="locationMore" class="control-label">Explain if above is 'Other':</label><br/>
+                <textarea class="form-control" name="aglocationMore" rows="3" maxlength="50">
+                    <%=(locationMore==null)?"":locationMore%>
+                </textarea>
+            </div>     
             <div class='form-group'>
                 <label for='address' class="control-label">Agent Address: </label>
                 <br/>
@@ -2271,7 +2259,7 @@
             <div class='form-group'>
                 <label for='contact' class="control-label">Agent Phone/Email Contact: </label>
                 <br/>
-                <input class="form-control" type='text' name="contact" value="<%=contact%>">
+                <input class="form-control" type='text' name="contact" value="<%=(contact==null)?"":contact%>">
             </div>
             <div class='form-group'>
                 <label for='amtpaid' class="control-label">Amount Paid To This Agent(S$):</label>
@@ -2431,7 +2419,6 @@
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="VerbalAssurance"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2669,7 +2656,6 @@
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkPlace"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2827,7 +2813,13 @@
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=how%>">
                 </div>
-                <!--add other-->
+                <div class='form-group' id="howEdit_other_div" >
+                    <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
+                    <br/>
+                    <textarea class="form-control" name="howMore" maxlength="200">
+                        <%=(history.getWorkHistHowMore()==null)?"":history.getWorkHistHowMore()%>
+                    </textarea>
+                </div>
                 <div class='form-group'>
                     <label for='name' class="control-label">Date arrived Singapore for this job:</label>
                     <br/>
@@ -2936,7 +2928,6 @@
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkHistory"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2970,7 +2961,9 @@
             <div class='form-group' id="howEdit_other_div" >
                 <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="howMore" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200)"></textarea>
+                <textarea class="form-control" name="howMore" maxlength="200">
+                    <%=(history.getWorkHistHowMore()==null)?"":history.getWorkHistHowMore()%>
+                </textarea>
             </div>
             <div class='form-group'>
                 <label for='arrivalDate' class="control-label">Date arrived Singapore for this job:</label>
@@ -3368,10 +3361,7 @@
 
         <%
             String type = jipa.getIpaPassType();
-            if (type.equals("other")) {
-                type = jipa.getIpaPassTypeMore();
-            }
-            java.util.Date appDate = jipa.getIpaApplicationDate();
+            String typeMore = jipa.getIpaPassTypeMore();
             String empName = jipa.getIpaEmployerName();
             String agentName = jipa.getIpaAgentName();
             String industry = jipa.getIndustry();
@@ -3395,11 +3385,18 @@
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=type%>">
                 </div>
+                <div class='form-group' id='ipapassType_other_div' >
+                    <label for='nworkpassTypeMore' class="control-label">Explain if above is other</label>
+                    <br/>
+                    <textarea class="form-control" name="nworkpassTypeMore" maxlength="50">
+                        <%=(typeMore==null)?"":typeMore%>
+                    </textarea>
+                </div>
                 <div class='form-group'>
                     <label for='name' class="control-label">IPA application Date:</label>
                     <br/>
                     <input class="form-control" type='text' name="name" 
-                           value="<%=sdf.format(appDate)%>">
+                           value="<%=(jipa.getIpaApplicationDate()==null)?"":sdf.format(jipa.getIpaApplicationDate())%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA Employer Name: </label>
@@ -3439,7 +3436,8 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA Allowance Details:</label>
                     <br/>
-                    <input class="form-control" type='text' name="remark" value="<%=allowanceDetails%>">
+                    <input class="form-control" type='text' name="remark" 
+                           value="<%=(allowanceDetails==null)?"":allowanceDetails%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA Total Deduction(S$):</label>
@@ -3494,7 +3492,7 @@
             <div class='form-group' id='ipapassType_other_div' >
                 <label for='nworkpassTypeMore' class="control-label">Explain if above is other</label>
                 <br/>
-                <input class="form-control" type='text' name="nworkpassTypeMore">
+                <textarea class="form-control" name="nworkpassTypeMore" maxlength="50"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nappDate' class="control-label">IPA Application Date:</label>
@@ -3546,7 +3544,7 @@
             <div class='form-group'>
                 <label for='ndeduction' class="control-label">IPA Total Deduction(S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="ndeduction">
+                <input class="form-control" type='text' name="ntotalDeduction">
             </div>
             <div class='form-group'>
                 <label for='ndeductionDetails' class="control-label">IPA Deduction Details:</label>
@@ -3605,13 +3603,14 @@
             <div class='form-group' id='ipapassTypeView_other_div' >
                 <label for='workpassTypeMore' class="control-label">Explain if above is other</label>
                 <br/>
-                <input class="form-control" type='text' name="workpassTypeMore">
+                <textarea class="form-control" name="workpassTypeMore" maxlength="50"></textarea>
             </div>
+
             <div class='form-group'>
                 <label for='appDate' class="control-label">IPA application date:</label>
                 <br/>
                 <input class="form-control  dateInput" type='text' name="appDate" 
-                       value="<%=sdf.format(appDate)%>">
+                       value="<%=sdf.format(jipa.getIpaApplicationDate())%>">
             </div>
             <div class='form-group'>
                 <label for='empName' class="control-label">IPA Employer Name: </label>
@@ -3653,12 +3652,13 @@
             <div class='form-group'>
                 <label for='allowanceDetails' class="control-label">IPA Allowance Details:</label>
                 <br/>
-                <input class="form-control" type='text' name="allowanceDetails" value="<%=allowanceDetails%>">
+                <input class="form-control" type='text' name="allowanceDetails" 
+                       value="<%=(allowanceDetails==null)?"":allowanceDetails%>">
             </div>
             <div class='form-group'>
                 <label for='deduction' class="control-label">IPA Total Deduction(S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="deduction" value="<%=deduction%>">
+                <input class="form-control" type='text' name="totalDeduction" value="<%=deduction%>">
             </div>
             <div class='form-group'>
                 <label for='deductionDetails' class="control-label">IPA Deduction Details:</label>
@@ -3701,6 +3701,7 @@
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
+    
     </div>
 </form>
 

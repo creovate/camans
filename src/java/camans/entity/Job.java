@@ -23,7 +23,7 @@ public class Job {
     private String jobEndDate;
     private String jobTJS;
     private String jobRemark;
-    private static int COUNT = 200;
+    private static int COUNT = 300;
     
     public Job(String workerFinNum, int jobKey, String employerName, String workPassType, 
             String workPassMore, String jobSector, String jobSectorMore, String occupation, 

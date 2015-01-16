@@ -178,7 +178,7 @@ public class processEditJobComplement extends HttpServlet {
                 String agentLocation = request.getParameter("aglocation");
                 String agentlocationMore = request.getParameter("aglocationMore");
                 String agentAddress = request.getParameter("address");
-                String agentContact = request.getParameter("contract");
+                String agentContact = request.getParameter("contact");
                 String agentAmtPaidStr = request.getParameter("amtpaid");
                 String agentAmtOwedStr = request.getParameter("amtowed");
                 String agentFeeShared = request.getParameter("feeshared");
@@ -352,7 +352,7 @@ public class processEditJobComplement extends HttpServlet {
                 String ipaBasicSalaryStr = request.getParameter("basicSalary");
                 String ipaTotalAllowanceStr = request.getParameter("totalAllowance");
                 String ipaTotalAllowanceDetails = request.getParameter("nallowanceDetails");
-                String ipaDeductionStr = request.getParameter("deduction");
+                String ipaDeductionStr = request.getParameter("totalDeduction");
                 String ipaDeductionDetails = request.getParameter("deductionDetails");
                 String ipaHousingProvided = request.getParameter("isHousingProvided");
                 String ipaRemark = request.getParameter("remark");

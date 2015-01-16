@@ -195,7 +195,7 @@ public class processFile extends HttpServlet {
                             WorkerComplementsDAO.deleteWorkerAttachment(workerAttachment);
                             Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFinNum);
                             //if the file to be deleted is profile picture
-                            if (worker.getPhotoPath().equals(workerAttachment.getFilePath())) {
+                            if (worker.getPhotoPath()!=null && worker.getPhotoPath().equals(workerAttachment.getFilePath())) {
                                 String photoPath = null;
                                 worker.setPhotoPath(photoPath);
                                 WorkerDAO.updateWorkerPhotoPath(worker);
@@ -229,7 +229,7 @@ public class processFile extends HttpServlet {
                     
                     //note to  change the profile pic directory if it's the same file
                     boolean change = false;
-                    if (worker.getPhotoPath().equals(fileDir)) {
+                    if (worker.getPhotoPath() != null && worker.getPhotoPath().equals(fileDir)) {
                         change = true;
                     } //end note
                     String oldFilePath = getServletContext().getRealPath("/") + File.separator + fileDir; 
@@ -358,6 +358,7 @@ public class processFile extends HttpServlet {
             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum 
                                 +"#attachment_complement");
         } catch (Exception e) {
+            System.out.println(e);
             //do not process & show error page
             //String tmp = "" + e;
             //out.println("error:" + e);    

@@ -115,9 +115,9 @@
                             message: 'Phone No must be less than 20 characters.'
                         },
                         regexp: {
-                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
-                            message: 'Phone Number can contain space,-,(),+ and digits only.'
-                        }, 
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
+                        },
                                 notEmpty: {
                             message: 'Phone No. cannot be empty.'
                         }
@@ -130,8 +130,8 @@
                             message: 'Phone No must be less than 20 characters.'
                         },
                         regexp: {
-                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
-                            message: 'Phone Number can contain space,-,(),+ and digits only.'
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
                         },
                         notEmpty: {
                             message: 'Phone No. cannot be empty.'
@@ -270,7 +270,7 @@
                             message: 'The name must be less than 50 characters.'
                         },
                         notEmpty: {
-                            message: 'The nickname cannot be empty.'
+                            message: 'The name cannot be empty.'
                         }
                     }
                 },
@@ -313,8 +313,8 @@
                             message: 'Phone No must be less than 20 characters.'
                         },
                         regexp: {
-                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
-                            message: 'Phone can contain space,-,(),+ and digits only.'
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
                         }
                     }
                 },
@@ -376,8 +376,8 @@
                             message: 'Phone No must be less than 20 characters.'
                         },
                         regexp: {
-                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
-                            message: 'Phone can contain space,-,(),+ and digits only.'
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
                         }
                     }
                 },
@@ -397,8 +397,8 @@
                             message: 'Phone No must be less than 20 characters.'
                         },
                         regexp: {
-                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
-                            message: 'Phone can contain space,-,(),+ and digits only.'
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
                         }
                     }
                 },
@@ -417,8 +417,8 @@
                             message: 'Phone No must be less than 20 characters.'
                         },
                         regexp: {
-                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
-                            message: 'Phone can contain space,-,(),+ and digits only.'
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
                         }
                     }
                 },
@@ -438,8 +438,8 @@
                             message: 'Phone No must be less than 20 characters.'
                         },
                         regexp: {
-                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
-                            message: 'Phone can contain space,-,(),+ and digits only.'
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
                         }
                     }
                 },
@@ -450,8 +450,8 @@
                             message: 'Phone No must be less than 20 characters.'
                         },
                         regexp: {
-                            regexp: /^[\d+$]*[-()\+\s][^a-zA-Z]/,
-                            message: 'Phone can contain space,-,(),+ and digits only.'
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
                         }
                     }
                 },
@@ -468,6 +468,13 @@
                         stringLength: {
                             max: 50,
                             message: 'Others must be less than 50 characters.'
+                        }
+                    }
+                },
+                nEnglishStandard: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Spoken English Standard cannot be empty.'
                         }
                     }
                 },
@@ -706,7 +713,6 @@
     </div>
 
     <div class='add_comp'>
-
         <div class='form-group '>
             <label for='nickName' class="control-label">Enter New Nickname<span style="color: red">*</span>: </label>
             <br/>
@@ -714,7 +720,6 @@
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="WorkerNickname"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
         <div class="form-group btn_group">
             <button type='submit' class="btn modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -802,17 +807,15 @@
             <div class='form-group'>
                 <label for='nPassportIssueDate' class="control-label">Passport Issue Date: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nPassportIssueDate" >
+                <input class="form-control input-append date startDate" type='text' name="nPassportIssueDate" >
             </div>
             <div class='form-group'>
                 <label for='nPassportExpiryDate' class="control-label">Passport Expiry Date: </label>
                 <br/>
-                <input class="form-control input-append date dateInput" type='text' name="nPassportExpiryDate" >
+                <input class="form-control endDate" type='text' name="nPassportExpiryDate" >
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerPassportDetails"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
-
         </div>
         <div class="form-group btn_group">
             <button type='submit' class="btn modal_btn add_comp">Save</button>
@@ -917,8 +920,6 @@
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerSgPhNum"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
-
         </div>
 
         <div class="form-group btn_group">
@@ -962,8 +963,6 @@
 
     if (homePhoneId != null) {
         int id = Integer.parseInt(homePhoneId);
-
-
 
         String homeCountryPhNo = "";
         if (id > 0) {
@@ -1030,7 +1029,6 @@
 
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerHomeCountryPhNum"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
         </div>
 
         <div class="form-group btn_group">
@@ -1128,8 +1126,6 @@
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerSgAddress"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
-
         </div>
 
         <div class="form-group btn_group">
@@ -1190,7 +1186,7 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
                 <br/>
-                <input class="form-control" type='text' name="obseleteDate" value="<%=(homeCountryAddress.getObseleteDate() == null) ? "" : homeCountryAddress.getObseleteDate()%>">
+                <input class="form-control" type='text' name="obseleteDate" value="<%=(homeCountryAddress.getObseleteDate() == null) ? "" : sdf.format(homeCountryAddress.getObseleteDate())%>">
             </div>
         </fieldset>
 
@@ -1207,9 +1203,8 @@
         <div class='form-group '>
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Worker Address in Home Country<span style="color: red">*</span>:</label>
-
                 <br/>
-                <textarea class="form-control"name="nAddress" rows="3"  maxlength="300" required></textarea>
+                <textarea class="form-control" name="nAddress" rows="3"  maxlength="300" required></textarea>
 
             </div>
             <div class='form-group'>
@@ -1219,7 +1214,6 @@
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerHomeCountryAddress"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
         </div>
 
         <div class="form-group btn_group">
@@ -1345,11 +1339,11 @@
                 </select>
             </div>
 
-            <div class="form-group" id="digitalContactType_other_div" >
-                <label for="nDigitalMore" class="col-md-3 control-label">Explain if above is 'Other'</label>
-                <div class=" col-md-6">
-                    <input type="text" id="digitalContactType_other_In" class="form-control" name="nDigitalMore"/></div>
+            <div class="form-group" id="digitalContactType_other_div">
+                <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
+                <textarea class="form-control" name="nDigitalMore" rows="3" maxlength="200"></textarea>
             </div>
+                    
             <div class='form-group'>
                 <label for='nDigitalDetails' class="control-label">Email/QQ Address or other details<span style="color: red">*</span>: </label>
                 <br/>
@@ -1372,7 +1366,6 @@
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerDigitalContact"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -1403,13 +1396,12 @@
                     %>  
                 </select>
             </div>
-
-            <div class="form-group" id="digitalContactType_other_div" >
-                <label for="digitalContactType_other_In" class="col-md-3 control-label">Explain if above is 'Other'</label>
-                <div class=" col-md-6">
-                    <input type="text" id="digitalContactType_other_In" class="form-control" name="digitalMore" />
-                </div>
+                
+            <div class="form-group" id="digitalContactType_other_div">
+                <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
+                <textarea class="form-control" name="digitalMore" rows="3" maxlength="200"><%=(digiMore==null)?"":digiMore%></textarea>
             </div>
+                
             <div class='form-group'>
                 <label for='digitalDetails' class="control-label">Email/QQ Address or other details<span style="color: red">*</span>: </label>
                 <br/>
@@ -1492,12 +1484,12 @@
                 <div class='form-group'>
                     <label for='nokIdDoc' class="control-label">Identity Docs/References of Next of Kin: </label>
                     <br/>
-                    <textarea class="form-control" name="nokIdDoc" rows="3" maxlength="200"><%=nokIdDoc%></textarea>
+                    <textarea class="form-control" name="nokIdDoc" rows="3" maxlength="200"><%=(nokIdDoc==null)?"":nokIdDoc%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokContactNo' class="control-label">Phone Number  of Next of Kin: </label>
                     <br/>
-                    <input class="form-control" type='text' name="nokContactNo" value="<%=nokPhone%>">
+                    <input class="form-control" type='text' name="nokContactNo" value="<%=(nokPhone==null)?"":nokPhone%>">
                 </div>
                 <div class='form-group'>
                     <label for='nokOtherContact' class="control-label">Other Contact Details of Next of Kin: </label>
@@ -1507,12 +1499,12 @@
                 <div class='form-group'>
                     <label for='nokAddress' class="control-label">Address of Next of Kin: </label>
                     <br/>
-                    <textarea class="form-control" name="nokAddress" rows="3" maxlength="200"><%=nokAddress%></textarea>
+                    <textarea class="form-control" name="nokAddress" rows="3" maxlength="200"><%=(nokAddress==null)?"":nokAddress%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokProof' class="control-label">What Docs Attesting Next of Kin?: </label>
                     <br/>
-                    <input class="form-control" type='text' name="nokProof" value="<%=nokProof%>">
+                    <input class="form-control" type='text' name="nokProof" value="<%=(nokProof==null)?"":nokProof%>">
                 </div>
                 <div class='form-group'>
                     <label for='nokRemark' class="control-label">Remark about Next of Kin:  </label>
@@ -1585,7 +1577,6 @@
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerNextOfKin"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -1606,12 +1597,12 @@
             <div class='form-group'>
                 <label for='docReference' class="control-label">Identity Docs/References of Next of Kin: </label>
                 <br/>
-                <input class="form-control" type='text' name="docReference" value="<%=nokProof%>">
+                <input class="form-control" type='text' name="docReference" value="<%=(nokProof==null)?"":nokProof%>">
             </div>
             <div class='form-group'>
                 <label for='phNum' class="control-label">Phone Number of Next of Kin: </label>
                 <br/>
-                <input class="form-control" type="text" name="nokphNum" value="<%=nokPhone%>">
+                <input class="form-control" type="text" name="nokphNum" value="<%=(nokPhone==null)?"":nokPhone%>">
             </div>
             <div class='form-group'>
                 <label for='digitalContact' class="control-label">Other Contact Details of Next of Kin: </label>
@@ -1621,12 +1612,12 @@
             <div class='form-group'>
                 <label for='address' class="control-label">Address of Next of Kin: </label>
                 <br/>
-                <textarea class="form-control" name="nokaddress" rows="3" maxlength="200"><%=nokAddress%></textarea>
+                <textarea class="form-control" name="nokaddress" rows="3" maxlength="200"><%=(nokAddress==null)?"":nokAddress%></textarea>
             </div>
             <div class='form-group'>
                 <label for='proofDoc' class="control-label">What Docs Attesting Next of Kin?: </label>
                 <br/>
-                <input class="form-control" type='text' name="proofDoc" value="<%=nokIdDoc%>">
+                <input class="form-control" type='text' name="proofDoc" value="<%=(nokIdDoc==null)?"":nokIdDoc%>">
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark about Next of Kin:  </label>
@@ -1697,7 +1688,7 @@
                 <div class='form-group'>
                     <label for='faddress' class="control-label">Is the Family Member in Singapore?: </label>
                     <br/>
-                    <input class="form-control" type='text' name="faddress" value="<%=address%>">
+                    <input class="form-control" type='text' name="faddress" value="<%=(address==null)?"":address%>">
                 </div>
                 <div class='form-group'>
                     <label for='fcontactNo' class="control-label">Phone Number of Family Member: </label>
@@ -1714,7 +1705,7 @@
                     <label for='fremark' class="control-label">Remark about Family Member: </label>
                     <br/>
 
-                    <textarea class="form-control" name="fremark" rows="3" maxlength="200"><%=remark%></textarea>
+                    <textarea class="form-control" name="fremark" rows="3" maxlength="200"><%=(remark==null)?"":remark%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokObDate' class="control-label">Date Discovered to be Obsolete: </label>
@@ -1774,7 +1765,6 @@
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerFamilyMember"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -1796,7 +1786,7 @@
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Is the Family Member in Singapore?: </label>
                 <br/>
-                <input class="form-control" type='text' name="familyAddress">
+                <input class="form-control" type='text' name="familyAddress" value="<%=(address==null)?"":address%>">
             </div>
             <div class='form-group'>
                 <label for='phNum' class="control-label">Phone Number of Family Member: </label>
@@ -1928,7 +1918,6 @@
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerFriend"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -1998,9 +1987,6 @@
         <%
             String remark = workerLanguage.getRemark();
             String mainLan = workerLanguage.getMainLanguage();
-            if (mainLan.equals("other") || mainLan.equals("Other")) {
-                mainLan = workerLanguage.getMainLangaugeMore();
-            }
         %>
 
         <div class="view_comp">
@@ -2008,22 +1994,24 @@
                 <div class='form-group'>
                     <label for='mainLanguage' class="control-label">Worker's Main Language: </label>
                     <br/>
-                    <input type="text" class="form_control" name="mainLanguage" value="<%=mainLan%>"/>
+                    <input class="form-control" type='text' name="mainLanguage" value="<%=mainLan%>">
                 </div>
                 <div class="form-group" id="languageType_other_div" >
-                    <label for="languageMore" class="col-md-3 control-label">Explain if above is 'Other'</label>
+                    <label for="languageMore" class="control-label">Explain if above is 'Other'</label>
                     <br/>
-                    <input type="text" id="digitalContactType_other_In" class="form-control" name="languageMore"/>
+                    <textarea class="form-control" name="nLanguageMore" rows="3" maxlength="200">
+                        <%=(workerLanguage.getMainLangaugeMore()==null)?"":workerLanguage.getMainLangaugeMore()%>
+                    </textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='englishStandard' class="control-label">Spoken English Standard </label>
+                    <label for='englishStandard' class="control-label">Spoken English Standard: </label>
                     <br/>
-                    <input type="text" value="<%=workerLanguage.getSpokenLanguageStandard()%>"/>
+                    <input class="form-control" type='text' value="<%=workerLanguage.getSpokenLanguageStandard()%>">
                 </div>
                 <div class='form-group'>
                     <label for='fremark' class="control-label">Remark about Language: </label>
                     <br/>
-                    <textarea class="form-control" name="fremark" rows="3"><%=remark%></textarea>
+                    <textarea class="form-control" name="fremark" rows="3"><%=(remark==null)?"":remark%></textarea>
                 </div>
             </fieldset>
 
@@ -2109,10 +2097,12 @@
                 </select>
             </div>
             <div class="form-group" id="languageType_other_div" >
-                <label for="languageMore" class="col-md-3 control-label">Explain if above is 'Other'</label>
-                <div class=" col-md-6">
-                    <input type="text" id="digitalContactType_other_In" class="form-control" name="languageMore"/></div>
-            </div>
+                    <label for="languageMore" class="control-label">Explain if above is 'Other'</label>
+                    <br/>
+                    <textarea class="form-control" name="nLanguageMore" rows="3" maxlength="200">
+                        <%=(workerLanguage.getMainLangaugeMore()==null)?"":workerLanguage.getMainLangaugeMore()%>
+                    </textarea>
+                </div>
             <div class='form-group'>
                 <label for='englishStandard' class="control-label">Spoken English Standard<span style="color: red">*</span>: </label>
                 <br/>
@@ -2138,7 +2128,7 @@
             <div class='form-group'>
                 <label for='fremark' class="control-label">Remark about Language: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark==null)?"":remark%></textarea>
             </div>
 
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
@@ -2278,7 +2268,6 @@
                 <label for='nBankBranchAddress' class="control-label">Bank Branch Address: </label>
                 <br/>
                 <textarea class="form-control" name="nBankBranchAddress" rows="3" maxlength="300"></textarea>
-                <!--input class="form-control" type='text' name="nBankBranchAddress"-->
             </div>
             <div class='form-group'>
                 <label for='nBankSwift' class="control-label">Bank Swift Code: </label>
@@ -2287,9 +2276,8 @@
             </div>
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about Bank Account: </label>
-                <input  id='characterLeft' name="characterLeft" size="3" maxlength="3" value="200" class="characterCounter pull-right">
                 <br/>
-                <textarea class="form-control" name="nRemark" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200)"></textarea>
+                <textarea class="form-control" name="nRemark"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
@@ -2298,7 +2286,6 @@
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerBankAcct"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2344,9 +2331,8 @@
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark about Bank Account: </label>
-                <input  id='characterLeft' name="characterLeft" size="3" maxlength="3" value="200" class="characterCounter pull-right">
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200)"><%=remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
