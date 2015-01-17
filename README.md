@@ -1,9 +1,9 @@
 camans
 ======
 <i><b>18th Jan 2015 - nyeinsu </b></i><br/>
-1. Debug 
-	i. Problem Complements <br/>
-	ii. Create Case <br/>
+1. Debug <br/>
+&ensp;i. Problem Complements <br/>
+&ensp;	ii. Create Case <br/>
 2. Changed case referral query <br/>
 
 <i><b>7th Jan 2015 - soemyatmyat</b></i><br/>
