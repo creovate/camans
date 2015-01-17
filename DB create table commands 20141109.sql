@@ -441,7 +441,7 @@ Create table tbl_ipa_details (
 	IPA_allowances_details varchar (200) null,
 	IPA_deduction decimal(13,2) null,
 	IPA_deduction_details varchar (200) null,
-	Housing_provided varchar(2) null,
+	Housing_provided varchar(3) null,
 	IPA_remarks varchar (200) null,
 
 	Primary Key (ID),
