@@ -2075,7 +2075,7 @@
 
             <div class="form-group" id="digitalContactType_other_div">
                 <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
-                <textarea class="form-control" name="nDigitalMore" rows="3" maxlength="200"></textarea>
+                <input class="form-control" type='text' name="nDigitalMore">
             </div>
             <div class='form-group'>
                 <label for='nDigitalDetails' class="control-label">Email/QQ Address or other details<span style="color: red">*</span>: </label>
@@ -2121,33 +2121,42 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nName' class="control-label">Name of Family Member<span style="color: red">*</span>: </label>
+                <label for='nName' class="control-label">Name of Next of Kin<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nName" required>
             </div>
             <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship of Family Member to Worker: </label>
+                <label for='nRelation' class="control-label">Relationship of Next of Kin to Worker: </label>
                 <br/>
                 <input class="form-control" type='text' name="nRelation">
             </div>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Is the Family Member in Singapore?: </label>
+                <label for='nDocReference' class="control-label">Identity Docs/References of Next of Kin: </label>
                 <br/>
-                <input class="form-control" type='text' name="nFamilyAddress">
+                <textarea class="form-control" name="nDocReference" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Phone Number of Family Member: </label>
+                <label for='nPhNum' class="control-label">Phone Number of Next of Kin: </label>
                 <br/>
-                <input class="form-control" type="text" name="nFamilyPhNum">
+                <input class="form-control" type="text" name="nNOKPhNum">
             </div>
             <div class='form-group'>
-                <label for='nDigitalContact' class="control-label">Other Contact Details of Family Member: </label>
+                <label for='nDigitalContact' class="control-label">Other Contact Details of Next of Kin: </label>
                 <br/>
-                <input class="form-control" type='text' name="nDigitalContact">
+                <textarea class="form-control" name="nDigitalContact" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about Family Member: </label>
-
+                <label for='nAddress' class="control-label">Address of Next of Kin: </label>
+                <br/>
+                <textarea class="form-control" name="nNOKAddress" rows="3" maxlength="200" ></textarea>
+            </div>
+            <div class='form-group'>
+                <label for='nProofDoc' class="control-label">What Docs Attesting Next of Kin?: </label>
+                <br/>
+                <textarea class="form-control" name="nProofDoc" rows="3" maxlength="200" ></textarea>
+            </div>
+            <div class='form-group'>
+                <label for='nRemark' class="control-label">Remark about Next of Kin:  </label>
                 <br/>
                 <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
             </div>
@@ -2201,7 +2210,7 @@
             <div class='form-group'>
                 <label for='nDigitalContact' class="control-label">Other Contact Details of Family Member: </label>
                 <br/>
-                <input class="form-control" type='text' name="nDigitalContact">
+                <textarea class="form-control" name="nDigitalContact" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about Family Member: </label>
@@ -2305,7 +2314,7 @@
             <div class="form-group" id="mainLang_other_div" >
                 <label for="nLanguageMore" class="control-label">Explain if above is 'Other'</label>
                 <br/>
-                <textarea class="form-control" name="nLanguageMore" rows="3"></textarea>
+                <input class="form-control" type='text' name="nLanguageMore">
             </div>
             <div class='form-group'>
                 <label for='nEnglishStandard' class="control-label">Spoken English Standard<span style="color: red">*</span>: </label>
@@ -2444,7 +2453,7 @@
                 
             <div class="form-group" id="passtype_other_div">
                 <label for="passtypeMore" class="control-label">Explain if above is 'Other':</label><br/>
-                <textarea class="form-control" name="npasstypeMore" rows="3" maxlength="200"></textarea>
+                <input class="form-control" type='text' name="npasstypeMore" >
             </div>
                 
             <div class='form-group'>
@@ -2522,12 +2531,12 @@
             <div class='form-group'>
                 <label for='ncontact' class="control-label">Employer Phone, Email Contacts:</label>
                 <br/>
-                <input class="form-control" type='text' name="ncontact">
+                <textarea class="form-control" name="ncontact" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nperson' class="control-label">Key Persons in Employer:</label>
                 <br/>
-                <input class="form-control" type='text' name="nperson">
+                <textarea class="form-control" name="nperson" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about Employer: </label>
@@ -2580,12 +2589,12 @@
             <div class='form-group'>
                 <label for='noprelation' class="control-label">Relationship of Opposite Contracting Party to Job: </label>
                 <br/>
-                <input class="form-control" type='text' name="noprelation">
+                <textarea class="form-control" name="noprelation" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='noccupation' class="control-label">Occupation Stated in Contract: </label>
                 <br/>
-                <input class="form-control" type='text' name="noccupation">
+                <textarea class="form-control" name="noccupation" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nsalary' class="control-label">Basic Salary: </label>
@@ -2676,12 +2685,12 @@
             <div class='form-group'>
                 <label for='naddress' class="control-label">Agent Address: </label>
                 <br/>
-                <input class="form-control" type='text' name="naddress">
+                <textarea class="form-control" name="naddress" rows="3" maxlength="300"></textarea>
             </div>
             <div class='form-group'>
                 <label for='ncontact' class="control-label">Agent Phone/Email Contact: </label>
                 <br/>
-                <input class="form-control" type='text' name="ncontact">
+                <textarea class="form-control" name="ncontact" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='namtpaid' class="control-label">Amount Paid To This Agent(S$):</label>
@@ -2696,7 +2705,7 @@
             <div class='form-group'>
                 <label for='nfeeshared' class="control-label">Any Suspicion Fee was Shared With Others?:</label>
                 <br/>
-                <input class="form-control" type='text' name="nfeeshared">
+                <textarea class="form-control" name="nfeeshared" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nfeetraining' class="control-label" >Did fee includes training expenses? (Explain in Details) </label>
@@ -2721,12 +2730,12 @@
             <div class='form-group'>
                 <label for='nfeerepay' class="control-label">Repayment Plan if fee owed: </label>
                 <br/>
-                <input class="form-control" type='text' name="nfeerepay">
+                <textarea class="form-control" name="nfeerepay" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nemp' class="control-label">Employer that this Agent placed worker to: </label>
                 <br/>
-                <input class="form-control" type='text' name="nemp">
+                <textarea class="form-control" name="nemp" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Agent Remarks: </label>
@@ -2768,7 +2777,7 @@
             <div class='form-group'>
                 <label for='nrelationship' class="control-label">Relationship of giver to worker or agent or employer:</label>
                 <br/>
-                <input class="form-control" type='text' name="nrelation">
+                <textarea class="form-control" name="nrelation" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nvaWhen' class="control-label">When was Verbal Assurance Given?: </label>
@@ -2832,9 +2841,8 @@
             <div class='form-group' id="wrokplaceType_other_div" >
                 <label for='nwpTypeMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <input class="form-control" type='text' name="nwpTypeMore">
+                <textarea class="form-control" name="nwpTypeMore" rows="3" maxlength="200"></textarea>
             </div>
-            <!--where is other???-->
             <div class='form-group'>
                 <label for='nwhose' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
                 <br/>
@@ -2843,7 +2851,7 @@
             <div class='form-group'>
                 <label for='npersonDetails' class="control-label">Key Person Controlling Workplace & Contact Details: </label>
                 <br/>
-                <input class="form-control" type='text' name="npersonDetails" >
+                <textarea class="form-control" name="npersonDetails" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nrelationship' class="control-label">Relationship of workplace to employer: </label>
@@ -2889,7 +2897,7 @@
             <div class='form-group'>
                 <label for='nsafety' class="control-label">Safety Issues At Workplace: </label>
                 <br/>
-                <textarea class="form-control" name="nsafety" rows="3"></textarea>
+                <textarea class="form-control" name="nsafety" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about Workplace: </label>
@@ -2938,7 +2946,7 @@
             <div class='form-group' id="workhistHow_other_div" >
                 <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="nhowMore" rows="3"></textarea>
+                <textarea class="form-control" name="nhowMore" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='narrivalDate' class="control-label">Date arrived Singapore for this job:</label>
@@ -3133,9 +3141,9 @@
             </div>
 
             <div class='form-group' id='ipapassType_other_div' >
-                <label for='nworkpassTypeMore' class="control-label">Explain if above is other</label>
+                <label for='nworkpassTypeMore' class="control-label">Explain if above is other:</label>
                 <br/>
-                <textarea class="form-control" name="nworkpassTypeMore" maxlength="50"></textarea>
+                <input class="form-control" type='text' name="nworkpassTypeMore">
             </div>
             <div class='form-group'>
                 <label for='nappDate' class="control-label">IPA application date:</label>
@@ -3182,7 +3190,7 @@
             <div class='form-group'>
                 <label for='nallowanceDetails' class="control-label">IPA Allowance Details:</label>
                 <br/>
-                <input class="form-control" type='text' name="nallowanceDetails">
+                <textarea class="form-control" name="nallowanceDetails" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='ndeduction' class="control-label">IPA Total Deduction(S$):</label>
@@ -3192,7 +3200,7 @@
             <div class='form-group'>
                 <label for='ndeductionDetails' class="control-label">IPA Deduction Details:</label>
                 <br/>
-                <input class="form-control" type='text' name="ndeductionDetails">
+                <textarea class="form-control" name="ndeductionDetails" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nisHousingProvided' class="control-label">Housing Provided?</label>
@@ -3205,7 +3213,7 @@
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about IPA: </label>
                 <br/>
-                <input class="form-control" type='text' name="nremark">
+                <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -3557,314 +3565,6 @@
 
 
 
-</form>
-
-<!------->
-<!--Trafficking-->
-<!------->
-<%} else if (complement.equals("trafficking")) {
-%>
-
-<form method="POST" action="addProblemComplement.do"  id='trafficking_pop_up' class="form complement_detailed_form problem_pop_up"  >
-
-    <h4 class='add_comp'>Add Trafficking Indicators </h4>
-    <div class='form-group'>
-
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='ndate' class="control-label">Date of assessment<span style="color: red">*</span>:</label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="ndate">
-            </div>
-            <div class='form-group'>
-                <label for='nperson' class="control-label">Person Making this assessment</label>
-                <br/>
-                <input class="form-control" type='text' name="nperson">
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi21' class='control-label'>Feel unable to negotiate terms of contract/employment</lable>
-                <br/>
-                <select class="form-control" id="ntipi21" name="ntipi21">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi22' class='control-label'>Received little or no payment though entitled</lable>
-                <br/>
-                <select class="form-control" id="ntipi22" name="ntipi22">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi23' class='control-label'>Deductions not pre-agreed</lable>
-                <br/>
-                <select class="form-control" id="ntipi23" name="ntipi23">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi24' class='control-label'>No access to earnings</lable>
-                <br/>
-                <select class="form-control" id="ntipi24" name="ntipi24">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi25' class='control-label'>Excessively long hours over long periods</lable>
-                <br/>
-                <select class="form-control" id="ntipi25" name="ntipi25">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi26' class='control-label'>No days off</lable>
-                <br/>
-                <select class="form-control" id="ntipi26" name="ntipi26">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi27' class='control-label'>Lack protective equipment though work conditions call for them</lable>
-                <br/>
-                <select class="form-control" id="ntipi27" name="ntipi27">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi28' class='control-label'>Disciplined through fines</lable>
-                <br/>
-                <select class="form-control" id="ntipi28" name="ntipi28">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi41' class='control-label'>Movement restricted or under surveillance</lable>
-                <br/>
-                <select class="form-control" id="ntipi41" name="ntipi41">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi42' class='control-label'>Communication restricted or under surveillance</lable>
-                <br/>
-                <select class="form-control" id="ntipi42" name="ntipi42">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi43' class='control-label'>Threat of violence against worker or family</lable>
-                <br/>
-                <select class="form-control" id="ntipi43" name="ntipi43">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi44' class='control-label'>Threat of trouble with authorities</lable>
-                <br/>
-                <select class="form-control" id="ntipi44" name="ntipi44">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi45' class='control-label'>Seizure/retention of personal identity documents</lable>
-                <br/>
-                <select class="form-control" id="ntipi45" name="ntipi45">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi46' class='control-label'>Poor/substandard accommodation, no option to leave</lable>
-                <br/>
-                <select class="form-control" id="ntipi46" name="ntipi46">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi47' class='control-label'>No access to medical care</lable>
-                <br/>
-                <select class="form-control" id="ntipi47" name="ntipi47">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi48' class='control-label'>No privacy</lable>
-                <br/>
-                <select class="form-control" id="ntipi48" name="ntipi48">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi49' class='control-label'>Feel victimised by misrepresentation</lable>
-                <br/>
-                <select class="form-control" id="ntipi49" name="ntipi49">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi50' class='control-label'>Feel loss of autonomy through debt or heavy sunk cost</lable>
-                <br/>
-                <select class="form-control" id="ntipi50" name="ntipi50">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi51' class='control-label'>Subject to insults, abuse, violence</lable>
-                <br/>
-                <select class="form-control" id="ntipi51" name="ntipi51">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi61' class='control-label'>Found in location associated with confinement/exploitation</lable>
-                <br/>
-                <select class="form-control" id="ntipi61" name="ntipi61">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi62' class='control-label'>Allow others to speak for them when addressed directly</lable>
-                <br/>
-                <select class="form-control" id="ntipi62" name="ntipi62">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi63' class='control-label'>Act as if instructed by someone else</lable>
-                <br/>
-                <select class="form-control" id="ntipi63" name="ntipi63">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi64' class='control-label'>Escorted wherever they go</lable>
-                <br/>
-                <select class="form-control" id="ntipi64" name="ntipi64">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi65' class='control-label'>Unable to show personal identity documents</lable>
-                <br/>
-                <select class="form-control" id="ntipi65" name="ntipi65">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi66' class='control-label'>Have association with, or clothes of a kind associated with sex work</lable>
-                <br/>
-                <select class="form-control" id="ntipi66" name="ntipi66">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <lable for='ntipi67' class='control-label'>Have injuries that appear to be associated with assault or application of control measures</lable>
-                <br/>
-                <select class="form-control" id="ntipi67" name="ntipi67">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Unclear</option>
-                    <option>Not Asked</option>
-                </select>
-            </div>
-
-            <div class='form-group'>
-                <label for='ntipi81' class='control-label'>Describe other indicators of trafficking complained of</label>
-                <br/>
-                <textarea class="form-control" name="ntipi81" rows="3"></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='ntipi82' class='control-label'>Describe other indicators of trafficking observed</label>
-                <br/>
-                <textarea class="form-control" name="ntipi82" rows="3"></textarea>
-            </div>
-
-            <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="complementName" value="trafficking"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-    </div>
 </form>
 
 <!------------------->

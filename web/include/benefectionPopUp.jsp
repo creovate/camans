@@ -89,7 +89,7 @@
                 isDate: {
                     validators: {
                         notEmpty: {
-                            message: 'Date given cannot be empty.'
+                            message: 'The Date given cannot be empty.'
                         }
                     }
                 },
@@ -134,8 +134,56 @@
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
-                }
-                
+                },
+                nisDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Date given cannot be empty.'
+                        }
+                    }
+                },
+                nbenetype: {
+                    validators: {
+                        notEmpty: {
+                            message: 'This field cannot be empty.'
+                        }
+                    }
+                },
+                nsernum: {
+                    validators: {
+                        stringLength: {
+                            max: 30,
+                            message: 'This field must be less than 30 characters.'
+                        }
+                    }
+                },
+                npurpose: {
+                    validators: {
+                        stringLength: {
+                            max: 200,
+                            message: 'This field must be less than 200 characters.'
+                        }
+                    }
+                },
+                nremark: {
+                    validators: {
+                        stringLength: {
+                            max: 500,
+                            message: 'This field must be less than 500 characters.'
+                        }
+                    }
+                },
+                nvalue: {
+                    validators: {
+                        numeric: {
+                            message: 'Salary must be a number'
+                        },
+                        regexp: {
+                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            message: 'This value must have maximum 2 decimal place.'
+                        }
+                    }
+                } 
             }
         });
     });
@@ -350,16 +398,18 @@
                 <label for='nbenetype' class="control-label">Benefit Type: </label>
                 <br/>
                 <select class="form-control" id="ipapassType" name="nbenetype">
-                    <%
-                        for (String dropdownItem : dropdownList) {
-                    %>
-                    <option><%=dropdownItem%></option>
-                    <%
+                <option value="">Select from list: </option>
+                <%
+                    for (String dropdownItem : dropdownList) {
+                %>
+                    <option value="<%=dropdownItem%>"><%=dropdownItem%></option>
+                <%
 
-                        }
-                    %>  
-                </select>
+                    }
+                %>  
+            </select>
             </div>
+                
             <div class='form-group'>
                 <label for='nsernum' class="control-label">Serial Number: </label>
                 <br/>
@@ -411,9 +461,9 @@
             <select class="form-control" id="ipapassType" name="benetype">
                 <%
                     for (String dropdownItem : dropdownList) {
-                        if (dropdownItem.equals("benefitType")) {
+                        if (dropdownItem.equals(benefitType)) {
                 %>
-                <option selected> <%=dropdownItem%></option>        
+                        <option selected><%=dropdownItem%></option>        
                 <%
                 } else {
                 %>
@@ -462,17 +512,12 @@
 %>
 
 <form method="POST" id='add_benefit_pop_up' class="form" action="addBenefit.do"  style="height:100%">
-    <!--h4 class='view_comp'>View Benefit Details</h4>
-    <h4 class='add_comp'>Add A New Benefit </h4>
-    <h4 class='edit_comp'>Edit Benefit Details</h4-->
-
 
     <div class='form-group '>
         <div class='form-group'>
             <label for='nisDate' class="control-label">Issued Date<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form form-control date dateInput" 
-                   type='text' id="nisDate" name="nisDate" required>
+            <input class="form-control dateInput" type='text' name="nisDate">
         </div>
         <div class='form-group'>
             <label for='ngivenby' class="control-label" >Given By: </label>
@@ -480,13 +525,14 @@
             <input class="form-control" type='text' name="ngivenby" value="<%=userLogin.getUsername()%>" readonly="readonly"/>
         </div>
         <div class='form-group'>
-            <label for='nbenetype' class="control-label">Benefit Type: </label>
+            <label for='nbenetype' class="control-label">Benefit Type<span style="color: red">*</span>: </label>
             <br/>
             <select class="form-control" id="ipapassType" name="nbenetype">
+                <option value="">Select from list: </option>
                 <%
                     for (String dropdownItem : dropdownList) {
                 %>
-                <option><%=dropdownItem%></option>
+                    <option value="<%=dropdownItem%>"><%=dropdownItem%></option>
                 <%
 
                     }
