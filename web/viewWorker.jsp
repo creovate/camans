@@ -267,29 +267,23 @@
                                 <!--Nickname-->
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-
                                         <h4 class="panel-title">Nickname 
                                             <a href="" id="nicknameAddBtn" data-class="worker"  data-toggle="modal" data-action = "add" data-target="#nickname_pop_up" data-value='nickname' data-nickname='' class="add_btn pop_up_open pull-right">
                                                 <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                             </a>
                                         </h4>
-
-
                                     </div>
+                                    <div class="panel-body text-capitalize">
                                    <%
                                     ArrayList<Integer> nickNameIds = WorkerComplementsDAO.retrieveNickNameIdsOfWorker(worker);
                                     if (nickNameIds != null && !nickNameIds.isEmpty()) {
                                         for (int i = nickNameIds.size() - 1; i >= 0; i--) {
                                             WorkerNickname nicknameObj = WorkerComplementsDAO.retrieveWorkerNicknameById(nickNameIds.get(i));
                                             String nickname = nicknameObj.getNickname();
-
-                                   %>
-                                    <div class="panel-body text-capitalize">
-                                        <%
-                                                    if (i < nickNameIds.size() - 1) {
+                                            if (i < nickNameIds.size() - 1) {
                                         %>
 
-                                        <div class="col-sm-4 col-md-4 other_nickname moreObjs" >
+                                        <div class="col-md-4 other_nickname moreObjs" >
 
                                             <table class="table table-bordered">
                                                 <tr>
@@ -299,23 +293,20 @@
                                             </table>
                                         </div>
                                         <%
-                                        } else {
+                                            } else {
                                         %>
-                                        <div class="col-sm-4 col-md-4">
+                                        <div class="col-md-4">
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td style="width:80%"><%=nickname%></td>
                                                     <td class="text-center" style="width:20%"><a style="color: black"  data-class="worker" data-value='nickname' data-nickname='<%=nicknameObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#nickname_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                             </table>
+                                        </div>        
                                             <%
-                                                    }
-
                                                 }
-                                            %>
 
-                                        </div>
-                                        <%
+                                            }
                                             if (nickNameIds.size() > 1) {
                                         %>
 
@@ -323,10 +314,9 @@
                                         <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_nickname_seemore" onclick="seemore('.other_nickname')">View Less</a>
                                         <%                                                            
                                             }
-                                        %>
-
-                                    </div>
-                                    <% } %>    
+                                         }    
+                                         %>
+                                    </div>   
                                 </div>
 
                                 <!--Passport Details-->
@@ -4051,20 +4041,20 @@
                             <!----Benefits Complement Tab--->                             
                             <div class="tab-pane" id="benefit_complement" >
                                 <br/>
-                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
                                     <!--meal-->
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="foodbeneHead">
                                             <h4 class="panel-title">
                                                 <a data-toggle="collapse" data-parent="#accordion" href="#foodBeneCol" aria-expanded="true" aria-controls="foodBeneCol">
-                                                    Meal Benefections
+                                                    Meal Benefaction </a>
                                                     <a href="" id="foodbeneAddBtn" data-toggle="modal" data-class="benefection" 
                                                        data-target="#foodbene_pop_up"   data-title='Add New Meal Benefection'  
                                                        data-action = "add" data-value='foodbene' data-foodbene='' class="add_btn pop_up_open pull-right">
 
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                     </a>
-                                                </a>
+                                             
                                             </h4>
                                         </div>
                                         <div id="foodBeneCol" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="foodbeneHead">
@@ -4125,15 +4115,15 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="transpoBeneHead">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#transpoBeneCol" aria-expanded="false" aria-controls="transpoBeneCol">
-                                                    Transportation Benefections
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#transpoBeneCol" aria-expanded="true" aria-controls="transpoBeneCol">
+                                                    Transportation Benefaction </a>
                                                     <a href="" id="transpobeneAddBtn" data-toggle="modal" data-target="#transpobene_pop_up"  data-class="benefection" data-title='Add New Transportation Benefection'  data-action = "add" data-value='transpobene' data-transpobene='' class="add_btn pop_up_open pull-right">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                     </a>
-                                                </a>
+                                               
                                             </h4>
                                         </div>
-                                        <div id="transpoBeneCol" class="panel-collapse collapse" role="tabpanel" aria-labelledby="transpoBeneHead">
+                                        <div id="transpoBeneCol" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="transpoBeneHead">
                                             <div class="panel-body">
                                                 <%
                                                     ArrayList<Integer> transportIds = new ArrayList<Integer>();
@@ -4190,15 +4180,14 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="mediBeneHead">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#mediBeneCol" aria-expanded="false" aria-controls="mediBeneCol">
-                                                    Medical Benefections
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#mediBeneCol" aria-expanded="true" aria-controls="mediBeneCol">
+                                                    Medical Benefaction </a>
                                                     <a href="" id="medibeneAddBtn" data-toggle="modal" data-target="#medibene_pop_up"  data-class="benefection" data-title='Add New Medical Benefection'  data-action = "add" data-value='medibene' data-medibene='' class="add_btn pop_up_open pull-right">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                     </a>
-                                                </a>
                                             </h4>
                                         </div>
-                                        <div id="mediBeneCol" class="panel-collapse collapse" role="tabpanel" aria-labelledby="mediBeneHead">
+                                        <div id="mediBeneCol" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="mediBeneHead">
                                             <div class="panel-body">
                                                 <%
                                                     ArrayList<Integer> medicalIds = new ArrayList<Integer>();
@@ -4255,15 +4244,15 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="roofBeneHead">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#roofBeneCol" data-title='Add New Roof Benefections' aria-expanded="false" aria-controls="roofBeneCol">
-                                                    Roof Benefections
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#roofBeneCol" data-title='Add New Roof Benefections' aria-expanded="true" aria-controls="roofBeneCol">
+                                                    Roof Benefaction </a>
                                                     <a href="" id="roofbeneAddBtn" data-toggle="modal" data-target="#roofbene_pop_up"  data-class="benefection" data-title='Add New Roof Benefection'  data-action = "add" data-value='roofbene' data-roofbene='' class="add_btn pop_up_open pull-right">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                     </a>
-                                                </a>
+                                       
                                             </h4>
                                         </div>
-                                        <div id="roofBeneCol" class="panel-collapse collapse" role="tabpanel" aria-labelledby="roofBeneHead">
+                                        <div id="roofBeneCol" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="roofBeneHead">
                                             <div class="panel-body">
                                                 <%
                                                     ArrayList<Integer> roofIds = new ArrayList<Integer>();
@@ -4319,18 +4308,16 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="otherBeneHead">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#otherBeneCol" 
-                                                   aria-expanded="false" aria-controls="otherBeneCol">
-                                                    Other Benefections
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#otherBeneCol">
+                                                    Other Benefaction </a>
                                                     <a href="" id="otherbeneAddBtn" data-toggle="modal" data-target="#otherbene_pop_up"  
                                                        data-class="benefection" data-title='Add New Benefection (Others)'  data-action = "add" 
                                                        data-value='otherbene' data-otherbene='' class="add_btn pop_up_open pull-right">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                     </a>
-                                                </a>
                                             </h4>
                                         </div>
-                                        <div id="otherBeneCol" class="panel-collapse collapse" role="tabpanel" aria-labelledby="otherBeneHead">
+                                        <div id="otherBeneCol" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="otherBeneHead">
                                             <div class="panel-body">
                                                 <%
                                                     ArrayList<Integer> otherIds = new ArrayList<Integer>();
@@ -4820,7 +4807,7 @@
                     logoutUrl: 'index.jsp',
                     redirUrl: 'logout.jsp',
                     warnAfter: 900000,
-                    redirAfter: 120000
+                    redirAfter: 960000
                 });
             });
 

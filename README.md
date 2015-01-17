@@ -1,5 +1,13 @@
 camans
 ======
+<i><b>7th Jan 2015 - soemyatmyat</b></i><br/>
+
+1. moved up the face picture validation for createCase.jsp<br/>
+2. standardized the form format for job and worker complements<br/>
+[use the textbox for those fields with text fields - 200 chars or more]<br/>
+3. show all the contents in the benefits [no collapse by default]<br/>
+4. selection type: select from list added to benefectionPopUp.jsp<br/>
+
 <i><b>16th Jan 2015 - soemyatmyat</b></i><br/>
 1. debugged iteration8 bugs<br/>
 	(a) search worker = no bugs<br/>

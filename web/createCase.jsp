@@ -538,31 +538,40 @@
             
             //form validation 
             $(document).ready(function() {
-
-            
                     $('#createworker_form')
-            .bootstrapValidator({
-            fields: {
-            //worker
-            workerName: {
-            validators: {
-            notEmpty: {
-            message: 'This field cannot be empty.'
-                    },
-            stringLength: {
-                    max: 50,
-            message: 'This field must be less than 50 characters.'
-            }
-            }
-                    },
-            finNum: {
-            validators: {
-            stringLength: {
-                                    max: 12,                       message: 'This field must be less than 12 characters.'
+                    .bootstrapValidator({         
+                        fields: {
+                            facePic: {
+                               validators: {
+                                   file: {
+                                       extension: 'png,jpeg,jpg,bmp',
+                                       type: 'image/png,image/jpeg,image/jpg,image/bmp',
+                                       maxSize: 1024*1024,
+                                       message: 'Please choose an image file with a size less than 1M only.'
+                                   }
+                               }
+                           },
+                            //worker
+                            workerName: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'This field cannot be empty.'
+                                    },
+                                    stringLength: {
+                                        max: 50,
+                                        message: 'This field must be less than 50 characters.'
+                                    }
+                                }
+                            },
+                        finNum: {
+                            validators: {
+                                stringLength: {
+                                    max: 12,                       
+                                    message: 'This field must be less than 12 characters.'
                                 },
                                 notEmpty: {
                                     message: 'This field cannot be empty.'
-                                },
+                                 },
                                 callback: {
                                     message: 'Wrong answer',
                                     callback: function(value, validator, $field) {
@@ -700,18 +709,7 @@
                                 }
                             }
                         }
-                    },
-                    facePic: {
-                           validators: {
-                               file: {
-                                   extension: 'png,jpeg,jpg,bmp',
-                                   type: 'image/png,image/jpeg,image/jpg,image/bmp',
-                                   maxSize: 1024*1024,
-                                   message: 'Please choose an image file with a size less than 1M only.'
-                               }
-                           }
-                       }
-
+                    }
                 });
 
 
@@ -748,7 +746,7 @@
                     logoutUrl: 'index.jsp',
                     redirUrl: 'logout.jsp',
                     warnAfter: 900000,
-                    redirAfter: 120000
+                    redirAfter: 960000
                 });
             });
 

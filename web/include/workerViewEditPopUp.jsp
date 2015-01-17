@@ -1089,7 +1089,7 @@
             <div class='form-group'>
                 <label for='address' class="control-label">Worker Address in Singapore:</label>
                 <br/>
-                <textarea class="form-control"name="address" rows="3"><%=address%>
+                <textarea class="form-control"name="address" rows="3" maxlength="200"><%=address%>
                 </textarea>
             </div>
             <div class='form-group'>
@@ -1180,7 +1180,7 @@
             <div class='form-group'>
                 <label for='address' class="control-label">Worker Address in Home Country:</label>
                 <br/>
-                <textarea class="form-control"name="address" rows="3" maxlength="200" required><%=address%></textarea>
+                <textarea class="form-control"name="address" rows="3" maxlength="300" required><%=address%></textarea>
 
             </div>
             <div class='form-group'>
@@ -1273,12 +1273,6 @@
             String digiOwner = digitalContact.getOwner();
             String digiRemark = digitalContact.getRemark();
 
-
-            if (digiType == "other") {
-                digiType = digiMore;
-            }
-
-
         %>
 
         <div class="view_comp">
@@ -1288,6 +1282,10 @@
                     <label for='digitalContactType' class="control-label">Type of Digital Contact: </label>
                     <br/>
                     <input class="form-control" type='text' name="digitalContactType" value="<%=digiType%>">
+                </div>
+                <div class="form-group" id="digitalContactType_other_div">
+                    <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
+                    <input class="form-control" type='text' name="nDigitalMore" value="<%=(digiMore==null)?"":digiMore%>">
                 </div>
                 <div class='form-group'>
                     <label for='digiAdd' class="control-label">Email/QQ Address or other details: </label>
@@ -1341,7 +1339,7 @@
 
             <div class="form-group" id="digitalContactType_other_div">
                 <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
-                <textarea class="form-control" name="nDigitalMore" rows="3" maxlength="200"></textarea>
+                <input class="form-control" type='text' name="nDigitalMore">
             </div>
                     
             <div class='form-group'>
@@ -1399,7 +1397,7 @@
                 
             <div class="form-group" id="digitalContactType_other_div">
                 <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
-                <textarea class="form-control" name="digitalMore" rows="3" maxlength="200"><%=(digiMore==null)?"":digiMore%></textarea>
+                <input class="form-control" type='text' name="nDigitalMore" value="<%=(digiMore==null)?"":digiMore%>">
             </div>
                 
             <div class='form-group'>
@@ -1494,7 +1492,7 @@
                 <div class='form-group'>
                     <label for='nokOtherContact' class="control-label">Other Contact Details of Next of Kin: </label>
                     <br/>
-                    <input class="form-control" type='text' name="nokOtherContact" value="<%=nokDigital%>">
+                    <textarea class="form-control" name="nokOtherContact" rows="3" maxlength="200"><%=(nokDigital==null)?"":nokDigital%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokAddress' class="control-label">Address of Next of Kin: </label>
@@ -1504,7 +1502,7 @@
                 <div class='form-group'>
                     <label for='nokProof' class="control-label">What Docs Attesting Next of Kin?: </label>
                     <br/>
-                    <input class="form-control" type='text' name="nokProof" value="<%=(nokProof==null)?"":nokProof%>">
+                    <textarea class="form-control" name="nokProof" rows="3" maxlength="200"><%=(nokProof==null)?"":nokProof%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokRemark' class="control-label">Remark about Next of Kin:  </label>
@@ -1543,7 +1541,7 @@
             <div class='form-group'>
                 <label for='nDocReference' class="control-label">Identity Docs/References of Next of Kin: </label>
                 <br/>
-                <input class="form-control" type='text' name="nDocReference">
+                <textarea class="form-control" name="nDocReference" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nPhNum' class="control-label">Phone Number of Next of Kin: </label>
@@ -1553,7 +1551,7 @@
             <div class='form-group'>
                 <label for='nDigitalContact' class="control-label">Other Contact Details of Next of Kin: </label>
                 <br/>
-                <input class="form-control" type='text' name="nDigitalContact">
+                <textarea class="form-control" name="nDigitalContact" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Address of Next of Kin: </label>
@@ -1563,7 +1561,7 @@
             <div class='form-group'>
                 <label for='nProofDoc' class="control-label">What Docs Attesting Next of Kin?: </label>
                 <br/>
-                <input class="form-control" type='text' name="nProofDoc">
+                <textarea class="form-control" name="nProofDoc" rows="3" maxlength="200" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about Next of Kin:  </label>
@@ -1597,7 +1595,7 @@
             <div class='form-group'>
                 <label for='docReference' class="control-label">Identity Docs/References of Next of Kin: </label>
                 <br/>
-                <input class="form-control" type='text' name="docReference" value="<%=(nokProof==null)?"":nokProof%>">
+                <textarea class="form-control" name="docReference" rows="3" maxlength="200"><%=(nokIdDoc==null)?"":nokIdDoc%></textarea>
             </div>
             <div class='form-group'>
                 <label for='phNum' class="control-label">Phone Number of Next of Kin: </label>
@@ -1607,7 +1605,7 @@
             <div class='form-group'>
                 <label for='digitalContact' class="control-label">Other Contact Details of Next of Kin: </label>
                 <br/>
-                <input class="form-control" type='text' name="digitalContact" value="<%=nokDigital%>">
+                <textarea class="form-control" name="digitalContact" rows="3" maxlength="200"><%=(nokDigital==null)?"":nokDigital%></textarea>
             </div>
             <div class='form-group'>
                 <label for='address' class="control-label">Address of Next of Kin: </label>
@@ -1617,7 +1615,7 @@
             <div class='form-group'>
                 <label for='proofDoc' class="control-label">What Docs Attesting Next of Kin?: </label>
                 <br/>
-                <input class="form-control" type='text' name="proofDoc" value="<%=(nokIdDoc==null)?"":nokIdDoc%>">
+                <textarea class="form-control" name="proofDoc" rows="3" maxlength="200"><%=(nokProof==null)?"":nokProof%></textarea>            
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark about Next of Kin:  </label>
@@ -1698,7 +1696,9 @@
                 <div class='form-group'>
                     <label for='fdigital' class="control-label">Other Contact Details of Family Member: </label>
                     <br/>
-                    <input class="form-control" type='text' name="fdigital" value="<%=contactAdd%>">
+                    <textarea class="form-control" name="digitalContact" rows="3" maxlength="200">
+                        <%=(contactAdd==null)?"":contactAdd%>
+                    </textarea>
                 </div>
 
                 <div class='form-group'>
@@ -1750,7 +1750,7 @@
             <div class='form-group'>
                 <label for='nDigitalContact' class="control-label">Other Contact Details of Family Member: </label>
                 <br/>
-                <input class="form-control" type='text' name="nDigitalContact">
+                <textarea class="form-control" name="nDigitalContact" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about Family Member: </label>
@@ -1796,7 +1796,9 @@
             <div class='form-group'>
                 <label for='digitalContact' class="control-label">Other Contact Details of Family Member: </label>
                 <br/>
-                <input class="form-control" type='text' name="digitalContact" value="<%=contactAdd%>">
+                <textarea class="form-control" name="digitalContact" rows="3" maxlength="200">
+                    <%=(contactAdd==null)?"":contactAdd%>
+                </textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark about Family Member: </label>
@@ -1997,11 +1999,10 @@
                     <input class="form-control" type='text' name="mainLanguage" value="<%=mainLan%>">
                 </div>
                 <div class="form-group" id="languageType_other_div" >
-                    <label for="languageMore" class="control-label">Explain if above is 'Other'</label>
+                    <label for="languageMore" class="control-label">Explain if above is 'Other':</label>
                     <br/>
-                    <textarea class="form-control" name="nLanguageMore" rows="3" maxlength="200">
-                        <%=(workerLanguage.getMainLangaugeMore()==null)?"":workerLanguage.getMainLangaugeMore()%>
-                    </textarea>
+                    <input class="form-control" type='text' name="nLanguageMore" 
+                           value="<%=(workerLanguage.getMainLangaugeMore()==null)?"":workerLanguage.getMainLangaugeMore()%>">
                 </div>
                 <div class='form-group'>
                     <label for='englishStandard' class="control-label">Spoken English Standard: </label>
@@ -2042,8 +2043,7 @@
             </div>
             <div class="form-group" id="languageType_other_div" >
                 <label for="nLanguageMore" class="control-label">Explain if above is 'Other'</label><br/>
-                <textarea class="form-control" name="nLanguageMore" rows="3" maxlength="200"></textarea>
-
+                <input class="form-control" type='text' name="nLanguageMore">
             </div>
             <div class='form-group'>
                 <label for='nEnglishStandard' class="control-label">Spoken English Standard<span style="color: red">*</span>: </label>
@@ -2097,11 +2097,10 @@
                 </select>
             </div>
             <div class="form-group" id="languageType_other_div" >
-                    <label for="languageMore" class="control-label">Explain if above is 'Other'</label>
+                    <label for="languageMore" class="control-label">Explain if above is 'Other':</label>
                     <br/>
-                    <textarea class="form-control" name="nLanguageMore" rows="3" maxlength="200">
-                        <%=(workerLanguage.getMainLangaugeMore()==null)?"":workerLanguage.getMainLangaugeMore()%>
-                    </textarea>
+                    <input class="form-control" type='text' name="languageMore" 
+                           value="<%=(workerLanguage.getMainLangaugeMore()==null)?"":workerLanguage.getMainLangaugeMore()%>">
                 </div>
             <div class='form-group'>
                 <label for='englishStandard' class="control-label">Spoken English Standard<span style="color: red">*</span>: </label>
