@@ -30,9 +30,8 @@ public class CaseManagementDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            //sql = "SELECT T1.Prob_key FROM tbl_problem AS T1 LEFT OUTER JOIN tbl_lead_case_worker AS T2 ON (T1.Worker_FIN_number = T2.Worker_FIN_number AND T1.Job_key = T2.Job_key AND T1.Prob_key = T2.Prob_key) WHERE T2.Lead_case_worker IS NULL";
 
-            sql = "SELECT DISTINCT t1.Prob_key FROM tbl_problem AS t1 LEFT OUTER JOIN tbl_lead_case_worker AS t2 ON (T1.Worker_FIN_number = T2.Worker_FIN_number AND T1.Job_key = T2.Job_key AND t1.Prob_key = t2.Prob_key) WHERE (t1.Entry_date > ( NOW() - INTERVAL 1 MONTH ) OR  t2.Entry_date > ( NOW() - INTERVAL 1 MONTH )) AND t1.Referred_to IS NULL AND t1.Referred_by IS NOT NULL";
+            sql = "SELECT Prob_key FROM tbl_problem WHERE Referred_by IS NOT NULL AND Referred_to IS NULL";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             while (rs.next()) {
