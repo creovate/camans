@@ -2857,7 +2857,7 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#whistory_pop_up", "job")'>Edit</button>
+                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#whistory_pop_up", "job");'>Edit</button>
                 <div class='pull-right'>
                     <button type='button' class='btn modal_btn view_comp' onclick='add("#whistory_pop_up", "job")'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
