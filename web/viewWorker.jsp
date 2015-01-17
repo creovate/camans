@@ -267,29 +267,23 @@
                                 <!--Nickname-->
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-
                                         <h4 class="panel-title">Nickname 
                                             <a href="" id="nicknameAddBtn" data-class="worker"  data-toggle="modal" data-action = "add" data-target="#nickname_pop_up" data-value='nickname' data-nickname='' class="add_btn pop_up_open pull-right">
                                                 <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                             </a>
                                         </h4>
-
-
                                     </div>
+                                    <div class="panel-body text-capitalize">
                                    <%
                                     ArrayList<Integer> nickNameIds = WorkerComplementsDAO.retrieveNickNameIdsOfWorker(worker);
                                     if (nickNameIds != null && !nickNameIds.isEmpty()) {
                                         for (int i = nickNameIds.size() - 1; i >= 0; i--) {
                                             WorkerNickname nicknameObj = WorkerComplementsDAO.retrieveWorkerNicknameById(nickNameIds.get(i));
                                             String nickname = nicknameObj.getNickname();
-
-                                   %>
-                                    <div class="panel-body text-capitalize">
-                                        <%
-                                                    if (i < nickNameIds.size() - 1) {
+                                            if (i < nickNameIds.size() - 1) {
                                         %>
 
-                                        <div class="col-sm-4 col-md-4 other_nickname moreObjs" >
+                                        <div class="col-md-4 other_nickname moreObjs" >
 
                                             <table class="table table-bordered">
                                                 <tr>
@@ -299,23 +293,20 @@
                                             </table>
                                         </div>
                                         <%
-                                        } else {
+                                            } else {
                                         %>
-                                        <div class="col-sm-4 col-md-4">
+                                        <div class="col-md-4">
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td style="width:80%"><%=nickname%></td>
                                                     <td class="text-center" style="width:20%"><a style="color: black"  data-class="worker" data-value='nickname' data-nickname='<%=nicknameObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#nickname_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                             </table>
+                                        </div>        
                                             <%
-                                                    }
-
                                                 }
-                                            %>
 
-                                        </div>
-                                        <%
+                                            }
                                             if (nickNameIds.size() > 1) {
                                         %>
 
@@ -323,10 +314,9 @@
                                         <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_nickname_seemore" onclick="seemore('.other_nickname')">View Less</a>
                                         <%                                                            
                                             }
-                                        %>
-
-                                    </div>
-                                    <% } %>    
+                                         }    
+                                         %>
+                                    </div>   
                                 </div>
 
                                 <!--Passport Details-->
