@@ -349,7 +349,7 @@ public class processAddProblemComplement extends HttpServlet {
                 String illnessdiaPerson = request.getParameter("ndiagnosePerson");
                 String illnessNature = request.getParameter("nnature");
                 String illnessWorkRelated = request.getParameter("nworkRelated");
-                String illnessWhy = request.getParameter("workRelatedYes");
+                String illnessWhy = request.getParameter("nworkRelatedYes");
                 String illnessRemark = request.getParameter("nremark");
                 
                 //create object

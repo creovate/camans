@@ -1385,14 +1385,6 @@
                         }
                     }
                 },
-                naggravissueTypeMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
                 naggravLoss: {
                     validators: {
                         numeric: {
@@ -1404,6 +1396,15 @@
                         message: 'This value must have maximum 2 decimal place.'
                     }
                 },
+                naggravissueTypeMore: {
+                    validators: {
+                        stringLength: {
+                            max: 50,
+                            message: 'This field must be less than 50 characters.'
+                        }
+                    }
+                },
+                
                 //leadcase worker
                 leadCaseWorkerName: {
                     validators: {
@@ -2109,7 +2110,7 @@
             <div class='form-group' id='workRelatedYes_div'>
                 <label for='workRelatedYes' class='control-label'>If worker thinks work-related, why?</label>
                 <br/>
-                <textarea class="form-control" name="workRelatedYes" rows="3"><%=why%></textarea>
+                <textarea class="form-control" name="workRelatedYes" rows="3"><%=(why == null) ? "" : why%></textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about Illness History:</label>
@@ -4970,10 +4971,8 @@
 
         <%
             String type = issue.getAggravatingIssue();
-            if (type.equals("other")) {
-                type = issue.getAggravatingIssueMore();
-            }
-
+            
+            String typeMore = issue.getAggravatingIssueMore();
             double loss = issue.getAggravatingLoss();
 
             String remark = issue.getAggravatingRemark();
@@ -4991,6 +4990,18 @@
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=type%>">
                 </div>
+                <%
+                if(type.equalsIgnoreCase("other") ){
+                    %>
+                <div class='form-group'>
+                    <label for='name' class="control-label">Explain if above is other:</label>
+                    <br/>
+                    <input class="form-control" type='text' name="name" value="<%=typeMore%>">
+                </div>
+                
+                <%
+                }
+                %>
                 <div class='form-group'>
                     <label for='name' class="control-label">Monetary loss/value of this Aggravating Issue S$</label>
                     <br/>
@@ -5083,7 +5094,7 @@
             <div class='form-group' id='aggravissueType_other_div' >
                 <label for='aggravissueTypeMore' class="control-label">Explain if above is other</label>
                 <br/>
-                <input class="form-control" type='text' name="aggravissueTypeMore">
+                <input class="form-control" type='text' name="aggravissueTypeMore" value="<%=typeMore%>">
             </div>
             <div class='form-group'>
                 <label for='aggravLoss' class="control-label">Monetary loss/value of this Aggravating Issue S$</label>
@@ -5487,7 +5498,7 @@
             <div class='form-group'>
                 <label for='nbasic' class="control-label">Describe complaint about basic salary incorrect or not paid<span style="color: red">*</span>:</label>
                 <br/>
-                <textarea class="form-control" name="nbasicSal" rows="3"></textarea>
+                <textarea class="form-control" name="nbasicSal" rows="3" required></textarea>
             </div>
             <div class='form-group'>
                 <label for='novertime' class="control-label">Describe complaint about overtime incorrect or not paid:</label>

@@ -1998,10 +1998,8 @@
                                                                         ProblemAggravatingIssue aggravIs = ProblemComplementsDAO.retrieveProblemAggravatingIssueById(aggravissueIds.get(i));
 
                                                                         String issue = aggravIs.getAggravatingIssue();
-                                                                        String issueMore = "-";
-                                                                        if (issue.equals("Other") || issue.equals("other")) {
-                                                                            issueMore = aggravIs.getAggravatingIssueMore();
-                                                                        }
+                                                                        String issueMore = aggravIs.getAggravatingIssueMore();
+                                                                       
 
                                                                         String remark = aggravIs.getAggravatingRemark();
                                                                         double loss = aggravIs.getAggravatingLoss();
@@ -2009,7 +2007,7 @@
                                                                 %>
                                                                 <tr class="other_aggravissue moreObjs">
                                                                     <td><%=issue%></td>
-                                                                    <td><%=issueMore%></td>
+                                                                    <td><%=(issueMore == null) ? "" : issueMore%></td>
                                                                     <td><%=(loss == 0) ? "0.00" : loss%></td>
                                                                     <td><%=(remark == null)? "-" : remark%></td>
                                                                     <td>
@@ -2025,7 +2023,7 @@
                                                                 %>
                                                                 <tr>
                                                                     <td><%=issue%></td>
-                                                                    <td><%=issueMore%></td>
+                                                                    <td><%=(issueMore == null) ? "" : issueMore%></td>
                                                                     <td><%=(loss == 0) ? "0.00" : loss%></td>
                                                                     <td><%=(remark == null)? "-" : remark%></td>
                                                                     <td><a style="color: black" data-value='aggravissue' data-class="problem"   data-aggravissue='<%=aggravIs.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#aggravIssue_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
