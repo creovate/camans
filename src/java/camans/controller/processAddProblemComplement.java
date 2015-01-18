@@ -41,8 +41,6 @@ public class processAddProblemComplement extends HttpServlet {
             
             String complementName = request.getParameter("complementName");
             String workerFinNum = request.getParameter("workerFinNum");
-            String jobKeyStr = request.getParameter("jobkey");
-            String probKeyStr = request.getParameter("probKey");
             int jobKey = Integer.parseInt(request.getParameter("jobkey"));
             int problemKey = Integer.parseInt(request.getParameter("probKey"));
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
@@ -58,7 +56,7 @@ public class processAddProblemComplement extends HttpServlet {
                 //get all the parameters for Aggravating Issue
                 String aggraIssue = request.getParameter("naggravissueType");
                 String aggraIssueMore = request.getParameter("naggravissueTypeMore");
-                String aggraLossStr = request.getParameter("naggravLoss");
+                String aggraLossStr = request.getParameter("aggravLoss");
                 Double aggraLoss = 0.0;
                 if (aggraLossStr != null && !aggraLossStr.equals("")) {
                     try {
@@ -308,7 +306,7 @@ public class processAddProblemComplement extends HttpServlet {
             //=======================================//
               else if (complementName.equals("injurycase")) {
                   String injuryDateStr = request.getParameter("ndate");
-                  String injuryTime = request.getParameter("ntime");
+                  String injuryTime = request.getParameter("nTime");
                   String injuryLocation = request.getParameter("nlocation");
                   String injuryDeath = request.getParameter("ndeath");
                   String injuryBodyPart = request.getParameter("nbodyPart");
@@ -349,7 +347,7 @@ public class processAddProblemComplement extends HttpServlet {
                 String illnessdiaPerson = request.getParameter("ndiagnosePerson");
                 String illnessNature = request.getParameter("nnature");
                 String illnessWorkRelated = request.getParameter("nworkRelated");
-                String illnessWhy = request.getParameter("nworkRelatedYes");
+                String illnessWhy = request.getParameter("workRelatedYes");
                 String illnessRemark = request.getParameter("nremark");
                 
                 //create object

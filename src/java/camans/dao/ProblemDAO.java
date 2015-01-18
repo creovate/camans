@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,6 +29,13 @@ import java.util.logging.Logger;
  */
 public class ProblemDAO {
 
+    /**
+     * WorkerDAO has a public static variable problemList which is an
+     * HashMap of Problem with the key that stores the validated list of jobs
+     * for input to SQL
+     */
+    public static HashMap<String, ArrayList<Problem>> problemList = new HashMap<String, ArrayList<Problem>>();
+    
     public static ArrayList<Integer> retrieveProblemsIdsOfWorkerAndJob(Worker worker, Job job) {
         ArrayList<Integer> probIds = new ArrayList<Integer>();
         Connection conn = null;
@@ -171,7 +179,7 @@ public class ProblemDAO {
     }
     
     public static ArrayList<String> validateAndAddProblem(String probFileName) throws IOException{
-
+        problemList.clear();
         // Attributes
         ArrayList<String> errList = new ArrayList<String>();
         try {
@@ -228,23 +236,9 @@ public class ProblemDAO {
                 //proceed only after empty fields validation is passed
                 if (pass) { 
 
-                    // check for any existing worker  with the same finNum. 
-                    worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
 
                     try {
                         jobKey = Integer.parseInt(jobKeyStr);
-                        job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid jobkey, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this jobkey, ";
-                            }
-                        }
                     } catch (Exception ex) {
                         errorMsg += "Invalid Job Key Format,";
                     }
@@ -298,7 +292,14 @@ public class ProblemDAO {
                     errorMsg = ""; // reset errorMsg variable
                     Problem problem = new Problem(finNum, jobKey, probKey, registeredDate, problemType,
                             problemTypeOther, problemRemark, null, null, null, null);
-                    ProblemDAO.addProblem(worker, job, problem);
+                    //ProblemDAO.addProblem(worker, job, problem);
+                    ArrayList<Problem> tmp = new ArrayList<Problem>();
+                    tmp = problemList.get(finNum);
+                    if (tmp == null) {
+                        tmp = new ArrayList<Problem>();
+                    }
+                    tmp.add(problem);
+                    problemList.put(finNum, tmp);
                 }    
             }
             csvReader.close();

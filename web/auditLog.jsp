@@ -78,8 +78,8 @@
                             </div>
                             <br/>
                             <div class="form-group col-sm-3">
-                                <button type="submit" class="btn btn-default" id="btnSearch">Search</button>
-                                <button type="button" class="btn btn-default" id="btnReset" 
+                                <button type="submit" class="btn btn-primary" id="btnSearch">Search</button>
+                                <button type="button" class="btn btn-info" id="btnReset" 
                                                     type="reset" onClick="window.location.href=window.location.href">Reset</button>
                             </div>
                         </div>

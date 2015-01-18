@@ -164,6 +164,7 @@ public class WorkerComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -209,8 +210,10 @@ public class WorkerComplementsDAO {
                     errorMsg = ""; // reset errorMsg variable
                     WorkerNickname workerNickname = new WorkerNickname(finNum, nickname);
                     addNickname(workerNickname);
+                    count++;
                 }    
             }
+            errList.add("nickname.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -359,6 +362,7 @@ public class WorkerComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -437,8 +441,10 @@ public class WorkerComplementsDAO {
                     WorkerPassportDetails workerPassportDetails = new WorkerPassportDetails
                             (finNum, passportNum, passportcountry, issueDate, expiryDate);
                     addWorkerPassportDetails(workerPassportDetails);
+                    count++;
                 }    
             }
+            errList.add("passport.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -584,6 +590,7 @@ public class WorkerComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -617,7 +624,7 @@ public class WorkerComplementsDAO {
                         errorMsg += "invalid FinNumber, ";
                     }
                     
-                    if (!homecountryph.matches("^[\\d|\\s|(|)|-|+]+$")) {
+                    if (!homecountryph.matches("^[\\d\\(\\-\\s\\)]+$")) {
                         errorMsg += "invalid phone number, ";
                     }
                     
@@ -648,8 +655,10 @@ public class WorkerComplementsDAO {
                     WorkerHomeCountryPhNum workerHomeCountryPhNum = new WorkerHomeCountryPhNum
                             (finNum, homecountryph, owner, obseleteDate);
                     addWorkerHomeCountryPhNum(workerHomeCountryPhNum);
+                    count++;
                 }    
             }
+            errList.add("homecountryph.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -792,6 +801,7 @@ public class WorkerComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -824,7 +834,7 @@ public class WorkerComplementsDAO {
                         errorMsg += "invalid FinNumber, ";
                     }
                     
-                    if (!sgPh.matches("^[\\d|\\s|(|)|-|+]+$")) {
+                    if (!sgPh.matches("^[\\d\\(\\-\\s\\)]+$")) {
                         errorMsg += "invalid phone number, ";
                     }
                     
@@ -851,8 +861,10 @@ public class WorkerComplementsDAO {
                     WorkerSgPhNum workerSgPhNum = new WorkerSgPhNum
                             (finNum, sgPh, obseleteDate);
                     addWorkerSgPhNum(workerSgPhNum);
+                    count++;
                 }    
             }
+            errList.add("sgph.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -995,6 +1007,7 @@ public class WorkerComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -1054,8 +1067,10 @@ public class WorkerComplementsDAO {
                     WorkerSgAddress workerSgAddress = new WorkerSgAddress
                             (finNum, sgAddress, obseleteDate);
                     addWorkerSgAddress(workerSgAddress);
+                    count++;
                 }    
             }
+            errList.add("sgaddress.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -1198,6 +1213,7 @@ public class WorkerComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -1257,8 +1273,10 @@ public class WorkerComplementsDAO {
                     WorkerHomeCountryAddress workerHomeCountryAddress = new WorkerHomeCountryAddress
                             (finNum, homeCountryAddress, obseleteDate);
                     addWorkerHomeCountryAddress(workerHomeCountryAddress);
+                    count++;
                 }    
             }
+            errList.add("homecountryaddress.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -1417,6 +1435,7 @@ public class WorkerComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -1510,8 +1529,10 @@ public class WorkerComplementsDAO {
                             (finNum, digitalType, digitalTypeOther,digitalDetail, digitalOwner,
                             digitalRemark,obseleteDate );
                     addWorkerDigitalContact(workerDigitalContact);
+                    count++;
                 }    
             }
+            errList.add("digitalcontact.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -1682,6 +1703,7 @@ public class WorkerComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -1733,7 +1755,7 @@ public class WorkerComplementsDAO {
                         errorMsg += header[2]  + " cannot be more than 50 characters, ";
                     }
                     
-                    if (!kinPhone.equals("") && kinPhone.matches("^[\\d|\\s|(|)|-|+]+$")) {
+                    if (!kinPhone.equals("") && kinPhone.matches("^[\\d\\(\\-\\s\\)]+$")) {
                         errorMsg += header[4]  + " - invalid format, ";
                     }
                     
@@ -1777,8 +1799,10 @@ public class WorkerComplementsDAO {
                             (finNum, kinName, kinRel ,kinDoc , kinPhone ,
                             kinDigital ,kinAddr ,kinProof ,kinRemark, obseleteDate );
                     addWorkerNextOfKin(workerNextOfKin);
+                    count++;
                 }    
             }
+            errList.add("nextofkin.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -1941,7 +1965,8 @@ public class WorkerComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
-
+            int count = 0;
+            
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
                 lineNum++;
@@ -1990,7 +2015,7 @@ public class WorkerComplementsDAO {
                         errorMsg += header[3]  + " cannot be more than 200 characters, ";
                     }
                     
-                    if (!famMemPhone.equals("") && famMemPhone.matches("^[\\d|\\s|(|)|-|+]+$")) {
+                    if (!famMemPhone.equals("") && famMemPhone.matches("^[\\d\\(\\-\\s\\)]+$")) {
                         errorMsg += header[4]  + " - invalid format, ";
                     }
                     
@@ -2026,8 +2051,10 @@ public class WorkerComplementsDAO {
                             (finNum, famMemName, famMemRel, famMemWhere, famMemPhone,
                             famMemDigital, famMemRem, obseleteDate );
                     addWorkerFamilyMember(workerFamilyMember);
+                    count++;
                 }    
             }
+            errList.add("familymember.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -2184,6 +2211,7 @@ public class WorkerComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -2223,7 +2251,7 @@ public class WorkerComplementsDAO {
                         errorMsg += header[1] + " cannot be more than 50 characters, ";
                     }
                     
-                    if (!frdPh.equals("") && frdPh.matches("^[\\d|\\s|(|)|-|+]+$")) {
+                    if (!frdPh.equals("") && frdPh.matches("^[\\d\\(\\-\\s\\)]+$")) {
                         errorMsg += header[2]  + "- invalid format, ";
                     }
                     
@@ -2258,8 +2286,10 @@ public class WorkerComplementsDAO {
                     WorkerFriend workerFriend = new WorkerFriend
                             (finNum, frdName, frdPh, frdRel, frdRemark, obseleteDate);
                     addWorkerFriend(workerFriend);
+                    count++;
                 }    
             }
+            errList.add("friend.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -2413,6 +2443,7 @@ public class WorkerComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -2495,8 +2526,10 @@ public class WorkerComplementsDAO {
                     WorkerLanguage workerLanguage = new WorkerLanguage
                             (finNum, langType, langTypeOther, spokenEnglish, langRemark);
                     addWorkerLanguage(workerLanguage);
+                    count++;
                 }    
             }
+            errList.add("language.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -2670,6 +2703,7 @@ public class WorkerComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -2775,8 +2809,10 @@ public class WorkerComplementsDAO {
                             (finNum, bankAcctName, bankAcctNum, bankName, branchName,
                             branchAddress, branchCode , swiftCode, remark,obseleteDate );
                     addWorkerBankAccountDetails(workerBankAcct);
+                    count++;
                 }    
             }
+            errList.add("bankacct.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton

@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,6 +29,13 @@ import java.util.logging.Logger;
  */
 public class WorkerDAO {
         
+    /**
+     * WorkerDAO has a public static variable workerlist which is an
+     * HashMap of Worker with the key fin number that stores the validated list of workers
+     * for input to SQL
+     */
+    public static HashMap<String, Worker> workerList = new HashMap<String, Worker>();
+    
     public static Worker retrieveWorkerbyFinNumber(String finNumber) {
         Worker worker = null;
         
@@ -237,6 +245,8 @@ public class WorkerDAO {
     
     public static ArrayList<String> validateAndAddWorker(String workerFileName) throws IOException{
         
+        // empty existing data in workerList before continuing
+        workerList.clear();
         // Attributes
         ArrayList<String> errList = new ArrayList<String>();
         CSVReader csvReader = null;
@@ -366,7 +376,8 @@ public class WorkerDAO {
                     errorMsg = ""; // reset errorMsg variable
                     Worker worker = new Worker(finNum, workerName, registeredDate, createdBy, createdFor,
                             gender, nationality, nationalityOther, dob, null);
-                    addWorker(worker);
+                    workerList.put(finNum, worker);
+                    //addWorker(worker);
                 }    
             }
             csvReader.close();

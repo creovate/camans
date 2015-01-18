@@ -8,8 +8,12 @@
 <%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    //HashMap<String, ArrayList<String>> errList = (HashMap<String, ArrayList<String>>) request.getSession().getAttribute("bootstrapResult");
-    //request.getSession().removeAttribute("bootstrapResult");
+    HashMap<String, ArrayList<String>> errList = (HashMap<String, ArrayList<String>>) request.getSession().getAttribute("bootstrapResult");
+    request.getSession().removeAttribute("bootstrapResult");
+    HashMap<String, Integer> successList = (HashMap<String, Integer>) request.getSession().getAttribute("successList");
+    request.getSession().removeAttribute("successList");
+    String error = (String) request.getSession().getAttribute("error");
+    request.getSession().removeAttribute("error");
 %>
 <!DOCTYPE html>
 <html>
@@ -36,18 +40,27 @@
             <div class="page-header">
             <center><h2 style="color:#2980b9">Administration <small> Dashboard</small></h2>   
             </div>
+            <!-- end of page header -->
             
             <div class="row">
+                <!-- bootstrap -->
                 <div class="col-xs-6">
                     <h3 style="color:#2980b9">Bootstrap</h3><br>
                     <form id="" method="post" action="processBootstrap" enctype="multipart/form-data">           
                         Select file to upload: <input type="file" name="zip" accept="application/zip"/><br>                                   
                         To bootstrap, please select a ZIP file <br>then click on Load Data.<br/><br/>                    
                         <button class="btn btn-primary" type="submit">Load Data</button>
-
+                        <% if (errList != null) {%>
+                        <!-- Show View Results Button to trigger modal if response is not null -->
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                            View Results
+                        </button>
+                        <% }%>
                     </form>
+                    <br/><font color ="red"><%=(error==null)?"":error%></font>
                     <br/>
                 </div> 
+                <!-- end of bootstrap -->
                 <div class="col-xs-6">
                     <h3 style="color:#2980b9">Import/ Export Data</h3><br/>
                 </div>
@@ -55,31 +68,75 @@
             
         </div>
         
-                <!-- Modal -->
+        <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h3 class="modal-title" id="myModalLabel">Bootstrap     
-                        <% /*
+                        <label class="modal-title" id="myModalLabel">Bootstrap     
+                        <% 
                             if (errList == null || errList.isEmpty()) {
-                                out.println("<font color=\"green\">Successful</font></h3>");
+                                out.println("<font color=\"green\">Successful</font></label>");
                             } else {
-                                out.println("<font color=\"red\">Successful with following errors</font></h3>");
-                            } */   
+                                out.println("<font color=\"red\">Successful with following errors</font></label>");
+                            }    
                         %>
                     </div> <!--header -->
                     <div class="modal-body"> 
 
                         <!-- record loaded -->
                         <table class="table table-curved table-hover table-condensed">                                         
-                            <th style="text-align:center;">File Name</th>
-                            <th style="text-align:center;">Records Loaded</th>                                          
+                            <tr><th style="text-align:center;">File Name</th>
+                            <th style="text-align:center;">Records Loaded</th></tr>
+<%                          if (successList != null && !successList.isEmpty()) {
+                                for (String fileName: successList.keySet()) {
+                                    int recordsLoaded = successList.get(fileName);
+%>
+                                    <tr><td style="text-align:center;"><%=fileName%></td>
+                                    <td style="text-align:center;"><%=recordsLoaded%></td></tr>
+<%                            }
+                            }    
+%>                            
                         </table>
                         
                         <div class="panel-group" id="accordion">
-
+<%
+                            if (errList != null && !errList.isEmpty()) {
+                                for (String key: errList.keySet()) {
+                                    ArrayList<String> errArray = errList.get(key);
+                                    String tmp = key.substring(0, key.indexOf("."));
+%>
+                                <div class="panel panel-warning">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle"  data-toggle="collapse" data-target="#<%=tmp%>" href="#">
+                                                <b><%=key%> (<%=errArray.size()%> errors)</b>
+                                            </a>
+                                        </h4>
+                                    </div> <!--heading-->
+                                </div> <!--panel default-->
+                                
+                                <div id="<%=tmp%>" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <table class="table table-curved table-hover table-condensed">
+<%
+                                            for (int i = 0; i < errArray.size(); i++) {
+                                                String errDesc = errArray.get(i);
+                                                String lineNum = errDesc.substring(0,errDesc.indexOf(":"));
+                                                String errMsg = errDesc.substring(errDesc.indexOf(":")+1,errDesc.lastIndexOf(","));
+%>                                      
+                                                <tr><td><b>Line <%=lineNum%></b></td><td><%=errMsg%></td></tr>
+<%
+                                           }
+%>
+                                        </table>
+                                    </div> <!-- panel body -->
+                                </div>
+<%
+                                }
+                            }
+%>
                         </div> <%--end accordion--%>
  
                     </div> <!--body-->
@@ -90,13 +147,13 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-        <% //if (errList != null) {%>                
+        <% if (successList != null) {%>                
         <script>
                     $(window).load(function() {
                         $('#myModal').modal('show');
                     });
         </script>
-        <%// } %>
+        <% } %>
         <script>
             //session time out
             $(document).ready(function () {
@@ -106,7 +163,7 @@
                     logoutUrl: 'index.jsp',
                     redirUrl: 'logout.jsp',
                     warnAfter: 900000,
-                    redirAfter: 120000
+                    redirAfter: 960000
                 });
             });
         </script>

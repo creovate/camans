@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +26,13 @@ import java.util.logging.Logger;
  * @author soemyatmyat
  */
 public class JobDAO {
+    
+    /**
+     * WorkerDAO has a public static variable jobList which is an
+     * HashMap of Job with the key that stores the validated list of jobs
+     * for input to SQL
+     */
+    public static HashMap<String, ArrayList<Job>> jobList = new HashMap<String, ArrayList<Job>>();
     
     public static ArrayList<Integer> retrieveJobIdsOfWorker (Worker worker) {
         ArrayList<Integer> jobIds = new ArrayList<Integer>();
@@ -148,6 +156,9 @@ public class JobDAO {
     }
     
     public static ArrayList<String> validateAndAddJob(String jobFileName) throws IOException {
+        
+        // empty existing data in jobList before continuing
+        jobList.clear();
         // Attributes
         ArrayList<String> errList = new ArrayList<String>();
         try {
@@ -201,11 +212,6 @@ public class JobDAO {
                 if (pass) { 
 
                     boolean exist = false; //assume fin does not exist in workerList first
-                    // check for any existing worker  with the same finNum. 
-                    worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    } 
 
                     try {
                         jobKey = Integer.parseInt(jobKeyStr);
@@ -291,7 +297,14 @@ public class JobDAO {
                     errorMsg = ""; // reset errorMsg variable
                     Job job = new Job(finNum, jobKey, employerName, workPassType, workPassOther, jobSector, 
                                 jobSectorOther, occupation, jobStartDate, jobEndDate, jobTJS, jobRemark);
-                    addJob(worker, job);
+                    //addJob(worker, job);
+                    ArrayList<Job> tmp = new ArrayList<Job>();
+                    tmp = jobList.get(finNum);
+                    if (tmp == null) {
+                        tmp = new ArrayList<Job>();
+                    }
+                    tmp.add(job);
+                    jobList.put(finNum, tmp);
                 }    
             }
             csvReader.close();

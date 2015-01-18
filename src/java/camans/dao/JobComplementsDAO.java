@@ -195,6 +195,7 @@ public class JobComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -342,8 +343,10 @@ public class JobComplementsDAO {
                             (finNum, jobKey, passType, passTypeMore, passNbr, passApplicDate, 
                             passIssueDate, passExpDate, passIssuer, passRemark, obseleteDate);
                     addJobPassDetails(jobPassDetails);
+                    count++;
                 }    
             }
+            errList.add("passdetails.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -546,6 +549,7 @@ public class JobComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -659,11 +663,11 @@ public class JobComplementsDAO {
                         errorMsg += header[8] + " cannot be longer than 30 characters,";
                     }
                     
-                    if (!ipaPeriod.equals("") && ipaPeriod.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
+                    if (!ipaPeriod.equals("") && ipaPeriod.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += header[9] + " must have maximum 2 decimal places,";
                     }
                     
-                    if (!ipaBasicStr.equals("") && !ipaBasicStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
+                    if (!ipaBasicStr.equals("") && !ipaBasicStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += header[10] + " must have maximum 2 decimal places,";
                     } else {
                         try {
@@ -673,7 +677,7 @@ public class JobComplementsDAO {
                         }
                     }
                     
-                    if (!ipaAllowanceStr.equals("") && !ipaAllowanceStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
+                    if (!ipaAllowanceStr.equals("") && !ipaAllowanceStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += header[11] + " must have maximum 2 decimal places,";
                     } else {
                         try {
@@ -687,7 +691,7 @@ public class JobComplementsDAO {
                         errorMsg += header[12] + " cannot be longer than 200 characters,";
                     }
                     
-                    if (!ipaDeductionStr.equals("") && !ipaDeductionStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
+                    if (!ipaDeductionStr.equals("") && !ipaDeductionStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += header[13] + " must have maximum 2 decimal places,";
                     } else {
                         try {
@@ -728,8 +732,10 @@ public class JobComplementsDAO {
                             ipaAgent, ipaIndustry, ipaOccupation, ipaPeriod, ipaBasic, ipaAllowance,
                             ipaAllowDetails, ipaDeduction, ipaDeductionDetails, ipaHousing,ipaRemark );
                     addJobIPADetails(jobIPADetails);
+                    count++;
                 }    
             }
+            errList.add("ipa.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -887,6 +893,7 @@ public class JobComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -976,8 +983,10 @@ public class JobComplementsDAO {
                     JobVerbalAssurance jobVerbalAssurance = new JobVerbalAssurance (finNum, jobKey, 
                             verbalName, verbalRel, verbalWhen, verbalWhere, verbalContent);
                     addJobVerbalAssurance(jobVerbalAssurance);
+                    count++;
                 }    
             }
+            errList.add("verbalassurance.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -1171,6 +1180,7 @@ public class JobComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -1199,7 +1209,7 @@ public class JobComplementsDAO {
                  */
                 boolean pass = true; //assume validation pass first;
                 if (finNum.equals("")) {
-                    errorMsg += header[1] + " is blank,";
+                    errorMsg += header[0] + " is blank,";
                     pass = false;
                 }
                 
@@ -1207,7 +1217,7 @@ public class JobComplementsDAO {
                     errorMsg += header[1] + " is blank,";
                     pass = false;
                 }
-                if (contractDate.equals("")) {
+                if (contractDateStr.equals("")) {
                     errorMsg += header[2] + " is blank,";
                     pass = false;
                 }
@@ -1303,8 +1313,10 @@ public class JobComplementsDAO {
                             contractOppRel,contractOccup,contractBasic,contractAllow,contractDeduct,
                             contractDuration,contractDuress,contractRemark);
                     addJobEmploymentContract(jobEmploymentContract);
+                    count++;
                 }    
             }
+            errList.add("employmentcontract.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -1510,6 +1522,7 @@ public class JobComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -1614,7 +1627,7 @@ public class JobComplementsDAO {
                         errorMsg += header[7] + " cannot be longer than 200 characters,";
                     }
                     
-                    if (!agentAmtPaidStr.equals("") && !agentAmtPaidStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
+                    if (!agentAmtPaidStr.equals("") && !agentAmtPaidStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += header[8] + " must have maximum 2 decimal places,";
                     } else {
                         try {
@@ -1624,7 +1637,7 @@ public class JobComplementsDAO {
                         }
                     }
                     
-                    if (!agentAmtOwnedStr.equals("") && !agentAmtOwnedStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
+                    if (!agentAmtOwnedStr.equals("") && !agentAmtOwnedStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += header[9] + " must have maximum 2 decimal places,";
                     } else {
                         try {
@@ -1682,8 +1695,10 @@ public class JobComplementsDAO {
                             agentFeeTraining,agentFeeAirFare,agentFeeWhen, agentFeeWhere,
                             agentFeeRepay, agentEmployer, agentRemark);
                     addJobIntermediaryAgent(jobIntermediaryAgent);
+                    count++;
                 }    
             }
+            errList.add("intermediaryagent.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -1847,6 +1862,7 @@ public class JobComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -1943,8 +1959,10 @@ public class JobComplementsDAO {
                     JobEmployer jobEmployer = new JobEmployer(finNum, jobKey,employerName,employerid,
                             employerAddr,employerContact,employerPers,employerRemark);
                     addJobEmployer(jobEmployer);
+                    count++;
                 }    
             }
+            errList.add("employer.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -2133,6 +2151,7 @@ public class JobComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -2287,8 +2306,10 @@ public class JobComplementsDAO {
                             workplaceStart,workplaceEnd,workplaceCond, workplaceSafety,
                             workplaceRemark);
                     addJobWorkplace(jobWorkplace);
+                    count++;
                 }    
             }
+            errList.add("workplace.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -2463,6 +2484,7 @@ public class JobComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -2545,14 +2567,16 @@ public class JobComplementsDAO {
                         if (workHistFirst.equals("Yes") || workHistFirst.equals("No")) {
                          
                         } else {
-                            errorMsg += header[5] + "- should be either 'Yes' or 'No";
+                            errorMsg += header[5] + "- should be either 'Yes' or 'No',";
                         }
                     }
                     
-                    try {
-                        int tmp = Integer.parseInt(workHistYrArrive);
-                    } catch (Exception ex) {
-                        errorMsg += header[6] + " must be a number,";
+                    if (!workHistYrArrive.equals("")) {
+                        try {
+                            int tmp = Integer.parseInt(workHistYrArrive);
+                        } catch (Exception ex) {
+                            errorMsg += header[6] + " must be a number,";
+                        }
                     }
                     
                     if (!workHistPrevious.equals("") && workHistPrevious.length() > 1000) {
@@ -2581,8 +2605,10 @@ public class JobComplementsDAO {
                             workHistHowMore, workHistDate, workHistFirst, workHistYrArrive,
                             workHistPrevious,workHistProblems,workHistRemark);
                     addJobWorkHistory(jobWorkHistory);
+                    count++;
                 }    
             }
+            errList.add("workhistory.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -2775,6 +2801,7 @@ public class JobComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -2884,7 +2911,7 @@ public class JobComplementsDAO {
                         errorMsg += header[7] + " cannot be longer than 500 characters,";
                     }
                     
-                    if (!accomChargedStr.equals("") && !accomChargedStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
+                    if (!accomChargedStr.equals("") && !accomChargedStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += header[8] + " must have maximum 2 decimal places,";
                     } else {
                         try {
@@ -2894,7 +2921,7 @@ public class JobComplementsDAO {
                         }
                     }
                     
-                    if (!accomSelfPaidStr.equals("") && !accomSelfPaidStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
+                    if (!accomSelfPaidStr.equals("") && !accomSelfPaidStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += header[9] + " must have maximum 2 decimal places,";
                     } else {
                         try {
@@ -2936,8 +2963,10 @@ public class JobComplementsDAO {
                             accomTypeMore, accomLocation,accomConditions,accomCharged,
                             accomSelfPaid,accomMeals,accomStart,accomEnd,accomRemark);
                     addJobAccomodation(jobAccomodation);
+                    count++;
                 }    
             }
+            errList.add("accomodation.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton

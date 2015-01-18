@@ -176,7 +176,8 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
-
+            int count = 0;
+            
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
                 lineNum++;
@@ -270,15 +271,17 @@ public class ProblemComplementsDAO {
                         errorMsg += header[4] + " cannot be more than 50 characters,";
                     }
                     
-                    if (!aggraLossStr.equals("") && !aggraLossStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
-                        errorMsg += header[5] + " must have maximum 2 decimal places,";
-                    } else {
-                        try {
-                            aggraLoss = Double.parseDouble(aggraLossStr);
-                        } catch (Exception ex) {
-                            errorMsg += header[5] + " - invalid format,";
+                    if (!aggraLossStr.equals("")) {
+                        if (!aggraLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += header[5] + " must have maximum 2 decimal places,";
+                        } else {
+                            try {
+                                aggraLoss = Double.parseDouble(aggraLossStr);
+                            } catch (Exception ex) {
+                                errorMsg += header[5] + " - invalid format,";
+                            }
                         }
-                    }
+                    } 
                     
                     if (!aggraRemark.equals("") && aggraRemark.length() > 200) {
                         errorMsg += header[6] + " cannot be longer than 200 characters,";
@@ -297,8 +300,10 @@ public class ProblemComplementsDAO {
                     ProblemAggravatingIssue problemAggravatingIssue = new ProblemAggravatingIssue
                             (finNum, jobKey, probKey, aggraIssue, aggraIssueMore, aggraLoss, aggraRemark);
                     addProblemAggravatingIssue(problemAggravatingIssue);
+                    count++;
                 }    
             }
+            errList.add("aggravatingissue.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -456,6 +461,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
             
             //loop through each line of the csv with an array of String
             while ((fields=csvReader.readNext()) != null) {
@@ -472,7 +478,7 @@ public class ProblemComplementsDAO {
                 int probKey = 0;
                 java.sql.Date leadStart = null;
                 java.sql.Date leadEnd = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 
                 //validations for emplty fields
                 boolean pass = true;
@@ -578,8 +584,10 @@ public class ProblemComplementsDAO {
                     ProblemLeadCaseWorker problemLeadCaseWorker = new ProblemLeadCaseWorker
                             (finNum, jobKey, probKey, leadName, leadStart, leadEnd );
                     addProblemLeadCaseWorker(problemLeadCaseWorker);
+                    count++;
                 }    
             }
+            errList.add("leadcaseworker.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -734,6 +742,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
             
             //loop through each line of the csv with an array of String
             while ((fields=csvReader.readNext()) != null) {
@@ -750,7 +759,7 @@ public class ProblemComplementsDAO {
                 int probKey = 0;
                 java.sql.Date auxStart = null;
                 java.sql.Date auxEnd = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 
                 //validations for emplty fields
                 boolean pass = true;
@@ -856,8 +865,10 @@ public class ProblemComplementsDAO {
                     ProblemAuxiliaryCaseWorker problemAuxiliaryCaseWorker = new ProblemAuxiliaryCaseWorker
                             (finNum, jobKey, probKey, auxName, auxStart, auxEnd );
                     addProblemAuxiliaryCaseWorker(problemAuxiliaryCaseWorker);
+                    count++;
                 }    
             }
+            errList.add("auxiliaryworker.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -1043,6 +1054,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -1167,23 +1179,27 @@ public class ProblemComplementsDAO {
                         errorMsg += header[10] + " cannot be more than 50 characters,";
                     }
                     
-                    if (!salLossTotalStr.equals("") && salLossTotalStr.matches("^[0-9]+(//.[0-9]{1,2})?$")){
-                        errorMsg += header[11] + " must have maximum 2 decimal places,";
-                    } else {
-                        try {
-                            salLossTotal = Double.parseDouble(salLossTotalStr);
-                        } catch (Exception ex) {
-                            errorMsg += header[11] + " - invalid format,";
+                    if (!salLossTotalStr.equals("")) {
+                        if(salLossTotalStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += header[11] + " must have maximum 2 decimal places,";
+                        } else {
+                            try {
+                                salLossTotal = Double.parseDouble(salLossTotalStr);
+                            } catch (Exception ex) {
+                                errorMsg += header[11] + " - invalid format,";
+                            }
                         }
                     }
                     
-                    if (!salLoss1YrStr.equals("") && salLoss1YrStr.matches("^[0-9]+(//.[0-9]{1,2})?$")){
-                        errorMsg += header[12] + " must have maximum 2 decimal places,";
-                    } else {
-                        try {
-                            salLoss1Yr = Double.parseDouble(salLoss1YrStr);
-                        } catch (Exception ex) {
-                            errorMsg += header[12] + " - invalid format,";
+                    if (!salLoss1YrStr.equals("")) {
+                        if (salLoss1YrStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += header[12] + " must have maximum 2 decimal places,";
+                        } else {
+                            try {
+                                salLoss1Yr = Double.parseDouble(salLoss1YrStr);
+                            } catch (Exception ex) {
+                                errorMsg += header[12] + " - invalid format,";
+                            }
                         }
                     }
                     
@@ -1204,8 +1220,10 @@ public class ProblemComplementsDAO {
                             (finNum, jobKey, probKey, salHistBasic, salHistOT, salHistAllowances, salHistDeductions,
                             salHistKickbacks, salHistOther, salMode, salModeMore, salLossTotal, salLoss1Yr, salHistRem);
                     addProblemSalaryRelatedHistory(problemSalaryRelatedHistory);
+                    count++;
                 }
             }
+            errList.add("salaryrelatedhistory.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -1395,6 +1413,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -1417,7 +1436,7 @@ public class ProblemComplementsDAO {
                 int jobKey = 0;
                 int probKey = 0;
                 java.sql.Date injDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 /**
                  * Validations for empty fields
                  */
@@ -1548,9 +1567,10 @@ public class ProblemComplementsDAO {
                             (finNum, jobKey, probKey, injDate, injTime, injLocation, injDeath, injBodypart,
                             injHow, injAmbulance, injInitialTreatment, null, injWorkRelated, injRem);
                     addProblemInjury(problemInjury);
+                    count++;
                 }    
             }
-            
+            errList.add("injury.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -1721,6 +1741,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -1849,8 +1870,10 @@ public class ProblemComplementsDAO {
                             (finNum, jobKey, probKey, illnessStartWhen, illnessDiagWhen, illnessDiagWho,
                             illnessNature, illnessWorkRelated, illnessWhy, illnessRem);
                     addProblemIllness(problemIllness);
+                    count++;
                 }    
             }
+            errList.add("illness.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -2005,6 +2028,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -2112,8 +2136,10 @@ public class ProblemComplementsDAO {
                     ProblemOtherProblems problemOtherProblems = new ProblemOtherProblems
                             (finNum, jobKey, probKey, othProblemDesc, othProblemLoss, othProblemRem);
                     addProblemOtherProblems(problemOtherProblems);
+                    count++;
                 }    
             }
+            errList.add("otherproblems.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -2269,6 +2295,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -2284,7 +2311,7 @@ public class ProblemComplementsDAO {
                 int jobKey = 0;
                 int probKey = 0;
                 java.sql.Date salClaimDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 double salClaimLoss = 0;
                 /**
                  * Validations for empty fields
@@ -2358,8 +2385,10 @@ public class ProblemComplementsDAO {
                         } 
                     }
                     
-                    if(!salClaimLossStr.equals("") && salClaimLossStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
-                        errorMsg += header[4] + " must have maximum 2 decimal places,"; 
+                    if(!salClaimLossStr.equals("")) {
+                        if (salClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += header[4] + " must have maximum 2 decimal places,"; 
+                        }
                     }
                     
                     if (!salClaimBasis.equals("") && salClaimBasis.length() > 1000) {
@@ -2378,8 +2407,10 @@ public class ProblemComplementsDAO {
                     ProblemSalaryClaim problemSalaryClaim = new ProblemSalaryClaim
                             (finNum, jobKey, probKey, salClaimDate, salClaimLoss, salClaimBasis);
                     addProblemSalaryClaim(problemSalaryClaim);
+                    count++;
                 }    
             }
+            errList.add("salaryclaim.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -2542,6 +2573,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             //Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null){
@@ -2563,7 +2595,7 @@ public class ProblemComplementsDAO {
                 double points = 0.0;
                 double dollars = 0.0;
                 java.sql.Date updatedDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 
                 /**
                  * Validations for empty fields
@@ -2638,7 +2670,7 @@ public class ProblemComplementsDAO {
                             errorMsg += "Invalid Updated Wica Date Format,";
                         } 
                     }
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfProblems();
+                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfWica();
                     boolean exit = false;
                     for (String tmp: list) {
                         if (tmp.equalsIgnoreCase(status)) {
@@ -2660,23 +2692,27 @@ public class ProblemComplementsDAO {
                         errorMsg += header[6] + " cannot be longer than 50 characters,";
                     }
                     
-                    if (!pointsStr.equals("") && !pointsStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
-                        errorMsg += header[7] + " must have maximum 2 decimal places,";
-                    } else {
-                        try {
-                            points = Double.parseDouble(pointsStr);
-                        } catch (Exception ex) {
-                            errorMsg += header[14] + " - invalid format,";
+                    if (!pointsStr.equals("")) {
+                        if (!pointsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += header[7] + " must have maximum 2 decimal places,";
+                        } else {
+                            try {
+                                points = Double.parseDouble(pointsStr);
+                            } catch (Exception ex) {
+                                errorMsg += header[14] + " - invalid format,";
+                            }
                         }
                     }
                     
-                    if (!dollarsStr.equals("") && !dollarsStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
-                        errorMsg += header[8] + " must have maximum 2 decimal places,";
-                    } else {
-                        try {
-                            dollars = Double.parseDouble(dollarsStr);
-                        } catch (Exception ex) {
-                            errorMsg += header[8] + " - invalid format,";
+                    if (!dollarsStr.equals("")) {
+                        if (!dollarsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += header[8] + " must have maximum 2 decimal places,";
+                        } else {
+                            try {
+                                dollars = Double.parseDouble(dollarsStr);
+                            } catch (Exception ex) {
+                                errorMsg += header[8] + " - invalid format,";
+                            }
                         }
                     }
 
@@ -2699,9 +2735,11 @@ public class ProblemComplementsDAO {
                     ProblemWica problemWica = new ProblemWica
                             (finNum, jobKey, probKey, updatedDate, status, statusMore, points, dollars, rem);
                     addProblemWica (problemWica);
+                    count++;
                 }  
                 
             }
+            errList.add("wica.csv:" + count);
             csvReader.close();
                 
         } catch (FileNotFoundException ex) {
@@ -2866,6 +2904,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -2884,7 +2923,7 @@ public class ProblemComplementsDAO {
                 int jobKey = 0;
                 int probKey = 0;
                 java.sql.Date wicaClaimDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 /**
                  * Validations for empty fields
                  */
@@ -2990,8 +3029,10 @@ public class ProblemComplementsDAO {
                             (finNum, jobKey, probKey, wicaClaimDate, wicaRefNbr, wicaInsurer, wicaPolicyNbr, 
                             wicaWhoLodged, wicaClaimRem);
                     addProblemWicaClaim(problemWicaClaim);
+                    count++;
                 }    
             }
+            errList.add("wicaclaim.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -3155,6 +3196,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -3173,7 +3215,7 @@ public class ProblemComplementsDAO {
                 int jobKey = 0;
                 int probKey = 0;
                 java.sql.Date medClaimDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 double medClaimLoss = 0.0;
                 /**
                  * Validations for empty fields
@@ -3247,16 +3289,17 @@ public class ProblemComplementsDAO {
                         } 
                     }
                     
-                    if (!medClaimLossStr.equals("") && !medClaimLossStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
-                        errorMsg += header[10] + " must have maximum 2 decimal places,";
-                    } else {
-                        try {
-                            medClaimLoss = Double.parseDouble(medClaimLossStr);
-                        } catch (Exception ex) {
-                            errorMsg += header[10] + " - invalid format,";
+                    if (!medClaimLossStr.equals("")) {
+                        if (!medClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += header[4] + " must have maximum 2 decimal places,";
+                        } else {
+                            try {
+                                medClaimLoss = Double.parseDouble(medClaimLossStr);
+                            } catch (Exception ex) {
+                                errorMsg += header[4] + " - invalid format,";
+                            }
                         }
                     }
-
                     
                     if (!medClaimInsurer.equals("") && medClaimInsurer.length() > 50) {
                         errorMsg += header[5] + " cannot be longer than 50 characters,";
@@ -3287,8 +3330,10 @@ public class ProblemComplementsDAO {
                             (finNum, jobKey, probKey, medClaimDate, medClaimLoss, medClaimInsurer, medClaimPolicyNbr, 
                             medClaimBasis, medClaimRem);
                     addProblemNonWicaClaim(problemNonWicaClaim);
+                    count++;
                 }    
             }
+            errList.add("nonwicaclaim.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -3454,6 +3499,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
@@ -3472,7 +3518,7 @@ public class ProblemComplementsDAO {
                 int jobKey = 0;
                 int probKey = 0;
                 java.sql.Date policeRptDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 /**
                  * Validations for empty fields
                  */
@@ -3578,8 +3624,10 @@ public class ProblemComplementsDAO {
                             (finNum, jobKey, probKey, policeRptDate, policeReptStation, policeRptPers, policeRptNbr, 
                             policeRptDetails, policeRptRem);
                     addProblemPoliceReport(problemPoliceReport);
+                    count++;
                 }    
             }
+            errList.add("policereport.csv:" + count);
             csvReader.close();
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
@@ -3732,6 +3780,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             //Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null){
@@ -3752,7 +3801,7 @@ public class ProblemComplementsDAO {
                 int jobKey = 0;
                 int probKey = 0;
                 java.sql.Date complaintDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 
                 /**
                  * Validations for empty fields
@@ -3876,9 +3925,11 @@ public class ProblemComplementsDAO {
                     ProblemOtherComplaint problemOtherComplaint = new ProblemOtherComplaint
                             (finNum, jobKey, probKey, complaintDate, agency, who, whoMore, mode, modeMore, details, rem);
                     addProblemOtherComplaint (problemOtherComplaint);
+                    count++;
                 }  
                 
             }
+            errList.add("othercomplaints.csv:" + count);
             csvReader.close();
                 
 
@@ -4074,6 +4125,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             //Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null){
@@ -4101,7 +4153,7 @@ public class ProblemComplementsDAO {
                 int jobKey = 0;
                 int probKey = 0;
                 java.sql.Date caseDissDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 
                 /**
                  * Validations for empty fields
@@ -4137,10 +4189,6 @@ public class ProblemComplementsDAO {
                     pass = false;
                 }
                 
-
-                
-
-
                 //proceed only after empty fields validation is passed
                 if (pass) { 
 
@@ -4189,7 +4237,7 @@ public class ProblemComplementsDAO {
                         } 
                     }
 
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfProblems();
+                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfDiscussWhere();
                     boolean exit = false;
                     for (String tmp: list) {
                         if (tmp.equalsIgnoreCase(caseDissWhere)) {
@@ -4214,8 +4262,12 @@ public class ProblemComplementsDAO {
                         errorMsg += header[7] + " cannot be longer than 50 characters,";
                     }
                     
-                    if (!caseDissWorkerPresent.equals("") && caseDissWorkerPresent.length() > 1) {
-                        errorMsg += header[8] + " cannot be longer than 1 characters,";
+                    if (!caseDissWorkerPresent.equals("")) {
+                        if (caseDissWorkerPresent.equalsIgnoreCase("Yes") || 
+                                caseDissWorkerPresent.equalsIgnoreCase("No")) {            
+                        } else {
+                            errorMsg += header[8] + " can only be 'Yes' or 'No',";
+                        }
                     }
                     
                     if (!caseDissTWC1.equals("") && caseDissTWC1.length() > 200) {
@@ -4274,9 +4326,11 @@ public class ProblemComplementsDAO {
                             caseDissOtherPerson, caseDissTrasnslator, caseDissTopic, caseDissGist, 
                             caseDissAssist, caseDissCalculate, caseDissAction, caseDissRem);
                     addProblemCaseDiscussion (problemCaseDiscussion);
+                    count++;
                 }  
                 
             }
+            errList.add("casediscussion.csv:" + count);
             csvReader.close();
                 
 
@@ -4438,6 +4492,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             //Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null){
@@ -4455,7 +4510,7 @@ public class ProblemComplementsDAO {
                 int jobKey = 0;
                 int probKey = 0;
                 java.sql.Date hospDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 
                 /**
                  * Validations for empty fields
@@ -4563,9 +4618,11 @@ public class ProblemComplementsDAO {
                     ProblemHospital problemHospital = new ProblemHospital
                             (finNum, jobKey, probKey, hospDate, hospName, hospNameMore, doctor, rem);
                     addProblemHospital (problemHospital);
+                    count++;
                 }  
                 
             }
+            errList.add("hospital.csv:" + count);
             csvReader.close();    
 
         }catch (FileNotFoundException ex) {
@@ -4729,6 +4786,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             //Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null){
@@ -4749,7 +4807,7 @@ public class ProblemComplementsDAO {
                 java.sql.Date mcDate = null;
                 java.sql.Date expDate = null;
                 int mcDaysCum = 0;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 
                 /**
                  * Validations for empty fields
@@ -4867,8 +4925,10 @@ public class ProblemComplementsDAO {
                     ProblemMCStatus problemMCStatus = new ProblemMCStatus
                             (finNum, jobKey, probKey, mcDate, mcStatus, mcStatusMore, expDate, mcDaysCum, mcRem);
                     addProblemMCStatus (problemMCStatus);
+                    count++;
                 }
             }
+            errList.add("mcstatus.csv:" + count);
             csvReader.close();
                 
         }catch (FileNotFoundException ex) {
@@ -4941,8 +5001,7 @@ public class ProblemComplementsDAO {
                     + " R2R_hosp, R2R_dept,"
                     + " R2R1, R2R2, R2R_purpose,"
                     + "R2R_pre_appt_notes, R2R_post_appt_notes,"
-                    + "R2R_feedback, R2R_med_cost, R2R_outlay,"
-                    + "Worker_FIN_number, Job_key, Prob_key"
+                    + "R2R_feedback, R2R_med_cost, R2R_outlay"
                     + " FROM tbl_R2R where ID = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
@@ -4960,9 +5019,9 @@ public class ProblemComplementsDAO {
                 String R2RFeedback = rs.getString(10);
                 double R2RMedCost = rs.getFloat(11);
                 double R2ROutlay = rs.getFloat(12);
-                String workerFinNumber = rs.getString(13);
-                int jobKey = rs.getInt(14);
-                int probKey = rs.getInt(15);
+                String workerFinNumber = rs.getString(7);
+                int jobKey = rs.getInt(8);
+                int probKey = rs.getInt(9);
                 problemR2R = new ProblemR2R(id, workerFinNumber, jobKey, probKey,
                         R2Rdate, R2RTime, R2RHosp, R2RDept, R2R1, R2R2, R2RPurpose,
                         R2RPreApptNotes, R2RPostApptNotes, R2RFeedback, R2RMedCost, R2ROutlay);
@@ -5056,6 +5115,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             //Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null){
@@ -5082,7 +5142,7 @@ public class ProblemComplementsDAO {
                 java.sql.Date r2rDate = null;
                 double medCost = 0.0;
                 double outlay = 0.0;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 
                 /**
                  * Validations for empty fields
@@ -5158,24 +5218,28 @@ public class ProblemComplementsDAO {
                         } 
                     }
                     
-                    if (!medCostStr.equals("") && !medCostStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
+                    if (!medCostStr.equals("")) {
+                        if (!medCostStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += header[14] + " must have maximum 2 decimal places,";
-                    } else {
-                        try {
-                            medCost = Double.parseDouble(medCostStr);
-                        } catch (Exception ex) {
-                            errorMsg += header[14] + " - invalid format,";
+                        } else {
+                            try {
+                                medCost = Double.parseDouble(medCostStr);
+                            } catch (Exception ex) {
+                                errorMsg += header[14] + " - invalid format,";
+                            }
                         }
-                    }
+                    }    
                     
-                    if (!outlayStr.equals("") && !outlayStr.matches("^[0-9]+(//.[0-9]{1,2})?$")) {
-                        errorMsg += header[15] + " must have maximum 2 decimal places,";
-                    } else {
-                        try {
-                            medCost = Double.parseDouble(medCostStr);
-                        } catch (Exception ex) {
-                            errorMsg += header[14] + " - invalid format,";
-                        }
+                    if (!outlayStr.equals("")) {
+                        if (!outlayStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += header[15] + " must have maximum 2 decimal places,";
+                        } else {
+                            try {
+                                medCost = Double.parseDouble(medCostStr);
+                            } catch (Exception ex) {
+                                errorMsg += header[14] + " - invalid format,";
+                            }
+                        }    
                     }
 
                     if (!r2rTime.equals("") && r2rTime.length() > 20) {
@@ -5228,8 +5292,10 @@ public class ProblemComplementsDAO {
                     ProblemR2R problemR2R = new ProblemR2R
                             (finNum, jobKey, probKey, r2rDate, r2rTime, r2rHosp, r2rDept, r2r1, r2r2, purpose, preApptNotes, postApptNotes, feedback, medCost, outlay);
                     addProblemR2R (problemR2R);
+                    count++;
                 }  
             }    
+            errList.add("r2r.csv:" + count);
             csvReader.close();    
 
         } catch (FileNotFoundException ex) {
@@ -5406,6 +5472,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             //Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null){
@@ -5424,7 +5491,7 @@ public class ProblemComplementsDAO {
                 int jobKey = 0;
                 int probKey = 0;
                 java.sql.Date lawyerDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 
                 /**
                  * Validations for empty fields
@@ -5499,7 +5566,7 @@ public class ProblemComplementsDAO {
                             errorMsg += "Invalid Updated Lawyer Date Format,";
                         } 
                     }
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfProblems();
+                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfLawFirms();
                     boolean exit = false;
                     for (String tmp: list) {
                         if (tmp.equalsIgnoreCase(firmName)) {
@@ -5544,9 +5611,11 @@ public class ProblemComplementsDAO {
                     ProblemLawyer problemLawyer = new ProblemLawyer
                             (finNum, jobKey, probKey, lawyerDate, firmName, firmNameMore, lawyerName, rem);
                     addProblemLawyer (problemLawyer);
+                    count++;
                 }
                 
             }
+            errList.add("lawyer.csv:" + count);
             csvReader.close();
                 
 
@@ -5685,6 +5754,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             //Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null){
@@ -5702,7 +5772,7 @@ public class ProblemComplementsDAO {
                 int jobKey = 0;
                 int probKey = 0;
                 java.sql.Date ncDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 
                 /**
                  * Validations for empty fields
@@ -5777,7 +5847,7 @@ public class ProblemComplementsDAO {
                             errorMsg += "Invalid Milestone NC Reached Date Format,";
                         } 
                     }
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfProblems();
+                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfMilestoneNonCriminal();
                     boolean exit = false;
                     for (String tmp: list) {
                         if (tmp.equalsIgnoreCase(reached)) {
@@ -5818,8 +5888,10 @@ public class ProblemComplementsDAO {
                     ProblemCaseMilestoneNC problemCaseMilestoneNC = new ProblemCaseMilestoneNC
                             (finNum, jobKey, probKey,ncDate, reached, reachedMore, rem);
                     addProblemCaseMilestoneNC (problemCaseMilestoneNC);
+                    count++;
                 }  
             }    
+            errList.add("casemilestonenc.csv:" + count);
             csvReader.close();
                 
 
@@ -5982,6 +6054,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             //Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null){
@@ -6001,7 +6074,7 @@ public class ProblemComplementsDAO {
                 int jobKey = 0;
                 int probKey = 0;
                 java.sql.Date crDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 
                 /**
                  * Validations for empty fields
@@ -6078,7 +6151,7 @@ public class ProblemComplementsDAO {
                             errorMsg += "Invalid Milestone CR Reached Date Format,";
                         } 
                     }
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfProblems();
+                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfMilestoneCriminal();
                     boolean exit = false;
                     for (String tmp: list) {
                         if (tmp.equalsIgnoreCase(reached)) {
@@ -6127,9 +6200,11 @@ public class ProblemComplementsDAO {
                     ProblemCaseMilestoneCR problemCaseMilestoneCR = new ProblemCaseMilestoneCR
                             (finNum, jobKey, probKey,crDate, reached, reachedMore, charges, sentence, rem);
                     addProblemCaseMilestoneCR (problemCaseMilestoneCR);
+                    count++;
                 }  
             }    
-                csvReader.close();
+            errList.add("casemilestonecr.csv:" + count);
+            csvReader.close();
                 
 
         }catch (FileNotFoundException ex) {
@@ -6316,6 +6391,7 @@ public class ProblemComplementsDAO {
             String[] fields;
             int lineNum = 1;
             String errorMsg = "";
+            int count = 0;
 
             //Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null){
@@ -6337,7 +6413,7 @@ public class ProblemComplementsDAO {
                 int probKey = 0;
                 java.sql.Date updatedDate = null;
                 java.sql.Date depatureDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 
                 /**
                  * Validations for empty fields
@@ -6412,7 +6488,7 @@ public class ProblemComplementsDAO {
                             errorMsg += "Invalid Updated TTR Date Format,";
                         } 
                     }
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfProblems();
+                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfTTRStatus();
                     boolean exit = false;
                     for (String tmp: list) {
                         if (tmp.equalsIgnoreCase(status)) {
@@ -6471,9 +6547,11 @@ public class ProblemComplementsDAO {
                     ProblemTTR problemTTR = new ProblemTTR
                             (finNum, jobKey, probKey, updatedDate, status, statusMore, depatureDate, nameNew, newJob, rem);
                     addProblemTTR (problemTTR);
+                    count++;
                 } 
                 
             }
+            errList.add("ttr.csv:" + count);
             csvReader.close();          
 
         } catch (FileNotFoundException ex) {
