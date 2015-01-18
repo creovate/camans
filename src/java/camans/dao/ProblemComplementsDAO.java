@@ -5001,7 +5001,8 @@ public class ProblemComplementsDAO {
                     + " R2R_hosp, R2R_dept,"
                     + " R2R1, R2R2, R2R_purpose,"
                     + "R2R_pre_appt_notes, R2R_post_appt_notes,"
-                    + "R2R_feedback, R2R_med_cost, R2R_outlay"
+                    + "R2R_feedback, R2R_med_cost, R2R_outlay,"
+                    + "Worker_FIN_number, Job_key, Prob_key"
                     + " FROM tbl_R2R where ID = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
@@ -5019,9 +5020,9 @@ public class ProblemComplementsDAO {
                 String R2RFeedback = rs.getString(10);
                 double R2RMedCost = rs.getFloat(11);
                 double R2ROutlay = rs.getFloat(12);
-                String workerFinNumber = rs.getString(7);
-                int jobKey = rs.getInt(8);
-                int probKey = rs.getInt(9);
+                String workerFinNumber = rs.getString(13);
+                int jobKey = rs.getInt(14);
+                int probKey = rs.getInt(15);
                 problemR2R = new ProblemR2R(id, workerFinNumber, jobKey, probKey,
                         R2Rdate, R2RTime, R2RHosp, R2RDept, R2R1, R2R2, R2RPurpose,
                         R2RPreApptNotes, R2RPostApptNotes, R2RFeedback, R2RMedCost, R2ROutlay);

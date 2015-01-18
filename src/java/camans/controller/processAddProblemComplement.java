@@ -56,7 +56,7 @@ public class processAddProblemComplement extends HttpServlet {
                 //get all the parameters for Aggravating Issue
                 String aggraIssue = request.getParameter("naggravissueType");
                 String aggraIssueMore = request.getParameter("naggravissueTypeMore");
-                String aggraLossStr = request.getParameter("aggravLoss");
+                String aggraLossStr = request.getParameter("naggravLoss");
                 Double aggraLoss = 0.0;
                 if (aggraLossStr != null && !aggraLossStr.equals("")) {
                     try {
@@ -306,7 +306,7 @@ public class processAddProblemComplement extends HttpServlet {
             //=======================================//
               else if (complementName.equals("injurycase")) {
                   String injuryDateStr = request.getParameter("ndate");
-                  String injuryTime = request.getParameter("nTime");
+                  String injuryTime = request.getParameter("ntime");
                   String injuryLocation = request.getParameter("nlocation");
                   String injuryDeath = request.getParameter("ndeath");
                   String injuryBodyPart = request.getParameter("nbodyPart");
@@ -347,7 +347,7 @@ public class processAddProblemComplement extends HttpServlet {
                 String illnessdiaPerson = request.getParameter("ndiagnosePerson");
                 String illnessNature = request.getParameter("nnature");
                 String illnessWorkRelated = request.getParameter("nworkRelated");
-                String illnessWhy = request.getParameter("workRelatedYes");
+                String illnessWhy = request.getParameter("nworkRelatedYes");
                 String illnessRemark = request.getParameter("nremark");
                 
                 //create object

@@ -85,10 +85,10 @@
 
             <% } %>
             <!-- End of success & error display -->
-            <div class="col-md-12" >
-                <button class="pull-right changePwd_popup" data-username='<%=username%>' 
+            <div class="col-md-12 text-right" >
+                <button class="btn btn-info changePwd_popup" data-username='<%=username%>' 
                         data-toggle="modal" data-target="#user_change_pwd">Change Password</button>
-                <button class="pull-right edit_popup" data-nric='<%=userNRIC%>' data-fullname='<%=userFullName%>' 
+                <button class="btn btn-primary edit_popup" data-nric='<%=userNRIC%>' data-fullname='<%=userFullName%>' 
                         data-alias='<%=userAlias%>' data-username='<%=username%>' 
                         data-gender='<%=userGender%>'data-role='<%=userRole%>' 
                         data-email='<%=userEmail%>' data-phone='<%=userPh%>' 

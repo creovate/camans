@@ -96,7 +96,7 @@
         
         <title>CAMANS</title>
     </head>
-    <body>
+    <body id="home">
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
             
@@ -108,7 +108,7 @@
                 <!-- SEARCH FILTERS -->
                 
                 <!--<div id="schwker_box" class="col-md-11 sub_div_w_bg" style="padding:2% 1%">-->
-                <div id="worker_filter_div" class="col-md-11"> 
+                <div id="worker_filter_div" class="col-md-12"> 
                     <div class="panel panel-default">
                         <div class="panel-body"> 
                 <!--<div class="col-mid-9 panel panel-default sub_div_w_bg" style="padding:2% 1%">-->    
@@ -312,9 +312,9 @@
                                 </div> <!--end of row 4--> 
 
                                 <div clas="row"> <!-- row 5 -->
-                                    <div class="form-group col-sm-3 pull-right">
-                                        <button class="btn btn-default" id="btnSearch" onclick="search()">Search</button>
-                                        <button class="btn btn-default pull-right" id="btnReset" 
+                                    <div class="form-group col-sm-12 text-right">
+                                        <button class="btn btn-primary" id="btnSearch" onclick="search()">Search</button>
+                                        <button class="btn btn-info" id="btnReset" 
                                                 type="reset" onClick="window.location.href=window.location.href">Reset</button>
                                     </div>
                                 </div> <!--end of row 5--> 
@@ -326,7 +326,7 @@
                 <!-- End of search filters -->
 
                 <!-- search Results -->
-                <div id="worker_search_result_div" class="col-md-11">
+                <div id="worker_search_result_div" class="col-md-12">
                     <!--div class="col-md-3 pull-right"> 
                         <input type="text" id="search_in_recent" placeholder="Search..." class="form-control"/>
                     </div-->

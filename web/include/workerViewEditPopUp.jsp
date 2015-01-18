@@ -1397,7 +1397,7 @@
                 
             <div class="form-group" id="digitalContactType_other_div">
                 <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
-                <input class="form-control" type='text' name="nDigitalMore" value="<%=(digiMore==null)?"":digiMore%>">
+                <input class="form-control" type='text' name="digitalMore" value="<%=(digiMore==null)?"":digiMore%>">
             </div>
                 
             <div class='form-group'>
@@ -1911,7 +1911,7 @@
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about Friend: </label>
                 <br/>
-                <textarea class="form-control" name="nRemark" rows="3"></textarea>
+                <textarea class="form-control" name="nRemark" rows="3" maxleng="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
@@ -1947,7 +1947,7 @@
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark about Friend: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
@@ -2276,7 +2276,7 @@
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about Bank Account: </label>
                 <br/>
-                <textarea class="form-control" name="nRemark"></textarea>
+                <textarea class="form-control" name="nRemark" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>

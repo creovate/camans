@@ -846,12 +846,11 @@
         <div class="form-group">
             <label for="job_sector" class="col-md-5 control-label">Job Sector</label>
             <div class=" col-md-7">
-                <select class="form-control" name="jobSector" id="job_sector" required>
-                    <option value="">Select from the list...</option>
+                <select class="form-control" name="jobSector" id="job_sector" onchange="displayOther(this.id)" >
                     <%
                         for (String jobSectorStr : jobSectorList) {
                     %>
-                    <option value="<%=jobSectorStr%>"><%=jobSectorStr%></option>
+                    <option><%=jobSectorStr%></option>
                     <%
                         }
                     %>   
