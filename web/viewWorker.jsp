@@ -226,7 +226,7 @@
                                 ProblemInjury injuryObj = null;
                                 java.util.Date injuryDate = null;
                                 if (injuryList != null && injuryList.size() > 0) {
-                                    injuryObj = ProblemComplementsDAO.retrieveProblemInjuryById(injuryList.size()-1);
+                                    injuryObj = ProblemComplementsDAO.retrieveProblemInjuryById(injuryList.get(injuryList.size()-1));
                                     injuryDate = injuryObj.getInjuryDate();
                                 }
                                 
@@ -1998,10 +1998,8 @@
                                                                         ProblemAggravatingIssue aggravIs = ProblemComplementsDAO.retrieveProblemAggravatingIssueById(aggravissueIds.get(i));
 
                                                                         String issue = aggravIs.getAggravatingIssue();
-
-                                                                        if (issue.equals("Other") || issue.equals("other")) {
-                                                                            issue = aggravIs.getAggravatingIssueMore();
-                                                                        }
+                                                                        String issueMore = aggravIs.getAggravatingIssueMore();
+                                                                       
 
                                                                         String remark = aggravIs.getAggravatingRemark();
                                                                         double loss = aggravIs.getAggravatingLoss();
@@ -2009,8 +2007,9 @@
                                                                 %>
                                                                 <tr class="other_aggravissue moreObjs">
                                                                     <td><%=issue%></td>
+                                                                    <td><%=(issueMore == null) ? "" : issueMore%></td>
                                                                     <td><%=(loss == 0) ? "0.00" : loss%></td>
-                                                                    <td><%=remark%></td>
+                                                                    <td><%=(remark == null)? "-" : remark%></td>
                                                                     <td>
                                                                         <a style="color: black" data-value='aggravissue' data-class="problem"   
                                                                            data-aggravissue='<%=aggravIs.getId()%>' href="" 
@@ -2024,8 +2023,9 @@
                                                                 %>
                                                                 <tr>
                                                                     <td><%=issue%></td>
+                                                                    <td><%=(issueMore == null) ? "" : issueMore%></td>
                                                                     <td><%=(loss == 0) ? "0.00" : loss%></td>
-                                                                    <td><%=remark%></td>
+                                                                    <td><%=(remark == null)? "-" : remark%></td>
                                                                     <td><a style="color: black" data-value='aggravissue' data-class="problem"   data-aggravissue='<%=aggravIs.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#aggravIssue_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
@@ -4678,7 +4678,7 @@
                     });
                 } else if (div_action_val === 'add') {
                     $("#pop_up_content").load('include/addPopUp.jsp?workerFin=<%=workerFin%>&complement=' + div_id
-                            + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + "&action='add'").dialog({modal: true, minHeight: $(window).height() - 350,
+                            + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + "&action='add'").dialog({modal: true,
                         minWidth: $(window).width() - 750, title: div_title, resizable: false, draggable: false, close: function() {
                             $(this).dialog('destroy');
                             $('#pop_up_content').empty();
@@ -4687,7 +4687,7 @@
             });
             
             function referCase() {
-                $("#pop_up_content").load('include/referCase.jsp?workerFin=<%=workerFin%>&jobkey=<%=latestJob.getJobKey()%>&probkey=<%=latestProblem.getProbKey()%>&user=<%= userLogin.getNricNumber()%>').dialog({modal: true, minHeight: $(window).height() - 350, minWidth: $(window).width() - 750, title: "Case Referral", resizable: false, draggable: false, close: function() {
+                $("#pop_up_content").load('include/referCase.jsp?workerFin=<%=workerFin%>&jobkey=<%=latestJob.getJobKey()%>&probkey=<%=latestProblem.getProbKey()%>&user=<%= userLogin.getNricNumber()%>').dialog({modal: true, minWidth: $(window).width() - 750, title: "Case Referral", resizable: false, draggable: false, close: function() {
                         $(this).dialog('destroy');
                         $('#pop_up_content').empty();
                     }});

@@ -181,7 +181,6 @@
                             callback: function(value, validator) {
                                 var finType1 = /^[G][0-9]{7}[A-Z]$/;
                                 var finType2 = /^GEN[0-9]{6}$/;
-                                var finType1Res = finType.test(value);
                                 if (finType1.test(value) === false || finType2.test(value) === false) {
                                     return {
                                         valid: false,
@@ -847,11 +846,12 @@
         <div class="form-group">
             <label for="job_sector" class="col-md-5 control-label">Job Sector</label>
             <div class=" col-md-7">
-                <select class="form-control" name="jobSector" id="job_sector" onchange="displayOther(this.id)" >
+                <select class="form-control" name="jobSector" id="job_sector" required>
+                    <option value="">Select from the list...</option>
                     <%
                         for (String jobSectorStr : jobSectorList) {
                     %>
-                    <option><%=jobSectorStr%></option>
+                    <option value="<%=jobSectorStr%>"><%=jobSectorStr%></option>
                     <%
                         }
                     %>   
@@ -927,11 +927,12 @@
         <div class="form-group">
             <label for="prob_type" class="col-md-5 control-label">Problem Type<span class="required_input">*</span></label>
             <div class=" col-md-7"> 
-                <select name="problem" id="prob_type" class="form-control" onchange="displayOther(this.id);">
+                <select name="problem" id="prob_type" class="form-control" required>
+                    <option value="">Select from the list...</option>
                     <%
                         for (String problemStr : problemList) {
                     %>
-                    <option><%=problemStr%></option>
+                    <option value="<%=problemStr%>"><%=problemStr%></option>
                     <%
                         }
                     %>                   

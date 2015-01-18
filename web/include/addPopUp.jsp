@@ -1078,7 +1078,7 @@
                 nhow: {
                     validators: {
                         notEmpty: {
-                            message: 'Date of injury cannot be empty.'
+                            message: 'This field cannot be empty. Please enter a value.'
                         }
                     }
                 },
@@ -3629,12 +3629,12 @@
             <textarea class="form-control" name="r2rFeedback" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='r2rMed' class="control-label">Medical Cost of this appt: </label>
+            <label for='r2rMed' class="control-label">Medical Cost of this Appt(S$): </label>
             <br/>
             <input class="form-control" type='text' name="nr2rMed">
         </div>
         <div class='form-group'>
-            <label for='r2rOut' class="control-label">How much paid by volunteer: </label>
+            <label for='r2rOut' class="control-label">How much paid by volunteer(S$): </label>
             <br/>
             <input class="form-control" type='text' name="nr2rOut">
         </div>
@@ -4051,7 +4051,7 @@
                 <textarea class="form-control" name="nbodyPart" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nhow' class="control-label">How injury happened</label>
+                <label for='nhow' class="control-label">How injury happened<span style="color: red">*</span>:</label>
                 <br/>
                 <textarea class="form-control" name="nhow" rows="3"></textarea>
             </div>
@@ -4265,7 +4265,7 @@
             <div class='form-group'>
                 <label for='nbasic' class="control-label">Describe complaint about basic salary incorrect or not paid<span style="color: red">*</span>:</label>
                 <br/>
-                <textarea class="form-control" name="nbasicSal" rows="3"></textarea>
+                <textarea class="form-control" name="nbasicSal" rows="3" required></textarea>
             </div>
             <div class='form-group'>
                 <label for='novertime' class="control-label">Describe complaint about overtime incorrect or not paid: </label>
