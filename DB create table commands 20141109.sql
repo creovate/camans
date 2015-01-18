@@ -22,6 +22,7 @@ CREATE TABLE tbl_user (
 	Role varchar(25) not null,
 	Photo varchar(255) null,
 	Status varchar(50) not null,
+	index(Username),
 	PRIMARY KEY (NRIC_number)
 );
 
@@ -45,8 +46,9 @@ CREATE TABLE tbl_worker (
 	Nationality_more varchar(50) null, 
 	Date_of_birth Date  NULL , 
 	Photo varchar(255) null,
+	index(FIN_number),
 	Primary Key(FIN_number)
-);
+)ENGINE=INNODB;
 
 /*
 *====================
@@ -61,6 +63,7 @@ Create table tbl_worker_nickname (
 	ID int auto_increment not null,
 	Worker_FIN_number varchar(12) not null,
 	Nickname varchar(50) NOT null,
+	index(Worker_FIN_Number),
 	
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
@@ -83,31 +86,13 @@ CREATE table tbl_worker_passport_details(
 	Passport_issue_date Date  NULL,
 	Passport_expiry_date Date  NULL,
 	Worker_FIN_number varchar(12) not null,
+	index(Worker_FIN_Number),
 
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
         REFERENCES tbl_worker(FIN_number)
 		 ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=INNODB;
-
-/*
-**============================
-** Face Picture
-**============================
-*
-
-Drop table if exists tbl_worker_facepic;
-Create table tbl_worker_facepic (
-	Entry_date timestamp not null DEFAULT CURRENT_TIMESTAMP,
-	ID int auto_increment not null,
-	Face_picture varchar(255) null,
-	Worker_FIN_number varchar(12) not null,
-	
-	Primary Key (ID),
-	FOREIGN KEY (Worker_FIN_number) 
-        REFERENCES tbl_worker(FIN_number)
-			ON DELETE CASCADE ON UPDATE CASCADE
-)ENGINE=INNODB;
 
 /*
 **=====================================
@@ -122,6 +107,7 @@ Create table tbl_home_country_phone_number(
 	Owner_of_number varchar(20) null,
 	Home_phone_obsolete date null,
 	Worker_FIN_number varchar(12) not null,
+	index(Worker_FIN_Number),
 	
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
@@ -142,6 +128,7 @@ Create table tbl_sg_phone_number(
 	Sg_phone_num varchar (15) NOT null,
 	Sg_phone_obsolete Date null,
 	Worker_FIN_number varchar(12)not null,
+	index(Worker_FIN_Number),
 
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
@@ -161,6 +148,7 @@ create table tbl_sg_address(
 	Singapore_address Varchar(200)  NOT NULL,
 	Addr_singapore_obsolete DATE NULL,
 	Worker_FIN_number varchar(12) not null,
+	index(Worker_FIN_Number),
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
         REFERENCES tbl_worker(FIN_number)
@@ -179,6 +167,7 @@ Create table tbl_home_country_address(
 	Home_country_address Varchar(300)  NOT NULL, 
 	Home_country_obsolete_address DATE  NULL,
 	Worker_FIN_number varchar(12) not null,
+	index(Worker_FIN_Number),
 	
 	PRIMARY KEY(ID),
 	FOREIGN KEY (Worker_FIN_number) 
@@ -203,6 +192,7 @@ CREATE TABLE tbl_digital_contact(
 	Digital_remarks varchar(200)  NULL, 
 	Obsolete_date DATE  NULL, 
 	Worker_FIN_number VARCHAR(12)  Not NULL,   
+	index(Worker_FIN_Number),
 	
 	Primary Key (ID),
 		FOREIGN KEY (Worker_FIN_number) 
@@ -229,7 +219,8 @@ CREATE TABLE tbl_kin (
 	Kin_proof Varchar(200)  NULL, 
 	Kin_remarks Varchar(200)  NULL, 
 	Kin_obsolete_date Date  NULL,  
-
+	index(Worker_FIN_Number),
+	
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
         REFERENCES tbl_worker(FIN_number)
@@ -254,7 +245,8 @@ CREATE TABLE tbl_family_member (
 	Family_member_digital Varchar(200)  NULL, 
 	Family_member_remarks Varchar(200)  NULL, 
 	Family_member_obsolete Date  NULL, 
-
+	index(Worker_FIN_Number),
+	
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
         REFERENCES tbl_worker(FIN_number)
@@ -276,7 +268,8 @@ CREATE TABLE tbl_sg_friend (
 	friend_sg_rel Varchar(50)  NULL, 
 	friend_sg_rem Varchar(200)  NULL, 
 	friend_sg_obsolete Date  NULL, 
-
+	index(Worker_FIN_Number),
+	
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
         REFERENCES tbl_worker(FIN_number)
@@ -296,7 +289,8 @@ Create table tbl_language (
 	Spoken_english_standard varchar(50) null,
 	Language_remarks varchar(200) null,
 	Worker_FIN_number varchar(12) not null,
-
+	index(Worker_FIN_Number),
+	
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
         REFERENCES tbl_worker(FIN_number)
@@ -322,7 +316,8 @@ Create table tbl_bank_acc_details (
 	Bank_account_remarks varchar (200) null,
 	Bank_obsolete_date date null,
 	Worker_FIN_number varchar (12) not null,
-
+	index(Worker_FIN_Number),
+	
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
         REFERENCES tbl_worker(FIN_number)
@@ -342,7 +337,7 @@ Create table tbl_worker_attachment (
 	Document_name varchar(255) null,
 	File_path varchar(255) null,
 	Submit_by varchar(20) not null, /* username of TWC2 user */
-
+	index(FIN_number),
 	Primary Key (ID),
 	Foreign Key (FIN_number) References tbl_worker(FIN_number)
 		ON DELETE CASCADE ON UPDATE CASCADE,
@@ -377,7 +372,8 @@ Create table tbl_job (
 	Job_end_date varchar(500) null,
 	Job_whether_TJS varchar(10) null,
 	Job_remarks varchar (200) null,
-
+	index(Worker_FIN_Number),
+	index(Job_Key),
 
 	Primary Key (Job_Key),
 	FOREIGN KEY (Worker_FIN_number) 
@@ -404,7 +400,8 @@ Create table tbl_pass_details (
 	Pass_issuer varchar (20) null,
 	Pass_remarks varchar (200) null,
 	Pass_obsolete_date date null,
- 
+	index(Worker_FIN_Number),
+	index(Job_Key),
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -441,9 +438,10 @@ Create table tbl_ipa_details (
 	IPA_allowances_details varchar (200) null,
 	IPA_deduction decimal(13,2) null,
 	IPA_deduction_details varchar (200) null,
-	Housing_provided varchar(2) null,
+	Housing_provided varchar(3) null,
 	IPA_remarks varchar (200) null,
-
+	index(Worker_FIN_Number),
+	index(Job_Key),
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -472,7 +470,8 @@ Create table tbl_verbal_assurances (
 	Verbal_content varchar(1000) null,
 	Worker_FIN_number varchar(12) not null,
 	Job_key MEDIUMINT not null,
-
+	index(Worker_FIN_Number),
+	index(Job_Key),
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -507,7 +506,8 @@ Create table tbl_employment_contract (
 	Contract_duration varchar(20) null,
 	Contract_duress varchar (500) null,
 	Contract_remarks varchar (200) null,
-
+	index(Worker_FIN_Number),
+	index(Job_Key),
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -546,7 +546,8 @@ Create table tbl_agent (
 	Agent_remarks varchar (200) null,
 	Worker_FIN_number varchar(12) not null,
 	Job_key MEDIUMINT not null,
-
+	index(Worker_FIN_Number),
+	index(Job_Key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -573,7 +574,8 @@ Create table tbl_employer (
 	Employer_contacts varchar (200) null,
 	Employer_persons varchar (200) null,
 	Employer_remarks varchar (500) null,
-
+	index(Worker_FIN_Number),
+	index(Job_Key),
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -605,7 +607,8 @@ Create table tbl_workplace (
 	Workplace_condition varchar (500) null,
 	Workplace_safety varchar (200) null,
 	Workplace_remarks varchar (200) null,
-
+	index(Worker_FIN_Number),
+	index(Job_Key),
 
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
@@ -637,7 +640,8 @@ Create table tbl_work_history (
 	Work_hist_previous varchar (1000) null,
 	Work_hist_previous_problems varchar (1000) null,
 	Work_hist_remarks varchar (200) null,
-
+	index(Worker_FIN_Number),
+	index(Job_Key),
 
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
@@ -672,7 +676,8 @@ Create table tbl_accomodation (
 	Accomodation_remarks varchar (200) null,
 	Worker_FIN_number varchar(12) not null,
 	Job_key MEDIUMINT not null,
-
+	index(Worker_FIN_Number),
+	index(Job_Key),
 	Primary Key (ID),	
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -716,7 +721,10 @@ CREATE TABLE tbl_problem(
     Referred_to varchar(10) null,
     Referred_date Date null,
     Description varchar(200) null,
-
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
+	
 	PRIMARY KEY (Prob_key),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -751,7 +759,9 @@ Create table tbl_aggravating_issue (
 	Aggra_issue_more varchar(50) null,
 	Aggra_loss  varchar (255) null,
 	Aggra_remarks varchar(200) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key (ID),
 
 	FOREIGN KEY (Worker_FIN_number) 
@@ -782,7 +792,9 @@ Create table tbl_lead_case_worker(
 	Worker_FIN_number varchar(12) not null,
 	Job_key MEDIUMINT not null,
 	Prob_key MEDIUMINT not null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -811,7 +823,9 @@ Create table tbl_auxillarycaseworker(
 	Worker_FIN_number varchar(12) not null,
 	Job_key MEDIUMINT not null,
 	Prob_key MEDIUMINT not null,
-
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -847,7 +861,9 @@ Create table tbl_salary_history(
 	Sal_loss_total decimal(13,2) null,
 	Sal_loss_1_year decimal(13,2) null,
 	Sal_his_remarks varchar(200) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -883,7 +899,9 @@ Create table tbl_injury (
 	Injury_initial_treatment_more varchar (200) null, /** Hospital More **/
 	Injury_work_related varchar(12) null,
 	Injury_remarks varchar (200) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -917,7 +935,9 @@ Create table tbl_illness (
 	Illness_work_related varchar(12) null,
 	Illness_why varchar(500) null,
 	Illness_rem varchar(200) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -947,6 +967,9 @@ Create table tbl_other_problems (
 	Oth_problem_rem varchar (200) null,
 	Worker_FIN_number varchar(12) not null,
 	Job_key MEDIUMINT not null,
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -1032,7 +1055,9 @@ Create table tbl_salary_claim_lodged (
 	Sal_claim_date date not null,
 	Sal_claim_loss decimal(13,2) null,
 	Sal_claim_basis varchar(1000) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
@@ -1068,6 +1093,9 @@ Create table tbl_wica_claim(
 	Wica_policy_nbr varchar(30) null,
 	Wica_claim_reason varchar(200) null,
 	Wica_claim_rem varchar(200) null,
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -1101,7 +1129,9 @@ Create table tbl_non_wica_claim(
 	Med_claim_policy_nbr varchar(30) null,
 	Med_claim_basis varchar(1000) null,
 	Med_claim_rem varchar(200) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -1137,7 +1167,9 @@ Create table tbl_police_report(
 	Police_rpt_ref_nbr varchar(100) null,
 	Police_rpt_details varchar(1000) null,
 	Police_rpt_rem varchar(200) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -1173,7 +1205,9 @@ Create table tbl_other_complaint(
 	Other_plaint_mode_more varchar(200) null,
 	Other_plaint_details varchar(1000) null,
 	Other_plaint_rem varchar(200) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -1219,7 +1253,9 @@ Create table tbl_case_discussion(
 	Discuss_calculate varchar(1000) null,
 	Discuss_action varchar(500) null,
 	Discuss_rem varchar(500) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -1252,7 +1288,9 @@ create table tbl_hospital (
 	Hosp_name_more varchar(50) null,
 	Hosp_doctor varchar(200) null,
 	Hosp_remark varchar(200) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -1286,7 +1324,9 @@ Create table tbl_MC_status (
 	MC_exp_date Date null, /*MC expiry date */
 	MC_days_cumul int null, /*Cumulative MC so far */
 	MC_rem varchar(200) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -1323,7 +1363,9 @@ Create table tbl_R2R (
 	Worker_FIN_number varchar(12) not null,
 	Job_key MEDIUMINT not null,
 	Prob_key MEDIUMINT not null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -1358,7 +1400,9 @@ Create table tbl_wica(
 	Wicamon_points decimal(13,2) null,
 	Wicamon_dollars decimal(13,2) null,
 	Wicamon_remarks varchar (200) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
@@ -1398,7 +1442,9 @@ Create table tbl_lawyer (
 	Lawyer_Name varchar(200) null,	
 	Lawyer_remarks varchar (200) null,
 	Worker_FIN_number varchar(12) not null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -1433,7 +1479,9 @@ Create table tbl_casemilestone_noncriminal(
 	Miles_nc_reached varchar(50) not null,
 	Miles_nc_reached_more varchar(200) null,
 	Miles_nc_rem varchar(200) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -1465,7 +1513,9 @@ Create table tbl_casemilestone_criminal(
 	Miles_cr_charges varchar(200) null,
 	Miles_cr_sentence varchar(200) null,
 	Miles_cr_rem varchar (200) null,
-	
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
@@ -1498,6 +1548,9 @@ Create table tbl_ttr (
 	New_job varchar(200)null,
 	Ttr_rem varchar(200) null,
 	Worker_FIN_number varchar(12) not null,
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -1534,6 +1587,9 @@ Create table tbl_benefit (
 	Bene_purpose varchar(50) null,
 	Bene_rem varchar(500) null,
 	Bene_value decimal(13,2) null,
+	index (Worker_FIN_number),
+	index (Job_key),
+	index (Prob_key),
 	Primary Key (ID),
 	FOREIGN KEY (Worker_FIN_number) 
 		REFERENCES tbl_worker(FIN_number)
@@ -1563,6 +1619,7 @@ Create table tbl_audit (
     FIN_log varchar (20) not null, /*to indicate the name of the worker or user whose attributes was changed/added */
     Action_type varchar(20) not null, /* Type of action - add, edit, delete, import, export */
 	Action_description_log varchar(8000) null, /* descripton of action */
+	index (Entry_date),
 
 	Primary Key (ID),
     Foreign Key (Username) References tbl_user(Username)
@@ -1590,6 +1647,7 @@ Create Table tbl_dropdown (
 	Name varchar(500) not null,
 	Remark varchar(500) null,
 	displayRank int not null,
+	index(dropdownType),
 	Primary key(ID)
 );
 
