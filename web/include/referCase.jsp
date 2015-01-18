@@ -30,7 +30,7 @@
     ArrayList<Integer> phNumIdList = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(worker);
     String sgPhone = "";
     if (phNumIdList.size() > 0) {
-        WorkerSgPhNum sgPhNumObj = WorkerComplementsDAO.retrieveWorkerSgPhNumById(phNumIdList.size() - 1);
+        WorkerSgPhNum sgPhNumObj = WorkerComplementsDAO.retrieveWorkerSgPhNumById(phNumIdList.get(phNumIdList.size() - 1));
         sgPhone = sgPhNumObj.getPhNumber();
     }
 
