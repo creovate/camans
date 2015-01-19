@@ -3,8 +3,6 @@
     Created on : Nov 6, 2014, 5:12:37 PM
     Author     : Nyein Su
 --%>
-<%@page import="java.text.DecimalFormat"%>
-<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.HashMap"%>
@@ -2167,7 +2165,6 @@
         <%
             String description = pother.getOtherProblemDesc();
             double loss = pother.getOtherProblemLoss();
-            
             String remark = pother.getOtherProblemRemark();
         %>  
 
@@ -2494,7 +2491,7 @@
                                : sdf.format(date)%>">
             </div>
             <div class='form-group'>
-                <label for='refNumber' class="control-label">WICA Ref number:</label>
+                <label for='refNumber' class="control-label">WICA Reference number</label>
                 <br/>
                 <input class="form-control" type='text' name="refNumber" value="<%=(refNumber == null) ? "" : refNumber%>">
             </div>

@@ -1041,7 +1041,7 @@
 
     });
 
-    //problem form validation
+    //problem form validation 
     $(document).ready(function() {
         $('.problem_pop_up')
                 .bootstrapValidator({
@@ -2271,7 +2271,7 @@
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about Friend: </label>
                 <br/>
-                <textarea class="form-control" name="nRemark" rows="3"></textarea>
+                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
@@ -2408,7 +2408,7 @@
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about Bank Account: </label>
                 <br/>
-                <textarea class="form-control" name="nRemark"></textarea>
+                <textarea class="form-control" name="nRemark" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
@@ -3637,12 +3637,12 @@
             <textarea class="form-control" name="r2rFeedback" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='r2rMed' class="control-label">Medical Cost of this Appt(S$): </label>
+            <label for='r2rMed' class="control-label">Medical Cost of this appt: </label>
             <br/>
             <input class="form-control" type='text' name="nr2rMed">
         </div>
         <div class='form-group'>
-            <label for='r2rOut' class="control-label">How much paid by volunteer(S$): </label>
+            <label for='r2rOut' class="control-label">How much paid by volunteer: </label>
             <br/>
             <input class="form-control" type='text' name="nr2rOut">
         </div>
@@ -4059,7 +4059,7 @@
                 <textarea class="form-control" name="nbodyPart" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nhowinjury' class="control-label">How injury happened:</label>
+                <label for='nhowinjury' class="control-label">How injury happened</label>
                 <br/>
                 <textarea class="form-control" name="nhowinjury" rows="3"></textarea>
             </div>
@@ -4273,7 +4273,7 @@
             <div class='form-group'>
                 <label for='nbasic' class="control-label">Describe complaint about basic salary incorrect or not paid<span style="color: red">*</span>:</label>
                 <br/>
-                <textarea class="form-control" name="nbasicSal" rows="3" required></textarea>
+                <textarea class="form-control" name="nbasicSal" rows="3"></textarea>
             </div>
             <div class='form-group'>
                 <label for='novertime' class="control-label">Describe complaint about overtime incorrect or not paid: </label>

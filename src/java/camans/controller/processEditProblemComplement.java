@@ -328,7 +328,7 @@ public class processEditProblemComplement extends HttpServlet {
                   String injuryLocation = request.getParameter("location");
                   String injuryDeath = request.getParameter("death");
                   String injuryBodyPart = request.getParameter("bodyPart");
-                  String injuryHow = request.getParameter("how");
+                  String injuryHow = request.getParameter("howinjury");
                   String injuryAmbulance = request.getParameter("ambulance");
                   String injuryInitialTreatement = request.getParameter("treatement");
                   String injuryInitialTreatementMore = request.getParameter("treatementMore");

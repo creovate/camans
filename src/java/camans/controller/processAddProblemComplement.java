@@ -310,7 +310,7 @@ public class processAddProblemComplement extends HttpServlet {
                   String injuryLocation = request.getParameter("nlocation");
                   String injuryDeath = request.getParameter("ndeath");
                   String injuryBodyPart = request.getParameter("nbodyPart");
-                  String injuryHow = request.getParameter("nhow");
+                  String injuryHow = request.getParameter("nhowinjury");
                   String injuryAmbulance = request.getParameter("nambulance");
                   String injuryInitialTreatement = request.getParameter("ntreatement");
                   String injuryInitialTreatementMore = request.getParameter("ntreatementMore");

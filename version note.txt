@@ -1,0 +1,22 @@
+camans 1.6.1
+
+Team Testing 19th
+
+Debugging - soemyatmyat
+(a) search worker 
+(b) worker complements 
+(c) job complements 
+(d) benefits 
+(e) attachment 
+(f) user management 
+(g) audit trails 
+(h) dropdown configuration 
+(i) import & export function
+
+debugging - nyeinsuaye
+(a) create case
+(b) add new job
+(c) add new problem
+(d) edit stubs
+(e) problem complements
+(f) case referral
