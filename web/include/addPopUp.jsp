@@ -545,9 +545,6 @@
                         stringLength: {
                             max: 50,
                             message: 'Salary must be less than 50 characters.'
-                        },
-                        numeric: {
-                            message: 'Salary must be a number'
                         }
                     }
                 },
@@ -2785,7 +2782,7 @@
             <div class='form-group'>
                 <label for='nrelationship' class="control-label">Relationship of giver to worker or agent or employer:</label>
                 <br/>
-                <textarea class="form-control" name="nrelation" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nrelation" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nvaWhen' class="control-label">When was Verbal Assurance Given?: </label>

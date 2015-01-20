@@ -1394,7 +1394,7 @@ public class JobComplementsDAO {
                 String workerFinNumber = rs.getString(17);
                 int jobKey = rs.getInt(18);
                 
-                jobIntermediaryAgent = new JobIntermediaryAgent(jobKey, workerFinNumber, id,
+                jobIntermediaryAgent = new JobIntermediaryAgent(id, workerFinNumber, jobKey,
                         Agent_company, Agent_person_name
                         ,Agent_location, Agent_location_more,Agent_address,Agent_contact,
                         Agent_amt_paid,Agent_amt_owed,Agent_fee_shared,

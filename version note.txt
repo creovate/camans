@@ -1,4 +1,4 @@
-camans 1.6.1
+camans 1.6
 
 Team Testing 19th
 
@@ -13,7 +13,7 @@ Debugging - soemyatmyat
 (h) dropdown configuration 
 (i) import & export function
 
-debugging - nyeinsuaye
+debuggin - nyeinsuaye
 (a) create case
 (b) add new job
 (c) add new problem

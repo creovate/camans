@@ -21,6 +21,27 @@
         });
 
     });
+    
+    //startdate & enddate 
+    $(function() {
+        $(".startDate").datepicker({
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            onClose: function(selectedDate) {
+                $(".endDate").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $(".endDate").datepicker({
+            dateFormat: 'dd-M-yy',
+            changeMonth: true,
+            changeYear: true,
+            onClose: function(selectedDate) {
+
+                $(".startDate").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+    });
 
     //----disable manual input in date fields----//
     $(document).ready(function() {
@@ -1089,8 +1110,7 @@
             <div class='form-group'>
                 <label for='address' class="control-label">Worker Address in Singapore:</label>
                 <br/>
-                <textarea class="form-control"name="address" rows="3" maxlength="200"><%=address%>
-                </textarea>
+                <textarea class="form-control"name="address" rows="3" maxlength="200"><%=address%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
@@ -1414,7 +1434,7 @@
                 <label for='remark' class="control-label">Remark about Digital Contact: </label>
 
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200)"><%=digiRemark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=digiRemark%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>
@@ -1696,9 +1716,7 @@
                 <div class='form-group'>
                     <label for='fdigital' class="control-label">Other Contact Details of Family Member: </label>
                     <br/>
-                    <textarea class="form-control" name="digitalContact" rows="3" maxlength="200">
-                        <%=(contactAdd==null)?"":contactAdd%>
-                    </textarea>
+                    <textarea class="form-control" name="digitalContact" rows="3" maxlength="200"><%=(contactAdd==null)?"":contactAdd%></textarea>
                 </div>
 
                 <div class='form-group'>
@@ -1796,14 +1814,12 @@
             <div class='form-group'>
                 <label for='digitalContact' class="control-label">Other Contact Details of Family Member: </label>
                 <br/>
-                <textarea class="form-control" name="digitalContact" rows="3" maxlength="200">
-                    <%=(contactAdd==null)?"":contactAdd%>
-                </textarea>
+                <textarea class="form-control" name="digitalContact" rows="3" maxlength="200"><%=(contactAdd==null)?"":contactAdd%></textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark about Family Member: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200" onKeyDown="textCounter(this, 200);" onKeyUp="textCounter(this, 'characterLeft', 200)"><%=remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date Discovered to be Obsolete: </label>

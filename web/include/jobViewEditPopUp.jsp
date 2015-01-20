@@ -274,8 +274,9 @@
                 },
                 salary: {
                     validators: {
-                        numeric: {
-                            message: 'Salary must be a number'
+                        stringLength: {
+                            max: 50,
+                            message: 'Salary must be less than 50 characters.'
                         }
                     }
                 },
@@ -366,9 +367,6 @@
                         stringLength: {
                             max: 50,
                             message: 'Salary must be less than 50 characters.'
-                        },
-                        numeric: {
-                            message: 'Salary must be a number'
                         }
                     }
                 },
@@ -1606,23 +1604,17 @@
                 <div class='form-group'>
                     <label for='contact' class="control-label">Employer Phone, Email Contacts:</label>
                     <br/>
-                    <textarea class="form-control" name="ncontact" rows="3" maxlength="200">
-                        <%=(contact==null)?"":contact%>
-                    </textarea>
+                    <textarea class="form-control" name="ncontact" rows="3" maxlength="200"><%=(contact==null)?"":contact%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='person' class="control-label">Key Persons in Employer:</label>
                     <br/>
-                    <textarea class="form-control" name="nperson" rows="3" maxlength="200">
-                        <%=(person==null)?"":person%>
-                    </textarea>
+                    <textarea class="form-control" name="nperson" rows="3" maxlength="200"><%=(person==null)?"":person%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Remarks about Employer: </label>
                     <br/>
-                    <textarea class="form-control" name="remark" rows="3" maxlength="200">
-                        <%=(remark==null)?"":remark%>
-                    </textarea>
+                    <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark==null)?"":remark%></textarea>
                 </div>
             </fieldset>
 
@@ -1655,16 +1647,12 @@
             <div class='form-group'>
                 <label for='ncontact' class="control-label">Employer Phone, Email Contacts:</label>
                 <br/>
-                <textarea class="form-control" name="ncontact" rows="3" maxlength="200">
-                    <%=(contact==null)?"":contact%>
-                </textarea>
+                <textarea class="form-control" name="ncontact" rows="3" maxlength="200"><%=(contact==null)?"":contact%></textarea>
             </div>
             <div class='form-group'>
                 <label for='nperson' class="control-label">Key Persons in Employer:</label>
                 <br/>
-                <textarea class="form-control" name="nperson" rows="3" maxlength="200">
-                    <%=(person==null)?"":person%>
-                </textarea>
+                <textarea class="form-control" name="nperson" rows="3" maxlength="200"><%=(person==null)?"":person%></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about Employer: </label>
@@ -1696,30 +1684,22 @@
             <div class='form-group'>
                 <label for='address' class="control-label">Employer Address: </label>
                 <br/>
-                <textarea class="form-control" name="address" rows="3" maxlength="200">
-                    <%=(address==null)?"":address%>
-                </textarea>
+                <textarea class="form-control" name="address" rows="3" maxlength="200"><%=(address==null)?"":address%></textarea>
             </div>
             <div class='form-group'>
                 <label for='contact' class="control-label">Employer Phone, Email Contacts:</label>
                 <br/>
-                <textarea class="form-control" name="contact" rows="3" maxlength="200">
-                    <%=(contact==null)?"":contact%>
-                </textarea>
+                <textarea class="form-control" name="contact" rows="3" maxlength="200"><%=(contact==null)?"":contact%></textarea>
             </div>
             <div class='form-group'>
                 <label for='person' class="control-label">Key Persons in Employer:</label>
                 <br/>
-                <textarea class="form-control" name="person" rows="3" maxlength="200">
-                    <%=(person==null)?"":person%>
-                </textarea>
+                <textarea class="form-control" name="person" rows="3" maxlength="200"><%=(person==null)?"":person%></textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about Employer: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200">
-                    <%=(remark==null)?"":remark%>
-                </textarea>
+                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark==null)?"":remark%></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="EmployerDetails"/>
@@ -1796,16 +1776,12 @@
                 <div class='form-group'>
                     <label for='empid' class="control-label">Relationship of Opposite Contracting Party to Job:</label>
                     <br/>
-                    <textarea class="form-control" name="noprelation" rows="3" maxlength="200">
-                        <%=(oprelation==null)?"":oprelation%>
-                    </textarea>
+                    <textarea class="form-control" name="noprelation" rows="3" maxlength="200"><%=(oprelation==null)?"":oprelation%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Occupation Stated in Contract: </label>
                     <br/>
-                    <textarea class="form-control" name="noccupation" rows="3" maxlength="200">
-                        <%=(occupation==null)?"":occupation%>
-                    </textarea>
+                    <textarea class="form-control" name="noccupation" rows="3" maxlength="200"><%=(occupation==null)?"":occupation%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Basic Salary: </label>
@@ -1945,16 +1921,12 @@
             <div class='form-group'>
                 <label for='oprelation' class="control-label">Relationship of Opposite Contracting Party to Job:</label>
                 <br/>
-                <textarea class="form-control" name="oprelation" rows="3" maxlength="200">
-                    <%=(oprelation==null)?"":oprelation%>
-                </textarea>
+                <textarea class="form-control" name="oprelation" rows="3" maxlength="200"><%=(oprelation==null)?"":oprelation%></textarea>
             </div>
             <div class='form-group'>
                 <label for='occupation' class="control-label">Occupation Stated in Contract: </label>
                 <br/>
-                <textarea class="form-control" name="occupation" rows="3" maxlength="200">
-                    <%=(occupation==null)?"":occupation%>
-                </textarea>
+                <textarea class="form-control" name="occupation" rows="3" maxlength="200"><%=(occupation==null)?"":occupation%></textarea>
             </div>
             <div class='form-group'>
                 <label for='salary' class="control-label">Basic Salary: </label>
@@ -2049,12 +2021,12 @@
                 <div class='form-group'>
                     <label for='name' class="control-label">Agent Key Person Name:</label>
                     <br/>
-                    <input class="form-control" type='text' name="name" value="<%=person%>">
+                    <input class="form-control" type='text' name="name" value="<%=(person==null)?"":person%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Location of Agent: </label>
                     <br/>
-                    <input class="form-control" type='text' name="remark" value="<%=location%>">
+                    <input class="form-control" type='text' name="remark" value="<%=(location==null)?"":location%>">
                 </div>
                 <div class="form-group" id="location_other_div">
                     <label for="locationMore" class="control-label">Explain if above is 'Other':</label><br/>
@@ -2064,16 +2036,12 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Agent Address: </label>
                     <br/>
-                    <textarea class="form-control" name="naddress" rows="3" maxlength="300">
-                        <%=(address==null)?"":address%>
-                    </textarea>
+                    <textarea class="form-control" name="naddress" rows="3" maxlength="300"><%=(address==null)?"":address%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Agent Phone/Email Contact: </label>
                     <br/>
-                    <textarea class="form-control" name="ncontact" rows="3" maxlength="200">
-                        <%=(contact==null)?"":contact%>
-                    </textarea>
+                    <textarea class="form-control" name="ncontact" rows="3" maxlength="200"><%=(contact==null)?"":contact%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='empid' class="control-label">Amount Paid To This Agent(S$):</label>
@@ -2088,9 +2056,7 @@
                 <div class='form-group'>
                     <label for='contact' class="control-label">Any Suspicion Fee was Shared With Others?:</label>
                     <br/>
-                    <textarea class="form-control" name="nfeeshared" rows="3" maxlength="200">
-                        <%=(feeshared==null)?"":feeshared%>
-                    </textarea>
+                    <textarea class="form-control" name="nfeeshared" rows="3" maxlength="200"><%=(feeshared==null)?"":feeshared%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Did fee includes training expenses? (Explain in Details) </label>
@@ -2115,16 +2081,12 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Repayment Plan if fee owed: </label>
                     <br/>
-                    <textarea class="form-control" name="nfeerepay" rows="3" maxlength="200">
-                        <%=(feeRepay==null)?"":feeRepay%>
-                    </textarea>
+                    <textarea class="form-control" name="nfeerepay" rows="3" maxlength="200"><%=(feeRepay==null)?"":feeRepay%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Employer that this Agent placed worker to: </label>
                     <br/>
-                    <textarea class="form-control" name="nemp" rows="3" maxlength="200">
-                        <%=(emp==null)?"":emp%>
-                    </textarea>
+                    <textarea class="form-control" name="nemp" rows="3" maxlength="200"><%=(emp==null)?"":emp%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Agent Remarks: </label>
@@ -2286,16 +2248,12 @@
             <div class='form-group'>
                 <label for='address' class="control-label">Agent Address: </label>
                 <br/>
-                <textarea class="form-control" name="address" rows="3" maxlength="300">
-                    <%=(address==null)?"":address%>
-                </textarea>
+                <textarea class="form-control" name="address" rows="3" maxlength="300"><%=(address==null)?"":address%></textarea>
             </div>
             <div class='form-group'>
                 <label for='contact' class="control-label">Agent Phone/Email Contact: </label>
                 <br/>
-                <textarea class="form-control" name="contact" rows="3" maxlength="200">
-                    <%=(contact==null)?"":contact%>
-                </textarea>
+                <textarea class="form-control" name="contact" rows="3" maxlength="200"><%=(contact==null)?"":contact%></textarea>
             </div>
             <div class='form-group'>
                 <label for='amtpaid' class="control-label">Amount Paid To This Agent(S$):</label>
@@ -2310,9 +2268,7 @@
             <div class='form-group'>
                 <label for='feeshared' class="control-label">Any Suspicion Fee was Shared With Others?:</label>
                 <br/>
-                <textarea class="form-control" name="feeshared" rows="3" maxlength="200">
-                    <%=(feeshared==null)?"":feeshared%>
-                </textarea>
+                <textarea class="form-control" name="feeshared" rows="3" maxlength="200"><%=(feeshared==null)?"":feeshared%></textarea>
             </div>
             <div class='form-group'>
                 <label for='feetraining' class="control-label">Did fee includes training expenses? (Explain in Details) </label>
@@ -2337,9 +2293,7 @@
             <div class='form-group'>
                 <label for='feerepay' class="control-label">Repayment Plan if fee owed: </label>
                 <br/>
-                <textarea class="form-control" name="feerepay" rows="3" maxlength="200">
-                    <%=(feeRepay==null)?"":feeRepay%>
-                </textarea>
+                <textarea class="form-control" name="feerepay" rows="3" maxlength="200"><%=(feeRepay==null)?"":feeRepay%></textarea>
             </div>
             <div class='form-group'>
                 <label for='emp' class="control-label">Employer that this Agent placed worker to: </label>
@@ -2401,9 +2355,7 @@
                 <div class='form-group'>
                     <label for='name' class="control-label">Relationship of giver to worker or agent or employer:</label>
                     <br/>
-                    <textarea class="form-control" name="nrelation" rows="3" maxlength="200">
-                        <%=(relationship==null)?"":relationship%>"
-                    </textarea>
+                    <textarea class="form-control" name="nrelation" rows="3"><%=(relationship==null)?"":relationship%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">When was Verbal Assurance Given?: </label>
@@ -2418,7 +2370,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Content of Verbal Assurance: </label>
                     <br/>
-                    <textarea class="form-control"name="remark" rows="3"><%=(content==null)?"":content%></textarea>
+                    <textarea class="form-control" name="remark" rows="3"><%=(content==null)?"":content%></textarea>
                 </div>
             </fieldset>
 
@@ -2477,9 +2429,7 @@
             <div class='form-group'>
                 <label for='relationship' class="control-label">Relationship of giver to worker or agent or employer:</label>
                 <br/>
-                <textarea class="form-control" name="relation" rows="3" maxlength="200">
-                        <%=(relationship==null)?"":relationship%>"
-                </textarea>
+                <textarea class="form-control" name="relation" rows="3" maxlength="200"><%=(relationship==null)?"":relationship%></textarea>
             </div>
             <div class='form-group'>
                 <label for='vaWhen' class="control-label">When was Verbal Assurance Given?: </label>
@@ -2557,9 +2507,7 @@
                 <div class='form-group' id="wrokplaceType_other_div" >
                     <label for='nwpTypeMore' class="control-label">Explain if above is 'Other': </label>
                     <br/>
-                    <textarea class="form-control" name="nwpTypeMore" rows="3" maxlength="200">
-                        <%=(wpTypeMore==null)?"":wpTypeMore%>
-                    </textarea>
+                    <textarea class="form-control" name="nwpTypeMore" rows="3" maxlength="200"><%=(wpTypeMore==null)?"":wpTypeMore%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='name' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
@@ -2569,9 +2517,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Key Person Controlling Workplace & Contact Details: </label>
                     <br/>
-                    <textarea class="form-control" name="npersonDetails" maxlength="200">
-                        <%=(personDetails==null)?"":personDetails%>"
-                    </textarea>
+                    <textarea class="form-control" name="npersonDetails" maxlength="200"><%=(personDetails==null)?"":personDetails%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Relationship of workplace to employer: </label>
@@ -2586,9 +2532,7 @@
                 <div class='form-group' id="direct_other_div" >
                     <label for='ndirectMore' class="control-label">Explain if above is 'Other': </label>
                     <br/>
-                    <textarea class="form-control" name="ndirectMore" rows="3" maxlength="200">
-                        <%=(directMore==null)?"":directMore%>
-                    </textarea>
+                    <textarea class="form-control" name="ndirectMore" rows="3" maxlength="200"><%=(directMore==null)?"":directMore%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">When Start at Workplace?: </label>
@@ -2603,23 +2547,17 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Work Conditions at the Workplace: </label>
                     <br/>
-                    <textarea class="form-control" name="ncondition" rows="3">
-                        <%=(condition==null)?"":condition%>
-                    </textarea>
+                    <textarea class="form-control" name="ncondition" rows="3"><%=(condition==null)?"":condition%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Safety Issues At Workplace: </label>
                     <br/>
-                    <textarea class="form-control" name="nsafety" rows="3" maxlength="200">
-                        <%=(safety==null)?"":safety%>
-                    </textarea>
+                    <textarea class="form-control" name="nsafety" rows="3" maxlength="200"><%=(safety==null)?"":safety%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Remarks about Workplace: </label>
                     <br/>
-                    <textarea class="form-control" name="nremark" rows="3" maxlength="200">
-                        <%=(remark==null)?"":remark%>
-                    </textarea>
+                    <textarea class="form-control" name="nremark" rows="3" maxlength="200"><%=(remark==null)?"":remark%></textarea>
                 </div>
             </fieldset>
 
@@ -2751,9 +2689,7 @@
             <div class='form-group' id="wpTypeEdit_other_div" >
                 <label for='wpTypeMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="wpTypeMore" rows="3" maxlength="200">
-                    <%=(wpTypeMore==null)?"":wpTypeMore%>
-                </textarea>
+                <textarea class="form-control" name="wpTypeMore" rows="3" maxlength="200"><%=(wpTypeMore==null)?"":wpTypeMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='whose' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
@@ -2763,9 +2699,7 @@
             <div class='form-group'>
                 <label for='personDetails' class="control-label">Key Person Controlling Workplace & Contact Details: </label>
                 <br/>
-                <textarea class="form-control" name="personDetails" maxlength="200">
-                    <%=(personDetails==null)?"":personDetails%>
-                </textarea>
+                <textarea class="form-control" name="personDetails" maxlength="200"><%=(personDetails==null)?"":personDetails%></textarea>
             </div>
             <div class='form-group'>
                 <label for='relation' class="control-label">Relationship of workplace to employer: </label>
@@ -2797,9 +2731,7 @@
             <div class='form-group' id="directEdit_other_div" >
                 <label for='directMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="directMore" rows="3" maxlength="200">
-                    <%=(directMore==null)?"":directMore%>
-                </textarea>
+                <textarea class="form-control" name="directMore" rows="3" maxlength="200"><%=(directMore==null)?"":directMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='start' class="control-label">When Start at Workplace?: </label>
@@ -2814,23 +2746,17 @@
             <div class='form-group'>
                 <label for='condition' class="control-label">Work Conditions at the Workplace: </label>
                 <br/>
-                <textarea class="form-control" name="condition" rows="3" maxlength="500">
-                    <%=(condition==null)?"":condition%>
-                </textarea>
+                <textarea class="form-control" name="condition" rows="3" maxlength="500"><%=(condition==null)?"":condition%></textarea>
             </div>
             <div class='form-group'>
                 <label for='safety' class="control-label">Safety Issues At Workplace: </label>
                 <br/>
-                <textarea class="form-control" name="safety" rows="3" maxlength="200">
-                    <%=(safety==null)?"":safety%>
-                </textarea>
+                <textarea class="form-control" name="safety" rows="3" maxlength="200"><%=(safety==null)?"":safety%></textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about Workplace: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200">
-                    <%=(remark==null)?"":remark%>
-                </textarea>
+                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark==null)?"":remark%></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkPlace"/>
@@ -2889,9 +2815,7 @@
                 <div class='form-group' id="howEdit_other_div" >
                     <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
                     <br/>
-                    <textarea class="form-control" name="howMore" maxlength="200">
-                        <%=(history.getWorkHistHowMore()==null)?"":history.getWorkHistHowMore()%>
-                    </textarea>
+                    <textarea class="form-control" name="howMore" maxlength="200"><%=(history.getWorkHistHowMore()==null)?"":history.getWorkHistHowMore()%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='name' class="control-label">Date arrived Singapore for this job:</label>
@@ -3034,9 +2958,7 @@
             <div class='form-group' id="howEdit_other_div" >
                 <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="howMore" maxlength="200">
-                    <%=(history.getWorkHistHowMore()==null)?"":history.getWorkHistHowMore()%>
-                </textarea>
+                <textarea class="form-control" name="howMore" maxlength="200"><%=(history.getWorkHistHowMore()==null)?"":history.getWorkHistHowMore()%></textarea>
             </div>
             <div class='form-group'>
                 <label for='arrivalDate' class="control-label">Date arrived Singapore for this job:</label>
@@ -3145,9 +3067,7 @@
                 <div class='form-group' id="accomProvided_other_div" >
                     <label for='location' class="control-label">Explain if above is 'Other': </label>
                     <br/>
-                    <textarea class="form-control" name="nisProvidedMore" rows="3" maxlength="200">
-                        <%=(isProvidedMore==null)?"":isProvidedMore%>
-                    </textarea>
+                    <textarea class="form-control" name="nisProvidedMore" rows="3" maxlength="200"><%=(isProvidedMore==null)?"":isProvidedMore%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='name' class="control-label">Type of accommodation:</label>
@@ -3157,9 +3077,7 @@
                 <div class='form-group' id="accomProvided_other_div" >
                     <label for='location' class="control-label">Explain if above is 'Other': </label>
                     <br/>
-                    <textarea class="form-control" name="nTypeMore" rows="3" maxlength="200">
-                        <%=(typeMore==null)?"":typeMore%>
-                    </textarea>
+                    <textarea class="form-control" name="nTypeMore" rows="3" maxlength="200"><%=(typeMore==null)?"":typeMore%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Location of accommodation: </label>
@@ -3186,9 +3104,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Meal arrangements</label>
                     <br/>
-                    <textarea class="form-control" name="remark" rows="3">
-                        <%=(meal==null)?"":meal%>
-                    </textarea>
+                    <textarea class="form-control" name="remark" rows="3"><%=(meal==null)?"":meal%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">When Start Staying Here?:</label>
@@ -3203,9 +3119,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Remarks about Accommodation: </label>
                     <br/>
-                    <textarea class="form-control" name="remark" rows="3">
-                        <%=(remark==null)?"":remark%>
-                    </textarea>
+                    <textarea class="form-control" name="remark" rows="3"><%=(remark==null)?"":remark%></textarea>
                 </div>
             </fieldset>
 
@@ -3345,9 +3259,7 @@
             <div class='form-group' id="accomProvidedView_other_div" >
                 <label for='location' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="isProvidedMore" rows="3" maxlength="200">
-                    <%=(isProvidedMore==null)?"":isProvidedMore%>
-                </textarea>
+                <textarea class="form-control" name="isProvidedMore" rows="3" maxlength="200"><%=(isProvidedMore==null)?"":isProvidedMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='type' class="control-label">Type of Accommodation:</label>
@@ -3374,24 +3286,18 @@
             <div class='form-group' id="accomtypeView_other_div" >
                 <label for='location' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="typeMore" rows="3" maxlength="200">
-                    <%=(typeMore==null)?"":typeMore%>
-                </textarea>
+                <textarea class="form-control" name="typeMore" rows="3" maxlength="200"><%=(typeMore==null)?"":typeMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='location' class="control-label">Location of Accommodation: </label>
                 <br/>
-                <textarea class="form-control" name="location" rows="3" maxlength="200">
-                    <%=(location==null)?"":location%>
-                </textarea>
+                <textarea class="form-control" name="location" rows="3" maxlength="200"><%=(location==null)?"":location%></textarea>
             </div>
 
             <div class='form-group'>
                 <label for='condition' class="control-label">Conditions at living quarters:</label>
                 <br/>
-                <textarea class="form-control" name="location" rows="3" maxlength="500">
-                    <%=(condition==null)?"":condition%>
-                </textarea>
+                <textarea class="form-control" name="location" rows="3" maxlength="500"><%=(condition==null)?"":condition%></textarea>
             </div>
 
             <div class='form-group'>
@@ -3407,9 +3313,7 @@
             <div class='form-group'>
                 <label for='meal' class="control-label">Meal arrangements</label>
                 <br/>
-                <textarea class="form-control" name="meal" rows="3" maxlength="200">
-                    <%=(meal==null)?"":meal%>
-                </textarea>
+                <textarea class="form-control" name="meal" rows="3" maxlength="200"><%=(meal==null)?"":meal%></textarea>
             </div>
             <div class='form-group'>
                 <label for='from' class="control-label">When Start Staying Here?:</label>
@@ -3424,9 +3328,7 @@
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about Accommodation: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200">
-                    <%=(remark==null)?"":remark%>
-                </textarea>
+                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark==null)?"":remark%></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="Accommodation"/>
@@ -3536,9 +3438,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA Allowance Details:</label>
                     <br/>
-                    <textarea class="form-control" name="nallowanceDetails" rows="3" maxlength="200">
-                        <%=(allowanceDetails==null)?"":allowanceDetails%>
-                    </textarea>
+                    <textarea class="form-control" name="nallowanceDetails" rows="3" maxlength="200"><%=(allowanceDetails==null)?"":allowanceDetails%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA Total Deduction(S$):</label>
@@ -3548,9 +3448,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA Deduction Details:</label>
                     <br/>
-                    <textarea class="form-control" name="ndeductionDetails" rows="3" maxlength="200">
-                        <%=(deductionDetails==null)?"":deductionDetails%>
-                    </textarea>
+                    <textarea class="form-control" name="ndeductionDetails" rows="3" maxlength="200"><%=(deductionDetails==null)?"":deductionDetails%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Housing Provided?</label>
@@ -3755,9 +3653,7 @@
             <div class='form-group'>
                 <label for='allowanceDetails' class="control-label">IPA Allowance Details:</label>
                 <br/>
-                <textarea class="form-control" name="nallowanceDetails" rows="3" maxlength="200">
-                    <%=(allowanceDetails==null)?"":allowanceDetails%>
-                </textarea>
+                <textarea class="form-control" name="nallowanceDetails" rows="3" maxlength="200"><%=(allowanceDetails==null)?"":allowanceDetails%></textarea>
             </div>
             <div class='form-group'>
                 <label for='deduction' class="control-label">IPA Total Deduction(S$):</label>
@@ -3767,9 +3663,7 @@
             <div class='form-group'>
                 <label for='deductionDetails' class="control-label">IPA Deduction Details:</label>
                 <br/>
-                <textarea class="form-control" name="ndeductionDetails" rows="3" maxlength="200">
-                    <%=(deductionDetails==null)?"":deductionDetails%>
-                </textarea>
+                <textarea class="form-control" name="ndeductionDetails" rows="3" maxlength="200"><%=(deductionDetails==null)?"":deductionDetails%></textarea>
             </div>
             <div class='form-group'>
                 <label for='isHousingProvided' class="control-label">Housing Provided?</label>

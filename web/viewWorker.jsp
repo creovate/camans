@@ -310,8 +310,8 @@
                                             if (nickNameIds.size() > 1) {
                                         %>
 
-                                        <a href="#" class="text-center col-sm-12 seemore_btn other_nickname_seemore" onclick="seemore('.other_nickname')">See more</a>
-                                        <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_nickname_seemore" onclick="seemore('.other_nickname')">View Less</a>
+                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_nickname_seemore" onclick="seemore('.other_nickname')">See more</a>
+                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_nickname_seemore" onclick="seemore('.other_nickname')">View Less</a>
                                         <%                                                            
                                             }
                                          }    
@@ -394,8 +394,8 @@
                                             if (passportDetailsIds.size() > 1) {
                                         %>
 
-                                        <a href="#" class="text-center col-sm-12 seemore_btn other_passport_seemore" onclick="seemore('.other_passport')">See more</a>
-                                        <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_passport_seemore" onclick="seemore('.other_passport')">View Less</a>
+                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_passport_seemore" onclick="seemore('.other_passport')">See more</a>
+                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_passport_seemore" onclick="seemore('.other_passport')">View Less</a>
                                         <%                                            }
                                         %>
                                     </div>
@@ -448,8 +448,8 @@
                                             if (phoneNumberIds.size() > 1) {
                                         %>
 
-                                        <a href="#" class="text-center col-sm-12 seemore_btn other_sgphone_seemore" onclick="seemore('.other_sgphone')">See more</a>
-                                        <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_sgphone_seemore" onclick="seemore('.other_sgphone')">View Less</a>
+                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_sgphone_seemore" onclick="seemore('.other_sgphone')">See more</a>
+                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_sgphone_seemore" onclick="seemore('.other_sgphone')">View Less</a>
                                         <%                                                            }
                                             }
 
@@ -494,7 +494,6 @@
                                                     if (i < homePhIds.size() - 1) {
                                             %>
                                             <tr class="other_homephone moreobjs">
-
                                                 <td><%=phNum%></td>
                                                 <td><%=owner%></td>
                                                 <td><%=(oDate == null) ? "-" : sdf.format(oDate)%></td>
@@ -504,30 +503,27 @@
                                                        class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                     </a>
                                                 </td>
-
-                                                <%} else {
-                                                %>
+                                            </tr>     
+                                                <%} else { %>
                                             <tr>
                                                 <td><%=phNum%></td>
                                                 <td><%=owner%></td>
                                                 <td><%=(oDate == null) ? "-" : sdf.format(oDate)%></td>
-
                                                 <td><a style="color: black" data-value='homephone' data-homephone='<%=homePhNum.getId()%>' href="" data-toggle="modal" data-class="worker"  data-target="#homePhone_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-
-
+                                            </tr>    
                                                 <%
                                                         }
                                                     }
                                                 %>
                                         </table>
                                         <%
-                                            }
                                             if (homePhIds.size() > 1) {
                                         %>
 
-                                        <a href="#" class="text-center col-sm-12 seemore_btn other_homephone_seemore" onclick="seemore('.other_homephone');">See more</a>
-                                        <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_homephone_seemore" onclick="seemore('.other_homephone');">View Less</a>
+                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_homephone_seemore" onclick="seemore('.other_homephone');">View Less</a>
+                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_homephone_seemore" onclick="seemore('.other_homephone');">See More</a>
                                         <%                                                    }
+                                                                                       }
                                         %>
                                     </div>
                                 </div>
@@ -582,8 +578,8 @@
                                             if (sgAddressIds.size() > 1) {
                                         %>
 
-                                        <a href="#" class="text-center col-sm-12 seemore_btn other_sgaddress_seemore" onclick="seemore('.other_sgaddress');">See more</a>
-                                        <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_sgaddress_seemore" onclick="seemore('.other_sgaddress');">View Less</a>
+                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_sgaddress_seemore" onclick="seemore('.other_sgaddress');">See more</a>
+                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_sgaddress_seemore" onclick="seemore('.other_sgaddress');">View Less</a>
                                         <%                                                            }
                                             }
                                         %>
@@ -642,8 +638,8 @@
                                             if (homeCountryAddressIds.size() > 1) {
                                         %>
 
-                                        <a href="#" class="text-center col-sm-12 seemore_btn other_homeaddress_seemore" onclick="seemore('.other_homeaddress')">See more</a>
-                                        <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_homeaddress_seemore" onclick="seemore('.other_homeaddress')">View Less</a>
+                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_homeaddress_seemore" onclick="seemore('.other_homeaddress')">See more</a>
+                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_homeaddress_seemore" onclick="seemore('.other_homeaddress')">View Less</a>
                                         <%                                                            }
                                             }
                                         %>
@@ -679,8 +675,6 @@
                                             <%
                                                 for (int i = digitalContactsIds.size() - 1; i >= 0; i--) {
                                                     WorkerDigitalContact digitalContact = WorkerComplementsDAO.retrieveWorkerDigitalContactById(digitalContactsIds.get(i));
-
-
                                                     String type = digitalContact.getContactType();
                                                     String contactAdd = digitalContact.getContactInfo();
                                                     String owner = digitalContact.getOwner();
@@ -692,42 +686,15 @@
                                                 <td><%=type%></td>
                                                 <td><%=contactAdd%></td>
                                                 <td><%=owner%></td>
-                                                <%
-                                                    if (obDate == null) {
-                                                %>
-                                                <td>Still in Use</td>
-                                                <%                                                } else {
-                                                    String obDateStr = sdf.format(obDate);
-                                                %>
-                                                <td><%=obDateStr%></td>
-                                                <%
-                                                    }
-
-                                                %>
-
+                                                <td><%=(obDate==null)?"Still In use":sdf.format(obDate)%></td>
                                                 <td><a style="color: black" data-class="worker"  data-value='digcontact' data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#digContact_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
-                                            <%
-                                            } else {
-                                            %>
+                                            <%} else { %>
                                             <tr>
                                                 <td><%=type%></td>
                                                 <td><%=contactAdd%></td>
                                                 <td><%=owner%></td>
-                                                <%
-                                                    if (obDate == null) {
-                                                %>
-                                                <td>Still in Use</td>
-                                                <%                                                } else {
-                                                    String obDateStr = sdf.format(obDate);
-
-                                                %>
-                                                <td><%=obDateStr%></td>
-                                                <%
-                                                    }
-
-                                                %>
-
+                                                <td><%=(obDate==null)?"Still In use":sdf.format(obDate)%></td>
                                                 <td><a style="color: black" data-class="worker"  data-value='digcontact' data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#digContact_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
@@ -739,8 +706,8 @@
                                             if (digitalContactsIds.size() > 1) {
                                         %>
 
-                                        <a href="#" class="text-center col-sm-12 seemore_btn other_digContact_seemore" onclick="seemore('.other_digContact');">See more</a>
-                                        <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_digContact_seemore" onclick="seemore('.other_digContact');">View Less</a>
+                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_digContact_seemore" onclick="seemore('.other_digContact');">See more</a>
+                                        <a style="cursor:pointer; display:none" class="text-center col-sm-12 seemore_btn other_digContact_seemore" onclick="seemore('.other_digContact');">View Less</a>
                                         <%                                                            }
                                             }
                                         %>
@@ -779,8 +746,6 @@
                                                     String relationship = nextOfKins.getRelation();
                                                     String phNum = nextOfKins.getPhoneNumber();
                                                     String otherContact = nextOfKins.getDigital();
-                                                    java.util.Date obDate = nextOfKins.getObseleteDate();
-
                                                     if (i < nextOfKinsIds.size() - 1) {
 
                                             %>
@@ -813,8 +778,8 @@
                                             if (nextOfKinsIds.size() > 1) {
                                         %>
 
-                                        <a href="#" class="text-center col-sm-12 seemore_btn other_nok_seemore" onclick="seemore('.other_nok')">See more</a>
-                                        <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_nok_seemore" onclick="seemore('.other_nok')">View Less</a>
+                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_nok_seemore" onclick="seemore('.other_nok')">See more</a>
+                                        <a style="cursor:pointer display:none" class="text-center col-sm-12 seemore_btn other_nok_seemore" onclick="seemore('.other_nok')">View Less</a>
                                         <%                                                            }
                                             }
                                         %>
@@ -883,8 +848,8 @@
                                             if (familyMmbrIds.size() > 1) {
                                         %>
 
-                                        <a href="#" class="text-center col-sm-12 seemore_btn other_familyMember_seemore" onclick="seemore('.other_familyMember')">See more</a>
-                                        <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_familyMember_seemore" onclick="seemore('.other_familyMember')">View Less</a>
+                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_familyMember_seemore" onclick="seemore('.other_familyMember')">See more</a>
+                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_familyMember_seemore" onclick="seemore('.other_familyMember')">View Less</a>
                                         <%                                                            }
                                             }
                                         %>
@@ -953,8 +918,8 @@
                                             if (friendIds.size() > 1) {
                                         %>
 
-                                        <a href="#" class="text-center col-sm-12 seemore_btn other_friend_seemore" onclick="seemore('.other_friend')">See more</a>
-                                        <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_friend_seemore" onclick="seemore('.other_friend')">View Less</a>
+                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_friend_seemore" onclick="seemore('.other_friend')">See more</a>
+                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_friend_seemore" onclick="seemore('.other_friend')">View Less</a>
                                         <%                                                            }
                                             }
                                         %>
@@ -1018,8 +983,8 @@
                                             if (languagueIds.size() > 1) {
                                         %>
 
-                                        <a href="#" class="text-center col-sm-12 seemore_btn other_language_seemore" onclick="seemore('.other_language')">See more</a>
-                                        <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_language_seemore" onclick="seemore('.other_language')">View Less</a>
+                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_language_seemore" onclick="seemore('.other_language')">See more</a>
+                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_language_seemore" onclick="seemore('.other_language')">View Less</a>
                                         <%                                                            }
                                             }
                                         %>
@@ -1111,8 +1076,8 @@
                                             if (bankAcctDetailsIds.size() > 1) {
                                         %>
 
-                                        <a href="#" class="text-center col-sm-12 seemore_btn other_bankacc_seemore" onclick="seemore('.other_bankacc')">See more</a>
-                                        <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_bankacc_seemore" onclick="seemore('.other_bankacc')">View Less</a>
+                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_bankacc_seemore" onclick="seemore('.other_bankacc')">See more</a>
+                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_bankacc_seemore" onclick="seemore('.other_bankacc')">View Less</a>
                                         <%                                                            }
                                             }
                                         %>
@@ -1232,8 +1197,8 @@
                                                 if (jobPassDetailsIds.size() > 1) {
                                             %>
 
-                                            <a href="#" class="text-center col-sm-12 seemore_btn other_jobpass_seemore" onclick="seemore('.other_jobpass')">See more</a>
-                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_jobpass_seemore" onclick="seemore('.other_jobpass')">View Less</a>
+                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_jobpass_seemore" onclick="seemore('.other_jobpass')">See more</a>
+                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_jobpass_seemore" onclick="seemore('.other_jobpass')">View Less</a>
                                             <%                                                            }
                                                 }
                                             %>
@@ -1315,8 +1280,8 @@
                                                 if (ipaIdList.size() > 1) {
                                             %>
 
-                                            <a href="#" class="text-center col-sm-12 seemore_btn other_ipa_seemore" onclick="seemore('.other_ipa')">See more</a>
-                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_ipa_seemore" onclick="seemore('.other_ipa')">View Less</a>
+                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_ipa_seemore" onclick="seemore('.other_ipa')">See more</a>
+                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_ipa_seemore" onclick="seemore('.other_ipa')">View Less</a>
                                             <%                                                            }
                                                 }
                                             %>
@@ -1399,8 +1364,8 @@
                                                 if (verbalIdsList.size() > 1) {
                                             %>
 
-                                            <a href="#" class="text-center col-sm-12 seemore_btn other_va_seemore" onclick="seemore('.other_va')">See more</a>
-                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_va_seemore" onclick="seemore('.other_va')">View Less</a>
+                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_va_seemore" onclick="seemore('.other_va')">See more</a>
+                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_va_seemore" onclick="seemore('.other_va')">View Less</a>
                                             <%                                                            }
                                                 }
                                             %>
@@ -1503,8 +1468,8 @@
                                                 if (empContractIdsList.size() > 1) {
                                             %>
 
-                                            <a href="#" class="text-center col-sm-12 seemore_btn other_contract_seemore" onclick="seemore('.other_contract')">See more</a>
-                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_contract_seemore" onclick="seemore('.other_contract')">View Less</a>
+                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_contract_seemore" onclick="seemore('.other_contract')">See more</a>
+                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_contract_seemore" onclick="seemore('.other_contract')">View Less</a>
                                             <%                                                            }
                                                 }
                                             %>
@@ -1525,6 +1490,7 @@
                                             <%
                                                 ArrayList<Integer> agentIdsList = JobComplementsDAO.retrieveJobIntermediaryAgentIdsOfJob(latestJob);
                                                 if (agentIdsList != null && !agentIdsList.isEmpty()) {
+                                                    
 
                                             %>
 
@@ -1539,13 +1505,14 @@
 
                                                 <%
                                                     for (int i = agentIdsList.size() - 1; i >= 0; i--) {
+                                                        
                                                         JobIntermediaryAgent agent = JobComplementsDAO.retrieveJobIntermediaryAgentById(agentIdsList.get(i));
 
                                                         String agentName = agent.getAgentCompany();
                                                         String agentPName = agent.getAgentPersonName();
                                                         double agentPaidAmt = agent.getAgentAmtPaid();
                                                         String agentFWhere = agent.getAgentFeeWhere();
-
+                                                        
                                                         if (i < agentIdsList.size() - 1) {
                                                 %>
                                                 <tr class="other_agent moreObjs">
@@ -1586,8 +1553,8 @@
                                                 if (agentIdsList.size() > 1) {
                                             %>
 
-                                            <a href="#" class="text-center col-sm-12 seemore_btn other_agent_seemore" onclick="seemore('.other_agent')">See more</a>
-                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_agent_seemore" onclick="seemore('.other_agent')">View Less</a>
+                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_agent_seemore" onclick="seemore('.other_agent')">See more</a>
+                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_agent_seemore" onclick="seemore('.other_agent')">View Less</a>
                                             <%                                                            }
                                                 }
                                             %>
@@ -1661,8 +1628,8 @@
                                                 if (empIdsList.size() > 1) {
                                             %>
 
-                                            <a href="#" class="text-center col-sm-12 seemore_btn other_employer_seemore" onclick="seemore('.other_employer')">See more</a>
-                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_employer_seemore" onclick="seemore('.other_employer')">View Less</a>
+                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_employer_seemore" onclick="seemore('.other_employer')">See more</a>
+                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_employer_seemore" onclick="seemore('.other_employer')">View Less</a>
                                             <%                                                            }
                                                 }
                                             %>
@@ -1743,8 +1710,8 @@
                                                 if (workPlaceIdsList.size() > 1) {
                                             %>
 
-                                            <a href="#" class="text-center col-sm-12 seemore_btn other_workplace_seemore" onclick="seemore('.other_workplace');">See more</a>
-                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_workplace_seemore" onclick="seemore('.other_workplace');">View Less</a>
+                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_workplace_seemore" onclick="seemore('.other_workplace');">See more</a>
+                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_workplace_seemore" onclick="seemore('.other_workplace');">View Less</a>
                                             <%                                                            }
                                                 }
                                             %>
@@ -1815,8 +1782,8 @@
                                                 if (historyIdsList.size() > 1) {
                                             %>
 
-                                            <a href="#" class="text-center col-sm-12 seemore_btn other_workhistory_seemore" onclick="seemore('.other_workhistory')">See more</a>
-                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_workhistory_seemore" onclick="seemore('.other_workhistory')">View Less</a>
+                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_workhistory_seemore" onclick="seemore('.other_workhistory')">See more</a>
+                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_workhistory_seemore" onclick="seemore('.other_workhistory')">View Less</a>
                                             <%                                                            }
                                                 }
                                             %>
@@ -1893,8 +1860,8 @@
                                                 if (accomodoIdsList.size() > 1) {
                                             %>
 
-                                            <a href="#" class="text-center col-sm-12 seemore_btn other_accom_seemore" onclick="seemore('.other_accom')">See more</a>
-                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_accom_seemore" onclick="seemore('.other_accom')">View Less</a>
+                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_accom_seemore" onclick="seemore('.other_accom')">See more</a>
+                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_accom_seemore" onclick="seemore('.other_accom')">View Less</a>
                                             <%                                                            }
                                                 }
                                             %>

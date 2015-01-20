@@ -288,13 +288,13 @@
 
                                 <div class="form-group col-sm-3">
                                     <input type="text" id="reg_StartDate_In" placeholder="Registered Start Date" name="startDate" 
-                                           class="form-control input-append date dateInput" data-date-format="dd-mm-yyyy"
+                                           class="form-control startDate" data-date-format="dd-mm-yyyy"
                                            value="<%=(registeredStartIn==null) ? "":registeredStartIn%>">
                                 </div>
 
                                 <div class="form-group col-sm-3">
                                     <input type="text" id="reg_EndDate_In" placeholder="Registered End Date" name="endDate"
-                                           class="form-control input-append date dateInput" data-date-format="dd-mm-yyyy"
+                                           class="form-control endDate" data-date-format="dd-mm-yyyy"
                                            value="<%=(registeredEndIn==null) ? "": registeredEndIn%>">
                                 </div>
 
@@ -437,16 +437,26 @@
         </div>
                         
         <script>
-            
+
+            //startdate & enddate 
             $(function() {
-                $(".dateInput").datepicker({
+                $(".startDate").datepicker({
                     dateFormat: 'dd-M-yy',
                     changeMonth: true,
                     changeYear: true,
-                    maxDate: 0,
-                    yearRange: "-100:nn"
+                    onClose: function(selectedDate) {
+                        $(".endDate").datepicker("option", "minDate", selectedDate);
+                    }
                 });
+                $(".endDate").datepicker({
+                    dateFormat: 'dd-M-yy',
+                    changeMonth: true,
+                    changeYear: true,
+                    onClose: function(selectedDate) {
 
+                        $(".startDate").datepicker("option", "maxDate", selectedDate);
+                    }
+                });
             });
             
             //ready the data in tables

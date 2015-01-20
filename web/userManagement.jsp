@@ -127,7 +127,7 @@
                             <tr>
                                 <td><%=i+1%></td>
                                 <!--<td><%=(photoPath==null)?"":photoPath%></td>-->
-                                <% if (photoPath == null) { %>
+                                <% if (photoPath == null || photoPath.contains("")) { %>
                                 <td><img src="img/profile_pic.jpg" width="40"></td>
                                 <% } else { %>
                                 <td><img src=<%=photoPath%> width="40"></td>
@@ -776,9 +776,8 @@
                         nPhNum: {
                             validators: {
                                 regexp: {
-                                    regexp: /[0-9.()-]{8,25}$/, //[***still need to revisit this regex]
-                                    message: 'This field only allows numbers,parentheses(),hyphen, (+)' + 
-                                        'sign in the beginning and whitespace in between.'
+                                    regexp: /^[\d|\-|(|)|+|\s]+$/, 
+                                    message: 'Phone No can contain space, - , () , + and digits only.'
                                 }
                             }
                         },
@@ -852,9 +851,8 @@
                         nPhNum: {
                             validators: {
                                 regexp: {
-                                    regexp: /^[0-9.()-]{8,25}$/, //[***still need to revisit this regex]
-                                    message: 'This field only allows numbers,parentheses(),hypens, periods, (+)' + 
-                                        'sign in the beginning and whitespace in between.'
+                                    regexp: /^[\d|\-|(|)|+|\s]+$/, 
+                                    message: 'Phone No can contain space, - , () , + and digits only.'
                                 }
                             }
                         },

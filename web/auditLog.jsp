@@ -67,13 +67,13 @@
                             <div class="form-group col-sm-3">
                                 <label>Start Date</label>
                                 <input type="text" id="reg_StartDate_In" name="startDate" 
-                                       class="form-control input-append date dateInput" data-date-format="dd-mm-yyyy" 
+                                       class="form-control startDate" data-date-format="dd-mm-yyyy" 
                                        value="<%=(startDateIn==null) ? "":startDateIn%>" required>
                             </div>
                             <div class="form-group col-sm-3">
                                 <label>End Date</label>
                                 <input type="text" id="reg_EndDate_In" name="endDate" 
-                                       class="form-control input-append date dateInput" data-date-format="dd-mm-yyyy" 
+                                       class="form-control endDate" data-date-format="dd-mm-yyyy" 
                                        value="<%=(endDateIn==null) ? "":endDateIn%>" required>
                             </div>
                             <br/>
@@ -144,19 +144,29 @@
                     logoutUrl: 'index.jsp',
                     redirUrl: 'logout.jsp',
                     warnAfter: 900000,
-                    redirAfter: 120000
+                    redirAfter: 960000
                 });
             });
             
+            
             $(function() {
-                $(".dateInput").datepicker({
+                $(".startDate").datepicker({
                     dateFormat: 'dd-M-yy',
                     changeMonth: true,
                     changeYear: true,
-                    maxDate: 0,
-                    yearRange: "-100:nn"
+                    onClose: function(selectedDate) {
+                        $(".endDate").datepicker("option", "minDate", selectedDate);
+                    }
                 });
+                $(".endDate").datepicker({
+                    dateFormat: 'dd-M-yy',
+                    changeMonth: true,
+                    changeYear: true,
+                    onClose: function(selectedDate) {
 
+                        $(".startDate").datepicker("option", "maxDate", selectedDate);
+                    }
+                });
             });
             
             //ready the data in tables

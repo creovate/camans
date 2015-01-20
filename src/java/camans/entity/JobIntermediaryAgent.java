@@ -31,6 +31,7 @@ public class JobIntermediaryAgent {
     private String agentFeeWhen;
     private String agentFeeRepay;
     private String agentEmployer;
+    private String agentRemarks;
 
     public JobIntermediaryAgent(String workerFinNum, int jobKey, String agentCompany, String agentPersonName, String agentLocation, String agentlocationMore, String agentAddress, String agentContact, Double agentAmtPaid, Double agentAmtOwed, String agentFeeShared, String agentFeeTraining, String agentFeeAirfare, String agentFeeWhere, String agentFeeWhen, String agentFeeRepay, String agentEmployer, String agentRemarks) {
         this.workerFinNum = workerFinNum;
@@ -52,7 +53,7 @@ public class JobIntermediaryAgent {
         this.agentEmployer = agentEmployer;
         this.agentRemarks = agentRemarks;
     }
-    private String agentRemarks;
+    
 
     public JobIntermediaryAgent(int id, String workerFinNum, int jobKey, String agentCompany, String agentPersonName, String agentLocation, String agentlocationMore, String agentAddress, String agentContact, Double agentAmtPaid, Double agentAmtOwed, String agentFeeShared, String agentFeeTraining, String agentFeeAirfare, String agentFeeWhere, String agentFeeWhen, String agentFeeRepay, String agentEmployer, String agentRemarks) {
         this.id = id;

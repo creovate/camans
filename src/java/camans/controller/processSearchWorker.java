@@ -8,6 +8,8 @@ import camans.dao.WorkerDAO;
 import camans.entity.Worker;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +38,7 @@ public class processSearchWorker extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
             String fin  = request.getParameter("fin");
             String workerName = request.getParameter("name");
             String gender = request.getParameter("gender");
@@ -48,8 +51,8 @@ public class processSearchWorker extends HttpServlet {
             String problemType = request.getParameter("problemType");
             String aggravatingIssue = request.getParameter("aggravatingIssue");
             String hospital = request.getParameter("hospital");
-            String registeredStartDate = request.getParameter("startDate");
-            String registeredEndDate = request.getParameter("endDate");
+            String registeredStartDateStr = request.getParameter("startDate");
+            String registeredEndDateStr = request.getParameter("endDate");
             String leadCaseWorker = request.getParameter("leadCaseWorker");
             String auxiliaryCaseWorker = request.getParameter("auxiliaryCaseWorker");
             /*
@@ -96,13 +99,37 @@ public class processSearchWorker extends HttpServlet {
                     "' AND Name_of_worker like '" + workerName + "' AND Gender like '" + gender + 
                     "' AND Nationality like '" + nationality + "'";
             
-            if (!registeredStartDate.equals("") && !(registeredEndDate.equals(""))){
-                sql += " AND Worker_registration_date between '" + registeredStartDate + "' and '" +
-                        registeredEndDate + "'";
-            } else if (!registeredStartDate.equals("")) {
-                sql += " AND Worker_registration_date >= '" + registeredStartDate + "'";
-            } else if (!registeredEndDate.equals("")) {
-                sql += " AND Worker_registration_date <= '" + registeredEndDate + "'";
+            if (!registeredStartDateStr.equals("") && !(registeredEndDateStr.equals(""))){
+                java.util.Date startDate = null;
+                java.util.Date endDate = null;
+                try {
+                    java.util.Date tmp = sdf.parse(registeredStartDateStr);
+                    startDate = new java.sql.Date(tmp.getTime());
+                    tmp = sdf.parse(registeredEndDateStr);
+                    endDate = new java.sql.Date(tmp.getTime());
+                } catch (ParseException ex) {
+                
+                }
+                sql += " AND Worker_registration_date between '" + startDate + "' and '" +
+                        endDate + "'";
+            } else if (!registeredStartDateStr.equals("")) {
+                java.util.Date startDate = null;
+                try {
+                    java.util.Date tmp = sdf.parse(registeredStartDateStr);
+                    startDate = new java.sql.Date(tmp.getTime());
+                } catch (ParseException ex) {
+                
+                }
+                sql += " AND Worker_registration_date >= '" + startDate + "'";
+            } else if (!registeredEndDateStr.equals("")) {
+                java.util.Date endDate = null;
+                try {
+                    java.util.Date tmp = sdf.parse(registeredEndDateStr);
+                    endDate = new java.sql.Date(tmp.getTime());
+                } catch (ParseException ex) {
+                
+                }
+                sql += " AND Worker_registration_date <= '" + endDate + "'";
             }
             
             if (!sgPhone.equals("")) {

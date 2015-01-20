@@ -412,9 +412,8 @@
                         nPhNum: {
                             validators: {
                                 regexp: {
-                                    regexp: /^[0-9.()-]{8,25}$/, //[***still need to revisit this regex]
-                                    message: 'This field only allows numbers,parentheses(),hypens, periods, (+)' + 
-                                        'sign in the beginning and whitespace in between.'
+                                    regexp: /^[\d|\-|(|)|+|\s]+$/, 
+                                    message: 'Phone No can contain space, - , () , + and digits only.'
                                 }
                             }
                         }
