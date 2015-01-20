@@ -137,6 +137,22 @@
                         }
                     }
                 },
+                nhowinjury: {
+                    validators: {
+                        stringLength: {
+                            max: 1000,
+                            message: 'This field must be less than 200 characters.'
+                        }
+                    }
+                },
+                howinjury: {
+                    validators: {
+                        stringLength: {
+                            max: 1000,
+                            message: 'This field must be less than 200 characters.'
+                        }
+                    }
+                },
                 nbodyPart: {
                     validators: {
                         stringLength: {
@@ -1775,9 +1791,9 @@
                 <textarea class="form-control" name="nbodyPart" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nhow' class="control-label">How injury happened</label>
+                <label for='nhowinjury' class="control-label">How injury happened</label>
                 <br/>
-                <textarea class="form-control" name="nhow" rows="3"></textarea>
+                <textarea class="form-control" name="nhowinjury" rows="3"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nambulance' class="control-label">Was worker conveyed to hospital in ambulance?</label>
@@ -1860,9 +1876,9 @@
                 <textarea class="form-control" name="bodyPart" rows="3"><%=(injuryBodyPart == null) ? "" : injuryBodyPart%></textarea>
             </div>
             <div class='form-group'>
-                <label for='how' class="control-label">How injury happened</label>
+                <label for='howinjury' class="control-label">How injury happened</label>
                 <br/>
-                <textarea class="form-control" name="how" rows="3"><%=(injuryHow == null) ? "" : injuryHow%></textarea>
+                <textarea class="form-control" name="howinjury" rows="3"><%=(injuryHow == null) ? "" : injuryHow%></textarea>
             </div>
             <div class='form-group'>
                 <label for='ambulance' class="control-label">Was worker conveyed to hospital in ambulance?</label>

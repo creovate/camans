@@ -1,12 +1,20 @@
 camans
 ======
+
+<i><b>19th Jan - merge files [ready for stud test] - soemyatmyat</b></i><br/>
+
+1. Merge NS conflicted files <br/>
+2. modified nhow to nhowinjury in processAddProblemComplement.java & 
+   processEditProblemComplement.java to align with addPopUp.jsp and problemViewEditPopUp.jsp <br/>
+
+
 <i><b>18th Jan 2015 - nyeinsu </b></i><br/>
 1. Debug <br/>
 &ensp;i. Problem Complements <br/>
 &ensp;	ii. Create Case <br/>
 2. Changed case referral query <br/>
 
-<i><b>7th Jan 2015 - soemyatmyat</b></i><br/>
+<i><b>17th Jan 2015 - soemyatmyat</b></i><br/>
 
 1. moved up the face picture validation for createCase.jsp<br/>
 2. standardized the form format for job and worker complements<br/>
