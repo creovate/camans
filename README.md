@@ -1,6 +1,19 @@
 camans
 ======
 
+<i><b>Debug 20ty Jan 2015 - smm</b></i><br/>
+
+Debugging<br/>
+(a) search worker [registered date]<br/>
+(b) worker complements [fixed clicking see more & view less going to top page, passport]<br/>
+(c) job complements [intermediary agent]<br/>
+(d) benefits [none]<br/>
+(e) attachment [none]<br/>
+(f) user management [phone number validation]<br/>
+(g) audit trails [none]<br/>
+(h) dropdown configuration [none] <br/>
+(i) import & export function [none]<br/>
+
 <i><b>19th Jan - merge files [ready for stud test] - soemyatmyat</b></i><br/>
 
 1. Merge NS conflicted files <br/>
