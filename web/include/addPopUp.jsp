@@ -545,6 +545,9 @@
                         stringLength: {
                             max: 50,
                             message: 'Salary must be less than 50 characters.'
+                        },
+                        numeric: {
+                            message: 'Salary must be a number'
                         }
                     }
                 },
@@ -1861,7 +1864,7 @@
         <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
         <input type="hidden" name="complementName" value="WorkerNickname"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -1903,8 +1906,8 @@
 
         </div>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+            <button type='button' class='btn   add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -1936,7 +1939,7 @@
         </div>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -1975,8 +1978,8 @@
         </div>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -2009,8 +2012,8 @@
         </div>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -2042,8 +2045,8 @@
         </div>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -2105,8 +2108,8 @@
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerDigitalContact"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2173,8 +2176,8 @@
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerNextOfKin"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2231,8 +2234,8 @@
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerFamilyMember"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2278,8 +2281,8 @@
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerFriend"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2345,8 +2348,8 @@
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerLanguage"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -2415,8 +2418,8 @@
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerBankAcct"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2500,8 +2503,8 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="JobPassDetails"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -2552,8 +2555,8 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="EmployerDetails"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2635,8 +2638,8 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="ContractDetails"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -2751,8 +2754,8 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="Agent"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -2782,7 +2785,7 @@
             <div class='form-group'>
                 <label for='nrelationship' class="control-label">Relationship of giver to worker or agent or employer:</label>
                 <br/>
-                <textarea class="form-control" name="nrelation" maxlength="200"></textarea>
+                <textarea class="form-control" name="nrelation" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nvaWhen' class="control-label">When was Verbal Assurance Given?: </label>
@@ -2803,8 +2806,8 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="VerbalAssurance"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2913,8 +2916,8 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="WorkPlace"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -2994,8 +2997,8 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="WorkHistory"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -3105,8 +3108,8 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="Accommodation"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -3224,8 +3227,8 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="IPA"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -3282,8 +3285,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="policareport"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -3370,8 +3373,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="othercomplaint"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -3439,8 +3442,8 @@
         <input type="hidden" name="complementName" value="ttr"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -3506,8 +3509,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="cmilestone"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -3563,8 +3566,8 @@
         <input type="hidden" name="complementName" value="ncmilestone"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -3648,8 +3651,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="r2r"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -3712,8 +3715,8 @@
         <input type="hidden" name="complementName" value="mc"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </div>
@@ -3772,8 +3775,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="hospital"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -3824,8 +3827,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="nonwicaclaim"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -3890,8 +3893,8 @@
         <input type="hidden" name="complementName" value="wica"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -3943,8 +3946,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="wicaclaim"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -4007,8 +4010,8 @@
             <input type="hidden" name="complementName" value="illnesscase"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -4093,8 +4096,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="injurycase"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -4205,8 +4208,8 @@
         <input type="hidden" name="complementName" value="casediscussion"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -4247,8 +4250,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="salarycalim"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -4337,8 +4340,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="salaryhistory"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -4396,8 +4399,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="lawyer"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -4445,8 +4448,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="auxcaseworker"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -4496,8 +4499,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="leadcaseworker"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn ">Save</button>
-                <button type='button' class='btn modal_btn  cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn ">Save</button>
+                <button type='button' class='btn btn-blue modal_btn  cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -4554,8 +4557,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="aggravissue"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -4593,8 +4596,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="othercase"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+            <button type='button' class='btn  modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>

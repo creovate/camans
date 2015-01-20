@@ -54,12 +54,20 @@
     /**
      * Add Job & Problem particulars validation
      **/
+
+
     $(document).ready(function() {
         $('#addCase')
-                .bootstrapValidator({
+        .bootstrapValidator({
             fields: {
-                //worker
                 //job Profile
+                jobPassType:{
+                  validators:{
+                      notEmpty:{
+                          message: 'This field cannot be empty. Please choose one.'
+                      }
+                  }  
+                },
                 passMore: {
                     validators: {
                         stringLength: {
@@ -148,7 +156,6 @@
         });
 
     });
-
     /**
      * Edit worker particulars validation
      **/
@@ -164,41 +171,6 @@
                         stringLength: {
                             max: 50,
                             message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                workerFin: {
-                    validators: {
-                        stringLength: {
-                            max: 12,
-                            message: 'This field must be less than 12 characters.'
-                        },
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        },
-                        callback: {
-                            message: 'FIN number is incorrect. Please Check again.',
-                            callback: function(value, validator) {
-                                var finType1 = /^[G][0-9]{7}[A-Z]$/;
-                                var finType2 = /^GEN[0-9]{6}$/;
-                                if (finType1.test(value) === false || finType2.test(value) === false) {
-                                    return {
-                                        valid: false,
-                                        message: 'FIN number is incorrect. Please Check again.'
-                                    };
-                                }
-                                return true;
-
-                            }
-                        },
-                        remote: {
-                            message: 'The FIN Number already exists.',
-                            url: 'processValidate',
-                            data: function(validator) {
-                                return {
-                                    finNum: validator.getFieldElements('finNum').val()
-                                };
-                            }
                         }
                     }
                 },
@@ -335,15 +307,7 @@
         if (val === 0) {
             $('.sub_div').hide();
             document.getElementById(div_id).style.display = 'block';
-            var li_id = 'progtrckr_' + div_id;
-            if (num === 1) {
-                var div = document.getElementById(li_id);
-                div.setAttribute("class", 'progtrckr-done');
-            } else {
-                li_id = 'progtrckr_' + curr_id;
-                var div = document.getElementById(li_id);
-                div.setAttribute("class", 'progtrckr-todo');
-            }
+            
             //$('.next_btn').prop('disabled',false);
         } else {
             //$('.next_btn').prop('disabled',true);
@@ -355,7 +319,7 @@
             } else if (missing_input_field === 'employerName') {
                 missing_inputStr = "Employer Name is required.";
             }
-            $(".alert-danger").text(missing_inputStr);
+            //$(".alert-danger").text(missing_inputStr);
         }
     }
 
@@ -578,7 +542,7 @@
                 <label for='isdate' class="control-label">Date of Birth: </label>
             </div>
             <div class='col-md-7'>
-                <input class="form-control dateInput" type='text' name="dob" value="<%=dob%>">
+                <input class="form-control dateInput" type='text' name="dob" value="<%=(dob == null) ? "" : dob%>">
             </div>
             <br/>
             <br/>
@@ -586,9 +550,9 @@
     </fieldset>
     <p class="alert-danger"></p>
     <input type="hidden" id="stub_name" name="stub" value="worker"/>
-    <button type='button' onclick="edit('worker_stub', 'Worker Stub');" class="btn modal_btn edit_btn">Edit</button>
-    <button style="display:none" type='submit' class="btn modal_btn save_btn">Save</button>
-    <button type='button' class='btn modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
+    <button type='button' onclick="edit('worker_stub', 'Worker Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
+    <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
+    <button type='button' class='btn btn-blue modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
 </form>
 
 <%
@@ -722,10 +686,10 @@
     <input type="hidden" id="stub_name" name="stub" value="job"/>
     <input type="hidden" id="job_name" name="workerFin" value="<%=workerFin%>"/>
     <input type="hidden" id="job_name" name="jobKey" value="<%=jobKey%>"/>
-    <button type='button' onclick="edit('job_stub', 'Job Stub');" class="btn modal_btn edit_btn">Edit</button>
-    <button style="display:none" type='submit' class="btn modal_btn save_btn">Save</button>
-    <button type='button' class='btn modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
-    <button style="display:none" type='button' class="btn modal_btn add_btn pull-right" onclick="add('job')">Add</button>
+    <button type='button' onclick="edit('job_stub', 'Job Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
+    <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
+    <button type='button' class='btn btn-blue modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
+    <button style="display:none" type='button' class="btn btn-blue modal_btn add_btn pull-right" onclick="add('job')">Add</button>
 </form>
 
 <%
@@ -791,14 +755,14 @@
     <input type="hidden" id="job_name" name="workerFin" value="<%=workerFin%>"/>
     <input type="hidden" id="job_name" name="jobKey" value="<%=jobKey%>"/>
     <input type="hidden" id="job_name" name="probKey" value="<%=probKey%>"/>
-    <button type='button' onclick="edit('problem_stub', 'problem Stub');" class="btn modal_btn edit_btn">Edit</button>
-    <button style="display:none" type='submit' class="btn modal_btn save_btn">Save</button>
-    <button type='button' class='btn modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
-    <button style="display:none"  type='button' class="btn modal_btn add_btn pull-right" onclick="add('problem')">Add</button>
+    <button type='button' onclick="edit('problem_stub', 'problem Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
+    <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
+    <button type='button' class='btn btn-blue modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
+    <button style="display:none"  type='button' class="btn btn-blue modal_btn add_btn pull-right" onclick="add('problem')">Add</button>
 </form>
 
 <%
-} else if (action.equals("add")) {
+} else if (action.equals("add") && profile.equals("job")) {
 %>
 
 <form method="POST" id='addCase' class="form complement_detailed_form " action="createNewCase.do" style="font-size:small">
@@ -810,23 +774,24 @@
     %>
 
     <!--Job Profile-->
-    <div class="sub_div" id="job_profile" style="position: relative">
+    <div class="sub_div" id="new_job_profile" style="position: relative">
         <br/>
         <div class="form-group">
             <label for="emp_name" class="col-md-5 control-label" >Name of Employer <span class="required_input">*</span> </label>
             <div class=" col-md-7">
-                <input type="text" class="form-control required" name="employerName"/></div><br/><br/>
+                <input type="text" class="form-control required" name="employerName" /></div><br/><br/>
         </div>
 
 
         <div class="form-group">
             <label for="job_pass_type" class="col-md-5 control-label">Work pass type that comes with the job<span class="required_input">*</span></label>
             <div class=" col-md-7">
-                <select name="workpassType" class="form-control" id="job_pass_type" onchange="displayOther(this.id)">
+                <select name="workpassType" class="form-control" id="job_pass_type">
+                    <option value=''>Select from list..</option>
                     <%
                         for (String passTypeStr : passTypeList) {
                     %>
-                    <option><%=passTypeStr%></option>
+                    <option value='<%=passTypeStr%>'><%=passTypeStr%></option>
                     <%
                         }
                     %>   
@@ -846,11 +811,12 @@
         <div class="form-group">
             <label for="job_sector" class="col-md-5 control-label">Job Sector</label>
             <div class=" col-md-7">
-                <select class="form-control" name="jobSector" id="job_sector" onchange="displayOther(this.id)" >
+                <select class="form-control" name="jobSector" id="job_sector" >
+                    <option value=''>Select from list..</option>
                     <%
                         for (String jobSectorStr : jobSectorList) {
                     %>
-                    <option><%=jobSectorStr%></option>
+                    <option value='<%=jobSectorStr%>'><%=jobSectorStr%></option>
                     <%
                         }
                     %>   
@@ -861,7 +827,7 @@
 
         <!--this to appear only if above is selected as other-->
         <div class="form-group" id="job_sector_other_div" >
-            <label for="job_sector_other_In" class="col-md-5 control-label">Explain if above is other</label>
+            <label for="job_sector_other_In" class="col-md-5 control-label">Explain if above is 'other'</label>
             <div class=" col-md-7">
                 <input type="text" class="form-control" name="jobSectorMore" /></div><br/><br/>
         </div>
@@ -881,7 +847,7 @@
         </div>
 
         <div class="form-group">
-            <label for="job_end_date" class="col-md-3 control-label">End Date </label>
+            <label for="job_end_date" class="col-md-3 control-label">End Date</label>
             <div class=" col-md-3">
                 <input type="text"  class="form-control" name="jobEndDate" /></div><br/><br/>
         </div>
@@ -901,27 +867,26 @@
         <div class="form-group" id="job_sector_other_div">
             <label for="job_remark" class="col-md-5 control-label">Remark</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="jobRemark" /> 
+                <textarea class='form-control' name='jobRemark' rows='3'></textarea> 
             </div><br/><br/>
         </div>
 
         <p class="alert-danger"></p>
-        <div class="form-group btn-div col-md-12" style='position: relative'>
-            <span class="required_input">* Required field</span>
+        
+                <button type='' class="btn cancel_btn pull-left" style="bottom: 0">Cancel</button>
             <div class="pull-right">
-                <button type='button' onclick="swapDiv('prob_profile', 'job_profile', 1);" class="btn btn-default " style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+                <button type='button' onclick="swapDiv('new_prob_profile', 'new_job_profile', 1);" class="btn btn-blue btn btn-blue-default " style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
             </div><br/><br/>
-        </div>
 
     </div>
 
     <!--problem profile-->
-    <div class="sub_div" id="prob_profile" style="display : none">
+    <div class="sub_div" id="new_prob_profile" style="display : none">
         <br/>
         <div class="form-group">
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Problem Registration Date<span class="required_input">*</span>:</label>
             <div class=" col-md-7">
-                <input class="form-control dateInput" type='text' name="registeredDate" value="<%=sdf.format(pRegDate)%>" /></div><br/><br/>
+                <input class="form-control dateInput" type='text' name="registeredDate" value="<%=sdf.format(pRegDate)%>" autofocus/></div><br/><br/>
         </div>
         <div class="form-group">
             <label for="prob_type" class="col-md-5 control-label">Problem Type<span class="required_input">*</span></label>
@@ -951,76 +916,81 @@
         <div class="form-group" id="job_sector_other_div" >
             <label for="prob_remark" class="col-md-5 control-label">Remark</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="problemRemark" /></div><br/><br/>
+                <textarea class='form-control' name='problemRemark' rows="3"></textarea>
+            </div>
+            <br/><br/>
+
         </div>
 
-
-        <div id="injury_div" style="display : none">
-            <div class="form-group">
-                <label for="injury_date" class="col-md-5 control-label" >Injury Date</label>
-                <div class=" col-md-7">
-                    <input type="text" class="dateInput" class="form-control" name="injuryDate"/></div><br/><br/>
+        <input type="hidden" id="hiddenWorkerFin" name="workerFinNum" value="<%=workerFin%>"/>
+        <button type='' class="btn cancel_btn" style="bottom: 0">Cancel</button>
+            <div class="pull-right">
+                <button  type='button' onclick="swapDiv('new_job_profile', 'new_prob_profile', -1);" class="btn btn-blue ">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
+                <button  type='submit' class="btn btn-blue">Submit</button>
             </div>
-            <div class="form-group">
-                <label for="injury_body_part" class="col-md-5 control-label" >Injury Body Part</label>
-                <div class=" col-md-7">
-                    <input type="text" class="form-control" name="injuryBodyPart"/></div><br/><br/>
-            </div>
+    </div>
+</form> 
+<%} else if (action.equals("add") && profile.equals("problem")) {
+%>
+<form method="POST" id='add_job' class="form create_case_form " action="createNewCase.do" style="font-size:small">
 
-            <div class="form-group">
-                <label for="prob_hospital" class="col-md-5 control-label">Current Hospital</label>
-                <div class=" col-md-7">
-                    <select class="form-control" name="currentHosptial" id="prob_hospital" onchange="displayOther(this.id)" >
-                        <%
-                            for (String hospitalStr : hospitalList) {
-                        %>
-                        <option><%=hospitalStr%></option>
-                        <%
-                            }
-                        %> 
-                    </select>
-                </div><br/><br/>
-            </div>
+    <%
+        java.util.Date date = new java.util.Date();
 
 
+    %>
 
-            <div class="form-group" id="prob_hospital_other_div" >
-                <label for="prob_hospital_other_In" class="col-md-5 control-label">Explain if above is other</label>
-                <div class=" col-md-7">
-                    <input type="text" class="form-control" name="hospitalMore" /></div>
-            </div><br/><br/>
-        </div>
-
-
+    <!--problem profile-->
+    <div class="sub_div" id="new_prob_profile">
+        <br/>
         <div class="form-group">
-            <label for="has_lawyer" class="col-md-5 control-label">Does worker have lawyer for this problem?</label>
+            <label for="worker_pass_type_other_In" class="col-md-5 control-label">Problem Registration Date<span class="required_input">*</span>:</label>
             <div class=" col-md-7">
-                <select class="form-control" name="lawyerHas">
-                    <option>No</option>
-                    <option>Yes</option>
+                <input class="form-control dateInput" type='text' name="registeredDate" value="<%=sdf.format(pRegDate)%>"/></div><br/><br/>
+        </div>
+        <div class="form-group">
+            <label for="prob_type" class="col-md-5 control-label">Problem Type<span class="required_input">*</span></label>
+            <div class=" col-md-7"> 
+                <select name="problem" id="prob_type" class="form-control" required>
+                    <option value="">Select from the list...</option>
+                    <%
+                        for (String problemStr : problemList) {
+                    %>
+                    <option value="<%=problemStr%>"><%=problemStr%></option>
+                    <%
+                        }
+                    %>                   
                 </select>
             </div><br/><br/>
         </div>
 
 
-        <div class="form-group"  style="display: none">
-            <label for="law_firm_name" class="col-md-5 control-label">Name of Law Firm</label>
+        <!--this to appear only if above is selected as other-->
+        <div class="form-group" id="prob_type_other_div" >
+            <label for="worker_pass_type_other_In" class="col-md-5 control-label">Explain if above is other</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="lawfirmName"/>
-            </div><br/><br/>
+                <input type="text" class="form-control" name="problemMore" /></div><br/><br/>
+        </div>
+
+
+        <div class="form-group" id="job_sector_other_div" >
+            <label for="prob_remark" class="col-md-5 control-label">Remark</label>
+            <div class=" col-md-7">
+                <textarea class='form-control' name='problemRemark' rows="3"></textarea></div><br/><br/>
         </div>
 
         <input type="hidden" id="hiddenWorkerFin" name="workerFinNum" value="<%=workerFin%>"/>
-        <div class="form-group btn-div col-md-12">
+        <div class="form-group btn btn-blue-div col-md-12">
             <span class="required_input">* Required field</span>
             <div class="pull-right">
-                <button  type='button' onclick="swapDiv('job_profile', 'prob_profile', -1);" class="btn btn-default">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
-                <button  type='submit' class="btn btn-default">Submit</button>
+                <button  type='submit' class="btn btn-blue">Submit</button>
             </div>
         </div>
     </div>
 </form> 
-<%}%>
+
+<%
+    }%>
 
 <script>
 /////Change to Add pop up/////
@@ -1035,6 +1005,10 @@
 
     }
 
+$(document).ready(function() {
+        $('.cancel_btn').addClass('pull-right');
+        $('.form-control').addClass('input-sm');
+    });
 
 
 </script>

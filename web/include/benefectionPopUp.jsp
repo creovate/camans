@@ -274,6 +274,8 @@
     String action = request.getParameter("action");
     //end of data collection
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+    java.util.Date today = new java.util.Date();
+    
     //general dropdownlist
     //HashMap<Integer, String> meal = DropdownDAO.retrieveAllDropdownListOfSalaryMode();
 
@@ -372,10 +374,10 @@
         </fieldset>
 
         <div class="form-group btn_group">
-            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#benefit_pop_up");'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#benefit_pop_up");'>Edit</button>
             <div class='pull-right'>
-                <button type="button" class="btn modal_btn view_comp" onclick="add('#benefit_pop_up');">Add</button>                
-                <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
+                <button type="button" class="btn btn-blue modal_btn view_comp" onclick="add('#benefit_pop_up');">Add</button>                
+                <button type='button' class="btn view_comp cancel_btn">Close</button>
             </div>
         </div>
     </div>
@@ -386,8 +388,7 @@
             <div class='form-group'>
                 <label for='nisDate' class="control-label">Issued Date<span style="color: red">*</span>: </label>
                 <br/>
-                <input class="form form-control date dateInput" 
-                       type='text' id="nisDate" name="nisDate" required>
+                <input class="form form-control date dateInput" type='text' id="nisDate" name="nisDate" value='<%=sdf.format(today)%>' required>
             </div>
             <div class='form-group'>
                 <label for='ngivenby' class="control-label" >Given By: </label>
@@ -437,8 +438,8 @@
 
         </div>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -501,8 +502,8 @@
         <input type="hidden" name="action" value="edit"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-            <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -517,7 +518,7 @@
         <div class='form-group'>
             <label for='nisDate' class="control-label">Issued Date<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="nisDate">
+            <input class="form-control dateInput" type='text' name="nisDate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
             <label for='ngivenby' class="control-label" >Given By: </label>
@@ -568,8 +569,8 @@
 
     </div>
     <div class="form-group btn_group">
-        <button type='submit' class="btn modal_btn">Save</button>
-        <button type='button' class='btn modal_btn cancel_btn'>Cancel</button>
+        <button type='submit' class="btn btn-blue modal_btn">Save</button>
+        <button type='button' class='btn btn-blue modal_btn cancel_btn'>Cancel</button>
     </div>
 
 
