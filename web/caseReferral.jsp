@@ -144,7 +144,7 @@
                                 <input type="hidden" name="workerFin" value="<%=workerFin%>">
                                 <input type="hidden" name="userLogin" value="<%=username%>">
                                 <input type="hidden" name="probKey" value="<%=probKey%>">
-                                <button class="btn pull-right" type="submit">Take</button>
+                                <button class="btn btn-blue pull-right" type="submit">Take</button>
                             </form>
                         </div>
                     </div>
@@ -179,9 +179,19 @@
 
                     String referredByUsername = problem.getReferredBy();
                     User referredByUser = UserDAO.retrieveUserByUsername(referredByUsername);
-                    String referredByFullName = referredByUser.getFullName();
-                    java.util.Date referredDate = problem.getReferredDate();
-                    String refDescription = problem.getReferralDescription();
+                    String referredByFullName = null;
+
+                    java.util.Date referredDate = null;
+
+                    String refDescription = null;
+
+                    if (referredByUser != null) {
+                        referredByFullName = referredByUser.getFullName();
+
+                        referredDate = problem.getReferredDate();
+
+                        refDescription = problem.getReferralDescription();
+                    }
 
                     String workerFin = problem.getWorkerFinNum();
                     Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);
@@ -204,7 +214,7 @@
                 <div class="panel-heading" role="tab" id="headingOne">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#recent<%=i%>" aria-expanded="true" aria-controls="recent<%=i%>">
-                            Case Referred By : <%=referredByFullName%> <p class="pull-right">Referred Date : <%= referredDate%></p>
+                            Case Referred By : <%=(referredByFullName == null)? "-" : referredByFullName%> <p class="pull-right">Referred Date : <%= (referredDate == null) ? "-" : referredDate%></p>
                         </a>
                     </h4>
                 </div>
@@ -223,11 +233,11 @@
                             <table class="col-md-12 table table-condensed pull-left">
                                 <tr>
                                     <td class="col-md-6">Referee: </td>
-                                    <td><%=referredByFullName%></td>
+                                    <td><%=(referredByFullName == null)?"-" : referredByFullName%></td>
                                 </tr>
                                 <tr>
                                     <td>Referred Date: </td>
-                                    <td><%=referredDate%></td>
+                                    <td><%=(referredDate == null) ? "-" : referredDate%></td>
                                 </tr>
                                 <tr>
                                     <td>Worker Name: </td>
@@ -254,6 +264,7 @@
                                     <td><%=(refDescription == null) ? "-" : refDescription%></td>
                                 </tr>
                             </table>
+                            <button class="btn btn-blue pull-right" onclick="location.href = 'viewWorker.jsp?worker=<%=workerFin%>'" type="button">View Case</button>
                         </div>
                     </div>
                 </div>
@@ -274,17 +285,17 @@
             </div>
         </div>
         <script>
-            //session time out
-            $(document).ready(function () {
-                $.sessionTimeout({
-                    message: 'Your session will be expired in one minute.',
-                    keepAliveUrl: 'keep-alive.html',
-                    logoutUrl: 'index.jsp',
-                    redirUrl: 'logout.jsp',
-                    warnAfter: 900000,
-                    redirAfter: 120000
-                });
-            });
+                                    //session time out
+                                    $(document).ready(function() {
+                                        $.sessionTimeout({
+                                            message: 'Your session will be expired in one minute.',
+                                            keepAliveUrl: 'keep-alive.html',
+                                            logoutUrl: 'index.jsp',
+                                            redirUrl: 'logout.jsp',
+                                            warnAfter: 900000,
+                                            redirAfter: 120000
+                                        });
+                                    });
         </script>
     </body>
 </html>

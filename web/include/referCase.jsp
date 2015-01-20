@@ -14,7 +14,7 @@
     String referredByNRIC = request.getParameter("user");
     java.util.Date today = new java.util.Date();
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-
+    
     Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);
     int jobKey = Integer.parseInt(jobKeyStr);
     int probKey = Integer.parseInt(probKeyStr);
@@ -51,6 +51,8 @@
 
     User referredByUser = UserDAO.retrieveUserByNRIC(referredByNRIC);
     String referredByName = referredByUser.getFullName();
+    
+    
 %>
 <script>
     $('.cancel_btn').click(function() {
@@ -89,7 +91,7 @@
     <div class='form-group'>
         <label for='refDate' id="refDate_lbl" class="control-label">Referred Date<span style="color: red">*</span>:</label>
         <br/>
-        <input class="form-control date_input" type='text' name="refDate" value="<%=sdf.format(today)%>">
+        <input class="form-control no_change" type='text' name="refDate" value="<%=sdf.format(today)%>">
     </div>
     <div class='form-group'>
         <label for='workerName' id="workerName_lbl" class="control-label">Name of Worker<span style="color: red">*</span>: </label>
@@ -119,13 +121,13 @@
     <div class='form-group'>
         <label for='refDesc' class="control-label">Description: </label>
         <br/>
-        <input class="form-control" type='text' name="refDesc">
+        <textarea class='form-control' row='3' name="refDesc"></textarea>
     </div>
     <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
     <input type="hidden" name="probkey" value="<%=probKey%>"/>
     <input type="hidden" name="referredBy" value="<%=referredByNRIC%>"/>
     <div class="form-group btn_group">
-        <button type='submit' class="btn modal_btn ">Save</button>
+        <button type='submit' class="btn btn-blue modal_btn ">Refer</button>
         <button type='button' class='btn modal_btn pull-right cancel_btn'>Cancel</button>
 
     </div>

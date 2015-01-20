@@ -52,20 +52,56 @@ public class CaseManagementDAO {
     public static void assignCase(User userlogin, Problem problem) {
         Connection conn = null;
         PreparedStatement pstmt = null;
+        ResultSet rs = null;
         String sql = "";
         try {
+
             conn = ConnectionManager.getConnection();
-            sql = "UPDATE tbl_problem SET Referred_to = ? WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
+
+            sql = "SELECT Referred_by FROM tbl_problem WHERE Prob_key = ?";
 
             pstmt = conn.prepareStatement(sql);
 
-            pstmt.setString(1, userlogin.getUsername());
-            pstmt.setString(2, problem.getWorkerFinNum());
-            pstmt.setInt(3, problem.getJobKey());
-            pstmt.setInt(4, problem.getProbKey());
+            pstmt.setInt(1, problem.getProbKey());
 
-            pstmt.executeUpdate();
-            pstmt.executeUpdate();
+            rs = pstmt.executeQuery();
+            boolean is_referred_case = true;
+            while (rs.next()) {
+                String referredBy = rs.getString(1);
+                if(referredBy == null && referredBy.equals("")){
+                    is_referred_case = false;
+                }
+
+            }
+            
+            if(is_referred_case){
+                sql = "UPDATE tbl_problem SET Referred_to = ? WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
+
+                pstmt = conn.prepareStatement(sql);
+
+                pstmt.setString(1, userlogin.getUsername());
+                pstmt.setString(2, problem.getWorkerFinNum());
+                pstmt.setInt(3, problem.getJobKey());
+                pstmt.setInt(4, problem.getProbKey());
+
+                pstmt.executeUpdate();
+            }else{
+                sql = "UPDATE tbl_problem SET Referred_to = ?, Referred_date = ?, Referred_by = ?, Description = ? WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
+
+                pstmt = conn.prepareStatement(sql);
+
+                pstmt.setString(1, userlogin.getUsername());
+                pstmt.setDate(2, null);
+                pstmt.setString(3, null);
+                pstmt.setString(4, null);
+                pstmt.setString(5, problem.getWorkerFinNum());
+                pstmt.setInt(6, problem.getJobKey());
+                pstmt.setInt(7, problem.getProbKey());
+
+                pstmt.executeUpdate();
+            }
+
+
         } catch (SQLException ex) {
             handleSQLException(ex, sql, "Case: " + userlogin + "}");
         } finally {
@@ -107,7 +143,7 @@ public class CaseManagementDAO {
         String sql = "";
 
         try {
-            
+
             Problem problem_temp = ProblemDAO.retrieveProblemByProblemId(probKey);
             ArrayList<Integer> leadCaseWorkerList = ProblemComplementsDAO.retrieveLeadCaseWorkerIdsOfProblem(problem_temp);
             User referredBy_user = UserDAO.retrieveUserByNRIC(referredBy);
@@ -126,7 +162,7 @@ public class CaseManagementDAO {
 
                     leadCaseWorker = new ProblemLeadCaseWorker(lcwId, workerFin, jobKey, probKey, lcwName, lcwStart, lcwEnd);
                     ProblemComplementsDAO.updateProblemLeadCaseWorker(leadCaseWorker);
-                    
+
                 }
             }
 

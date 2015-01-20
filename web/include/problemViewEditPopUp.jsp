@@ -1753,10 +1753,10 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#injurycase_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#injurycase_pop_up", "problem")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#injurycase_pop_up", "problem")'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#injurycase_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
         </div>
@@ -1829,8 +1829,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -1945,8 +1945,8 @@
             <input type="hidden" name="Id" value="<%=id%>"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-                <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+                <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -2018,10 +2018,10 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#illnesscase_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#illnesscase_pop_up", "problem")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#illnesscase_pop_up", "problem")'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#illnesscase_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
         </div>
@@ -2072,8 +2072,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2139,8 +2139,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-                <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+                <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -2187,10 +2187,10 @@
                 </div>
             </fieldset>
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#othercase_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#othercase_pop_up", "problem")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#othercase_pop_up", "problem")'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#othercase_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
         </div>
@@ -2217,8 +2217,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2246,8 +2246,8 @@
             <input type="hidden" name="Id" value="<%=id%>"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-                <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+                <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -2297,10 +2297,10 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#salarycalim_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#salarycalim_pop_up", "problem")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#salarycalim_pop_up", "problem")'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#salarycalim_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
         </div>
@@ -2330,8 +2330,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2363,8 +2363,8 @@
             <input type="hidden" name="Id" value="<%=id%>"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-                <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+                <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -2429,10 +2429,10 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#wicaclaim_pop_up", "problem");'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#wicaclaim_pop_up", "problem");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#wicaclaim_pop_up", "problem")'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#wicaclaim_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
         </div>
@@ -2476,8 +2476,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2523,8 +2523,8 @@
             <input type="hidden" name="Id" value="<%=id%>"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-                <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+                <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -2592,10 +2592,10 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#nonwicaclaim_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#nonwicaclaim_pop_up", "problem")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#nonwicaclaim_pop_up", "problem")'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#nonwicaclaim_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
         </div>
@@ -2640,8 +2640,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2687,8 +2687,8 @@
             <input type="hidden" name="Id" value="<%=id%>"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-                <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+                <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -2753,10 +2753,10 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn modal_btn " onclick='editComplement("#policareport_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#policareport_pop_up", "problem")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn ' onclick='add("#policareport_pop_up", "problem")'>Add</button>                  
-                <button type='button' class="btn modal_btn cancel_btn">Close</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#policareport_pop_up", "problem")'>Add</button>                  
+                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
     </div>
@@ -2807,8 +2807,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-            <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -2851,8 +2851,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -2931,10 +2931,10 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn modal_btn " onclick='editComplement("#othercomplaint_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#othercomplaint_pop_up", "problem")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn ' onclick='add("#othercomplaint_pop_up", "problem")'>Add</button>                  
-                <button type='button' class="btn modal_btn cancel_btn">Close</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#othercomplaint_pop_up", "problem")'>Add</button>                  
+                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
     </div>
@@ -3027,8 +3027,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-            <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -3105,8 +3105,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -3226,10 +3226,10 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn modal_btn " onclick='editComplement("#casediscussion_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#casediscussion_pop_up", "problem")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn ' onclick='add("#casediscussion_pop_up", "problem")'>Add</button>                  
-                <button type='button' class="btn modal_btn cancel_btn">Close</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#casediscussion_pop_up", "problem")'>Add</button>                  
+                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
     </div>
@@ -3339,8 +3339,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-            <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -3441,8 +3441,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -3500,10 +3500,10 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn modal_btn " onclick='editComplement("#hospital_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#hospital_pop_up", "problem")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn ' onclick='add("#hospital_pop_up", "problem")'>Add</button>                  
-                <button type='button' class="btn modal_btn cancel_btn">Close</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#hospital_pop_up", "problem")'>Add</button>                  
+                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
     </div>
@@ -3562,8 +3562,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-            <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -3613,8 +3613,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -3679,10 +3679,10 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn modal_btn " onclick='editComplement("#mc_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#mc_pop_up", "problem")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn ' onclick='add("#mc_pop_up", "problem")'>Add</button>                  
-                <button type='button' class="btn modal_btn cancel_btn">Close</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#mc_pop_up", "problem")'>Add</button>                  
+                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
     </div>
@@ -3744,8 +3744,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-            <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -3799,8 +3799,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -3905,10 +3905,10 @@
         </fieldset>
 
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn modal_btn " onclick='editComplement("#r2r_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#r2r_pop_up", "problem")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn ' onclick='add("#r2r_pop_up", "problem")'>Add</button>                  
-                <button type='button' class="btn modal_btn cancel_btn">Close</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#r2r_pop_up", "problem")'>Add</button>                  
+                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
     </div>
@@ -3983,8 +3983,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-            <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -4057,8 +4057,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -4122,10 +4122,10 @@
 
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn modal_btn " onclick='editComplement("#wica_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#wica_pop_up", "problem")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn ' onclick='add("#wica_pop_up", "problem")'>Add</button>                  
-                <button type='button' class="btn modal_btn cancel_btn">Close</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#wica_pop_up", "problem")'>Add</button>                  
+                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
     </div>
@@ -4188,8 +4188,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-            <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -4244,8 +4244,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -4308,10 +4308,10 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn modal_btn " onclick='editComplement("#lawyer_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#lawyer_pop_up", "problem")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn ' onclick='add("#lawyer_pop_up", "problem")'>Add</button>                  
-                <button type='button' class="btn modal_btn cancel_btn">Close</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#lawyer_pop_up", "problem")'>Add</button>                  
+                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
     </div>
@@ -4366,8 +4366,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-            <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -4414,8 +4414,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -4466,10 +4466,10 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn modal_btn " onclick='editComplement("#milestonenc_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#milestonenc_pop_up", "problem")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn ' onclick='add("#milestonenc_pop_up", "problem")'>Add</button>                  
-                <button type='button' class="btn modal_btn cancel_btn">Close</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonenc_pop_up", "problem")'>Add</button>                  
+                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
     </div>
@@ -4522,8 +4522,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-            <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -4568,8 +4568,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -4633,10 +4633,10 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn modal_btn " onclick='editComplement("#milestonecr_pop_up", "problem");'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#milestonecr_pop_up", "problem");'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn ' onclick='add("#milestonecr_pop_up", "problem");'>Add</button>                  
-                <button type='button' class="btn modal_btn cancel_btn">Close</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonecr_pop_up", "problem");'>Add</button>                  
+                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
     </div>
@@ -4702,8 +4702,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-            <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -4758,8 +4758,8 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -4827,10 +4827,10 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn modal_btn " onclick='editComplement("#ttr_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#ttr_pop_up", "problem")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn ' onclick='add("#ttr_pop_up", "problem")'>Add</button>                  
-                <button type='button' class="btn modal_btn cancel_btn">Close</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#ttr_pop_up", "problem")'>Add</button>                  
+                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
     </div>
@@ -4900,8 +4900,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-            <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -4960,8 +4960,8 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 </form>
@@ -5031,10 +5031,10 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#aggravIssue_pop_up", "problem");'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#aggravIssue_pop_up", "problem");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#aggravIssue_pop_up", "problem");'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#aggravIssue_pop_up", "problem");'>Add</button>                  
+                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
         </div>
@@ -5078,8 +5078,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -5129,8 +5129,8 @@
             <input type="hidden" name="Id" value="<%=id%>"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-                <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+                <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -5180,10 +5180,10 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#leadcaseworker_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#leadcaseworker_pop_up", "problem")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#leadcaseworker_pop_up", "problem")'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#leadcaseworker_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
         </div>
@@ -5221,8 +5221,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -5267,8 +5267,8 @@
             <input type="hidden" name="Id" value="<%=id%>"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-                <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+                <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -5318,10 +5318,10 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#auxcaseworker_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#auxcaseworker_pop_up", "problem")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#auxcaseworker_pop_up", "problem")'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#auxcaseworker_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
         </div>
@@ -5359,8 +5359,8 @@
             <input type="hidden" name="complementName" value="auxcaseworker"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -5404,8 +5404,8 @@
             <input type="hidden" name="Id" value="<%=id%>"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-                <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+                <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>
@@ -5501,10 +5501,10 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#salaryhistory_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#salaryhistory_pop_up", "problem")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#salaryhistory_pop_up", "problem")'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#salaryhistory_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
         </div>
@@ -5582,8 +5582,8 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -5666,8 +5666,8 @@
             <input type="hidden" name="Id" value="<%=id%>"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
-                <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+                <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
     </div>

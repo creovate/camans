@@ -110,9 +110,9 @@
                     if (missing_input_field === "finNum") {
                         alert("FIN Number is required.");
                     } else if (missing_input_field === "workerName") {
-                        alert("Worker Name is required.")
+                        alert("Worker Name is required.");
                     } else if (missing_input_field === 'employerName') {
-                        alert("Employer Name is required.")
+                        alert("Employer Name is required.");
                     }
                     //alert("Some fields are missing. Please enter all the required fields.");
                 }
@@ -197,7 +197,7 @@
                                 <input type="text" id="finNum"  class="form-control required" name="finNum"/>
                             </div>
                             <div id="finButton" class="col-md-4">
-                                <button type="" id="generateTWC2Fin" class="btn btn-default">Generate FIN</button>
+                                <button type="" id="generateTWC2Fin" class="btn btn-blue btn-blue-default">Generate FIN</button>
                             </div>
                         </div>
 
@@ -246,9 +246,9 @@
                         </div>
 
 
-                        <div class="form-group btn-div col-md-12" >
+                        <div class="form-group btn btn-blue-div col-md-12" >
                             <span class="required_input">* Required field</span>
-                            <button type='button' onclick="swapDiv('job_profile', 'worker_profile', 1);" class="btn btn-default pull-right next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+                            <button type='button' onclick="swapDiv('job_profile', 'worker_profile', 1);" class="btn btn-blue btn btn-blue-default pull-right next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
                         </div>
                     </div>
 
@@ -354,11 +354,11 @@
                         </div>
 
 
-                        <div class="form-group btn-div col-md-12" style='position: relative'>
+                        <div class="form-group btn btn-blue-div col-md-12" style='position: relative'>
                             <span class="required_input">* Required field</span>
                             <div class="pull-right">
-                                <button type='button' onclick="swapDiv('worker_profile', 'job_profile', -1);" class="btn btn-default" style="bottom: 0">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
-                                <button type='button' onclick="swapDiv('prob_profile', 'job_profile', 1);" class="btn btn-default next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+                                <button type='button' onclick="swapDiv('worker_profile', 'job_profile', -1);" class="btn btn-blue btn btn-blue-default" style="bottom: 0">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
+                                <button type='button' onclick="swapDiv('prob_profile', 'job_profile', 1);" class="btn btn-blue btn btn-blue-default next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
                             </div>
                         </div>
 
@@ -374,7 +374,7 @@
                             <label for="prob_type" class="col-md-3 control-label">Problem Presented<span class="required_input">*</span></label>
                             <div class=" col-md-6"> 
                                 <select name="problem" id="prob_type" class="form-control">
-                                    <option value="">Select Problem:</option>
+                                    <option value="">Select Problem..</option>
                                     <%
                                         for (String problemStr : problemList) {
                                     %>
@@ -401,7 +401,7 @@
                                 <input type="text" class="form-control" name="problemRemark" /></div>
                         </div>
 
-
+<!--
                         <div id="injury_div" style="display : none">
                             <div class="form-group">
                                 <label for="injury_date" class="col-md-3 control-label" >Injury Date</label>
@@ -464,13 +464,13 @@
 
                             </div>
                         </div>
+-->
 
-
-                        <div class="form-group btn-div col-md-12">
+                        <div class="form-group btn btn-blue-div col-md-12">
                             <span class="required_input">* Required field</span>
                             <div class="pull-right">
-                                <button  type='button' onclick="swapDiv('job_profile', 'prob_profile', -1);" class="btn btn-default">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
-                                <button type='button' onclick="swapDiv('face_pic', 'prob_profile', 1);" class="btn btn-default next_btn">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+                                <button  type='button' onclick="swapDiv('job_profile', 'prob_profile', -1);" class="btn btn-blue btn btn-blue-default">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
+                                <button type='button' onclick="swapDiv('face_pic', 'prob_profile', 1);" class="btn btn-blue btn btn-blue-default next_btn">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
                             </div>
                         </div>
                     </div>
@@ -497,19 +497,19 @@
                             </div>
                             <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                             <div>
-                                <span class="btn btn-default btn-file">
+                                <span class="btn btn-blue btn btn-blue-default btn btn-blue-file">
                                     <span class="fileinput-new">Select image</span>
                                     <span class="fileinput-exists">Change</span><input type="file" name="facePic">
                                 </span>
-                                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                <a href="#" class="btn btn-blue btn btn-blue-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                             </div>
                         </div>
 
-                        <div class="form-group btn-div col-md-12">
+                        <div class="form-group btn btn-blue-div col-md-12">
                             <span class="required_input">* Required field</span>
                             <div class="pull-right">
-                                <button  type='button' onclick="swapDiv('prob_profile', 'face_pic', -1);" class="btn btn-default">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
-                                <button  type='submit' class="btn btn-default">Submit</button>
+                                <button  type='button' onclick="swapDiv('prob_profile', 'face_pic', -1);" class="btn btn-blue btn btn-blue-default">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
+                                <button  type='submit' class="btn btn-blue btn btn-blue-default">Submit</button>
 
                             </div>
                         </div>
@@ -730,7 +730,7 @@
                         //document.getElementById("fin").value = msg;
                         // $("#fin").html("<input type=\"text\" id=\"finNum\" class=\"form-control\" name=\"finNum\" value="
                         // + msg + "/>").fadeIn("slow");
-                        //$("#finButton").html("<button type=\"button\" id=\"inputFin\" class=\"btn btn-default\">" + 
+                        //$("#finButton").html("<button type=\"button\" id=\"inputFin\" class=\"btn btn-blue btn btn-blue-default\">" + 
                         //     "Input Fin</button>");
                         $('#createworker_form').formValidation('revalidateField', 'finNum');
 

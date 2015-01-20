@@ -4,8 +4,10 @@
  */
 package camans.controller;
 
+import camans.dao.CaseManagementDAO;
 import camans.dao.ProblemComplementsDAO;
 import camans.dao.UserAuditLogDAO;
+import camans.dao.UserDAO;
 import camans.entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -107,6 +109,11 @@ public class processAddProblemComplement extends HttpServlet {
                         jobKey, problemKey, leadName, leadStart, leadEnd);
                 //add into db
                 ProblemComplementsDAO.addProblemLeadCaseWorker(problemLeadCaseWrk);
+                
+                //update leadcaseworker
+                User leadCaseWorker = UserDAO.retrieveUserByUsername(leadName);
+                
+                CaseManagementDAO.assignCase(_user, null);
                 //log the audit
                 auditChange = problemLeadCaseWrk.toString2();
             //=======================================//    
