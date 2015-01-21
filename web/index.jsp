@@ -46,7 +46,7 @@
                             <input type="password" class="form-control" name="password" placeholder="Password" required></input>
                         </div>
                         <br/>
-                        <button type="submit" class="btn btn-blue btn-lg btn-block">Log In</button>
+                        <button type="submit" class="btn btn-default btn-lg btn-block">Log In</button>
                         <center><h4><span class="label label-danger"><%=error%></span></h4></center>
                     </form>
                     <br/>

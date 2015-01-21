@@ -77,25 +77,6 @@
             }
         }
     });
-    
-    $('#add_Job').validate({
-        ignore: ":hidden",
-        highlight: function(element) {
-            $(element).closest('.form-group').addClass('has-error');
-        },
-        unhighlight: function(element) {
-            $(element).closest('.form-group').removeClass('has-error');
-        },
-        errorElement: 'span',
-        errorClass: 'help-block',
-        errorPlacement: function(error, element) {
-            if (element.parent('.input-group').length) {
-                error.insertAfter(element.parent());
-            } else {
-                error.insertAfter(element);
-            }
-        }
-    });
 
     $("#job_next_btn").click(function() {
         $('#addCase').valid();
@@ -916,13 +897,13 @@
                 <textarea class='form-control' name='jobRemark' rows='3' maxlength="50"></textarea> 
             </div><br/><br/>
         </div>
-        <div class="form-group col-md-12">
-            <button type='' class="btn cancel_btn pull-left" style="bottom: 0">Cancel</button>
-            <div class="pull-right">
-                <button type='button' onclick="swapDiv('new_prob_profile', 'new_job_profile', 1);" class="btn btn-blue btn btn-blue-default " id="job_next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
-            </div>
-        </div>
-        <br/><br/>
+
+        <p class="alert-danger"></p>
+
+        <button type='' class="btn cancel_btn pull-left" style="bottom: 0">Cancel</button>
+        <div class="pull-right">
+            <button type='button' onclick="swapDiv('new_prob_profile', 'new_job_profile', 1);" class="btn btn-blue btn btn-blue-default " id="job_next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+        </div><br/><br/>
 
     </div>
 
@@ -955,32 +936,30 @@
         <div class="form-group col-md-12" id="prob_type_other_div" >
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Explain if above is other</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="problemMore" maxlength="50"/></div><br/><br/>
+                <input type="text" class="form-control" name="problemMore" /></div><br/><br/>
         </div>
 
 
         <div class="form-group col-md-12" id="job_sector_other_div" >
             <label for="prob_remark" class="col-md-5 control-label">Remark</label>
             <div class=" col-md-7">
-                <textarea class='form-control' name='problemRemark' rows="3" maxlength="200"></textarea>
+                <textarea class='form-control' name='problemRemark' rows="3"></textarea>
             </div>
             <br/><br/>
 
         </div>
 
         <input type="hidden" id="hiddenWorkerFin" name="workerFinNum" value="<%=workerFin%>"/>
-        <div class="form-group col-md-12">
         <button type='' class="btn cancel_btn" style="bottom: 0">Cancel</button>
         <div class="pull-right">
             <button  type='button' onclick="swapDiv('new_job_profile', 'new_prob_profile', -1);" class="btn btn-blue ">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
             <button  type='submit' class="btn btn-blue">Submit</button>
         </div>
-        </div>
     </div>
 </form> 
 <%} else if (action.equals("add") && profile.equals("problem")) {
 %>
-<form method="POST" id='add_Job' class="form create_case_form " action="createNewCase.do" style="font-size:small">
+<form method="POST" id='add_job' class="form create_case_form " action="createNewCase.do" style="font-size:small">
 
     <%
         java.util.Date date = new java.util.Date();
@@ -991,12 +970,12 @@
     <!--problem profile-->
     <div class="sub_div" id="new_prob_profile">
         <br/>
-        <div class="form-group col-md-12">
+        <div class="form-group">
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Problem Registration Date<span class="required_input">*</span>:</label>
             <div class=" col-md-7">
                 <input class="form-control dateInput" type='text' name="registeredDate" value="<%=sdf.format(pRegDate)%>"/></div><br/><br/>
         </div>
-        <div class="form-group col-md-12">
+        <div class="form-group">
             <label for="prob_type" class="col-md-5 control-label">Problem Type<span class="required_input">*</span></label>
             <div class=" col-md-7"> 
                 <select name="problem" id="prob_type" class="form-control" required>
@@ -1014,14 +993,14 @@
 
 
         <!--this to appear only if above is selected as other-->
-        <div class="form-group col-md-12" id="prob_type_other_div" >
+        <div class="form-group" id="prob_type_other_div" >
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Explain if above is other</label>
             <div class=" col-md-7">
                 <input type="text" class="form-control" name="problemMore" /></div><br/><br/>
         </div>
 
 
-        <div class="form-group col-md-12" id="job_sector_other_div" >
+        <div class="form-group" id="job_sector_other_div" >
             <label for="prob_remark" class="col-md-5 control-label">Remark</label>
             <div class=" col-md-7">
                 <textarea class='form-control' name='problemRemark' rows="3"></textarea></div><br/><br/>
