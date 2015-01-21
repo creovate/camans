@@ -11,6 +11,7 @@
 <%@page import="camans.dao.DropdownDAO"%>
 <%@page import="camans.entity.User"%>
 <%@ include file="protect.jsp"%>
+
 <%
     User userLogin = (User) request.getSession().getAttribute("userLogin");
     ArrayList<String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
@@ -45,11 +46,17 @@
         <script src="js/jquery.steps.js"></script>
         <!--jasny-bootstrap v3.1.3 added by smm-->
         <script src="js/jasny-bootstrap.js"></script>    
-       <!--bootstrap session timeout, added by soemyatmyat-->
+        <!--bootstrap session timeout, added by soemyatmyat-->
         <script src="js/bootstrap-session-timeout.min.js"></script> 
-        
+
         <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
 
+
+        <script src="js/ajax.js"></script>
+        <script src="js/core.js"></script>
+        <script src="js/delegate.js"></script>
+        <script src="js/jquery.validate.js"></script>
+        <script src="js/additional-methods.js"></script>
         <link rel="shortcut icon" href="img/twc_logo.png">
         <title>JSP Page</title>
 
@@ -63,9 +70,7 @@
                     maxDate: 0,
                     yearRange: "-100:nn"
                 });
-
             });
-
             //for date inputs
             $(document).ready(function() {
 
@@ -73,14 +78,71 @@
                     $('.dateInput').blur();
                 });
             });
-
             $(document).ready(function() {
                 $('.no_change').focus(function() {
                     $('.no_change').blur();
                 });
             });
+            $(document).ready(function() {
+                jQuery.validator.addMethod("FIN", function(value, element) {
+                    return this.optional(element) || /^[G][0-9]{7}[A-Z]/.test(value) || /^GEN[0-9]{6}/.test(value);
+                }, "Invalid FIN number. Please check again.");
 
+                jQuery.validator.addMethod("FileSize", function(value, element) {
+                    return this.optional(element) || (element.files[0].size <= 1048576);
+
+                }, "Invalid FIN number. Please check again.");
+
+
+                $('#createworker_form').validate({
+                    ignore: ":hidden",
+                    rules: {
+                        finNum: {
+                            required: true,
+                            FIN: true
+                                    /**,
+                                     remote: {
+                                     url: 'processValidate',
+                                     type: "post",
+                                     data: { finNum: function() { return $("finNum").val(); }
+                                     }
+                                     }**/
+                        },
+                        facePic: {
+                            accept: "image/png,image/jpeg,image/jpg,image/bmp",
+                            extension: "png,jpeg,jpg,bmp",
+                            FileSize: true
+                        }
+                    },
+                    messages: {
+                        facePic: "Please choose an image file with a size less than 1M only."
+                        
+                    },
+                    highlight: function(element) {
+                        $(element).closest('.form-group').addClass('has-error');
+                    },
+                    unhighlight: function(element) {
+                        $(element).closest('.form-group').removeClass('has-error');
+                    },
+                    errorElement: 'span',
+                    errorClass: 'help-block',
+                    errorPlacement: function(error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    }
+                });
+                $("#next_btn").click(function() {
+                    //alert('hello');
+                    $('#createworker_form').valid();
+
+                });
+            });
             function swapDiv(div_id, curr_id, num) {
+
+
                 var curr_div_id = "#" + curr_id;
                 var val = 0;
                 var missing_input_field = "";
@@ -107,15 +169,10 @@
                     //$('.next_btn').prop('disabled',false);
                 } else {
                     //$('.next_btn').prop('disabled',true);
-                    if (missing_input_field === "finNum") {
-                        alert("FIN Number is required.");
-                    } else if (missing_input_field === "workerName") {
-                        alert("Worker Name is required.");
-                    } else if (missing_input_field === 'employerName') {
-                        alert("Employer Name is required.");
-                    }
+
                     //alert("Some fields are missing. Please enter all the required fields.");
                 }
+
             }
 
             //display others
@@ -178,7 +235,7 @@
                         <div class="form-group">
                             <label for="created_for_In" class="col-md-3 control-label">Created For</label>
                             <div class=" col-md-6">
-                                <input type="text" name="createdFor" class="form-control"/>
+                                <input type="text" name="createdFor" class="form-control" maxlength="20"/>
                             </div>
                         </div>
 
@@ -186,7 +243,7 @@
                         <div class="form-group">
                             <label for="worker_name" class="col-md-3 control-label " >Name of Worker <span class="required_input">*</span> </label>
                             <div class=" col-md-6">
-                                <input type="text" class="form-control required" name="workerName"/>
+                                <input type="text" class="form-control required" name="workerName" maxlength="20" required/>
                             </div>
                         </div>
 
@@ -197,7 +254,7 @@
                                 <input type="text" id="finNum"  class="form-control required" name="finNum"/>
                             </div>
                             <div id="finButton" class="col-md-4">
-                                <button type="" id="generateTWC2Fin" class="btn btn-blue btn-blue-default">Generate FIN</button>
+                                <button type="" id="generateTWC2Fin" class="btn btn-blue ">Generate FIN</button>
                             </div>
                         </div>
 
@@ -216,7 +273,7 @@
                         <div class="form-group">
                             <label for="worker_nationality" class="col-md-3 control-label">Nationality</label>
                             <div class="col-md-6">
-                                <select class="form-control" id="worker_nationality" name="nationality" onchange="displayOther(this.id);"/>
+                                <select class="form-control" id="worker_nationality" name="nationality" />
                                 <option value="">Select Nationality:</option>
                                 <%
                                     for (String nationalityStr : nationalityList) {
@@ -230,10 +287,10 @@
                         </div>
 
                         <!--this to appear only if above is selected as other-->
-                        <div class="form-group" id="worker_nationality_other_div" style="display:none">
+                        <div class="form-group" id="worker_nationality_other_div">
                             <label for="worker_nationality_other_In" class="col-md-3 control-label">Explain if above is other</label>
                             <div class=" col-md-6">
-                                <input type="text" class="form-control" name="nationalityMore">
+                                <input type="text" class="form-control" name="nationalityMore" maxlength="50"/>
                             </div>
                         </div>
 
@@ -247,8 +304,8 @@
 
 
                         <div class="form-group btn btn-blue-div col-md-12" >
-                            <span class="required_input">* Required field</span>
-                            <button type='button' onclick="swapDiv('job_profile', 'worker_profile', 1);" class="btn btn-blue btn btn-blue-default pull-right next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+                            <span class="required_input pull-left">* Required field</span>
+                            <button type='button' onclick="swapDiv('job_profile', 'worker_profile', 1);" class="btn btn-blue pull-right next_btn" id="next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
                         </div>
                     </div>
 
@@ -262,14 +319,14 @@
                         <div class="form-group">
                             <label for="emp_name" class="col-md-3 control-label" >Name of Employer <span class="required_input">*</span> </label>
                             <div class=" col-md-6">
-                                <input type="text" class="form-control required" id="employerName" name="employerName" /></div>
+                                <input type="text" class="form-control required" id="employerName" name="employerName" maxlength="50" required/></div>
                         </div>
 
 
                         <div class="form-group">
                             <label for="job_pass_type" class="col-md-3 control-label">Work pass type that comes with the job<span class="required_input">*</span></label>
                             <div class=" col-md-6">
-                                <select name="workpassType" class="form-control" id="job_pass_type">
+                                <select name="workpassType" class="form-control" id="job_pass_type" required>
                                     <option value="">Select Work Pass Type:</option>
                                     <%
                                         for (String passTypeStr : passTypeList) {
@@ -287,14 +344,14 @@
                         <div class="form-group" id="job_pass_type_other_div">
                             <label for="job_pass_type_other_In" class="col-md-3 control-label">Explain if above is 'Other'</label>
                             <div class=" col-md-6">
-                                <input type="text" class="form-control" name="workpassMore"/></div>
+                                <input type="text" class="form-control" name="workpassMore" maxlength="50"/></div>
                         </div>
 
 
                         <div class="form-group">
                             <label for="job_sector" class="col-md-3 control-label">Job Sector</label>
                             <div class=" col-md-6">
-                                <select class="form-control" name="jobSector" id="job_sector" onchange="displayOther(this.id);" >
+                                <select class="form-control" name="jobSector" id="job_sector" >
                                     <option value="">Select Job Sector:</option>
                                     <%
                                         for (String jobSectorStr : jobSectorList) {
@@ -312,26 +369,26 @@
                         <div class="form-group" id="job_sector_other_div">
                             <label for="job_sector_other_In" class="col-md-3 control-label">Explain if above is other</label>
                             <div class=" col-md-6">
-                                <input type="text" class="form-control" name="jobSectorMore" /></div>
+                                <input type="text" class="form-control" name="jobSectorMore" maxlength="50"/></div>
                         </div>
 
                         <div class="form-group">
                             <label for="occupation" class="col-md-3 control-label" >Occupation</label>
                             <div class=" col-md-6">
-                                <input type="text" class="form-control" name="occupation"/></div>
+                                <input type="text" class="form-control" name="occupation" maxlength="50"/></div>
                         </div>
 
 
                         <div class="form-group">
                             <label for="job_start_date" class="col-md-3 control-label" >When Job Start?</label>
                             <div class=" col-md-3">
-                                <input type="text" class="form-control" name="jobStartDate"/></div>
+                                <input type="text" class="form-control" name="jobStartDate" maxlength="50"/></div>
                         </div>
 
                         <div class="form-group">
                             <label for="job_end_date" class="col-md-3 control-label">When Job End?</label>
                             <div class=" col-md-3">
-                                <input type="text"  class="form-control" name="jobEndDate"/></div>
+                                <input type="text"  class="form-control" name="jobEndDate" maxlength="50"/></div>
                         </div>
 
 
@@ -349,16 +406,16 @@
                         <div class="form-group" id="job_sector_other_div">
                             <label for="job_remark" class="col-md-3 control-label">Remark about Job:</label>
                             <div class=" col-md-6">
-                                <input type="text" class="form-control" name="jobRemark"/> 
+                                <input type="text" class="form-control" name="jobRemark" maxlength="200"/> 
                             </div>
                         </div>
 
 
                         <div class="form-group btn btn-blue-div col-md-12" style='position: relative'>
-                            <span class="required_input">* Required field</span>
+                            <span class="required_input pull-left">* Required field</span>
                             <div class="pull-right">
                                 <button type='button' onclick="swapDiv('worker_profile', 'job_profile', -1);" class="btn btn-blue btn btn-blue-default" style="bottom: 0">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
-                                <button type='button' onclick="swapDiv('prob_profile', 'job_profile', 1);" class="btn btn-blue btn btn-blue-default next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+                                <button type='button' onclick="swapDiv('prob_profile', 'job_profile', 1);" class="btn btn-blue btn btn-blue-default next_btn"  id="next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
                             </div>
                         </div>
 
@@ -373,7 +430,7 @@
                         <div class="form-group">
                             <label for="prob_type" class="col-md-3 control-label">Problem Presented<span class="required_input">*</span></label>
                             <div class=" col-md-6"> 
-                                <select name="problem" id="prob_type" class="form-control">
+                                <select name="problem" id="prob_type" class="form-control" required>
                                     <option value="">Select Problem..</option>
                                     <%
                                         for (String problemStr : problemList) {
@@ -391,86 +448,21 @@
                         <div class="form-group" id="prob_type_other_div">
                             <label for="worker_pass_type_other_In" class="col-md-3 control-label">Explain if above is other</label>
                             <div class=" col-md-6">
-                                <input type="text" class="form-control" name="problemMore" /></div>
+                                <input type="text" class="form-control" name="problemMore" maxlength="50" /></div>
                         </div>
 
 
                         <div class="form-group" id="job_sector_other_div" >
                             <label for="prob_remark" class="col-md-3 control-label">Remark about Problem:</label>
                             <div class=" col-md-6">
-                                <input type="text" class="form-control" name="problemRemark" /></div>
+                                <input type="text" class="form-control" name="problemRemark" maxlength="200"/></div>
                         </div>
-
-<!--
-                        <div id="injury_div" style="display : none">
-                            <div class="form-group">
-                                <label for="injury_date" class="col-md-3 control-label" >Injury Date</label>
-                                <div class=" col-md-3">
-                                    <input type="text" class="dateInput" class="form-control" name="injuryDate"/></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="injury_body_part" class="col-md-3 control-label" >Injury Body Part</label>
-                                <div class=" col-md-6">
-                                    <input type="text" class="form-control" name="injuryBodyPart"/></div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="prob_hospital" class="col-md-3 control-label">Current Hospital</label>
-                                <div class=" col-md-6">
-                                    <select class="form-control" name="currentHosptial" id="prob_hospital" onchange="displayOther(this.id);" >
-                                        <%
-                                            for (String hospitalStr : hospitalList) {
-                                        %>
-                                        <option><%=hospitalStr%></option>
-                                        <%
-                                            }
-                                        %> 
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group" id="prob_hospital_other_div" style="display:none">
-                                <label for="prob_hospital_other_In" class="col-md-3 control-label">Explain if above is other</label>
-                                <div class=" col-md-6">
-                                    <input type="text" class="form-control" name="hospitalMore" /></div>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="has_lawyer" class="col-md-3 control-label">Does worker have lawyer for this problem?</label>
-                            <div class=" col-md-6">
-                                <select class="form-control" name="lawyerHas">
-                                    <option>No</option>
-                                    <option>Yes</option>
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="law_firm_name" class="col-md-3 control-label" >Name of Law Firm</label>
-                            <div class=" col-md-6">
-                                <select class="form-control" name="lawfirmName" id="lawfirmName" >
-                                    <%
-                                        for (String lawFirmStr : lawFirmList) {
-                                    %>
-                                    <option><%=lawFirmStr%></option>
-                                    <%
-                                        }
-                                    %> 
-                                </select>
-
-                            </div>
-                        </div>
--->
 
                         <div class="form-group btn btn-blue-div col-md-12">
-                            <span class="required_input">* Required field</span>
+                            <span class="required_input pull-left">* Required field</span>
                             <div class="pull-right">
                                 <button  type='button' onclick="swapDiv('job_profile', 'prob_profile', -1);" class="btn btn-blue btn btn-blue-default">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
-                                <button type='button' onclick="swapDiv('face_pic', 'prob_profile', 1);" class="btn btn-blue btn btn-blue-default next_btn">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+                                <button type='button' onclick="swapDiv('face_pic', 'prob_profile', 1);" class="btn btn-blue next_btn" id="next_btn" >Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
                             </div>
                         </div>
                     </div>
@@ -479,16 +471,6 @@
                         <br/>
                         <h2 id="title">Case Creation Form - Upload Face Photo </h2>
                         <br/>
-
-                        <!--
-                        <div class="form-group" id="job_sector_other_div" >
-                            <label for="facePic" class="col-md-3 control-label">Upload Face Picture</label>
-                            <div class=" col-md-6">
-                                <input type="file" class="form-control" name="facePic" /></div>
-                                
-                                
-                        </div>
-                        -->
 
                         <!--- Face Picture -->
                         <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -535,185 +517,176 @@
     </body>
 </html>
 <script>
-            
-            //form validation 
-            $(document).ready(function() {
-                    $('#createworker_form')
-                    .bootstrapValidator({         
-                        fields: {
-                            facePic: {
-                               validators: {
-                                   file: {
-                                       extension: 'png,jpeg,jpg,bmp',
-                                       type: 'image/png,image/jpeg,image/jpg,image/bmp',
-                                       maxSize: 1024*1024,
-                                       message: 'Please choose an image file with a size less than 1M only.'
-                                   }
-                               }
-                           },
-                            //worker
-                            workerName: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'This field cannot be empty.'
-                                    },
-                                    stringLength: {
-                                        max: 50,
-                                        message: 'This field must be less than 50 characters.'
-                                    }
-                                }
-                            },
-                        finNum: {
-                            validators: {
-                                stringLength: {
-                                    max: 12,                       
-                                    message: 'This field must be less than 12 characters.'
-                                },
-                                notEmpty: {
-                                    message: 'This field cannot be empty.'
-                                 },
-                                callback: {
-                                    message: 'Wrong answer',
-                                    callback: function(value, validator, $field) {
-                                        var finType1 = /^[G][0-9]{7}[A-Z]$/;
-                                        var finType2 = /^GEN[0-9]{6}$/;
-                                        var finType1Res = finType1.test(value);
-                                        if (finType1.test(value) === false && finType2.test(value) === false) {
-                                            return {
-                                                valid: false,
-                                                message: 'FIN number is incorrect. Please Check again.'
-                                            };
-                                        }
-                                        return true;
-                                    }
-                                },
-                                remote: {
-                                    message: 'The FIN Number already exists.',
-                                    url: 'processValidate',
-                                    data: function(validator) {
-                                        return {
-                                            finNum: validator.getFieldElements('finNum').val()
-                                        };
-                                    }
-                                }
-                            }
-                        },
-                        nationalityMore: {
-                            validators: {
-                                stringLength: {
-                                    max: 50,
-                                    message: 'This field must be less than 50 characters.'
-                                }
-                            }
-                        },
-                        createdFor: {
-                            validators: {
-                                stringLength: {
-                                    max: 20,
-                                    message: 'This field must be less than 20 characters.'
-                                }
-                            }
-                        },
-                        //job Profile
-                        employerName: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'This field cannot be empty.'
-                                },
-                                stringLength: {
-                                    max: 50,
-                                    message: 'This field must be less than 50 characters.'
-                                }
-                            }
-                        },
-                        workpassType: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'This field cannot be empty.'
-                                }
-                            }
-                        },
-                        workpassMore: {
-                            validators: {
-                                stringLength: {
-                                    max: 50,
-                                    message: 'This field must be less than 50 characters.'
-                                }
-                            }
-                        },
-                        jobSectorMore: {
-                            validators: {
-                                stringLength: {
-                                    max: 50,
-                                    message: 'This field must be less than 50 characters.'
-                                }
-                            }
-                        },
-                        occupation: {
-                            validators: {
-                                stringLength: {
-                                    min: 0,
-                                    max: 50,
-                                    message: 'This field must be less than 50 characters.'
-                                }
-                            }
-                        },
-                        jobStartDate: {
-                            validators: {
-                                stringLength: {
-                                    min: 0,
-                                    max: 50,
-                                    message: 'This field must be less than 50 characters.'
-                                }
-                            }
-                        },
-                        jobEndDate: {
-                            validators: {
-                                stringLength: {
-                                    min: 0,
-                                    max: 50,
-                                    message: 'This field must be less than 50 characters.'
-                                }
-                            }
-                        },
-                        jobRemark: {
-                            validators: {
-                                stringLength: {
-                                    min: 0,
-                                    max: 200,
-                                    message: 'This field must be less than 200 characters.'
-                                }
-                            }
-                        },
-                        //problem profile
-                         problem: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'This field cannot be empty.'
-                                }
-                            }
-                        },
-                        problemMore: {
-                            validators: {
-                                stringLength: {
-                                    max: 50,
-                                    message: 'This field must be less than 50 characters.'
-                                }
-                            }
-                        },
-                        problemRemark: {
-                            validators: {
-                                stringLength: {
-                                    max: 200,
-                                    message: 'This field must be less than 200 characters.'
-                                }
-                            }
-                        }
-                    }
-                });
-
-
-            });
+            /**       
+             * form validation 
+             $(document).ready(function() {
+             $('#createworker_form')
+             .bootstrapValidator({
+             fields: {
+             facePic: {
+             validators: {
+             file: {
+             extension: 'png,jpeg,jpg,bmp',
+             type: 'image/png,image/jpeg,image/jpg,image/bmp',
+             maxSize: 1024 * 1024,
+             message: 'Please choose an image file with a size less than 1M only.'
+             }
+             }
+             },
+             //worker
+             
+             finNum: {
+             validators: {
+             stringLength: {
+             max: 12,
+             message: 'This field must be less than 12 characters.'
+             },
+             notEmpty: {
+             message: 'This field cannot be empty.'
+             },
+             callback: {
+             message: 'Wrong answer',
+             callback: function(value, validator, $field) {
+             var finType1 = /^[G][0-9]{7}[A-Z]$/;
+             var finType2 = /^GEN[0-9]{6}$/;
+             var finType1Res = finType1.test(value);
+             if (finType1.test(value) === false && finType2.test(value) === false) {
+             return {
+             valid: false,
+             message: 'FIN number is incorrect. Please Check again.'
+             };
+             }
+             return true;
+             }
+             },
+             remote: {
+             message: 'The FIN Number already exists.',
+             url: 'processValidate',
+             data: function(validator) {
+             return {
+             finNum: validator.getFieldElements('finNum').val()
+             };
+             }
+             }
+             }
+             },
+             nationalityMore: {
+             validators: {
+             stringLength: {
+             max: 50,
+             message: 'This field must be less than 50 characters.'
+             }
+             }
+             },
+             createdFor: {
+             validators: {
+             stringLength: {
+             max: 20,
+             message: 'This field must be less than 20 characters.'
+             }
+             }
+             },
+             //job Profile
+             employerName: {
+             validators: {
+             notEmpty: {
+             message: 'This field cannot be empty.'
+             },
+             stringLength: {
+             max: 50,
+             message: 'This field must be less than 50 characters.'
+             }
+             }
+             },
+             workpassType: {
+             validators: {
+             notEmpty: {
+             message: 'This field cannot be empty.'
+             }
+             }
+             },
+             workpassMore: {
+             validators: {
+             stringLength: {
+             max: 50,
+             message: 'This field must be less than 50 characters.'
+             }
+             }
+             },
+             jobSectorMore: {
+             validators: {
+             stringLength: {
+             max: 50,
+             message: 'This field must be less than 50 characters.'
+             }
+             }
+             },
+             occupation: {
+             validators: {
+             stringLength: {
+             min: 0,
+             max: 50,
+             message: 'This field must be less than 50 characters.'
+             }
+             }
+             },
+             jobStartDate: {
+             validators: {
+             stringLength: {
+             min: 0,
+             max: 50,
+             message: 'This field must be less than 50 characters.'
+             }
+             }
+             },
+             jobEndDate: {
+             validators: {
+             stringLength: {
+             min: 0,
+             max: 50,
+             message: 'This field must be less than 50 characters.'
+             }
+             }
+             },
+             jobRemark: {
+             validators: {
+             stringLength: {
+             min: 0,
+             max: 200,
+             message: 'This field must be less than 200 characters.'
+             }
+             }
+             },
+             //problem profile
+             problem: {
+             validators: {
+             notEmpty: {
+             message: 'This field cannot be empty.'
+             }
+             }
+             },
+             problemMore: {
+             validators: {
+             stringLength: {
+             max: 50,
+             message: 'This field must be less than 50 characters.'
+             }
+             }
+             },
+             problemRemark: {
+             validators: {
+             stringLength: {
+             max: 200,
+             message: 'This field must be less than 200 characters.'
+             }
+             }
+             }
+             }
+             });
+             
+             
+             });
+             **/
 
 
 <!--added by soemyatmyat for generating TWC2 In-house FinNumber-->
@@ -733,13 +706,11 @@
                         //$("#finButton").html("<button type=\"button\" id=\"inputFin\" class=\"btn btn-blue btn btn-blue-default\">" + 
                         //     "Input Fin</button>");
                         $('#createworker_form').formValidation('revalidateField', 'finNum');
-
                     }
                 });
             });
-            
             //session time out
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $.sessionTimeout({
                     message: 'Your session will be expired in one minute.',
                     keepAliveUrl: 'keep-alive.html',

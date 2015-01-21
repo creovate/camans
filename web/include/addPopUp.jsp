@@ -1837,6 +1837,8 @@
     String jobKey = request.getParameter("jobkey");         //passed from viewWorker.jsp
     String probKey = request.getParameter("probkey");    //passed from viewWorker.jsp
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+    
+    java.util.Date today = new java.util.Date();
 %>
 
 <!-------------------------->
@@ -1861,7 +1863,7 @@
         <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
         <input type="hidden" name="complementName" value="WorkerNickname"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -1903,7 +1905,7 @@
 
         </div>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -1936,7 +1938,7 @@
         </div>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -1975,7 +1977,7 @@
         </div>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -2009,7 +2011,7 @@
         </div>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -2042,7 +2044,7 @@
         </div>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -2105,7 +2107,7 @@
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerDigitalContact"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2173,7 +2175,7 @@
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerNextOfKin"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2231,7 +2233,7 @@
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerFamilyMember"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2278,7 +2280,7 @@
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerFriend"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2345,7 +2347,7 @@
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerLanguage"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2415,7 +2417,7 @@
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerBankAcct"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2500,7 +2502,7 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="JobPassDetails"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2552,7 +2554,7 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="EmployerDetails"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2635,7 +2637,7 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="ContractDetails"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2751,7 +2753,7 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="Agent"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2803,7 +2805,7 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="VerbalAssurance"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2913,7 +2915,7 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="WorkPlace"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2994,7 +2996,7 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="WorkHistory"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -3105,7 +3107,7 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="Accommodation"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -3224,7 +3226,7 @@
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="complementName" value="IPA"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -3282,7 +3284,7 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="policareport"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -3305,7 +3307,7 @@
         <div class='form-group '>
             <label for='date' class="control-label">Date other complaint lodged<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
+            <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>" >
         </div>
         <div class='form-group '>
             <label for='date' class="control-label">Agency/authority to whom complaint addressed<span style="color: red">*</span>: </label>
@@ -3370,7 +3372,7 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="othercomplaint"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -3391,7 +3393,7 @@
         <div class='form-group'>
             <label for='ttrUpdate' class="control-label">Date of Update: <span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="ndate">
+            <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
             <label for='nttrStatus' class="control-label">Transfer, TJS or Repatriation Status<span style="color: red">*</span>:</label>
@@ -3439,7 +3441,7 @@
         <input type="hidden" name="complementName" value="ttr"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp ">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -3463,7 +3465,7 @@
         <div class='form-group'>
             <label for='nmilestoneCRDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="ndate">
+            <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
             <label for='nmilestoneCRReached' class="control-label">Miestone Reached: <span style="color: red">*</span>:</label>
@@ -3506,7 +3508,7 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="cmilestone"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp ">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -3529,7 +3531,7 @@
         <div class='form-group'>
             <label for='milestoneNCDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control dateInput input-append date dateInput" type='text' name="ndate">
+            <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
             <label for='nmilestoneNCReached' class="control-label">Milestone Reached: <span style="color: red">*</span>:</label>
@@ -3563,7 +3565,7 @@
         <input type="hidden" name="complementName" value="ncmilestone"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp ">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -3586,7 +3588,7 @@
         <div class='form-group'>
             <label for='r2rDate' class="control-label">Date of Appointment: <span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="ndate" >
+            <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
             <label for='r2rTime' class="control-label">Time of Appointment: </label>
@@ -3631,7 +3633,7 @@
         <div class='form-group'>
             <label for='r2rFeedback' class="control-label">Feedback: </label>
             <br/>
-            <textarea class="form-control" name="r2rFeedback" rows="3"></textarea>
+            <textarea class="form-control" name="nr2rFeedback" rows="3"></textarea>
         </div>
         <div class='form-group'>
             <label for='r2rMed' class="control-label">Medical Cost of this appt: </label>
@@ -3648,7 +3650,7 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="r2r"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp ">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -3671,7 +3673,7 @@
         <div class='form-group'>
             <label for='' class="control-label">Date of Update<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
+            <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Current MC or Light Duty Status<span style="color: red">*</span>:</label>
@@ -3712,7 +3714,7 @@
         <input type="hidden" name="complementName" value="mc"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp ">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -3736,7 +3738,7 @@
         <div class='form-group'>
             <label for='' class="control-label">Date of update<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
+            <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Current Hospital<span style="color: red">*</span>:</label>
@@ -3772,7 +3774,7 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="hospital"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp ">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -3792,7 +3794,7 @@
             <div class='form-group'>
                 <label for='ndate' class="control-label">Date MOM notified<span style="color: red">*</span>:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="ndate">
+                <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
             </div>
             <div class='form-group'>
                 <label for='nloss' class="control-label">Initial value of claim S$</label>
@@ -3824,7 +3826,7 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="nonwicaclaim"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -3845,7 +3847,7 @@
         <div class='form-group'>
             <label for='nwicaUpdate' class="control-label">Date of Update<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="ndate">
+            <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
             <label for='nwicaStatus' class="control-label">WICA Status <span style="color: red">*</span>:</label>
@@ -3890,7 +3892,7 @@
         <input type="hidden" name="complementName" value="wica"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp ">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -3910,7 +3912,7 @@
             <div class='form-group'>
                 <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span>:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="ndate">
+                <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
             </div>
             <div class='form-group'>
                 <label for='nrefNumber' class="control-label">WICA Ref number:</label>
@@ -3943,7 +3945,7 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="wicaclaim"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -4007,7 +4009,7 @@
             <input type="hidden" name="complementName" value="illnesscase"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -4030,7 +4032,7 @@
             <div class='form-group'>
                 <label for='ndate' class="control-label">Date of injury<span style="color: red">*</span>:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="ndate" >
+                <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
             </div>
             <div class='form-group'>
                 <label for='ntime' class="control-label">Approx time of injury: </label>
@@ -4093,7 +4095,7 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="injurycase"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -4114,7 +4116,7 @@
         <div class='form-group'>
             <label for='' class="control-label">Date of Discussion, Assistance or Information-Receipt<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="ndate" >
+            <input class="form-control dateInput" type='text' name="ndate"  value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Approx Time of event </label>
@@ -4205,7 +4207,7 @@
         <input type="hidden" name="complementName" value="casediscussion"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp ">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -4228,7 +4230,7 @@
             <div class='form-group'>
                 <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span>:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="ndate">
+                <input class="form-control dateInput" type='text' name="ndate" >
             </div>
 
             <div class='form-group'>
@@ -4247,7 +4249,7 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="salarycalim"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -4337,7 +4339,7 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="salaryhistory"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -4359,7 +4361,7 @@
         <div class='form-group'>
             <label for='lawyerUpdate' class="control-label">Date of update<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
+            <input class="form-control dateInput" type='text' name="ndate"  value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
             <label for='lawyerFirm' class="control-label">Current Law Firm<span style="color: red">*</span>: </label>
@@ -4396,7 +4398,7 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="lawyer"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp ">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp ">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -4445,7 +4447,7 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="auxcaseworker"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -4496,7 +4498,7 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="leadcaseworker"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn ">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn ">Save</button>
                 <button type='button' class='btn modal_btn  cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -4554,7 +4556,7 @@
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="aggravissue"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -4593,7 +4595,7 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="othercase"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>

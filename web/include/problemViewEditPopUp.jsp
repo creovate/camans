@@ -1666,6 +1666,7 @@
 
     //end of data collection
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+    java.util.Date today = new java.util.Date();
 %>
 
 <%
@@ -1765,7 +1766,7 @@
             <div class='form-group'>
                 <label for='ndate' class="control-label">Date of injury<span style="color: red">*</span>:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="ndate" >
+                <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>" >
             </div>
             <div class='form-group'>
                 <label for='ntime' class="control-label">Approx time of injury </label>
@@ -2631,7 +2632,7 @@
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about Medical Claim:</label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3"><%=remark%></textarea>
+                <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
 
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
@@ -4037,9 +4038,9 @@
             <textarea class="form-control" name="nr2rPostApptNotes" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='r2rFeedback' class="control-label">Feedback:</label>
+            <label for='nr2rFeedback' class="control-label">Feedback:</label>
             <br/>
-            <textarea class="form-control" name="r2rFeedback" rows="3"></textarea>
+            <textarea class="form-control" name="nr2rFeedback" rows="3"></textarea>
         </div>
         <div class='form-group'>
             <label for='r2rMed' class="control-label">Medical Cost of this Appt(S$):</label>
@@ -4433,6 +4434,7 @@
 
         java.util.Date ncDate = nc.getMilesNCDate();
         String ncReached = nc.getMilesNCReached();
+        String ncReachedMore = nc.getMilesNCReachedMore();
         String ncRem = nc.getMilesNCRem();
 
         ArrayList<String> ncList = DropdownDAO.retrieveAllDropdownListOfMilestoneNonCriminal();
@@ -4508,7 +4510,7 @@
         <div class='form-group' id="ncReached_other_div" >
             <label for='milestoneNCReachedMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="milestoneNCReachedMore">
+            <input class="form-control" type='text' name="milestoneNCReachedMore" value="<%=ncReachedMore%>">
         </div>
         <div class='form-group'>
             <label for='milestoneNCRem' class="control-label">Remarks re Milestone Reached:</label>
@@ -4682,8 +4684,7 @@
         <div class='form-group'>
             <label for='milestoneCRCharges' class="control-label">Details of Charges:</label>
             <br/>
-            <input class="form-control" type='text' name="milestoneCRCharges" value="<%=crCharges%>">
-            <textarea class="form-control" name="remark" rows="3"><%=crRem%></textarea>
+            <textarea class="form-control" name="milestoneCRCharges" rows="3"><%=crCharges%></textarea>
         </div>
         <div class='form-group'>
             <label for='milestoneCRSentence' class="control-label">Details of Sentence:</label>
@@ -4817,7 +4818,6 @@
             <div class='form-group'>
                 <label for='ttrJob' class="control-label">Description of TJS or new job :</label>
                 <br/>
-                <input class="form-control" type='text' name="ttrJob" value="<%=job%>">
                 <textarea class="form-control" name="ttrJob" rows="3"><%=job%></textarea>
             </div>
             <div class='form-group'>
@@ -5431,9 +5431,7 @@
 
         <%
             String mode = psalary.getSalMode();
-            if (mode.equals("other")) {
-                mode = psalary.getSalModeMore();
-            }
+            String modeMore = psalary.getSalModeMore();
             String basic = psalary.getSalHistBasic();
             String overtime = psalary.getSalHistOt();
             String allowance = psalary.getSalHistAllowances();
@@ -5642,7 +5640,7 @@
             </div>
             <div class='form-group' id='mode_other_div' >
                 <label for='modeMore' class="control-label">Explain if above is other</label><br/>
-                <input class="form-control" type='text' name="modeMore">
+                <input class="form-control" type='text' name="modeMore" value="<%=modeMore%>">
             </div>
             <div class='form-group'>
                 <label for='totalValue' class="control-label">Estimated Total Value of Claim (S$):</label>
