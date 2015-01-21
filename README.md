@@ -1,5 +1,19 @@
 camans
 ======
+<i><b>21st Jan 2015</b></i><br/>
+==Debugging==
+1. edited button css <br/>
+2. standardize the create case forms<br/>
+3. page redirect of the edit stubs<br/>
+4. case referral protect multiple referrel<br/>
+5. case referral link with add new lcw<br/>
+6. edited case referral form<br/>
+7. css for add new job/problem pop ups<br/>
+8. css for pop ups<br/>
+9. benefection date <br/>
+10. Problem Compelments<br/>
+11. Create Case<br/>
+
 
 <i><b>Debug 20ty Jan 2015 - smm</b></i><br/>
 
