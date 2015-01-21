@@ -3,6 +3,11 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="camans.entity.*"%>
 <%@page import="camans.dao.*"%>
+<script src="js/ajax.js"></script>
+<script src="js/core.js"></script>
+<script src="js/delegate.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script src="js/additional-methods.js"></script>
 
 <script>
     function edit(stub_name, title) {
@@ -36,7 +41,7 @@
 
     });
 
-    //for date inputs
+    //for not type-able inputs
     $(document).ready(function() {
 
         $('.no_change').focus(function() {
@@ -54,108 +59,130 @@
     /**
      * Add Job & Problem particulars validation
      **/
-
-
-    $(document).ready(function() {
-        $('#addCase')
-        .bootstrapValidator({
-            fields: {
-                //job Profile
-                jobPassType:{
-                  validators:{
-                      notEmpty:{
-                          message: 'This field cannot be empty. Please choose one.'
-                      }
-                  }  
-                },
-                passMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                employerName: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        },
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                jobSectorMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                occupation: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                jobStartDate: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                jobEndDate: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                jobRemark: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                //problem profile
-                problem: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        }
-                    }
-                },
-                problemMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                problemRemark: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
-                        }
-                    }
-                }
-            },
-            submitButtons: "button[type='button']"
-        });
-
+    $('#addCase').validate({
+        ignore: ":hidden",
+        highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            if (element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        }
     });
+
+    $("#job_next_btn").click(function() {
+        $('#addCase').valid();
+    });
+
+    /**
+     $(document).ready(function() {
+     $('#addCase')
+     .bootstrapValidator({
+     fields: {
+     //job Profile
+     jobPassType:{
+     validators:{
+     notEmpty:{
+     message: 'This field cannot be empty. Please choose one.'
+     }
+     }  
+     },
+     passMore: {
+     validators: {
+     stringLength: {
+     max: 50,
+     message: 'This field must be less than 50 characters.'
+     }
+     }
+     },
+     employerName: {
+     validators: {
+     stringLength: {
+     max: 50,
+     message: 'This field must be less than 50 characters.'
+     },
+     notEmpty: {
+     message: 'This field cannot be empty.'
+     }
+     }
+     },
+     jobSectorMore: {
+     validators: {
+     stringLength: {
+     max: 50,
+     message: 'This field must be less than 50 characters.'
+     }
+     }
+     },
+     occupation: {
+     validators: {
+     stringLength: {
+     max: 50,
+     message: 'This field must be less than 50 characters.'
+     }
+     }
+     },
+     jobStartDate: {
+     validators: {
+     stringLength: {
+     max: 50,
+     message: 'This field must be less than 50 characters.'
+     }
+     }
+     },
+     jobEndDate: {
+     validators: {
+     stringLength: {
+     max: 50,
+     message: 'This field must be less than 50 characters.'
+     }
+     }
+     },
+     jobRemark: {
+     validators: {
+     stringLength: {
+     max: 50,
+     message: 'This field must be less than 50 characters.'
+     }
+     }
+     },
+     //problem profile
+     problem: {
+     validators: {
+     notEmpty: {
+     message: 'This field cannot be empty.'
+     }
+     }
+     },
+     problemMore: {
+     validators: {
+     stringLength: {
+     max: 50,
+     message: 'This field must be less than 50 characters.'
+     }
+     }
+     },
+     problemRemark: {
+     validators: {
+     stringLength: {
+     max: 200,
+     message: 'This field must be less than 200 characters.'
+     }
+     }
+     }
+     },
+     submitButtons: "button[type='button']"
+     });
+     
+     });**/
     /**
      * Edit worker particulars validation
      **/
@@ -307,7 +334,7 @@
         if (val === 0) {
             $('.sub_div').hide();
             document.getElementById(div_id).style.display = 'block';
-            
+
             //$('.next_btn').prop('disabled',false);
         } else {
             //$('.next_btn').prop('disabled',true);
@@ -774,19 +801,19 @@
     %>
 
     <!--Job Profile-->
-    <div class="sub_div" id="new_job_profile" style="position: relative">
+    <div class="sub_div" id="new_job_profile">
         <br/>
-        <div class="form-group">
+        <div class="form-group" class="col-md-12">
             <label for="emp_name" class="col-md-5 control-label" >Name of Employer <span class="required_input">*</span> </label>
             <div class=" col-md-7">
-                <input type="text" class="form-control required" name="employerName" /></div><br/><br/>
+                <input type="text" class="form-control required" maxlength="50" name="employerName" required/></div><br/><br/>
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group" class="col-md-12">
             <label for="job_pass_type" class="col-md-5 control-label">Work pass type that comes with the job<span class="required_input">*</span></label>
             <div class=" col-md-7">
-                <select name="workpassType" class="form-control" id="job_pass_type">
+                <select name="workpassType" class="form-control" id="job_pass_type" required>
                     <option value=''>Select from list..</option>
                     <%
                         for (String passTypeStr : passTypeList) {
@@ -801,14 +828,14 @@
 
 
         <!--this to appear only if above is selected as other-->
-        <div class="form-group" id="job_pass_type_other_div" >
+        <div class="form-group col-md-12" id="job_pass_type_other_div" >
             <label for="job_pass_type_other_In" class="col-md-5 control-label">Explain if above is 'Other'</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="workpassMore"/></div><br/><br/>
+                <input type="text" class="form-control" maxlength="50" name="workpassMore"/></div><br/><br/>
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group col-md-12">
             <label for="job_sector" class="col-md-5 control-label">Job Sector</label>
             <div class=" col-md-7">
                 <select class="form-control" name="jobSector" id="job_sector" >
@@ -826,34 +853,34 @@
 
 
         <!--this to appear only if above is selected as other-->
-        <div class="form-group" id="job_sector_other_div" >
+        <div class="form-group col-md-12" id="job_sector_other_div" >
             <label for="job_sector_other_In" class="col-md-5 control-label">Explain if above is 'other'</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="jobSectorMore" /></div><br/><br/>
+                <input type="text" class="form-control" maxlength="50" name="jobSectorMore" /></div><br/><br/>
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group col-md-12">
             <label for="occupation" class="col-md-5 control-label" >Occupation</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="occupation" /></div><br/><br/>
+                <input type="text" class="form-control" name="occupation" maxlength="50"/></div><br/><br/>
         </div>
 
 
-        <div class="form-group">
-            <label for="job_start_date" class="col-md-3 control-label" >Start Date</label>
-            <div class=" col-md-3">
-                <input type="text" class="form-control" name="jobStartDate" /></div>
+        <div class="form-group col-md-12">
+            <label for="job_start_date" class="col-md-5 control-label" >Start Date</label>
+            <div class=" col-md-7">
+                <input type="text" class="form-control" name="jobStartDate" maxlength="50"/></div>
         </div>
 
-        <div class="form-group">
-            <label for="job_end_date" class="col-md-3 control-label">End Date</label>
-            <div class=" col-md-3">
-                <input type="text"  class="form-control" name="jobEndDate" /></div><br/><br/>
+        <div class="form-group col-md-12">
+            <label for="job_end_date" class="col-md-5 control-label">End Date</label>
+            <div class=" col-md-7">
+                <input type="text"  class="form-control" name="jobEndDate" maxlength="50"/></div><br/><br/>
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group col-md-12">
             <label for="is_tjs" class="col-md-5 control-label">Is this a TJS job?</label>
             <div class=" col-md-7">
                 <select name="tjs" class="form-control">
@@ -864,31 +891,31 @@
         </div>
 
 
-        <div class="form-group" id="job_sector_other_div">
+        <div class="form-group col-md-12" id="job_sector_other_div">
             <label for="job_remark" class="col-md-5 control-label">Remark</label>
             <div class=" col-md-7">
-                <textarea class='form-control' name='jobRemark' rows='3'></textarea> 
+                <textarea class='form-control' name='jobRemark' rows='3' maxlength="50"></textarea> 
             </div><br/><br/>
         </div>
 
         <p class="alert-danger"></p>
-        
-                <button type='' class="btn cancel_btn pull-left" style="bottom: 0">Cancel</button>
-            <div class="pull-right">
-                <button type='button' onclick="swapDiv('new_prob_profile', 'new_job_profile', 1);" class="btn btn-blue btn btn-blue-default " style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
-            </div><br/><br/>
+
+        <button type='' class="btn cancel_btn pull-left" style="bottom: 0">Cancel</button>
+        <div class="pull-right">
+            <button type='button' onclick="swapDiv('new_prob_profile', 'new_job_profile', 1);" class="btn btn-blue btn btn-blue-default " id="job_next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+        </div><br/><br/>
 
     </div>
 
     <!--problem profile-->
     <div class="sub_div" id="new_prob_profile" style="display : none">
         <br/>
-        <div class="form-group">
+        <div class="form-group col-md-12">
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Problem Registration Date<span class="required_input">*</span>:</label>
             <div class=" col-md-7">
                 <input class="form-control dateInput" type='text' name="registeredDate" value="<%=sdf.format(pRegDate)%>" autofocus/></div><br/><br/>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-12">
             <label for="prob_type" class="col-md-5 control-label">Problem Type<span class="required_input">*</span></label>
             <div class=" col-md-7"> 
                 <select name="problem" id="prob_type" class="form-control" required>
@@ -906,14 +933,14 @@
 
 
         <!--this to appear only if above is selected as other-->
-        <div class="form-group" id="prob_type_other_div" >
+        <div class="form-group col-md-12" id="prob_type_other_div" >
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Explain if above is other</label>
             <div class=" col-md-7">
                 <input type="text" class="form-control" name="problemMore" /></div><br/><br/>
         </div>
 
 
-        <div class="form-group" id="job_sector_other_div" >
+        <div class="form-group col-md-12" id="job_sector_other_div" >
             <label for="prob_remark" class="col-md-5 control-label">Remark</label>
             <div class=" col-md-7">
                 <textarea class='form-control' name='problemRemark' rows="3"></textarea>
@@ -924,10 +951,10 @@
 
         <input type="hidden" id="hiddenWorkerFin" name="workerFinNum" value="<%=workerFin%>"/>
         <button type='' class="btn cancel_btn" style="bottom: 0">Cancel</button>
-            <div class="pull-right">
-                <button  type='button' onclick="swapDiv('new_job_profile', 'new_prob_profile', -1);" class="btn btn-blue ">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
-                <button  type='submit' class="btn btn-blue">Submit</button>
-            </div>
+        <div class="pull-right">
+            <button  type='button' onclick="swapDiv('new_job_profile', 'new_prob_profile', -1);" class="btn btn-blue ">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
+            <button  type='submit' class="btn btn-blue">Submit</button>
+        </div>
     </div>
 </form> 
 <%} else if (action.equals("add") && profile.equals("problem")) {
@@ -1005,7 +1032,7 @@
 
     }
 
-$(document).ready(function() {
+    $(document).ready(function() {
         $('.cancel_btn').addClass('pull-right');
         $('.form-control').addClass('input-sm');
     });

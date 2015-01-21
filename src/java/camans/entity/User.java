@@ -143,14 +143,15 @@ public class User {
     }
     
     public boolean authenticate(String password) {
-        
+        /*
         try {
             return PasswordHash.validatePassword(password, this.password);
         } catch (Exception ex) {
             //do not process & show error page
             return false;
         }  
-        //return password.equals(this.password);
+        */
+        return password.equals(this.password);
     }
 
     @Override
