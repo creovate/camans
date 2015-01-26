@@ -828,12 +828,12 @@
             <div class='form-group'>
                 <label for='nPassportIssueDate' class="control-label">Passport Issue Date: </label>
                 <br/>
-                <input class="form-control input-append date startDate" type='text' name="nPassportIssueDate" >
+                <input class="form-control dateInput startDate" type='text' name="nPassportIssueDate" >
             </div>
             <div class='form-group'>
                 <label for='nPassportExpiryDate' class="control-label">Passport Expiry Date: </label>
                 <br/>
-                <input class="form-control endDate" type='text' name="nPassportExpiryDate" >
+                <input class="form-control dateInput endDate" type='text' name="nPassportExpiryDate" >
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerPassportDetails"/>
@@ -859,14 +859,14 @@
         <div class='form-group'>
             <label for='passportIssueDate' class="control-label">Passport Issue Date: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="passportIssueDate" 
+            <input class="form-control dateInput startDate" type='text' name="passportIssueDate" 
                    value="<%=(passportdetails.getPassportIssueDate() == null) ? ""
                            : sdf.format(passportdetails.getPassportIssueDate())%>">
         </div>
         <div class='form-group'>
             <label for='passportExpiryDate' class="control-label">Passport Expiry Date: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="passportExpiryDate" 
+            <input class="form-control dateInput endDate" type='text' name="passportExpiryDate" 
                    value="<%=(passportdetails.getPassportExpirtyDate() == null) ? ""
                            : sdf.format(passportdetails.getPassportExpirtyDate())%>">
         </div>

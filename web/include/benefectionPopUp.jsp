@@ -93,6 +93,13 @@
                         }
                     }
                 },
+                givenby: {
+                   validators: {
+                        notEmpty: {
+                            message: 'Given by cannot be empty.'
+                        }
+                    } 
+                },
                 benetype: {
                     validators: {
                         notEmpty: {
@@ -141,6 +148,13 @@
                             message: 'Date given cannot be empty.'
                         }
                     }
+                },
+                ngivenby: {
+                   validators: {
+                        notEmpty: {
+                            message: 'Given by cannot be empty.'
+                        }
+                    } 
                 },
                 nbenetype: {
                     validators: {
@@ -203,6 +217,13 @@
                             message: 'Date given cannot be empty.'
                         }
                     }
+                },
+                ngivenby: {
+                   validators: {
+                        notEmpty: {
+                            message: 'Given by cannot be empty.'
+                        }
+                    } 
                 },
                 nbenetype: {
                     validators: {
@@ -391,9 +412,9 @@
                 <input class="form form-control date dateInput" type='text' id="nisDate" name="nisDate" value='<%=sdf.format(today)%>' required>
             </div>
             <div class='form-group'>
-                <label for='ngivenby' class="control-label" >Given By: </label>
+                <label for='ngivenby' class="control-label" >Given By<span style="color: red">*</span>:</label>
                 <br/>
-                <input class="form-control no_change" type='text' name="ngivenby" value="<%=userLogin.getUsername()%>"/>
+                <input class="form-control" type='text' name="ngivenby"/>
             </div>
             <div class='form-group'>
                 <label for='nbenetype' class="control-label">Benefit Type: </label>
@@ -452,9 +473,9 @@
                    type='text' id="isDate" name="isDate" value="<%=(issueDate == null) ? "" : issueDate%>" required>
         </div>
         <div class='form-group'>
-            <label for='givenby' class="control-label" >Given By: </label>
+            <label for='givenby' class="control-label" >Given By<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control" type='text' name="givenby" value="<%=userLogin.getUsername()%>" readonly="readonly"/>
+            <input class="form-control" type='text' name="givenby" value="<%=(benefitGiver == null)?"": benefitGiver%>"/>
         </div>
         <div class='form-group'>
             <label for='benetype' class="control-label">Benefit Type: </label>
@@ -521,9 +542,9 @@
             <input class="form-control dateInput" type='text' name="nisDate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='ngivenby' class="control-label" >Given By: </label>
+            <label for='ngivenby' class="control-label" >Given By<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control" type='text' name="ngivenby" value="<%=userLogin.getUsername()%>" readonly="readonly"/>
+            <input class="form-control" type='text' name="ngivenby"/>
         </div>
         <div class='form-group'>
             <label for='nbenetype' class="control-label">Benefit Type<span style="color: red">*</span>: </label>

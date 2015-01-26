@@ -1437,12 +1437,12 @@
             <div class='form-group'>
                 <label for='nisdate' class="control-label">Pass Issue Date: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nisdate" >
+                <input class="form-control dateInput startDate" type='text' name="nisdate" >
             </div>
             <div class='form-group'>
                 <label for='nexdate' class="control-label">Pass Expiry Date: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nexdate" >
+                <input class="form-control dateInput endDate" type='text' name="nexdate" >
             </div>
             <div class='form-group'>
                 <label for='nissuer' class="control-label">Pass Issuing Agency:</label>
@@ -1514,14 +1514,14 @@
             <div class='form-group'>
                 <label for='isdate' class="control-label">Pass Issue Date: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="isdate" 
+                <input class="form-control dateInput startDate" type='text' name="isdate" 
                        value="<%=(pass.getIssueDate() == null) ? "" : 
                            sdf.format(pass.getIssueDate())%>">
             </div>
             <div class='form-group'>
                 <label for='exdate' class="control-label">Pass Expiry Date: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="exdate" 
+                <input class="form-control dateInput endDate" type='text' name="exdate" 
                        value="<%=(pass.getExpiryDate() == null) ? "" : 
                            sdf.format(pass.getExpiryDate())%>">
             </div>
@@ -2820,7 +2820,7 @@
                 <div class='form-group'>
                     <label for='name' class="control-label">Date arrived Singapore for this job:</label>
                     <br/>
-                    <input class="form-control" type='text' name="name" value="<%=(arrivalDate == null) ? "" : arrivalDate%>">
+                    <input class="form-control" type='text' name="name" value="<%=(arrivalDate == null) ? "" : sdf.format(arrivalDate)%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Is this first job in Singapore? </label>
@@ -2963,7 +2963,7 @@
             <div class='form-group'>
                 <label for='arrivalDate' class="control-label">Date arrived Singapore for this job:</label>
                 <br/>
-                <input class="form-control" type='text' name="arrivalDate" value="<%=(arrivalDate == null) ? "" : arrivalDate%>">
+                <input class="form-control dateInput" type='text' name="arrivalDate" value="<%=(arrivalDate == null) ? "" : sdf.format(arrivalDate)%>">
             </div>
             <div class='form-group'>
                 <label for='isFirstJob' class="control-label">Is this first job in Singapore? </label>
@@ -3498,7 +3498,7 @@
             <div class='form-group'>
                 <label for='nappDate' class="control-label">IPA Application Date:</label>
                 <br/>
-                <input class="form-control  dateInput" type='text' name="nappDate">
+                <input class="form-control dateInput" type='text' name="nappDate">
             </div>
             <div class='form-group'>
                 <label for='nempName' class="control-label">IPA Employer Name: </label>

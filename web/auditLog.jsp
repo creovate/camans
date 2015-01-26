@@ -11,7 +11,7 @@
 <%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy hh:mm a");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
     //Data collection//
     String errMsg = (String) request.getSession().getAttribute("errMsg");
     request.getSession().removeAttribute("errMsg");
@@ -52,89 +52,94 @@
     
     <body style='background:white'>
         <jsp:include page="include/navbartop.jsp"/>
-        <jsp:include page="include/navbarside.jsp"/>
-        
-        <div class="col-md-10">
+        <div class="row-offcanvas row-offcanvas-left" style="padding:1% 0% 0%;">
+            <jsp:include page="include/navbarside.jsp"/> 
+            <div class="col-md-10">
 
-            <div class="page-header">
-                <center><h2 style="color:#2980b9">Audit Logs</h2></center>    
-            </div>
-            <div class="panel panel-default">
-                <p bgcolor="#3579BC" class="worker_profile_header text-center">Search By</p>
-                <div class="panel-body">
-                    <form id="searchForm" method="post" action="searchAuditLog.do">
-                        <div class="row">
-                            <div class="form-group col-sm-3">
-                                <label>Start Date</label>
-                                <input type="text" id="reg_StartDate_In" name="startDate" 
-                                       class="form-control startDate" data-date-format="dd-mm-yyyy" 
-                                       value="<%=(startDateIn==null) ? "":startDateIn%>" required>
-                            </div>
-                            <div class="form-group col-sm-3">
-                                <label>End Date</label>
-                                <input type="text" id="reg_EndDate_In" name="endDate" 
-                                       class="form-control endDate" data-date-format="dd-mm-yyyy" 
-                                       value="<%=(endDateIn==null) ? "":endDateIn%>" required>
-                            </div>
-                            <br/>
-                            <div class="form-group col-sm-3">
-                                <button type="submit" class="btn btn-primary" id="btnSearch">Search</button>
-                                <button type="button" class="btn btn-info" id="btnReset" 
-                                                    type="reset" onClick="window.location.href=window.location.href">Reset</button>
-                            </div>
-                        </div>
-                    </form>    
+                <div class="page-header">
+                    <center><h2 style="color:#2980b9">Audit Logs</h2></center>    
                 </div>
-            </div>
-            <!-- Audit Log Table -->
-            <h4 style="color:#2980b9">Audit Logs</h4>
-            <!--<div class="panel panel-default">
-                <div class="panel-body">-->       
-                    <table class="table table-striped table-bordered table-hover" id="auditLogs-table">
-                        <thead bgcolor="#3579BC">
-                            <tr>
-                                <th><font color="#FFF">Date & Time</font></th>
-                                <th><font color="#FFF">Username</font></th>
-                                <th><font color="#FFF">Worker Fin Number</font></th>
-                                <th><font color="#FFF">Action Type</font></th>
-                                <th><font color="#FFF">Action Description</font></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%
-                                ArrayList<Integer> ids = new ArrayList<Integer>();
-                                if (result == null) {
-                                    ids = UserAuditLogDAO.retrievelast7daysUserAuditLogIds();                                    
-                                } else {
-                                    ids = result;
-                                }
-                                if (!ids.isEmpty()) {
-                                    for (int i = ids.size()-1; i >= 0; i--) {
-                                        UserAuditLog userAuditLog = UserAuditLogDAO.retrieveUserAduitLogById(ids.get(i));
-                                        java.sql.Timestamp timeStamp = UserAuditLogDAO.retrieveTimeStamp(userAuditLog);
-                                        String username = userAuditLog.getUsername();
-                                        String workerFinNum = userAuditLog.getWorkerFin();
-                                        String actionType = userAuditLog.getActionType();
-                                        String actionDesc = userAuditLog.getActionDesc();
+                <div class="panel panel-default">
+                    <p bgcolor="#3579BC" class="worker_profile_header text-center">Search By</p>
+                    <div class="panel-body">
+                        <form id="searchForm" method="post" action="searchAuditLog.do">
+                            <div class="row">
+                                <div class="form-group col-sm-3">
+                                    <label>Start Date</label>
+                                    <input type="text" id="reg_StartDate_In" name="startDate" 
+                                           class="form-control startDate" data-date-format="dd-mm-yyyy" 
+                                           value="<%=(startDateIn==null) ? "":startDateIn%>" required>
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <label>End Date</label>
+                                    <input type="text" id="reg_EndDate_In" name="endDate" 
+                                           class="form-control endDate" data-date-format="dd-mm-yyyy" 
+                                           value="<%=(endDateIn==null) ? "":endDateIn%>" required>
+                                </div>
+                                <br/>
+                                <div class="form-group col-sm-3">
+                                    <button type="submit" class="btn btn-primary" id="btnSearch">Search</button>
+                                    <button type="button" class="btn btn-info" id="btnReset" 
+                                                        type="reset" onClick="window.location.href=window.location.href">Reset</button>
+                                </div>
+                            </div>
+                        </form>    
+                    </div>
+                </div>
+                <!-- Audit Log Table -->
+    <%
+                    ArrayList<Integer> ids = new ArrayList<Integer>();
+                    if (result == null) {
+                        ids = UserAuditLogDAO.retrievelast7daysUserAuditLogIds();  
+                        out.println("<h4 style=\"color:#2980b9\">Audit Logs - Last 7 days records</h4>");
+                    } else {
+                        ids = result;
+                        if (!ids.isEmpty()) {
+                            out.println("<h4 style=\"color:#2980b9\">Audit Logs - Search Results</h4>");
+                        }
+                    }            
+    %>
+                <!--<div class="panel panel-default">
+                    <div class="panel-body">-->       
+                        <table class="table table-curved table-bordered table-hover" id="auditLogs-table">
+                            <thead bgcolor="#3579BC">
+                                <tr>
+                                    <th><font color="#FFF">Date & Time</font></th>
+                                    <th><font color="#FFF">Username</font></th>
+                                    <th><font color="#FFF">Worker Fin Number</font></th>
+                                    <th><font color="#FFF">Action Type</font></th>
+                                    <th><font color="#FFF">Action Description</font></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    if (!ids.isEmpty()) {
+                                        for (int i = ids.size()-1; i >= 0; i--) {
+                                            UserAuditLog userAuditLog = UserAuditLogDAO.retrieveUserAduitLogById(ids.get(i));
+                                            java.sql.Timestamp timeStamp = UserAuditLogDAO.retrieveTimeStamp(userAuditLog);
+                                            String username = userAuditLog.getUsername();
+                                            String workerFinNum = userAuditLog.getWorkerFin();
+                                            String actionType = userAuditLog.getActionType();
+                                            String actionDesc = userAuditLog.getActionDesc();
 
-                                %>
-                                    <tr>
-                                        <td><%=sdf.format(timeStamp)%></td>
-                                        <td><%=username%></td>
-                                        <td><%=workerFinNum%></td>
-                                        <td><%=actionType%></td>
-                                        <td><%=actionDesc%></td>
-                                    </tr>
-                            <%      }
-                                }   %>
-                        </tbody>
-                    </table>
-                <!--</div> //panel body
-            </div>//panel -->
-            <!-- End of Users Table -->    
+                                    %>
+                                        <tr>
+                                            <td><%=sdf.format(timeStamp)%></td>
+                                            <td><%=username%></td>
+                                            <td><%=workerFinNum%></td>
+                                            <td><%=actionType%></td>
+                                            <td><%=actionDesc%></td>
+                                        </tr>
+                                <%      }
+                                    }   %>
+                            </tbody>
+                        </table>
+                    <!--</div> //panel body
+                </div>//panel -->
+                <!-- End of Users Table -->    
 
-        </div>                 
-            
+            </div>                 
+        </div>             
         <script>
             //session time out
             $(document).ready(function () {

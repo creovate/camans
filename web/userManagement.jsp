@@ -53,526 +53,527 @@
     
     <body style='background:white'>
         <jsp:include page="include/navbartop.jsp"/>
-        <jsp:include page="include/navbarside.jsp"/>
+        <div class="row-offcanvas row-offcanvas-left" style="padding:1% 0% 0%;">
+            <jsp:include page="include/navbarside.jsp"/>
 
-        <div class="col-md-10">
+            <div class="col-md-10">
 
-            <div class="page-header">
-            <center><h2 style="color:#2980b9">User Management</h2></center>    
-            </div>
-            <!-- Add New User Button -->
-            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newUser_pop_up">
-                <span class="glyphicon glyphicon-user"></span> Add A New User
-            </button><br/><br/>
-            <!-- End of Add New User Button -->
+                <div class="page-header">
+                <center><h2 style="color:#2980b9">User Management</h2></center>    
+                </div>
+                <!-- Add New User Button -->
+                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newUser_pop_up">
+                    <span class="glyphicon glyphicon-user"></span> Add A New User
+                </button><br/><br/>
+                <!-- End of Add New User Button -->
 
-            <!-- success & error display -->
-            <% if (successMsg != null)  { %>
+                <!-- success & error display -->
+                <% if (successMsg != null)  { %>
 
-             <div class="alert alert-info" role="alert">
-                <a href="#" class="close" data-dismiss="alert">&times;</a>
-                <%=successMsg%>
-            </div>
+                 <div class="alert alert-info" role="alert">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    <%=successMsg%>
+                </div>
 
-            <% } %>
-            <% if (errorMsg != null)  { %>
+                <% } %>
+                <% if (errorMsg != null)  { %>
 
-             <div class="alert alert-danger" role="alert">
-                <a href="#" class="close" data-dismiss="alert">&times;</a>
-                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                <%=errorMsg%>
-            </div>
+                 <div class="alert alert-danger" role="alert">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <%=errorMsg%>
+                </div>
 
-            <% } %>
-            <!-- End of success & error display -->
+                <% } %>
+                <!-- End of success & error display -->
 
-            <!-- Users Table -->
-            <h3 style="color:#2980b9">All Users</h3>
-            <!--<div class="panel panel-default">
-                <div class="panel-body">-->       
-                    <table class="table table-striped table-bordered table-hover" id="users-table">
-                        <thead bgcolor="#3579BC">
-                            <tr>
-                                <th><font color="#FFF">S/N</font></th>
-                                <th><font color="#FFF">Profile Picture</font></th>
-                                <th><font color="#FFF">Username</font></th>
-                                <th><font color="#FFF">Email</font></th>
-                                <th><font color="#FFF">Role</font></th>
-                                <th><font color="#FFF">Registered Date</font></th>
-                                <th><font color="#FFF">Status</font></th>
-                                <th><font color="#FFF">Actions</font></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <%
-                                ArrayList<User> latestUserList = new ArrayList<User>();
-                                latestUserList = UserDAO.retrieveAllUsers();
-                                String photoPath;
-                                String username;
-                                String email;
-                                String role;
-                                Date registeredDate;
-                                String status;
-                                for (int i = 0; i < latestUserList.size(); i++) {
-                                    User user = latestUserList.get(i);
-                                    photoPath = user.getPhotoPath();
-                                    username = user.getUsername();
-                                    email = user.getEmailAddress();
-                                    role = user.getRole();
-                                    registeredDate = UserDAO.retrieveRegisteredDate(user);
-                                    status = user.getStatus();
-
-                            %>
-                            <tr>
-                                <td><%=i+1%></td>
-                                <!--<td><%=(photoPath==null)?"":photoPath%></td>-->
-                                <% if (photoPath == null || photoPath.contains("")) { %>
-                                <td><img src="img/profile_pic.jpg" width="40"></td>
-                                <% } else { %>
-                                <td><img src=<%=photoPath%> width="40"></td>
-                                <% }%>
-                                <td><%=username%></td>
-                                <td><%=email%></td>
-                                <td><%=role%></td>
-                                <td><%=sdf.format(registeredDate)%></td>
-                                <td><%=status%></td>
-                                <td align="center">
+                <!-- Users Table -->
+                <h3 style="color:#2980b9">All Users</h3>
+                <!--<div class="panel panel-default">
+                    <div class="panel-body">-->       
+                        <table class="table table-curved table-bordered table-hover" id="users-table">
+                            <thead bgcolor="#3579BC">
+                                <tr>
+                                    <th><font color="#FFF">S/N</font></th>
+                                    <th><font color="#FFF">Profile Picture</font></th>
+                                    <th><font color="#FFF">Username</font></th>
+                                    <th><font color="#FFF">Email</font></th>
+                                    <th><font color="#FFF">Role</font></th>
+                                    <th><font color="#FFF">Registered Date</font></th>
+                                    <th><font color="#FFF">Status</font></th>
+                                    <th><font color="#FFF">Actions</font></th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
                                 <%
-                                    if (status.equals("Active")) {
-                                %>
-                                    <a style="color: black" href="" class="edit_popup" data-nric='<%=user.getNricNumber()%>' 
-                                       data-fullname='<%=user.getFullName()%>' data-alias='<%=user.getAlias()%>'
-                                       data-username='<%=username%>' data-gender='<%=user.getGender()%>'
-                                       data-role='<%=user.getRole()%>' data-email='<%=email%>'
-                                       data-phone='<%=user.getPhoneNumber()%>' data-photo='<%=photoPath%>' 
-                                       data-toggle="modal" data-target="#user_pop_up">
+                                    ArrayList<User> latestUserList = new ArrayList<User>();
+                                    latestUserList = UserDAO.retrieveAllUsers();
+                                    String photoPath;
+                                    String username;
+                                    String email;
+                                    String role;
+                                    Date registeredDate;
+                                    String status;
+                                    for (int i = 0; i < latestUserList.size(); i++) {
+                                        User user = latestUserList.get(i);
+                                        photoPath = user.getPhotoPath();
+                                        username = user.getUsername();
+                                        email = user.getEmailAddress();
+                                        role = user.getRole();
+                                        registeredDate = UserDAO.retrieveRegisteredDate(user);
+                                        status = user.getStatus();
 
-                                       <span data-toggle="tooltip" title="Edit" class="glyphicon glyphicon-pencil"></span>
-                                    </a>    
-                                    &nbsp; &nbsp; &nbsp; &nbsp;
-                                    <a style="color: black" href="" class="delete_popup" data-username='<%=username%>'
-                                       data-toggle="modal" data-target="#user_delete_confirm">
-                                        <span data-toggle="tooltip" title="Deactivate" class="glyphicon glyphicon-remove"></span>
-                                    </a>&nbsp; &nbsp; &nbsp; &nbsp;
-                                    <a style="color: black" href="" class="user_reset_pwd" data-username='<%=username%>'
-                                       data-toggle="modal" data-target="#user_reset_pwd">
-                                        <span data-toggle="tooltip" title="Reset Password" class="glyphicon glyphicon-lock"></span>
-                                    </a>    
+                                %>
+                                <tr>
+                                    <td><%=i+1%></td>
+                                    <!--<td><%=(photoPath==null)?"":photoPath%></td>-->
+                                    <% if (photoPath == null || photoPath.contains("")) { %>
+                                    <td><img src="img/profile_pic.jpg" width="40"></td>
+                                    <% } else { %>
+                                    <td><img src=<%=photoPath%> width="40"></td>
+                                    <% }%>
+                                    <td><%=username%></td>
+                                    <td><%=email%></td>
+                                    <td><%=role%></td>
+                                    <td><%=sdf.format(registeredDate)%></td>
+                                    <td><%=status%></td>
+                                    <td align="center">
+
+                                    <%
+                                        if (status.equals("Active")) {
+                                    %>
+                                        <a style="color: black" href="" class="edit_popup" data-nric='<%=user.getNricNumber()%>' 
+                                           data-fullname='<%=user.getFullName()%>' data-alias='<%=user.getAlias()%>'
+                                           data-username='<%=username%>' data-gender='<%=user.getGender()%>'
+                                           data-role='<%=user.getRole()%>' data-email='<%=email%>'
+                                           data-phone='<%=user.getPhoneNumber()%>' data-photo='<%=photoPath%>' 
+                                           data-toggle="modal" data-target="#user_pop_up">
+
+                                           <span data-toggle="tooltip" title="Edit" class="glyphicon glyphicon-pencil"></span>
+                                        </a>    
+                                        &nbsp; &nbsp; &nbsp; &nbsp;
+                                        <a style="color: black" href="" class="delete_popup" data-username='<%=username%>'
+                                           data-toggle="modal" data-target="#user_delete_confirm">
+                                            <span data-toggle="tooltip" title="Deactivate" class="glyphicon glyphicon-remove"></span>
+                                        </a>&nbsp; &nbsp; &nbsp; &nbsp;
+                                        <a style="color: black" href="" class="user_reset_pwd" data-username='<%=username%>'
+                                           data-toggle="modal" data-target="#user_reset_pwd">
+                                            <span data-toggle="tooltip" title="Reset Password" class="glyphicon glyphicon-lock"></span>
+                                        </a>    
+                                    <%
+                                        } else {
+                                    %>
+                                        <a href="" class="delete_popup" data-username='<%=username%>'
+                                               data-toggle="modal" data-target="#user_activate_confirm">Re-activate</a>
+                                    <%  }   %>
+
+                                   </td>
+
+                                </tr>
                                 <%
-                                    } else {
+                                    }
                                 %>
-                                    <a href="" class="delete_popup" data-username='<%=username%>'
-                                           data-toggle="modal" data-target="#user_activate_confirm">Re-activate</a>
-                                <%  }   %>
+                            </tbody>
+                        </table>
+                    <!--</div> //panel body
+                </div>//panel -->
+                <!-- End of Users Table -->    
 
-                               </td>
+                <!-- New User Modal -->
+                <div class="modal fade" id="newUser_pop_up" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
 
-                            </tr>
-                            <%
-                                }
-                            %>
-                        </tbody>
-                    </table>
-                <!--</div> //panel body
-            </div>//panel -->
-            <!-- End of Users Table -->    
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
+                            Add A New User Form
+                        </h3>
+                      </div> <!--modal-header-->
 
-            <!-- New User Modal -->
-            <div class="modal fade" id="newUser_pop_up" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
-                        Add A New User Form
-                    </h3>
-                  </div> <!--modal-header-->
-
-                  <form id="newUserForm" method="post" action="processUser.do" class="form-horizontal"
-                        enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label class="col-sm-3">NRIC Number <span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="InputNRIC" name="nNRIC"
-                                    placeholder="Enter NRIC Number" required>
-                                </input>
+                      <form id="newUserForm" method="post" action="processUser.do" class="form-horizontal"
+                            enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-sm-3">NRIC Number <span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputNRIC" name="nNRIC"
+                                        placeholder="Enter NRIC Number" required>
+                                    </input>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputFullName">Full Name <span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="InputFullName" name="nFullName"
-                                    placeholder="Enter Full Name" required>
-                            </div>    
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputAlias">Alias</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="InputAlias" name="nAlias"
-                                    placeholder="Enter Alia">
-                            </div>    
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputUsername">Username<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="InputUsername" name="nUsername"
-                                    placeholder="Username" required>
-                            </div>    
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputPwd">Password<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control" id="InputPwd" name="nPwd"
-                                    placeholder="Password" required>
-                            </div>    
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputConfirmPwd">Retype Password<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control" id="InputConfirmPwd" name="nConfirmPwd"
-                                    placeholder="Password" required>
-                            </div>    
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputGender">Gender</label>
-                            <div class="col-sm-9">
-                                <select class="form-control" id="InputGender" name="nGender">
-                                    <option selected>Male</option>
-                                    <option>Female</option>
-                                </select>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputFullName">Full Name <span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputFullName" name="nFullName"
+                                        placeholder="Enter Full Name" required>
+                                </div>    
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputRole">Role</label>
-                            <div class="col-sm-9">
-                                <select class="form-control" id="InputRole" name="nRole">
-                                    <option selected>Associate</option>
-                                    <option>Specialist</option>
-                                    <option>Manager</option>
-                                    <option>Administrator</option>
-                                </select>
-                            </div>    
-                        </div>  
-
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputEmail1">Email address<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="email" class="form-control" id="InputEmail1" name="nEmail"
-                                    placeholder="Enter email" required>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputAlias">Alias</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputAlias" name="nAlias"
+                                        placeholder="Enter Alia">
+                                </div>    
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label  class="col-sm-3" for="InputPhNum">Phone Number</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="InputPhNum" name="nPhNum"
-                                       placeholder="Enter Phone Number">
-                            </div>    
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputProfilePic">Profile Picture Upload
-                                <span style ="color: red"><br/><br/>Only '.jpeg', '.jpg', '.png', '.bmp' formats are allowed.</span>
-                            </label>
-                            <div class="col-sm-9 fileinput fileinput-new" data-provides="fileinput">
-                              <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                <img data-src="holder.js/100%x100%" alt="...">
-                              </div>
-                              <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-                              <div>
-                                <span class="btn btn-default btn-file">
-                                    <span class="fileinput-new">Select image</span>
-                                    <span class="fileinput-exists">Change</span><input type="file" name="facePic" accept="image/*">
-                                </span>
-                                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                              </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputUsername">Username<span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputUsername" name="nUsername"
+                                        placeholder="Username" required>
+                                </div>    
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputPwd">Password<span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="InputPwd" name="nPwd"
+                                        placeholder="Password" required>
+                                </div>    
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputConfirmPwd">Retype Password<span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="InputConfirmPwd" name="nConfirmPwd"
+                                        placeholder="Password" required>
+                                </div>    
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputGender">Gender</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="InputGender" name="nGender">
+                                        <option selected>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputRole">Role</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="InputRole" name="nRole">
+                                        <option selected>Associate</option>
+                                        <option>Specialist</option>
+                                        <option>Manager</option>
+                                        <option>Administrator</option>
+                                    </select>
+                                </div>    
                             </div>  
-                       </div>
-                  </div> <!--modal body -->
 
-                  <div class="modal-footer">
-                    <input type="hidden" name="action" value="add"/> 
-                    <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
-                    <button type="submit" class="btn btn-primary">Add</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  </div>
-                </form>
-
-                </div> <!--modal content -->
-              </div> <!--modal dialog -->
-            </div> 
-            <!-- End of New user modal -->    
-
-            <!-- Edit User Modal -->
-            <div class="modal fade" id="user_pop_up" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
-                        Edit User Form
-                    </h3>
-                  </div> <!--modal-header-->
-
-                  <form id="editUserForm" method="post" action="processUser.do" class="form-horizontal" 
-                        enctype="multipart/form-data">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label class="col-sm-3">NRIC Number <span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="InputNRIC" name="nNRIC"
-                                    placeholder="Enter NRIC Number" readOnly="readOnly">
-                                </input>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputEmail1">Email address<span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="InputEmail1" name="nEmail"
+                                        placeholder="Enter email" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputFullName">Full Name <span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="InputFullName" name="nFullName"
-                                    placeholder="Enter Full Name">
-                            </div>    
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputAlias">Alias</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="InputAlias" name="nAlias"
-                                    placeholder="Enter Alia">
-                            </div>    
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputUsername">Username<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="InputUsername" name="nUsername"
-                                       placeholder="Username" readOnly="readOnly">
-                                <!--<span class="form-control edit_username"></span>-->
-                            </div>    
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputGender">Gender</label>
-                            <div class="col-sm-9">
-                                <select class="form-control" id="InputGender" name="nGender">
-                                    <option selected>Male</option>
-                                    <option>Female</option>
-                                </select>
+                            <div class="form-group">
+                                <label  class="col-sm-3" for="InputPhNum">Phone Number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputPhNum" name="nPhNum"
+                                           placeholder="Enter Phone Number">
+                                </div>    
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputRole">Role</label>
-                            <div class="col-sm-9">
-                                <select class="form-control" id="InputRole" name="nRole">
-                                    <option selected>Associate</option>
-                                    <option>Specialist</option>
-                                    <option>Manager</option>
-                                    <option>Administrator</option>
-                                </select>
-                            </div>    
-                        </div>  
 
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputEmail1">Email address<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="email" class="form-control" id="InputEmail1" name="nEmail"
-                                    placeholder="Enter email">
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputProfilePic">Profile Picture Upload
+                                    <span style ="color: red"><br/><br/>Only '.jpeg', '.jpg', '.png', '.bmp' formats are allowed.</span>
+                                </label>
+                                <div class="col-sm-9 fileinput fileinput-new" data-provides="fileinput">
+                                  <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img data-src="holder.js/100%x100%" alt="...">
+                                  </div>
+                                  <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                  <div>
+                                    <span class="btn btn-default btn-file">
+                                        <span class="fileinput-new">Select image</span>
+                                        <span class="fileinput-exists">Change</span><input type="file" name="facePic" accept="image/*">
+                                    </span>
+                                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                  </div>
+                                </div>  
+                           </div>
+                      </div> <!--modal body -->
+
+                      <div class="modal-footer">
+                        <input type="hidden" name="action" value="add"/> 
+                        <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </form>
+
+                    </div> <!--modal content -->
+                  </div> <!--modal dialog -->
+                </div> 
+                <!-- End of New user modal -->    
+
+                <!-- Edit User Modal -->
+                <div class="modal fade" id="user_pop_up" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
+                            Edit User Form
+                        </h3>
+                      </div> <!--modal-header-->
+
+                      <form id="editUserForm" method="post" action="processUser.do" class="form-horizontal" 
+                            enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-sm-3">NRIC Number <span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputNRIC" name="nNRIC"
+                                        placeholder="Enter NRIC Number" readOnly="readOnly">
+                                    </input>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label  class="col-sm-3" for="InputPhNum">Phone Number</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="InputPhNum" name="nPhNum"
-                                       placeholder="Enter Phone Number">
-                            </div>    
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputProfilePic">Profile Picture Upload
-                                <span style ="color: red"><br/><br/>Only '.jpeg', '.jpg', '.png', '.bmp' formats are allowed.</span>
-                            </label>
-                            <!--
-                            <div class="col-sm-4">
-                                <img id="InputPhoto" src="" id=""style="width: 150px; height: 150px;">
-                            </div>-->
-                            <div class="col-sm-4 fileinput fileinput-new" data-provides="fileinput">
-                              <div class="fileinput-new thumbnail" style="width: 150px; height: 150px;">
-                                <img id="InputPhoto" data-src="">
-                              </div>
-                              <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 150px; max-height: 150px;"></div>
-                              <div>
-                                <span class="btn btn-default btn-file">
-                                    <span class="fileinput-new">Select image</span>
-                                    <span class="fileinput-exists">Change</span><input type="file" name="nPhotoPath" accept="image/*">
-                                </span>
-                                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                              </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputFullName">Full Name <span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputFullName" name="nFullName"
+                                        placeholder="Enter Full Name">
+                                </div>    
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputAlias">Alias</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputAlias" name="nAlias"
+                                        placeholder="Enter Alia">
+                                </div>    
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputUsername">Username<span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputUsername" name="nUsername"
+                                           placeholder="Username" readOnly="readOnly">
+                                    <!--<span class="form-control edit_username"></span>-->
+                                </div>    
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputGender">Gender</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="InputGender" name="nGender">
+                                        <option selected>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputRole">Role</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="InputRole" name="nRole">
+                                        <option selected>Associate</option>
+                                        <option>Specialist</option>
+                                        <option>Manager</option>
+                                        <option>Administrator</option>
+                                    </select>
+                                </div>    
                             </div>  
-                       </div>
-                  </div> <!--modal body -->
 
-                  <div class="modal-footer">
-                    <input type="hidden" name="action" value="edit"/>  
-                    <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
-                    <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  </div>
-                </form>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputEmail1">Email address<span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="InputEmail1" name="nEmail"
+                                        placeholder="Enter email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label  class="col-sm-3" for="InputPhNum">Phone Number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputPhNum" name="nPhNum"
+                                           placeholder="Enter Phone Number">
+                                </div>    
+                            </div>
 
-                </div> <!--modal content -->
-              </div> <!--modal dialog -->
-            </div> 
-            <!-- End of Edit User modal -->    
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputProfilePic">Profile Picture Upload
+                                    <span style ="color: red"><br/><br/>Only '.jpeg', '.jpg', '.png', '.bmp' formats are allowed.</span>
+                                </label>
+                                <!--
+                                <div class="col-sm-4">
+                                    <img id="InputPhoto" src="" id=""style="width: 150px; height: 150px;">
+                                </div>-->
+                                <div class="col-sm-4 fileinput fileinput-new" data-provides="fileinput">
+                                  <div class="fileinput-new thumbnail" style="width: 150px; height: 150px;">
+                                    <img id="InputPhoto" data-src="">
+                                  </div>
+                                  <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 150px; max-height: 150px;"></div>
+                                  <div>
+                                    <span class="btn btn-default btn-file">
+                                        <span class="fileinput-new">Select image</span>
+                                        <span class="fileinput-exists">Change</span><input type="file" name="nPhotoPath" accept="image/*">
+                                    </span>
+                                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                  </div>
+                                </div>  
+                           </div>
+                      </div> <!--modal body -->
 
-            <!-- Confirm Deactivate Modal -->
-            <div class="modal fade" id="user_delete_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" 
-                 aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
+                      <div class="modal-footer">
+                        <input type="hidden" name="action" value="edit"/>  
+                        <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </form>
 
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
-                        Deactivate User
-                    </h3>
-                  </div> <!--modal-header-->
-                  <form id="deleteConfirmForm" method="post" action="processUser.do" class="form-horizontal">
-                    <div class="modal-body">
-                        <!--<input type="hidden" name="deleteUserName" id="deleteUserName" value=""/>-->
+                    </div> <!--modal content -->
+                  </div> <!--modal dialog -->
+                </div> 
+                <!-- End of Edit User modal -->    
 
-                        Are you sure you want to deactivate this user?<br/><br/>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputUsername">Username<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="InputUsername" name="nUsername"
-                                    placeholder="Username" readOnly="readOnly">
-                            </div>    
+                <!-- Confirm Deactivate Modal -->
+                <div class="modal fade" id="user_delete_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" 
+                     aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
+                            Deactivate User
+                        </h3>
+                      </div> <!--modal-header-->
+                      <form id="deleteConfirmForm" method="post" action="processUser.do" class="form-horizontal">
+                        <div class="modal-body">
+                            <!--<input type="hidden" name="deleteUserName" id="deleteUserName" value=""/>-->
+
+                            Are you sure you want to deactivate this user?<br/><br/>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputUsername">Username<span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputUsername" name="nUsername"
+                                        placeholder="Username" readOnly="readOnly">
+                                </div>    
+                            </div>
+
+                        </div> <!--modal body -->
+
+                        <div class="modal-footer">
+                          <input type="hidden" name="action" value="inactive"/> 
+                          <button type="submit" class="btn btn-success">Ok</button>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         </div>
+                    </form>
 
-                    </div> <!--modal body -->
+                    </div> <!--modal content -->
+                  </div> <!--modal dialog -->
+                </div> 
+                <!-- End of Confirm Deactivate Modal-->
 
-                    <div class="modal-footer">
-                      <input type="hidden" name="action" value="inactive"/> 
-                      <button type="submit" class="btn btn-success">Ok</button>
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    </div>
-                </form>
+                <!-- Confirm Activate Modal -->
+                <div class="modal fade" id="user_activate_confirm" tabindex="-1" role="dialog" 
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
 
-                </div> <!--modal content -->
-              </div> <!--modal dialog -->
-            </div> 
-            <!-- End of Confirm Deactivate Modal-->
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
+                            Activate User
+                        </h3>
+                      </div> <!--modal-header-->
+                      <form id="activateUserForm" method="post" action="processUser.do" class="form-horizontal">
+                        <div class="modal-body">
+                            <!--<input type="hidden" name="deleteUserName" id="deleteUserName" value=""/>-->
 
-            <!-- Confirm Activate Modal -->
-            <div class="modal fade" id="user_activate_confirm" tabindex="-1" role="dialog" 
-                 aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
+                            Are you sure you want to activate this user?<br/><br/>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputUsername">Username<span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputUsername" name="nUsername"
+                                        placeholder="Username" readOnly="readOnly">
+                                </div>    
+                            </div>
 
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
-                        Activate User
-                    </h3>
-                  </div> <!--modal-header-->
-                  <form id="activateUserForm" method="post" action="processUser.do" class="form-horizontal">
-                    <div class="modal-body">
-                        <!--<input type="hidden" name="deleteUserName" id="deleteUserName" value=""/>-->
+                        </div> <!--modal body -->
 
-                        Are you sure you want to activate this user?<br/><br/>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputUsername">Username<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="InputUsername" name="nUsername"
-                                    placeholder="Username" readOnly="readOnly">
-                            </div>    
+                        <div class="modal-footer">
+                          <input type="hidden" name="action" value="active"/> 
+                          <button type="submit" class="btn btn-success">Ok</button>
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         </div>
+                    </form>
 
-                    </div> <!--modal body -->
+                    </div> <!--modal content -->
+                  </div> <!--modal dialog -->
+                </div> 
+                <!-- End of Confirm Activate Modal-->
 
-                    <div class="modal-footer">
-                      <input type="hidden" name="action" value="active"/> 
-                      <button type="submit" class="btn btn-success">Ok</button>
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    </div>
-                </form>
+                <!-- Reset Password Modal -->
+                <div class="modal fade" id="user_reset_pwd" tabindex="-1" role="dialog" 
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
 
-                </div> <!--modal content -->
-              </div> <!--modal dialog -->
-            </div> 
-            <!-- End of Confirm Activate Modal-->
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h3 class="modal-title" id="user_reset_pwd_label" style="color:#2980b9" align="center">
+                            Reset Password
+                        </h3>
+                      </div> <!--modal-header-->
+                      <form id="resetPwd" method="post" action="processUser.do" class="form-horizontal">
+                        <div class="modal-body">
 
-            <!-- Reset Password Modal -->
-            <div class="modal fade" id="user_reset_pwd" tabindex="-1" role="dialog" 
-                 aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputUsername">Username<span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="InputUsername" name="nUsername"
+                                        placeholder="Username" readOnly="readOnly">
+                                </div>    
+                            </div>
 
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <h3 class="modal-title" id="user_reset_pwd_label" style="color:#2980b9" align="center">
-                        Reset Password
-                    </h3>
-                  </div> <!--modal-header-->
-                  <form id="resetPwd" method="post" action="processUser.do" class="form-horizontal">
-                    <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputPwd">Password<span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="InputPwd" name="nPwd"
+                                        placeholder="Password" required>
+                                </div>    
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3" for="InputConfirmPwd">Retype Password<span style="color: red">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="InputConfirmPwd" name="nConfirmPwd"
+                                        placeholder="Password" required>
+                                </div>    
+                            </div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputUsername">Username<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="InputUsername" name="nUsername"
-                                    placeholder="Username" readOnly="readOnly">
-                            </div>    
-                        </div>
+                      </div> <!--modal body -->
 
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputPwd">Password<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control" id="InputPwd" name="nPwd"
-                                    placeholder="Password" required>
-                            </div>    
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3" for="InputConfirmPwd">Retype Password<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control" id="InputConfirmPwd" name="nConfirmPwd"
-                                    placeholder="Password" required>
-                            </div>    
-                        </div>
+                      <div class="modal-footer">
+                        <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+                        <input type="hidden" name="action" value="resetPwd"/> 
+                        <button type="submit" class="btn btn-primary">Reset Password</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
+                      </div>
+                    </form>
 
-                  </div> <!--modal body -->
+                    </div> <!--modal content -->
+                  </div> <!--modal dialog -->
+                </div> 
+                <!-- End of Reset Password Modal-->
 
-                  <div class="modal-footer">
-                    <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
-                    <input type="hidden" name="action" value="resetPwd"/> 
-                    <button type="submit" class="btn btn-primary">Reset Password</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
-                  </div>
-                </form>
-
-                </div> <!--modal content -->
-              </div> <!--modal dialog -->
-            </div> 
-            <!-- End of Reset Password Modal-->
-
-        </div>                    
-            
+            </div>                    
+        </div>
         <script>
             //ready the data in tables
             $(document).ready(function () {

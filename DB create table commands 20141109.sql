@@ -1614,7 +1614,7 @@ Drop table if exists tbl_audit;
 Create table tbl_audit (
     Entry_date timestamp not null DEFAULT CURRENT_TIMESTAMP,
     ID int auto_increment not null,
-    username varchar (12) not null, /*to indicate who did the action*/
+    username varchar (20) not null, /*to indicate who did the action*/
     Key_log varchar(20) not null, /*to know which key (problem,job or worker) was being edited. If it was on a user, user FIN would be recorded */
     FIN_log varchar (20) not null, /*to indicate the name of the worker or user whose attributes was changed/added */
     Action_type varchar(20) not null, /* Type of action - add, edit, delete, import, export */
@@ -1948,24 +1948,24 @@ Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (2
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (270, 'Ttr_status_type', 'Other', null,11);
 /* DD26 -- Benefits - Type */
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank)  Values (271, 'Bene_type','Airline Ticket', 'Other', 1);
-Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank)  Values (272,'Bene_type', 'Cash accom', 'Other', 2);
+Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank)  Values (272,'Bene_type', 'Cash accom', 'Roof', 2);
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank)  Values (273,'Bene_type', 'Cash meal', 'Food', 1);
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank)  Values (274, 'Bene_type', 'Cash medical', 'Medical & Karunya',1);
-Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank)  Values (275, 'Bene_type', 'Cash Remark', 'Other', 3);
+Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank)  Values (275, 'Bene_type', 'Cash Remark', 'Other', 2);
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (276, 'Bene_type', 'Cash transport', 'Transport',1);
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (277, 'Bene_type', 'EZ FareGo', 'Transport',2);
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (278, 'Bene_type', 'EZ SWAT', 'Transport',3);
-Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (279, 'Bene_type', 'Hospital invoice', 'Other', 4);
-Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (280, 'Bene_type', 'Invoice from Remark vendor', 'Other', 5);
+Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (279, 'Bene_type', 'Hospital invoice', 'Other', 3);
+Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (280, 'Bene_type', 'Invoice from Remark vendor', 'Other', 4);
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (281, 'Bene_type', 'Karunya referral', 'Medical & Karunya',2);
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (282, 'Bene_type', 'Meal card', 'Food',2);
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (283, 'Bene_type', 'Meal CR', 'Food',3);
-Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (284, 'Bene_type', 'Phone card', 'Other', 6);
-Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (285, 'Bene_type', 'Pro-bono legal representation', 'Other', 7);
-Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (286, 'Bene_type', 'Refund by worker', 'Other',9);
+Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (284, 'Bene_type', 'Phone card', 'Other', 5);
+Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (285, 'Bene_type', 'Pro-bono legal representation', 'Other', 6);
+Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (286, 'Bene_type', 'Refund by worker', 'Other',7);
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (287, 'Bene_type', 'Remittance to worker or family', 'Other', 8);
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (288, 'Bene_type', 'Shelter admission', 'Roof', 1);
-Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (289, 'Bene_type', 'Other', 'Other', 10);
+Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (289, 'Bene_type', 'Other', 'Other', 9);
 
 
 /*

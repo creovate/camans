@@ -1893,12 +1893,12 @@
             <div class='form-group'>
                 <label for='nPassportIssueDate' class="control-label">Passport Issue Date: </label>
                 <br/>
-                <input class="form-control input-append date startDate" type='text' name="nPassportIssueDate" >
+                <input class="form-control dateInput startDate" type='text' name="nPassportIssueDate" >
             </div>
             <div class='form-group'>
                 <label for='nPassportExpiryDate' class="control-label">Passport Expiry Date: </label>
                 <br/>
-                <input class="form-control endDate" type='text' name="nPassportExpiryDate" >
+                <input class="form-control dateInput endDate" type='text' name="nPassportExpiryDate" >
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerPassportDetails"/>
@@ -2476,12 +2476,12 @@
             <div class='form-group'>
                 <label for='nisdate' class="control-label">Pass Issued Date: </label>
                 <br/>
-                <input class="form-control startDate" type='text' name="nisdate" >
+                <input class="form-control dateInput startDate" type='text' name="nisdate" >
             </div>
             <div class='form-group'>
                 <label for='nexdate' class="control-label">Pass Expiry Date: </label>
                 <br/>
-                <input class="form-control endDate" type='text' name="nexdate" >
+                <input class="form-control dateInput endDate" type='text' name="nexdate" >
             </div>
             <div class='form-group'>
                 <label for='nissuer' class="control-label">Pass Issuing Agency:</label>
@@ -3155,7 +3155,7 @@
             <div class='form-group'>
                 <label for='nappDate' class="control-label">IPA application date:</label>
                 <br/>
-                <input class="form-control dateInput input-append date dateInput" type='text' name="nappDate">
+                <input class="form-control dateInput" type='text' name="nappDate">
             </div>
             <div class='form-group'>
                 <label for='nempName' class="control-label">IPA Employer Name: </label>

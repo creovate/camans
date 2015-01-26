@@ -60,7 +60,7 @@ public class UserAuditLogDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID FROM tbl_audit where Entry_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)";
+            sql = "SELECT ID FROM tbl_audit where Entry_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) order by ID DESC";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             while (rs.next()) {

@@ -4391,12 +4391,12 @@
                                     </thead>
                                     <tbody>
                                     <%
+                                        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
                                         for (int i = 0; i < workerAttachList.size(); i++ ) {
                                             WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(workerAttachList.get(i));
                                             String docName = workerAttachment.getDocumentName();
                                             java.sql.Timestamp timeStamp = WorkerComplementsDAO.retrieveTimeStamp(workerAttachment);
                                             String submitBy = workerAttachment.getSubmitBy(); 
-                                            SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MMM-yyyy hh:mm a");
                                     %>
                                         <tr bgcolor="">
                                             <td><%=i+1%></td>
@@ -4469,8 +4469,8 @@
                         </div> <!--modal body -->
 
                         <div class="modal-footer">
-                          <button type="submit" class="btn btn-success">Ok</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-primary">Ok</button>
+                          <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
 
@@ -4518,8 +4518,8 @@
                           <input type="hidden" name="attachId" id="InputID" value=""/>
                           <input type="hidden" name="action" value="edit"/>
                           <input type="hidden" name="workerFin" value="<%=workerFin%>"/>  
-                          <button type="submit" class="btn btn-success">Ok</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-primary">Ok</button>
+                          <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
 
@@ -4559,8 +4559,8 @@
                           <input type="hidden" name="attachId" id="InputID" value=""/>
                           <input type="hidden" name="action" value="profilepic"/>
                           <input type="hidden" name="workerFin" value="<%=workerFin%>"/>  
-                          <button type="submit" class="btn btn-success">Ok</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-primary">Ok</button>
+                          <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
 
@@ -4745,7 +4745,7 @@
                                     message: 'The new file name cannot be empty.'
                                 },
                                 regexp: {
-                                    regexp: /^[0-9a-z\s]+$/i,
+                                    regexp: /^[0-9a-z\s_]+$/i,
                                     message: 'File name can consist of alphabetical, numerical character and spaces only.'
                                 },
                                 stringLength: {

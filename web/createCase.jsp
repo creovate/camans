@@ -95,7 +95,7 @@
 
 
                 $('#createworker_form').validate({
-                    ignore: ":hidden",
+                    //ignore: ":hidden",
                     rules: {
                         finNum: {
                             required: true,
@@ -479,9 +479,9 @@
                             </div>
                             <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                             <div>
-                                <span class="btn btn-blue btn btn-blue-default btn btn-blue-file">
+                                <span class="btn btn-default btn-file">
                                     <span class="fileinput-new">Select image</span>
-                                    <span class="fileinput-exists">Change</span><input type="file" name="facePic">
+                                    <span class="fileinput-exists">Change</span><input type="file" name="facePic" accept="image/*">
                                 </span>
                                 <a href="#" class="btn btn-blue btn btn-blue-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                             </div>

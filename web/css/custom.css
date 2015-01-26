@@ -503,9 +503,9 @@ ol.progtrckr li.progtrckr-todo:before {
 
 .side-menu .navbar ul li a{
     border-radius: 0;
-    color: #AF4454;
+    /*color: #AF4454;*/
     font-weight: bold;
-    font-size: large;
+    /*font-size: large;*/
 }
 
 #side-menu{

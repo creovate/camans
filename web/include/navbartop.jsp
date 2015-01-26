@@ -12,7 +12,11 @@
     ArrayList<Problem> problemList = CaseManagementDAO.retrieveUnassignedCases();
     //ArrayList<Problem> problemList = new ArrayList<Problem>();
 %>
-
+<style>
+    .selected{
+        background: #e7e7e7;
+    }
+</style>
 <div class="row">
 
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -25,14 +29,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="home.jsp"><img id="logo" src="img/twc_logo.png"></a>
+                <!--<a class="navbar-brand" href="home.jsp"><img id="logo" src="img/twc_logo.png"></a>-->
             </div>
            
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="caseReferral.jsp">Referred Cases <span class="badge"><%=problemList.size()%></span></a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<%=(_user.getPhotoPath()==null)?"img/profile_pic.jpg":_user.getPhotoPath()%>"><%=_user.getUsername()%> <span class="caret"></span></a>
+                        <a href="#" data-toggle="dropdown"><%=_user.getUsername()%> <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="userProfile.jsp">
                                     <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>

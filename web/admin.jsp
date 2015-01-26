@@ -33,41 +33,43 @@
     </head>
     <body>
         <jsp:include page="include/navbartop.jsp"/>
-        <jsp:include page="include/navbarside.jsp"/>
-        <div class="col-md-10">
-            
-            <!-- Page Header -->
-            <div class="page-header">
-            <center><h2 style="color:#2980b9">Administration <small> Dashboard</small></h2>   
-            </div>
-            <!-- end of page header -->
-            
-            <div class="row">
-                <!-- bootstrap -->
-                <div class="col-xs-6">
-                    <h3 style="color:#2980b9">Bootstrap</h3><br>
-                    <form id="" method="post" action="processBootstrap" enctype="multipart/form-data">           
-                        Select file to upload: <input type="file" name="zip" accept="application/zip"/><br>                                   
-                        To bootstrap, please select a ZIP file <br>then click on Load Data.<br/><br/>                    
-                        <button class="btn btn-primary" type="submit">Load Data</button>
-                        <% if (errList != null) {%>
-                        <!-- Show View Results Button to trigger modal if response is not null -->
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
-                            View Results
-                        </button>
-                        <% }%>
-                    </form>
-                    <br/><font color ="red"><%=(error==null)?"":error%></font>
-                    <br/>
-                </div> 
-                <!-- end of bootstrap -->
-                <div class="col-xs-6">
-                    <h3 style="color:#2980b9">Import/ Export Data</h3><br/>
+        <div class="row-offcanvas row-offcanvas-left" style="padding:1% 0% 0%;">
+            <jsp:include page="include/navbarside.jsp"/>
+            <div class="col-md-10">
+
+                <!-- Page Header -->
+                <div class="page-header">
+                <center><h2 style="color:#2980b9">Administration <small> Dashboard</small></h2>   
                 </div>
+                <!-- end of page header -->
+
+                <div class="row">
+                    <!-- bootstrap -->
+                    <div class="col-xs-6">
+                        <h3 style="color:#2980b9">Bootstrap</h3><br>
+                        <form id="" method="post" action="processBootstrap" enctype="multipart/form-data">           
+                            Select file to upload: <input type="file" name="zip" accept="application/zip"/><br>                                   
+                            To bootstrap, please select a ZIP file <br>then click on Load Data.<br/><br/>                    
+                            <button class="btn btn-primary" type="submit">Load Data</button>
+                            <% if (errList != null) {%>
+                            <!-- Show View Results Button to trigger modal if response is not null -->
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                                View Results
+                            </button>
+                            <% }%>
+                        </form>
+                        <br/><font color ="red"><%=(error==null)?"":error%></font>
+                        <br/>
+                    </div> 
+                    <!-- end of bootstrap -->
+                    <div class="col-xs-6">
+                        <h3 style="color:#2980b9">Import/ Export Data</h3><br/>
+                    </div>
+                </div>
+
             </div>
-            
-        </div>
         
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
