@@ -1,5 +1,27 @@
 camans
 ======
+
+<b>26th Jan 2015 - smm<b>
+
+1. Debugging <br/>
+(a) search worker [none] <br/>
+(b) worker complements [none] <br/>
+(c) job complements [work history - date] <br/>
+(d) benefits [none] <br/>
+(e) attachment [none] <br/>
+(f) user management [none] <br/>
+(g) audit trails [none] <br/>
+(h) dropdown configuration [none] <br/>
+(i) import & export function [none] <br/>
+
+2. new changes <br/>
+(a) minor changes in UI <br/>
+(b) audit trails [display list in descending order] <br/>
+(c) attachment [allow underscore in renaming the file] <br/>
+(d) benefits [changed given by to editable compulsory field] <br/>
+
+Signed-off-by: soemyatmyat <soemyatmyat@openmailbox.org>
+
 <i><b>21st Jan 2015</b></i><br/>
 ==Debugging==
 1. edited button css <br/>
