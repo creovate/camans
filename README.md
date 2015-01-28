@@ -1,5 +1,17 @@
 camans
 ======
+<b>28th Jan 2015 - smm<b>
+
+1. new changes <br/>
+(a) dropdwon configuration [UI changes] <br/>
+(b) attachment [Button color standardized for modals] <br/>
+(c) user management [Button color standardized for modals] <br/>
+(d) benefits [Validation Message Changed] <br/>
+(e) add new job [fixed the primary key problem for duplicate key] <br/>
+(f) add new problem [fixed the primary key problem for duplicate key] <br/>
+(g) view/edit/add job complements [Button color standardized for modals] <br/>
+
+Signed-off-by: soemyatmyat <soemyatmyat@openmailbox.org>
 
 <b>26th Jan 2015 - smm<b>
 

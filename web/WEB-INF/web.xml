@@ -52,7 +52,7 @@
         <servlet-name>processAssignCase</servlet-name>
         <servlet-class>camans.controller.processAssignCase</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>processFile</servlet-name>
         <servlet-class>camans.controller.processFile</servlet-class>
     </servlet>
@@ -68,8 +68,10 @@
         <servlet-name>processGenerateReport</servlet-name>
         <servlet-class>camans.controller.processGenerateReport</servlet-class>
     </servlet>
-    
-    
+    <servlet>
+        <servlet-name>processExport</servlet-name>
+        <servlet-class>camans.controller.processExport</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>processAddWorkerComplements</servlet-name>
         <url-pattern>/addWorkerComplement.do</url-pattern>
@@ -122,7 +124,7 @@
         <servlet-name>processAssignCase</servlet-name>
         <url-pattern>/assignCase.do</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>processFile</servlet-name>
         <url-pattern>/fileUpload.do</url-pattern>
     </servlet-mapping>
@@ -137,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>processGenerateReport</servlet-name>
         <url-pattern>/generateReport.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>processExport</servlet-name>
+        <url-pattern>/processExport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

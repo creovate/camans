@@ -90,7 +90,7 @@
     <%
                     ArrayList<Integer> ids = new ArrayList<Integer>();
                     if (result == null) {
-                        ids = UserAuditLogDAO.retrievelast7daysUserAuditLogIds();  
+                        ids = UserAuditLogDAO.retrievelast7daysUserAuditLogIds();
                         out.println("<h4 style=\"color:#2980b9\">Audit Logs - Last 7 days records</h4>");
                     } else {
                         ids = result;
@@ -114,7 +114,7 @@
                             <tbody>
                                 <%
                                     if (!ids.isEmpty()) {
-                                        for (int i = ids.size()-1; i >= 0; i--) {
+                                        for (int i = 0; i < ids.size(); i++) {
                                             UserAuditLog userAuditLog = UserAuditLogDAO.retrieveUserAduitLogById(ids.get(i));
                                             java.sql.Timestamp timeStamp = UserAuditLogDAO.retrieveTimeStamp(userAuditLog);
                                             String username = userAuditLog.getUsername();
@@ -124,6 +124,7 @@
 
                                     %>
                                         <tr>
+                                            <!--<td><%=ids.get(i)%></td>-->
                                             <td><%=sdf.format(timeStamp)%></td>
                                             <td><%=username%></td>
                                             <td><%=workerFinNum%></td>
@@ -174,10 +175,11 @@
                 });
             });
             
-            //ready the data in tables
-            $(document).ready(function () {
-                $('#auditLogs-table').dataTable();
-            }); 
+            $(document).ready(function() {
+                $('#auditLogs-table').dataTable( {
+                    aaSorting: [[0,'desc']]
+                } );
+            } );
             
             
         </script>

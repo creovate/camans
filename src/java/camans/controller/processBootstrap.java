@@ -57,8 +57,8 @@ public class processBootstrap extends HttpServlet {
                 ProblemDAO.deleteAll();
                 ProblemComplementsDAO.deleteAll();
                 //user & audit log 
-                UserDAO.deleteAllUsers();
-                UserAuditLogDAO.deleteAll();
+                //UserDAO.deleteAllUsers();
+                //UserAuditLogDAO.deleteAll();
                 //add superadmin
                 String encryptedPwd = "";
                 try {
@@ -66,9 +66,9 @@ public class processBootstrap extends HttpServlet {
                 } catch (Exception ex) {
                     //do not process & show error page 
                 }  
-                User user = new User("dummy", "Super Admin", "dummy", "superadmin", encryptedPwd, 
-                        "dummy@email.com", "", "Male", "Administrator", null, "Active");
-                UserDAO.addUser(user);
+                //User user = new User("dummy", "Super Admin", "dummy", "superadmin", encryptedPwd, 
+                //        "dummy@email.com", "", "Male", "Administrator", null, "Active");
+                //UserDAO.addUser(user);
             } catch (Exception ex) {
                 //log this error
                 out.println("Bootstrap Failed - Unable to delete existing data from database: " 
@@ -766,7 +766,7 @@ public class processBootstrap extends HttpServlet {
                 request.getSession().setAttribute("bootstrapResult", errList);
                 request.getSession().setAttribute("successList", successList);
                 
-                response.sendRedirect("admin.jsp");
+                response.sendRedirect("importexport.jsp");
             } catch (IOException ex) {
                 out.println("Bootstrap Failed - File IO exception occured: " + ex.getMessage());
                 return;

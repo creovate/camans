@@ -34,6 +34,30 @@ public class JobDAO {
      */
     public static HashMap<String, ArrayList<Job>> jobList = new HashMap<String, ArrayList<Job>>();
     
+    public static int retrieveMaxJobId() {
+        
+        int jobKey = 0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT max(Job_key) from tbl_job";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                jobKey = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Cannot retrieve max job id");
+        } finally {
+            ConnectionManager.close(conn, pstmt);
+        }  
+        return jobKey;
+    }
+    
     public static ArrayList<Integer> retrieveJobIdsOfWorker (Worker worker) {
         ArrayList<Integer> jobIds = new ArrayList<Integer>();
         

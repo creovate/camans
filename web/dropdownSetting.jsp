@@ -51,16 +51,17 @@
     }
 
 </style>
-    <body style='background:white'>
+    <body>
         <jsp:include page="include/navbartop.jsp"/>
         <div class="row-offcanvas row-offcanvas-left" style="padding:1% 0% 0%;">
             <jsp:include page="include/navbarside.jsp"/>
 
-            <div class="col-md-10" id="content">
+            <div class="col-md-10">
                 <!--Page Header-->
                 <div class="page-header">
                     <center><h2 style="color:#2980b9">Configure Dropdown Settings</h2></center>    
                 </div>
+                <!-- End of Page Header -->
                 <%
                     String type = dropdownname;
                     ArrayList<String> list = null;
@@ -77,199 +78,13 @@
                             list = DropdownDAO.retreiveAllDropdownListOfBenefits("Other");
                         }
                     } else {
+                        if (type == null) {
+                            type = "Accommodation_type";
+                        }
                         list = DropdownDAO.retrieveAllDropdownListByType(type);
                     }    
-                    String title = null;         
-                 if (type.equals("Accommodation_type")) { 
-                    title = "Accommodation Type";
-                    out.println("Accommodation Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Accommodation_type">Accommodation Type</a>,             
-                <% }%>
-                <% if (type.equals("Accom_provided_type")) { 
-                    title = "Accommodation Provided Type";
-                    out.println("Accommodation Provided Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Accom_provided_type">Accommodation Provided Type</a>,
-                <% }%>
-                <% if (type.equals("Agent_location_type")) { 
-                    title = "Agent Location Type";
-                    out.println("Agent Location Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Agent_location_type">Agent Location Type</a>, 
-                <% }%>
-                <% if (type.equals("Bene_type_food")) { 
-                    title = "Benefit Type (Food)";
-                    out.println("Benefit Type (Food), ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Bene_type_food">Benefit Type (Food)</a>,
-                <% }%>
-                <% if (type.equals("Bene_type_medical")) { 
-                    title = "Benefit Type (Medical & Karunya)";
-                    out.println("Benefit Type (Medical & Karunya), ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Bene_type_medical">Benefit Type (Medical & Karunya)</a>,
-                <% }%>
-                <% if (type.equals("Bene_type_roof")) { 
-                    title = "Benefit Type (Roof)";
-                    out.println("Benefit Type (Roof), ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Bene_type_roof">Benefit Type (Roof)</a>,
-                <% }%>
-                <% if (type.equals("Bene_type_transport")) { 
-                    title = "Benefit Type (Transport)";
-                    out.println("Benefit Type (Transport), ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Bene_type_transport">Benefit Type (Transport)</a>,
-                <% }%>
-                <% if (type.equals("Bene_type_other")) { 
-                    title = "Benefit Type (Other)";
-                    out.println("Benefit Type (Other), ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Bene_type_other">Benefit Type (Other)</a>,
-                <% }%>
-                <% if (type.equals("Complaint_mode_type")) { 
-                    title = "Complaint Mode Type";
-                    out.println("Complaint Mode Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Complaint_mode_type">Complaint Mode Type</a>,
-                <% }%>
-                <% if (type.equals("Complaint_type")) { 
-                    title = "Complaint Type";
-                    out.println("Complaint Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Complaint_type">Complaint Type</a>, 
-                <% }%>
-                <% if (type.equals("Casemilestone_criminal_type")) { 
-                    title = "Criminal Mile Stone";
-                    out.println("Criminal Mile Stone, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Casemilestone_criminal_type">Criminal Mile Stone</a>,
-                <% }%>
-                <% if (type.equals("DigitalType")) { 
-                    title = "Digital Type";
-                    out.println("Digital Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=DigitalType">Digital Type</a>, 
-                <% }%>
-                <% if (type.equals("Discuss_where_type")) { 
-                    title = "Discuss where Type";
-                    out.println("Discuss where Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Discuss_where_type">Discuss where Type</a>,
-                <% }%>
-                <% if (type.equals("Hospital_name")) { 
-                    title = "Hospital Name";
-                    out.println("Hospital Name, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Hospital_name">Hospital Name</a>, 
-                <% }%>
-                <% if (type.equals("IPA_pass_type")) { 
-                    title = "IPA Pass Type";
-                    out.println("IPA Pass Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=IPA_pass_type">IPA Pass Type</a>,
-                <% }%>
-                <% if (type.equals("Job_sector_type")) { 
-                    title = "Job Sector";
-                    out.println("Job Sector, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Job_sector_type">Job Sector</a>, 
-                <% }%>
-                <% if (type.equals("Lawyer_firm")) { 
-                    title = "Lawyer Firm";
-                    out.println("Lawyer Firm, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Lawyer_firm">Lawyer Firm</a>,
-                <% }%>
-                <% if (type.equals("MainLang")) { 
-                    title = "Main Language Type";
-                    out.println("Main Language Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=MainLang">Main Language Type</a>, 
-                <% }%>
-                <% if (type.equals("MC_status_type")) { 
-                    title = "MC Status";
-                    out.println("MC Status, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=MC_status_type">MC Status</a>,
-                <% }%>
-                <% if (type.equals("Nationality_type")) { 
-                    title = "Nationality";
-                    out.println("Nationality, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Nationality_type">Nationality</a>,
-                <% }%>
-                <% if (type.equals("Miles_nc_reached")) { 
-                    title = "Non Criminal Mile Stones";
-                    out.println("Non Criminal Mile Stones, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Miles_nc_reached">Non Criminal Mile Stones</a>,
-                <% }%>
-                <% if (type.equals("Pass_type")) { 
-                    title = "Pass Type";
-                    out.println("Pass Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Pass_type">Pass Type</a>, 
-                <% }%>
-                <% if (type.equals("Problem_type")) { 
-                    title = "Problem Type";
-                    out.println("Problem Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Problem_type">Problem Type</a>,
-                <% }%>
-                <% if (type.equals("Salary_payment_type")) { 
-                    title = "Salary Payment Type";
-                    out.println("Salary Payment Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Salary_payment_type">Salary Payment Type</a>, 
-                <% }%>
-                <% if (type.equals("Spoken_english_standard")) { 
-                    title = "Spoken English Standard";
-                    out.println("Spoken English Standard, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Spoken_english_standard">Spoken English Standard</a>,
-                <% }%>
-                <% if (type.equals("Ttr_status_type")) { 
-                    title = "TTR Status";
-                    out.println("TTR Status, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Ttr_status_type">TTR Status</a>,
-                <% }%>
-                <% if (type.equals("Wicamon_status")) { 
-                    title = "Wica Status";
-                    out.println("Wica Status, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Wicamon_status">Wica Status</a>,
-                <% }%>
-                <% if (type.equals("Work_history_how_type")) { 
-                    title = "Work History How Type";
-                    out.println("Work History How Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Work_history_how_type">Work History How Type</a>,
-                <% }%>
-                <% if (type.equals("Work_pass_type")) { 
-                    title = "Work Pass Type";
-                    out.println("Work Pass Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Work_pass_type">Work Pass Type</a>,
-                <% }%>
-                <% if (type.equals("Workplace_direct_type")) { 
-                    title = "Work Place Direct Type";
-                    out.println("Work Place Direct Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Workplace_direct_type">Work Place Direct Type</a>, 
-                <% }%>
-                <% if (type.equals("Workplace_type")) { 
-                    title = "Work Place Type";
-                    out.println("Work Place Type, ");
-                    } else { %>
-                <a href="dropdownSetting.jsp?name=Workplace_type">Work Place Type</a>
-                <% }%>
-                <br/><br/>
-
-
-                <% String successMsg = (String) request.getSession().getAttribute("successMsg");
+                    String title = "Accommodation Type";
+                    String successMsg = (String) request.getSession().getAttribute("successMsg");
                     request.getSession().removeAttribute("successMsg");
                     String errMsg = (String) request.getSession().getAttribute("errMsg");
                     request.getSession().removeAttribute("errMsg");
@@ -302,7 +117,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-12 text-center">
-                                    <b><%=title%></b>
+                                    <b><%=type%></b>
                                 </div>
                             </div>
                         </div> <!--heading-->
@@ -347,10 +162,200 @@
                      }
                 %>               
                 </div> <!--col-md-6-->
+                 <div class="col-xs-4 text-left pull-right">
+                     
+                 Please Choose the drop-down type from here.<br/>
+                 <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                 <%
+                 if (type.equals("Accommodation_type")) { 
+                    out.println("Accommodation Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Accommodation_type">Accommodation Type</a><br/>            
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Accom_provided_type")) { 
+                    out.println("Accommodation Provided Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Accom_provided_type">Accommodation Provided Type</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Agent_location_type")) { 
+                    out.println("Agent Location Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Agent_location_type">Agent Location Type</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Bene_type_food")) { 
+                    out.println("Benefit Type (Food)<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Bene_type_food">Benefit Type (Food)</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Bene_type_medical")) { 
+                    out.println("Benefit Type (Medical & Karunya)<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Bene_type_medical">Benefit Type (Medical & Karunya)</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Bene_type_roof")) { 
+                    out.println("Benefit Type (Roof)<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Bene_type_roof">Benefit Type (Roof)</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Bene_type_transport")) { 
+                    out.println("Benefit Type (Transport)<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Bene_type_transport">Benefit Type (Transport)</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Bene_type_other")) { 
+                    out.println("Benefit Type (Other)<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Bene_type_other">Benefit Type (Other)</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Complaint_mode_type")) { 
+                    out.println("Complaint Mode Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Complaint_mode_type">Complaint Mode Type</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Complaint_type")) { 
+                    out.println("Complaint Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Complaint_type">Complaint Type</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Casemilestone_criminal_type")) { 
+                    out.println("Criminal Mile Stone<br/>");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Casemilestone_criminal_type">Criminal Mile Stone</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Pass_type")) { 
+                    out.println("Current Pass Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Pass_type">Current Pass Type</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("DigitalType")) { 
+                    out.println("Digital Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=DigitalType">Digital Type</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Discuss_where_type")) { 
+                    out.println("Discuss where Type<br/>");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Discuss_where_type">Discuss where Type</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Hospital_name")) { 
+                    out.println("Hospital Name<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Hospital_name">Hospital Name</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("IPA_pass_type")) { 
+                    out.println("IPA Pass Type<br/>");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=IPA_pass_type">IPA Pass Type</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Job_sector_type")) { 
+                    out.println("Job Sector<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Job_sector_type">Job Sector</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Lawyer_firm")) { 
+                    out.println("Lawyer Firm<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Lawyer_firm">Lawyer Firm</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("MainLang")) { 
+                    out.println("Main Language Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=MainLang">Main Language Type</a><br/> 
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("MC_status_type")) { 
+                    out.println("MC Status<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=MC_status_type">MC Status</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Nationality_type")) { 
+                    out.println("Nationality<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Nationality_type">Nationality</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Miles_nc_reached")) { 
+                    out.println("Non Criminal Mile Stones<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Miles_nc_reached">Non Criminal Mile Stones</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Problem_type")) { 
+                    out.println("Problem Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Problem_type">Problem Type</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Salary_payment_type")) { 
+                    out.println("Salary Payment Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Salary_payment_type">Salary Payment Type</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Spoken_english_standard")) { 
+                    out.println("Spoken English Standard<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Spoken_english_standard">Spoken English Standard</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Ttr_status_type")) { 
+                    out.println("TTR Status<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Ttr_status_type">TTR Status</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Wicamon_status")) { 
+                    out.println("Wica Status<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Wicamon_status">Wica Status</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Work_history_how_type")) { 
+                    out.println("Work History How Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Work_history_how_type">Work History How Type</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Work_pass_type")) { 
+                    out.println("Work Pass Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Work_pass_type">Work Pass Type</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Workplace_direct_type")) { 
+                    out.println("Work Place Direct Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Workplace_direct_type">Work Place Direct Type</a><br/>
+                <% }%>
+                <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
+                <% if (type.equals("Workplace_type")) { 
+                    out.println("Work Place Type<br/> ");
+                    } else { %>
+                <a href="dropdownSetting.jsp?name=Workplace_type">Work Place Type</a>
+                <% }%>
+                 </div>
+                <br/><br/>
 
-                <div class="col-md-6">
 
-                </div>
                 <!-- Add new Item Modal -->
                 <div class="modal fade" id="add_new_item" tabindex="-1" role="dialog" 
                      aria-labelledby="myModalLabel" aria-hidden="true">
@@ -378,7 +383,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3" for="InputField">Item Name<span style="color: red">*</span></label>
+                            <label class="col-sm-3" for="InputField">New Item Name<span style="color: red">*</span></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="InputItemName" name="nItemName"
                                     placeholder="Name" required>

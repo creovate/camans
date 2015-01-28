@@ -139,18 +139,17 @@ public class ProblemDAO {
         String sql = "";
         try {
             conn = ConnectionManager.getConnection();
-            sql = "INSERT INTO tbl_problem (Worker_FIN_number, Job_key, Prob_key, Chief_problem_date, "
+            sql = "INSERT INTO tbl_problem (Worker_FIN_number, Job_key, Chief_problem_date, "
                     + "Chief_problem, Chief_problem_more, Chief_problem_remarks) "
-                    + "VALUES (?,?,?,?,?,?, ?)";
+                    + "VALUES (?,?,?,?,?, ?)";
             
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, worker.getFinNumber());
             pstmt.setInt(2, job.getJobKey());
-            pstmt.setInt(3, problem.getProbKey());
-            pstmt.setDate(4, problem.getProblemRegisteredDate());
-            pstmt.setString(5, problem.getProblem());
-            pstmt.setString(6, problem.getProblemMore());
-            pstmt.setString(7, problem.getProblemRemark());           
+            pstmt.setDate(3, problem.getProblemRegisteredDate());
+            pstmt.setString(4, problem.getProblem());
+            pstmt.setString(5, problem.getProblemMore());
+            pstmt.setString(6, problem.getProblemRemark());           
             pstmt.executeUpdate();
             
         } catch (SQLException ex) {

@@ -2434,7 +2434,7 @@
 <!---------------->
 <%
 } else if (complement.equals("passdetails")) {
-    ArrayList<String> workpassTypes = DropdownDAO.retrieveAllDropdownListOfWorkpassType();
+    ArrayList<String> workpassTypes = DropdownDAO.retrieveAllDropdownListByType("Pass_type");
 %>
 
 <form method="POST" id='passdetails_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up"  >

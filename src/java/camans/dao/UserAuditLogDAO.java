@@ -89,7 +89,7 @@ public class UserAuditLogDAO {
         try {
             conn = ConnectionManager.getConnection();
             sql = "SELECT ID FROM tbl_audit where Entry_date >='" + startDate + "' AND Entry_date < '"
-                    + endDate + "' + INTERVAL 1 DAY;";
+                    + endDate + "' + INTERVAL 1 DAY order by ID DESC;";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             while (rs.next()) {

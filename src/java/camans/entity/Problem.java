@@ -24,7 +24,6 @@ public class Problem {
     private String referredTo;
     private Date referredDate;
     private String referralDescription;
-    private static int COUNT = 200;
 
     public Problem(String workerFinNum, int jobKey, int probKey, Date problemRegisteredDate, String problem, String problemMore, String problemRemark) {
         this.workerFinNum = workerFinNum;

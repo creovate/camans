@@ -1092,7 +1092,7 @@
                                     <form method="POST" action="changeToSelected">
                                         <div class="form-group">
                                             <label for="jobSelected" class="col-md-1 control-label">Select Job:</label>
-                                            <div class="col-md-1">
+                                            <div class="col-md-6">
                                                 <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
                                                 <input type="hidden" name="selectedType" value="job"/>
                                                 <select class="form-control text-capitalize" id="jobSelected" name="selectedJob" required>
@@ -1136,7 +1136,7 @@
                                         <div class="panel-heading">
 
 
-                                            <h4 class="panel-title">Pass Details
+                                            <h4 class="panel-title">Currently Held Pass Details
                                                 <a style="color: black" data-class="job"  data-value='passdetails' data-passdetails='' href="" data-toggle="modal" data-target="#passdetails_pop_up" data-action="add" class="view_btn pop_up_open">
                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                         </div>
@@ -2003,8 +2003,8 @@
                                                                 if (aggravissueIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_aggravissue_seemore" onclick="seemore('.other_aggravissue')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_aggravissue_seemore" onclick="seemore('.other_aggravissue')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_aggravissue_seemore" onclick="seemore('.other_aggravissue')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_aggravissue_seemore" onclick="seemore('.other_aggravissue')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -2113,8 +2113,8 @@
                                                                 if (lcwIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_leadcaseworker_seemore" onclick="seemore('.other_leadcaseworker')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_leadcaseworker_seemore" onclick="seemore('.other_leadcaseworker')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_leadcaseworker_seemore" onclick="seemore('.other_leadcaseworker')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_leadcaseworker_seemore" onclick="seemore('.other_leadcaseworker')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -2226,8 +2226,8 @@
                                                                 if (auxCWIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_auxCaseworker_seemore" onclick="seemore('.other_auxCaseworker')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_auxCaseworker_seemore" onclick="seemore('.other_auxCaseworker')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_auxCaseworker_seemore" onclick="seemore('.other_auxCaseworker')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_auxCaseworker_seemore" onclick="seemore('.other_auxCaseworker')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -2324,8 +2324,8 @@
                                                                 if (caseDiscussIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_casediscuss_seemore" onclick="seemore('.other_casediscuss')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_casediscuss_seemore" onclick="seemore('.other_casediscuss')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_casediscuss_seemore" onclick="seemore('.other_casediscuss')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_casediscuss_seemore" onclick="seemore('.other_casediscuss')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -2415,8 +2415,8 @@
                                                                 if (lawyerIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_lawyer_seemore" onclick="seemore('.other_lawyer')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_lawyer_seemore" onclick="seemore('.other_lawyer')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_lawyer_seemore" onclick="seemore('.other_lawyer')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_lawyer_seemore" onclick="seemore('.other_lawyer')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -2513,8 +2513,8 @@
                                                                 if (salaryHistoryIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_salaryhistory_seemore" onclick="seemore('.other_salaryhistory')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_salaryhistory_seemore" onclick="seemore('.other_salaryhistory')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_salaryhistory_seemore" onclick="seemore('.other_salaryhistory')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_salaryhistory_seemore" onclick="seemore('.other_salaryhistory')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -2600,8 +2600,8 @@
                                                                 if (salaryClaimIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_salaryClaim_seemore" onclick="seemore('.other_salaryClaim')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_salaryClaim_seemore" onclick="seemore('.other_salaryClaim')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_salaryClaim_seemore" onclick="seemore('.other_salaryClaim')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_salaryClaim_seemore" onclick="seemore('.other_salaryClaim')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -2714,8 +2714,8 @@
                                                                 if (injuryIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_injury_seemore" onclick="seemore('.other_injury')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_injury_seemore" onclick="seemore('.other_injury')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_injury_seemore" onclick="seemore('.other_injury')">See more</a>
+                                                            <a style="cursor:pointer;display:none"class="text-center col-sm-12 seemore_btn other_injury_seemore" onclick="seemore('.other_injury')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -2788,8 +2788,8 @@
                                                                 if (illnessIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_illness_seemore" onclick="seemore('.other_illness')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_illness_seemore" onclick="seemore('.other_illness')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_illness_seemore" onclick="seemore('.other_illness')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_illness_seemore" onclick="seemore('.other_illness')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -2884,8 +2884,8 @@
                                                                 if (wicaclaimIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_wicaClaim_seemore" onclick="seemore('.other_wicaClaim')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_wicaClaim_seemore" onclick="seemore('.other_wicaClaim')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_wicaClaim_seemore" onclick="seemore('.other_wicaClaim')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_wicaClaim_seemore" onclick="seemore('.other_wicaClaim')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -2981,8 +2981,8 @@
                                                                 if (nonwicaClaimIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_nonWica_seemore" onclick="seemore('.other_nonWica')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_nonWica_seemore" onclick="seemore('.other_nonWica')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_nonWica_seemore" onclick="seemore('.other_nonWica')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_nonWica_seemore" onclick="seemore('.other_nonWica')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -3077,8 +3077,8 @@
                                                                 if (wicaIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_wicaStatus_seemore" onclick="seemore('.other_wicaStatus')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_wicaStatus_seemore" onclick="seemore('.other_wicaStatus')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_wicaStatus_seemore" onclick="seemore('.other_wicaStatus')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_wicaStatus_seemore" onclick="seemore('.other_wicaStatus')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -3174,8 +3174,8 @@
                                                                 if (hospitalIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_hospital_seemore" onclick="seemore('.other_hospital')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_hospital_seemore" onclick="seemore('.other_hospital')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_hospital_seemore" onclick="seemore('.other_hospital')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_hospital_seemore" onclick="seemore('.other_hospital')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -3294,8 +3294,8 @@
                                                                 if (mcIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_mc_seemore" onclick="seemore('.other_mc')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_mc_seemore" onclick="seemore('.other_mc')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_mc_seemore" onclick="seemore('.other_mc')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_mc_seemore" onclick="seemore('.other_mc')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -3391,8 +3391,8 @@
                                                                 if (r2rIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_r2r_seemore" onclick="seemore('.other_r2r')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_r2r_seemore" onclick="seemore('.other_r2r')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_r2r_seemore" onclick="seemore('.other_r2r')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_r2r_seemore" onclick="seemore('.other_r2r')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -3476,8 +3476,8 @@
                                                                 if (otherCaseIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_othercase_seemore" onclick="seemore('.other_othercase')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_othercase_seemore" onclick="seemore('.other_othercase');">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_othercase_seemore" onclick="seemore('.other_othercase')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_othercase_seemore" onclick="seemore('.other_othercase');">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -3569,8 +3569,8 @@
                                                                 if (policeReportIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_police_seemore" onclick="seemore('.other_police')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_police_seemore" onclick="seemore('.other_police')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_police_seemore" onclick="seemore('.other_police')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_police_seemore" onclick="seemore('.other_police')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -3666,8 +3666,8 @@
                                                                 if (otherComplaintIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_othercomplaints_seemore" onclick="seemore('.other_othercomplaints')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_othercomplaints_seemore" onclick="seemore('.other_othercomplaints')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_othercomplaints_seemore" onclick="seemore('.other_othercomplaints')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_othercomplaints_seemore" onclick="seemore('.other_othercomplaints')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -3766,8 +3766,8 @@
                                                                 if (nCaseMSIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_casemsnc_seemore" onclick="seemore('.other_casemsnc')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_casemsnc_seemore" onclick="seemore('.other_casemsnc')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_casemsnc_seemore" onclick="seemore('.other_casemsnc')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_casemsnc_seemore" onclick="seemore('.other_casemsnc')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -3874,8 +3874,8 @@
                                                                 if (caseMSIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_casemscr_seemore" onclick="seemore('.other_casemscr')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_casemscr_seemore" onclick="seemore('.other_casemscr')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_casemscr_seemore" onclick="seemore('.other_casemscr')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_casemscr_seemore" onclick="seemore('.other_casemscr')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -3988,8 +3988,8 @@
                                                                 if (ttrIds.size() > 1) {
                                                             %>
 
-                                                            <a href="#" class="text-center col-sm-12 seemore_btn other_ttr_seemore" onclick="seemore('.other_ttr')">See more</a>
-                                                            <a href="#" style="display:none" class="text-center col-sm-12 seemore_btn other_ttr_seemore" onclick="seemore('.other_ttr')">View Less</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_ttr_seemore" onclick="seemore('.other_ttr')">See more</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_ttr_seemore" onclick="seemore('.other_ttr')">View Less</a>
                                                             <%                                                            }
                                                                 }
                                                             %>
@@ -4348,7 +4348,7 @@
                                 <% if (successAttachMsg != null)  { %>
 
                                     <div class="alert alert-info" role="alert">
-                                       <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                       <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
                                        <%=successAttachMsg%>
                                    </div>
 
@@ -4356,7 +4356,7 @@
                                 <% if (errorAttachMsg != null)  { %>
 
                                  <div class="alert alert-danger" role="alert">
-                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
                                     <%=errorAttachMsg%>
                                 </div>
 
@@ -4379,7 +4379,7 @@
                                     if (workerAttachList != null && !workerAttachList.isEmpty()) {
                                 %>
                                 <!--- only if file exits -->
-                                <table class="table table-striped  table-hover" id="worker_attachment">
+                                <table class="table table-striped table-hover" id="worker_attachment">
                                     <thead bgcolor="#3579BC">
                                         <tr>
                                             <th><font color="#FFF">S/N</font></th>
@@ -4470,7 +4470,7 @@
 
                         <div class="modal-footer">
                           <button type="submit" class="btn btn-primary">Ok</button>
-                          <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
 
@@ -4519,7 +4519,7 @@
                           <input type="hidden" name="action" value="edit"/>
                           <input type="hidden" name="workerFin" value="<%=workerFin%>"/>  
                           <button type="submit" class="btn btn-primary">Ok</button>
-                          <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
 
@@ -4560,7 +4560,7 @@
                           <input type="hidden" name="action" value="profilepic"/>
                           <input type="hidden" name="workerFin" value="<%=workerFin%>"/>  
                           <button type="submit" class="btn btn-primary">Ok</button>
-                          <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
 
@@ -4746,7 +4746,7 @@
                                 },
                                 regexp: {
                                     regexp: /^[0-9a-z\s_]+$/i,
-                                    message: 'File name can consist of alphabetical, numerical character and spaces only.'
+                                    message: 'File name can consist of alphabetical, numerical character, underscore and spaces only.'
                                 },
                                 stringLength: {
                                     max:190,

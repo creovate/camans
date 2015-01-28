@@ -47,6 +47,7 @@
                             <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
                                 <li><a href="admin.jsp" tabindex="-1"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Admin Dashboard</a></li>
                                 <li><a href="userManagement.jsp" tabindex="-1"><span class="glyphicon glyphicon-user"></span>&nbsp;User Management</a></li>
+                                <li><a href="importexport.jsp" tabindex="-1"><span class="glyphicon glyphicon-upload"></span>&nbsp;Import/Export to DB</a></li>
                                 <li ><a href="dropdownSetting.jsp" tabindex="-1"><span class="glyphicon glyphicon-random"></span>&nbsp;Dropdown Settings</a></li>
                                 <li ><a href="auditLog.jsp" tabindex="-1"><span class="glyphicon glyphicon-list"></span>&nbsp;Audit Log  </a></li>
                             </ul>

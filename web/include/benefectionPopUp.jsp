@@ -190,7 +190,7 @@
                 nvalue: {
                     validators: {
                         numeric: {
-                            message: 'Salary must be a number'
+                            message: 'This field must be a number.'
                         },
                         regexp: {
                             regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
@@ -259,7 +259,7 @@
                 nvalue: {
                     validators: {
                         numeric: {
-                            message: 'Salary must be a number'
+                            message: 'This field must be a number.'
                         },
                         regexp: {
                             regexp: /^[0-9]+(\.[0-9]{1,2})?$/,

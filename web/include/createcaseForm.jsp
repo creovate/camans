@@ -411,7 +411,7 @@
     //get Dropdown data
     ArrayList<String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
     ArrayList<String> problemList = DropdownDAO.retrieveAllDropdownListOfProblems();
-    ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListOfPassType();
+    ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListByType("Work_pass_type");
     ArrayList<String> jobSectorList = DropdownDAO.retrieveAllDropdownListOfJobSector();
     ArrayList<String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
     //javascript method to blur the input fields if the action is view

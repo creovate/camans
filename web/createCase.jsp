@@ -16,10 +16,10 @@
     User userLogin = (User) request.getSession().getAttribute("userLogin");
     ArrayList<String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
     ArrayList<String> problemList = DropdownDAO.retrieveAllDropdownListOfProblems();
-    ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListOfPassType();
+    ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListByType("Work_pass_type");
     ArrayList<String> jobSectorList = DropdownDAO.retrieveAllDropdownListOfJobSector();
-    ArrayList<String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
-    ArrayList<String> lawFirmList = DropdownDAO.retrieveAllDropdownListOfLawFirms();
+    //ArrayList<String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
+    //ArrayList<String> lawFirmList = DropdownDAO.retrieveAllDropdownListOfLawFirms();
 
     String status = (String) request.getSession().getAttribute("status");
     request.getSession().removeAttribute("status");

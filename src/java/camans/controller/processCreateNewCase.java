@@ -329,9 +329,10 @@ public class processCreateNewCase extends HttpServlet {
                 int jobKey = -1;
                 if(jobKeyStr == null){
                     //create new Job Object and add to db
-                    job = new Job(finNum, employerName, workpassType, workpassMore, jobSector, 
+                    jobKey = JobDAO.retrieveMaxJobId() + 1;
+                    job = new Job(finNum, jobKey, employerName, workpassType, workpassMore, jobSector, 
                             jobSectorMore, occupation, jobStartDateStr, jobEndDateStr, tjs, jobRemark);
-                    jobKey = job.getJobKey();
+                    //jobKey = job.getJobKey();
                     JobDAO.addJob(worker, job);
                 } else {
                     jobKey = Integer.parseInt(jobKeyStr);
@@ -340,7 +341,7 @@ public class processCreateNewCase extends HttpServlet {
                 }
                 
                 problem = new Problem(finNum, jobKey, registeredDate, problemName,
-                    problemMore, problemRemark);
+                    problemMore, problemRemark, null, null, null, null);
             
             
                 ProblemDAO.addProblem(worker, job, problem);

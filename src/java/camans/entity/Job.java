@@ -23,7 +23,6 @@ public class Job {
     private String jobEndDate;
     private String jobTJS;
     private String jobRemark;
-    private static int COUNT = 200;
     
     public Job(String workerFinNum, int jobKey, String employerName, String workPassType, 
             String workPassMore, String jobSector, String jobSectorMore, String occupation, 
@@ -40,24 +39,6 @@ public class Job {
         this.jobEndDate = jobEndDate;
         this.jobTJS = jobTJS;
         this.jobRemark = jobRemark;
-    }
-
-    public Job(String workerFinNum, String employerName, String workPassType, String workPassMore, 
-            String jobSector, String jobSectorMore, String occupation, String jobStartDate, 
-            String jobEndDate, String jobTJS, String jobRemark) {
-        this.workerFinNum = workerFinNum;
-        this.employerName = employerName;
-        this.workPassType = workPassType;
-        this.workPassMore = workPassMore;
-        this.jobSector = jobSector;
-        this.jobSectorMore = jobSectorMore;
-        this.occupation = occupation;
-        this.jobStartDate = jobStartDate;
-        this.jobEndDate = jobEndDate;
-        this.jobTJS = jobTJS;
-        this.jobRemark = jobRemark;
-        COUNT++;
-        this.jobKey = COUNT;
     }
 
     public String getWorkerFinNum() {

@@ -63,7 +63,7 @@
                 </div>
                 <!-- Add New User Button -->
                 <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newUser_pop_up">
-                    <span class="glyphicon glyphicon-user"></span> Add A New User
+                    <span class="glyphicon glyphicon-plus"></span> Add A New User
                 </button><br/><br/>
                 <!-- End of Add New User Button -->
 
@@ -463,8 +463,8 @@
 
                         <div class="modal-footer">
                           <input type="hidden" name="action" value="inactive"/> 
-                          <button type="submit" class="btn btn-success">Ok</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-primary">Ok</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
 
@@ -505,8 +505,8 @@
 
                         <div class="modal-footer">
                           <input type="hidden" name="action" value="active"/> 
-                          <button type="submit" class="btn btn-success">Ok</button>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-primary">Ok</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
 
