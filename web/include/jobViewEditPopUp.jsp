@@ -1318,9 +1318,7 @@
 %>
 
 <form method="POST" id='passdetails_pop_up' class="form complement_detailed_form job_pop_up"  >
-    <h4 class='view_comp'>View Pass Details</h4>
-    <h4 class='add_comp'>Add A New Pass </h4>
-    <h4 class='edit_comp'>Edit Pass  Details</h4>
+
     <div class='form-group'>
 
 
@@ -1394,9 +1392,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#passdetails_pop_up", "job")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#passdetails_pop_up", "job", "Edit Pass Details")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#passdetails_pop_up", "job")'>Add</button>                  
+                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#passdetails_pop_up", "job", "Add A New Pass Details")'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -1568,9 +1566,7 @@
 %>
 
 <form method="POST" id='empdetails_pop_up' class="form complement_detailed_form job_pop_up"  >
-    <h4 class='view_comp'>View Employer Details</h4>
-    <h4 class='add_comp'>Add A New Employer </h4>
-    <h4 class='edit_comp'>Edit Employer  Details</h4>
+
     <div class='form-group'>
 
 
@@ -1619,9 +1615,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#empdetails_pop_up", "job")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#empdetails_pop_up", "job","Edit Employer Details")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#empdetails_pop_up", "job")'>Add</button>                  
+                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#empdetails_pop_up", "job","Add A New Employer")'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -1727,9 +1723,7 @@
 %>
 
 <form method="POST" id='contract_pop_up' class="form complement_detailed_form job_pop_up"  >
-    <h4 class='view_comp'>View Employment Contract Details</h4>
-    <h4 class='add_comp'>Add A New Employment Contract </h4>
-    <h4 class='edit_comp'>Edit Employment Contract Details</h4>
+ 
     <div class='form-group'>
 
 
@@ -1816,9 +1810,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#contract_pop_up", "job")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#contract_pop_up", "job","Edit Employment Contract Details")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#contract_pop_up", "job")'>Add</button>                  
+                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#contract_pop_up", "job","Add A New Employment Contract")'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -1984,9 +1978,7 @@
 %>
 
 <form method="POST" id='agent_pop_up' class="form complement_detailed_form job_pop_up"  >
-    <h4 class='view_comp'>View Intermediary Agent's Details</h4>
-    <h4 class='add_comp'>Add A New Intermediary Agent</h4>
-    <h4 class='edit_comp'>Edit Intermediary Agent's Details</h4>
+
     <div class='form-group'>
 
 
@@ -2096,9 +2088,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#agent_pop_up", "job");'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#agent_pop_up", "job","Edit Intermediary Agent" );'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#agent_pop_up", "job")'>Add</button>                  
+                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#agent_pop_up", "job","Add A New Intermediary Agent")'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -2330,9 +2322,7 @@
 %>
 
 <form method="POST" id='assurance_pop_up' class="form complement_detailed_form job_pop_up"  >
-    <h4 class='view_comp'>View Verbal Assurance Details</h4>
-    <h4 class='add_comp'>Add A New Verbal Assurance </h4>
-    <h4 class='edit_comp'>Edit Verbal Assurance  Details</h4>
+
     <div class='form-group'>
 
 
@@ -2375,9 +2365,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#assurance_pop_up", "job")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#assurance_pop_up", "job","Edit Verbal Assurance Details")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#assurance_pop_up", "job")'>Add</button>                  
+                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#assurance_pop_up", "job","Add A New Verbal Assurance")'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -2474,9 +2464,7 @@
 %>
 
 <form method="POST" id='workplace_pop_up' class="form complement_detailed_form job_pop_up"  >
-    <h4 class='view_comp'>View Workplace Details</h4>
-    <h4 class='add_comp'>Add A New Workplace </h4>
-    <h4 class='edit_comp'>Edit Workplace  Details</h4>
+
     <div class='form-group'>
 
 
@@ -2562,9 +2550,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#workplace_pop_up", "job")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#workplace_pop_up", "job","Edit Workplace Details")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#workplace_pop_up", "job")'>Add</button>                  
+                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#workplace_pop_up", "job","Add A New Workplace")'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -2784,9 +2772,7 @@
 %>
 
 <form method="POST" id='whistory_pop_up' class="form complement_detailed_form job_pop_up"  >
-    <h4 class='view_comp'>View Work History Details</h4>
-    <h4 class='add_comp'>Add A New Work History </h4>
-    <h4 class='edit_comp'>Edit Work History Details</h4>
+
     <div class='form-group'>
 
 
@@ -2854,9 +2840,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#whistory_pop_up", "job");'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#whistory_pop_up", "job","Edit Work History Details");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#whistory_pop_up", "job")'>Add</button>                  
+                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#whistory_pop_up", "job","Add A New Work History")'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -3035,9 +3021,7 @@
 %>
 
 <form method="POST" id='accomodation_pop_up' class="form complement_detailed_form job_pop_up"  >
-    <h4 class='view_comp'>View Accommodation Details</h4>
-    <h4 class='add_comp'>Add A New Accommodation </h4>
-    <h4 class='edit_comp'>Edit Accommodation  Details</h4>
+
     <div class='form-group'>
 
 
@@ -3124,9 +3108,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#accomodation_pop_up", "job")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#accomodation_pop_up", "job","Edit Accommodation Details")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#accomodation_pop_up", "job")'>Add</button>                  
+                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#accomodation_pop_up", "job","Add A New Accommodation")'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -3356,9 +3340,7 @@
 %>
 
 <form method="POST" id='ipa_pop_up' class="form complement_detailed_form job_pop_up"  >
-    <h4 class='view_comp'>View IPA Pass Details</h4>
-    <h4 class='add_comp'>Add A New IPA Pass </h4>
-    <h4 class='edit_comp'>Edit IPA Pass Details</h4>
+
     <div class='form-group'>
 
 
@@ -3463,9 +3445,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#ipa_pop_up", "job")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#ipa_pop_up", "job","Edit IPA Pass Details")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#ipa_pop_up", "job")'>Add</button>                  
+                    <button type='button' class="btn btn-blue modal_btn view_comp" onclick='add("#ipa_pop_up", "job","Add A New IPA Pass")'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -3726,45 +3708,31 @@
 
     $(document).ready(function(event) {
 
-        //alert('alert1');
         $('.view_comp').show();
-        //alert('alert2');
         $('.edit_comp').hide();
-        //alert('alert3');
         $('.add_comp').hide();
-
-
         $('.complement_detailed_form').attr("action", "");
-
-
     });
+    
     $('.cancel_btn').click(function() {
         $('#pop_up_content').dialog("destroy");
         $('#pop_up_content').empty();
     });
 
 
-    function editComplement(div_id, category) {
-        //alert("first check");
-
+    function editComplement(div_id, category,title) {
+        $('#pop_up_content').dialog('option', 'title', title);
         $(div_id).prop("action", "editJobComplement.do");
-
-
-
-
         $(div_id + " .edit_comp").show();
-        //alert("edit");
         $(div_id + " .view_comp").hide();
         $(div_id + " .add_comp").hide();
-        //alert("final check");
         $(div_id + " .add_comp input").prop('disabled', true);
 
     }
 
-    function add(div_id, category) {
-
+    function add(div_id, category, title) {
+        $('#pop_up_content').dialog('option', 'title', title);
         $(div_id).prop("action", "addJobComplement.do");
-
         $(div_id + " .add_comp").show();
         $(div_id + " .edit_comp").hide();
         $(div_id + " .view_comp").hide();

@@ -265,7 +265,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">Nickname 
-                                            <a href="" id="nicknameAddBtn" data-class="worker"  data-toggle="modal" data-action = "add" data-target="#nickname_pop_up" data-value='nickname' data-nickname='' class="add_btn pop_up_open pull-right">
+                                            <a href="" id="nicknameAddBtn" data-class="worker"  data-toggle="modal" data-action = "add" data-title="Add A New Nickname" data-target="#nickname_pop_up" data-value='nickname' data-nickname='' class="add_btn pop_up_open pull-right">
                                                 <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                             </a>
                                         </h4>
@@ -285,7 +285,7 @@
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td style="width:80%"><%=nickname%></td>
-                                                    <td class="text-center" style="width:20%"><a style="color: black"  data-class="worker" data-value='nickname' data-nickname='<%=nicknameObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#nickname_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td class="text-center" style="width:20%"><a style="color: black"  data-class="worker" data-title="View Worker's Nickname" data-value='nickname' data-nickname='<%=nicknameObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#nickname_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -296,7 +296,7 @@
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td style="width:80%"><%=nickname%></td>
-                                                    <td class="text-center" style="width:20%"><a style="color: black"  data-class="worker" data-value='nickname' data-nickname='<%=nicknameObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#nickname_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td class="text-center" style="width:20%"><a style="color: black"  data-class="worker" data-title="View Worker's Nickname" data-value='nickname' data-nickname='<%=nicknameObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#nickname_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                             </table>
                                         </div>        
@@ -322,7 +322,7 @@
                                     <div class="panel-heading">
 
                                         <h4 class="panel-title">Passport Details 
-                                            <a href="" id="passportAddBtn" data-toggle="modal" data-target="#passport_pop_up" data-action = "add" data-value='passport' data-passport='' data-class="worker"  class="add_btn pop_up_open pull-right">
+                                            <a href="" id="passportAddBtn" data-toggle="modal" data-target="#passport_pop_up" data-action = "add" data-title="Add A New Passport Details" data-value='passport' data-passport='' data-class="worker"  class="add_btn pop_up_open pull-right">
                                                 <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                     </div>
 
@@ -358,7 +358,7 @@
                                                 <td><%=passportNo%></td>
                                                 <td><%=(isDate == null) ? "-" : sdf.format(isDate)%></td>
                                                 <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td>  
-                                                <td><a style="color: black" data-value='passport' data-passport='<%=passportDetails.getId()%>' 
+                                                <td><a style="color: black" data-value='passport' data-passport='<%=passportDetails.getId()%>' data-title="View Passport Details"
                                                        href="" data-toggle="modal" data-class="worker"  data-action="viewedit" 
                                                        data-target="#passport_pop_up" class="edit_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-eye-open"></span>
@@ -373,7 +373,7 @@
                                                 <td><%=passportNo%></td>
                                                 <td><%=(isDate == null) ? "-" : sdf.format(isDate)%></td>
                                                 <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td> 
-                                                <td><a style="color: black" data-value='passport' data-passport='<%=passportDetails.getId()%>' 
+                                                <td><a style="color: black" data-value='passport' data-passport='<%=passportDetails.getId()%>' data-title="View Passport Details"
                                                        href="" data-toggle="modal" data-class="worker"  data-action="viewedit" 
                                                        data-target="#passport_pop_up" class="edit_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-eye-open"></span>
@@ -401,7 +401,7 @@
                                 <!--Singapore Phone Number-->
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title">Singapore Phone Number <a data-value='sgphone' data-action = "add" data-sgphone='' href="" data-toggle="modal" data-class="worker"  data-target="#sgPhone_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
+                                        <h4 class="panel-title">Singapore Phone Number <a data-value='sgphone' data-action = "add" data-sgphone='' data-title="Add A New Singapore Phone Number " href="" data-toggle="modal" data-class="worker"  data-target="#sgPhone_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                     </div>
                                     <div class="panel-body text-capitalize">
                                         <%
@@ -424,7 +424,7 @@
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td style="width:80%"><%=phNum%></td>
-                                                    <td class="text-center" style="width:20%"><a style="color: black" data-value='sgphone' data-sgphone='<%=phId%>' href="" data-toggle="modal" data-target="#sgPhone_pop_up" data-class="worker"  data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td class="text-center" style="width:20%"><a style="color: black" data-value='sgphone' data-title="View Singapore Phone Number Details" data-sgphone='<%=phId%>' href="" data-toggle="modal" data-target="#sgPhone_pop_up" data-class="worker"  data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -435,7 +435,7 @@
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td style="width:80%"><%=phNum%></td>
-                                                    <td class="text-center" style="width:20%"><a style="color: black" data-value='sgphone' data-sgphone='<%=phId%>' href="" data-toggle="modal" data-target="#sgPhone_pop_up" data-class="worker"  data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td class="text-center" style="width:20%"><a style="color: black" data-value='sgphone' data-title="View Singapore Phone Number Details" data-sgphone='<%=phId%>' href="" data-toggle="modal" data-target="#sgPhone_pop_up" data-class="worker"  data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                             </table> 
                                         </div>
@@ -460,7 +460,7 @@
                                     <div class="panel-heading">
 
                                         <h4 class="panel-title">Home Country Phone Number 
-                                            <a data-value='homephone' data-action = "add" data-homephone='' 
+                                            <a data-value='homephone' data-action = "add" data-homephone='' data-title="Add A New Home Country Phone Number"
                                                href="" data-toggle="modal" data-class="worker"  
                                                data-target="#homePhone_pop_up" class="edit_btn pop_up_open">
                                                 <span class="glyphicon glyphicon-plus pull-right" pull-right>
@@ -495,7 +495,7 @@
                                                 <td><%=owner%></td>
                                                 <td><%=(oDate == null) ? "-" : sdf.format(oDate)%></td>
                                                 <td><a style="color: black" data-value='homephone' 
-                                                       data-homephone='<%=homePhNum.getId()%>' href="" data-toggle="modal" 
+                                                       data-homephone='<%=homePhNum.getId()%>' href="" data-toggle="modal" data-title="View Home Country Phone Number Details"
                                                        data-class="worker"  data-target="#homePhone_pop_up" data-action="viewedit" 
                                                        class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                     </a>
@@ -506,7 +506,7 @@
                                                 <td><%=phNum%></td>
                                                 <td><%=owner%></td>
                                                 <td><%=(oDate == null) ? "-" : sdf.format(oDate)%></td>
-                                                <td><a style="color: black" data-value='homephone' data-homephone='<%=homePhNum.getId()%>' href="" data-toggle="modal" data-class="worker"  data-target="#homePhone_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <td><a style="color: black" data-value='homephone' data-homephone='<%=homePhNum.getId()%>' data-title="View Home Country Phone Number Details" href="" data-toggle="modal" data-class="worker"  data-target="#homePhone_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>    
                                                 <%
                                                         }
@@ -530,7 +530,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
 
-                                        <h4 class="panel-title">Singapore Address <a data-value='sgadd' data-action = "add" data-sgadd='' href="" data-toggle="modal" data-class="worker"  data-target="#sgAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-plus pull-right" pull-right></a></span></h4>
+                                        <h4 class="panel-title">Singapore Address <a data-value='sgadd' data-action = "add" data-sgadd='' data-title="Add A New Singapore Address" href="" data-toggle="modal" data-class="worker"  data-target="#sgAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-plus pull-right" pull-right></a></span></h4>
 
 
                                     </div>
@@ -554,7 +554,7 @@
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td style="width:80%"><%=address%></td>
-                                                    <td class="text-center" style="width:20%"><a style="color: black" data-class="worker"  data-value='sgadd' data-sgadd='<%=sgAddress.getId()%>' href="" data-toggle="modal" data-target="#sgAdd_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td class="text-center" style="width:20%"><a style="color: black" data-class="worker" data-title="View Singapore Address Details" data-value='sgadd' data-sgadd='<%=sgAddress.getId()%>' href="" data-toggle="modal" data-target="#sgAdd_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                             </table> 
                                         </div>
@@ -564,7 +564,7 @@
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td style="width:87%"><%=address%></td>
-                                                    <td class="text-center" style="width:13%"><a style="color: black" data-class="worker"  data-value='sgadd' data-sgadd='<%=sgAddress.getId()%>' href="" data-toggle="modal" data-target="#sgAdd_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td class="text-center" style="width:13%"><a style="color: black" data-class="worker" data-title="View Singapore Address Details" data-value='sgadd' data-sgadd='<%=sgAddress.getId()%>' href="" data-toggle="modal" data-target="#sgAdd_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -589,7 +589,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
 
-                                        <h4 class="panel-title">Home Country Address <a data-value='homeadd' data-action = "add" data-homeadd='' href="" data-toggle="modal" data-class="worker"  data-target="#homeAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-plus pull-right" pull-right></a></span></h4>
+                                        <h4 class="panel-title">Home Country Address <a data-value='homeadd' data-action = "add" data-title=">Add A New Home Country Address" data-homeadd='' href="" data-toggle="modal" data-class="worker"  data-target="#homeAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-plus pull-right" pull-right></a></span></h4>
 
 
                                     </div>
@@ -614,7 +614,7 @@
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td style="width:80%"><%=address%></td>
-                                                    <td class="text-center" style="width:20%"><a style="color: black" data-class="worker"  data-value='homeadd' data-homeadd='<%=addressObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#homeAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td class="text-center" style="width:20%"><a style="color: black" data-class="worker" data-title="View Home Country Address Details" data-value='homeadd' data-homeadd='<%=addressObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#homeAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                             </table>
 
@@ -625,7 +625,7 @@
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td style="width:90%"><%=address%></td>
-                                                    <td class="text-center" style="width:10%"><a style="color: black" data-class="worker"  data-value='homeadd' data-homeadd='<%=addressObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#homeAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td class="text-center" style="width:10%"><a style="color: black" data-class="worker" data-title="View Home Country Address Details" data-value='homeadd' data-homeadd='<%=addressObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#homeAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -649,7 +649,7 @@
                                     <div class="panel-heading">
 
                                         <h4 class="panel-title">Digital Contacts
-                                            <a data-value='digcontact' data-class="worker"  data-digcontact='' href="" data-action = "add" data-toggle="modal" data-target="#digContact_pop_up" class="edit_btn pop_up_open">
+                                            <a data-value='digcontact' data-class="worker"  data-digcontact='' href="" data-title="Add A New Digital Contact Address" data-action = "add" data-toggle="modal" data-target="#digContact_pop_up" class="edit_btn pop_up_open">
                                                 <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                     </div>
 
@@ -684,7 +684,7 @@
                                                 <td><%=contactAdd%></td>
                                                 <td><%=owner%></td>
                                                 <td><%=(obDate==null)?"Still In use":sdf.format(obDate)%></td>
-                                                <td><a style="color: black" data-class="worker"  data-value='digcontact' data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#digContact_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <td><a style="color: black" data-class="worker"  data-value='digcontact' data-title="View Digital Contact Address Details" data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#digContact_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%} else { %>
                                             <tr>
@@ -692,7 +692,7 @@
                                                 <td><%=contactAdd%></td>
                                                 <td><%=owner%></td>
                                                 <td><%=(obDate==null)?"Still In use":sdf.format(obDate)%></td>
-                                                <td><a style="color: black" data-class="worker"  data-value='digcontact' data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#digContact_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <td><a style="color: black" data-class="worker"  data-value='digcontact' data-title="View Digital Contact Address Details" data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#digContact_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
                                                     }
@@ -717,7 +717,7 @@
                                     <div class="panel-heading">
 
                                         <h4 class="panel-title">Next of Kin
-                                            <a data-value='nok' data-class="worker"  data-nok='' href="" data-toggle="modal" data-action = "add" data-target="#nok_pop_up" class="edit_btn pop_up_open">
+                                            <a data-value='nok' data-class="worker"  data-nok='' href="" data-toggle="modal" data-title="Add A New Next of Kin" data-action = "add" data-target="#nok_pop_up" class="edit_btn pop_up_open">
                                                 <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                     </div>
 
@@ -753,7 +753,7 @@
                                                 <td><%=(otherContact == null) ? "" : otherContact%></td>
 
 
-                                                <td><a style="color: black"  data-class="worker" data-value='nok' data-nok='<%=nextOfKins.getId()%>' href="" data-toggle="modal" data-target="#nok_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <td><a style="color: black"  data-class="worker" data-value='nok' data-nok='<%=nextOfKins.getId()%>' data-title="View Next of Kin Details" href="" data-toggle="modal" data-target="#nok_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
                                             } else {
@@ -764,7 +764,7 @@
                                                 <td><%=(phNum == null) ? "" : phNum%></td>
                                                 <td><%=(otherContact == null) ? "" : otherContact%></td>
 
-                                                <td><a style="color: black"  data-class="worker" data-value='nok' data-nok='<%=nextOfKins.getId()%>' href="" data-toggle="modal" data-target="#nok_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <td><a style="color: black"  data-class="worker" data-value='nok' data-nok='<%=nextOfKins.getId()%>' data-title="View Next of Kin Details" href="" data-toggle="modal" data-target="#nok_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
                                                     }
@@ -789,7 +789,7 @@
                                     <div class="panel-heading">
 
                                         <h4 class="panel-title">Family Members
-                                            <a data-value='familymember' data-class="worker"  data-familymember='' href="" data-action = "add" data-toggle="modal" data-target="#familyMember_pop_up" class="edit_btn pop_up_open">
+                                            <a data-value='familymember' data-class="worker"  data-familymember='' href="" data-title="Add A New Family Member" data-action = "add" data-toggle="modal" data-target="#familyMember_pop_up" class="edit_btn pop_up_open">
                                                 <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                     </div>
 
@@ -824,7 +824,7 @@
                                                 <td><%=relationship%></td>
                                                 <td><%=phNum%></td>
                                                 <td><%=otherContact%></td>
-                                                <td><a style="color: black" data-class="worker"  data-value='familymember' data-familymember='<%=familyMember.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#familyMember_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <td><a style="color: black" data-class="worker"  data-value='familymember' data-title="View Family Member Details" data-familymember='<%=familyMember.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#familyMember_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
                                             } else {
@@ -834,7 +834,7 @@
                                                 <td><%=relationship%></td>
                                                 <td><%=phNum%></td>
                                                 <td><%=otherContact%></td>
-                                                <td><a style="color: black" data-class="worker"  data-value='familymember' data-familymember='<%=familyMember.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#familyMember_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <td><a style="color: black" data-class="worker"  data-value='familymember' data-title="View Family Member Details" data-familymember='<%=familyMember.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#familyMember_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
                                                     }
@@ -859,7 +859,7 @@
                                     <div class="panel-heading">
 
                                         <h4 class="panel-title">Friends In Singapore
-                                            <a data-value='sgfri' data-sgfri='' data-class="worker"  href="" data-toggle="modal" data-action = "add" data-target="#sgFri_pop_up" class="edit_btn pop_up_open">
+                                            <a data-value='sgfri' data-sgfri='' data-class="worker"  href="" data-toggle="modal" data-title="Add A New Friend in Singapore" data-action = "add" data-target="#sgFri_pop_up" class="edit_btn pop_up_open">
                                                 <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                     </div>
 
@@ -894,7 +894,7 @@
                                                 <td><%=relationship%></td>
                                                 <td><%=phNum%></td>
                                                 <td><%=(obDate == null) ? "" : sdf.format(obDate)%></td>
-                                                <td><a style="color: black" data-class="worker"  data-value='sgfri' data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#sgFri_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <td><a style="color: black" data-class="worker"  data-value='sgfri' data-sgfri='<%=friend.getId()%>' data-title="View Details of Friend in Singapore" href="" data-toggle="modal" data-target="#sgFri_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
                                             } else {
@@ -904,7 +904,7 @@
                                                 <td><%=relationship%></td>
                                                 <td><%=phNum%></td>
                                                 <td><%=(obDate == null) ? "" : sdf.format(obDate)%></td>
-                                                <td><a style="color: black" data-class="worker"  data-value='sgfri' data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#sgFri_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <td><a style="color: black" data-class="worker"  data-value='sgfri' data-sgfri='<%=friend.getId()%>' data-title="View Details of Friend in Singapore" href="" data-toggle="modal" data-target="#sgFri_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
                                                     }
@@ -929,7 +929,7 @@
                                     <div class="panel-heading">
 
                                         <h4 class="panel-title">Language
-                                            <a data-value='language' data-class="worker"  data-language='' href="" data-toggle="modal" data-action = "add" data-target="#language_pop_up" class="edit_btn pop_up_open">
+                                            <a data-value='language' data-class="worker"  data-language='' href="" data-toggle="modal" data-title='Add A New Worker\'s Language' data-action = "add" data-target="#language_pop_up" class="edit_btn pop_up_open">
                                                 <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                     </div>
 
@@ -960,7 +960,7 @@
                                                 <td><%=mlanguage%></td>
                                                 <td><%=engStd%></td>
                                                 
-                                                <td><a style="color: black"  data-class="worker" data-value='language' data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <td><a style="color: black"  data-class="worker" data-value='language' data-title='View Details of Worker\'s Language' data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
                                             } else {
@@ -969,7 +969,7 @@
                                                 <td><%=mlanguage%></td>
                                                 <td><%=engStd%></td>
                                                 
-                                                <td><a style="color: black"  data-class="worker" data-value='language' data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <td><a style="color: black"  data-class="worker" data-value='language' data-title='View Details of Worker\'s Language' data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
                                                     }
@@ -994,7 +994,7 @@
                                     <div class="panel-heading">
 
                                         <h4 class="panel-title">Bank Account Details
-                                            <a data-value='bankacc' data-class="worker"  data-bankacc='' href="" data-toggle="modal" data-action = "add" data-target="#bankAcc_pop_up" class="edit_btn pop_up_open">
+                                            <a data-value='bankacc' data-class="worker"  data-bankacc='' href="" data-toggle="modal" data-title='Add A New Bank Account Details' data-action = "add" data-target="#bankAcc_pop_up" class="edit_btn pop_up_open">
                                                 <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                     </div>
 
@@ -1040,7 +1040,7 @@
 
                                                 %>
 
-                                                <td><a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' href="" data-toggle="modal" data-class="worker"  data-target="#bankAcc_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <td><a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' data-title='View Bank Account Details' href="" data-toggle="modal" data-class="worker"  data-target="#bankAcc_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
                                             } else {
@@ -1062,7 +1062,7 @@
 
                                                 %>
 
-                                                <td><a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' href="" data-toggle="modal" data-class="worker"  data-target="#bankAcc_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                <td><a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' data-title='View Bank Account Details' href="" data-toggle="modal" data-class="worker"  data-target="#bankAcc_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                             </tr>
                                             <%
                                                     }
@@ -1073,8 +1073,8 @@
                                             if (bankAcctDetailsIds.size() > 1) {
                                         %>
 
-                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_bankacc_seemore" onclick="seemore('.other_bankacc')">See more</a>
-                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_bankacc_seemore" onclick="seemore('.other_bankacc')">View Less</a>
+                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_bankacc_seemore" onclick="seemore('.other_bankacc');">See more</a>
+                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_bankacc_seemore" onclick="seemore('.other_bankacc');">View Less</a>
                                         <%                                                            }
                                             }
                                         %>
@@ -1134,7 +1134,7 @@
 
 
                                             <h4 class="panel-title">Currently Held Pass Details
-                                                <a style="color: black" data-class="job"  data-value='passdetails' data-passdetails='' href="" data-toggle="modal" data-target="#passdetails_pop_up" data-action="add" class="view_btn pop_up_open">
+                                                <a style="color: black" data-class="job"  data-value='passdetails' data-passdetails='' href="" data-title="Add A New Pass Details" data-toggle="modal" data-target="#passdetails_pop_up" data-action="add" class="view_btn pop_up_open">
                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                         </div>
 
@@ -1173,7 +1173,7 @@
                                                     <td><%=(isDate == null) ? "-" : sdf.format(isDate)%></td>
                                                     <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td>
 
-                                                    <td><a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" href="" data-toggle="modal" data-action="viewedit" data-target="#passdetails_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td><a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" data-title="View Pass Details" href="" data-toggle="modal" data-action="viewedit" data-target="#passdetails_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                                 <%
                                                 } else {
@@ -1183,7 +1183,7 @@
                                                     <td><%=passNo%></td>
                                                     <td><%=(isDate == null) ? "-" : sdf.format(isDate)%></td>
                                                     <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td>
-                                                    <td><a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" href="" data-toggle="modal" data-action="viewedit" data-target="#passdetails_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td><a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" data-title="View Pass Details" href="" data-toggle="modal" data-action="viewedit" data-target="#passdetails_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                                 <%
                                                         }
@@ -1208,7 +1208,7 @@
                                         <div class="panel-heading">
 
                                             <h4 class="panel-title">IPA Details
-                                                <a style="color: black" data-value='ipa' data-ipa='' href="" data-toggle="modal" data-class="job"  data-target="#ipa_pop_up" data-action="add" class="view_btn pop_up_open">
+                                                <a style="color: black" data-value='ipa' data-ipa='' href="" data-toggle="modal" data-class="job" data-title="Add A New IPA Pass" data-target="#ipa_pop_up" data-action="add" class="view_btn pop_up_open">
                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                         </div>
 
@@ -1246,7 +1246,7 @@
                                                     <td><%=empName%></td>
                                                     <td><%=salary%></td>
                                                     <td>
-                                                        <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' 
+                                                        <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' data-title="View IPA Pass Details"
                                                            data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
                                                            data-action="viewedit" class="view_btn pop_up_open">
                                                             <span class="glyphicon glyphicon-eye-open"></span>
@@ -1261,7 +1261,7 @@
                                                     <td><%=empName%></td>
                                                     <td><%=salary%></td>
                                                     <td>
-                                                        <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' 
+                                                        <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' data-title="View IPA Pass Details"
                                                            data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
                                                            data-action="viewedit" class="view_btn pop_up_open">
                                                             <span class="glyphicon glyphicon-eye-open"></span>
@@ -1291,7 +1291,7 @@
                                         <div class="panel-heading">
 
                                             <h4 class="panel-title">Verbal Assurance of Previous Job
-                                                <a style="color: black" data-value='assurance' data-assurance='' href=""  data-class="job" data-toggle="modal" data-target="#assurance_pop_up" data-action="add" class="view_btn pop_up_open">
+                                                <a style="color: black" data-value='assurance' data-assurance='' href=""  data-class="job" data-title="Add A New Verbal Assurance" data-toggle="modal" data-target="#assurance_pop_up" data-action="add" class="view_btn pop_up_open">
                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                         </div>
 
@@ -1330,7 +1330,7 @@
                                                     <td><%=verbalWhen%></td>
                                                     <td><%=verbalWhere%></td>
                                                     <td>
-                                                        <a style="color: black" data-value='assurance' data-assurance='<%=assurance.getId()%>'  data-class="job" 
+                                                        <a style="color: black" data-value='assurance' data-assurance='<%=assurance.getId()%>'  data-class="job" data-title="View Verbal Assurance Details"
                                                            href="" data-toggle="modal" data-target="#assurance_pop_up" data-action="viewedit" 
                                                            class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                         </a>
@@ -1346,7 +1346,7 @@
                                                     <td><%=verbalWhen%></td>
                                                     <td><%=verbalWhere%></td>
                                                     <td>
-                                                        <a style="color: black" data-value='assurance' data-assurance='<%=assurance.getId()%>'  data-class="job" 
+                                                        <a style="color: black" data-value='assurance' data-assurance='<%=assurance.getId()%>'  data-class="job" data-title="View Verbal Assurance Details"
                                                            href="" data-toggle="modal" data-target="#assurance_pop_up" data-action="viewedit" 
                                                            class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                         </a>
@@ -1375,7 +1375,7 @@
                                         <div class="panel-heading">
 
                                             <h4 class="panel-title">Employment Contract
-                                                <a style="color: black"  data-class="job" data-value='empcontract' data-empcontract='' href="" data-toggle="modal" data-target="#empcontract_pop_up" data-action="add" class="view_btn pop_up_open">
+                                                <a style="color: black"  data-class="job" data-value='empcontract' data-empcontract='' data-title="Add A New Employment Contract" href="" data-toggle="modal" data-target="#empcontract_pop_up" data-action="add" class="view_btn pop_up_open">
                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                         </div>
 
@@ -1421,7 +1421,7 @@
                                                     <td><%=contraName%></td>
                                                     <td><%=contraSalary%></td>
 
-                                                    <td><a style="color: black"  data-class="job" data-value='empcontract' 
+                                                    <td><a style="color: black"  data-class="job" data-value='empcontract' data-title="View Employment Contract Details"
                                                            data-empcontract='<%=empContract.getId()%>' href="" 
                                                            data-toggle="modal" data-target="#empcontract_pop_up" 
                                                            data-action="viewedit" class="view_btn pop_up_open">
@@ -1448,7 +1448,7 @@
                                                     <td><%=contraSalary%></td>
 
                                                     <td>
-                                                        <a style="color: black"  data-class="job" data-value='empcontract' 
+                                                        <a style="color: black"  data-class="job" data-value='empcontract' data-title="View Employment Contract Details"
                                                            data-empcontract='<%=empContract.getId()%>' 
                                                            href="" data-toggle="modal" data-target="#empcontract_pop_up" 
                                                            data-action="viewedit" class="view_btn pop_up_open">
@@ -1479,7 +1479,7 @@
                                         <div class="panel-heading">
 
                                             <h4 class="panel-title">Intermediary Agent
-                                                <a style="color: black" data-value='agent' data-agent='' href="" data-toggle="modal" data-class="job"  data-target="#agent_pop_up" data-action="add" class="view_btn pop_up_open">
+                                                <a style="color: black" data-value='agent' data-agent='' href="" data-toggle="modal" data-class="job" data-title="Add A New Intermediary Agent"  data-target="#agent_pop_up" data-action="add" class="view_btn pop_up_open">
                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                         </div>
 
@@ -1519,7 +1519,7 @@
                                                     <td><%=agentFWhere%></td>
 
                                                     <td>
-                                                        <a style="color: black" data-value='agent' data-agent='<%=agent.getID()%>'  data-class="job" 
+                                                        <a style="color: black" data-value='agent' data-agent='<%=agent.getID()%>'  data-class="job" data-title="View Intermediary Agent"
                                                            href="" data-toggle="modal" data-target="#agent_pop_up" data-action="viewedit" 
                                                            class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                         </a>
@@ -1535,7 +1535,7 @@
                                                     <td><%=agentFWhere%></td>
 
                                                     <td>
-                                                        <a style="color: black" data-value='agent' data-agent='<%=agent.getID()%>'  data-class="job" 
+                                                        <a style="color: black" data-value='agent' data-agent='<%=agent.getID()%>'  data-class="job" data-title="View Intermediary Agent"
                                                            href="" data-toggle="modal" data-target="#agent_pop_up" data-action="viewedit" 
                                                            class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                         </a>
@@ -1564,7 +1564,7 @@
                                         <div class="panel-heading">
 
                                             <h4 class="panel-title">Employer Details
-                                                <a style="color: black" data-class="job"  data-value='empdetails' data-empdetails='' href="" data-toggle="modal" data-target="#empdetails_pop_up" data-action="add" class="view_btn pop_up_open">
+                                                <a style="color: black" data-class="job"  data-value='empdetails' data-empdetails='' href="" data-title="Add A New Employer" data-toggle="modal" data-target="#empdetails_pop_up" data-action="add" class="view_btn pop_up_open">
                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                         </div>
 
@@ -1600,9 +1600,7 @@
                                                     <td><%=empId%></td>
                                                     <td><%=empContact%></td>
                                                     <td><%=empKeyPerson%></td>
-                                                    <td><a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
-                                                           href="" data-toggle="modal" data-target="#empdetails_pop_up" data-action="viewedit" 
-                                                           class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td><a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' data-title="View Employer Details" href="" data-toggle="modal" data-target="#empdetails_pop_up" data-action="viewedit" class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                                 <%
                                                 } else {
@@ -1612,9 +1610,7 @@
                                                     <td><%=empId%></td>
                                                     <td><%=empContact%></td>
                                                     <td><%=empKeyPerson%></td>
-                                                    <td><a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
-                                                           href="" data-toggle="modal" data-target="#empdetails_pop_up" data-action="viewedit" 
-                                                           class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td><a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' data-title="View Employer Details" href="" data-toggle="modal" data-target="#empdetails_pop_up" data-action="viewedit" class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                                 <%
                                                         }
@@ -1639,7 +1635,7 @@
                                         <div class="panel-heading">
 
                                             <h4 class="panel-title">Work Place Details
-                                                <a style="color: black" data-value='wplace' data-wplace='' href="" data-toggle="modal"  data-class="job" data-target="#wplace_pop_up" data-action="add" class="view_btn pop_up_open">
+                                                <a style="color: black" data-value='wplace' data-wplace='' href="" data-toggle="modal"  data-class="job" data-title="Add A New Workplace" data-target="#wplace_pop_up" data-action="add" class="view_btn pop_up_open">
                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                         </div>
 
@@ -1677,7 +1673,7 @@
                                                     <td><%=wpEDate%></td>
 
                                                     <td>
-                                                        <a style="color: black" data-value='wplace' data-wplace='<%=workPlace.getId()%>' data-class="job"  href="" data-toggle="modal" data-target="#wplace_pop_up" data-action="viewedit" class="view_btn pop_up_open">
+                                                        <a style="color: black" data-value='wplace' data-wplace='<%=workPlace.getId()%>' data-class="job" data-title="View Workplace Details" href="" data-toggle="modal" data-target="#wplace_pop_up" data-action="viewedit" class="view_btn pop_up_open">
                                                             <span class="glyphicon glyphicon-eye-open"></span>
                                                         </a>
                                                     </td>
@@ -1692,7 +1688,7 @@
                                                     <td><%=wpEDate%></td>
 
                                                     <td>
-                                                        <a style="color: black" data-value='wplace' data-wplace='<%=workPlace.getId()%>' data-class="job"  href="" data-toggle="modal" data-target="#wplace_pop_up" data-action="viewedit" class="view_btn pop_up_open">
+                                                        <a style="color: black" data-value='wplace' data-wplace='<%=workPlace.getId()%>' data-class="job" data-title="View Workplace Details" href="" data-toggle="modal" data-target="#wplace_pop_up" data-action="viewedit" class="view_btn pop_up_open">
                                                             <span class="glyphicon glyphicon-eye-open"></span>
                                                         </a>
                                                     </td>
@@ -1721,7 +1717,7 @@
                                         <div class="panel-heading">
 
                                             <h4 class="panel-title">Work History
-                                                <a style="color: black" data-value='whistory' data-whistory='' href="" data-toggle="modal" data-class="job"  data-target="#whistory_pop_up" data-action="add" class="view_btn pop_up_open">
+                                                <a style="color: black" data-value='whistory' data-whistory='' href="" data-toggle="modal" data-title="Add A New Work History" data-class="job"  data-target="#whistory_pop_up" data-action="add" class="view_btn pop_up_open">
                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                         </div>
 
@@ -1757,7 +1753,7 @@
                                                     <td><%=historyFirstJob%></td>
                                                     <td><%=historyArrYear%></td>
 
-                                                    <td><a style="color: black" data-value='whistory' data-whistory='<%=history.getId()%>' href="" data-toggle="modal"  data-class="job" data-target="#whistory_pop_up" data-action="viewedit" class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td><a style="color: black" data-value='whistory' data-whistory='<%=history.getId()%>' href="" data-title="View Work History Details" data-toggle="modal"  data-class="job" data-target="#whistory_pop_up" data-action="viewedit" class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                                 <%
                                                 } else {
@@ -1768,7 +1764,7 @@
                                                     <td><%=historyFirstJob%></td>
                                                     <td><%=historyArrYear%></td>
 
-                                                    <td><a style="color: black" data-value='whistory' data-whistory='<%=history.getId()%>' href="" data-toggle="modal"  data-class="job" data-target="#whistory_pop_up" data-action="viewedit" class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                    <td><a style="color: black" data-value='whistory' data-whistory='<%=history.getId()%>' href="" data-title="View Work History Details" data-toggle="modal"  data-class="job" data-target="#whistory_pop_up" data-action="viewedit" class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                 </tr>
                                                 <%
                                                         }
@@ -1793,7 +1789,7 @@
                                         <div class="panel-heading">
 
                                             <h4 class="panel-title">Accommodation During Work
-                                                <a style="color: black" data-value='waccom' data-waccom='' href="" data-toggle="modal"  data-class="job" data-target="#waccom_pop_up" data-action="add" class="view_btn pop_up_open">
+                                                <a style="color: black" data-value='waccom' data-waccom='' href="" data-toggle="modal" data-title="Add A New Accommodation" data-class="job" data-target="#waccom_pop_up" data-action="add" class="view_btn pop_up_open">
                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                         </div>
 
@@ -1829,7 +1825,7 @@
                                                     <td><%=accomLocation%></td>
                                                     <td><%=accomEnd%></td>
 
-                                                    <td><a style="color: black" data-value='waccom' data-waccom='<%=accomodation.getId()%>'  data-class="job"  href="" data-toggle="modal" data-target="#waccom_pop_up" data-action="viewedit" 
+                                                    <td><a style="color: black" data-value='waccom' data-waccom='<%=accomodation.getId()%>'  data-class="job"  href="" data-toggle="modal" data-target="#waccom_pop_up" data-action="viewedit" data-title="View Accommodation Details"
                                                            class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                         </a>
                                                     </td>
@@ -1843,7 +1839,7 @@
                                                     <td><%=accomLocation%></td>
                                                     <td><%=accomEnd%></td>
 
-                                                    <td><a style="color: black" data-value='waccom' data-waccom='<%=accomodation.getId()%>'  data-class="job"  href="" data-toggle="modal" data-target="#waccom_pop_up" data-action="viewedit" 
+                                                    <td><a style="color: black" data-value='waccom' data-waccom='<%=accomodation.getId()%>' data-title="View Accommodation Details" data-class="job"  href="" data-toggle="modal" data-target="#waccom_pop_up" data-action="viewedit" 
                                                            class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                         </a>
                                                     </td>

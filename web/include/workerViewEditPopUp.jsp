@@ -693,10 +693,7 @@
 <!------------>
 <!--nickname-->
 <!------------>
-<form method="POST" id='nickname_pop_up' data-title="View Worker's Nickname" class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='view_comp'>View Nickname Details</h4>
-    <h4 class='add_comp'>Add A New Nickname </h4>
-    <h4 class='edit_comp'>Edit Nickname Details</h4>
+<form method="POST" id='nickname_pop_up'  class="form complement_detailed_form worker_pop_up"  >
 
     <div class="view_comp">
         <fieldset disabled>
@@ -708,9 +705,9 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn modal_btn " onclick='editComplement("#nickname_pop_up", "worker")'>Edit</button>
+            <button type='button' class="btn modal_btn " onclick='editComplement("#nickname_pop_up", "worker","Edit Nickname")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn ' onclick='add("#nickname_pop_up", "worker")'>Add</button>                  
+                <button type='button' class='btn modal_btn ' onclick='add("#nickname_pop_up", "worker","Add A New Nickname");'>Add</button>                  
                 <button type='button' class="btn modal_btn cancel_btn">Close</button>
             </div>
         </div>
@@ -761,9 +758,7 @@
 %>
 
 <form method="POST" id='passport_pop_up' class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='view_comp'>View Passport Details</h4>
-    <h4 class='add_comp'>Add A New Passport Details</h4>
-    <h4 class='edit_comp'>Edit Passport Details</h4>
+
 
     <!--Get passport data using passport name-->
     <%
@@ -805,9 +800,9 @@
         </fieldset>
 
         <div class="form-group btn_group">
-            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#passport_pop_up", "worker")'>Edit</button>
+            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#passport_pop_up", "worker","Edit Passport Details");'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn view_comp' onclick='add("#passport_pop_up", "worker")'>Add</button>                  
+                <button type='button' class='btn modal_btn view_comp' onclick='add("#passport_pop_up", "worker","Add A New Passport Details");'>Add</button>                  
                 <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
             </div>
         </div>
@@ -896,9 +891,7 @@
 %>
 
 <form method="POST" id='sgphonenum_pop_up' class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='view_comp'>View Singapore Phone Number Details</h4>
-    <h4 class='add_comp'>Add A New Singapore Phone Number </h4>
-    <h4 class='edit_comp'>Edit Singapore Phone Number Details</h4>
+
 
     <div class="view_comp">
         <fieldset disabled>
@@ -918,9 +911,9 @@
         </fieldset>
 
         <div class="form-group btn_group">
-            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#sgphonenum_pop_up", "worker")'>Edit</button>
+            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#sgphonenum_pop_up", "worker","Edit Singapore Phone Number Details");'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn view_comp' onclick='add("#sgphonenum_pop_up", "worker")'>Add</button>                  
+                <button type='button' class='btn modal_btn view_comp' onclick='add("#sgphonenum_pop_up", "worker","Add A New Singapore Phone Number ");'>Add</button>                  
                 <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
             </div>
         </div>
@@ -994,9 +987,7 @@
 %>
 
 <form method="POST" id='homephonenum_pop_up' class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='view_comp'>View Home Country Phone Number Details</h4>
-    <h4 class='add_comp'>Add A New Home Country Phone Number </h4>
-    <h4 class='edit_comp'>Edit Home Country Phone Number Details</h4>
+
 
     <div class="view_comp">
         <fieldset disabled>
@@ -1022,9 +1013,9 @@
         </fieldset>
 
         <div class="form-group btn_group">
-            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#homephonenum_pop_up", "worker")'>Edit</button>
+            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#homephonenum_pop_up", "worker","Edit Home Country Phone Number Details")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn view_comp' onclick='add("#homephonenum_pop_up", "worker")'>Add</button>                  
+                <button type='button' class='btn modal_btn view_comp' onclick='add("#homephonenum_pop_up", "worker","Add A New Home Country Phone Number")'>Add</button>                  
                 <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
             </div>
         </div>
@@ -1101,9 +1092,7 @@
 %>
 
 <form method="POST" id='sgAdd_pop_up' class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='view_comp'>View Singapore Address Details</h4>
-    <h4 class='add_comp'>Add A New Singapore Address </h4>
-    <h4 class='edit_comp'>Edit Singapore Address Details</h4>
+
 
     <div class="view_comp">
         <fieldset disabled>
@@ -1123,9 +1112,9 @@
         </fieldset>
 
         <div class="form-group btn_group">
-            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#sgAdd_pop_up", "worker")'>Edit</button>
+            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#sgAdd_pop_up", "worker","Edit Singapore Address Details");'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn view_comp' onclick='add("#sgAdd_pop_up", "worker")'>Add</button>                  
+                <button type='button' class='btn modal_btn view_comp' onclick='add("#sgAdd_pop_up", "worker","Add A New Singapore Address");'>Add</button>                  
                 <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
             </div>
         </div>
@@ -1191,9 +1180,7 @@
 %>
 
 <form method="POST" id='homeAdd_pop_up' class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='view_comp'>View Home Country Address Details</h4>
-    <h4 class='add_comp'>Add A New Home Country Address </h4>
-    <h4 class='edit_comp'>Edit Home Country Address Details</h4>
+
 
     <div class="view_comp">
         <fieldset disabled>
@@ -1211,9 +1198,9 @@
         </fieldset>
 
         <div class="form-group btn_group">
-            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#homeAdd_pop_up", "worker")'>Edit</button>
+            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#homeAdd_pop_up", "worker","Edit Home Country Address Details");'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn modal_btn view_comp' onclick='add("#homeAdd_pop_up", "worker")'>Add</button>                  
+                <button type='button' class='btn modal_btn view_comp' onclick='add("#homeAdd_pop_up", "worker","Add A New Home Country Address")'>Add</button>                  
                 <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
             </div>
         </div>
@@ -1280,9 +1267,7 @@
 %>
 
 <form method="POST" id='digi_pop_up' class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='view_comp'>View Digital Contact Address Details</h4>
-    <h4 class='add_comp'>Add A New Digital Contact Address </h4>
-    <h4 class='edit_comp'>Edit Digital Contact Address Details</h4>
+
     <div class='form-group'>
 
         <!--Get nok data using  name-->
@@ -1330,9 +1315,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#digi_pop_up", "worker")'>Edit</button>
+                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#digi_pop_up", "worker","Edit Digital Contact Address Details");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#digi_pop_up", "worker")'>Add</button>                  
+                    <button type='button' class='btn modal_btn view_comp' onclick='add("#digi_pop_up", "worker","Add A New Digital Contact Address");'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -1468,9 +1453,7 @@
 %>
 
 <form method="POST" id='nok_pop_up' class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='view_comp'>View Next of Kin Details</h4>
-    <h4 class='add_comp'>Add A New Next of Kin </h4>
-    <h4 class='edit_comp'>Edit Next of Kin Details</h4>
+
     <div class='form-group'>
 
         <!--Get nok data using passport name-->
@@ -1539,9 +1522,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#nok_pop_up", "worker")'>Edit</button>
+                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#nok_pop_up", "worker","Edit Next of Kin Details");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#nok_pop_up", "worker")'>Add</button>                  
+                    <button type='button' class='btn modal_btn view_comp' onclick='add("#nok_pop_up", "worker","Add A New Next of Kin");'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -1674,9 +1657,7 @@
 %>
 
 <form method="POST" id='fm_pop_up' class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='view_comp'>View Family Member Details</h4>
-    <h4 class='add_comp'>Add A New Family Member </h4>
-    <h4 class='edit_comp'>Edit Family Member Details</h4>
+
     <div class='form-group'>
 
 
@@ -1735,9 +1716,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#fm_pop_up", "worker")'>Edit</button>
+                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#fm_pop_up", "worker","Edit Family Member Details");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#fm_pop_up", "worker")'>Add</button>                  
+                    <button type='button' class='btn modal_btn view_comp' onclick='add("#fm_pop_up", "worker","Add A New Family Member");'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -1852,9 +1833,7 @@
 %>
 
 <form method="POST" id='sgFri_pop_up' class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='view_comp'>View Details of Friend in Singapore</h4>
-    <h4 class='add_comp'>Add A New Friend in Singapore</h4>
-    <h4 class='edit_comp'>Edit Details of Friend in Singapore</h4>
+
     <div class='form-group'>
 
 
@@ -1899,9 +1878,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#sgFri_pop_up", "worker");'>Edit</button>
+                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#sgFri_pop_up", "worker","Edit Details of Friend in Singapore");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#sgFri_pop_up", "worker");'>Add</button>                  
+                    <button type='button' class='btn modal_btn view_comp' onclick='add("#sgFri_pop_up", "worker","Add A New Friend in Singapore");'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -1998,9 +1977,7 @@
 %>
 
 <form method="POST" id='language_pop_up' class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='view_comp'>View Details of Worker's Language Standard</h4>
-    <h4 class='add_comp'>Add A New Language of Worker</h4>
-    <h4 class='edit_comp'>Edit Details of Worker's Language Standard</h4>
+
     <div class='form-group'>
         <%
             String remark = workerLanguage.getRemark();
@@ -2033,9 +2010,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#language_pop_up", "worker");'>Edit</button>
+                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#language_pop_up", "worker","Edit Details of Worker\'s Language");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#language_pop_up", "worker");'>Add</button>                  
+                    <button type='button' class='btn modal_btn view_comp' onclick='add("#language_pop_up", "worker","Add A New Worker\'s Language");'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -2171,9 +2148,7 @@
 %>
 
 <form method="POST" id='bk_pop_up' class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='view_comp'>View Worker's Bank Account Details</h4>
-    <h4 class='add_comp'>Add A New Bank Account Details</h4>
-    <h4 class='edit_comp'>Edit Worker's Bank Account Details</h4>
+
 
     <div class='form-group'>
 
@@ -2244,9 +2219,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#bk_pop_up", "worker")'>Edit</button>
+                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#bk_pop_up", "worker","Edit Bank Account Details");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#bk_pop_up", "worker")'>Add</button>                  
+                    <button type='button' class='btn modal_btn view_comp' onclick='add("#bk_pop_up", "worker","Add A New Bank Account Details");'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -2388,14 +2363,9 @@
 
     $(document).ready(function(event) {
 
-        //alert('alert1');
         $('.view_comp').show();
-        //alert('alert2');
         $('.edit_comp').hide();
-        //alert('alert3');
         $('.add_comp').hide();
-
-
         $('.complement_detailed_form').attr("action", "");
 
 
@@ -2406,12 +2376,10 @@
     });
 
 
-    function editComplement(div_id, category) {
-        //alert("first check");
-        //alert(div_id);
+    function editComplement(div_id, category, title) {
+        $('#pop_up_content').dialog('option', 'title', title);
         $(div_id).attr("action", "editWorkerComplement.do");
         $(div_id + " .edit_comp").show();
-        //alert("edit");
         $(div_id + " .view_comp").hide();
         $(div_id + " .add_comp").hide();
         $(div_id + " .add_comp input").prop('disabled', true);
@@ -2420,9 +2388,9 @@
 
     }
 
-    function add(div_id, category) {
+    function add(div_id, category, title) {
+        $('#pop_up_content').dialog('option', 'title', title);
         $(div_id).attr("action", "addWorkerComplement.do");
-
         $(div_id + " .add_comp").show();
         $(div_id + " .edit_comp").hide();
         $(div_id + " .view_comp").hide();
