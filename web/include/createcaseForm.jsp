@@ -716,7 +716,7 @@
     <button type='button' onclick="edit('job_stub', 'Job Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
     <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
     <button type='button' class='btn btn-blue modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
-    <button style="display:none" type='button' class="btn btn-blue modal_btn add_btn pull-right" onclick="add('job')">Add</button>
+    <button style="display:none" type='button' class="btn btn-blue modal_btn add_btn pull-right" onclick="add('job');">Add</button>
 </form>
 
 <%
@@ -785,7 +785,7 @@
     <button type='button' onclick="edit('problem_stub', 'problem Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
     <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
     <button type='button' class='btn btn-blue modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
-    <button style="display:none"  type='button' class="btn btn-blue modal_btn add_btn pull-right" onclick="add('problem')">Add</button>
+    <button style="display:none"  type='button' class="btn btn-blue modal_btn add_btn pull-right" onclick="add('problem');">Add</button>
 </form>
 
 <%
@@ -1024,7 +1024,13 @@
     function add(stub) {
 
         $('#pop_up_content').empty();
-        $("#pop_up_content").load('include/createcaseForm.jsp?workerFin=<%=workerFin%>&jobkey=<%=jobKey%>&probkey=<%=probKey%>&profile=' + stub + '&action=add').dialog({modal: true, minHeight: $(window).height() - 350, minWidth: $(window).width() - 750, width: (window).width() - 200, resizable: false, title: div_title, draggable: false, close: function() {
+        $("#pop_up_content").load('include/createcaseForm.jsp?workerFin=<%=workerFin%>&jobkey=<%=jobKey%>&probkey=<%=probKey%>&profile=' + stub + '&action=add').dialog({
+                        modal: true,
+                        position: ['center', 80],
+                        minWidth: $(window).width() - 750,
+                        title: div_title,
+                        resizable: false,
+                        draggable: false,close: function() {
                 $(this).dialog('destroy');
                 $('#pop_up_content').empty();
             }

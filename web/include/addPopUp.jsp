@@ -12,8 +12,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <style>
-    h4{
-        color: #AF4454;
+    form{
+        padding-top: 2%;
     }
 
 </style>

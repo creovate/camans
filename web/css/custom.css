@@ -210,7 +210,9 @@ label{
     background: lightgray; 
 }
 */
-
+.table-condensed{
+    margin-bottom: 2%;
+}
 
 
 .worker_profile_header{
@@ -218,6 +220,7 @@ label{
     color: white;
     font-weight: bold;
     border: solid #3061A3;
+    margin-bottom: 2%;
 }
 
 #view_worker_box h3, h4{
@@ -242,13 +245,13 @@ body {
 #worker_profile_div{
     float: left;
     height: 170%;
+    width:17vw;
     position:relative;
     overflow-y:auto;
     overflow-x:hidden;
     padding-left:1%;
+    padding-right: 0%;
     font-weight: bold;
-    width:17vw;
-    
 }
 
 
