@@ -14,6 +14,9 @@
     .selected{
         background: #e7e7e7;
     }
+    ul li a{
+        color: #006C9A;
+    }
 </style>
 <script>
     $(document).ready(function() {

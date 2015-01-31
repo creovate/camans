@@ -15,7 +15,7 @@ body{
 }
 
 h1, h2, h3, h4, h5, h6{
-    color: #1F3A93 ;
+    color: #00618B ;
     font-weight: bolder;
 }
 .col-md-10{
@@ -27,18 +27,18 @@ h1, h2, h3, h4, h5, h6{
 }
 /*buttons*/
 .btn-blue{
-    background: #3061A3;
+    background: #0078AB;
     color: white;
     border: 0;
     text-align: center;
-    border-bottom: 2pm solid #2475ab;
+    border-bottom: 2px solid #2475ab;
     -webkit-box-shadow: inset 0 -2px #2475ab;
     box-shadow: inset 0 -2px #2475ab;
     border-radius: 2px;
 }
 
 .btn-blue:active,.btn-blue:hover, .btn-blue:focus {
-    background: #3061A3;
+    background: #006C9A;
     color: white;
     top: 1px;
     outline: none;
@@ -46,12 +46,19 @@ h1, h2, h3, h4, h5, h6{
     box-shadow: none;
 }
 
+.cancel_btn{
+    background: silver;
+    border-radius: 2px;
+}
+
 .btn-disabled{
     background: #ccc;
     border-radius:2px;
 }
+
 label{
     text-transform: capitalize;
+    color: #444;
 }
 
 .btn-primary {
@@ -216,10 +223,10 @@ label{
 
 
 .worker_profile_header{
-    background-color: #3061A3;
+    background-color: #006C9A;
     color: white;
     font-weight: bold;
-    border: solid #3061A3;
+    border: solid #006C9A;
     margin-bottom: 2%;
 }
 
@@ -313,7 +320,7 @@ ol.progtrckr li {
 
 ol.progtrckr li.progtrckr-done {
     color: black;
-    border-bottom: 8px solid #87B821;
+    border-bottom: 8px solid #6697AE;
 }
 ol.progtrckr li.progtrckr-todo {
     color: silver; 
@@ -333,7 +340,7 @@ ol.progtrckr li:before {
 ol.progtrckr li.progtrckr-done:before {
     content: "\2713";
     color: white;
-    background-color: #87B821;
+    background-color: #6697AE;
     height: 2.4em;
     width: 2.4em;
     line-height: 2.4em;
@@ -352,35 +359,31 @@ ol.progtrckr li.progtrckr-todo:before {
 
 /*end of customized for create worker*/
 
-.btn_group button{
-    margin: 5px;
-    padding: 10px;
-}
+
 /*view worker sub nav*/
 #sub_nav_tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
     color: white;
     font-weight: bolder;
-    background: #3061A3 ;
-    border-bottom: 3px solid #3061A3;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
+    background: #006C9A ;
+    border-bottom: 2px solid #004C6C;
+    border-right: 3px solid #004C6C;
 
 }
 
 #sub_nav_tabs{
-    border-bottom: 1.5px solid #3061A3;
+    border-bottom: 1.5px solid #006C9A;
 }
 
 #sub_nav_tabs a{
-    color: #3061A3;
+    color: #006C9A;
     font-weight: bold;
 }
 /*end of view worker sub nav*/
 
 /*panels*/
 .panel-default>.panel-heading{
-    background: #B4C6DE;
-    
+    background: #94C1D4;
+    color:#002E41;
 }
 
 .panel{
@@ -396,52 +399,10 @@ ol.progtrckr li.progtrckr-todo:before {
     border-radius:0;
 }
 
-.panel-warning > .panel-heading {
-  background-image: -webkit-linear-gradient(top, #fcf8e3 0%, #faf2cc 100%);
-  background-image:      -o-linear-gradient(top, #fcf8e3 0%, #faf2cc 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fcf8e3), to(#faf2cc));
-  background-image:         linear-gradient(to bottom, #fcf8e3 0%, #faf2cc 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffcf8e3', endColorstr='#fffaf2cc', GradientType=0);
-  background-repeat: repeat-x;
-}
+
+
+
 /**/
-
-/*table curve*/
-.table-curved {
-    border-collapse: separate;
-}
-.table-curved {
-    border: solid #ccc 1px;
-    border-radius: 6px;
-    border-left:0px;
-}
-.table-curved td, .table-curved th {
-    border-left: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-}
-.table-curved th {
-    border-top: none;
-}
-.table-curved th:first-child {
-    border-radius: 6px 0 0 0;
-}
-.table-curved th:last-child {
-    border-radius: 0 6px 0 0;
-}
-.table-curved th:only-child{
-    border-radius: 6px 6px 0 0;
-}
-.table-curved tr:last-child td:first-child {
-    border-radius: 0 0 0 6px;
-}
-.table-curved tr:last-child td:last-child {
-    border-radius: 0 0 6px 0;
-}
-/* end table curve*/
-
-.ui-dialog{
-    top: 10%;
-}
 
 
 /**complement details**/
@@ -480,12 +441,6 @@ ol.progtrckr li.progtrckr-todo:before {
     text-decoration: none;
     font-weight: bold;
 }
-
-.accordion_panel panel-heading{
-    background-color: #b7b4de;
-}
-
-
 
 /**navbar**/
 .navbar{

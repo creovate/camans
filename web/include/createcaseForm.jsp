@@ -579,7 +579,7 @@
     <input type="hidden" id="stub_name" name="stub" value="worker"/>
     <button type='button' onclick="edit('worker_stub', 'Worker Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
     <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
-    <button type='button' class='btn btn-blue modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
+    <button type='button' class='btn modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
 </form>
 
 <%
@@ -715,7 +715,7 @@
     <input type="hidden" id="job_name" name="jobKey" value="<%=jobKey%>"/>
     <button type='button' onclick="edit('job_stub', 'Job Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
     <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
-    <button type='button' class='btn btn-blue modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
+    <button type='button' class='btn modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
     <button style="display:none" type='button' class="btn btn-blue modal_btn add_btn pull-right" onclick="add('job');">Add</button>
 </form>
 
@@ -784,7 +784,7 @@
     <input type="hidden" id="job_name" name="probKey" value="<%=probKey%>"/>
     <button type='button' onclick="edit('problem_stub', 'problem Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
     <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
-    <button type='button' class='btn btn-blue modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
+    <button type='button' class='btn modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
     <button style="display:none"  type='button' class="btn btn-blue modal_btn add_btn pull-right" onclick="add('problem');">Add</button>
 </form>
 

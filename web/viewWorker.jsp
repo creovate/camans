@@ -66,17 +66,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       
         <link rel="stylesheet" href="css/bootstrap.css" media="screen" />
         <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" />
-        <link rel="stylesheet" href="css/custom.css" media="screen" /> 
         <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.css">
-
         <link rel="stylesheet" href="css/jquery-ui.structure.css">
         <link rel="stylesheet" href="css/jquery-ui.theme.css">
-
         <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
         <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
         <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
+         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
 
         <script src="js/jquery-2.1.1.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -166,6 +165,12 @@
                 margin-left:35%;
             }
 
+            
+    .accordion_panel_heading{
+        background-color: #eee;
+        color: #006C9A;
+        
+    }
         </style>
     </head>
     <body id="home" style='background:white;overflow-y: scroll'>
@@ -1955,8 +1960,8 @@
                                             <div class="panel panel-default">
 
                                                 <!--common problem complements-->
-                                                <div class="panel panel-primary">
-                                                    <div class="panel-heading" role="tab" id="headingOne">
+                                                <div class="panel accordion_panel">
+                                                    <div class="panel-heading accordion_panel_heading" role="tab" id="headingOne" style="border-bottom: 1px solid;">
                                                         <h4 class="panel-title">
                                                             <a data-toggle="collapse" data-parent="#accordion" href="#commonComps" aria-expanded="true" aria-controls="collapseOne">
                                                                 Common Problem Complements
@@ -2458,8 +2463,8 @@
                                                 </div>
 
                                                 <!--salary complements-->
-                                                <div class="panel panel-primary">
-                                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                                <div class="panel accordion_panel">
+                                                    <div class="panel-heading accordion_panel_heading" role="tab" id="headingTwo" style="border-bottom: 1px solid; border-top: 2px solid lightgray">
                                                         <h4 class="panel-title">
                                                             <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#salaryComps"  data-class="problem"  aria-expanded="true" aria-controls="collapseTwo">
                                                                 Salary Complements
@@ -2640,8 +2645,8 @@
                                                 </div>
 
                                                 <!--Medical Complements-->
-                                                <div class="panel-primary panel">
-                                                    <div class="panel-heading" role="tab" id="headingThree">
+                                                <div class="panel accordion_panel">
+                                                    <div class="panel-heading accordion_panel_heading" role="tab" id="headingThree" style="border-bottom: 1px solid; border-top: 2px solid lightgray">
                                                         <h4 class="panel-title">
                                                             <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#medicalComps" data-class="problem"  aria-expanded="true" aria-controls="collapseThree">
                                                                 Medical Complements
@@ -3423,8 +3428,8 @@
                                                 </div>
 
                                                 <!--Other Complements-->
-                                                <div class="panel panel-primary">
-                                                    <div class="panel-heading" role="tab" id="headingThree">
+                                                <div class="panel accordion_panel">
+                                                    <div class="panel-heading accordion_panel_heading" role="tab" id="headingThree" style="border-bottom: 1px solid; border-top: 2px solid lightgray">
                                                         <h4 class="panel-title">
                                                             <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#otherComps" data-class="problem"   aria-expanded="true" aria-controls="collapseThree">
                                                                 Other Complements

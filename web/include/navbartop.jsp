@@ -31,28 +31,28 @@
                 </button>
                 <!--<a class="navbar-brand" href="home.jsp"><img id="logo" src="img/twc_logo.png"></a>-->
             </div>
-           
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="caseReferral.jsp">Referred Cases <span class="badge"><%=problemList.size()%></span></a></li>
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown"><%=_user.getUsername()%> <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="userProfile.jsp">
-                                    <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-                                    Profile Setting
-                                </a>
-                            </li>
 
-                            <li class="divider"></li>
-                            <li><a href="logout.jsp">
-                                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-                                    Log Out
-                                </a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="caseReferral.jsp">Referred Cases <span class="badge"><%=problemList.size()%></span></a></li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown"><%=_user.getUsername()%> <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="userProfile.jsp">
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                Profile Setting
+                            </a>
+                        </li>
+
+                        <li class="divider"></li>
+                        <li><a href="logout.jsp">
+                                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                                Log Out
+                            </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
     </nav>
 
 </div>
