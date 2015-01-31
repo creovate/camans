@@ -1679,9 +1679,7 @@
 <!--injury History-->
 <!------------------>
 <form method="POST" id='injurycase_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='view_comp'>View Injury History Details</h4>
-    <h4 class='add_comp'>Add A Injury History Accommodation </h4>
-    <h4 class='edit_comp'>Edit Injury History  Details</h4>
+
     <div class='form-group'>
 
         <%
@@ -1754,9 +1752,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#injurycase_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#injurycase_pop_up", "problem","Edit Injury History Details")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#injurycase_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#injurycase_pop_up", "problem","Add A New Injury History")'>Add</button>                  
                     <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
@@ -1965,7 +1963,7 @@
 
 <form method="POST" id='illnesscase_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <h4 class='view_comp'>View Illness History Details</h4>
-    <h4 class='add_comp'>Add A Illness History Accommodation </h4>
+    <h4 class='add_comp'>Add A Illness History Details </h4>
     <h4 class='edit_comp'>Edit Illness History  Details</h4>
     <div class='form-group'>
 
@@ -2019,9 +2017,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#illnesscase_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#illnesscase_pop_up", "problem","Edit Illness History  Details")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#illnesscase_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#illnesscase_pop_up", "problem","Add A Illness History Details")'>Add</button>                  
                     <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
@@ -2158,9 +2156,7 @@
 %>
 
 <form method="POST" id='othercase_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='view_comp'>View Details & history of other problems</h4>
-    <h4 class='add_comp'>Add Details & history of other problems </h4>
-    <h4 class='edit_comp'>Edit Details & history of other problems</h4>
+
     <div class='form-group'>
 
         <%
@@ -2188,9 +2184,9 @@
                 </div>
             </fieldset>
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#othercase_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#othercase_pop_up", "problem","Edit Details & History of Other Problems")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#othercase_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#othercase_pop_up", "problem","Add Details & History of Other Problems")'>Add</button>                  
                     <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
@@ -2265,9 +2261,7 @@
 %>
 
 <form method="POST" id='salarycalim_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='view_comp'>View Salary Claim Details</h4>
-    <h4 class='add_comp'>Add Salary Claim Details</h4>
-    <h4 class='edit_comp'>Edit Salary Claim Details</h4>
+
     <div class='form-group'>
 
         <%
@@ -2298,9 +2292,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#salarycalim_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#salarycalim_pop_up", "problem","Edit Salary Claim Lodged Details")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#salarycalim_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#salarycalim_pop_up", "problem","Add Salary Claim Lodged")'>Add</button>                  
                     <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
@@ -2382,9 +2376,7 @@
 %>
 
 <form method="POST" id='wicaclaim_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='view_comp'>View Wica Claim Details</h4>
-    <h4 class='add_comp'>Add Wica Claim Details</h4>
-    <h4 class='edit_comp'>Edit Wica Claim Details</h4>
+
     <div class='form-group'>
 
         <%
@@ -2430,9 +2422,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#wicaclaim_pop_up", "problem");'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#wicaclaim_pop_up", "problem","Edit Wica Claim Lodged Details");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#wicaclaim_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#wicaclaim_pop_up", "problem","Add Wica Claim Lodged Details")'>Add</button>                  
                     <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
@@ -2542,10 +2534,7 @@
 %>
 
 <form method="POST" id='nonwicaclaim_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='view_comp'>View Non-Wica Claim Details</h4>
-    <h4 class='add_comp'>Add Non-Wica Claim Details</h4>
-    <h4 class='edit_comp'>Edit Non-Wica Claim Details</h4>
-    <div class='form-group'>
+
 
         <%
             java.util.Date date = pnonWicaClaim.getMedicalClaimDate();
@@ -2593,9 +2582,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#nonwicaclaim_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#nonwicaclaim_pop_up", "problem","Edit Non-Wica Claim Lodged Details")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#nonwicaclaim_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#nonwicaclaim_pop_up", "problem","Add Non-Wica Claim Details")'>Add</button>                  
                     <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
@@ -2692,7 +2681,7 @@
                 <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
-    </div>
+
 </form>
 
 <!------------------------>
@@ -2713,9 +2702,7 @@
 %>
 
 <form method="POST" id='policareport_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='view_comp'>View Police Report Details</h4>
-    <h4 class='add_comp'>Add A New Police Report</h4>
-    <h4 class='edit_comp'>Edit Police Report Details</h4>
+
 
     <!--view-->
     <div class="view_comp">
@@ -2754,9 +2741,9 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#policareport_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#policareport_pop_up", "problem","Edit Police Report Lodged Details")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#policareport_pop_up", "problem")'>Add</button>                  
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#policareport_pop_up", "problem","Add A New Police Report Lodged")'>Add</button>                  
                 <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
@@ -2875,9 +2862,7 @@
 %>
 
 <form method="POST" id='othercomplaint_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='view_comp'>View Other Complaint Details</h4>
-    <h4 class='add_comp'>Add A New Other Complaint</h4>
-    <h4 class='edit_comp'>Edit Other Complaint Details</h4>
+
 
     <%
         java.util.Date date = complaint.getOtherComplaintDate();
@@ -2932,9 +2917,9 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#othercomplaint_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#othercomplaint_pop_up", "problem", "Edit Other Complaint Lodged Details")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#othercomplaint_pop_up", "problem")'>Add</button>                  
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#othercomplaint_pop_up", "problem","Add A New Other Complaint Lodged")'>Add</button>                  
                 <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
@@ -3147,9 +3132,6 @@
 
 <form method="POST" id='casediscussion_pop_up' class="form complement_detailed_form  problem_pop_up"  >
 
-    <h4 class='view_comp'>View Case Discussion Details</h4>
-    <h4 class='add_comp'>Add A New Case Discussion</h4>
-    <h4 class='edit_comp'>Edit Case Discussion Details</h4>
     <!--view-->
     <div class="view_comp">
         <fieldset disabled>
@@ -3227,9 +3209,9 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#casediscussion_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#casediscussion_pop_up", "problem","Edit Case Discussion Details")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#casediscussion_pop_up", "problem")'>Add</button>                  
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#casediscussion_pop_up", "problem","Add A New Case Discussion")'>Add</button>                  
                 <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
@@ -3469,9 +3451,6 @@
 
 <form method="POST" id='hospital_pop_up' class="form complement_detailed_form  problem_pop_up"  >
 
-    <h4 class='view_comp'>View Hospital Providing Treatment Details</h4>
-    <h4 class='add_comp'>Add A New Hospital Providing Treatment</h4>
-    <h4 class='edit_comp'>Edit Hospital Providing Treatment Details</h4>
 
     <!--view-->
     <div class="view_comp">
@@ -3501,9 +3480,9 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#hospital_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#hospital_pop_up", "problem","Edit Hospital Providing Treatment Details")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#hospital_pop_up", "problem")'>Add</button>                  
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#hospital_pop_up", "problem","Add A New Hospital Providing Treatment")'>Add</button>                  
                 <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
@@ -3642,10 +3621,7 @@
 
 <form method="POST" id='mc_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
-    <h4 class='view_comp'>View MC/Light Duty Status Details</h4>
-    <h4 class='add_comp'>Add A New MC/Light Duty Status</h4>
-    <h4 class='edit_comp'>Edit MC/Light Duty Status Details</h4>
-
+<!--view-->
     <div class="view_comp">
         <fieldset disabled>
 
@@ -3680,9 +3656,9 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#mc_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#mc_pop_up", "problem","Edit MC/Light Duty Status Details")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#mc_pop_up", "problem")'>Add</button>                  
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#mc_pop_up", "problem","Add A New MC/Light Duty Status")'>Add</button>                  
                 <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
@@ -3834,9 +3810,7 @@
 %>
 
 <form method="POST" id='r2r_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='view_comp'>View R2R Appointment Details</h4>
-    <h4 class='add_comp'>Add A New R2R Appointment</h4>
-    <h4 class='edit_comp'>Edit R2R Appointment Details</h4>
+
 
     <!--view-->
     <div class="view_comp">
@@ -3906,9 +3880,9 @@
         </fieldset>
 
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#r2r_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#r2r_pop_up", "problem","Edit R2R Appointment Details")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#r2r_pop_up", "problem")'>Add</button>                  
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#r2r_pop_up", "problem","Add A New R2R Appointment")'>Add</button>                  
                 <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
@@ -4087,9 +4061,6 @@
 
 <form method="POST" id='wica_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
-    <h4 class='view_comp'>View Wica Status Details</h4>
-    <h4 class='add_comp'>Add A New Wica Status</h4>
-    <h4 class='edit_comp'>Edit Wica Status Details</h4>
 
     <div class="view_comp">
         <fieldset disabled>
@@ -4123,9 +4094,9 @@
 
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#wica_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#wica_pop_up", "problem","Edit Wica Status Details")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#wica_pop_up", "problem")'>Add</button>                  
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#wica_pop_up", "problem","Add A New Wica Status")'>Add</button>                  
                 <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
@@ -4273,9 +4244,6 @@
 
 <form method="POST" id='lawyer_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
-    <h4 class='view_comp'>View Law Firm Details</h4>
-    <h4 class='add_comp'>Add A New Law Firm for Worker</h4>
-    <h4 class='edit_comp'>Edit Law Firm Details</h4>
 
     <!--view-->
     <div class="view_comp">
@@ -4309,9 +4277,9 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#lawyer_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#lawyer_pop_up", "problem","Edit Law Firm Status Details")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#lawyer_pop_up", "problem")'>Add</button>                  
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#lawyer_pop_up", "problem","Add A New Law Firm Status")'>Add</button>                  
                 <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
@@ -4443,9 +4411,6 @@
 
 <form method="POST" id='milestonenc_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
-    <h4 class='view_comp'>View Case Milestone (Non-Criminal) Details</h4>
-    <h4 class='add_comp'>Add A New Case Milestone (Non-Criminal)</h4>
-    <h4 class='edit_comp'>Edit Case Milestone (Non-Criminal) Details</h4>
     <!--view-->
     <div class="view_comp">
         <fieldset disabled>
@@ -4468,9 +4433,9 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#milestonenc_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#milestonenc_pop_up", "problem","Edit Case Milestone (Non-Criminal) Details")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonenc_pop_up", "problem")'>Add</button>                  
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonenc_pop_up", "problem","Add A New Case Milestone (Non-Criminal)")'>Add</button>                  
                 <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
@@ -4599,10 +4564,6 @@
 
 <form method="POST" id='milestonecr_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
-    <h4 class='view_comp'>View Case Milestone (Criminal) Details</h4>
-    <h4 class='add_comp'>Add A New Case Milestone (Criminal)</h4>
-    <h4 class='edit_comp'>Edit Case Milestone (Criminal) Details</h4>
-
     <!--view-->
     <div class="view_comp">
         <fieldset disabled>
@@ -4635,9 +4596,9 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#milestonecr_pop_up", "problem");'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#milestonecr_pop_up", "problem","Edit Case Milestone (Criminal) Details");'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonecr_pop_up", "problem");'>Add</button>                  
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonecr_pop_up", "problem","Add A New Case Milestone (Criminal)");'>Add</button>                  
                 <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
@@ -4707,7 +4668,6 @@
             <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-
 
     <!--add-->
     <div class='add_comp'>
@@ -4786,9 +4746,7 @@
 %>
 
 <form method="POST" id='ttr_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='view_comp'>View Transfer, TJS & Repatriation Details</h4>
-    <h4 class='add_comp'>Add A New Transfer, TJS & Repatriation</h4>
-    <h4 class='edit_comp'>Edit Transfer, TJS & Repatriation Details</h4>
+
     <!--view-->
     <div class="view_comp">
         <fieldset disabled>
@@ -4827,9 +4785,9 @@
             </div>
         </fieldset>
         <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#ttr_pop_up", "problem")'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#ttr_pop_up", "problem","Edit Transfer, TJS & Repatriation Details")'>Edit</button>
             <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#ttr_pop_up", "problem")'>Add</button>                  
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#ttr_pop_up", "problem","Add A New Transfer, TJS & Repatriation")'>Add</button>                  
                 <button type='button' class="btn add_comp cancel_btn">Cancel</button>
             </div>
         </div>
@@ -4979,10 +4937,6 @@
 %>
 <form method="POST" id='aggravIssue_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
-
-    <h4 class='view_comp'>View Aggravating Issue Details</h4>
-    <h4 class='add_comp'>Add A New Aggravating Issue </h4>
-    <h4 class='edit_comp'>Edit Aggravating Issue  Details</h4>
     <div class='form-group'>
 
         <%
@@ -5031,9 +4985,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#aggravIssue_pop_up", "problem");'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#aggravIssue_pop_up", "problem","Edit Aggravating Issue Details");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#aggravIssue_pop_up", "problem");'>Add</button>                  
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#aggravIssue_pop_up", "problem","Add A New Aggravating Issue");'>Add</button>                  
                     <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
@@ -5180,7 +5134,7 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#leadcaseworker_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#leadcaseworker_pop_up", "problem","Add A New Lead Caseworker")'>Edit</button>
                 <div class='pull-right'>
                     <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#leadcaseworker_pop_up", "problem")'>Add</button>                  
                     <button type='button' class="btn view_comp cancel_btn">Cancel</button>
@@ -5285,10 +5239,8 @@
         ArrayList<String> auxiliaryCaseworkerNameList = DropdownDAO.retrieveAllDropdownListOfCaseworkers();
 %>
 <form method="POST" id='auxcaseworker_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='view_comp'>View Auxiliary Caseworker Details</h4>
-    <h4 class='add_comp'>Add A New Auxiliary Caseworker </h4>
-    <h4 class='edit_comp'>Edit Auxiliary Caseworker  Details</h4>
-    <div class='form-group'>
+
+
         <%
             String name = auxiliaryCaseworker.getAuxName();
             java.util.Date startDate = auxiliaryCaseworker.getAuxStart();
@@ -5318,9 +5270,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#auxcaseworker_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#auxcaseworker_pop_up", "problem","Edit Auxiliary Caseworker Details")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#auxcaseworker_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#auxcaseworker_pop_up", "problem","Add A New Auxiliary Caseworker")'>Add</button>                  
                     <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
@@ -5408,7 +5360,7 @@
                 <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
-    </div>
+
 </form>
 
 <!---------------------------->
@@ -5423,10 +5375,8 @@
         ArrayList<String> modeOfPayment = DropdownDAO.retrieveAllDropdownListOfSalaryMode();
 %>
 <form method="POST" id='salaryhistory_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='view_comp'>View Salary & Related History Details</h4>
-    <h4 class='add_comp'>Add A New Salary & Related History </h4>
-    <h4 class='edit_comp'>Edit Salary & Related History  Details</h4>
-    <div class='form-group'>
+    
+
 
 
         <%
@@ -5668,7 +5618,7 @@
                 <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
-    </div>
+
 </form>
 <%}%>
 

@@ -1936,7 +1936,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Aggravating Issue
-                                                                <a href="" id="issueAddBtn" data-toggle="modal" data-target="#aggravIssue_pop_up"  data-class="problem"  data-action = "add" data-value='aggravissue' data-aggravissue='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="issueAddBtn" data-toggle="modal" data-target="#aggravIssue_pop_up" data-title="Add A New Aggravating Issue" data-class="problem"  data-action = "add" data-value='aggravissue' data-aggravissue='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -1974,10 +1974,7 @@
                                                                     <td><%=(loss == 0) ? "0.00" : loss%></td>
                                                                     <td><%=remark%></td>
                                                                     <td>
-                                                                        <a style="color: black" data-value='aggravissue' data-class="problem"   
-                                                                           data-aggravissue='<%=aggravIs.getId()%>' href="" 
-                                                                           data-toggle="modal" data-action="viewedit" data-target="#aggravIssue_pop_up"  
-                                                                           class="edit_btn pop_up_open">
+                                                                        <a style="color: black" data-value='aggravissue' data-class="problem" data-title="View Aggravating Issue Details" data-aggravissue='<%=aggravIs.getId()%>' href="#" data-toggle="modal" data-action="viewedit" data-target="#aggravIssue_pop_up" class="edit_btn pop_up_open">
                                                                             <span class="glyphicon glyphicon-eye-open"></span>
                                                                         </a></td>
                                                                 </tr>
@@ -1989,7 +1986,7 @@
                                                                     <td><%=(issueMore == null) ? "" : issueMore%></td>
                                                                     <td><%=(loss == 0) ? "0.00" : loss%></td>
                                                                     <td><%=remark%></td>
-                                                                    <td><a style="color: black" data-value='aggravissue' data-class="problem"   data-aggravissue='<%=aggravIs.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#aggravIssue_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-value='aggravissue' data-class="problem" data-title="View Aggravating Issue Details"  data-aggravissue='<%=aggravIs.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#aggravIssue_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -2123,7 +2120,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Auxiliary Case Worker
-                                                                <a href="" id="auxcaseAddBtn" data-toggle="modal"  data-class="problem"  
+                                                                <a href="" id="auxcaseAddBtn" data-toggle="modal"  data-class="problem" data-title="Add A New Auxiliary Caseworker"
                                                                    data-target="#auxcaseworker_pop_up" data-action = "add" data-value='auxcaseworker' 
                                                                    data-auxcaseworker='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
@@ -2182,7 +2179,7 @@
                                                                     <%
                                                                         }
                                                                     %>
-                                                                    <td><a style="color: black" data-value='auxcaseworker' data-class="problem"   data-auxcaseworker='<%=auxid%>' href="" data-toggle="modal" data-action="viewedit" data-target="#auxcaseworker_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-value='auxcaseworker' data-class="problem"  data-title="View Auxiliary Caseworker Details" data-auxcaseworker='<%=auxid%>' href="" data-toggle="modal" data-action="viewedit" data-target="#auxcaseworker_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -2212,7 +2209,7 @@
                                                                     <%
                                                                         }
                                                                     %>
-                                                                    <td><a style="color: black" data-value='auxcaseworker' data-class="problem"   data-auxcaseworker='<%=auxid%>' href="" data-toggle="modal" data-action="viewedit" data-target="#auxcaseworker_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-value='auxcaseworker' data-class="problem" data-title="View Auxiliary Caseworker Details"  data-auxcaseworker='<%=auxid%>' href="" data-toggle="modal" data-action="viewedit" data-target="#auxcaseworker_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -2236,7 +2233,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Case Discussion
-                                                                <a href="" id="casediscussionAddBtn" data-toggle="modal" data-class="problem"   data-target="#casediscussion_pop_up" data-action = "add" data-value='casediscussion' data-casediscussion='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="casediscussionAddBtn" data-toggle="modal" data-class="problem"  data-title="Add A New Case Discussion" data-target="#casediscussion_pop_up" data-action = "add" data-value='casediscussion' data-casediscussion='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -2289,7 +2286,7 @@
                                                                     <td><%=mode%></td>
                                                                     <td><%=consultant%></td>
                                                                     <td><%=topic%></td>
-                                                                    <td><a style="color: black" data-value='casediscussion' data-class="problem"   data-casediscussion='<%=id%>' href="" data-toggle="modal" data-action="viewedit" data-target="#casediscussion_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-value='casediscussion' data-class="problem"  data-title="View Case Discussion Details" data-casediscussion='<%=id%>' href="" data-toggle="modal" data-action="viewedit" data-target="#casediscussion_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -2310,7 +2307,7 @@
                                                                     <td><%=mode%></td>
                                                                     <td><%=consultant%></td>
                                                                     <td><%=topic%></td>
-                                                                    <td><a style="color: black" data-value='casediscussion' data-class="problem"   data-casediscussion='<%=id%>' href="" data-toggle="modal" data-action="viewedit" data-target="#casediscussion_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-value='casediscussion' data-class="problem" data-title="View Case Discussion Details"  data-casediscussion='<%=id%>' href="" data-toggle="modal" data-action="viewedit" data-target="#casediscussion_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -2334,7 +2331,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Lawyer
-                                                                <a href="" id="lawyerAddBtn" data-toggle="modal" data-target="#lawyer_pop_up" data-class="problem"   data-action = "add" data-value='lawyer' data-lawyer='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="lawyerAddBtn" data-toggle="modal" data-target="#lawyer_pop_up" data-title="Add A New Law Firm Status" data-class="problem"   data-action = "add" data-value='lawyer' data-lawyer='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -2381,7 +2378,7 @@
                                                                     %>
                                                                     <td><%=lawFirm%></td>
                                                                     <td><%=lawyerName%></td>
-                                                                    <td><a style="color: black" data-value='lawyer' data-lawyer='<%=id%>' data-class="problem"   href="" data-toggle="modal" data-action="viewedit" data-target="#lawyer_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-value='lawyer' data-lawyer='<%=id%>' data-title="View Law Firm Status" data-class="problem"   href="" data-toggle="modal" data-action="viewedit" data-target="#lawyer_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -2400,7 +2397,7 @@
                                                                     %>
                                                                     <td><%=lawFirm%></td>
                                                                     <td><%=lawyerName%></td>
-                                                                    <td><a style="color: black" data-value='lawyer' data-lawyer='<%=id%>' data-class="problem"   href="" data-toggle="modal" data-action="viewedit" data-target="#lawyer_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-value='lawyer' data-lawyer='<%=id%>' data-class="problem" data-title="View Law Firm Status"  href="" data-toggle="modal" data-action="viewedit" data-target="#lawyer_pop_up"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -2519,7 +2516,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Salary Claim Lodged
-                                                                <a href="" id="salaryClaimAddBtn" data-toggle="modal" data-action = "add" data-class="problem"   data-target="#salarycalim_pop_up" data-value='salarycalim' data-salarycalim='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="salaryClaimAddBtn" data-toggle="modal" data-action = "add" data-class="problem" data-title="Add Salary Claim Lodged"  data-target="#salarycalim_pop_up" data-value='salarycalim' data-salarycalim='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -2563,7 +2560,7 @@
                                                                     %>
                                                                     <td><%=loss%></td>
                                                                     
-                                                                    <td><a style="color: black" data-target="#salarycalim_pop_up" data-class="problem"   data-value='salarycalim' data-salarycalim='<%=salaryClaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#salarycalim_pop_up" data-class="problem" data-title="View Salary Claim Lodged Details"  data-value='salarycalim' data-salarycalim='<%=salaryClaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -2582,7 +2579,7 @@
                                                                     %>
                                                                     <td><%=loss%></td>
                                                                     
-                                                                    <td><a style="color: black" data-target="#salarycalim_pop_up" data-class="problem"   data-value='salarycalim' data-salarycalim='<%=salaryClaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#salarycalim_pop_up" data-class="problem" data-title="View Salary Claim Lodged Details"  data-value='salarycalim' data-salarycalim='<%=salaryClaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -2622,9 +2619,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Injury History
-                                                                <a href="" id="injHistoryAddBtn" data-toggle="modal" data-action = "add"  
-                                                                   data-class="problem"   data-target="#injurycase_pop_up" 
-                                                                   data-value='injurycase' data-injurycase='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="injHistoryAddBtn" data-toggle="modal" data-action = "add" data-title="Add A New Injury History" data-class="problem"   data-target="#injurycase_pop_up" data-value='injurycase' data-injurycase='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -2676,7 +2671,7 @@
                                                                     <td><%=location%></td>
                                                                     <td><%=bodyPart%></td>
                                                                     <td><%=treatment%></td>
-                                                                    <td><a style="color: black" data-target="#injurycase_pop_up" data-class="problem"   data-value='injurycase' data-injurycase='<%=injuryId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#injurycase_pop_up" data-class="problem" data-title="View Injury History Details"  data-value='injurycase' data-injurycase='<%=injuryId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -2696,7 +2691,7 @@
                                                                     <td><%=location%></td>
                                                                     <td><%=bodyPart%></td>
                                                                     <td><%=treatment%></td>
-                                                                    <td><a style="color: black" data-target="#injurycase_pop_up" data-class="problem"   data-value='injurycase' data-injurycase='<%=injuryId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#injurycase_pop_up" data-class="problem" data-title="View Injury History Details"  data-value='injurycase' data-injurycase='<%=injuryId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -2720,9 +2715,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Illness History
-                                                                <a href="" id="ttrAddBtn" data-toggle="modal" data-action = "add"  data-class="problem"   
-                                                                   data-target="#illnesscase_pop_up" data-value='illnesscase' data-illnesscase='' 
-                                                                   class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="ttrAddBtn" data-toggle="modal" data-action = "add"  data-class="problem" data-title="Add A Illness History Details" data-target="#illnesscase_pop_up" data-value='illnesscase' data-illnesscase='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -2760,7 +2753,7 @@
                                                                     <td><%=dDate%></td>
                                                                     <td><%=dWho%></td>
                                                                     <td><%=nature%></td>
-                                                                    <td><a style="color: black" data-target="#illnesscase_pop_up" data-class="problem"   data-value='illnesscase' data-illnesscase='<%=illnessId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#illnesscase_pop_up" data-class="problem" data-title="View Illness History Details"  data-value='illnesscase' data-illnesscase='<%=illnessId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -2770,7 +2763,7 @@
                                                                     <td><%=dDate%></td>
                                                                     <td><%=dWho%></td>
                                                                     <td><%=nature%></td>
-                                                                    <td><a style="color: black" data-target="#illnesscase_pop_up" data-class="problem"   data-value='illnesscase' data-illnesscase='<%=illnessId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#illnesscase_pop_up" data-class="problem" data-title="View Illness History Details"  data-value='illnesscase' data-illnesscase='<%=illnessId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -2795,9 +2788,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">WICA Claim Lodged
-                                                                <a href="" id="wicaclaimAddBtn" data-toggle="modal" data-action = "add"  
-                                                                   data-class="problem"   data-target="#wicaclaim_pop_up" data-value='wicaclaim' 
-                                                                   data-wicaclaim='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="wicaclaimAddBtn" data-toggle="modal" data-action = "add" data-title="Add Wica Claim Lodged Details" data-class="problem"   data-target="#wicaclaim_pop_up" data-value='wicaclaim' data-wicaclaim='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -2846,7 +2837,7 @@
                                                                     <td><%=refNo%></td>
                                                                     <td><%=insurer%></td>
                                                                     <td><%=policyNo%></td>
-                                                                    <td><a style="color: black" data-target="#wicaclaim_pop_up" data-value='wicaclaim' data-class="problem"   data-wicaclaim='<%=wicaclaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#wicaclaim_pop_up" data-value='wicaclaim' data-class="problem" data-title="View Wica Claim Lodged Details"  data-wicaclaim='<%=wicaclaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -2866,7 +2857,7 @@
                                                                     <td><%=refNo%></td>
                                                                     <td><%=insurer%></td>
                                                                     <td><%=policyNo%></td>
-                                                                    <td><a style="color: black" data-target="#wicaclaim_pop_up" data-value='wicaclaim' data-class="problem"   data-wicaclaim='<%=wicaclaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#wicaclaim_pop_up" data-value='wicaclaim' data-class="problem" data-title="View Wica Claim Lodged Details"  data-wicaclaim='<%=wicaclaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -2892,9 +2883,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Non-WICA Claim Lodged
-                                                                <a href="" id="nonwicaclaimAddBtn" data-toggle="modal" data-action = "add"  
-                                                                   data-class="problem"   data-target="#nonwicaclaim_pop_up" data-value='nonwicaclaim' 
-                                                                   data-nonwicaclaim='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="nonwicaclaimAddBtn" data-toggle="modal" data-action = "add" data-title="Add Non-Wica Claim Lodged Details" data-class="problem"   data-target="#nonwicaclaim_pop_up" data-value='nonwicaclaim' data-nonwicaclaim='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -2943,7 +2932,7 @@
                                                                     <td><%=loss%></td>
                                                                     <td><%=insurer%></td>
                                                                     <td><%=pNo%></td>
-                                                                    <td><a style="color: black"  data-target="#nonwicaclaim_pop_up"  data-class="problem"  data-value='nonwicaclaim' data-nonwicaclaim='<%=nonwicaClaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black"  data-target="#nonwicaclaim_pop_up"  data-class="problem" data-title="View Non-Wica Claim Lodged Details" data-value='nonwicaclaim' data-nonwicaclaim='<%=nonwicaClaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -2963,7 +2952,7 @@
                                                                     <td><%=loss%></td>
                                                                     <td><%=insurer%></td>
                                                                     <td><%=pNo%></td>
-                                                                    <td><a style="color: black"  data-target="#nonwicaclaim_pop_up"  data-class="problem"  data-value='nonwicaclaim' data-nonwicaclaim='<%=nonwicaClaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black"  data-target="#nonwicaclaim_pop_up"  data-class="problem" data-title="View Non-Wica Claim Lodged Details" data-value='nonwicaclaim' data-nonwicaclaim='<%=nonwicaClaimId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -2988,7 +2977,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">WICA Monthly Status
-                                                                <a href="" id="wicaAddBtn" data-toggle="modal" data-action = "add"  data-class="problem"   data-target="#wica_pop_up" data-value='wica' data-wica='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="wicaAddBtn" data-toggle="modal" data-action = "add" data-title="Add A New Wica Status" data-class="problem"   data-target="#wica_pop_up" data-value='wica' data-wica='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -3038,7 +3027,7 @@
 
                                                                     <td><%=point%></td>
                                                                     <td><%=comp%></td>
-                                                                    <td><a style="color: black"  data-target="#wica_pop_up" data-value='wica' data-class="problem"   data-wica='<%=wicaId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black"  data-target="#wica_pop_up" data-value='wica' data-class="problem" data-title="View Wica Status Details"  data-wica='<%=wicaId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -3059,7 +3048,7 @@
 
                                                                     <td><%=point%></td>
                                                                     <td><%=comp%></td>
-                                                                    <td><a style="color: black"  data-target="#wica_pop_up" data-value='wica' data-class="problem"   data-wica='<%=wicaId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black"  data-target="#wica_pop_up" data-value='wica' data-class="problem" data-title="View Wica Status Details"  data-wica='<%=wicaId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -3083,7 +3072,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Hospital Providing Treatment
-                                                                <a href="" id="hospitalAddBtn" data-toggle="modal" data-action = "add"  data-class="problem"   data-target="#hospital_pop_up" data-value='hospital' data-hospital='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="hospitalAddBtn" data-toggle="modal" data-action = "add"  data-class="problem" data-title="Add A New Hospital Providing Treatment"  data-target="#hospital_pop_up" data-value='hospital' data-hospital='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -3135,7 +3124,7 @@
                                                                     <td><%=name%></td>
 
                                                                     <td><%=doctor%></td>
-                                                                    <td><a style="color: black" data-target="#hospital_pop_up"  data-class="problem"  data-value='hospital' data-hospital='<%=hospitalId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#hospital_pop_up"  data-class="problem" data-title="View Hospital Providing Treatment Details" data-value='hospital' data-hospital='<%=hospitalId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -3156,7 +3145,7 @@
                                                                     <td><%=name%></td>
 
                                                                     <td><%=doctor%></td>
-                                                                    <td><a style="color: black" data-target="#hospital_pop_up"  data-class="problem"  data-value='hospital' data-hospital='<%=hospitalId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#hospital_pop_up"  data-class="problem" data-title="View Hospital Providing Treatment Details" data-value='hospital' data-hospital='<%=hospitalId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -3181,7 +3170,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">MC/Light Duty Status
-                                                                <a href="" id="mcAddBtn" data-toggle="modal" data-action = "add"  data-class="problem"   data-target="#mc_pop_up" data-value='mc' data-mc='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="mcAddBtn" data-toggle="modal" data-action = "add"  data-class="problem" data-title="Add A New MC/Light Duty Status"  data-target="#mc_pop_up" data-value='mc' data-mc='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -3245,7 +3234,7 @@
                                                                         }
                                                                     %>
                                                                     <td><%=cdays%></td>
-                                                                    <td><a style="color: black" data-target="#mc_pop_up" data-value='mc' data-class="problem"   data-mc='<%=mcId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#mc_pop_up" data-value='mc' data-class="problem" data-title="View MC/Light Duty Status Details"  data-mc='<%=mcId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -3276,7 +3265,7 @@
                                                                         }
                                                                     %>
                                                                     <td><%=cdays%></td>
-                                                                    <td><a style="color: black" data-target="#mc_pop_up" data-value='mc' data-class="problem"   data-mc='<%=mcId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#mc_pop_up" data-value='mc' data-class="problem"  data-title="View MC/Light Duty Status Details" data-mc='<%=mcId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -3301,7 +3290,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">R2R Appointments
-                                                                <a href="" id="r2rAddBtn" data-toggle="modal" data-action = "add"  data-class="problem"   data-target="#r2r_pop_up" data-value='r2r' data-r2r='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="r2rAddBtn" data-toggle="modal" data-action = "add"  data-class="problem"  data-title="Add A New R2R Appointment" data-target="#r2r_pop_up" data-value='r2r' data-r2r='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -3352,7 +3341,7 @@
                                                                     <td><%=time%></td>
                                                                     <td><%=hospital%></td>
                                                                     <td><%=r2r1%></td>
-                                                                    <td><a style="color: black" data-target="#r2r_pop_up" data-value='r2r' data-class="problem"   data-r2r='<%=r2rId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#r2r_pop_up" data-value='r2r' data-class="problem" data-title="View R2R Appointment Details"  data-r2r='<%=r2rId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -3373,7 +3362,7 @@
                                                                     <td><%=time%></td>
                                                                     <td><%=hospital%></td>
                                                                     <td><%=r2r1%></td>
-                                                                    <td><a style="color: black" data-target="#r2r_pop_up" data-value='r2r' data-class="problem"   data-r2r='<%=r2rId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#r2r_pop_up" data-value='r2r' data-class="problem"  data-title="View R2R Appointment Details" data-r2r='<%=r2rId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -3413,7 +3402,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Details & History of Other Problem
-                                                                <a href="" id="otherProbAddBtn" data-toggle="modal" data-action = "add" data-class="problem"   data-target="#othercase_pop_up" data-value='othercase' data-othercase='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="otherProbAddBtn" data-toggle="modal" data-action = "add" data-class="problem" data-title="Add Details & history of other problems"  data-target="#othercase_pop_up" data-value='othercase' data-othercase='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -3448,7 +3437,7 @@
                                                                     <td><%=description%></td>
                                                                     <td><%=loss%></td>
                                                                     
-                                                                    <td><a style="color: black" data-target="#othercase_pop_up" data-value='othercase' data-class="problem"   data-othercase='<%=otherCaseId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#othercase_pop_up" data-value='othercase' data-class="problem" data-title="View Details & history of other problems"  data-othercase='<%=otherCaseId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -3458,7 +3447,7 @@
                                                                     <td><%=description%></td>
                                                                     <td><%=loss%></td>
                                                                     
-                                                                    <td><a style="color: black" data-target="#othercase_pop_up" data-value='othercase' data-class="problem"   data-othercase='<%=otherCaseId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#othercase_pop_up" data-value='othercase' data-class="problem" data-title="View Details & history of other problems"  data-othercase='<%=otherCaseId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -3483,7 +3472,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Police Report Lodged
-                                                                <a href="" id="policareportAddBtn" data-toggle="modal" data-action = "add" data-class="problem"   data-target="#policareport_pop_up" data-value='policareport' data-policareport='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="policareportAddBtn" data-toggle="modal" data-action = "add" data-title="Add A New Police Report Lodged" data-class="problem"   data-target="#policareport_pop_up" data-value='policareport' data-policareport='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -3531,7 +3520,7 @@
                                                                     <td><%=station%></td>
                                                                     <td><%=accompany%></td>
                                                                     <td><%=reference%></td>
-                                                                    <td><a style="color: black" data-target="#policareport_pop_up" data-value='policareport'data-class="problem"   data-policareport='<%=policeReportId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#policareport_pop_up" data-value='policareport'data-class="problem" data-title="View Police Report Lodged Details"  data-policareport='<%=policeReportId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -3551,7 +3540,7 @@
                                                                     <td><%=station%></td>
                                                                     <td><%=accompany%></td>
                                                                     <td><%=reference%></td>
-                                                                    <td><a style="color: black" data-target="#policareport_pop_up" data-value='policareport'data-class="problem"   data-policareport='<%=policeReportId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#policareport_pop_up" data-value='policareport'data-class="problem" data-title="View Police Report Lodged Details"  data-policareport='<%=policeReportId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -3575,7 +3564,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Other Complaint Lodged
-                                                                <a href="" id="otherComplaintAddBtn" data-toggle="modal" data-action = "add" data-class="problem"   data-target="#othercomplaint_pop_up" data-value='othercomplaint' data-othercomplaint='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="otherComplaintAddBtn" data-toggle="modal" data-action = "add" data-class="problem"  data-title="Add A New Other Complaint Lodged" data-target="#othercomplaint_pop_up" data-value='othercomplaint' data-othercomplaint='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -3627,7 +3616,7 @@
                                                                     <td><%=agency%></td>
                                                                     <td><%=by%></td>
                                                                     <td><%=mode%></td>
-                                                                    <td><a style="color: black" data-target="#othercomplaint_pop_up" data-class="problem"  data-value='othercomplaint' data-othercomplaint='<%=otherComplaintId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#othercomplaint_pop_up" data-class="problem" data-title="View Other Complaint Lodged Details" data-value='othercomplaint' data-othercomplaint='<%=otherComplaintId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -3647,7 +3636,7 @@
                                                                     <td><%=agency%></td>
                                                                     <td><%=by%></td>
                                                                     <td><%=mode%></td>
-                                                                    <td><a style="color: black" data-target="#othercomplaint_pop_up" data-class="problem"  data-value='othercomplaint' data-othercomplaint='<%=otherComplaintId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#othercomplaint_pop_up" data-class="problem" data-title="View Other Complaint Lodged Details" data-value='othercomplaint' data-othercomplaint='<%=otherComplaintId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
 
                                                                 <%
@@ -3672,7 +3661,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Case Milestone Reached(non-criminal)
-                                                                <a href="" id="cmncAddBtn" data-toggle="modal" data-action = "add" data-class="problem"  data-target="#milestonenc_pop_up" data-value='ncmilestone' data-ncmilestone='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="cmncAddBtn" data-toggle="modal" data-action = "add" data-class="problem" data-title="Add A New Case Milestone (Non-Criminal)" data-target="#milestonenc_pop_up" data-value='ncmilestone' data-ncmilestone='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -3723,10 +3712,7 @@
                                                                     <td><%=reached%></td>
                                                                     
                                                                     <td>
-                                                                        <a style="color: black" data-target="#milestonenc_pop_up"  
-                                                                           data-class="problem"  data-value='ncmilestone' 
-                                                                           data-ncmilestone='<%=nCaseMSId%>' href="" data-toggle="modal" 
-                                                                           data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                        <a style="color: black" data-target="#milestonenc_pop_up" data-title="View Case Milestone (Non-Criminal) Details" data-class="problem"  data-value='ncmilestone' data-ncmilestone='<%=nCaseMSId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
                                                                             <span class="glyphicon glyphicon-eye-open"></span>
                                                                         </a>
                                                                     </td>
@@ -3748,7 +3734,7 @@
                                                                     %>
                                                                     <td><%=reached%></td>
                                                                     
-                                                                    <td><a style="color: black" data-target="#milestonenc_pop_up"  data-class="problem"  data-value='ncmilestone' data-ncmilestone='<%=nCaseMSId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#milestonenc_pop_up"  data-class="problem" data-title="View Case Milestone (Non-Criminal) Details" data-value='ncmilestone' data-ncmilestone='<%=nCaseMSId%>' href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
@@ -3772,7 +3758,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Case Milestone Reached(Criminal)
-                                                                <a href="" id="cmilestoneAddBtn" data-toggle="modal" data-action = "add"  data-target="#milestonecr_pop_up"  data-class="problem"  data-value='cmilestone' data-cmilestone='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="cmilestoneAddBtn" data-toggle="modal" data-action = "add" data-title="Add A New Case Milestone (Criminal)" data-target="#milestonecr_pop_up"  data-class="problem"  data-value='cmilestone' data-cmilestone='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -3823,10 +3809,7 @@
                                                                     <td><%=reached%></td>
                                                                     
                                                                     <td>
-                                                                        <a style="color: black" data-target="#milestonecr_pop_up" 
-                                                                           data-value='cmilestone' data-cmilestone='<%=caseMSId%>' 
-                                                                           data-class="problem"  href="" data-toggle="modal" 
-                                                                           data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                        <a style="color: black" data-target="#milestonecr_pop_up" data-title="View Case Milestone (Criminal) Details" data-value='cmilestone' data-cmilestone='<%=caseMSId%>' data-class="problem"  href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
                                                                             <span class="glyphicon glyphicon-eye-open"></span>
                                                                         </a>
                                                                     </td>
@@ -3849,10 +3832,7 @@
                                                                     <td><%=reached%></td>
                                                                     
                                                                     <td>
-                                                                        <a style="color: black" data-target="#milestonecr_pop_up" 
-                                                                           data-value='cmilestone' data-cmilestone='<%=caseMSId%>' 
-                                                                           data-class="problem"  href="" data-toggle="modal" 
-                                                                           data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                        <a style="color: black" data-target="#milestonecr_pop_up" data-title="View Case Milestone (Criminal) Details" data-value='cmilestone' data-cmilestone='<%=caseMSId%>' data-class="problem"  href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
                                                                             <span class="glyphicon glyphicon-eye-open"></span>
                                                                         </a>
                                                                     </td>
@@ -3880,9 +3860,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Transfer, TJS & Repatriation
-                                                                <a href="" id="ttrAddBtn" data-toggle="modal" data-action = "add"  
-                                                                   data-target="#ttr_pop_up" data-value='ttr' data-ttr='' 
-                                                                   data-class="problem" class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="ttrAddBtn" data-toggle="modal" data-action = "add" data-title="Add A New Transfer, TJS & Repatriation" data-target="#ttr_pop_up" data-value='ttr' data-ttr='' data-class="problem" class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -3940,7 +3918,7 @@
                                                                         }
                                                                     %>
                                                                     <td><%=name%></td>
-                                                                    <td><a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' href="" data-toggle="modal" data-class="problem" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' data-title="Add A New Transfer, TJS & Repatriation" href="" data-toggle="modal" data-class="problem" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                 } else {
@@ -3970,7 +3948,7 @@
                                                                         }
                                                                     %>
                                                                     <td><%=name%></td>
-                                                                    <td><a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' href="" data-toggle="modal" data-class="problem" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                                                                    <td><a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' data-title="Add A New Transfer, TJS & Repatriation" href="" data-toggle="modal" data-class="problem" data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                                                                 </tr>
                                                                 <%
                                                                         }
