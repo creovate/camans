@@ -1697,7 +1697,7 @@
             String injuryRemark = pinjury.getInjuryRemarks();
         %>  
 
-        <div class="view_comp">
+        <div class="view_comp" >
             <fieldset disabled>
                 <div class='form-group'>
                     <label for='name' class="control-label">Date of injury</label>
@@ -5499,9 +5499,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#salaryhistory_pop_up", "problem")'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#salaryhistory_pop_up", "problem", "Edit Salary & Related History Details")'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#salaryhistory_pop_up", "problem")'>Add</button>                  
+                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#salaryhistory_pop_up", "problem", "Add New Salary & Related History Details")'>Add</button>                  
                     <button type='button' class="btn view_comp cancel_btn">Cancel</button>
                 </div>
             </div>
@@ -5696,7 +5696,8 @@
         $('#pop_up_content').empty();
     });
 
-    function editComplement(div_id, category) {
+    function editComplement(div_id, category, title) {
+        $('#pop_up_content').dialog('option', 'title', title);
         $(div_id).attr("action", "editProblemComplement.do");
         $(div_id + " .edit_comp").show();
         $(div_id + " .view_comp").hide();
@@ -5704,7 +5705,7 @@
         $(div_id + " .add_comp input").prop('disabled', true);
     }
 
-    function add(div_id, category) {
+    function add(div_id, category, title) {
         if (category === "worker") {
             $(div_id).attr("action", "addWorkerComplement.do");
         } else if (category === "job") {
@@ -5712,6 +5713,7 @@
         } else if (category === "problem") {
             $(div_id).attr("action", "addProblemComplement.do");
         }
+        $('#pop_up_content').dialog('option', 'title', title);
         $(div_id + " .add_comp").show();
         $(div_id + " .edit_comp").hide();
         $(div_id + " .view_comp").hide();

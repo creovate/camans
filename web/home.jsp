@@ -34,15 +34,9 @@
     String aggravatingIssueIn = (String) request.getSession().getAttribute("aggravatingIssue");
     String hospitalIn = (String) request.getSession().getAttribute("hospital");
     String registeredStartIn = (String) request.getSession().getAttribute("start");
-    /*
-    if (registeredStartIn != null || !registeredStartIn.equals("")) {
-        registeredStartIn = sdf.format(registeredStartIn);
-    }  */  
+
     String registeredEndIn = (String) request.getSession().getAttribute("end");
-    /*if (registeredEndIn != null || !registeredEndIn.equals("")) {
-        registeredEndIn = sdf.format(registeredEndIn);
-    }
- */
+
     String leadCaseWorkerIn = (String) request.getSession().getAttribute("leadCase");
     String auxCaseWorkerIn = (String) request.getSession().getAttribute("auxCase");
     
@@ -68,33 +62,33 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <!--css-->
         <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" />
-        <link rel="stylesheet" href="css/custom.css" media="screen" /> 
-        <!-- DataTables CSS, added by soemyatmyat -->
         <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-        <!-- Bootstrap Validator CSS, Added by soemyatmyat -->
         <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
-        <!--jasny-bootstrap v3.1.3, added by soemyatmayt-->
         <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
+        <link rel="stylesheet" href="css/custom.css" media="screen" /> 
+        <!-------------->
         
+        <!--javascript-->
         <script src="js/jquery-2.1.1.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <script src="js/jquery.steps.js"></script>
-        <!-- DataTables JS, Added by soemyatmyat -->
         <script src="js/jquery.dataTables.js"></script>
-        <script src="js/dataTables.bootstrap.js"></script> 
-        <!-- BootstrapValidator JS, Added by soemyatmyat-->
+        <script src="js/dataTables.bootstrap.js"></script>
         <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
-        <!--jasny-bootstrap v3.1.3, added by soemyatmyat-->
         <script src="js/jasny-bootstrap.js"></script>  
+        <!------------->
         
+        <!--tab icon-->
         <link rel="shortcut icon" href="img/twc_logo.png">
         
-        
+        <!--page title-->
         <title>CAMANS</title>
+        
     </head>
     <body id="home">
         <jsp:include page="include/navbartop.jsp"/>
@@ -102,10 +96,7 @@
             <jsp:include page="include/navbarside.jsp"/>
 
             <div class="col-md-10" id="content">
-               <!--
-                <div class="page-header">
-                    <center><h2 style="color:#2980b9">Search Worker</h2></center>    
-                </div> -->
+
                 <div id="search_worker">
                     <!-- SEARCH FILTERS -->
 

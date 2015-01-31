@@ -66,7 +66,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
+        <link rel="stylesheet" href="css/bootstrap.css" media="screen" />
         <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" />
         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
         <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.css">
@@ -75,16 +75,13 @@
         <link rel="stylesheet" href="css/jquery-ui.theme.css">
         
         <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
-        <!--jasny-bootstrap v3.1.3, added by soemyatmayt-->
         <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
-        <!-- DataTables CSS, added by soemyatmyat -->
         <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
 
-        <script src="js/jquery-2.1.3.js"></script>
+        <script src="js/jquery-2.1.1.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery-ui-1.9.2.custom.js"></script>
         <script src="js/jquery.steps.js"></script>
-        <script src="jquery.ui.position.js"></script>
         <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>        
         <!--jasny-bootstrap v3.1.3, added by soemyatmyat-->
         <script src="js/jasny-bootstrap.js"></script>  
@@ -2443,7 +2440,7 @@
 
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">Salary Related History
-                                                                <a href="" id="salaryHistoryAddBtn" data-toggle="modal"  data-action = "add" data-class="problem"   data-target="#salaryhistory_pop_up" data-value='salaryhistory' data-salaryhistory='' class="add_btn pop_up_open pull-right">
+                                                                <a href="" id="salaryHistoryAddBtn" data-toggle="modal"  data-action = "add" data-class="problem" data-title="Add New Salary & Related History"  data-target="#salaryhistory_pop_up" data-value='salaryhistory' data-salaryhistory='' class="add_btn pop_up_open pull-right">
                                                                     <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                 </a>
                                                             </h4>
@@ -2481,9 +2478,7 @@
                                                                     <td><%=tClaim%></td>
                                                                     <td><%=claim%></td>
                                                                     <td>
-                                                                        <a style="color: black" data-target="#salaryhistory_pop_up"  data-class="problem"  data-value='salaryhistory' 
-                                                                           data-salaryhistory='<%=historyId%>' href="" data-toggle="modal" data-action="viewedit"  
-                                                                           class="edit_btn pop_up_open">
+                                                                        <a style="color: black" data-target="#salaryhistory_pop_up"  data-class="problem"  data-value='salaryhistory' data-title="View Salary & Related History" data-salaryhistory='<%=historyId%>' href="" data-toggle="modal" data-action="viewedit" class="edit_btn pop_up_open">
                                                                             <span class="glyphicon glyphicon-eye-open"></span>
                                                                         </a>
                                                                     </td>
@@ -2497,9 +2492,7 @@
                                                                     <td><%=tClaim%></td>
                                                                     <td><%=claim%></td>
                                                                     <td>
-                                                                        <a style="color: black" data-target="#salaryhistory_pop_up"  data-class="problem"  
-                                                                           data-value='salaryhistory' data-salaryhistory='<%=historyId%>' href="" 
-                                                                           data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                        <a style="color: black" data-target="#salaryhistory_pop_up"  data-class="problem"  data-title="View Salary & Related History" data-value='salaryhistory' data-salaryhistory='<%=historyId%>' href="#" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
                                                                             <span class="glyphicon glyphicon-eye-open"></span>
                                                                         </a>
                                                                     </td>
@@ -4604,7 +4597,7 @@
                 var div_action_val = $(this).data('action');
                 var div_title = $(this).data('title');
 
-                $("#pop_up_content").load('include/createcaseForm.jsp?workerFin=<%=workerFin%>' + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + '&profile=' + div_id + '&action=' + div_action_val).dialog({modal: true, minHeight: $(window).height() - 350,
+                $("#pop_up_content").load('include/createcaseForm.jsp?workerFin=<%=workerFin%>' + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + '&profile=' + div_id + '&action=' + div_action_val).dialog({modal: true, 
                     minWidth: $(window).width() - 750, resizable: false, title: div_title, draggable: false, close: function() {
                         $(this).dialog('destroy');
                         $('#pop_up_content').empty();
@@ -4615,14 +4608,12 @@
 
             $(document).on("click", ".pop_up_open", function() {
                 var div_id = $(this).data('value');
-                //alert('id: ' +div_id); //nickname
                 var div_value = $(this).data(div_id);
-                //alert(div_value); //nothing
                 var div_action_val = $(this).data('action');
 
                 var div_class = $(this).data('class');
                 var div_title = $(this).data('title');
-
+                
                 var url = '';
 
                 if (div_class === 'worker') {
@@ -4635,17 +4626,27 @@
                     url = 'benefectionPopUp.jsp';
                 }
                 if (div_action_val === 'viewedit' || div_class === 'benefection') {
-                    $("#pop_up_content").load('include/' + url + '?workerFin=<%=workerFin%>&' + div_id + '=' + div_value
-                            + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>&" + div_id + "=" + div_value + "&" + "&action=" + div_action_val).dialog({modal: true,
-                        minWidth: $(window).width() - 750, resizable: false, title: div_title, draggable: false, close: function() {
+                    $("#pop_up_content").load('include/' + url + '?workerFin=<%=workerFin%>&' + div_id + '=' + div_value + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>&" + div_id + "=" + div_value + "&" + "&action=" + div_action_val).dialog({
+                        modal: true,
+                        position: ['center',80],
+                        minWidth: $(window).width() - 750, 
+                        title: div_title, 
+                        resizable: false, 
+                        draggable: false, 
+                        close: function() {
                             $(this).dialog('destroy');
                             $('#pop_up_content').empty();
                         }
                     });
                 } else if (div_action_val === 'add') {
-                    $("#pop_up_content").load('include/addPopUp.jsp?workerFin=<%=workerFin%>&complement=' + div_id
-                            + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + "&action='add'").dialog({modal: true, minHeight: $(window).height() - 350,
-                        minWidth: $(window).width() - 750, title: div_title, resizable: false, draggable: false, close: function() {
+                    $("#pop_up_content").load('include/addPopUp.jsp?workerFin=<%=workerFin%>&complement=' + div_id + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + "&action='add'").dialog({
+                        modal: true, 
+                        position: ['center',80],
+                        minWidth: $(window).width() - 750, 
+                        title: div_title, 
+                        resizable: false, 
+                        draggable: false, 
+                        close: function() {
                             $(this).dialog('destroy');
                             $('#pop_up_content').empty();
                         }});
@@ -4653,7 +4654,14 @@
             });
             
             function referCase() {
-                $("#pop_up_content").load('include/referCase.jsp?workerFin=<%=workerFin%>&jobkey=<%=latestJob.getJobKey()%>&probkey=<%=latestProblem.getProbKey()%>&user=<%= userLogin.getNricNumber()%>').dialog({modal: true, minHeight: $(window).height() - 350, minWidth: $(window).width() - 750, title: "Case Referral", resizable: false, draggable: false, close: function() {
+                $("#pop_up_content").load('include/referCase.jsp?workerFin=<%=workerFin%>&jobkey=<%=latestJob.getJobKey()%>&probkey=<%=latestProblem.getProbKey()%>&user=<%= userLogin.getNricNumber()%>').dialog({
+                    modal: true, 
+                    position: ['center',80],
+                    minWidth: $(window).width() - 750, 
+                    title: "Case Referral", 
+                    resizable: false, 
+                    draggable: false, 
+                    close: function() {
                         $(this).dialog('destroy');
                         $('#pop_up_content').empty();
                     }});

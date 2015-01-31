@@ -56,7 +56,9 @@
     });
 
     //-----on click edit-----//
-    function editComplement(div_id) {
+    function editComplement(div_id, title) {
+        
+        $('#pop_up_content').dialog('option', 'title', title);
         $(div_id).attr("action", "addBenefit.do");
         $(div_id + " .edit_comp").show();
         $(div_id + " .view_comp").hide();
@@ -66,7 +68,8 @@
     }
 
     //-----on click add-----//
-    function add(div_id) {
+    function add(div_id, title) {
+        $('#pop_up_content').dialog('option', 'title', title);
         $(div_id).attr("action", "addBenefit.do");
 
         $(div_id + " .add_comp").show();
@@ -395,9 +398,9 @@
         </fieldset>
 
         <div class="form-group btn_group">
-            <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#benefit_pop_up");'>Edit</button>
+            <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#benefit_pop_up", "Edit Benefection Details" );'data-title ="Edit Meal Benefection">Edit</button>
             <div class='pull-right'>
-                <button type="button" class="btn btn-blue modal_btn view_comp" onclick="add('#benefit_pop_up');">Add</button>                
+                <button type="button" class="btn btn-blue modal_btn view_comp" onclick="add('#benefit_pop_up', 'Add New Benefection');">Add</button>                
                 <button type='button' class="btn view_comp cancel_btn">Close</button>
             </div>
         </div>
