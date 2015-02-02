@@ -12,8 +12,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <style>
-    h4{
-        color: #AF4454;
+    form{
+        padding-top: 2%;
     }
 
 </style>
@@ -1852,7 +1852,6 @@
     if (complement.equals("nickname")) {
 %>
 <form method="POST" action="addWorkerComplement.do" id='nickname_pop_up' class="form complement_detailed_form worker_pop_up"  >
-    <h4>Add A New Nickname </h4><br/>
 
     <div class='add_comp'>
         <div class='form-group '>
@@ -1876,7 +1875,6 @@
 } else if (complement.equals("passport")) {
 %>
 <form method="POST" id='passport_pop_up' action="addWorkerComplement.do" class="form complement_detailed_form worker_pop_up" action="addWorkerComplement.do" >
-    <h4 class='add_comp'>Add A New Passport Details</h4>
 
     <div class='add_comp'>
         <div class='form-group '>
@@ -1918,7 +1916,6 @@
 } else if (complement.equals("sgphone")) {
 %>
 <form method="POST" id='sgphonenum_pop_up' action="addWorkerComplement.do" class="form complement_detailed_form worker_pop_up" action="addWorkerComplement.do" >
-    <h4 class='add_comp'>Add A New Singapore Phone Number </h4>
 
     <div class='add_comp'>
         <div class='form-group '>
@@ -1952,7 +1949,6 @@
 } else if (complement.equals("homephone")) {
 %>
 <form method="POST" id='homephonenum_pop_up' class="form complement_detailed_form worker_pop_up" action="addWorkerComplement.do" >
-    <h4 class='add_comp'>Add A New Home Country Phone Number</h4>
 
     <div class='add_comp'>
         <div class='form-group '>
@@ -1990,7 +1986,6 @@
 } else if (complement.equals("sgadd")) {
 %>
 <form method="POST" id='sgAdd_pop_up' class="form complement_detailed_form worker_pop_up" action="addWorkerComplement.do" >
-    <h4 class='add_comp'>Add A New Singapore Address </h4>
 
     <div class='add_comp'>
         <div class='form-group '>
@@ -2025,7 +2020,6 @@
 } else if (complement.equals("homeadd")) {
 %>
 <form method="POST" id='homeAdd_pop_up' class="form complement_detailed_form worker_pop_up" action="addWorkerComplement.do" >
-    <h4 class='add_comp'>Add A New Home Country Address </h4>
 
     <div class='add_comp'>
         <div class='form-group '>
@@ -2059,7 +2053,6 @@
     ArrayList<String> digitalContactList = DropdownDAO.retrieveAllDropdownListOfDigitalContactType();
 %>
 <form method="POST" id='digi_pop_up' class="form complement_detailed_form worker_pop_up" action="addWorkerComplement.do" >
-    <h4 class='add_comp'>Add A New Digital Contact Details </h4>
 
     <div class='form-group'>
         <div class='add_comp'>
@@ -2122,8 +2115,6 @@
 } else if (complement.equals("nok")) {
 %>
 <form method="POST" id='nok_pop_up' class="form complement_detailed_form worker_pop_up" action="addWorkerComplement.do" >
-    <h4 class='add_comp'>Add A New Next Of Kin Details </h4>
-
     <div class='form-group'>
 
         <div class='add_comp'>
@@ -2190,7 +2181,6 @@
 } else if (complement.equals("familymember")) {
 %>
 <form method="POST" id='fm_pop_up' class="form complement_detailed_form worker_pop_up" action="addWorkerComplement.do" >
-    <h4 class='add_comp'>Add A New Family Member </h4>
 
     <div class='form-group'>
         <div class='add_comp'>
@@ -2248,7 +2238,6 @@
 } else if (complement.equals("sgfri")) {
 %>
 <form method="POST" id='sgFri_pop_up' action="addWorkerComplement.do" class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='add_comp'>Add A New Friend </h4>
 
     <div class='form-group'>
         <div class='add_comp'>
@@ -2297,7 +2286,6 @@
     ArrayList<String> spokenEnglishList = DropdownDAO.retrieveAllDropdownListOfSpokenEnglish();
 %>
 <form method="POST" id='language_pop_up' action="addWorkerComplement.do" class="form complement_detailed_form worker_pop_up"  >
-    <h4 class='add_comp'>Add A New Language </h4>
 
     <div class='form-group'>
 
@@ -2364,7 +2352,6 @@
 %>
 
 <form method="POST" id='bk_pop_up' class="form complement_detailed_form worker_pop_up" action="addWorkerComplement.do" >
-    <h4 class='add_comp'>Add A New Bank Account Details </h4>
 
     <div class='form-group'>
 
@@ -2438,7 +2425,6 @@
 %>
 
 <form method="POST" id='passdetails_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up"  >
-    <h4>Add A New Employment Pass Details </h4><br/>
     <div class='form-group'>
 
         <div class='add_comp'>
@@ -2517,7 +2503,6 @@
 %>
 
 <form method="POST" id='empdetails_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up"  >
-    <h4>Add A New Employer </h4><br/>
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
@@ -2570,7 +2555,6 @@
 %>
 
 <form method="POST" id='contract_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up"  >
-    <h4>Add A New Employment Contract Details </h4><br/>
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
@@ -2656,7 +2640,6 @@
 
 <form method="POST" id='agent_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up"  >
 
-    <h4>Add A New Intermediary Agent</h4><br/>
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
@@ -2769,7 +2752,6 @@
 
 <form method="POST" id='assurance_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up"  >
 
-    <h4>Add A New Verbal Assurance </h4><br/>
 
     <div class='form-group'>
 
@@ -2825,7 +2807,6 @@
 
 <form method="POST" id='workplace_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up"  >
 
-    <h4>Add A New Workplace </h4><br/>
 
     <div class='form-group'>
 
@@ -2932,7 +2913,6 @@
 
 <form method="POST" id='workhistory_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up" >
 
-    <h4>Add A New Work History </h4><br/>
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
@@ -3015,7 +2995,6 @@
 
 <form method="POST" id='accomodation_pop_up' action="addJobComplement.do" class="form complement_detailed_form job_pop_up"  >
 
-    <h4>Add A New Accommodation </h4><br/>
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
@@ -3125,7 +3104,6 @@
 <form method="POST" id='ipa_pop_up' action="addJobComplement.do" 
       class="form complement_detailed_form job_pop_up"  >
 
-    <h4>Add A New IPA Details </h4><br/>
     <div class='form-group'>
 
 
@@ -3247,7 +3225,6 @@
 %>
 
 <form method="POST" id='policareport_pop_up' action="addProblemComplement.do" class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New Police Report Record </h4>
     <div class='add_comp'>
         <div class='form-group '>
             <label for='date' class="control-label">Date police report made<span style="color: red">*</span>: </label>
@@ -3301,8 +3278,6 @@
 
 <form method="POST" id='othercomplaint_pop_up' action="addProblemComplement.do"  
       class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New Other Complaint Record</h4>
-    <!--add-->
     <div class='add_comp'>
         <div class='form-group '>
             <label for='date' class="control-label">Date other complaint lodged<span style="color: red">*</span>: </label>
@@ -3386,7 +3361,6 @@
 %>
 <form method="POST" id='ttr_pop_up' action="addProblemComplement.do"  class="form complement_detailed_form problem_pop_up"  >
 
-    <h4 class='add_comp'>Add A New Transfer, TJS & Repatriation Record </h4>
     <!--Problem add-->
     <div class='add_comp'>
 
@@ -3458,7 +3432,6 @@
 %>
 
 <form method="POST" action="addProblemComplement.do"  id='milestonecr_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New Case Milestone Reached(Criminal) </h4>
     <!--add-->
     <div class='add_comp'>
 
@@ -3524,7 +3497,6 @@
 %>
 
 <form method="POST" action="addProblemComplement.do"  id='milestonenc_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New Case Milestone Reached(non-criminal) </h4>
     <!--add-->
     <div class='add_comp'>
 
@@ -3581,7 +3553,6 @@
 %>
 
 <form method="POST" action="addProblemComplement.do"  id='r2r_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New R2R Record </h4>
     <!--add-->
     <div class='add_comp'>
 
@@ -3667,7 +3638,6 @@
 %>
 
 <form method="POST" action="addProblemComplement.do"  id='mc_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New MC/Light Duty Record </h4>
     <!--add-->
     <div class='add_comp'>
         <div class='form-group'>
@@ -3732,7 +3702,6 @@
 %>
 
 <form method="POST"  action="addProblemComplement.do"  id='hospital_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New Hospital Record</h4>
     <!--add-->
     <div class='add_comp'>
         <div class='form-group'>
@@ -3788,7 +3757,6 @@
 
 <form method="POST"  action="addProblemComplement.do"  id='nonwicaclaim_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
-    <h4 class='add_comp'>Add Non-Wica Claim Details</h4>
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
@@ -3841,7 +3809,6 @@
 %>
 
 <form method="POST"  action="addProblemComplement.do"  id='wica_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New WICA Monthly Status</h4>
     <div class='add_comp'>
 
         <div class='form-group'>
@@ -3906,7 +3873,6 @@
 
 <form method="POST" action="addProblemComplement.do"  id='wicaclaim_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
-    <h4 class='add_comp'>Add Wica Claim Details</h4>
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
@@ -3961,7 +3927,6 @@
 
 <form method="POST" action="addProblemComplement.do"  id='illnesscase_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
-    <h4 class='add_comp'>Add A Illness History Accommodation </h4>
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
@@ -4025,7 +3990,6 @@
 
 <form method="POST" action="addProblemComplement.do"  id='injurycase_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
-    <h4 class='add_comp'>Add A Injury History Accommodation </h4>
     <div class='form-group'>
 
         <div class='add_comp'>
@@ -4111,7 +4075,6 @@
 %>
 
 <form method="POST" action="addProblemComplement.do"  id='casediscussion_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New Case Discussion</h4>
     <div class='add_comp'>
         <div class='form-group'>
             <label for='' class="control-label">Date of Discussion, Assistance or Information-Receipt<span style="color: red">*</span>: </label>
@@ -4223,7 +4186,6 @@
 <form method="POST" action="addProblemComplement.do"  id='salarycalim_pop_up' 
       class="form complement_detailed_form problem_pop_up"  >
 
-    <h4 class='add_comp'>Add Salary Claim Details</h4>
     <div class='form-group'>
 
         <div class='add_comp'>
@@ -4266,7 +4228,6 @@
 
 <form method="POST" action="addProblemComplement.do"  id='salaryhistory_pop_up' 
       class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New Salary & Related History </h4>
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
@@ -4354,7 +4315,6 @@
 %>
 
 <form method="POST" action="addProblemComplement.do"  id='lawyer_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New Law Firm Detail </h4>
     <!--add-->
     <div class='add_comp'>
 
@@ -4412,7 +4372,6 @@
 %>
 
 <form method="POST" action="addProblemComplement.do"  id='auxcaseworker_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New Auxiliary Caseworker </h4>
     <div class='form-group'>
 
         <div class='add_comp'>
@@ -4463,7 +4422,6 @@
 %>
 
 <form method="POST" action="addProblemComplement.do"  id='leadcaseworker_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New Lead Caseworker </h4>
     <div class='form-group'>
 
         <div class='add_comp'>
@@ -4515,7 +4473,6 @@
 
 <form method="POST" action="addProblemComplement.do"  id='aggravIssue_pop_up' 
       class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='add_comp'>Add A New Aggravating Issue </h4>
     <div class='form-group'>
 
         <div class='add_comp'>
@@ -4570,7 +4527,6 @@
 %>
 <form method="POST" action="addProblemComplement.do"  id='othercase_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
-    <h4>Add Details & history of other problems </h4>
     <div class='form-group'>
 
         <div class='form-group'>
