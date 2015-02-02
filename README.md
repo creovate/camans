@@ -1,10 +1,10 @@
 camans
 ======
 <b>2nd Feb 2015 - nyein su</b>
-1. imporve UI
- i. colors 
- ii. standardize
-2. pop up boxes titles
+1. imporve UI<br/>
+ i. colors <br/>
+ ii. standardize<br/>
+2. pop up boxes titles <br/>
 
 ***All in my local because there is conflict and cannot pull or push.
 
