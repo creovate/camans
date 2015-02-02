@@ -162,9 +162,9 @@
                      }
                 %>               
                 </div> <!--col-md-6-->
-                 <div class="col-xs-4 text-left pull-right">
+                 <div class="col-xs-5 text-left pull-right">
                      
-                 Please Choose the drop-down type from here.<br/>
+                 <label>Please Choose the drop-down type from here.</label><br/>
                  <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
                  <%
                  if (type.equals("Accommodation_type")) { 

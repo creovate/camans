@@ -1,5 +1,12 @@
 camans
 ======
+<b>2nd Feb 2015 - smm<b>
+
+1. new function <br/>
+(a) export data <br/>
+
+Signed-off-by: soemyatmyat <soemyatmyat@openmailbox.org>
+
 <b>28th Jan 2015 - smm<b>
 
 1. new changes <br/>

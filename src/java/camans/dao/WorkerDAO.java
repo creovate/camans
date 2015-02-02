@@ -5,11 +5,12 @@
 package camans.dao;
 
 import au.com.bytecode.opencsv.CSVReader;
-import static camans.dao.WorkerDAO.retrieveWorkerbyFinNumber;
+import au.com.bytecode.opencsv.CSVWriter;
 import camans.entity.User;
 import camans.entity.Worker;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -386,26 +387,7 @@ public class WorkerDAO {
         }
         return errList;
     }
-    
-    public void exportData(String fileName) {
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        String sql = "";
-        
-        try {
-          conn = ConnectionManager.getConnection();
-          sql = "SELECT FIN_number, Name_of_worker, Worker_registration_date, Created_by, Created_For, Gender, "
-                  + "Nationality, Nationality_more, Date_of_birth into OUTFILE " + fileName 
-                  + " FIELDS TERMINATED BY ',' FROM tbl_worker";
-          pstmt = conn.prepareStatement(sql);
-          pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            handleSQLException(ex, sql, "not able to export data from Worker Table. ");
-        } finally {
-            ConnectionManager.close(conn, pstmt, null);
-        }
-    }
-    
+
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
       String msg = "Unable to access data; SQL=" + sql + "\n";
       for (String parameter : parameters) {

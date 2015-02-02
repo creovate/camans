@@ -142,7 +142,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>processExport</servlet-name>
-        <url-pattern>/processExport</url-pattern>
+        <url-pattern>/exportData.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

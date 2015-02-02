@@ -56,7 +56,7 @@
     });
 
     //-----on click edit-----//
-    function editComplement(div_id, title) {
+    function editComplement(div_idome, title) {
         
         $('#pop_up_content').dialog('option', 'title', title);
         $(div_id).attr("action", "addBenefit.do");

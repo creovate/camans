@@ -101,14 +101,16 @@ public class processBootstrap extends HttpServlet {
                 return;
             }
             
+            //folder name
+            String folderName = "dataIn";
             //retrieve filePath of the app build folder
             String filePath = getServletContext().getRealPath("/");
             // Creating folder to store the zip file
-            File file = new File(filePath + File.separator + "data");
+            File file = new File(filePath + File.separator + folderName);
             if (!file.exists()) {file.mkdir();} //data file
             // delete the files inside the directory
             FileUtils.cleanDirectory(file);
-            filePath = filePath + File.separator + "data" + File.separator;
+            filePath = file.getAbsolutePath() + File.separator;
             file = new File(filePath + fileName);
             // Write uploaded file to disk
             fItem.write(file);
@@ -779,7 +781,7 @@ public class processBootstrap extends HttpServlet {
                         
             
         } catch (Exception ex) {
-            
+            out.println(ex);
         } finally {            
             
             //response.sendRedirect("admin.jsp");
