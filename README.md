@@ -1,5 +1,13 @@
 camans
 ======
+<b>2nd Feb 2015 - nyein su</b>
+1. imporve UI
+ i. colors 
+ ii. standardize
+2. pop up boxes titles
+
+***All in my local because there is conflict and cannot pull or push.
+
 <b>2nd Feb 2015 - smm<b>
 
 1. new function <br/>
