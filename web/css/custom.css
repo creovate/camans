@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6{
     border-radius: 2px;
 }
 
-.btn-blue:active,.btn-blue:hover, .btn-blue:focus {
+.btn-blue:active,.btn-blue:sidehover, .btn-blue:focus {
     background: #006C9A;
     color: white;
     top: 1px;
@@ -146,8 +146,6 @@ label{
 
 }
 
-
-
 #filter_form .btn{
     width: 10%;
 
@@ -223,10 +221,10 @@ label{
 
 
 .worker_profile_header{
-    background-color: #006C9A;
+    background-color: #197aa4;
     color: white;
     font-weight: bold;
-    border: solid #006C9A;
+    border: solid #197aa4;
     margin-bottom: 2%;
 }
 
@@ -361,12 +359,12 @@ ol.progtrckr li.progtrckr-todo:before {
 
 
 /*view worker sub nav*/
-#sub_nav_tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+#sub_nav_tabs > li.active > a,#sub_nav_tabs .nav-tabs > li.active > a:hover,#sub_nav_tabs .nav-tabs > li.active > a:focus{
     color: white;
     font-weight: bolder;
-    background: #006C9A ;
+    background: #197aa4 ;
     border-bottom: 2px solid #004C6C;
-    border-right: 3px solid #004C6C;
+    border-right: 2px solid #004C6C;
 
 }
 
@@ -443,9 +441,10 @@ ol.progtrckr li.progtrckr-todo:before {
 }
 
 /**navbar**/
-.navbar{
+.side-menu .navbar{
     border-radius: 0;
-    border-right: 1px solid #e7e7e7;
+    background: #fcfcfc;
+    border-right: 1px solid #efefef;
 }
 
 .side-menu .navbar ul li a{
@@ -461,7 +460,24 @@ ol.progtrckr li.progtrckr-todo:before {
 
 .side-menu .navbar ul li{
     width: 100%;
-    border-bottom: 1px solid #e7e7e7;
+    border-bottom: 1px solid #99c4d6;
+}
+
+#side-menu .nav-tabs > li > a:hover, #side-menu .nav-tabs > li > a:focus{
+    background: #fcfcfc;
+    border-bottom: 1px solid #99c4d6;
+}
+
+#side-menu .nav-tabs > li> a :hover, #side-menu .nav-tabs > li:active > a:focus{
+    background: #197aa4 ;
+        color: white;
+}
+
+#side-menu .nav-tabs > li > a:active{
+    background: #197aa4 ;
+    color: white;
+        border-bottom: 2px solid #004C6C;
+        border-right: 5px solid #004C6C;
 }
 
 .side-menu .nav-tabs{

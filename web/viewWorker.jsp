@@ -66,7 +66,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       
+
         <link rel="stylesheet" href="css/bootstrap.css" media="screen" />
         <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" />
         <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.css">
@@ -75,7 +75,7 @@
         <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
         <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
         <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
-         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
+        <link rel="stylesheet" href="css/custom.css" media="screen" /> 
 
         <script src="js/jquery-2.1.1.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -165,12 +165,12 @@
                 margin-left:35%;
             }
 
-            
-    .accordion_panel_heading{
-        background-color: #eee;
-        color: #006C9A;
-        
-    }
+
+            .accordion_panel_heading{
+                background-color: #eee;
+                color: #006C9A;
+
+            }
         </style>
     </head>
     <body id="home" style='background:white;overflow-y: scroll'>
@@ -197,18 +197,18 @@
                         <a id="worker_profile_details" style="color: white" data-target="#worker_stub"  data-value='worker' href="#" data-title="View Worker Stub" data-toggle="modal" data-action="view" class="profile_details"><span class="glyphicon glyphicon-eye-open pull-right" pull-right></span></a>
                     </div>
                     <%
-                            String wkername = worker.getName();
-                            String wkerfinNum = worker.getFinNumber();
-                            //String phNum = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(worker);
-                            String wkerphNum = "";
+                        String wkername = worker.getName();
+                        String wkerfinNum = worker.getFinNumber();
+                        //String phNum = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(worker);
+                        String wkerphNum = "";
 
-                            ArrayList<Integer> phNoIds = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(worker);
-                            if (phNoIds != null && !phNoIds.isEmpty()) {
-                                WorkerSgPhNum phNumObj = WorkerComplementsDAO.retrieveWorkerSgPhNumById(phNoIds.get(phNoIds.size() - 1));
-                                wkerphNum = phNumObj.getPhNumber();
-                            }
+                        ArrayList<Integer> phNoIds = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(worker);
+                        if (phNoIds != null && !phNoIds.isEmpty()) {
+                            WorkerSgPhNum phNumObj = WorkerComplementsDAO.retrieveWorkerSgPhNumById(phNoIds.get(phNoIds.size() - 1));
+                            wkerphNum = phNumObj.getPhNumber();
+                        }
 
-                        %>
+                    %>
                     <table class="table table-condensed" class="stub-table">
                         <tr>
                             <td class="col-md-6">Name</td>
@@ -220,10 +220,10 @@
                         </tr>
                         <tr>
                             <td class="col-md-6">Phone</td>
-                            <td class="col-md-6"><%=(wkerphNum == "")? "-" : wkerphNum %></td>
+                            <td class="col-md-6"><%=(wkerphNum == "") ? "-" : wkerphNum%></td>
                         </tr>
                     </table>
-                    
+
                     <!--job stub-->
                     <div class="col-md-12 worker_profile_header text-center">Job Stub<a id="job_profile_details" style="color: white"  data-value='job' href="#" data-title="View Job Stub" data-toggle="modal" data-action="view" class="profile_details"><span class="glyphicon glyphicon-eye-open pull-right" pull-right></span></a>
                     </div>
@@ -245,36 +245,36 @@
                             <td class="col-md-6"><%=(latestJob.getJobStartDate() == null) ? "-" : latestJob.getJobStartDate()%></td>
                         </tr>
                     </table>
-                    
-                        
+
+
                     <!--Problem Stub-->
                     <!--job stub-->
                     <div class="col-md-12 worker_profile_header text-center">Problem Stub<a id="problem_profile_details" style="color: white"  data-value='problem' href="#" data-title="View Problem Stub" data-toggle="modal" data-action="view" class="profile_details"><span class="glyphicon glyphicon-eye-open pull-right" pull-right></span></a>
                     </div>
                     <%
-                                ArrayList<Integer> injuryList = ProblemComplementsDAO.retrieveProblemInjuryIdsOfProblem(latestProblem);
-                                ProblemInjury injuryObj = null;
-                                java.util.Date injuryDate = null;
-                                if (injuryList != null && injuryList.size() > 0) {
-                                    injuryObj = ProblemComplementsDAO.retrieveProblemInjuryById(injuryList.get(injuryList.size() - 1));
-                                    injuryDate = injuryObj.getInjuryDate();
-                                }
+                        ArrayList<Integer> injuryList = ProblemComplementsDAO.retrieveProblemInjuryIdsOfProblem(latestProblem);
+                        ProblemInjury injuryObj = null;
+                        java.util.Date injuryDate = null;
+                        if (injuryList != null && injuryList.size() > 0) {
+                            injuryObj = ProblemComplementsDAO.retrieveProblemInjuryById(injuryList.get(injuryList.size() - 1));
+                            injuryDate = injuryObj.getInjuryDate();
+                        }
 
-                                ArrayList<Integer> leadCaseWorkerList = ProblemComplementsDAO.retrieveLeadCaseWorkerIdsOfProblem(latestProblem);
-                                ProblemLeadCaseWorker leadCaseWorkerObj = null;
-                                String leadCaseWorkerName = null;
-                                if (leadCaseWorkerList != null && leadCaseWorkerList.size() > 0) {
-                                    leadCaseWorkerObj = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(leadCaseWorkerList.get(leadCaseWorkerList.size() - 1));
-                                    leadCaseWorkerName = leadCaseWorkerObj.getLeadCaseWorker();
-                                }
+                        ArrayList<Integer> leadCaseWorkerList = ProblemComplementsDAO.retrieveLeadCaseWorkerIdsOfProblem(latestProblem);
+                        ProblemLeadCaseWorker leadCaseWorkerObj = null;
+                        String leadCaseWorkerName = null;
+                        if (leadCaseWorkerList != null && leadCaseWorkerList.size() > 0) {
+                            leadCaseWorkerObj = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(leadCaseWorkerList.get(leadCaseWorkerList.size() - 1));
+                            leadCaseWorkerName = leadCaseWorkerObj.getLeadCaseWorker();
+                        }
 
-                            %>
+                    %>
                     <table class="table table-condensed" class="stub-table">
                         <tr>
                             <td class="col-md-6">Problem</td>
                             <td class="col-md-6"><%=latestProblem.getProblem()%></td>
                         </tr>
-                        
+
                         <tr>
                             <td class="col-md-6">Registered Date</td>
                             <td class="col-md-6"><%=sdf.format(latestProblem.getProblemRegisteredDate())%></td>
@@ -4621,11 +4621,11 @@
                 var div_title = $(this).data('title');
 
                 $("#pop_up_content").load('include/createcaseForm.jsp?workerFin=<%=workerFin%>' + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + '&profile=' + div_id + '&action=' + div_action_val).dialog({modal: true,
-                        position: ['center', 80],
-                        minWidth: $(window).width() - 750,
-                        title: div_title,
-                        resizable: false,
-                        draggable: false, close: function() {
+                    position: ['center', 80],
+                    minWidth: $(window).width() - 750,
+                    title: div_title,
+                    resizable: false,
+                    draggable: false, close: function() {
                         $(this).dialog('destroy');
                         $('#pop_up_content').empty();
                     }

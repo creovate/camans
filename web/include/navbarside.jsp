@@ -12,11 +12,21 @@
 --%>
 <style>
     .selected{
-        background: #e7e7e7;
+        background: #197aa4 ;
+        border-bottom: 2px solid #004C6C;
+        border-right: 5px solid #004C6C;
+    }
+
+    .selected a{
+        color: white;
+        font-weight: bolder;
+
+
     }
     ul li a{
         color: #006C9A;
     }
+    
 </style>
 <script>
     $(document).ready(function() {
@@ -25,6 +35,7 @@
         var bodyTag_id = $(bodyTag).attr('id');
         var tag_id = "#" + bodyTag_id + "_tab";
         $(tag_id).attr('class', 'selected');
+        $(tag_id).attr('active',true);
     });
 
 
