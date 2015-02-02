@@ -1802,7 +1802,7 @@ Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank)  Values (
 /* DD15 -- Problem - Salary & related history */
 INSERT INTO tbl_dropdown (ID, dropdownType, Name, Remark, displayRank)  Values (135, 'Salary_payment_type', 'Cash', null, 1);
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (136, 'Salary_payment_type', 'Cheque', null, 2);
-Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (137, 'Salary_payment_type', 'Bank giro', null, 3);
+Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (137, 'Salary_payment_type', 'Bank GIRO', null, 3);
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank)  Values (138, 'Salary_payment_type', 'Mixed/variable', null, 4);
 Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank)  Values (139, 'Salary_payment_type', 'Other', null, 5);
 /* DD16 -- Problem - Complaint_type*/
