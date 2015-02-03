@@ -91,7 +91,6 @@ h1, h2, h3, h4, h5, h6{
 }
 
 label{
-    text-transform: capitalize;
     color: #444;
 }
 
@@ -442,17 +441,11 @@ ol.progtrckr li.progtrckr-todo:before {
     border-radius:0;
 }
 
-
-
-
-/**/
-
-
 /**complement details**/
 #complement_details_div{
     width:65%; 
-    padding: 0% 0% 2%;
-    margin-top:6%;
+    padding: 1% 0% 2%;
+    margin-top:10vh;
 }
 
 .complement_detailed_form{

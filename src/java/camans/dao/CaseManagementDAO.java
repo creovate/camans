@@ -68,13 +68,13 @@ public class CaseManagementDAO {
             boolean is_referred_case = true;
             while (rs.next()) {
                 String referredBy = rs.getString(1);
-                if(referredBy == null && referredBy.equals("")){
+                if (referredBy == null) {
                     is_referred_case = false;
                 }
 
             }
-            
-            if(is_referred_case){
+
+            if (is_referred_case) {
                 sql = "UPDATE tbl_problem SET Referred_to = ? WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
 
                 pstmt = conn.prepareStatement(sql);
@@ -85,7 +85,10 @@ public class CaseManagementDAO {
                 pstmt.setInt(4, problem.getProbKey());
 
                 pstmt.executeUpdate();
-            }else{
+            } else {
+                //editing from problem complements
+
+                //1. update in tbl problem
                 sql = "UPDATE tbl_problem SET Referred_to = ?, Referred_date = ?, Referred_by = ?, Description = ? WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
 
                 pstmt = conn.prepareStatement(sql);
@@ -98,6 +101,13 @@ public class CaseManagementDAO {
                 pstmt.setInt(6, problem.getJobKey());
                 pstmt.setInt(7, problem.getProbKey());
 
+                pstmt.executeUpdate();
+
+                //2. update tbl_lead_case_worker
+                sql = "UPDATE tbl_lead_case_worker SET Lead_end = CURDATE( ) WHERE Prob_key =? AND Lead_end IS NULL";
+                pstmt = conn.prepareStatement(sql);
+
+                pstmt.setInt(1, problem.getProbKey());
                 pstmt.executeUpdate();
             }
 
@@ -118,10 +128,9 @@ public class CaseManagementDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "SELECT t1.Prob_key FROM tbl_problem AS t1 JOIN tbl_lead_case_worker AS t2 ON t1.Prob_key = t2.Prob_key WHERE Lead_case_worker = ? AND Referred_to = ? and t2.Entry_date > ( NOW() - INTERVAL 1 MONTH ) ";
+            sql = "SELECT Prob_key FROM tbl_problem where Referred_to = ? and Referred_date > (NOW() - INTERVAL 1 MONTH)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, userloginName);
-            pstmt.setString(2, userloginName);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 int probKey = rs.getInt(1);
@@ -135,6 +144,27 @@ public class CaseManagementDAO {
         }
 
         return problemList;
+    }
+
+    public static void terminateLeadCaseWroker(int probKey) {
+        Problem problem_temp = ProblemDAO.retrieveProblemByProblemId(probKey);
+        String workerFin = problem_temp.getWorkerFinNum();
+        int jobKey = problem_temp.getJobKey();
+
+        ArrayList<Integer> leadCaseWorkerList = ProblemComplementsDAO.retrieveLeadCaseWorkerIdsOfProblem(problem_temp);
+
+        int lcw_id = leadCaseWorkerList.get(leadCaseWorkerList.size() - 1);
+        ProblemLeadCaseWorker leadCaseWorker = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(lcw_id);
+        java.sql.Date lcwEnd = leadCaseWorker.getLeadEnd();
+        if (lcwEnd == null) {
+            String lcwName = leadCaseWorker.getLeadCaseWorker();
+            java.sql.Date lcwStart = leadCaseWorker.getLeadStart();
+            java.util.Date endDate = new java.util.Date();
+            lcwEnd = new java.sql.Date(endDate.getTime());
+
+            leadCaseWorker = new ProblemLeadCaseWorker(lcw_id, workerFin, jobKey, probKey, lcwName, lcwStart, lcwEnd);
+            ProblemComplementsDAO.updateProblemLeadCaseWorker(leadCaseWorker);
+        }
     }
 
     public static void referCase(String workerFin, int jobKey, int probKey, Date referredDate, String referredBy, String description) {

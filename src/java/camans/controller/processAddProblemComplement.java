@@ -6,6 +6,7 @@ package camans.controller;
 
 import camans.dao.CaseManagementDAO;
 import camans.dao.ProblemComplementsDAO;
+import camans.dao.ProblemDAO;
 import camans.dao.UserAuditLogDAO;
 import camans.dao.UserDAO;
 import camans.entity.*;
@@ -49,12 +50,16 @@ public class processAddProblemComplement extends HttpServlet {
             
             User _user = (User) request.getSession().getAttribute("userLogin");
             String auditChange = "";
+            
+            boolean success = false;
+            String returnMessage = "";
             //=======================================//
             //          Common Problem Complements  
             //=======================================//
             //          1. Aggravating Issue
             //=======================================//
             if (complementName.equals("aggravissue")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 //get all the parameters for Aggravating Issue
                 String aggraIssue = request.getParameter("naggravissueType");
                 String aggraIssueMore = request.getParameter("naggravissueTypeMore");
@@ -73,13 +78,19 @@ public class processAddProblemComplement extends HttpServlet {
                 ProblemAggravatingIssue problemAggraIssue = new ProblemAggravatingIssue(workerFinNum,
                         jobKey, problemKey, aggraIssue, aggraIssueMore, aggraLoss, aggraRemark);
                 //add to db
-                ProblemComplementsDAO.addProblemAggravatingIssue(problemAggraIssue);  
+                ProblemComplementsDAO.addProblemAggravatingIssue(problemAggraIssue);
+                
+                //change the return message & boolean
+                success = true;
+                returnMessage = "Aggravating issue is saved successfully!";
+                
                 //log the audit
                 auditChange = problemAggraIssue.toString2();
             //=======================================//
             //          2. Lead Case Worker
             //=======================================//    
             } else if (complementName.equals("leadcaseworker")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 //get all the parameters for lead case worker
                 String leadName = request.getParameter("nleadCaseWorkerName");
                 String leadStartStr = request.getParameter("nstartDate");
@@ -112,14 +123,21 @@ public class processAddProblemComplement extends HttpServlet {
                 
                 //update leadcaseworker
                 User leadCaseWorker = UserDAO.retrieveUserByUsername(leadName);
+                //update in table problem
+                Problem tempProb = ProblemDAO.retrieveProblemByProblemId(problemKey);
+                CaseManagementDAO.assignCase(_user, tempProb);
                 
-                CaseManagementDAO.assignCase(_user, null);
+                //change the return message & boolean
+                success = true;
+                returnMessage = "Lead Caseworker is saved successfully!";
+                
                 //log the audit
                 auditChange = problemLeadCaseWrk.toString2();
             //=======================================//    
             //          3. Auxiliary Case Worker
             //=======================================//    
             } else if (complementName.equals("auxcaseworker"))  {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 //get all the parameters
                 String auxName = request.getParameter("nauxiliaryCaseWorkerName");
                 String auxStartStr = request.getParameter("nstartDate");
@@ -150,13 +168,18 @@ public class processAddProblemComplement extends HttpServlet {
                 
                 //add to db
                 ProblemComplementsDAO.addProblemAuxiliaryCaseWorker(problemAuxiCaseWrk);
-            
+                
+                //change the return message & boolean
+                success = true;
+                returnMessage = "Auxiliary Caseworker is saved successfully!";
+                
                 //log the audit
                 auditChange = problemAuxiCaseWrk.toString2();
             //=======================================//    
             //          4. Case Discussion  
             //=======================================//    
             } else if (complementName.equals("casediscussion")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 //get all the parameters
                 String discussDateStr = request.getParameter("ndate");
                 String discussTime = request.getParameter("ndiscussionTime");
@@ -198,6 +221,7 @@ public class processAddProblemComplement extends HttpServlet {
             //          5. Lawyer  
             //=======================================//    
             } else if (complementName.equals("lawyer")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 //get all the parameters
                 String lawFirmDateStr = request.getParameter("ndate");
                 String lawFirmName = request.getParameter("nlawyerFirm");
@@ -228,6 +252,7 @@ public class processAddProblemComplement extends HttpServlet {
             //          6. Salary Related History
             //=======================================//
               else if (complementName.equals("salaryhistory")) {
+                  returnMessage = "Something went wrong while saving. Please try again!";
                   //get all the parameters
                   String salHistBasic = request.getParameter("nbasicSal");
                   String salHistOt = request.getParameter("novertime");
@@ -274,6 +299,7 @@ public class processAddProblemComplement extends HttpServlet {
             //          7. Salary Claimed Lodged    
             //=======================================//
             } else if (complementName.equals("salarycalim")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 String salClaimDateStr = request.getParameter("ndate");
                 String salClaimLossStr = request.getParameter("nloss");
                 String salClaimBasic = request.getParameter("nbasis");
@@ -312,6 +338,7 @@ public class processAddProblemComplement extends HttpServlet {
             //          8. Injury History 
             //=======================================//
               else if (complementName.equals("injurycase")) {
+                  returnMessage = "Something went wrong while saving. Please try again!";
                   String injuryDateStr = request.getParameter("ndate");
                   String injuryTime = request.getParameter("ntime");
                   String injuryLocation = request.getParameter("nlocation");
@@ -349,6 +376,7 @@ public class processAddProblemComplement extends HttpServlet {
             //          9. Illness History  
             //=======================================//
             } else if (complementName.equals("illnesscase")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 String illnessStart = request.getParameter("nstartTime");
                 String illnessdiaTime = request.getParameter("ndiagnoseTime");
                 String illnessdiaPerson = request.getParameter("ndiagnosePerson");
@@ -372,6 +400,7 @@ public class processAddProblemComplement extends HttpServlet {
             //          10. WICA Claim Lodged    
             //=======================================//    
             } else if (complementName.equals("wicaclaim")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 //get all parameters
                 String wicaClaimDateStr = request.getParameter("ndate");
                 String wicaClaimRefNum = request.getParameter("nrefNumber");
@@ -402,6 +431,7 @@ public class processAddProblemComplement extends HttpServlet {
             //          11. Non-WICA Claim Lodged  
             //=======================================//    
             } else if (complementName.equals("nonwicaclaim")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 //get all the parameters
                 String nonwicaClaimDateStr = request.getParameter("ndate");
                 String nonwicaClaimLossStr = request.getParameter("nloss");
@@ -442,6 +472,7 @@ public class processAddProblemComplement extends HttpServlet {
             //          12. WICA Monthly Status   
             //=======================================//    
             } else if (complementName.equals("wica")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 String wicaUpdateDateStr = request.getParameter("ndate");
                 String wicaStatus = request.getParameter("nwicaStatus");
                 String wicaStatusMore = request.getParameter("nwicaStatusMore");
@@ -489,6 +520,7 @@ public class processAddProblemComplement extends HttpServlet {
             //          13. Hospital Providing Treatment  
             //=======================================//    
             } else if (complementName.equals("hospital")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 String hospitalUpdateDateStr = request.getParameter("ndate");
                 String hospitalName = request.getParameter("nhospName");
                 String hospitalNameMore = request.getParameter("nhospNameMore");
@@ -517,7 +549,7 @@ public class processAddProblemComplement extends HttpServlet {
             //          14. MC/Light Duty Status 
             //=======================================//    
             } else if (complementName.equals("mc")) {
-
+                returnMessage = "Something went wrong while saving. Please try again!";
                 String mcUpdateDateStr = request.getParameter("ndate");
                 String mcStatus = request.getParameter("nmcStatus");
                 String mcStatusMore = request.getParameter("nmcStatusMore");
@@ -570,6 +602,7 @@ public class processAddProblemComplement extends HttpServlet {
             //          15. R2R Appointments  
             //=======================================//    
             } else if (complementName.equals("r2r")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 String r2rDateStr = request.getParameter("ndate");
                 String r2rTime = request.getParameter("nr2rTime");
                 String r2rHosp = request.getParameter("nr2rHosp");
@@ -627,6 +660,7 @@ public class processAddProblemComplement extends HttpServlet {
             //  16. Details & History of Other Problem 
             //=======================================//
             else if (complementName.equals("othercase")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 String otherProblemDesc = request.getParameter("nother");
                 String otherProblemLossStr = request.getParameter("nloss");
                 String otherProblemRemark = request.getParameter("nremark");
@@ -652,6 +686,7 @@ public class processAddProblemComplement extends HttpServlet {
             //          18. Police Report Lodged  
             //=======================================//
             } else if (complementName.equals("policareport")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 String policeReportDateStr = request.getParameter("ndate");
                 String policeReportStation = request.getParameter("npoliceReportStation");
                 String policeReportPerson = request.getParameter("nperson");
@@ -683,6 +718,7 @@ public class processAddProblemComplement extends HttpServlet {
             //          19. Other Complaint Lodged
             //=======================================//    
             } else if (complementName.equals("othercomplaint")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 String otherComplaintDateStr = request.getParameter("ndate");
                 String otherComplaintAgency = request.getParameter("ncomplaintAgency");
                 String otherComplaintWho = request.getParameter("ncomplaintWho");
@@ -716,6 +752,7 @@ public class processAddProblemComplement extends HttpServlet {
             //20. Case Milestone Reached(non-criminal) 
             //=======================================//    
             } else if (complementName.equals("ncmilestone")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 String ncmileStoneDateStr = request.getParameter("ndate");
                 String ncmileStoneReach = request.getParameter("nmilestoneNCReached");
                 String ncmileStoneReachMore =request.getParameter("nmilestoneNCReachedMore");
@@ -745,6 +782,7 @@ public class processAddProblemComplement extends HttpServlet {
             //21. Case Milestone Reached(Criminal)     
             //=======================================//    
             } else if (complementName.equals("cmilestone")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 String cmileStoneDateStr = request.getParameter("ndate");
                 String cmileStoneReach = request.getParameter("nmilestoneCRReached");
                 String cmileStoneReachMore = request.getParameter("nmilestoneCRReachedMore");
@@ -776,6 +814,7 @@ public class processAddProblemComplement extends HttpServlet {
             //      22. Transfer, TJS & Repatriation    
             //=======================================//    
             } else if (complementName.equals("ttr")) {
+                returnMessage = "Something went wrong while saving. Please try again!";
                 String ttrUpdateDateStr = request.getParameter("ndate");
                 String ttrStatus = request.getParameter("nttrStatus");
                 String ttrStatusMore = request.getParameter("nttrStatusMore");
@@ -819,7 +858,13 @@ public class processAddProblemComplement extends HttpServlet {
             UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
                     workerFinNum, "Added", "Problem Complement: " + auditChange);
 
-            UserAuditLogDAO.addUserAuditLog(userAuditLog);              
+            UserAuditLogDAO.addUserAuditLog(userAuditLog);    
+            request.getSession().setAttribute("success", success);
+            request.setAttribute("returnMessage", returnMessage);
+            request.setAttribute("worker",workerFinNum);
+            request.setAttribute("selectedProb=", problemKey);
+            //RequestDispatcher rd = request.getRequestDispatcher("viewWorker.jsp");
+            //rd.forward(request,response);
            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + "&selectedProb=" + problemKey);
         } finally {            
             out.close();
