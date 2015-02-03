@@ -1958,7 +1958,7 @@
                 <input class="form-control" type='text' name="nPhNum" required>
             </div>
             <div class='form-group'>
-                <label for='nPhOwner' class="control-label">Owner of this number: </label>
+                <label for='nPhOwner' class="control-label">Owner of this Number: </label>
                 <br/>
                 <input class="form-control" type='text' name="nPhOwner" >
             </div>
@@ -2078,7 +2078,7 @@
                 <input class="form-control" type='text' name="nDigitalMore">
             </div>
             <div class='form-group'>
-                <label for='nDigitalDetails' class="control-label">Email/QQ Address or other details<span style="color: red">*</span>: </label>
+                <label for='nDigitalDetails' class="control-label">Email/QQ Address or Other Details<span style="color: red">*</span>: </label>
                 <br/>
                 <input class="form-control" type='text' name="nDigitalDetails">
             </div>
@@ -2608,7 +2608,7 @@
                 <input class="form-control" type='text' name="nduration">
             </div>
             <div class='form-group'>
-                <label for='nduress' class="control-label">Describe if signed under duress or misrepresentation: </label>
+                <label for='nduress' class="control-label">Describe if Signed Under Duress or Misrepresentation: </label>
                 <br/>
                 <textarea class="form-control" name="nduress" rows="3" maxlength="500"></textarea>
             </div>
@@ -2683,12 +2683,12 @@
                 <textarea class="form-control" name="ncontact" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
-                <label for='namtpaid' class="control-label">Amount Paid To This Agent(S$):</label>
+                <label for='namtpaid' class="control-label">Amount Paid to This Agent(S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="namtpaid">
             </div>
             <div class='form-group'>
-                <label for='namtowed' class="control-label">Amount Owed To This Agent at the Start of Work(S$):</label>
+                <label for='namtowed' class="control-label">Amount Owed to This Agent at the Start of Work(S$):</label>
                 <br/>
                 <input class="form-control" type='text' name="namtowed">
             </div>
@@ -2718,12 +2718,12 @@
                 <input class="form-control" type='text' name="nfeewhere">
             </div>
             <div class='form-group'>
-                <label for='nfeerepay' class="control-label">Repayment Plan if fee owed: </label>
+                <label for='nfeerepay' class="control-label">Repayment Plan if Fee Owed: </label>
                 <br/>
                 <textarea class="form-control" name="nfeerepay" rows="3" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nemp' class="control-label">Employer that this Agent placed worker to: </label>
+                <label for='nemp' class="control-label">Employer that this Agent Placed Worker to: </label>
                 <br/>
                 <textarea class="form-control" name="nemp" rows="3" maxlength="200"></textarea>
             </div>
@@ -2759,12 +2759,12 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nname' class="control-label">Name of giver of verbal assurances<span style="color: red">*</span>:</label>
+                <label for='nname' class="control-label">Name of Giver of Verbal Assurances<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="nname" required>
             </div>
             <div class='form-group'>
-                <label for='nrelationship' class="control-label">Relationship of giver to worker or agent or employer:</label>
+                <label for='nrelationship' class="control-label">Relationship of Giver to Worker or Agent or Employer:</label>
                 <br/>
                 <textarea class="form-control" name="nrelation" maxlength="200"></textarea>
             </div>
@@ -2842,7 +2842,7 @@
                 <textarea class="form-control" name="npersonDetails" maxlength="200"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nrelationship' class="control-label">Relationship of workplace to employer: </label>
+                <label for='nrelationship' class="control-label">Relationship of Workplace to Employer: </label>
                 <br/>
                 <input class="form-control" type='text' name="nrelation" >
             </div>
@@ -2873,7 +2873,7 @@
                 <input class="form-control" type='text' name="nstart" >
             </div>
             <div class='form-group'>
-                <label for='nend' class="control-label">When cease working at Workplace?: </label>
+                <label for='nend' class="control-label">When Cease Working at Workplace?: </label>
                 <br/>
                 <input class="form-control" type='text' name="nend" >
             </div>
@@ -3046,24 +3046,24 @@
             </div>
 
             <div class='form-group'>
-                <label for='ncondition' class="control-label">Conditions at living quarters:</label>
+                <label for='ncondition' class="control-label">Conditions at Living Quarters:</label>
                 <br/>
                 <textarea class="form-control" name="ncondition" rows="3" maxlength="500"></textarea>
             </div>
 
             <div class='form-group'>
-                <label for='naccCharged' class="control-label">Cost charged by employer per month S$</label>
+                <label for='naccCharged' class="control-label">Cost Charged by Employer per Month S$:</label>
                 <br/>
                 <input class="form-control" type='text' name="naccCharged">
             </div>
             <div class='form-group'>
-                <label for='naccPaid' class="control-label">Cost paid by self per month S$</label>
+                <label for='naccPaid' class="control-label">Cost Paid by Self per Month S$:</label>
                 <br/>
 
                 <input class="form-control" type='text' name="naccPaid">
             </div>
             <div class='form-group'>
-                <label for='nmeal' class="control-label">Meal arrangements</label>
+                <label for='nmeal' class="control-label">Meal Arrangements:</label>
                 <br/>
                 <textarea class="form-control" name="nmeal" rows="3" maxlength="200"></textarea>
             </div>
@@ -3126,12 +3126,12 @@
             </div>
 
             <div class='form-group' id='ipapassType_other_div' >
-                <label for='nworkpassTypeMore' class="control-label">Explain if above is other:</label>
+                <label for='nworkpassTypeMore' class="control-label">Explain if above is 'other':</label>
                 <br/>
                 <input class="form-control" type='text' name="nworkpassTypeMore">
             </div>
             <div class='form-group'>
-                <label for='nappDate' class="control-label">IPA application date:</label>
+                <label for='nappDate' class="control-label">IPA Application Date:</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="nappDate">
             </div>
@@ -3227,17 +3227,17 @@
 <form method="POST" id='policareport_pop_up' action="addProblemComplement.do" class="form complement_detailed_form problem_pop_up"  >
     <div class='add_comp'>
         <div class='form-group '>
-            <label for='date' class="control-label">Date police report made<span style="color: red">*</span>: </label>
+            <label for='date' class="control-label">Date Police Report Made<span style="color: red">*</span>: </label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" >
         </div>
         <div class='form-group '>
-            <label for='date' class="control-label">Police station where report lodged: </label>
+            <label for='date' class="control-label">Police Station where Report Lodged: </label>
             <br/>
             <input class="form-control" type='text' name="npoliceReportStation" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Accompanyinf TWC2 person: </label>
+            <label for='' class="control-label">Accompanying TWC2 Person: </label>
             <br/>
             <input class="form-control" type='text' name="nperson" >
         </div>
@@ -3247,7 +3247,7 @@
             <input class="form-control" type='text' name="npoliceReportRefNumber" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Details of police report: </label>
+            <label for='' class="control-label">Details of Police Report: </label>
             <br/>
             <textarea class="form-control" name="npoliceReportDetails" rows="3"></textarea>
         </div>
@@ -4082,7 +4082,7 @@
             <input class="form-control dateInput" type='text' name="ndate"  value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Approx Time of event </label>
+            <label for='' class="control-label">Approx Time of Event: </label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTime" >
         </div>
@@ -4397,7 +4397,7 @@
                 <input class="form-control startDate" type='text' name="nstartDate">
             </div>
             <div class='form-group'>
-                <label for='nendDate' class="control-label">End Date:<%=probKey%> </label>
+                <label for='nendDate' class="control-label">End Date:</label>
                 <br/>
                 <input class="form-control endDate" type='text' name="nendDate">
             </div>
