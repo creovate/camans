@@ -39,12 +39,11 @@ public class processValidate extends HttpServlet {
             //get the data from xmlhttp request
             String finNumIn = request.getParameter("finNum");
             Worker tempWorker = WorkerDAO.retrieveWorkerbyFinNumber(finNumIn);
+            //return true if the fin number is available to use
             if(tempWorker == null){
                 isAvailable = true;
             }
-            JSONObject obj = new JSONObject();
-            obj.put("valid", isAvailable);
-            out.println(obj);
+            out.println(isAvailable);
         } finally {            
             out.close();
         }

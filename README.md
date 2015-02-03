@@ -1,5 +1,15 @@
 camans
 ======
+***Please exclude private files from nbproject folder when you commit.***
+
+<b>3rd Feb 2015 - nyein su</b>
+1. cont. UI improvement<br/>
+2. Debug validator errors <br/>
+3. Debug UAT2 bugs <br/>
+4. Edited in sql code <br/>
+**** All on git now. <br/>
+
+
 <b>2nd Feb 2015 - nyein su</b>
 1. imporve UI<br/>
  i. colors <br/>
