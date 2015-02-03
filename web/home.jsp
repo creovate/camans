@@ -64,7 +64,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <!--css-->
-        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
+        <link rel="stylesheet" href="css/bootstrap.css" media="screen" />
         <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
         <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
@@ -89,23 +89,28 @@
         <!--page title-->
         <title>CAMANS</title>
         
+        <style>
+            .navbar{
+                margin-bottom: 0 !important;
+            }
+            
+            
+        </style>
     </head>
     <body id="home">
         <jsp:include page="include/navbartop.jsp"/>
-        <div class="row-offcanvas row-offcanvas-left" style="padding:1% 0% 0%;">
+        <div class="row-offcanvas row-offcanvas-left" style="padding:0%;">
             <jsp:include page="include/navbarside.jsp"/>
 
-            <div class="col-md-10" id="content">
+            <div class="col-md-offset-2 col-md-10" id="content" style="padding-top: 2%;">
 
                 <div id="search_worker">
                     <!-- SEARCH FILTERS -->
 
-                    <!--<div id="schwker_box" class="col-md-11 sub_div_w_bg" style="padding:2% 1%">-->
                     <div id="worker_filter_div" class="col-md-12"> 
                         <div class="panel panel-default">
-                            <div class="panel-body"> 
-                    <!--<div class="col-mid-9 panel panel-default sub_div_w_bg" style="padding:2% 1%">-->    
-                                <h3 style="color:#2980b9">Search Criteria</h3>  
+                            <div class="panel-body">   
+                                <h3>Search Criteria</h3>  
                                 <%
                                 %>
                                 <form id="searchWorkerForm" action="searchWorker.do" method="post">
@@ -306,8 +311,8 @@
 
                                     <div clas="row"> <!-- row 5 -->
                                         <div class="form-group col-sm-12 text-right">
-                                            <button class="btn btn-primary" id="btnSearch" onclick="search()">Search</button>
-                                            <button class="btn btn-info" id="btnReset" 
+                                            <button class="btn btn-blue" id="btnSearch" onclick="search()">Search</button>
+                                            <button class="btn btn-info" id="btnReset" style="border-radius:2px"
                                                     type="reset" onClick="window.location.href=window.location.href">Reset</button>
                                         </div>
                                     </div> <!--end of row 5--> 
@@ -337,34 +342,34 @@
                                     if (workersList.isEmpty()) {
                                         if (searchWorkers != null && searchWorkers.isEmpty()) {
 
-                                            out.println("<h3 style=\"color:#2980b9\">Search Results</h3>");    
+                                            out.println("<h3>Search Results</h3>");    
                                             out.println("No records Found!");
 
                                         } else {
 
-                                            out.println("<h3 style=\"color:#2980b9\">Assigned Cases</h3>");    
+                                            out.println("<h3>Assigned Cases</h3>");    
                                             out.println("There is no case assigned to you!");
 
                                         }
 
                                     } else {
                                         if (searchWorkers == null) {
-                                            out.println("<h3 style=\"color:#2980b9\">Assigned Cases</h3>");
+                                            out.println("<h3>Assigned Cases</h3>");
                                         } else { 
-                                            out.println("<h3 style=\"color:#2980b9\">Search Results</h3>");
+                                            out.println("<h3>Search Results</h3>");
                                         }   
                                 %>
 
                                     <table class="table table-curved table-bordered table-hover" id="workers-table">    
-                                        <thead bgcolor="#3579BC">
+                                        <thead bgcolor="#4c98b8">
                                             <tr>
-                                                <th><font color="#FFF">Lead Case Worker</font></th>
-                                                <th><font color="#FFF">Auxiliary Case Worker</font></th>
-                                                <th><font color="#FFF">Worker Fin Number</font></th>
-                                                <th><font color="#FFF">Worker Name</font></th>
-                                                <th><font color="#FFF">Worker Gender</font></th>
-                                                <th><font color="#FFF">Worker Nationality</font></th>
-                                                <th><font color="#FFF">Case Registered Date</font></th>
+                                                <th><font color="#fff">Lead Case Worker</font></th>
+                                                <th><font color="#fff">Auxiliary Case Worker</font></th>
+                                                <th><font color="#fff">Worker Fin Number</font></th>
+                                                <th><font color="#fff">Worker Name</font></th>
+                                                <th><font color="#fff">Worker Gender</font></th>
+                                                <th><font color="#fff">Worker Nationality</font></th>
+                                                <th><font color="#fff">Case Registered Date</font></th>
                                             </tr>
                                         </thead>
                                         <tbody>

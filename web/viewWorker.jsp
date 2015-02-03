@@ -157,9 +157,6 @@
             .col-md-1{
                 width:17%;
             }
-            .col-md-2{
-                width:48%;
-            }
 
             .col-md-offset-6{
                 margin-left:35%;
@@ -171,16 +168,20 @@
                 color: #006C9A;
 
             }
+            
+            #side-menu{
+                position: static !important;
+            }
         </style>
     </head>
     <body id="home" style='background:white;overflow-y: scroll'>
         <jsp:include page="include/navbartop.jsp"/>
-        <div class="row-offcanvas row-offcanvas-left" style="padding:1% 0% 0%;">
+        <div class="row-offcanvas row-offcanvas-left" style="padding:0;">
 
-            <div id="sidebar" class="sidebar-offcanvas text-capitalize">
+            <div id="sidebar" class="sidebar-offcanvas ">
                 <jsp:include page="include/navbarside.jsp"/>
                 <!--stubs-->
-                <div class="col-md-6"  id="worker_profile_div">
+                <div class="col-md-6" style="left: 50% "  id="worker_profile_div">
                     <!-- Face Picture -->
                     <br/>
                     <div id="worker_profile_pic" class="text-center">
@@ -316,7 +317,7 @@
                                                     </a>
                                                 </h4>
                                             </div>
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> nickNameIds = WorkerComplementsDAO.retrieveNickNameIdsOfWorker(worker);
                                                     if (nickNameIds != null && !nickNameIds.isEmpty()) {
@@ -371,7 +372,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> passportDetailsIds = WorkerComplementsDAO.retrievePassportIdsOfWorker(worker);
                                                     if (passportDetailsIds != null && !passportDetailsIds.isEmpty()) {
@@ -448,7 +449,7 @@
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">Singapore Phone Number <a data-value='sgphone' data-action = "add" data-sgphone='' data-title="Add A New Singapore Phone Number " href="" data-toggle="modal" data-class="worker"  data-target="#sgPhone_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> phoneNumberIds = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(worker);
                                                     if (phoneNumberIds != null && !phoneNumberIds.isEmpty()) {
@@ -513,7 +514,7 @@
 
 
                                             </div>
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> homePhIds = WorkerComplementsDAO.retrieveHomeCountryPhoneNumIdsOfWorker(worker);
                                                     if (homePhIds != null && !homePhIds.isEmpty()) {
@@ -579,7 +580,7 @@
 
 
                                             </div>
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> sgAddressIds = WorkerComplementsDAO.retrieveWorkerSgAddressIdsOfWorker(worker);
                                                     if (sgAddressIds != null && !sgAddressIds.isEmpty()) {
@@ -638,7 +639,7 @@
 
 
                                             </div>
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> homeCountryAddressIds = WorkerComplementsDAO.
                                                             retrieveWorkerHomeCountryAddressIdsOfWorker(worker);
@@ -698,7 +699,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> digitalContactsIds = WorkerComplementsDAO.retrieveDigitalContactIdsOfWorker(worker);
                                                     if (digitalContactsIds != null && !digitalContactsIds.isEmpty()) {
@@ -766,7 +767,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> nextOfKinsIds = WorkerComplementsDAO.retrieveNextOfKinIdsOfWorker(worker);
                                                     if (nextOfKinsIds != null && !nextOfKinsIds.isEmpty()) {
@@ -838,7 +839,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> familyMmbrIds = WorkerComplementsDAO.retrieveFamilyMemberIdsOfWorker(worker);
                                                     if (familyMmbrIds != null && !familyMmbrIds.isEmpty()) {
@@ -908,7 +909,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> friendIds = WorkerComplementsDAO.retrieveFriendIdsOfWorker(worker);
                                                     if (friendIds != null && !friendIds.isEmpty()) {
@@ -978,7 +979,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> languagueIds = WorkerComplementsDAO.retrieveLanguageIdsOfWorker(worker);
                                                     if (languagueIds != null && !languagueIds.isEmpty()) {
@@ -1043,7 +1044,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> bankAcctDetailsIds = WorkerComplementsDAO.retrieveBankAccountDetailsIdsOfWorker(worker);
                                                     if (bankAcctDetailsIds != null && !bankAcctDetailsIds.isEmpty()) {
@@ -1138,7 +1139,7 @@
                                                 <div class="col-md-6">
                                                     <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
                                                     <input type="hidden" name="selectedType" value="job"/>
-                                                    <select class="form-control text-capitalize" id="jobSelected" name="selectedJob" required>
+                                                    <select class="form-control " id="jobSelected" name="selectedJob" required>
                                                         <%
                                                             for (int i = 0; i < jobIds.size(); i++) {
                                                                 int Id = jobIds.get(i);
@@ -1184,7 +1185,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> jobPassDetailsIds = JobComplementsDAO.retrievePassDetailsIdsOfJob(latestJob);
                                                     if (jobPassDetailsIds != null && !jobPassDetailsIds.isEmpty()) {
@@ -1258,7 +1259,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> ipaIdList = JobComplementsDAO.retrieveIPADetailsIdsOfJob(latestJob);
                                                     if (ipaIdList != null && !ipaIdList.isEmpty()) {
@@ -1341,7 +1342,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> verbalIdsList = JobComplementsDAO.retrieveVerbalAssuranceOfJob(latestJob);
                                                     if (verbalIdsList != null && !verbalIdsList.isEmpty()) {
@@ -1425,7 +1426,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> empContractIdsList = JobComplementsDAO.retrieveEmploymentContractIdsOfJob(latestJob);
                                                     if (empContractIdsList != null && !empContractIdsList.isEmpty()) {
@@ -1529,7 +1530,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> agentIdsList = JobComplementsDAO.retrieveJobIntermediaryAgentIdsOfJob(latestJob);
                                                     if (agentIdsList != null && !agentIdsList.isEmpty()) {
@@ -1614,7 +1615,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> empIdsList = JobComplementsDAO.retrieveJobEmployerIdsOfJob(latestJob);
                                                     if (empIdsList != null && !empIdsList.isEmpty()) {
@@ -1685,7 +1686,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> workPlaceIdsList = JobComplementsDAO.retrieveJobWorkplaceIdsOfJob(latestJob);
                                                     if (workPlaceIdsList != null && !workPlaceIdsList.isEmpty()) {
@@ -1767,7 +1768,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> historyIdsList = JobComplementsDAO.retrieveJobWorkHistoryIdsOfJob(latestJob);
                                                     if (historyIdsList != null && !historyIdsList.isEmpty()) {
@@ -1839,7 +1840,7 @@
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
-                                            <div class="panel-body text-capitalize">
+                                            <div class="panel-body ">
                                                 <%
                                                     ArrayList<Integer> accomodoIdsList = JobComplementsDAO.retrieveJobAccomodationIdsOfJob(latestJob);
                                                     if (accomodoIdsList != null && !accomodoIdsList.isEmpty()) {
@@ -1923,7 +1924,7 @@
                                                     <input type="hidden" name="selectedType" value="problem"/>
                                                     <input type="hidden" name="jobKey" value="<%=latestJob.getJobKey()%>"/>
                                                     <input type="hidden" name="problemKey" value="<%=latestProblem.getProbKey()%>"/>
-                                                    <select class="form-control text-capitalize" id="problemSelected" name="selectedProblem" required>
+                                                    <select class="form-control " id="problemSelected" name="selectedProblem" required>
                                                         <%
                                                             for (int i = problemIds.size() - 1; i >= 0; i--) {
                                                                 int Id = problemIds.get(i);
@@ -1956,7 +1957,7 @@
                                     </div>
                                     <br/>
                                     <div class='row'>
-                                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+                                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                             <div class="panel panel-default">
 
                                                 <!--common problem complements-->
@@ -1983,7 +1984,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> aggravissueIds = ProblemComplementsDAO.retrieveAggravatingIssueIdsOfProblem(latestProblem);
 
@@ -2058,7 +2059,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> lcwIds = ProblemComplementsDAO.retrieveLeadCaseWorkerIdsOfProblem(latestProblem);
 
@@ -2169,7 +2170,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> auxCWIds = ProblemComplementsDAO.retrieveProblemAuxiliaryCaseWorkerIdsOfProblem(latestProblem);
 
@@ -2280,7 +2281,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> caseDiscussIds = ProblemComplementsDAO.retrieveCaseDiscussionIdsOfProblem(latestProblem);
 
@@ -2378,7 +2379,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> lawyerIds = ProblemComplementsDAO.retrieveProblemLawyerIdsOfProblem(latestProblem);
 
@@ -2484,7 +2485,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> salaryHistoryIds = ProblemComplementsDAO.retrieveProblemSalaryRelatedHistoryIdsOfProblem(latestProblem);
 
@@ -2563,7 +2564,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         //ArrayList<Integer> salaryClaimIds = ProblemComplementsDAO.retrieveProblemSalaryRelatedHistoryIdsOfProblem(latestProblem);
                                                                         ArrayList<Integer> salaryClaimIds = ProblemComplementsDAO.retrieveSalaryClaimIdsOfProblem(latestProblem);
@@ -2666,7 +2667,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> injuryIds = ProblemComplementsDAO.retrieveProblemInjuryIdsOfProblem(latestProblem);
 
@@ -2762,7 +2763,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> illnessIds = ProblemComplementsDAO.retrieveIllnessIdsOfProblem(latestProblem);
 
@@ -2835,7 +2836,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> wicaclaimIds = ProblemComplementsDAO.retrieveWicaClaimIdsOfProblem(latestProblem);
 
@@ -2930,7 +2931,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> nonwicaClaimIds = ProblemComplementsDAO.retrieveNonWicaClaimIdsOfProblem(latestProblem);
 
@@ -3024,7 +3025,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> wicaIds = ProblemComplementsDAO.retrieveWicaIdsOfProblem(latestProblem);
 
@@ -3119,7 +3120,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> hospitalIds = ProblemComplementsDAO.retrieveProblemHospitalIdsOfProblem(latestProblem);
 
@@ -3217,7 +3218,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> mcIds = ProblemComplementsDAO.retrieveProblemMCStatusIdsOfProblem(latestProblem);
 
@@ -3337,7 +3338,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> r2rIds = ProblemComplementsDAO.retrieveProblemR2RIdsOfProblem(latestProblem);
 
@@ -3449,7 +3450,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> otherCaseIds = ProblemComplementsDAO.retrieveOtherProblemIdsOfProblem(latestProblem);
 
@@ -3519,7 +3520,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> policeReportIds = ProblemComplementsDAO.retrievePoliceReportIdsOfProblem(latestProblem);
 
@@ -3611,7 +3612,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> otherComplaintIds = ProblemComplementsDAO.retrieveOtherComplaintIdsOfProblem(latestProblem);
 
@@ -3708,7 +3709,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> nCaseMSIds = ProblemComplementsDAO.retrieveProblemCaseMilestoneNCIdsOfProblem(latestProblem);
 
@@ -3805,7 +3806,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> caseMSIds = ProblemComplementsDAO.retrieveProblemCaseMilestoneCRIdsOfProblem(latestProblem);
 
@@ -3907,7 +3908,7 @@
                                                                         </a>
                                                                     </h4>
                                                                 </div>
-                                                                <div class="panel-body text-capitalize">
+                                                                <div class="panel-body ">
                                                                     <%
                                                                         ArrayList<Integer> ttrIds = ProblemComplementsDAO.retrieveProblemTTRIdsOfProblem(latestProblem);
 

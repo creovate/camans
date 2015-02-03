@@ -3607,7 +3607,7 @@
             <textarea class="form-control" name="nr2rFeedback" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='r2rMed' class="control-label">Medical Cost of this appt: </label>
+            <label for='r2rMed' class="control-label">Medical Cost of this appt(S$): </label>
             <br/>
             <input class="form-control" type='text' name="nr2rMed">
         </div>

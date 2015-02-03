@@ -1,6 +1,27 @@
 root { 
     display: block;
 }
+
+/*badge */
+.badge{
+    background: white;
+    color: #006c9a;
+}
+
+/*headers*/
+.color-header{
+    background: #3289ae;
+    color: white;
+    padding: 1% 0;
+    font-weight: bold;
+    font-size: medium;
+}
+
+/*general for tables*/
+.tbl_lbl{
+    font-weight: bold;
+    width: 45%;
+}
 /*general css*/
 
 
@@ -14,8 +35,12 @@ body{
     margin: 4% 3% 0 3%;
 }
 
+.tab-content{
+    padding-top: 2%;
+}
+
 h1, h2, h3, h4, h5, h6{
-    color: #00618B ;
+    color: #006c9a ;
     font-weight: bolder;
 }
 .col-md-10{
@@ -37,7 +62,16 @@ h1, h2, h3, h4, h5, h6{
     border-radius: 2px;
 }
 
-.btn-blue:active,.btn-blue:sidehover, .btn-blue:focus {
+.btn-lightblue{
+    background: #7fb5cc;
+    border-radius: 2px;
+    border: none;
+}
+.btn :focus{
+    border: transparent;
+}
+
+.btn-blue:active,.btn-blue:sidehover, .btn-blue:focus, .btn-blue:hover {
     background: #006C9A;
     color: white;
     top: 1px;
@@ -62,25 +96,25 @@ label{
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #428bca;
-  border:0;
+    color: #fff;
+    background-color: #428bca;
+    border:0;
 }
 .btn-primary:hover,
 .btn-primary:focus {
-  background-color: #2d6ca2;
-  background-position: 0 -15px;
+    background-color: #2d6ca2;
+    background-position: 0 -15px;
 }
 
 .btn-info {
-  color: #fff;
-  background-color: #5bc0de;
-  border-color: #46b8da;
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
 }
 .btn-info:hover,
 .btn-info:focus {
-  background-color: #2aabd2;
-  background-position: 0 -15px;
+    background-color: #2aabd2;
+    background-position: 0 -15px;
 }
 
 
@@ -221,11 +255,18 @@ label{
 
 
 .worker_profile_header{
-    background-color: #197aa4;
-    color: white;
-    font-weight: bold;
-    border: solid #197aa4;
+    background-color: white;
+    color: #197aa4;
+    font-weight: bolder;
+    border: solid white;
     margin-bottom: 2%;
+    padding-bottom: 2%;
+    border-bottom: 2px solid #197aa4;
+    border-top: 2px solid #197aa4;
+}
+
+.worker_profile_header .glyphicon{
+    color: #197aa4;
 }
 
 #view_worker_box h3, h4{
@@ -338,7 +379,7 @@ ol.progtrckr li:before {
 ol.progtrckr li.progtrckr-done:before {
     content: "\2713";
     color: white;
-    background-color: #6697AE;
+    background-color: #004b6b;
     height: 2.4em;
     width: 2.4em;
     line-height: 2.4em;
@@ -367,6 +408,10 @@ ol.progtrckr li.progtrckr-todo:before {
     border-right: 2px solid #004C6C;
 
 }
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+    background-color: #4c98b8 !important;
+    border-color: #4c98b8 !important;
+}
 
 #sub_nav_tabs{
     border-bottom: 1.5px solid #006C9A;
@@ -380,7 +425,7 @@ ol.progtrckr li.progtrckr-todo:before {
 
 /*panels*/
 .panel-default>.panel-heading{
-    background: #94C1D4;
+    background: #66a6c2;
     color:#002E41;
 }
 
@@ -444,7 +489,7 @@ ol.progtrckr li.progtrckr-todo:before {
 .side-menu .navbar{
     border-radius: 0;
     background: #fcfcfc;
-    border-right: 1px solid #efefef;
+    border-right: 4px solid #ddd;
 }
 
 .side-menu .navbar ul li a{
@@ -455,7 +500,7 @@ ol.progtrckr li.progtrckr-todo:before {
 }
 
 #side-menu{
-    height: 88vh;
+    height: 99vh;
 }
 
 .side-menu .navbar ul li{
@@ -464,20 +509,17 @@ ol.progtrckr li.progtrckr-todo:before {
 }
 
 #side-menu .nav-tabs > li > a:hover, #side-menu .nav-tabs > li > a:focus{
-    background: #fcfcfc;
-    border-bottom: 1px solid #99c4d6;
-}
-
-#side-menu .nav-tabs > li> a :hover, #side-menu .nav-tabs > li:active > a:focus{
-    background: #197aa4 ;
-        color: white;
+    background: #4c98b8 ;
+    color: white;
+    border: none;
+    margin: 0;
 }
 
 #side-menu .nav-tabs > li > a:active{
     background: #197aa4 ;
     color: white;
-        border-bottom: 2px solid #004C6C;
-        border-right: 5px solid #004C6C;
+    border-bottom: 2px solid #004C6C;
+    border-right: 5px solid #004C6C;
 }
 
 .side-menu .nav-tabs{
@@ -485,11 +527,11 @@ ol.progtrckr li.progtrckr-todo:before {
 }
 
 input[readonly] {
-     cursor: text;
+    cursor: text;
 }
 
 input[readonly]:hover{
-     cursor: text;
+    cursor: text;
 }
 /*page header*/
 .page-header{

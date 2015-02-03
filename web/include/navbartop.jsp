@@ -13,22 +13,41 @@
     //ArrayList<Problem> problemList = new ArrayList<Problem>();
 %>
 <style>
-    .selected{
-        background: #e7e7e7;
+    #top-navbar {
+        background: #004b6b;
+        border: none;
+    }
+    
+    #top-navbar ul li a{
+        color: white;
+    }
+    
+    #top-navbar ul li a:hover, #top-navbar ul li a:focus{
+        background: transparent;
+        border: none;
+    }
+    
+    #top-navbar ul li ul{
+        background: #006C9A;
+    }
+    #top-navbar ul li ul li a{
+        color: white;
+    }
+    #top-navbar ul li ul li a :hover, #top-navbar ul li ul li a :focus{
+        background: transparent;
+    }
+    #top-navbar ul li.dropdown.open{
+        background: transparent;
+        color: white;
     }
 </style>
 <div class="row">
 
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-fixed-top" id="top-navbar" role="navigation">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                <div class="col-md-1"></div>
                 <!--<a class="navbar-brand" href="home.jsp"><img id="logo" src="img/twc_logo.png"></a>-->
             </div>
 

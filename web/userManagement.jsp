@@ -51,18 +51,18 @@
      
     </head>
     
-    <body style='background:white'>
+    <body id="usermgmt" style='background:white'>
         <jsp:include page="include/navbartop.jsp"/>
-        <div class="row-offcanvas row-offcanvas-left" style="padding:1% 0% 0%;">
+        <div class="row-offcanvas row-offcanvas-left">
             <jsp:include page="include/navbarside.jsp"/>
 
-            <div class="col-md-10">
+            <div class="col-md-offset-2 col-md-10">
 
                 <div class="page-header">
-                <center><h2 style="color:#2980b9">User Management</h2></center>    
+                <center><h2 >User Management</h2></center>    
                 </div>
                 <!-- Add New User Button -->
-                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newUser_pop_up">
+                <button type="button" class="btn btn-blue pull-right" data-toggle="modal" data-target="#newUser_pop_up">
                     <span class="glyphicon glyphicon-plus"></span> Add A New User
                 </button><br/><br/>
                 <!-- End of Add New User Button -->
@@ -88,11 +88,11 @@
                 <!-- End of success & error display -->
 
                 <!-- Users Table -->
-                <h3 style="color:#2980b9">All Users</h3>
+                <h3 >All Users</h3>
                 <!--<div class="panel panel-default">
                     <div class="panel-body">-->       
                         <table class="table table-curved table-bordered table-hover" id="users-table">
-                            <thead bgcolor="#3579BC">
+                            <thead bgcolor="#4c98b8">
                                 <tr>
                                     <th><font color="#FFF">S/N</font></th>
                                     <th><font color="#FFF">Profile Picture</font></th>
@@ -190,7 +190,7 @@
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Close</span>
                         </button>
-                        <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
+                        <h3 class="modal-title" id="newUser_pop_up_label" align="center">
                             Add A New User Form
                         </h3>
                       </div> <!--modal-header-->
@@ -320,7 +320,7 @@
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Close</span>
                         </button>
-                        <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
+                        <h3 class="modal-title" id="newUser_pop_up_label" align="center">
                             Edit User Form
                         </h3>
                       </div> <!--modal-header-->
@@ -442,7 +442,7 @@
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Close</span>
                         </button>
-                        <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
+                        <h3 class="modal-title" id="newUser_pop_up_label" align="center">
                             Deactivate User
                         </h3>
                       </div> <!--modal-header-->
@@ -484,7 +484,7 @@
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Close</span>
                         </button>
-                        <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
+                        <h3 class="modal-title" id="newUser_pop_up_label" align="center">
                             Activate User
                         </h3>
                       </div> <!--modal-header-->
@@ -526,7 +526,7 @@
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Close</span>
                         </button>
-                        <h3 class="modal-title" id="user_reset_pwd_label" style="color:#2980b9" align="center">
+                        <h3 class="modal-title" id="user_reset_pwd_label" align="center">
                             Reset Password
                         </h3>
                       </div> <!--modal-header-->

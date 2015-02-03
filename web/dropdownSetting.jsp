@@ -19,7 +19,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
+        <link rel="stylesheet" href="css/bootstrap.css" media="screen" />
         <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" />
         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
           
@@ -51,15 +51,15 @@
     }
 
 </style>
-    <body>
+    <body id="ddsetting">
         <jsp:include page="include/navbartop.jsp"/>
-        <div class="row-offcanvas row-offcanvas-left" style="padding:1% 0% 0%;">
+        <div class="row-offcanvas row-offcanvas-left">
             <jsp:include page="include/navbarside.jsp"/>
 
-            <div class="col-md-10">
+            <div class="col-md-offset-2 col-md-10">
                 <!--Page Header-->
                 <div class="page-header">
-                    <center><h2 style="color:#2980b9">Configure Dropdown Settings</h2></center>    
+                    <center><h2>Configure Dropdown Settings</h2></center>    
                 </div>
                 <!-- End of Page Header -->
                 <%
@@ -113,8 +113,8 @@
                 %>
 
                     <!--Panel Box-->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
+                    <div class="panel panel-primary" >
+                        <div class="panel-heading" style="background:  #4c98b8">
                             <div class="row">
                                 <div class="col-xs-12 text-center">
                                     <b><%=type%></b>
@@ -125,12 +125,12 @@
                             <form id="deleteItems" method="post" action="dropdownProcess.do" class="form-horizontal">
                             <div class="row">
                                 <div class="col-xs-12 text-center">
-                                    <button type="submit" class="btn btn-primary">Delete Selected</button>
-                                    <button type="button" class="btn btn-primary add_new_item" data-toggle="modal" data-target="#add_new_item" 
+                                    <button type="submit" class="btn btn-danger" style="border-radius:2px">Delete Selected</button>
+                                    <button type="button" class="btn btn-blue add_new_item" data-toggle="modal" data-target="#add_new_item" 
                                             data-type='<%=type%>' data-rank='<%=list.size()+1%>'>
                                         <span data-toggle="tooltip" title="Add" class="glyphicon glyphicon-plus"></span>&nbsp;Add New
                                     </button>
-                                    <button type="button" class="btn btn-primary" id="save" onclick="saveChanges()">Save Ordering</button>
+                                    <button type="button" class="btn btn-blue" id="save" onclick="saveChanges();">Save Ordering</button>
                                     <br/><br/>
                                 </div> 
                             </div> <!--row1-->
@@ -162,9 +162,9 @@
                      }
                 %>               
                 </div> <!--col-md-6-->
-                 <div class="col-xs-5 text-left pull-right">
+                 <div class="col-xs-4 text-left pull-right">
                      
-                 <label>Please Choose the drop-down type from here.</label><br/>
+                 Please Choose the drop-down type from here.<br/>
                  <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
                  <%
                  if (type.equals("Accommodation_type")) { 
@@ -439,7 +439,7 @@
                     success: function(){
                         alert("Changes have been saved in database.");
                     }
-               })
+               });
              }
              
              //session time out

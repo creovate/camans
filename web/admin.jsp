@@ -31,15 +31,15 @@
         <link rel="shortcut icon" href="img/twc_logo.png">
         <title>CAMANS</title>
     </head>
-    <body>
+    <body id="admin">
         <jsp:include page="include/navbartop.jsp"/>
-        <div class="row-offcanvas row-offcanvas-left" style="padding:1% 0% 0%;">
+        <div class="row-offcanvas row-offcanvas-left">
             <jsp:include page="include/navbarside.jsp"/>
-            <div class="col-md-10">
+            <div class="col-md-offset-2 col-md-10">
 
                 <!-- Page Header -->
                 <div class="page-header">
-                <center><h2 style="color:#2980b9">Admin Dashboard</h2>   
+                <center><h2>Admin Dashboard</h2>   
                 </div>
                 <!-- end of page header -->
 

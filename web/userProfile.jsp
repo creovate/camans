@@ -35,7 +35,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
+        <link rel="stylesheet" href="css/bootstrap.css" media="screen" />
         <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" />
         <!-- Bootstrap Validator CSS, Added by soemyatmyat -->
         <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
@@ -62,10 +62,10 @@
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
 
-        <div class="col-md-10">
+        <div class="col-md-offset-2 col-md-10">
             
-            <div class="page-header">
-                <center><h2 style="color:#2980b9">User Profile Page</h1></center>    
+            <div class="page-header col-md-12">
+                <center><h2>User Profile Page</h2></center>    
             </div>
             <!-- success & error display -->
             <% if (successMsg != null)  { %>
@@ -86,9 +86,9 @@
             <% } %>
             <!-- End of success & error display -->
             <div class="col-md-12 text-right" >
-                <button class="btn btn-info changePwd_popup" data-username='<%=username%>' 
+                <button class="btn btn-blue changePwd_popup" data-username='<%=username%>' 
                         data-toggle="modal" data-target="#user_change_pwd">Change Password</button>
-                <button class="btn btn-primary edit_popup" data-nric='<%=userNRIC%>' data-fullname='<%=userFullName%>' 
+                <button class="btn btn-blue edit_popup" data-nric='<%=userNRIC%>' data-fullname='<%=userFullName%>' 
                         data-alias='<%=userAlias%>' data-username='<%=username%>' 
                         data-gender='<%=userGender%>'data-role='<%=userRole%>' 
                         data-email='<%=userEmail%>' data-phone='<%=userPh%>' 
@@ -97,43 +97,63 @@
                 </button><br/><br/>
 
                 <div class="panel panel-default">
-                    <p class="worker_profile_header text-center">Profile    </p>
+                    <p class="color-header text-center">Profile    </p>
                     <div class="panel-body">
                         <div class="text-center">
                             <img src="<%=(userPhoto==null)?"img/profile_pic.jpg":userPhoto%>" style="width: 150px; height: 150px;"/>
                         </div>
                     </div>
 
-                    <p class="worker_profile_header text-center">Basic Information</p>
+                    <p class="color-header text-center">Basic Information</p>
                     <div class="panel-body">
-                        <div class="form-horizontal col-md-offset-1 col-md-10">
-                            <label class="col-md-6">NRIC Number: </label>
-                            <label><%=userNRIC%></label> <br/>
-                            <label class="col-md-6">Full Name: </label>
-                            <label><%=userFullName%></label> <br/>
-                            <label class="col-md-6">Username: </label>
-                            <label><%=username%></label><br/>
-                            <label class="col-md-6">Role: </label>
-                            <label><%=userRole%></label> 
+                        <div class="col-md-12 text-left">
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td class="tbl_lbl">NRIC Number</td>
+                                    <td><%=userNRIC%></td>
+                                </tr>
+                                <tr>
+                                    <td class="tbl_lbl">Full Name</td>
+                                    <td><%=userFullName%></td>
+                                </tr>
+                                <tr>
+                                    <td class="tbl_lbl">Username</td>
+                                    <td><%=username%></td>
+                                </tr>
+                                <tr>
+                                    <td class="tbl_lbl">Role</td>
+                                    <td><%=userRole%></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
 
-                    <p class="worker_profile_header text-center">Personal Particulars</p>
+                    <p class="color-header text-center">Personal Particulars</p>
                     <div class="panel-body">
-                        <div class="form-horizontal col-md-offset-1 col-md-10">
-                            <label class="col-md-6">Alias: </label>
-                            <label><%=userAlias%></label> <br/>
-                            <label class="col-md-6">Gender: </label>
-                            <label><%=userGender%></label> <br/>
-                            <label class="col-md-6">Email Address: </label> 
-                            <label><%=userEmail%></label> <br/>
-                            <label class="col-md-6">Phone Number: </label>
-                            <label><%=userPh%></label>
+                        <div class="col-md-12 text-left">
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td class="tbl_lbl">Alias</td>
+                                    <td><%=userAlias%></td>
+                                </tr>
+                                <tr>
+                                    <td class="tbl_lbl">Gender</td>
+                                    <td><%=userGender%></td>
+                                </tr>
+                                <tr>
+                                    <td class="tbl_lbl">Email Address</td>
+                                    <td><%=userEmail%></td>
+                                </tr>
+                                <tr>
+                                    <td class="tbl_lbl">Phone Number</td>
+                                    <td><%=userPh%></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>    
             </div>            
-        </div>
+        
                      
         <!-- Edit User Modal -->
         <div class="modal fade" id="user_pop_up" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -145,7 +165,7 @@
                     <span aria-hidden="true">&times;</span>
                     <span class="sr-only">Close</span>
                 </button>
-                <h3 class="modal-title" id="newUser_pop_up_label" style="color:#2980b9" align="center">
+                <h3 class="modal-title" id="newUser_pop_up_label"  align="center">
                     Edit User Form
                 </h3>
               </div> <!--modal-header-->
@@ -264,7 +284,7 @@
                     <span aria-hidden="true">&times;</span>
                     <span class="sr-only">Close</span>
                 </button>
-                <h3 class="modal-title" id="user_reset_pwd_label" style="color:#2980b9" align="center">
+                <h3 class="modal-title" id="user_reset_pwd_label"  align="center">
                     Change Password
                 </h3>
               </div> <!--modal-header-->
@@ -320,7 +340,7 @@
         </div> 
         <!-- End of Reset Password Modal-->
                  
-        
+        </div>
         <script>
             
             //session time out

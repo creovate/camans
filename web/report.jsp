@@ -20,9 +20,9 @@
         <script src="js/jquery.steps.js"></script>
         <!--bootstrap session timeout, added by soemyatmyat-->
         <script src="js/bootstrap-session-timeout.min.js"></script> 
-        
+
         <link rel="shortcut icon" href="img/twc_logo.png">
-        <title>Camans : Reports</title>
+        <title>Camans</title>
 
         <style>
             .col-md-1{
@@ -43,8 +43,12 @@
         <jsp:include page="include/navbartop.jsp"/>
         <jsp:include page="include/navbarside.jsp"/>
 
-        <div class="col-md-10" id="content">
+        <div class="col-md-offset-2 col-md-10">
+            <div class="page-header text-center">
+                <h1>Reports</h1>
+            </div>
             <br/>
+            <h5 style="padding-left: 2%; color: gray">Please choose a report type and year to view reports.</h5><br/>
             <form method="POST" action="generateReport.do" id="report_generate_form" class="form col-sm-12">
                 <label class="col-md-1" for="reportType">Report Type: </label>
                 <div class="col-md-3">
@@ -60,12 +64,12 @@
                         <option value="" disabled selected>Year..</option>
                     </select>
                 </div>
-                <button id="generateSubmitbtn" type="submit" class="btn btn-default">Generate Report</button>
+                <button id="generateSubmitbtn" type="submit" class="btn btn-blue">Generate Report</button>
             </form>
         </div>
         <script>
             //session time out
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $.sessionTimeout({
                     message: 'Your session will be expired in one minute.',
                     keepAliveUrl: 'keep-alive.html',

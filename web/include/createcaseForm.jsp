@@ -569,7 +569,7 @@
                 <label for='isdate' class="control-label">Date of Birth: </label>
             </div>
             <div class='col-md-7'>
-                <input class="form-control dateInput" type='text' name="dob" value="<%=(dob == null) ? "" : dob%>">
+                <input class="form-control dateInput" type='text' name="dob" value="<%=(dob == null) ? "" : sdf.format(dob)%>">
             </div>
             <br/>
             <br/>
@@ -704,7 +704,7 @@
                 <label for='isdate' class="control-label">Remark about this Job: </label>
             </div>
             <div class='col-md-7'>
-                <textarea class="form-control" name="jobRemark" rows="3" maxlength="200" ></textarea>
+                <textarea class="form-control" name="jobRemark" rows="3" maxlength="200" ><%=jRemark%></textarea>
             </div>
             <br/>
         </div><br/>
@@ -894,7 +894,7 @@
         <div class="form-group col-md-12" id="job_sector_other_div">
             <label for="job_remark" class="col-md-5 control-label">Remark</label>
             <div class=" col-md-7">
-                <textarea class='form-control' name='jobRemark' rows='3' maxlength="50"></textarea> 
+                <textarea class='form-control' name='jobRemark' rows='3' maxlength="50"><%=jRemark%></textarea> 
             </div><br/><br/>
         </div>
 
@@ -1008,7 +1008,6 @@
 
         <input type="hidden" id="hiddenWorkerFin" name="workerFinNum" value="<%=workerFin%>"/>
         <div class="form-group btn btn-blue-div col-md-12">
-            <span class="required_input">* Required field</span>
             <div class="pull-right">
                 <button  type='submit' class="btn btn-blue">Submit</button>
             </div>

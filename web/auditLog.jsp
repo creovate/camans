@@ -50,17 +50,17 @@
      
     </head>
     
-    <body style='background:white'>
+    <body id="auditLog" style='background:white'>
         <jsp:include page="include/navbartop.jsp"/>
-        <div class="row-offcanvas row-offcanvas-left" style="padding:1% 0% 0%;">
+        <div class="row-offcanvas row-offcanvas-left">
             <jsp:include page="include/navbarside.jsp"/> 
-            <div class="col-md-10">
+            <div class="col-md-offset-2 col-md-10">
 
                 <div class="page-header">
-                    <center><h2 style="color:#2980b9">Audit Logs</h2></center>    
+                    <center><h2>Audit Logs</h2></center>    
                 </div>
                 <div class="panel panel-default">
-                    <p bgcolor="#3579BC" class="worker_profile_header text-center">Search By</p>
+                    <p bgcolor="#3579BC" class="color-header text-center">Search By</p>
                     <div class="panel-body">
                         <form id="searchForm" method="post" action="searchAuditLog.do">
                             <div class="row">
@@ -78,8 +78,8 @@
                                 </div>
                                 <br/>
                                 <div class="form-group col-sm-3">
-                                    <button type="submit" class="btn btn-primary" id="btnSearch">Search</button>
-                                    <button type="button" class="btn btn-info" id="btnReset" 
+                                    <button type="submit" class="btn btn-blue" id="btnSearch">Search</button>
+                                    <button type="button" class="btn btn-info" style="border-radius: 2px" id="btnReset" 
                                                         type="reset" onClick="window.location.href=window.location.href">Reset</button>
                                 </div>
                             </div>
@@ -91,24 +91,24 @@
                     ArrayList<Integer> ids = new ArrayList<Integer>();
                     if (result == null) {
                         ids = UserAuditLogDAO.retrievelast7daysUserAuditLogIds();
-                        out.println("<h4 style=\"color:#2980b9\">Audit Logs - Last 7 days records</h4>");
+                        out.println("<h4>Audit Logs - Last 7 days records</h4>");
                     } else {
                         ids = result;
                         if (!ids.isEmpty()) {
-                            out.println("<h4 style=\"color:#2980b9\">Audit Logs - Search Results</h4>");
+                            out.println("<h4>Audit Logs - Search Results</h4>");
                         }
                     }            
     %>
                 <!--<div class="panel panel-default">
                     <div class="panel-body">-->       
-                        <table class="table table-curved table-bordered table-hover" id="auditLogs-table">
-                            <thead bgcolor="#3579BC">
+                        <table class="table table-curved table-bordered table-hover col-md-12" id="auditLogs-table">
+                            <thead bgcolor="#4c98b8">
                                 <tr>
-                                    <th><font color="#FFF">Date & Time</font></th>
-                                    <th><font color="#FFF">Username</font></th>
-                                    <th><font color="#FFF">Worker Fin Number</font></th>
-                                    <th><font color="#FFF">Action Type</font></th>
-                                    <th><font color="#FFF">Action Description</font></th>
+                                    <th style="width: 7vw" class="text-center"><font color="#FFF">Date & Time</font></th>
+                                    <th class="col-md-1 text-center"><font color="#FFF">Username</font></th>
+                                    <th class="col-md-1 text-center"><font color="#FFF">Worker Fin Number</font></th>
+                                    <th class="col-md-1 text-center"><font color="#FFF">Action Type</font></th>
+                                    <th class="text-center"><font color="#FFF">Action Description</font></th>
                                 </tr>
                             </thead>
                             <tbody>

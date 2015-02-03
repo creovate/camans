@@ -12,21 +12,27 @@
 --%>
 <style>
     .selected{
-        background: #197aa4 ;
-        border-bottom: 2px solid #004C6C;
-        border-right: 5px solid #004C6C;
+        background: #3289ae ;
+        border-right: 7px solid #004C6C;
     }
 
-    .selected a{
-        color: white;
-        font-weight: bolder;
-
-
+    #side-menu{
+        border-top: none;
+        border-left: none;
     }
-    ul li a{
+    
+    #side-menu ul li a{
         color: #006C9A;
     }
     
+    #side-menu ul li a:active{
+        color: white;
+    }
+    
+    #side-menu .selected a{
+        color: white;
+        font-weight: bolder;
+    }
 </style>
 <script>
     $(document).ready(function() {
@@ -42,10 +48,9 @@
 </script>
 
 <!-- nav bar -->
-<div class="col-sm-2 col-md-2" style="padding:0">
+<div class="col-sm-2 col-md-2" style="padding:0; position: fixed;">
     <div class="side-menu">
         <nav id="side-menu" class="navbar" role="navigation">
-            <div class="side-menu-container">
 
                 <ul class="nav navbar-nav nav-tabs col-md-12" role="tablist" id="nav_maintabs" style="padding-right: 1%">
                     <li id='home_tab' class=''><a class='' href="home.jsp" role="tab" active><span class="glyphicon glyphicon-search"></span>&nbsp;Search Worker</a></li>
@@ -55,16 +60,15 @@
                             if (_user.getRole().equals("Administrator")) {
                         %>
 
-                    <li><a href="admin.jsp" tabindex="-1"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Admin Dashboard</a></li>
-                    <li><a href="userManagement.jsp" tabindex="-1"><span class="glyphicon glyphicon-user"></span>&nbsp;User Management</a></li>
-                    <li><a href="importexport.jsp" tabindex="-1"><span class="glyphicon glyphicon-upload"></span>&nbsp;Import/Export Data</a></li>
-                    <li ><a href="dropdownSetting.jsp" tabindex="-1"><span class="glyphicon glyphicon-random"></span>&nbsp;Dropdown Settings</a></li>
-                    <li ><a href="auditLog.jsp" tabindex="-1"><span class="glyphicon glyphicon-list"></span>&nbsp;Audit Log  </a></li>
+                    <li id="admin_tab"><a href="admin.jsp" tabindex="-1"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Admin Dashboard</a></li>
+                    <li id="usermgmt_tab"><a href="userManagement.jsp" tabindex="-1"><span class="glyphicon glyphicon-user"></span>&nbsp;User Management</a></li>
+                    <li id="importexport_tab"><a href="importexport.jsp" tabindex="-1"><span class="glyphicon glyphicon-upload"></span>&nbsp;Import/Export Data</a></li>
+                    <li id="ddsetting_tab"><a href="dropdownSetting.jsp" tabindex="-1"><span class="glyphicon glyphicon-random"></span>&nbsp;Dropdown Settings</a></li>
+                    <li id="auditLog_tab"><a href="auditLog.jsp" tabindex="-1"><span class="glyphicon glyphicon-list"></span>&nbsp;Audit Log  </a></li>
 
                     <%                            }
                     %>
                 </ul>
-            </div><!-- /.navbar-collapse -->
 
         </nav>
     </div>
