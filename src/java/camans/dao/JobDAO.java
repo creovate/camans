@@ -181,6 +181,25 @@ public class JobDAO {
         } 
     }
     
+    public static void deleteJob(int jobKey) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_job WHERE Job_key = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, jobKey);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Job Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        } 
+    }
+    
     public static String validateAndAddJob(String jobFileName, String jobErrFile) throws IOException {
         
         // empty existing data in jobList before continuing

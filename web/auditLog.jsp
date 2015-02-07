@@ -101,7 +101,7 @@
     %>
                 <!--<div class="panel panel-default">
                     <div class="panel-body">-->       
-                        <table class="table table-curved table-bordered table-hover col-md-12" id="auditLogs-table">
+                        <table class="table table-bordered table-hover col-md-12" id="auditLogs-table">
                             <thead bgcolor="#4c98b8">
                                 <tr>
                                     <th style="width: 7vw" class="text-center"><font color="#FFF">Date & Time</font></th>

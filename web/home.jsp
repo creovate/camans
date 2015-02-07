@@ -360,7 +360,7 @@
                                         }   
                                 %>
 
-                                    <table class="table table-curved table-bordered table-hover text-center" id="workers-table">    
+                                    <table class="table table-bordered table-hover text-center" id="workers-table">    
                                         <thead bgcolor="#4c98b8">
                                             <tr>
                                                 <th><font color="#fff">Lead Case Worker</font></th>

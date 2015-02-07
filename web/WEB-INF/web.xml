@@ -68,6 +68,10 @@
         <servlet-name>processExport</servlet-name>
         <servlet-class>camans.controller.processExport</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>processDeleteStub</servlet-name>
+        <servlet-class>camans.controller.processDeleteStub</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>processAddWorkerComplements</servlet-name>
         <url-pattern>/addWorkerComplement.do</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>processExport</servlet-name>
         <url-pattern>/exportData.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>processDeleteStub</servlet-name>
+        <url-pattern>/deleteStub.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
