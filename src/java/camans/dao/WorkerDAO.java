@@ -244,23 +244,23 @@ public class WorkerDAO {
         }     
     }
     
-    public static String validateAndAddWorker(String workerFileName, String workerErrFile) throws IOException{
+    public static ArrayList<String> validateAndAddWorker(String workerFileName) throws IOException{
         
         // empty existing data in workerList before continuing
         workerList.clear();
         // Attributes
+        ArrayList<String> errList = new ArrayList<String>();
         CSVReader csvReader = null;
-        CSVWriter csvWriter = null;
-        int errCount = 0;
         try {
             csvReader = new CSVReader(new FileReader(workerFileName));
             String[] header = csvReader.readNext();
             String[] fields;
+            int lineNum = 1;
             String errorMsg = "";
 
             // Loops through each line of the csv with an array of String
             while ((fields = csvReader.readNext()) != null) {
-                
+                lineNum++;
                 // Assigning each field with its appropriate name
                 String finNum = fields[0].trim();
                 String workerName = fields[1].trim();
@@ -370,21 +370,8 @@ public class WorkerDAO {
 
                 // if there is an error, the line number of the error and its relevant message is added into the errorList
                 if (!errorMsg.equals("")) {
-                    csvWriter = new CSVWriter(new FileWriter(workerErrFile, true));
-                    if (errCount == 0) {
-                        String[] newHeader = new String[10];
-                        newHeader[9] = "Error_Description";
-                        System.arraycopy(header, 0, newHeader, 0, header.length);
-                        csvWriter.writeNext(newHeader);
-                    }
-                    String[] newFields = new String[10];
-                    newFields[9] = errorMsg.substring(0, errorMsg.indexOf(","));
-                    System.arraycopy(fields, 0, newFields, 0, fields.length);
-                    csvWriter.writeNext(newFields);
-                    csvWriter.close();
+                    errList.add(lineNum + ":" + errorMsg);
                     errorMsg = ""; // reset errorMsg variable
-                    errCount++;
-                    
                 } // if there is no error, a new Worker object is created and added to the workerList
                 else {
                     errorMsg = ""; // reset errorMsg variable
@@ -398,10 +385,7 @@ public class WorkerDAO {
         } catch (FileNotFoundException ex) {
             //fileNotFoundExcepton
         }
-        if (errCount != 0) {
-            return "worker.csv:" + errCount;
-        }
-        return null;
+        return errList;
     }
 
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {

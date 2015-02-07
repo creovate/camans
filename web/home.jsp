@@ -94,14 +94,7 @@
                 margin-bottom: 0 !important;
             }
             
-            .form-group{
-                margin-bottom: 1%;
-            }
             
-            option{
-                color: #777;
-  opacity: 1;
-            }
         </style>
     </head>
     <body id="home">
@@ -125,12 +118,12 @@
                                         <!-- Fin Number -->
                                         <div class="form-group col-sm-3">
                                             <input type="text" class="form-control" id="workerFIN_In" 
-                                                   name="fin" placeholder=" FIN" value="<%=(finIn==null) ? "":finIn%>">
+                                                   name="fin" placeholder="FIN" value="<%=(finIn==null) ? "":finIn%>">
                                         </div>
                                         <!-- Name -->
                                         <div class ="form-group col-sm-3">
                                             <input type="text" class="form-control" id="workerName_In" 
-                                                   name="name" placeholder=" Worker Name" value="<%=(workerNameIn==null)?"":workerNameIn%>">
+                                                   name="name" placeholder="Worker Name" value="<%=(workerNameIn==null)?"":workerNameIn%>">
                                         </div>
                                         <!-- Gender -->
                                         <div class ="form-group col-sm-3">
@@ -184,25 +177,25 @@
                                         <!-- sg Phone -->
                                         <div class="form-group col-sm-3">
                                             <input type="text" class="form-control" id="workerSGPh_In" 
-                                                   name="sgPhone" placeholder=" Singapore Phone" 
+                                                   name="sgPhone" placeholder="Singapore Phone" 
                                                    value="<%=(sgPhoneIn==null) ? "":sgPhoneIn%>">
                                         </div>
                                         <!-- home country phone -->
                                         <div class="form-group col-sm-3">
                                             <input type="text" class="form-control" id="workerHCPh_In" 
-                                                   name="homeCountryPhone" placeholder=" Home Country Phone"
+                                                   name="homeCountryPhone" placeholder="Home Country Phone"
                                                    value="<%=(homeCountryPhIn==null) ? "":homeCountryPhIn%>">
                                         </div>
                                         <!-- employer Name -->
                                         <div class="form-group col-sm-3">
                                             <input type="text" class="form-control" id="workerEmpName_In" 
-                                                   name="employer" placeholder=" Employer's Name"
+                                                   name="employer" placeholder="Employer's Name"
                                                    value="<%=(employerIn==null) ? "":employerIn%>">
                                         </div>
                                         <!-- Occupation -->
                                         <div class="form-group col-sm-3">
                                             <input type="text" class="form-control" id="workerOccupation_In" 
-                                                   name="occupation" placeholder=" Occupation"
+                                                   name="occupation" placeholder="Occupation"
                                                    value="<%=(occupationIn==null) ? "":occupationIn%>">
                                         </div>
                                     </div> <!-- end of row 2--> 
@@ -292,26 +285,26 @@
                                     <div class="row"> <!-- row 4 -->
 
                                     <div class="form-group col-sm-3">
-                                        <input type="text" id="reg_StartDate_In" placeholder=" Registered Start Date" name="startDate" 
+                                        <input type="text" id="reg_StartDate_In" placeholder="Registered Start Date" name="startDate" 
                                                class="form-control startDate" data-date-format="dd-mm-yyyy"
                                                value="<%=(registeredStartIn==null) ? "":registeredStartIn%>">
                                     </div>
 
                                     <div class="form-group col-sm-3">
-                                        <input type="text" id="reg_EndDate_In" placeholder=" Registered End Date" name="endDate"
+                                        <input type="text" id="reg_EndDate_In" placeholder="Registered End Date" name="endDate"
                                                class="form-control endDate" data-date-format="dd-mm-yyyy"
                                                value="<%=(registeredEndIn==null) ? "": registeredEndIn%>">
                                     </div>
 
                                     <div class="form-group col-sm-3">
                                         <input type="text" class="form-control" id="auxiliaryCaseWorker_In" 
-                                                   name="leadCaseWorker" placeholder=" Lead Case Worker"
+                                                   name="leadCaseWorker" placeholder="Lead Case Worker"
                                                    value="<%=(leadCaseWorkerIn==null) ? "":leadCaseWorkerIn%>">
                                     </div>
 
                                     <div class="form-group col-sm-3">
                                         <input type="text" class="form-control" id="auxiliaryCaseWorker_In" 
-                                                   name="auxiliaryCaseWorker" placeholder=" Auxiliary Case Worker"
+                                                   name="auxiliaryCaseWorker" placeholder="Auxiliary Case Worker"
                                                    value="<%=(auxCaseWorkerIn==null) ? "":auxCaseWorkerIn%>">
                                     </div>
                                     </div> <!--end of row 4--> 
@@ -367,7 +360,7 @@
                                         }   
                                 %>
 
-                                    <table class="table table-curved table-bordered table-hover text-center" id="workers-table">    
+                                    <table class="table table-curved table-bordered table-hover" id="workers-table">    
                                         <thead bgcolor="#4c98b8">
                                             <tr>
                                                 <th><font color="#fff">Lead Case Worker</font></th>

@@ -156,42 +156,6 @@ public class BenefitDAO {
         }
     }
     
-    public static void deleteBenefit(int id) {
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        String sql = "";
-        try {
-            conn = ConnectionManager.getConnection();
-            sql = "DELETE FROM tbl_benefit WHERE ID = ?";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, id);
-
-            pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            handleSQLException(ex, sql, "Benefit ID={" + id + "}");
-        } finally {
-            ConnectionManager.close(conn, pstmt, null);
-        } 
-    }
-    
-    public static void deleteAll() {
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        String sql = "";
-        
-        try {
-            conn = ConnectionManager.getConnection();
-            
-            sql = "DELETE FROM tbl_benefit";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            handleSQLException(ex, sql, "not able to delete data from Benefit Table. ");
-        } finally {
-            ConnectionManager.close(conn, pstmt, null);
-        } 
-    }
-    
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
         String msg = "Unable to access data; SQL=" + sql + "\n";
         for (String parameter : parameters) {

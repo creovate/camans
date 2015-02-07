@@ -635,7 +635,7 @@ Create table tbl_work_history (
 	Work_hist_how varchar (200) not null,
 	Work_hist_how_more varchar(200) null,
 	Work_hist_date date null,	
-	Work_hist_first varchar(2) null,
+	Work_hist_first varchar(3) null,
 	Work_hist_year_arrive varchar(50) null,
 	Work_hist_previous varchar (1000) null,
 	Work_hist_previous_problems varchar (1000) null,
