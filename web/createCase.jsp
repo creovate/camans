@@ -111,7 +111,8 @@
                     messages: {
                         facePic: "Please choose an image file with a size less than 1M only.",
                         finNum: {
-                        remote: "FIN Number already exists. Please chek again"
+                            remote: "FIN number already exists. Please check again.",
+                            FIN: "Invalid FIN number. Please check again."
                         }
 
                     },

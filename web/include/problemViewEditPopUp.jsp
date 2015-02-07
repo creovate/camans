@@ -17,9 +17,7 @@
             changeMonth: true,
             changeYear: true
         });
-
     });
-
     //----validation for start date and end date----//
     $(function() {
         $(".startDate").datepicker({
@@ -40,14 +38,12 @@
             }
         });
     });
-
     //----disable manual input in date fields----//
     $(document).ready(function() {
         $('.dateInput').focus(function() {
             $('.dateInput').blur();
         });
     });
-
     //----problem form validation----//
     $(document).ready(function() {
         $('.problem_pop_up')
@@ -1420,7 +1416,6 @@
                         }
                     }
                 },
-                
                 //leadcase worker
                 leadCaseWorkerName: {
                     validators: {
@@ -1616,21 +1611,17 @@
                 }
             }
         });
-
     });
-
-
-
     $(document).ready(function() {
-        $('.cancel_btn').addClass('pull-right');
         $('.form-control').addClass('input-sm');
-    });
-</script>
+    });</script>
 <style>
-    h4{
-        color: #AF4454;
+    button{
+        width : 6vw;
     }
-
+    .btn-danger{
+        border-radius: 2%;
+    }
 </style>
 
 <%
@@ -1751,12 +1742,11 @@
                 </div>
             </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#injurycase_pop_up", "problem","Edit Injury History Details")'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#injurycase_pop_up", "problem","Add A New Injury History")'>Add</button>                  
-                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
-                </div>
+            <div class="form-group btn_group pull-right">
+                <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#injurycase_pop_up", "problem", "Edit Injury History Details");'>Edit</button>
+                <button type='button' class='btn btn-blue modal_btn' onclick='add("#injurycase_pop_up", "problem", "Add A New Injury History");'>Add</button>       
+                <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#injurycase_pop_up", <%= id%>, "injury");' hidden>Delete</button>
+                <button type='button' class="btn view_comp cancel_btn">Cancel</button>
             </div>
         </div>
 
@@ -1962,9 +1952,6 @@
 %>
 
 <form method="POST" id='illnesscase_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='view_comp'>View Illness History Details</h4>
-    <h4 class='add_comp'>Add A Illness History Details </h4>
-    <h4 class='edit_comp'>Edit Illness History  Details</h4>
     <div class='form-group'>
 
         <%
@@ -2016,12 +2003,11 @@
                 </div>
             </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#illnesscase_pop_up", "problem","Edit Illness History  Details")'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#illnesscase_pop_up", "problem","Add A Illness History Details")'>Add</button>                  
-                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
-                </div>
+            <div class="form-group btn_group pull-right">
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#illnesscase_pop_up", "problem", "Edit Illness History  Details");'>Edit</button>
+                <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#illnesscase_pop_up", "problem", "Add A Illness History Details");'>Add</button>   
+                <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#illnesscase_pop_up", <%= id%>, "illness");' hidden>Delete</button>
+                <button type='button' class="btn view_comp cancel_btn">Cancel</button>
             </div>
         </div>
 
@@ -2183,12 +2169,11 @@
                     <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
                 </div>
             </fieldset>
-            <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#othercase_pop_up", "problem","Edit Details & History of Other Problems")'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#othercase_pop_up", "problem","Add Details & History of Other Problems")'>Add</button>                  
-                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
-                </div>
+            <div class="form-group btn_group pull-right">
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#othercase_pop_up", "problem", "Edit Details & History of Other Problems");'>Edit</button>
+                <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#othercase_pop_up", "problem", "Add Details & History of Other Problems");'>Add</button> 
+                <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#othercase_pop_up", <%= id%>, "othercase");' hidden>Delete</button>
+                <button type='button' class="btn view_comp cancel_btn">Cancel</button>
             </div>
         </div>
 
@@ -2291,12 +2276,11 @@
                 </div>
             </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#salarycalim_pop_up", "problem","Edit Salary Claim Lodged Details")'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#salarycalim_pop_up", "problem","Add Salary Claim Lodged")'>Add</button>                  
-                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
-                </div>
+            <div class="form-group btn_group pull-right">
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#salarycalim_pop_up", "problem", "Edit Salary Claim Lodged Details")'>Edit</button>
+                <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#salarycalim_pop_up", "problem", "Add Salary Claim Lodged")'>Add</button>  
+                <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#salarycalim_pop_up", <%= id%>, "salaryClaim");' hidden>Delete</button>
+                <button type='button' class="btn view_comp cancel_btn">Cancel</button>
             </div>
         </div>
 
@@ -2421,12 +2405,11 @@
                 </div>
             </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#wicaclaim_pop_up", "problem","Edit Wica Claim Lodged Details");'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#wicaclaim_pop_up", "problem","Add Wica Claim Lodged Details")'>Add</button>                  
-                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
-                </div>
+            <div class="form-group btn_group pull-right">
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#wicaclaim_pop_up", "problem", "Edit Wica Claim Lodged Details");'>Edit</button>
+                <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#wicaclaim_pop_up", "problem", "Add Wica Claim Lodged Details");'>Add</button>      
+                <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#wicaclaim_pop_up", <%= id%>, "wicaClaim");' hidden>Delete</button>
+                <button type='button' class="btn view_comp cancel_btn">Cancel</button>
             </div>
         </div>
 
@@ -2536,151 +2519,150 @@
 <form method="POST" id='nonwicaclaim_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
 
-        <%
-            java.util.Date date = pnonWicaClaim.getMedicalClaimDate();
-            double loss = pnonWicaClaim.getMedicalClaimLoss();
-            String insurer = pnonWicaClaim.getMedicalClaimInsurer();
-            String policyNumber = pnonWicaClaim.getMedicalClaimPolicyNumber();
-            String basis = pnonWicaClaim.getMedicalClaimBasis();
-            String remark = pnonWicaClaim.getRemark();
-        %>  
+    <%
+        java.util.Date date = pnonWicaClaim.getMedicalClaimDate();
+        double loss = pnonWicaClaim.getMedicalClaimLoss();
+        String insurer = pnonWicaClaim.getMedicalClaimInsurer();
+        String policyNumber = pnonWicaClaim.getMedicalClaimPolicyNumber();
+        String basis = pnonWicaClaim.getMedicalClaimBasis();
+        String remark = pnonWicaClaim.getRemark();
+    %>  
 
-        <div class="view_comp">
-            <fieldset disabled>
-                <div class='form-group'>
-                    <label for='name' class="control-label">Date MOM notified</label>
-                    <br/>
-                    <input class="form-control" type='text' name="name" 
-                           value="<%=(date == null) ? ""
-                                   : sdf.format(date)%>">
-                </div>
-                <div class='form-group'>
-                    <label for='name' class="control-label">Initial value of claim S$</label>
-                    <br/>
-                    <input class="form-control" type='text' name="name" value="<%=(loss == 0.0) ? "" : loss%>">
-                </div>
-                <div class='form-group'>
-                    <label for='name' class="control-label">Insurance company</label>
-                    <br/>
-                    <input class="form-control" type='text' name="name" value="<%=(insurer == null) ? "" : insurer%>">
-                </div>
-                <div class='form-group'>
-                    <label for='name' class="control-label">Insurance policy number</label>
-                    <br/>
-                    <input class="form-control" type='text' name="name" value="<%=(policyNumber == null) ? "" : policyNumber%>">
-                </div>
-                <div class='form-group'>
-                    <label for='remark' class="control-label">Describe basis for amount claimed</label>
-                    <br/>
-                    <textarea class="form-control" name="remark" rows="3"><%=(basis == null) ? "" : basis%></textarea>
-                </div>
-                <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks about Medical Claim:</label>
-                    <br/>
-                    <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
-                </div>
-            </fieldset>
-
-            <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#nonwicaclaim_pop_up", "problem","Edit Non-Wica Claim Lodged Details")'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#nonwicaclaim_pop_up", "problem","Add Non-Wica Claim Details")'>Add</button>                  
-                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
-                </div>
-            </div>
-        </div>
-
-
-        <div class='add_comp'>
+    <div class="view_comp">
+        <fieldset disabled>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date MOM notified<span style="color: red">*</span>:</label>
+                <label for='name' class="control-label">Date MOM notified</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="ndate">
-            </div>
-
-            <div class='form-group'>
-                <label for='nloss' class="control-label">Initial value of claim S$</label>
-                <br/>
-                <input class="form-control" type='text' name="nloss">
-            </div>
-            <div class='form-group'>
-                <label for='ninsurer' class="control-label">Insurance company</label>
-                <br/>
-                <input class="form-control" type='text' name="ninsurer">
-            </div>
-            <div class='form-group'>
-                <label for='npolicyNumber' class="control-label">Insurance policy number</label>
-                <br/>
-                <input class="form-control" type='text' name="npolicyNumber">
-            </div>
-            <div class='form-group'>
-                <label for='nbasis' class="control-label">Describe basis for amount claimed</label>
-                <br/>
-                <textarea class="form-control" name="nbasis" rows="3"></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='remark' class="control-label">Remarks about Medical Claim:</label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3"></textarea>
-            </div>
-
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="nonwicaclaim"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
-        <div class='edit_comp'>
-
-            <div class='form-group'>
-                <label for='date' class="control-label">Date MOM notified</label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="date" 
+                <input class="form-control" type='text' name="name" 
                        value="<%=(date == null) ? ""
                                : sdf.format(date)%>">
             </div>
             <div class='form-group'>
-                <label for='loss' class="control-label">Initial value of claim S$</label>
+                <label for='name' class="control-label">Initial value of claim S$</label>
                 <br/>
-                <input class="form-control" type='text' name="loss" value="<%=(loss == 0.0) ? "" : loss%>">
+                <input class="form-control" type='text' name="name" value="<%=(loss == 0.0) ? "" : loss%>">
             </div>
             <div class='form-group'>
-                <label for='insurer' class="control-label">Insurance company</label>
+                <label for='name' class="control-label">Insurance company</label>
                 <br/>
-                <input class="form-control" type='text' name="insurer" value="<%=(insurer == null) ? "" : insurer%>">
+                <input class="form-control" type='text' name="name" value="<%=(insurer == null) ? "" : insurer%>">
             </div>
             <div class='form-group'>
-                <label for='policyNumber' class="control-label">Insurance policy number</label>
+                <label for='name' class="control-label">Insurance policy number</label>
                 <br/>
-                <input class="form-control" type='text' name="policyNumber" value="<%=(policyNumber == null) ? "" : policyNumber%>">
+                <input class="form-control" type='text' name="name" value="<%=(policyNumber == null) ? "" : policyNumber%>">
             </div>
             <div class='form-group'>
-                <label for='basis' class="control-label">Describe basis for amount claimed</label>
+                <label for='remark' class="control-label">Describe basis for amount claimed</label>
                 <br/>
-                <textarea class="form-control" name="basis" rows="3"><%=(basis == null) ? "" : basis%></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=(basis == null) ? "" : basis%></textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about Medical Claim:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
             </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="nonwicaclaim"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
+        </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
-                <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#nonwicaclaim_pop_up", "problem", "Edit Non-Wica Claim Lodged Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#nonwicaclaim_pop_up", "problem", "Add Non-Wica Claim Details");'>Add</button>       
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#nonwicaclaim_pop_up", <%= id%>, "nonWicaClaim");' hidden>Delete</button>
+            <button type='button' class="btn view_comp cancel_btn">Cancel</button>
         </div>
+    </div>
+
+
+    <div class='add_comp'>
+        <div class='form-group'>
+            <label for='ndate' class="control-label">Date MOM notified<span style="color: red">*</span>:</label>
+            <br/>
+            <input class="form-control dateInput" type='text' name="ndate">
+        </div>
+
+        <div class='form-group'>
+            <label for='nloss' class="control-label">Initial value of claim S$</label>
+            <br/>
+            <input class="form-control" type='text' name="nloss">
+        </div>
+        <div class='form-group'>
+            <label for='ninsurer' class="control-label">Insurance company</label>
+            <br/>
+            <input class="form-control" type='text' name="ninsurer">
+        </div>
+        <div class='form-group'>
+            <label for='npolicyNumber' class="control-label">Insurance policy number</label>
+            <br/>
+            <input class="form-control" type='text' name="npolicyNumber">
+        </div>
+        <div class='form-group'>
+            <label for='nbasis' class="control-label">Describe basis for amount claimed</label>
+            <br/>
+            <textarea class="form-control" name="nbasis" rows="3"></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='remark' class="control-label">Remarks about Medical Claim:</label>
+            <br/>
+            <textarea class="form-control" name="nremark" rows="3"></textarea>
+        </div>
+
+        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
+        <input type="hidden" name="complementName" value="nonwicaclaim"/>
+        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
+        <input type="hidden" name="probKey" value="<%=probKey%>"/>
+        <input type="hidden" name="Id" value="<%=id%>"/>
+        <div class="form-group btn_group">
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
+        </div>
+    </div>
+
+
+    <div class='edit_comp'>
+
+        <div class='form-group'>
+            <label for='date' class="control-label">Date MOM notified</label>
+            <br/>
+            <input class="form-control dateInput" type='text' name="date" 
+                   value="<%=(date == null) ? ""
+                           : sdf.format(date)%>">
+        </div>
+        <div class='form-group'>
+            <label for='loss' class="control-label">Initial value of claim S$</label>
+            <br/>
+            <input class="form-control" type='text' name="loss" value="<%=(loss == 0.0) ? "" : loss%>">
+        </div>
+        <div class='form-group'>
+            <label for='insurer' class="control-label">Insurance company</label>
+            <br/>
+            <input class="form-control" type='text' name="insurer" value="<%=(insurer == null) ? "" : insurer%>">
+        </div>
+        <div class='form-group'>
+            <label for='policyNumber' class="control-label">Insurance policy number</label>
+            <br/>
+            <input class="form-control" type='text' name="policyNumber" value="<%=(policyNumber == null) ? "" : policyNumber%>">
+        </div>
+        <div class='form-group'>
+            <label for='basis' class="control-label">Describe basis for amount claimed</label>
+            <br/>
+            <textarea class="form-control" name="basis" rows="3"><%=(basis == null) ? "" : basis%></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='remark' class="control-label">Remarks about Medical Claim:</label>
+            <br/>
+            <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
+        </div>
+        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
+        <input type="hidden" name="complementName" value="nonwicaclaim"/>
+        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
+        <input type="hidden" name="probKey" value="<%=probKey%>"/>
+        <input type="hidden" name="Id" value="<%=id%>"/>
+
+        <div class="form-group btn_group">
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
+        </div>
+    </div>
 
 </form>
 
@@ -2740,12 +2722,11 @@
                 <textarea class="form-control" name="policeReportRemark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
             </div>
         </fieldset>
-        <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#policareport_pop_up", "problem","Edit Police Report Lodged Details")'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#policareport_pop_up", "problem","Add A New Police Report Lodged")'>Add</button>                  
-                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#policareport_pop_up", "problem", "Edit Police Report Lodged Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#policareport_pop_up", "problem", "Add A New Police Report Lodged");'>Add</button> 
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#policareport_pop_up", <%= id%>, "policeReport");' hidden>Delete</button>
+            <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
 
@@ -2916,12 +2897,11 @@
                 <textarea class="form-control" name="policeReportRemark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
             </div>
         </fieldset>
-        <div class="form-group btn_group view_comp">
+        <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#othercomplaint_pop_up", "problem", "Edit Other Complaint Lodged Details")'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#othercomplaint_pop_up", "problem","Add A New Other Complaint Lodged")'>Add</button>                  
-                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
-            </div>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#othercomplaint_pop_up", "problem", "Add A New Other Complaint Lodged")'>Add</button>      
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#othercomplaint_pop_up", <%= id%>, "otherComplaint");' hidden>Delete</button>
+            <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
 
@@ -3036,11 +3016,11 @@
             <select class="form-control" id="complaintWho" name="ncomplaintWho">
                 <%
                     for (String complaintType : complaintWho) {
-                        if(complaintType.equals("Worker")){
+                        if (complaintType.equals("Worker")) {
                 %>
-                            <option selected><%=complaintType%></option>
+                <option selected><%=complaintType%></option>
                 <%
-                        }else{
+                } else {
                 %>
                 <option><%=complaintType%></option>
                 <%
@@ -3208,12 +3188,11 @@
                 <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
             </div>
         </fieldset>
-        <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#casediscussion_pop_up", "problem","Edit Case Discussion Details")'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#casediscussion_pop_up", "problem","Add A New Case Discussion")'>Add</button>                  
-                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#casediscussion_pop_up", "problem", "Edit Case Discussion Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#casediscussion_pop_up", "problem", "Add A New Case Discussion");'>Add</button>        
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#casediscussion_pop_up", <%= id%>, "caseDiscussion");' hidden>Delete</button>
+            <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
 
@@ -3234,7 +3213,7 @@
             <label for='discussionWhere' class="control-label">Mode/Location of Discussion, Assistance or Information-Receipt<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="discussionWhere" name="discussionWhere" >
-                
+
                 <%
                     for (String location : locations) {
                         if (dWhere.equals(location)) {
@@ -3479,12 +3458,11 @@
                 <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
             </div>
         </fieldset>
-        <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#hospital_pop_up", "problem","Edit Hospital Providing Treatment Details")'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#hospital_pop_up", "problem","Add A New Hospital Providing Treatment")'>Add</button>                  
-                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#hospital_pop_up", "problem", "Edit Hospital Providing Treatment Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#hospital_pop_up", "problem", "Add A New Hospital Providing Treatment");'>Add</button> 
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#hospital_pop_up", <%= id%>, "hospital");' hidden>Delete</button>
+            <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
 
@@ -3621,7 +3599,7 @@
 
 <form method="POST" id='mc_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
-<!--view-->
+    <!--view-->
     <div class="view_comp">
         <fieldset disabled>
 
@@ -3655,12 +3633,11 @@
                 <textarea class="form-control" name="remark" rows="3"><%=mcRem%></textarea>
             </div>
         </fieldset>
-        <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#mc_pop_up", "problem","Edit MC/Light Duty Status Details")'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#mc_pop_up", "problem","Add A New MC/Light Duty Status")'>Add</button>                  
-                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#mc_pop_up", "problem", "Edit MC/Light Duty Status Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#mc_pop_up", "problem", "Add A New MC/Light Duty Status");'>Add</button>     
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#mc_pop_up", <%= id%>, "mc");' hidden>Delete</button>
+            <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
 
@@ -3727,7 +3704,6 @@
     </div>
 
     <!--add-->
-
     <div class='add_comp'>
 
         <div class='form-group'>
@@ -3879,12 +3855,11 @@
             </div>
         </fieldset>
 
-        <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#r2r_pop_up", "problem","Edit R2R Appointment Details")'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#r2r_pop_up", "problem","Add A New R2R Appointment")'>Add</button>                  
-                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#r2r_pop_up", "problem", "Edit R2R Appointment Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#r2r_pop_up", "problem", "Add A New R2R Appointment");'>Add</button>  
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#r2r_pop_up", <%= id%>, "r2r");' hidden>Delete</button>
+            <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
 
@@ -4093,12 +4068,11 @@
             </div>
 
         </fieldset>
-        <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#wica_pop_up", "problem","Edit Wica Status Details")'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#wica_pop_up", "problem","Add A New Wica Status")'>Add</button>                  
-                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#wica_pop_up", "problem", "Edit Wica Status Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#wica_pop_up", "problem", "Add A New Wica Status");'>Add</button>   
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#wica_pop_up", <%= id%>, "wicaStatus");' hidden>Delete</button>
+            <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
 
@@ -4276,12 +4250,11 @@
                 <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
             </div>
         </fieldset>
-        <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#lawyer_pop_up", "problem","Edit Law Firm Status Details")'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#lawyer_pop_up", "problem","Add A New Law Firm Status")'>Add</button>                  
-                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#lawyer_pop_up", "problem", "Edit Law Firm Status Details")'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#lawyer_pop_up", "problem", "Add A New Law Firm Status")'>Add</button>         
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#lawyer_pop_up", <%= id%>, "lawyer");' hidden>Delete</button>
+            <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
 
@@ -4432,12 +4405,11 @@
                 <textarea class="form-control" name="remark" rows="3"><%=ncRem%></textarea>
             </div>
         </fieldset>
-        <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#milestonenc_pop_up", "problem","Edit Case Milestone (Non-Criminal) Details")'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonenc_pop_up", "problem","Add A New Case Milestone (Non-Criminal)")'>Add</button>                  
-                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#milestonenc_pop_up", "problem", "Edit Case Milestone (Non-Criminal) Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonenc_pop_up", "problem", "Add A New Case Milestone (Non-Criminal)");'>Add</button>  
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#milestonenc_pop_up", <%= id%>, "ncMileStone");' hidden>Delete</button>
+            <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
 
@@ -4595,12 +4567,11 @@
                 <textarea class="form-control" name="remark" rows="3"><%=crRem%></textarea>
             </div>
         </fieldset>
-        <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#milestonecr_pop_up", "problem","Edit Case Milestone (Criminal) Details");'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonecr_pop_up", "problem","Add A New Case Milestone (Criminal)");'>Add</button>                  
-                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#milestonecr_pop_up", "problem", "Edit Case Milestone (Criminal) Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonecr_pop_up", "problem", "Add A New Case Milestone (Criminal)");'>Add</button>    
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#milestonecr_pop_up", <%= id%>, "cMileStone");' hidden>Delete</button>
+            <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
 
@@ -4784,12 +4755,11 @@
                 <textarea class="form-control" name="remark" rows="3"><%=ttrRem%></textarea>
             </div>
         </fieldset>
-        <div class="form-group btn_group view_comp">
-            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#ttr_pop_up", "problem","Edit Transfer, TJS & Repatriation Details")'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#ttr_pop_up", "problem","Add A New Transfer, TJS & Repatriation")'>Add</button>                  
-                <button type='button' class="btn add_comp cancel_btn">Cancel</button>
-            </div>
+        <div class="form-group btn_group view_comp pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#ttr_pop_up", "problem", "Edit Transfer, TJS & Repatriation Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#ttr_pop_up", "problem", "Add A New Transfer, TJS & Repatriation");'>Add</button>    
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#ttr_pop_up", <%= id%>, "ttr");' hidden>Delete</button>
+            <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
 
@@ -4941,7 +4911,7 @@
 
         <%
             String type = issue.getAggravatingIssue();
-            
+
             String typeMore = issue.getAggravatingIssueMore();
             double loss = issue.getAggravatingLoss();
 
@@ -4961,16 +4931,16 @@
                     <input class="form-control" type='text' name="name" value="<%=type%>">
                 </div>
                 <%
-                if(type.equalsIgnoreCase("other") ){
-                    %>
+                    if (type.equalsIgnoreCase("other")) {
+                %>
                 <div class='form-group'>
                     <label for='name' class="control-label">Explain if above is other:</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=typeMore%>">
                 </div>
-                
+
                 <%
-                }
+                    }
                 %>
                 <div class='form-group'>
                     <label for='name' class="control-label">Monetary loss/value of this Aggravating Issue S$</label>
@@ -4984,12 +4954,13 @@
                 </div>
             </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#aggravIssue_pop_up", "problem","Edit Aggravating Issue Details");'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#aggravIssue_pop_up", "problem","Add A New Aggravating Issue");'>Add</button>                  
-                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
-                </div>
+            <div class="form-group btn_group pull-right">
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#aggravIssue_pop_up", "problem", "Edit Aggravating Issue Details");'>Edit</button>
+
+                <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#aggravIssue_pop_up", "problem", "Add A New Aggravating Issue");'>Add</button>    
+                <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#aggravIssue_pop_up", <%= id%>, "aggravatingIssue");' hidden>Delete</button>
+                <button type='button' class="btn view_comp cancel_btn">Cancel</button>
+
             </div>
         </div>
 
@@ -5101,9 +5072,7 @@
         ArrayList<String> leadCaseWorkerNameList = DropdownDAO.retrieveAllDropdownListOfCaseworkers();
 %>
 <form method="POST" id='leadcaseworker_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    <h4 class='view_comp'>View Lead Caseworker Details</h4>
-    <h4 class='add_comp'>Add A New Lead Caseworker </h4>
-    <h4 class='edit_comp'>Edit Lead Caseworker  Details</h4>
+
     <div class='form-group'>
         <%
             String name = leadCaseWorker.getLeadCaseWorker();
@@ -5133,12 +5102,11 @@
                 </div>
             </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#leadcaseworker_pop_up", "problem","Add A New Lead Caseworker")'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#leadcaseworker_pop_up", "problem")'>Add</button>                  
-                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
-                </div>
+            <div class="form-group btn_group pull-right">
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#leadcaseworker_pop_up", "problem", "Add A New Lead Caseworker");'>Edit</button>
+                <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#leadcaseworker_pop_up", "problem");'>Add</button>    
+                <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#leadcaseworker_pop_up", <%= id%>, "leadCaseWorker");' hidden>Delete</button>
+                <button type='button' class="btn view_comp cancel_btn">Cancel</button>
             </div>
         </div>
 
@@ -5241,125 +5209,124 @@
 <form method="POST" id='auxcaseworker_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
 
-        <%
-            String name = auxiliaryCaseworker.getAuxName();
-            java.util.Date startDate = auxiliaryCaseworker.getAuxStart();
-            java.util.Date endDate = auxiliaryCaseworker.getAuxEnd();
-        %>
+    <%
+        String name = auxiliaryCaseworker.getAuxName();
+        java.util.Date startDate = auxiliaryCaseworker.getAuxStart();
+        java.util.Date endDate = auxiliaryCaseworker.getAuxEnd();
+    %>
 
-        <div class="view_comp">
+    <div class="view_comp">
 
-            <fieldset disabled>
-                <div class='form-group'>
-                    <label for='name' class="control-label">Auxiliary Caseworker</label>
-                    <br/>
-                    <input class="form-control" type='text' name="name" value="<%=name%>">
-                </div>
-                <div class='form-group'>
-                    <label for='name' class="control-label">Start Date:</label>
-                    <br/>
-                    <input class="form-control" type='text' name="name" 
-                           value="<%=(startDate == null) ? "" : sdf.format(startDate)%>">
-                </div>
-                <div class='form-group'>
-                    <label for='remark' class="control-label">End Date:</label>
-                    <br/>
-                    <input class="form-control" type='text' name="remark" 
-                           value="<%=(endDate == null) ? "" : sdf.format(endDate)%>">
-                </div>
-            </fieldset>
-
-            <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#auxcaseworker_pop_up", "problem","Edit Auxiliary Caseworker Details")'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#auxcaseworker_pop_up", "problem","Add A New Auxiliary Caseworker")'>Add</button>                  
-                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
-                </div>
-            </div>
-        </div>
-
-        <div class='add_comp'>
+        <fieldset disabled>
             <div class='form-group'>
-                <label for='nauxiliaryCaseWorkerName' class="control-label">Auxiliary Caseworker<span style="color: red">*</span>:</label>
+                <label for='name' class="control-label">Auxiliary Caseworker</label>
                 <br/>
-                <select class="form-control" id="leadCaseWorker" name="nauxiliaryCaseWorkerName">
-                    <option value="">Select from list:</option>
-                    <%
-                        for (String auxiliaryCaseWorkerName : auxiliaryCaseworkerNameList) {
-                    %>
-                    <option value="<%=auxiliaryCaseWorkerName%>"><%=auxiliaryCaseWorkerName%></option>
-                    <%
-
-                        }
-                    %>  
-                </select>
-
+                <input class="form-control" type='text' name="name" value="<%=name%>">
             </div>
             <div class='form-group'>
-                <label for='nstartDate' class="control-label">Start Date:</label>
+                <label for='name' class="control-label">Start Date:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nstartDate">
-            </div>
-            <div class='form-group'>
-                <label for='nendDate' class="control-label">End Date:</label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="nendDate">
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="complementName" value="auxcaseworker"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-        <div class='edit_comp'>
-            <div class='form-group'>
-                <label for='auxiliaryCaseWorker' class="control-label">Auxiliary Caseworker<span style="color: red">*</span>:</label>
-                <br/>
-                <select class="form-control" id="auxiliaryCaseWorker" name="auxiliaryCaseWorkerName">
-                    <%
-                        for (String providname : auxiliaryCaseworkerNameList) {
-                            if (name.equals(providname)) {
-                    %>
-                    <option selected><%=providname%></option>
-                    <%
-                    } else {
-
-                    %>
-                    <option><%=providname%></option>
-                    <%
-                            }
-                        }
-                    %>  
-                </select>
-            </div>
-            <div class='form-group'>
-                <label for='startDate' class="control-label">Start Date:</label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="startDate" 
+                <input class="form-control" type='text' name="name" 
                        value="<%=(startDate == null) ? "" : sdf.format(startDate)%>">
             </div>
             <div class='form-group'>
-                <label for='endDate' class="control-label">End Date:</label>
+                <label for='remark' class="control-label">End Date:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="endDate" 
+                <input class="form-control" type='text' name="remark" 
                        value="<%=(endDate == null) ? "" : sdf.format(endDate)%>">
             </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="auxcaseworker"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
+        </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
-                <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#auxcaseworker_pop_up", "problem", "Edit Auxiliary Caseworker Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#auxcaseworker_pop_up", "problem", "Add A New Auxiliary Caseworker");'>Add</button>      
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#auxcaseworker_pop_up", <%= id%>, "auxCaseWorker");' hidden>Delete</button>
+            <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
+    </div>
+
+    <div class='add_comp'>
+        <div class='form-group'>
+            <label for='nauxiliaryCaseWorkerName' class="control-label">Auxiliary Caseworker<span style="color: red">*</span>:</label>
+            <br/>
+            <select class="form-control" id="leadCaseWorker" name="nauxiliaryCaseWorkerName">
+                <option value="">Select from list:</option>
+                <%
+                    for (String auxiliaryCaseWorkerName : auxiliaryCaseworkerNameList) {
+                %>
+                <option value="<%=auxiliaryCaseWorkerName%>"><%=auxiliaryCaseWorkerName%></option>
+                <%
+
+                    }
+                %>  
+            </select>
+
+        </div>
+        <div class='form-group'>
+            <label for='nstartDate' class="control-label">Start Date:</label>
+            <br/>
+            <input class="form-control dateInput" type='text' name="nstartDate">
+        </div>
+        <div class='form-group'>
+            <label for='nendDate' class="control-label">End Date:</label>
+            <br/>
+            <input class="form-control dateInput" type='text' name="nendDate">
+        </div>
+        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
+        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
+        <input type="hidden" name="probKey" value="<%=probKey%>"/>
+        <input type="hidden" name="complementName" value="auxcaseworker"/>
+        <input type="hidden" name="Id" value="<%=id%>"/>
+        <div class="form-group btn_group">
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
+        </div>
+    </div>
+
+    <div class='edit_comp'>
+        <div class='form-group'>
+            <label for='auxiliaryCaseWorker' class="control-label">Auxiliary Caseworker<span style="color: red">*</span>:</label>
+            <br/>
+            <select class="form-control" id="auxiliaryCaseWorker" name="auxiliaryCaseWorkerName">
+                <%
+                    for (String providname : auxiliaryCaseworkerNameList) {
+                        if (name.equals(providname)) {
+                %>
+                <option selected><%=providname%></option>
+                <%
+                } else {
+
+                %>
+                <option><%=providname%></option>
+                <%
+                        }
+                    }
+                %>  
+            </select>
+        </div>
+        <div class='form-group'>
+            <label for='startDate' class="control-label">Start Date:</label>
+            <br/>
+            <input class="form-control dateInput" type='text' name="startDate" 
+                   value="<%=(startDate == null) ? "" : sdf.format(startDate)%>">
+        </div>
+        <div class='form-group'>
+            <label for='endDate' class="control-label">End Date:</label>
+            <br/>
+            <input class="form-control dateInput" type='text' name="endDate" 
+                   value="<%=(endDate == null) ? "" : sdf.format(endDate)%>">
+        </div>
+        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
+        <input type="hidden" name="complementName" value="auxcaseworker"/>
+        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
+        <input type="hidden" name="probKey" value="<%=probKey%>"/>
+        <input type="hidden" name="Id" value="<%=id%>"/>
+
+        <div class="form-group btn_group">
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
+        </div>
+    </div>
 
 </form>
 
@@ -5375,253 +5342,248 @@
         ArrayList<String> modeOfPayment = DropdownDAO.retrieveAllDropdownListOfSalaryMode();
 %>
 <form method="POST" id='salaryhistory_pop_up' class="form complement_detailed_form problem_pop_up"  >
-    
 
+    <%
+        String mode = psalary.getSalMode();
+        String modeMore = psalary.getSalModeMore();
+        String basic = psalary.getSalHistBasic();
+        String overtime = psalary.getSalHistOt();
+        String allowance = psalary.getSalHistAllowances();
+        String deduction = psalary.getSalHistDeductions();
+        String kickbacks = psalary.getSalHistKickbacks();
+        String other = psalary.getSalHistOther();
+        double totalValue = psalary.getSalLossTotal();
+        double oneYearValue = psalary.getSalLoss1Year();
+        String remark = psalary.getSalHisRemarks();
+    %>  
+    <!--view -->
+    <div class="view_comp">
 
-
-        <%
-            String mode = psalary.getSalMode();
-            String modeMore = psalary.getSalModeMore();
-            String basic = psalary.getSalHistBasic();
-            String overtime = psalary.getSalHistOt();
-            String allowance = psalary.getSalHistAllowances();
-            String deduction = psalary.getSalHistDeductions();
-            String kickbacks = psalary.getSalHistKickbacks();
-            String other = psalary.getSalHistOther();
-            double totalValue = psalary.getSalLossTotal();
-            double oneYearValue = psalary.getSalLoss1Year();
-            String remark = psalary.getSalHisRemarks();
-        %>  
-        <!--view -->
-        <div class="view_comp">
-
-            <fieldset disabled>
-                <div class='form-group'>
-                    <label for='name' class="control-label">Describe complaint about basic salary incorrect or not paid:</label>
-                    <br/>
-                    <textarea class="form-control" name="remark" rows="3"><%=basic%></textarea>
-                </div>
-                <div class='form-group'>
-                    <label for='name' class="control-label">Describe complaint about overtime incorrect or not paid:</label>
-                    <br/>
-                    <textarea class="form-control" name="remark" rows="3"><%=overtime%></textarea>
-                </div>
-                <div class='form-group'>
-                    <label for='remark' class="control-label">Describe complaint about allowance incorrect or not paid:</label>
-                    <br/>
-                    <textarea class="form-control" name="remark" rows="3"><%=allowance%></textarea>
-                </div>
-                <div class='form-group'>
-                    <label for='remark' class="control-label">Describe complaint about deductions:</label>
-                    <br/>
-                    <textarea class="form-control" name="remark" rows="3"><%=deduction%></textarea>
-                </div>
-                <div class='form-group'>
-                    <label for='remark' class="control-label">Describe complaint about kickbacks:</label>
-                    <br/>
-                    <textarea class="form-control" name="remark" rows="3"><%=kickbacks%></textarea>
-                </div>
-                <div class='form-group'>
-                    <label for='remark' class="control-label">Other Related Details:</label>
-                    <br/>
-                    <textarea class="form-control" name="remark" rows="3"><%=other%></textarea>
-                </div>
-                <div class='form-group'>
-                    <label for='remark' class="control-label">Mode of Salary Payment</label>
-                    <br/>
-                    <input class="form-control" type='text' name="remark" value="<%=mode%>">
-                </div>
-                <div class='form-group'>
-                    <label for='remark' class="control-label">Estimated Total Value of Claim (S$):</label>
-                    <br/>
-                    <input class="form-control" type='text' name="remark" value="<%=totalValue%>">
-                </div>
-                <div class='form-group'>
-                    <label for='remark' class="control-label">Estimated 12 Months' Value of Claim (S$):</label>
-                    <br/>
-                    <input class="form-control" type='text' name="remark" value="<%=oneYearValue%>">
-                </div>
-                <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks about Salary & Related History:</label>
-                    <br/>
-                    <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
-                </div>
-            </fieldset>
-
-            <div class="form-group btn_group">
-                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#salaryhistory_pop_up", "problem", "Edit Salary & Related History Details")'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#salaryhistory_pop_up", "problem", "Add New Salary & Related History Details")'>Add</button>                  
-                    <button type='button' class="btn view_comp cancel_btn">Cancel</button>
-                </div>
-            </div>
-        </div>
-
-        <!--add-->
-        <div class='add_comp'>
+        <fieldset disabled>
             <div class='form-group'>
-                <label for='nbasic' class="control-label">Describe complaint about basic salary incorrect or not paid<span style="color: red">*</span>:</label>
+                <label for='name' class="control-label">Describe complaint about basic salary incorrect or not paid:</label>
                 <br/>
-                <textarea class="form-control" name="nbasicSal" rows="3" required></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=basic%></textarea>
             </div>
             <div class='form-group'>
-                <label for='novertime' class="control-label">Describe complaint about overtime incorrect or not paid:</label>
+                <label for='name' class="control-label">Describe complaint about overtime incorrect or not paid:</label>
                 <br/>
-                <textarea class="form-control" name="novertime" rows="3"></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=overtime%></textarea>
             </div>
             <div class='form-group'>
-                <label for='nallowance' class="control-label">Describe complaint about allowance incorrect or not paid:</label>
+                <label for='remark' class="control-label">Describe complaint about allowance incorrect or not paid:</label>
                 <br/>
-                <textarea class="form-control" name="nallowance" rows="3"></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=allowance%></textarea>
             </div>
             <div class='form-group'>
-                <label for='ndeduction' class="control-label">Describe complaint about deductions:</label>
+                <label for='remark' class="control-label">Describe complaint about deductions:</label>
                 <br/>
-                <textarea class="form-control" name="ndeduction" rows="3"></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=deduction%></textarea>
             </div>
             <div class='form-group'>
-                <label for='nkickbacks' class="control-label">Describe complaint about kickbacks:</label>
+                <label for='remark' class="control-label">Describe complaint about kickbacks:</label>
                 <br/>
-                <textarea class="form-control" name="nkickbacks" rows="3"></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=kickbacks%></textarea>
             </div>
             <div class='form-group'>
-                <label for='nother' class="control-label">Other Related Details:</label>
+                <label for='remark' class="control-label">Other Related Details:</label>
                 <br/>
-                <textarea class="form-control" name="notherSal" rows="3"></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=other%></textarea>
             </div>
             <div class='form-group'>
-                <label for='nmode' class="control-label">Mode of Salary Payment</label>
+                <label for='remark' class="control-label">Mode of Salary Payment</label>
                 <br/>
-                <select class="form-control" id="nmode" name="nmode">
-                    <option value="">Select from list:</option>
-                    <%
-                        for (String pmode : modeOfPayment) {
-                    %>
-                    <option value="<%=pmode%>"><%=pmode%></option>
-                    <%
-
-                        }
-                    %>  
-                </select>
-            </div>
-            <div class='form-group' id='nmode_other_div' >
-                <label for='nmodeMore' class="control-label">Explain if above is other</label>
-                <br/>
-                <input class="form-control" type='text' name="nmodeMore">
+                <input class="form-control" type='text' name="remark" value="<%=mode%>">
             </div>
             <div class='form-group'>
-                <label for='ntotalLoss' class="control-label">Estimated Total Value of Claim (S$):</label>
+                <label for='remark' class="control-label">Estimated Total Value of Claim (S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="ntotalLoss">
+                <input class="form-control" type='text' name="remark" value="<%=totalValue%>">
             </div>
             <div class='form-group'>
-                <label for='noneYearLoss' class="control-label">Estimated 12 Months' Value of Claim(S$):</label>
+                <label for='remark' class="control-label">Estimated 12 Months' Value of Claim (S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="noneYearLoss">
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about Salary & Related History:</label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3"></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="salaryhistory"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-        <!-- edit -->
-        <div class='edit_comp'>
-            <div class='form-group'>
-                <label for='basic' class="control-label">Describe complaint about basic salary incorrect or not paid<span style="color: red">*</span>:</label>
-                <br/>
-                <textarea class="form-control" name="basicSal" rows="3"><%=basic%></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='overtime' class="control-label">Describe complaint about overtime incorrect or not paid:</label>
-                <br/>
-                <textarea class="form-control" name="overtime" rows="3"><%=overtime%></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='allowance' class="control-label">Describe complaint about allowance incorrect or not paid:</label>
-                <br/>
-                <textarea class="form-control" name="allowance" rows="3"><%=allowance%></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='deduction' class="control-label">Describe complaint about deductions:</label>
-                <br/>
-                <textarea class="form-control" name="deduction" rows="3"><%=deduction%></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='kickbacks' class="control-label">Describe complaint about kickbacks:</label>
-                <br/>
-                <textarea class="form-control" name="kickbacks" rows="3"><%=kickbacks%></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='other' class="control-label">Other Related Details:</label>
-                <br/>
-                <textarea class="form-control" name="otherSal" rows="3"><%=other%></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='mode' class="control-label">Mode of Salary Payment</label>
-                <br/>
-                <select class="form-control" id="mode" name="mode" >
-                    <%
-                        for (String provided : modeOfPayment) {
-                            if (mode.equals(provided)) {
-
-                    %>
-                    <option selected><%=provided%></option>
-                    <%
-                    } else {
-
-                    %>
-                    <option><%=provided%></option>
-                    <%
-                            }
-                        }
-                    %>  
-                </select>
-            </div>
-            <div class='form-group' id='mode_other_div' >
-                <label for='modeMore' class="control-label">Explain if above is other</label><br/>
-                <input class="form-control" type='text' name="modeMore" value="<%=modeMore%>">
-            </div>
-            <div class='form-group'>
-                <label for='totalValue' class="control-label">Estimated Total Value of Claim (S$):</label>
-                <br/>
-                <input class="form-control" type='text' name="totalLoss" value="<%=totalValue%>">
-            </div>
-            <div class='form-group'>
-                <label for='oneYearValue' class="control-label">Estimated 12 Months' Value of Claim(S$):</label>
-                <br/>
-                <input class="form-control" type='text' name="oneYearLoss" value="<%=oneYearValue%>">
+                <input class="form-control" type='text' name="remark" value="<%=oneYearValue%>">
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about Salary & Related History:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
             </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="salaryhistory"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
+        </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
-                <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#salaryhistory_pop_up", "problem", "Edit Salary & Related History Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#salaryhistory_pop_up", "problem", "Add New Salary & Related History Details");'>Add</button>    
+            <button type='button' class="btn btn-danger delete-btn" onClick='deleteComplement("#salaryhistory_pop_up", <%= id%>, "salaryHistory");' hidden>Delete</button>
+            <button type='button' class="btn view_comp cancel_btn">Cancel</button>
         </div>
+    </div>
+
+    <!--add-->
+    <div class='add_comp'>
+        <div class='form-group'>
+            <label for='nbasic' class="control-label">Describe complaint about basic salary incorrect or not paid<span style="color: red">*</span>:</label>
+            <br/>
+            <textarea class="form-control" name="nbasicSal" rows="3" required></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='novertime' class="control-label">Describe complaint about overtime incorrect or not paid:</label>
+            <br/>
+            <textarea class="form-control" name="novertime" rows="3"></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='nallowance' class="control-label">Describe complaint about allowance incorrect or not paid:</label>
+            <br/>
+            <textarea class="form-control" name="nallowance" rows="3"></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='ndeduction' class="control-label">Describe complaint about deductions:</label>
+            <br/>
+            <textarea class="form-control" name="ndeduction" rows="3"></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='nkickbacks' class="control-label">Describe complaint about kickbacks:</label>
+            <br/>
+            <textarea class="form-control" name="nkickbacks" rows="3"></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='nother' class="control-label">Other Related Details:</label>
+            <br/>
+            <textarea class="form-control" name="notherSal" rows="3"></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='nmode' class="control-label">Mode of Salary Payment</label>
+            <br/>
+            <select class="form-control" id="nmode" name="nmode">
+                <option value="">Select from list:</option>
+                <%
+                    for (String pmode : modeOfPayment) {
+                %>
+                <option value="<%=pmode%>"><%=pmode%></option>
+                <%
+
+                    }
+                %>  
+            </select>
+        </div>
+        <div class='form-group' id='nmode_other_div' >
+            <label for='nmodeMore' class="control-label">Explain if above is other</label>
+            <br/>
+            <input class="form-control" type='text' name="nmodeMore">
+        </div>
+        <div class='form-group'>
+            <label for='ntotalLoss' class="control-label">Estimated Total Value of Claim (S$):</label>
+            <br/>
+            <input class="form-control" type='text' name="ntotalLoss">
+        </div>
+        <div class='form-group'>
+            <label for='noneYearLoss' class="control-label">Estimated 12 Months' Value of Claim(S$):</label>
+            <br/>
+            <input class="form-control" type='text' name="noneYearLoss">
+        </div>
+        <div class='form-group'>
+            <label for='nremark' class="control-label">Remarks about Salary & Related History:</label>
+            <br/>
+            <textarea class="form-control" name="nremark" rows="3"></textarea>
+        </div>
+        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
+        <input type="hidden" name="complementName" value="salaryhistory"/>
+        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
+        <input type="hidden" name="probKey" value="<%=probKey%>"/>
+        <input type="hidden" name="Id" value="<%=id%>"/>
+        <div class="form-group btn_group">
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
+            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
+        </div>
+    </div>
+
+    <!-- edit -->
+    <div class='edit_comp'>
+        <div class='form-group'>
+            <label for='basic' class="control-label">Describe complaint about basic salary incorrect or not paid<span style="color: red">*</span>:</label>
+            <br/>
+            <textarea class="form-control" name="basicSal" rows="3"><%=basic%></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='overtime' class="control-label">Describe complaint about overtime incorrect or not paid:</label>
+            <br/>
+            <textarea class="form-control" name="overtime" rows="3"><%=overtime%></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='allowance' class="control-label">Describe complaint about allowance incorrect or not paid:</label>
+            <br/>
+            <textarea class="form-control" name="allowance" rows="3"><%=allowance%></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='deduction' class="control-label">Describe complaint about deductions:</label>
+            <br/>
+            <textarea class="form-control" name="deduction" rows="3"><%=deduction%></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='kickbacks' class="control-label">Describe complaint about kickbacks:</label>
+            <br/>
+            <textarea class="form-control" name="kickbacks" rows="3"><%=kickbacks%></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='other' class="control-label">Other Related Details:</label>
+            <br/>
+            <textarea class="form-control" name="otherSal" rows="3"><%=other%></textarea>
+        </div>
+        <div class='form-group'>
+            <label for='mode' class="control-label">Mode of Salary Payment</label>
+            <br/>
+            <select class="form-control" id="mode" name="mode" >
+                <%
+                    for (String provided : modeOfPayment) {
+                        if (mode.equals(provided)) {
+
+                %>
+                <option selected><%=provided%></option>
+                <%
+                } else {
+
+                %>
+                <option><%=provided%></option>
+                <%
+                        }
+                    }
+                %>  
+            </select>
+        </div>
+        <div class='form-group' id='mode_other_div' >
+            <label for='modeMore' class="control-label">Explain if above is other</label><br/>
+            <input class="form-control" type='text' name="modeMore" value="<%=modeMore%>">
+        </div>
+        <div class='form-group'>
+            <label for='totalValue' class="control-label">Estimated Total Value of Claim (S$):</label>
+            <br/>
+            <input class="form-control" type='text' name="totalLoss" value="<%=totalValue%>">
+        </div>
+        <div class='form-group'>
+            <label for='oneYearValue' class="control-label">Estimated 12 Months' Value of Claim(S$):</label>
+            <br/>
+            <input class="form-control" type='text' name="oneYearLoss" value="<%=oneYearValue%>">
+        </div>
+        <div class='form-group'>
+            <label for='remark' class="control-label">Remarks about Salary & Related History:</label>
+            <br/>
+            <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
+        </div>
+        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
+        <input type="hidden" name="complementName" value="salaryhistory"/>
+        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
+        <input type="hidden" name="probKey" value="<%=probKey%>"/>
+        <input type="hidden" name="Id" value="<%=id%>"/>
+
+        <div class="form-group btn_group">
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
+            <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
+        </div>
+    </div>
 
 </form>
 <%}%>
-
 <script>
     $(document).ready(function() {
         $("#pop_up_content").dialog({
@@ -5633,19 +5595,16 @@
             }
         });
     });
-
     $(document).ready(function(event) {
         $('.view_comp').show();
         $('.edit_comp').hide();
         $('.add_comp').hide();
         $('.complement_detailed_form').attr("action", "");
     });
-
     $('.cancel_btn').click(function() {
         $('#pop_up_content').dialog("destroy");
         $('#pop_up_content').empty();
     });
-
     function editComplement(div_id, category, title) {
         $('#pop_up_content').dialog('option', 'title', title);
         $(div_id).attr("action", "editProblemComplement.do");
@@ -5656,13 +5615,9 @@
     }
 
     function add(div_id, category, title) {
-        if (category === "worker") {
-            $(div_id).attr("action", "addWorkerComplement.do");
-        } else if (category === "job") {
-            $(div_id).attr("action", "addJobComplement.do");
-        } else if (category === "problem") {
-            $(div_id).attr("action", "addProblemComplement.do");
-        }
+
+        $(div_id).attr("action", "addProblemComplement.do");
+
         $('#pop_up_content').dialog('option', 'title', title);
         $(div_id + " .add_comp").show();
         $(div_id + " .edit_comp").hide();
@@ -5674,6 +5629,65 @@
     $('.problem_pop_up').on('shown.bs.modal', function() {
         $('.problem_pop_up').bootstrapValidator('resetForm', true);
     });
+//delete function{
+
+    function deleteComplement(div_id, item_id, complementname) {
+
+        $('<div></div>').appendTo('body')
+                .html('<div><h6>Are you sure you want to delete this record?</h6></div>')
+                .dialog({
+            modal: true,
+            title: 'Delete Confirmation',
+            zIndex: 10000,
+            autoOpen: true,
+            width: 'auto',
+            position: ['center', 200],
+            draggable: false,
+            resizable: false,
+            buttons: {
+                Yes: function() {
+                    confirmedDelete();
+                    $(this).dialog("close");
+                },
+                No: function() {
+                    $(this).dialog("close");
+                }
+            },
+            close: function(event, ui) {
+                $(this).remove();
+            }
+        });
+        function confirmedDelete() {
+
+            $(div_id).attr("action", "deleteProblemComplement.do");
+            var xmlhttp;
+            xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.onreadystatechange = function()
+            {
+                if (xmlhttp.readyState === 4 && xmlhttp.status === 200)
+                {
+                    $('#successMsg').show();
+                    document.getElementById("successMsgText").innerHTML = xmlhttp.responseText;
+                    //$('#successMsg').hide().delay(500);
+                    setTimeout(function() { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
 
 
+                        $("#successMsg").fadeOut(400);
+
+                    }, 700);
+
+                }
+            };
+
+            //calling httprequest
+            xmlhttp.open("POST", "deleteProblemComplement.do", true);
+
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("complementName=" + complementname + "&item_id=" + item_id);
+            $('#pop_up_content').dialog("destroy");
+            $('#pop_up_content').empty();
+        }
+
+    }
 </script>
