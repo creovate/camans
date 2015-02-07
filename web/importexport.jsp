@@ -8,7 +8,7 @@
 <%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    HashMap<String, ArrayList<String>> errList = (HashMap<String, ArrayList<String>>) request.getSession().getAttribute("bootstrapResult");
+    HashMap<String, Integer> errList = (HashMap<String, Integer>) request.getSession().getAttribute("bootstrapResult");
     request.getSession().removeAttribute("bootstrapResult");
     HashMap<String, Integer> successList = (HashMap<String, Integer>) request.getSession().getAttribute("successList");
     request.getSession().removeAttribute("successList");
@@ -19,7 +19,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/bootstrap.css" media="screen" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
         <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" />
         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
           
@@ -39,18 +39,25 @@
 
                 <!-- Page Header -->
                 <div class="page-header">
-                <center><h2>File Dashboard</h2>   
+                <center><h2>Import/Export Dashboard</h2>   
                 </div>
                 <!-- end of page header -->
 
                 <div class="row">
                     <!-- bootstrap -->
-                    <div class="col-xs-6">
-                        <h3 >Bootstrap</h3><br>
-                        <form id="" method="post" action="processBootstrap" enctype="multipart/form-data">           
-                            Select file to upload: <input type="file" name="zip" accept="application/zip"/><br>                                   
-                            To bootstrap, please select a ZIP file <br>then click on Load Data.<br/><br/>                    
-                            <button class="btn btn-blue" type="submit">Load Data</button>
+                    <div class="col-md-6">
+                        <h3 style="color:#2980b9">Data Import</h3><br>
+                        <!--<form id="" method="post" action="processBootstrap" enctype="multipart/form-data">-->  
+                            <!--
+                            Please choose whether you wish to <b>append the data (Import)</b><br/> or <b>clear the database and upload new sets of data (Bootstrap)</b>.<br/><br/>
+                           
+                            <input type="radio" name="import" value="bootstrap"> Bootstrap
+                            <input type="radio" name="import" value="import" checked="check"> Import<br/><br/>
+                            -->
+                       <form id="" method="post" action="processBootstrap" enctype="multipart/form-data">      
+                            Select file to upload: <input type="file" name="zip" accept="application/zip"/><br/>                                   
+                            To upload, please select a ZIP file then click on Load Data.<br/><br/>                    
+                            <button class="btn btn-primary" type="submit">Load Data</button>
                             <% if (errList != null) {%>
                             <!-- Show View Results Button to trigger modal if response is not null -->
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
@@ -62,20 +69,79 @@
                         <br/>
                     </div> 
                     <!-- end of bootstrap -->
-                    <div class="col-xs-6">
-                        <h3 >Import/ Export Data</h3><br/>
-                        <form>
-                            <input type="checkbox" name="select" value="" />&nbsp;Worker<br/>
-                            <input type="checkbox" name="select" value="" />&nbsp;Job<br/>
-                            <input type="checkbox" name="select" value="" />&nbsp;Problem<br/>
+                    <div class="col-md-6">
+                        <form name="exportform" method="post" action="exportData.do">
+                            <h3 style="color:#2980b9">Data Export</h3>
+                        
+                            <div class="col-xs-6">
+                                <label>Main</label><br/>
+                                <input type="checkbox" name="select" value="worker" />&nbsp;Worker&nbsp;
+                                <input type="checkbox" name="select" value="benefit" />&nbsp;Benefits<br/>
+                                <input type="checkbox" name="select" value="job" />&nbsp;Job&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="select" value="audit" />&nbsp;Audit Logs<br/>
+                                <input type="checkbox" name="select" value="problem" />&nbsp;Problem<br/><br/>
+                         
+                                <label>Problem Complements</label><br/>
+                                <input type="checkbox" name="select" value="aggravatingissue" />&nbsp;Aggravating Issues<br/>
+                                <input type="checkbox" name="select" value="leadcaseworker" />&nbsp;Lead Case Workers<br/>
+                                <input type="checkbox" name="select" value="auxiliarycaseworker" />&nbsp;Auxiliary Case Workers<br/>
+                                <input type="checkbox" name="select" value="salaryrelatedhistory" />&nbsp;Salary History<br/>
+                                <input type="checkbox" name="select" value="injury" />&nbsp;Injury<br/>
+                                <input type="checkbox" name="select" value="illness" />&nbsp;Illness<br/>
+                                <input type="checkbox" name="select" value="otherproblems" />&nbsp;Other problems<br/>
+                                <input type="checkbox" name="select" value="salaryclaim" />&nbsp;Salary Claimed Lodged<br/>
+                                <input type="checkbox" name="select" value="wica" />&nbsp;WICA<br/>
+                                <input type="checkbox" name="select" value="wicaclaim" />&nbsp;WICA Claims<br/>
+                                <input type="checkbox" name="select" value="nonwicaclaim" />&nbsp;Non-WICA Claims<br/>
+                                <input type="checkbox" name="select" value="policereport" />&nbsp;Police Reports<br/>
+                                <input type="checkbox" name="select" value="othercomplaints" />&nbsp;Other Complaints<br/>
+                                <input type="checkbox" name="select" value="casediscussion" />&nbsp;Case Discussions<br/>
+                                <input type="checkbox" name="select" value="hospital" />&nbsp;Hospitals<br/>
+                                <input type="checkbox" name="select" value="mcstatus" />&nbsp;MC Status<br/>
+                                <input type="checkbox" name="select" value="r2r" />&nbsp;R2R<br/>
+                                <input type="checkbox" name="select" value="lawyer" />&nbsp;Lawyers<br/>
+                                <input type="checkbox" name="select" value="casemilestonenc" />&nbsp;Non-criminal Case Milestones<br/>
+                                <input type="checkbox" name="select" value="casemilestonecr" />&nbsp;Criminal Case Milestones<br/>
+                                <input type="checkbox" name="select" value="ttr" />&nbsp;TTR<br/>
+                            </div> <!-- end col -->
+                            
+                            <div class="col-xs-6">
+                                <!--<button class="btn btn-info check">Check All</button> -->
+                                <input type="button" class="btn btn-info" name="checkbutton" value="Check All" onClick="Check(document.exportform.select)" />
+                                <button class="btn btn-primary" type="submit">Export</button><br/><br/>
+                                <label>Worker Complements</label><br/>
+                                <input type="checkbox" name="select" value="nickname" />&nbsp;Nickname<br/>
+                                <input type="checkbox" name="select" value="passport" />&nbsp;Passport Details<br/>
+                                <input type="checkbox" name="select" value="homecountryph" />&nbsp;Home Country Phone Number<br/>
+                                <input type="checkbox" name="select" value="homecountryaddress" />&nbsp;Home Country Address<br/>
+                                <input type="checkbox" name="select" value="sgph" />&nbsp;Singapore Phone Number<br/>
+                                <input type="checkbox" name="select" value="sgaddress" />&nbsp;Singapore Address<br/>
+                                <input type="checkbox" name="select" value="digitalcontact" />&nbsp;Digital Contact<br/>
+                                <input type="checkbox" name="select" value="nextofkin" />&nbsp;Next of Kins<br/>
+                                <input type="checkbox" name="select" value="familymember" />&nbsp;Family Members<br/>
+                                <input type="checkbox" name="select" value="sgfriend" />&nbsp;Singapore Friends<br/>
+                                <input type="checkbox" name="select" value="language" />&nbsp;Language<br/>
+                                <input type="checkbox" name="select" value="bankacct" />&nbsp;Bank Account Details<br/><br/>
+                                <label>Job Complements</label><br/>
+                                <input type="checkbox" name="select" value="currentpass" />&nbsp;Current Pass Details<br/>
+                                <input type="checkbox" name="select" value="ipa" />&nbsp;IPA Pass Details<br/>
+                                <input type="checkbox" name="select" value="verbalassurance" />&nbsp;Verbal Assurance Details<br/>
+                                <input type="checkbox" name="select" value="employmentcontract" />&nbsp;Employment Contract Details<br/>
+                                <input type="checkbox" name="select" value="intermediaryagent" />&nbsp;Intermediary Agents<br/>
+                                <input type="checkbox" name="select" value="employer" />&nbsp;Employer Details<br/>
+                                <input type="checkbox" name="select" value="workplace" />&nbsp;Work Place<br/>
+                                <input type="checkbox" name="select" value="workhistory" />&nbsp;Work History<br/>
+                                <input type="checkbox" name="select" value="accomodation" />&nbsp;Accommodation<br/><br/>
+                            </div>
+                            </div>
                         </form>
-                    </div>
-                </div>
+                    </div> <!--row-->
+                </div> <!--fixed paged length-->
 
-            </div>
+            </div> <!--wrap-->
         
         </div>
-        <!-- Modal -->
+        <!-- Modal for Record Loaded -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -86,7 +152,7 @@
                             if (errList == null || errList.isEmpty()) {
                                 out.println("<font color=\"green\">Successful</font></label>");
                             } else {
-                                out.println("<font color=\"red\">Successful with following errors</font></label>");
+                                out.println("<font color=\"green\">Successful with the following errors</font></label>");
                             }    
                         %>
                     </div> <!--header -->
@@ -106,46 +172,25 @@
                             }    
 %>                            
                         </table>
-                        
+<%
+                        if (errList != null && !errList.isEmpty()) {
+%>                                               
                         <div class="panel-group" id="accordion">
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Error Files <%=errList.size()%> files </h4>
+                                </div> <%--heading--%>    
+                                <div class="panel-body">
 <%
-                            if (errList != null && !errList.isEmpty()) {
                                 for (String key: errList.keySet()) {
-                                    ArrayList<String> errArray = errList.get(key);
-                                    String tmp = key.substring(0, key.indexOf("."));
-%>
-                                <div class="panel panel-warning">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a class="accordion-toggle"  data-toggle="collapse" data-target="#<%=tmp%>" href="#">
-                                                <b><%=key%> (<%=errArray.size()%> errors)</b>
-                                            </a>
-                                        </h4>
-                                    </div> <!--heading-->
-                                </div> <!--panel default-->
-                                
-                                <div id="<%=tmp%>" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <table class="table table-curved table-hover table-condensed">
-<%
-                                            for (int i = 0; i < errArray.size(); i++) {
-                                                String errDesc = errArray.get(i);
-                                                String lineNum = errDesc.substring(0,errDesc.indexOf(":"));
-                                                String errMsg = errDesc.substring(errDesc.indexOf(":")+1,errDesc.lastIndexOf(","));
-%>                                      
-                                                <tr><td><b>Line <%=lineNum%></b></td><td><%=errMsg%></td></tr>
-<%
-                                           }
-%>
-                                        </table>
-                                    </div> <!-- panel body -->
-                                </div>
-<%
+                                    int errCount = errList.get(key);
+                                    out.println("<b>"+ key + " (" + errCount + " errors)</b><br/>");
                                 }
-                            }
 %>
+                                </div><%--body--%>
+                            </div><%--panel--%>
                         </div> <%--end accordion--%>
- 
+<%                            } %> 
                     </div> <!--body-->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>                                
@@ -162,8 +207,24 @@
         </script>
         <% } %>
         <script>
-            //session time out
+            
+            function Check(chk) {
+                if (document.exportform.checkbutton.value=="Check All") {
+                    for (i = 0; i < chk.length; i++) {
+                        chk[i].checked = true;
+                        document.exportform.checkbutton.value="UnCheck All";
+                    }
+                } else {
+                    for (i = 0; i < chk.length; i++) {
+                        chk[i].checked = false;
+                        document.exportform.checkbutton.value="Check All";
+                    }
+                }
+            }
+            
             $(document).ready(function () {
+                //session timeout
+                
                 $.sessionTimeout({
                     message: 'Your session will be expired in one minute.',
                     keepAliveUrl: 'keep-alive.html',
@@ -172,6 +233,7 @@
                     warnAfter: 900000,
                     redirAfter: 960000
                 });
+                
             });
         </script>
     </body>

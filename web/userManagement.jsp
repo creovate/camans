@@ -128,7 +128,7 @@
                                 <tr>
                                     <td><%=i+1%></td>
                                     <!--<td><%=(photoPath==null)?"":photoPath%></td>-->
-                                    <% if (photoPath == null || photoPath.contains("")) { %>
+                                    <% if (photoPath == null || photoPath.equals("")) { %>
                                     <td><img src="img/profile_pic.jpg" width="40"></td>
                                     <% } else { %>
                                     <td><img src=<%=photoPath%> width="40"></td>

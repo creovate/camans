@@ -146,6 +146,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemAggravatingIssue(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_aggravating_issue WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "ProblemAggravatingIssue ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemAggravatingIssues() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -164,153 +181,6 @@ public class ProblemComplementsDAO {
         }     
     }
        
-    public static ArrayList<String> validateAndAddProblemAggravatingIsssue(String probAggravFile) 
-            throws IOException{
-        
-        // Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try {
-            csvReader = new CSVReader(new FileReader(probAggravFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-            
-            // Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null) {
-                lineNum++;
-                // Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String aggraIssue = fields[3].trim();
-                String aggraIssueMore = fields[4].trim();
-                String aggraLossStr = fields[5].trim();
-                String aggraRemark = fields[6].trim();
-                
-                int jobKey = 0;
-                int probKey = 0;
-                double aggraLoss = 0;
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-                if (aggraIssue.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-                    
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfProblems();
-                    boolean exit = false;
-                    for (String tmp: list) {
-                        if (tmp.equalsIgnoreCase(aggraIssue)) {
-                            exit = true;
-                            break;
-                        }
-                    }
-                    
-                    if (!exit) {
-                        errorMsg += "invalid Aggravating Issue Type, ";
-                    }
-                    
-                    if (!aggraIssueMore.equals("") && aggraIssueMore.length() > 50){
-                        errorMsg += header[4] + " cannot be more than 50 characters,";
-                    }
-                    
-                    if (!aggraLossStr.equals("")) {
-                        if (!aggraLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                            errorMsg += header[5] + " must have maximum 2 decimal places,";
-                        } else {
-                            try {
-                                aggraLoss = Double.parseDouble(aggraLossStr);
-                            } catch (Exception ex) {
-                                errorMsg += header[5] + " - invalid format,";
-                            }
-                        }
-                    } 
-                    
-                    if (!aggraRemark.equals("") && aggraRemark.length() > 200) {
-                        errorMsg += header[6] + " cannot be longer than 200 characters,";
-                    }
-
-                }   //pass 
-
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemAggravatingIssue problemAggravatingIssue = new ProblemAggravatingIssue
-                            (finNum, jobKey, probKey, aggraIssue, aggraIssueMore, aggraLoss, aggraRemark);
-                    addProblemAggravatingIssue(problemAggravatingIssue);
-                    count++;
-                }    
-            }
-            errList.add("aggravatingissue.csv:" + count);
-            csvReader.close();
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundExcepton
-        }
-        return errList;
-    }
-     
     /*Problem Lead Case Worker*/
     public static ArrayList<Integer> retrieveLeadCaseWorkerIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -432,6 +302,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemLeadCaseWorker(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_lead_case_worker WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Lead Case Worker ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemLeadCaseWorkers() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -448,151 +335,6 @@ public class ProblemComplementsDAO {
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }     
-    }
-    
-    public static ArrayList<String> validateAndAddLeadCaseWorker(String leadCaseWorkerFile) throws IOException {
-        //attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        
-        try {
-            csvReader = new CSVReader(new FileReader(leadCaseWorkerFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-            
-            //loop through each line of the csv with an array of String
-            while ((fields=csvReader.readNext()) != null) {
-                lineNum++;
-                //assigning each field with its approriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String leadName = fields[3].trim();
-                String leadStartStr = fields[4].trim();
-                String leadEndStr = fields[5].trim();
-                
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date leadStart = null;
-                java.sql.Date leadEnd = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                
-                //validations for emplty fields
-                boolean pass = true;
-                if(finNum.equals("")) {
-                    errorMsg += header[0]+" is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1]+" is blank,";
-                    pass = false;
-                }
-                
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2]+" is blank,";
-                    pass = false;
-                }
-                
-                if (leadName.equals("")) {
-                    errorMsg += header[3]+" is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) {
-                    //check for any existing worker with the same finNum
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker==null) {
-                        errorMsg += "invalid FinNumber,";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job==null) {
-                            errorMsg += "invalid job key,";
-                        } else {
-                            if(worker!=null &&
-                            !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid FinNumber for this job key,";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key,";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if(problem==null) {
-                            errorMsg += "invalid problem key,";
-                        } else {
-                            if(worker!=null &&
-                            !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key,";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key,";
-                    }
-                
-                    //dropdown list of existing users
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfCaseworkers();
-                    boolean exit = false;
-                    for(String tmp:list) {
-                        if (tmp.equalsIgnoreCase(leadName)) {
-                            exit=true;
-                            break;
-                        }
-                    }
-                    
-                    if(!exit) {
-                        errorMsg += "invalid job key,";
-                    }
-                    
-                    if (!leadStartStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(leadStartStr);
-                            leadStart = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid leadStart Date Format,";
-                        } 
-                    }
-                    
-                    if (!leadEndStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(leadEndStr);
-                            leadEnd = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid leadEnd Date Format,";
-                        } 
-                    }
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is added into the errorList
-                
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemLeadCaseWorker problemLeadCaseWorker = new ProblemLeadCaseWorker
-                            (finNum, jobKey, probKey, leadName, leadStart, leadEnd );
-                    addProblemLeadCaseWorker(problemLeadCaseWorker);
-                    count++;
-                }    
-            }
-            errList.add("leadcaseworker.csv:" + count);
-            csvReader.close();
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundExcepton
-        }
-        return errList;
     }
     
     /*Problem Auxiliary CaseWorker*/
@@ -713,6 +455,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemAuxiliaryCaseWorker(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_auxillarycaseworker WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Auxiliary Case Worker ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemAuxiliaryCaseWorkers() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -729,151 +488,6 @@ public class ProblemComplementsDAO {
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }     
-    }
-    
-    public static ArrayList<String> validateAndAddAuxiliaryCaseWorker(String auxiliaryCaseWorkerFile) throws IOException {
-        //attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        
-        try {
-            csvReader = new CSVReader(new FileReader(auxiliaryCaseWorkerFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-            
-            //loop through each line of the csv with an array of String
-            while ((fields=csvReader.readNext()) != null) {
-                lineNum++;
-                //assigning each field with its approriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String auxName = fields[3].trim();
-                String auxStartStr = fields[4].trim();
-                String auxEndStr = fields[5].trim();
-                
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date auxStart = null;
-                java.sql.Date auxEnd = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                
-                //validations for emplty fields
-                boolean pass = true;
-                if(finNum.equals("")) {
-                    errorMsg += header[0]+" is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1]+" is blank,";
-                    pass = false;
-                }
-                
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2]+" is blank,";
-                    pass = false;
-                }
-                
-                if (auxName.equals("")) {
-                    errorMsg += header[3]+" is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) {
-                    //check for any existing worker with the same finNum
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker==null) {
-                        errorMsg += "invalid FinNumber,";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job==null) {
-                            errorMsg += "invalid job key,";
-                        } else {
-                            if(worker!=null &&
-                            !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid FinNumber for this job key,";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key,";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if(problem==null) {
-                            errorMsg += "invalid problem key,";
-                        } else {
-                            if(worker!=null &&
-                            !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key,";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key,";
-                    }
-                
-                    //dropdown list of existing users
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfCaseworkers();
-                    boolean exit = false;
-                    for(String tmp:list) {
-                        if (tmp.equalsIgnoreCase(auxName)) {
-                            exit=true;
-                            break;
-                        }
-                    }
-                    
-                    if(!exit) {
-                        errorMsg += "invalid job key,";
-                    }
-                    
-                    if (!auxStartStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(auxStartStr);
-                            auxStart = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid auxStart Date Format,";
-                        } 
-                    }
-                    
-                    if (!auxEndStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(auxEndStr);
-                            auxEnd = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid auxEnd Date Format,";
-                        } 
-                    }
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is added into the errorList
-                
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemAuxiliaryCaseWorker problemAuxiliaryCaseWorker = new ProblemAuxiliaryCaseWorker
-                            (finNum, jobKey, probKey, auxName, auxStart, auxEnd );
-                    addProblemAuxiliaryCaseWorker(problemAuxiliaryCaseWorker);
-                    count++;
-                }    
-            }
-            errList.add("auxiliaryworker.csv:" + count);
-            csvReader.close();
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundExcepton
-        }
-        return errList;
     }
     
     /*Problem Salary Related History*/
@@ -1025,6 +639,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemSalaryRelatedHistory(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_salary_history WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Salary Related History ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemSalaryRelatedHistories() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1043,194 +674,6 @@ public class ProblemComplementsDAO {
         }     
     }
 
-    public static ArrayList<String> validateAndAddProblemSalaryRelatedHistory(String probSalaryRelatedHistoryFile) 
-    throws IOException {
-        // Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try {
-            csvReader = new CSVReader(new FileReader(probSalaryRelatedHistoryFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            // Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null) {
-                lineNum++;
-                // Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String salHistBasic = fields[3].trim();
-                String salHistOT = fields[4].trim();
-                String salHistAllowances = fields[5].trim();
-                String salHistDeductions = fields[6].trim();
-                String salHistKickbacks = fields[7].trim();
-                String salHistOther = fields[8].trim();
-                String salMode = fields[9].trim();
-                String salModeMore = fields[10].trim();
-                String salLossTotalStr = fields[11].trim();
-                String salLoss1YrStr = fields[12].trim();
-                String salHistRem = fields[13].trim();
-                
-                int jobKey = 0;
-                int probKey = 0;
-                double salLossTotal = 0;
-                double salLoss1Yr = 0;
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-                
-                if (salHistBasic.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-                    
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfSalaryMode();
-                    boolean exit = false;
-                    for (String tmp: list) {
-                        if (tmp.equalsIgnoreCase(salMode)) {
-                            exit = true;
-                            break;
-                        }
-                    }
-                    
-                    if (!exit) {
-                        errorMsg += "invalid salary payment mode, ";
-                    }
-                    
-                    if (!salHistOT.equals("") && salHistOT.length() > 500){
-                        errorMsg += header[4] + " cannot be more than 500 characters,";
-                    }
-                    
-                    if (!salHistAllowances.equals("") && salHistAllowances.length() > 500){
-                        errorMsg += header[5] + " cannot be more than 500 characters,";
-                    }
-                    
-                    if (!salHistDeductions.equals("") && salHistDeductions.length() > 500){
-                        errorMsg += header[6] + " cannot be more than 500 characters,";
-                    }
-                    
-                    if (!salHistKickbacks.equals("") && salHistKickbacks.length() > 500){
-                        errorMsg += header[7] + " cannot be more than 500 characters,";
-                    }
-                    
-                    if (!salHistOther.equals("") && salHistOther.length() > 500){
-                        errorMsg += header[8] + " cannot be more than 500 characters,";
-                    }
-                    
-                    if (!salModeMore.equals("") && salModeMore.length() > 50){
-                        errorMsg += header[10] + " cannot be more than 50 characters,";
-                    }
-                    
-                    if (!salLossTotalStr.equals("")) {
-                        if(salLossTotalStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                            errorMsg += header[11] + " must have maximum 2 decimal places,";
-                        } else {
-                            try {
-                                salLossTotal = Double.parseDouble(salLossTotalStr);
-                            } catch (Exception ex) {
-                                errorMsg += header[11] + " - invalid format,";
-                            }
-                        }
-                    }
-                    
-                    if (!salLoss1YrStr.equals("")) {
-                        if (salLoss1YrStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                            errorMsg += header[12] + " must have maximum 2 decimal places,";
-                        } else {
-                            try {
-                                salLoss1Yr = Double.parseDouble(salLoss1YrStr);
-                            } catch (Exception ex) {
-                                errorMsg += header[12] + " - invalid format,";
-                            }
-                        }
-                    }
-                    
-                    if (!salHistRem.equals("") && salHistRem.length() > 200){
-                        errorMsg += header[13] + " cannot be more than 200 characters,";
-                    }
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemSalaryRelatedHistory problemSalaryRelatedHistory = new ProblemSalaryRelatedHistory
-                            (finNum, jobKey, probKey, salHistBasic, salHistOT, salHistAllowances, salHistDeductions,
-                            salHistKickbacks, salHistOther, salMode, salModeMore, salLossTotal, salLoss1Yr, salHistRem);
-                    addProblemSalaryRelatedHistory(problemSalaryRelatedHistory);
-                    count++;
-                }
-            }
-            errList.add("salaryrelatedhistory.csv:" + count);
-            csvReader.close();
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundExcepton
-        }
-        return errList;
-    }
-    
     /*Problem Injury*/
     public static ArrayList<Integer> retrieveProblemInjuryIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1401,183 +844,23 @@ public class ProblemComplementsDAO {
         }     
     }
 
-    public static ArrayList<String> validateAndAddProblemInjury(String problemInjuryFile) 
-            throws IOException{
-        
-        // Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
+    public static void deleteProblemInjury(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
         try {
-            csvReader = new CSVReader(new FileReader(problemInjuryFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            // Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null) {
-                lineNum++;
-                // Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String injDateStr = fields[3].trim();
-                String injTime = fields[4].trim();
-                String injLocation = fields[5].trim();
-                String injDeath = fields[6].trim();
-                String injBodypart = fields[7].trim();
-                String injHow = fields[8].trim();
-                String injAmbulance = fields[9].trim();
-                String injInitialTreatment = fields[10].trim();
-                String injWorkRelated = fields[11].trim();
-                String injRem = fields[12].trim();
-                
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date injDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                
-                if (injDateStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid jobkey, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this jobkey, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-                    
-                    if (!injDateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(injDateStr);
-                            injDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid injury Date Format,";
-                        } 
-                    }
-                    
-                    if (!injTime.equals("") && injTime.length() > 20){
-                        errorMsg += header[5] + " cannot be more than 20 characters,";
-                    }
-                    
-                    if (!injLocation.equals("") && injLocation.length() > 200){
-                        errorMsg += header[6] + " cannot be more than 200 characters,";
-                    }
-                    
-                    if (!injDeath.equals("")) {
-                        if (injDeath.equals("Yes") || injDeath.equals("No")) {
-                            
-                        } else {
-                            errorMsg += header[7] + " must be either 'Yes' or 'No'";
-                        }
-                    }
-                    
-                    if (!injBodypart.equals("") && injBodypart.length() > 500){
-                        errorMsg += header[8] + " cannot be more than 500 characters,";
-                    }
-                    
-                    if (!injHow.equals("") && injHow.length() > 1000){
-                        errorMsg += header[9] + " cannot be more than 1000 characters,";
-                    }
-                    
-                    if (!injAmbulance.equals("")) {
-                        if (injAmbulance.equals("Yes") || injAmbulance.equals("No") || 
-                                injAmbulance.equals("Don't know")) {
-                            
-                        } else {
-                            errorMsg += header[10] + " must be either 'Yes' or 'No' or 'Don't know";
-                        }
-                    }
-                    
-                    if (!injInitialTreatment.equals("") && injInitialTreatment.length() > 200){
-                        errorMsg += header[11] + " cannot be more than 200 characters,";
-                    }
-                    
-                    if (!injWorkRelated.equals("")) {
-                        if (injWorkRelated.equals("Yes") || injWorkRelated.equals("No") ||
-                                injWorkRelated.equals("Don't know")) {
-                            
-                        } else {
-                            errorMsg += header[12] + " must be either 'Yes' or 'No' or 'Don't know";
-                        }
-                    }
-                    
-                    if (!injRem.equals("") && injRem.length() > 200){
-                        errorMsg += header[13] + " cannot be more than 200 characters,";
-                    }
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemInjury problemInjury = new ProblemInjury
-                            (finNum, jobKey, probKey, injDate, injTime, injLocation, injDeath, injBodypart,
-                            injHow, injAmbulance, injInitialTreatment, null, injWorkRelated, injRem);
-                    addProblemInjury(problemInjury);
-                    count++;
-                }    
-            }
-            errList.add("injury.csv:" + count);
-            csvReader.close();
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundExcepton
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_injury WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Injury ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
         }
-        return errList;
     }
-
+    
     /*Problem Illness*/
     public static ArrayList<Integer> retrieveIllnessIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1711,6 +994,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemIllness(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_illness WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Illness ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemIllness() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1729,158 +1029,6 @@ public class ProblemComplementsDAO {
         }     
     }
     
-    public static ArrayList<String> validateAndAddProblemIllness(String problemIllnessFile) 
-            throws IOException{
-        
-        // Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try {
-            csvReader = new CSVReader(new FileReader(problemIllnessFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            // Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null) {
-                lineNum++;
-                // Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String illnessStartWhen = fields[3].trim();
-                String illnessDiagWhen = fields[4].trim();
-                String illnessDiagWho = fields[5].trim();
-                String illnessNature = fields[6].trim();
-                String illnessWorkRelated = fields[7].trim();
-                String illnessWhy = fields[8].trim();
-                String illnessRem = fields[9].trim();
-                
-                int jobKey = 0;
-                int probKey = 0;
-                
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-                
-                if (illnessStartWhen.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-                    
-                    if (!illnessStartWhen.equals("") && illnessStartWhen.length() > 50){
-                        errorMsg += header[3] + " cannot be more than 50 characters,";
-                    }
-                    
-                    if (!illnessDiagWhen.equals("") && illnessDiagWhen.length() > 50){
-                        errorMsg += header[4] + " cannot be more than 50 characters,";
-                    }
-                    
-                    if (!illnessDiagWho.equals("") && illnessDiagWho.length() > 200){
-                        errorMsg += header[5] + " cannot be more than 200 characters,";
-                    }
-                    
-                    if (!illnessNature.equals("") && illnessNature.length() > 200){
-                        errorMsg += header[6] + " cannot be more than 200 characters,";
-                    }
-                    
-                    if (!illnessWorkRelated.equals("")) {
-                        if (illnessWorkRelated.equals("Yes") || illnessWorkRelated.equals("No")
-                                || illnessWorkRelated.equals("Don't know")) {
-                            
-                        } else {
-                            errorMsg += header[7] + " must be either 'Yes' or 'No' or 'Don't know";
-                        }
-                    }
-                    
-                    if (!illnessWhy.equals("") && illnessWhy.length() > 500){
-                        errorMsg += header[8] + " cannot be more than 500 characters,";
-                    }
-                    
-                    if (!illnessRem.equals("") && illnessRem.length() > 200){
-                        errorMsg += header[8] + " cannot be more than 200 characters,";
-                    }
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemIllness problemIllness = new ProblemIllness
-                            (finNum, jobKey, probKey, illnessStartWhen, illnessDiagWhen, illnessDiagWho,
-                            illnessNature, illnessWorkRelated, illnessWhy, illnessRem);
-                    addProblemIllness(problemIllness);
-                    count++;
-                }    
-            }
-            errList.add("illness.csv:" + count);
-            csvReader.close();
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundExcepton
-        }
-        return errList;
-    }
-
     /*Problem Other Problem*/
     public static ArrayList<Integer> retrieveOtherProblemIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -1998,6 +1146,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemOtherProblem(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_other_problems WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Other Problem ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemtherProblems() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2014,137 +1179,6 @@ public class ProblemComplementsDAO {
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }     
-    }
-    
-    public static ArrayList<String> validateAndAddProblemOtherProblems(String problemOtherProblemsFile) 
-            throws IOException{
-        
-        // Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try {
-            csvReader = new CSVReader(new FileReader(problemOtherProblemsFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            // Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null) {
-                lineNum++;
-                // Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String othProblemDesc = fields[3].trim();
-                String othProblemLossStr = fields[4].trim();
-                String othProblemRem = fields[5].trim();
-                
-                int jobKey = 0;
-                int probKey = 0;
-                int othProblemLoss = 0;
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-
-                if (othProblemDesc.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-                    
-                    if (!othProblemDesc.equals("") && othProblemDesc.length() > 1000){
-                        errorMsg += header[3] + " cannot be more than 1000 characters,";
-                    }
-                    
-                    if (!othProblemLossStr.equals("")) {
-                        try {
-                            othProblemLoss = Integer.parseInt(othProblemLossStr);
-                        } catch (Exception ex) {
-                            errorMsg += header[4] + " - invalid format,";
-                        }
-                    }
-                    
-                    if (!othProblemRem.equals("") && othProblemRem.length() > 200) {
-                        errorMsg += header[5] + " cannot be longer than 200 characters,";
-                    }
-
-                }   //pass 
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemOtherProblems problemOtherProblems = new ProblemOtherProblems
-                            (finNum, jobKey, probKey, othProblemDesc, othProblemLoss, othProblemRem);
-                    addProblemOtherProblems(problemOtherProblems);
-                    count++;
-                }    
-            }
-            errList.add("otherproblems.csv:" + count);
-            csvReader.close();
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundExcepton
-        }
-        return errList;
     }
     
     /*Problem salary claim Issue*/
@@ -2264,6 +1298,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemSalaryClaim(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_salary_claim_lodged WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Salary Claim ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemSalaryClaims() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2283,141 +1334,6 @@ public class ProblemComplementsDAO {
         }     
     }
     
-    public static ArrayList<String> validateAndAddProblemSalaryClaim(String problemSalaryClaimFile) 
-            throws IOException{
-        
-        // Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try {
-            csvReader = new CSVReader(new FileReader(problemSalaryClaimFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            // Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null) {
-                lineNum++;
-                // Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String salClaimDateStr = fields[3].trim();
-                String salClaimLossStr = fields[4].trim();
-                String salClaimBasis = fields[5].trim();
-                
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date salClaimDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                double salClaimLoss = 0;
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-
-                if (salClaimDateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid jobkey, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this jobkey, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-                    
-                    if(!salClaimDateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(salClaimDateStr);
-                            salClaimDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid Salary claim Date Format,";
-                        } 
-                    }
-                    
-                    if(!salClaimLossStr.equals("")) {
-                        if (salClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                            errorMsg += header[4] + " must have maximum 2 decimal places,"; 
-                        }
-                    }
-                    
-                    if (!salClaimBasis.equals("") && salClaimBasis.length() > 1000) {
-                        errorMsg += header[5] + " cannot be longer than 1000 characters,";
-                    }
-                }   //pass 
-
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemSalaryClaim problemSalaryClaim = new ProblemSalaryClaim
-                            (finNum, jobKey, probKey, salClaimDate, salClaimLoss, salClaimBasis);
-                    addProblemSalaryClaim(problemSalaryClaim);
-                    count++;
-                }    
-            }
-            errList.add("salaryclaim.csv:" + count);
-            csvReader.close();
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundExcepton
-        }
-        return errList;
-    }
-
         /*Problem wica */
     public static ArrayList<Integer> retrieveWicaIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2545,6 +1461,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemWica(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_wica WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Wica ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemWicas() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2563,191 +1496,6 @@ public class ProblemComplementsDAO {
         }     
     }
     
-     public static ArrayList<String> validateAndAddProblemWica (String probWicaFile) throws IOException {
-        //Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try{
-            csvReader = new CSVReader(new FileReader(probWicaFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            //Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null){
-                lineNum++;
-                //Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String dateStr = fields[3].trim();
-                String status = fields[4].trim();
-                String statusMore = fields[5].trim();
-                String pointsStr = fields[6].trim();
-                String dollarsStr = fields[7].trim();
-                String rem = fields[8].trim();
-               
-                
-                int jobKey = 0;
-                int probKey = 0;
-                double points = 0.0;
-                double dollars = 0.0;
-                java.sql.Date updatedDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-                if (dateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                if (status.equals("")) {
-                    errorMsg += header[4] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-
-                    if (!dateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(dateStr);
-                            updatedDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid Updated Wica Date Format,";
-                        } 
-                    }
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfWica();
-                    boolean exit = false;
-                    for (String tmp: list) {
-                        if (tmp.equalsIgnoreCase(status)) {
-                            exit = true;
-                            break;
-                        }
-                    }
-                    
-                    if (!exit) {
-                        errorMsg += "invalid Wica Status, ";
-                    }
-
-
-                    if (!status.equals("") && status.length() > 30) {
-                        errorMsg += header[5] + " cannot be longer than 30 characters,";
-                    }
-                    
-                    if (!statusMore.equals("") && statusMore.length() > 50) {
-                        errorMsg += header[6] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!pointsStr.equals("")) {
-                        if (!pointsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                            errorMsg += header[7] + " must have maximum 2 decimal places,";
-                        } else {
-                            try {
-                                points = Double.parseDouble(pointsStr);
-                            } catch (Exception ex) {
-                                errorMsg += header[14] + " - invalid format,";
-                            }
-                        }
-                    }
-                    
-                    if (!dollarsStr.equals("")) {
-                        if (!dollarsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                            errorMsg += header[8] + " must have maximum 2 decimal places,";
-                        } else {
-                            try {
-                                dollars = Double.parseDouble(dollarsStr);
-                            } catch (Exception ex) {
-                                errorMsg += header[8] + " - invalid format,";
-                            }
-                        }
-                    }
-
-
-                    if (!rem.equals("") && rem.length() > 200) {
-                        errorMsg += header[9] + " cannot be longer than 200 characters,";
-                    }
-                    
-                    
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemWica problemWica = new ProblemWica
-                            (finNum, jobKey, probKey, updatedDate, status, statusMore, points, dollars, rem);
-                    addProblemWica (problemWica);
-                    count++;
-                }  
-                
-            }
-            errList.add("wica.csv:" + count);
-            csvReader.close();
-                
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundException
-        }
-        return errList;
-    }
-
     /*Problem wica claim Issue*/
     public static ArrayList<Integer> retrieveWicaClaimIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -2874,6 +1622,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemWicaClaim(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_wica_claim WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Wica Claim ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemWicaClaims() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2892,154 +1657,6 @@ public class ProblemComplementsDAO {
         }     
     }
     
-    public static ArrayList<String> validateAndAddProblemWicaClaim(String problemWicaClaimFile) 
-            throws IOException{
-        
-        // Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try {
-            csvReader = new CSVReader(new FileReader(problemWicaClaimFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            // Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null) {
-                lineNum++;
-                // Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String wicaClaimDateStr = fields[3].trim();
-                String wicaRefNbr = fields[4].trim();
-                String wicaInsurer = fields[5].trim();
-                String wicaPolicyNbr = fields[6].trim();
-                String wicaWhoLodged = fields[7].trim();
-                String wicaClaimRem = fields[8].trim();
-                
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date wicaClaimDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-
-                if (wicaClaimDateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid jobkey, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this jobkey, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-                    
-                    if (!wicaClaimDateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(wicaClaimDateStr);
-                            wicaClaimDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid wica claim Date Format,";
-                        } 
-                    }
-                    
-                    if (!wicaRefNbr.equals("") && wicaRefNbr.length() > 30) {
-                        errorMsg += header[4] + " cannot be longer than 30 characters,";
-                    }
-                    
-                    if (!wicaInsurer.equals("") && wicaInsurer.length() > 50) {
-                        errorMsg += header[5] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!wicaPolicyNbr.equals("") && wicaPolicyNbr.length() > 50) {
-                        errorMsg += header[6] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!wicaWhoLodged.equals("") && wicaWhoLodged.length() > 200) {
-                        errorMsg += header[7] + " cannot be longer than 200 characters,";
-                    }
-                    
-                    if (!wicaClaimRem.equals("") && wicaClaimRem.length() > 200) {
-                        errorMsg += header[8] + " cannot be longer than 200 characters,";
-                    }
-                }   //pass 
-
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemWicaClaim problemWicaClaim = new ProblemWicaClaim
-                            (finNum, jobKey, probKey, wicaClaimDate, wicaRefNbr, wicaInsurer, wicaPolicyNbr, 
-                            wicaWhoLodged, wicaClaimRem);
-                    addProblemWicaClaim(problemWicaClaim);
-                    count++;
-                }    
-            }
-            errList.add("wicaclaim.csv:" + count);
-            csvReader.close();
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundExcepton
-        }
-        return errList;
-    }
-
     /*Problem non-wica claim Issue*/
     public static ArrayList<Integer> retrieveNonWicaClaimIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -3166,6 +1783,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemNonWicaClaim(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_non_wica_claim WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Non Wica Claim ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemNonWicaClaims() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3183,164 +1817,6 @@ public class ProblemComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }     
     }
-    
-    public static ArrayList<String> validateAndAddProblemNonWicaClaim(String problemNonWicaClaimFile) 
-            throws IOException{
-        
-        // Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try {
-            csvReader = new CSVReader(new FileReader(problemNonWicaClaimFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            // Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null) {
-                lineNum++;
-                // Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String medClaimDateStr = fields[3].trim();
-                String medClaimLossStr = fields[4].trim();
-                String medClaimInsurer = fields[5].trim();
-                String medClaimPolicyNbr = fields[6].trim();
-                String medClaimBasis = fields[7].trim();
-                String medClaimRem = fields[8].trim();
-                
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date medClaimDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                double medClaimLoss = 0.0;
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-
-                if (medClaimDateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid jobkey, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this jobkey, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-                    
-                    if (!medClaimDateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(medClaimDateStr);
-                            medClaimDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid non-wica medical claim Date Format,";
-                        } 
-                    }
-                    
-                    if (!medClaimLossStr.equals("")) {
-                        if (!medClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                            errorMsg += header[4] + " must have maximum 2 decimal places,";
-                        } else {
-                            try {
-                                medClaimLoss = Double.parseDouble(medClaimLossStr);
-                            } catch (Exception ex) {
-                                errorMsg += header[4] + " - invalid format,";
-                            }
-                        }
-                    }
-                    
-                    if (!medClaimInsurer.equals("") && medClaimInsurer.length() > 50) {
-                        errorMsg += header[5] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!medClaimPolicyNbr.equals("") && medClaimPolicyNbr.length() > 30) {
-                        errorMsg += header[6] + " cannot be longer than 30 characters,";
-                    }
-                    
-                    if (!medClaimBasis.equals("") && medClaimBasis.length() > 1000) {
-                        errorMsg += header[7] + " cannot be longer than 1000 characters,";
-                    }
-                    
-                    if (!medClaimRem.equals("") && medClaimRem.length() > 1000) {
-                        errorMsg += header[8] + " cannot be longer than 1000 characters,";
-                    }
-                }   //pass 
-
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemNonWicaClaim problemNonWicaClaim = new ProblemNonWicaClaim
-                            (finNum, jobKey, probKey, medClaimDate, medClaimLoss, medClaimInsurer, medClaimPolicyNbr, 
-                            medClaimBasis, medClaimRem);
-                    addProblemNonWicaClaim(problemNonWicaClaim);
-                    count++;
-                }    
-            }
-            errList.add("nonwicaclaim.csv:" + count);
-            csvReader.close();
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundExcepton
-        }
-        return errList;
-    }
-    
     
     /*Problem police report*/
     public static ArrayList<Integer> retrievePoliceReportIdsOfProblem(Problem problem) {
@@ -3469,6 +1945,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemPoliceReport(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_police_report WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Police Report ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemPoliceReports() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3485,154 +1978,6 @@ public class ProblemComplementsDAO {
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }     
-    }
-    
-    public static ArrayList<String> validateAndAddProblemPoliceReport(String problemPoliceReportFile) 
-            throws IOException{
-        
-        // Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try {
-            csvReader = new CSVReader(new FileReader(problemPoliceReportFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            // Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null) {
-                lineNum++;
-                // Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String policeRptDateStr = fields[3].trim();
-                String policeReptStation = fields[4].trim();
-                String policeRptPers = fields[5].trim();
-                String policeRptNbr = fields[6].trim();
-                String policeRptDetails = fields[7].trim();
-                String policeRptRem = fields[8].trim();
-                
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date policeRptDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-
-                if (policeRptDateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid jobkey, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this jobkey, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-                    
-                    if (!policeRptDateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(policeRptDateStr);
-                            policeRptDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid police report Date Format,";
-                        } 
-                    }
-                    
-                    if (!policeReptStation.equals("") && policeReptStation.length() > 50) {
-                        errorMsg += header[4] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!policeRptPers.equals("") && policeRptPers.length() > 200) {
-                        errorMsg += header[5] + " cannot be longer than 200 characters,";
-                    }
-                    
-                    if (!policeRptNbr.equals("") && policeRptNbr.length() > 30) {
-                        errorMsg += header[6] + " cannot be longer than 30 characters,";
-                    }
-                    
-                    if (!policeRptDetails.equals("") && policeRptDetails.length() > 1000) {
-                        errorMsg += header[7] + " cannot be longer than 1000 characters,";
-                    }
-                    
-                    if (!policeRptRem.equals("") && policeRptRem.length() > 200) {
-                        errorMsg += header[8] + " cannot be longer than 200 characters,";
-                    }
-                }   //pass 
-
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemPoliceReport problemPoliceReport = new ProblemPoliceReport
-                            (finNum, jobKey, probKey, policeRptDate, policeReptStation, policeRptPers, policeRptNbr, 
-                            policeRptDetails, policeRptRem);
-                    addProblemPoliceReport(problemPoliceReport);
-                    count++;
-                }    
-            }
-            errList.add("policereport.csv:" + count);
-            csvReader.close();
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundExcepton
-        }
-        return errList;
     }
     
     /*Problem other complaint*/
@@ -3769,176 +2114,24 @@ public class ProblemComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-
-    public static ArrayList<String> validateAndAddProblemOtherComplaints(String probOtherCompFile) throws IOException {
-        //Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try{
-            csvReader = new CSVReader(new FileReader(probOtherCompFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            //Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null){
-                lineNum++;
-                //Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String dateStr = fields[3].trim();
-                String agency = fields[4].trim();
-                String who = fields[5].trim();
-                String whoMore = fields[6].trim();
-                String mode = fields[7].trim();
-                String modeMore = fields[8].trim();
-                String details = fields[9].trim();
-                String rem = fields[10].trim();
-
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date complaintDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-                if (dateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                if (agency.equals("")) {
-                    errorMsg += header[4] + " is blank,";
-                    pass = false;
-                }
-                if (who.equals("")) {
-                    errorMsg += header[5] + " is blank,";
-                    pass = false;
-                }
-
-                
-
-
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-
-                    if (!dateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(dateStr);
-                            complaintDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid complaint lodged Date Format,";
-                        } 
-                    }
-
-                    if (!agency.equals("") && agency.length() > 50) {
-                        errorMsg += header[5] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!who.equals("") && who.length() > 12) {
-                        errorMsg += header[6] + " cannot be longer than 12 characters,";
-                    }
-                    
-                    if (!whoMore.equals("") && whoMore.length() > 50) {
-                        errorMsg += header[7] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!mode.equals("") && mode.length() > 30) {
-                        errorMsg += header[8] + " cannot be longer than 30 characters,";
-                    }
-                    
-                    if (!modeMore.equals("") && modeMore.length() > 200) {
-                        errorMsg += header[9] + " cannot be longer than 200 characters,";
-                    }
-                    
-                     if (!details.equals("") && details.length() > 1000) {
-                        errorMsg += header[10] + " cannot be longer than 1000 characters,";
-                    }
-
-                     if (!rem.equals("") && rem.length() > 200) {
-                        errorMsg += header[11] + " cannot be longer than 200 characters,";
-                    }
-
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemOtherComplaint problemOtherComplaint = new ProblemOtherComplaint
-                            (finNum, jobKey, probKey, complaintDate, agency, who, whoMore, mode, modeMore, details, rem);
-                    addProblemOtherComplaint (problemOtherComplaint);
-                    count++;
-                }  
-                
-            }
-            errList.add("othercomplaints.csv:" + count);
-            csvReader.close();
-                
-
-        }catch (FileNotFoundException ex) {
-            //fileNotFoundException
+ 
+    public static void deleteProblemOtherComplaint(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_other_complaint WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Other Compliant ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
         }
-        return errList;
     }
-        
+    
     public static void deleteAllProblemOtherComplaints() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -4115,229 +2308,21 @@ public class ProblemComplementsDAO {
         }
     }
 
-    public static ArrayList<String> validateAndAddProblemCaseDiscussions (String probCaseDiscussionsFile) throws IOException {
-        //Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try{
-            csvReader = new CSVReader(new FileReader(probCaseDiscussionsFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            //Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null){
-                lineNum++;
-                //Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String caseDissDateStr = fields[3].trim();
-                String caseDissTime = fields[4].trim();
-                String caseDissWhere = fields[5].trim();
-                String caseDissWhereMore = fields[6].trim();
-                String caseDissWorkerPresent = fields[7].trim();
-                String caseDissTWC1 = fields[8].trim();
-                String caseDissTWC2 = fields[9].trim();
-                String caseDissOtherPerson = fields[10].trim();
-                String caseDissTrasnslator = fields[11].trim();
-                String caseDissTopic = fields[12].trim();
-                String caseDissGist = fields[13].trim();
-                String caseDissAssist = fields[14].trim();
-                String caseDissCalculate = fields[15].trim();
-                String caseDissAction = fields[16].trim();
-                String caseDissRem = fields[17].trim();
-
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date caseDissDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-                if (caseDissDateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                if (caseDissWhere.equals("")) {
-                    errorMsg += header[5] + " is blank,";
-                    pass = false;
-                }
-                if (caseDissTWC1.equals("")) {
-                    errorMsg += header[8] + " is blank,";
-                    pass = false;
-                }
-                if (caseDissTopic.equals("")) {
-                    errorMsg += header[12] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-
-                    if (!caseDissDateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(caseDissDateStr);
-                            caseDissDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid Case Discussion Date Format,";
-                        } 
-                    }
-
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfDiscussWhere();
-                    boolean exit = false;
-                    for (String tmp: list) {
-                        if (tmp.equalsIgnoreCase(caseDissWhere)) {
-                            exit = true;
-                            break;
-                        }
-                    }
-                    
-                    if (!exit) {
-                        errorMsg += "invalid Case Discussion Location, ";
-                    }
-
-                    if (!caseDissTime.equals("") && caseDissTime.length() > 20) {
-                        errorMsg += header[5] + " cannot be longer than 20 characters,";
-                    }
-                    
-                    if (!caseDissWhere.equals("") && caseDissWhere.length() > 30) {
-                        errorMsg += header[6] + " cannot be longer than 30 characters,";
-                    }
-                    
-                    if (!caseDissWhereMore.equals("") && caseDissWhereMore.length() > 50) {
-                        errorMsg += header[7] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!caseDissWorkerPresent.equals("")) {
-                        if (caseDissWorkerPresent.equalsIgnoreCase("Yes") || 
-                                caseDissWorkerPresent.equalsIgnoreCase("No")) {            
-                        } else {
-                            errorMsg += header[8] + " can only be 'Yes' or 'No',";
-                        }
-                    }
-                    
-                    if (!caseDissTWC1.equals("") && caseDissTWC1.length() > 200) {
-                        errorMsg += header[9] + " cannot be longer than 200 characters,";
-                    }
-                    
-                     if (!caseDissTWC2.equals("") && caseDissTWC2.length() > 200) {
-                        errorMsg += header[10] + " cannot be longer than 200 characters,";
-                    }
-
-                     if (!caseDissOtherPerson.equals("") && caseDissOtherPerson.length() > 200) {
-                        errorMsg += header[11] + " cannot be longer than 200 characters,";
-                    }
-
-                    if (!caseDissTrasnslator.equals("") && caseDissTrasnslator.length() > 50) {
-                        errorMsg += header[12] + " cannot be longer than 50 characters,";
-                    }
-
-                    if (!caseDissTopic.equals("") && caseDissTopic.length() > 200) {
-                        errorMsg += header[13] + " cannot be longer than 200 characters,";
-                    }
-
-                    if (!caseDissGist.equals("") && caseDissGist.length() > 1000) {
-                        errorMsg += header[14] + " cannot be longer than 1000 characters,";
-                    }
-
-                    if (!caseDissAssist.equals("") && caseDissAssist.length() > 1000) {
-                        errorMsg += header[15] + " cannot be longer than 1000 characters,";
-                    }
-
-                    if (!caseDissCalculate.equals("") && caseDissCalculate.length() > 1000) {
-                        errorMsg += header[16] + " cannot be longer than 1000 characters,";
-                    }
-
-                    if (!caseDissAction.equals("") && caseDissAction.length() > 500) {
-                        errorMsg += header[17] + " cannot be longer than 500 characters,";
-                    }
-
-                    if (!caseDissRem.equals("") && caseDissRem.length() > 500) {
-                        errorMsg += header[18] + " cannot be longer than 500 characters,";
-                    }
-
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemCaseDiscussion problemCaseDiscussion = new ProblemCaseDiscussion
-                            (finNum, jobKey, probKey, caseDissDate, caseDissTime, caseDissWhere, 
-                            caseDissWhereMore, caseDissWorkerPresent, caseDissTWC1, caseDissTWC2, 
-                            caseDissOtherPerson, caseDissTrasnslator, caseDissTopic, caseDissGist, 
-                            caseDissAssist, caseDissCalculate, caseDissAction, caseDissRem);
-                    addProblemCaseDiscussion (problemCaseDiscussion);
-                    count++;
-                }  
-                
-            }
-            errList.add("casediscussion.csv:" + count);
-            csvReader.close();
-                
-
-        }catch (FileNotFoundException ex) {
-            //fileNotFoundException
+    public static void deleteProblemCaseDiscussion(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_case_discussion WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Case Discussion ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
         }
-        return errList;
     }
     
     public static void deleteAllProblemCaseDiscussions() {
@@ -4482,153 +2467,21 @@ public class ProblemComplementsDAO {
         }
     }
     
-    public static ArrayList<String> validateAndAddProblemHospital(String probHospitalFile) throws IOException {
-        //Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try{
-            csvReader = new CSVReader(new FileReader(probHospitalFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            //Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null){
-                lineNum++;
-                //Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String dateStr = fields[3].trim();
-                String hospName = fields[4].trim();
-                String hospNameMore = fields[5].trim();
-                String doctor = fields[6].trim();
-                String rem = fields[7].trim();
-
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date hospDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-                if (dateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                if (hospName.equals("")) {
-                    errorMsg += header[4] + " is blank,";
-                    pass = false;
-                }
-                
-                
-
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-
-                    if (!dateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(dateStr);
-                            hospDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid Updated Date Format,";
-                        } 
-                    }
-
-                    if (!hospName.equals("") && hospName.length() > 30) {
-                        errorMsg += header[5] + " cannot be longer than 30 characters,";
-                    }
-                    
-                    if (!hospNameMore.equals("") && hospNameMore.length() > 50) {
-                        errorMsg += header[6] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!doctor.equals("") && doctor.length() > 200) {
-                        errorMsg += header[7] + " cannot be longer than 200 characters,";
-                    }
-                    
-                    if (!rem.equals("") && rem.length() > 200) {
-                        errorMsg += header[8] + " cannot be longer than 200 characters,";
-                    }
-                   
-
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemHospital problemHospital = new ProblemHospital
-                            (finNum, jobKey, probKey, hospDate, hospName, hospNameMore, doctor, rem);
-                    addProblemHospital (problemHospital);
-                    count++;
-                }  
-                
-            }
-            errList.add("hospital.csv:" + count);
-            csvReader.close();    
-
-        }catch (FileNotFoundException ex) {
-            //fileNotFoundException
+    public static void deleteProblemHospital(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_hospital WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Hospital ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
         }
-        return errList;
     }
     
     public static void deleteAllProblemHospitals() {
@@ -4776,165 +2629,21 @@ public class ProblemComplementsDAO {
         }
     }
 
-    public static ArrayList<String> validateAndAddProblemMCStatus(String probMCStatusFile) throws IOException {
-        //Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try{
-            csvReader = new CSVReader(new FileReader(probMCStatusFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            //Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null){
-                lineNum++;
-                //Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String dateStr = fields[3].trim();
-                String mcStatus = fields[4].trim();
-                String mcStatusMore = fields[5].trim();
-                String expDateStr = fields[6].trim();
-                String mcDaysCumStr = fields[7].trim();
-                String mcRem = fields[8].trim();
-
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date mcDate = null;
-                java.sql.Date expDate = null;
-                int mcDaysCum = 0;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-                if (dateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                if (mcStatus.equals("")) {
-                    errorMsg += header[4] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-
-                    if (!dateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(dateStr);
-                            mcDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid Updated Date Format,";
-                        } 
-                    }
-
-                    if (!expDateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(expDateStr);
-                            expDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid Expiry Date Format,";
-                        } 
-                    }
-
-                    if (!mcStatus.equals("") && mcStatus.length() > 20) {
-                        errorMsg += header[5] + " cannot be longer than 20 characters,";
-                    }
-                    
-                    if (!mcStatusMore.equals("") && mcStatusMore.length() > 50) {
-                        errorMsg += header[6] + " cannot be longer than 50 characters,";
-                    }
-                   
-                    if (!mcRem.equals("") && mcRem.length() > 200) {
-                        errorMsg += header[8] + " cannot be longer than 200 characters,";
-                    }
-                   
-                    if (!mcDaysCumStr.equals("")) {
-                        try {
-                            mcDaysCum = Integer.parseInt(mcDaysCumStr);
-                        } catch (Exception ex) {
-                            errorMsg += header[7] + " must be an integer,";
-                        }    
-                    }
-
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemMCStatus problemMCStatus = new ProblemMCStatus
-                            (finNum, jobKey, probKey, mcDate, mcStatus, mcStatusMore, expDate, mcDaysCum, mcRem);
-                    addProblemMCStatus (problemMCStatus);
-                    count++;
-                }
-            }
-            errList.add("mcstatus.csv:" + count);
-            csvReader.close();
-                
-        }catch (FileNotFoundException ex) {
-            //fileNotFoundException
+    public static void deleteProblemMCStatus(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_MC_status WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem MC Status ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
         }
-        return errList;
     }
     
     public static void deleteAllProblemMCStatus() {
@@ -5106,205 +2815,23 @@ public class ProblemComplementsDAO {
         }
     }
     
-    public static ArrayList<String> validateAndAddProblemR2R (String probR2RFile) throws IOException {
-        //Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try{
-            csvReader = new CSVReader(new FileReader(probR2RFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            //Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null){
-                lineNum++;
-                //Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String r2rDateStr = fields[3].trim();
-                String r2rTime = fields[4].trim();
-                String r2rHosp = fields[5].trim();
-                String r2rDept = fields[6].trim();
-                String r2r1 = fields[7].trim();
-                String r2r2 = fields[8].trim();
-                String purpose = fields[9].trim();
-                String preApptNotes = fields[10].trim();
-                String postApptNotes = fields[11].trim();
-                String feedback = fields[12].trim();
-                String medCostStr = fields[13].trim();
-                String outlayStr = fields[14].trim();
-                
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date r2rDate = null;
-                double medCost = 0.0;
-                double outlay = 0.0;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-                if (r2rDateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                if (r2rHosp.equals("")) {
-                    errorMsg += header[5] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-
-                    if (!r2rDateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(r2rDateStr);
-                            r2rDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid R2R Date Format,";
-                        } 
-                    }
-                    
-                    if (!medCostStr.equals("")) {
-                        if (!medCostStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                        errorMsg += header[14] + " must have maximum 2 decimal places,";
-                        } else {
-                            try {
-                                medCost = Double.parseDouble(medCostStr);
-                            } catch (Exception ex) {
-                                errorMsg += header[14] + " - invalid format,";
-                            }
-                        }
-                    }    
-                    
-                    if (!outlayStr.equals("")) {
-                        if (!outlayStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                            errorMsg += header[15] + " must have maximum 2 decimal places,";
-                        } else {
-                            try {
-                                medCost = Double.parseDouble(medCostStr);
-                            } catch (Exception ex) {
-                                errorMsg += header[14] + " - invalid format,";
-                            }
-                        }    
-                    }
-
-                    if (!r2rTime.equals("") && r2rTime.length() > 20) {
-                        errorMsg += header[5] + " cannot be longer than 20 characters,";
-                    }
-                    
-                    if (!r2rHosp.equals("") && r2rHosp.length() > 20) {
-                        errorMsg += header[6] + " cannot be longer than 20 characters,";
-                    }
-                    
-                    if (!r2rDept.equals("") && r2rDept.length() > 50) {
-                        errorMsg += header[7] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!r2r1.equals("") && r2r1.length() > 20) {
-                        errorMsg += header[8] + " cannot be longer than 20 characters,";
-                    }
-                    
-                    if (!r2r2.equals("") && r2r2.length() > 20) {
-                        errorMsg += header[9] + " cannot be longer than 20 characters,";
-                    }
-                    
-                     if (!purpose.equals("") && purpose.length() > 50) {
-                        errorMsg += header[10] + " cannot be longer than 50 characters,";
-                    }
-
-                     if (!preApptNotes.equals("") && preApptNotes.length() > 200) {
-                        errorMsg += header[11] + " cannot be longer than 200 characters,";
-                    }
-
-                    if (!postApptNotes.equals("") && postApptNotes.length() > 200) {
-                        errorMsg += header[12] + " cannot be longer than 200 characters,";
-                    }
-
-                    if (!feedback.equals("") && feedback.length() > 200) {
-                        errorMsg += header[13] + " cannot be longer than 200 characters,";
-                    }
-
-                    
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemR2R problemR2R = new ProblemR2R
-                            (finNum, jobKey, probKey, r2rDate, r2rTime, r2rHosp, r2rDept, r2r1, r2r2, purpose, preApptNotes, postApptNotes, feedback, medCost, outlay);
-                    addProblemR2R (problemR2R);
-                    count++;
-                }  
-            }    
-            errList.add("r2r.csv:" + count);
-            csvReader.close();    
-
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundException
+    public static void deleteProblemR2R(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_R2R WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem R2R ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
         }
-        return errList;
     }
-     
+    
     public static void deleteAllProblemR2Rs() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -5445,6 +2972,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemLawyer(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_lawyer WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Lawyer ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemLawyers() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -5461,169 +3005,6 @@ public class ProblemComplementsDAO {
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }     
-    }
-    
-    public static ArrayList<String> validateAndAddProblemLawyer (String probLawyerFile) throws IOException {
-        //Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try{
-            csvReader = new CSVReader(new FileReader(probLawyerFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            //Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null){
-                lineNum++;
-                //Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String dateStr = fields[3].trim();
-                String firmName = fields[4].trim();
-                String firmNameMore = fields[5].trim();
-                String lawyerName = fields[6].trim();
-                String rem = fields[7].trim();
-               
-                
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date lawyerDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-                if (dateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                if (firmName.equals("")) {
-                    errorMsg += header[4] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-
-                    if (!dateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(dateStr);
-                            lawyerDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid Updated Lawyer Date Format,";
-                        } 
-                    }
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfLawFirms();
-                    boolean exit = false;
-                    for (String tmp: list) {
-                        if (tmp.equalsIgnoreCase(firmName)) {
-                            exit = true;
-                            break;
-                        }
-                    }
-                    
-                    if (!exit) {
-                        errorMsg += "invalid Law Firm Name, ";
-                    }
-                    
-                    
-
-                    if (!firmName.equals("") && firmName.length() > 30) {
-                        errorMsg += header[5] + " cannot be longer than 30 characters,";
-                    }
-                    
-                    if (!firmNameMore.equals("") && firmNameMore.length() > 50) {
-                        errorMsg += header[6] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!lawyerName.equals("") && lawyerName.length() > 200) {
-                        errorMsg += header[7] + " cannot be longer than 200 characters,";
-                    }
-                    
-                    if (!rem.equals("") && rem.length() > 200) {
-                        errorMsg += header[8] + " cannot be longer than 200 characters,";
-                    }
-                    
-                    
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemLawyer problemLawyer = new ProblemLawyer
-                            (finNum, jobKey, probKey, lawyerDate, firmName, firmNameMore, lawyerName, rem);
-                    addProblemLawyer (problemLawyer);
-                    count++;
-                }
-                
-            }
-            errList.add("lawyer.csv:" + count);
-            csvReader.close();
-                
-
-        }catch (FileNotFoundException ex) {
-            //fileNotFoundException
-        }
-        return errList;
     }
     
     /*Problem Case Milestone Non criminal*/
@@ -5745,163 +3126,23 @@ public class ProblemComplementsDAO {
         }
     }
     
-    public static ArrayList<String> validateAndAddProblemCaseMilestoneNC (String probNCFile) throws IOException {
-        //Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try{
-            csvReader = new CSVReader(new FileReader(probNCFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            //Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null){
-                lineNum++;
-                //Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String dateStr = fields[3].trim();
-                String reached = fields[4].trim();
-                String reachedMore = fields[5].trim();
-                String rem = fields[6].trim();
-               
-                
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date ncDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-                if (dateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                if (reached.equals("")) {
-                    errorMsg += header[4] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-
-                    if (!dateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(dateStr);
-                            ncDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid Milestone NC Reached Date Format,";
-                        } 
-                    }
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfMilestoneNonCriminal();
-                    boolean exit = false;
-                    for (String tmp: list) {
-                        if (tmp.equalsIgnoreCase(reached)) {
-                            exit = true;
-                            break;
-                        }
-                    }
-                    
-                    if (!exit) {
-                        errorMsg += "invalid Milestone Name, ";
-                    }
-                    
-                    
-
-                    if (!reached.equals("") && reached.length() > 50) {
-                        errorMsg += header[5] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!reachedMore.equals("") && reachedMore.length() > 200) {
-                        errorMsg += header[6] + " cannot be longer than 200 characters,";
-                    }
-                    
-                    if (!rem.equals("") && rem.length() > 200) {
-                        errorMsg += header[7] + " cannot be longer than 200 characters,";
-                    }
-                    
-                    
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemCaseMilestoneNC problemCaseMilestoneNC = new ProblemCaseMilestoneNC
-                            (finNum, jobKey, probKey,ncDate, reached, reachedMore, rem);
-                    addProblemCaseMilestoneNC (problemCaseMilestoneNC);
-                    count++;
-                }  
-            }    
-            errList.add("casemilestonenc.csv:" + count);
-            csvReader.close();
-                
-
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundException
+    public static void deleteProblemCaseMilestoneNC(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_casemilestone_noncriminal WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem CaseMilestone NCR ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
         }
-        return errList;
     }
-   
+
     public static void deleteAllProblemCaseMilestoneNCs() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -6045,173 +3286,21 @@ public class ProblemComplementsDAO {
         }
     }
     
-    public static ArrayList<String> validateAndAddProblemCaseMilestoneCR (String probCRFile) throws IOException {
-        //Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try{
-            csvReader = new CSVReader(new FileReader(probCRFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            //Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null){
-                lineNum++;
-                //Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String dateStr = fields[3].trim();
-                String reached = fields[4].trim();
-                String reachedMore = fields[5].trim();
-                String charges = fields[6].trim();
-                String sentence = fields[7].trim();
-                String rem = fields[8].trim();
-               
-                
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date crDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-                if (dateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                if (reached.equals("")) {
-                    errorMsg += header[4] + " is blank,";
-                    pass = false;
-                }
-
-                
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-
-                    if (!dateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(dateStr);
-                            crDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid Milestone CR Reached Date Format,";
-                        } 
-                    }
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfMilestoneCriminal();
-                    boolean exit = false;
-                    for (String tmp: list) {
-                        if (tmp.equalsIgnoreCase(reached)) {
-                            exit = true;
-                            break;
-                        }
-                    }
-                    
-                    if (!exit) {
-                        errorMsg += "invalid Milestone Name, ";
-                    }
-                    
-                    
-
-                    if (!reached.equals("") && reached.length() > 50) {
-                        errorMsg += header[5] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!reachedMore.equals("") && reachedMore.length() > 200) {
-                        errorMsg += header[6] + " cannot be longer than 200 characters,";
-                    }
-                    
-                    if (!charges.equals("") && charges.length() > 200) {
-                        errorMsg += header[7] + " cannot be longer than 200 characters,";
-                    }
-
-                    if (!sentence.equals("") && sentence.length() > 200) {
-                        errorMsg += header[8] + " cannot be longer than 200 characters,";
-                    }
-                    
-                    if (!rem.equals("") && rem.length() > 200) {
-                        errorMsg += header[9] + " cannot be longer than 200 characters,";
-                    }
-                    
-                    
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemCaseMilestoneCR problemCaseMilestoneCR = new ProblemCaseMilestoneCR
-                            (finNum, jobKey, probKey,crDate, reached, reachedMore, charges, sentence, rem);
-                    addProblemCaseMilestoneCR (problemCaseMilestoneCR);
-                    count++;
-                }  
-            }    
-            errList.add("casemilestonecr.csv:" + count);
-            csvReader.close();
-                
-
-        }catch (FileNotFoundException ex) {
-            //fileNotFoundException
+    public static void deleteProblemCaseMilestoneCR(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_casemilestone_criminal WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "ProblemCaseMileStone CR ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
         }
-        return errList;
     }
 
     public static void deleteAllProblemCaseMilestoneCRs() {
@@ -6364,6 +3453,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemTTR(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_ttr WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem TTR ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemTTRs() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -6380,185 +3486,6 @@ public class ProblemComplementsDAO {
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }     
-    }
-    
-    public static ArrayList<String> validateAndAddProblemTTR (String probTTRFile) throws IOException {
-        //Attributes
-        ArrayList<String> errList = new ArrayList<String>();
-        CSVReader csvReader = null;
-        try{
-            csvReader = new CSVReader(new FileReader(probTTRFile));
-            String[] header = csvReader.readNext();
-            String[] fields;
-            int lineNum = 1;
-            String errorMsg = "";
-            int count = 0;
-
-            //Loops through each line of the csv with an array of String
-            while ((fields = csvReader.readNext()) != null){
-                lineNum++;
-                //Assigning each field with its appropriate name
-                String finNum = fields[0].trim();
-                String jobKeyStr = fields[1].trim();
-                String probKeyStr = fields[2].trim();
-                String dateStr = fields[3].trim();
-                String status = fields[4].trim();
-                String statusMore = fields[5].trim();
-                String departureDateStr = fields[6].trim();
-                String nameNew = fields[7].trim();
-                String newJob = fields[8].trim();
-                String rem = fields[9].trim();
-               
-                
-                int jobKey = 0;
-                int probKey = 0;
-                java.sql.Date updatedDate = null;
-                java.sql.Date depatureDate = null;
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                
-                /**
-                 * Validations for empty fields
-                 */
-                boolean pass = true; //assume validation pass first;
-                if (finNum.equals("")) {
-                    errorMsg += header[0] + " is blank,";
-                    pass = false;
-                }
-                
-                if (jobKeyStr.equals("")) {
-                    errorMsg += header[1] + " is blank,";
-                    pass = false;
-                }
-                if (probKeyStr.equals("")) {
-                    errorMsg += header[2] + " is blank,";
-                    pass = false;
-                }
-                if (dateStr.equals("")) {
-                    errorMsg += header[3] + " is blank,";
-                    pass = false;
-                }
-                if (status.equals("")) {
-                    errorMsg += header[4] + " is blank,";
-                    pass = false;
-                }
-                
-                //proceed only after empty fields validation is passed
-                if (pass) { 
-
-                    // check for any existing worker  with the same finNum. 
-                    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                    if (worker == null) {
-                        errorMsg += "invalid FinNumber, ";
-                    }
-                    
-                    try {
-                        jobKey = Integer.parseInt(jobKeyStr);
-                        Job job = JobDAO.retrieveJobByJobId(jobKey);
-                        if (job == null) {
-                            errorMsg += "invalid job key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this job key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid job key, ";
-                    }
-                    
-                    try {
-                        probKey = Integer.parseInt(probKeyStr);
-                        Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-                        if (problem == null) {
-                            errorMsg += "invalid problem key, ";
-                        } else {
-                            if (worker != null && 
-                                    !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
-                                errorMsg += "invalid finNumber for this problem key, ";
-                            }
-                        }
-                    } catch (Exception ex) {
-                        errorMsg += "invalid problem key, ";
-                    }
-
-                    if (!dateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(dateStr);
-                            updatedDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid Updated TTR Date Format,";
-                        } 
-                    }
-                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfTTRStatus();
-                    boolean exit = false;
-                    for (String tmp: list) {
-                        if (tmp.equalsIgnoreCase(status)) {
-                            exit = true;
-                            break;
-                        }
-                    }
-                    
-                    if (!exit) {
-                        errorMsg += "invalid TTR Status, ";
-                    }
-                    
-                    
-
-                    if (!status.equals("") && status.length() > 50) {
-                        errorMsg += header[5] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!statusMore.equals("") && statusMore.length() > 200) {
-                        errorMsg += header[6] + " cannot be longer than 200 characters,";
-                    }
-                    
-                    if (!departureDateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(dateStr);
-                            depatureDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid depatureDate Date Format,";
-                        } 
-                    }
-
-
-                    if (!nameNew.equals("") && nameNew.length() > 50) {
-                        errorMsg += header[8] + " cannot be longer than 50 characters,";
-                    }
-
-                    if (!newJob.equals("") && newJob.length() > 200) {
-                        errorMsg += header[9] + " cannot be longer than 50 characters,";
-                    }
-                    
-                    if (!rem.equals("") && rem.length() > 200) {
-                        errorMsg += header[10] + " cannot be longer than 200 characters,";
-                    }
-                    
-                    
-                } //pass
-                
-                // if there is an error, the line number of the error and its relevant message is 
-                // added into the errorList
-                if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
-                    errorMsg = ""; // reset errorMsg variable
-                } // if there is no error, a new Worker object is created and added to the workerList
-                else {
-                    errorMsg = ""; // reset errorMsg variable
-                    ProblemTTR problemTTR = new ProblemTTR
-                            (finNum, jobKey, probKey, updatedDate, status, statusMore, depatureDate, nameNew, newJob, rem);
-                    addProblemTTR (problemTTR);
-                    count++;
-                } 
-                
-            }
-            errList.add("ttr.csv:" + count);
-            csvReader.close();          
-
-        } catch (FileNotFoundException ex) {
-            //fileNotFoundException
-        }
-        return errList;
     }
 
     /*general*/

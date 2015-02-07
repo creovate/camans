@@ -4,14 +4,18 @@
  */
 package camans.controller;
 
+import au.com.bytecode.opencsv.CSVWriter;
 import camans.dao.*;
 import camans.entity.*;
+import camans.utility.DataValidator;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,9 +49,11 @@ public class processBootstrap extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             
+            /* BOOTSTRAP DELETION
             try {
                 //delete all existing data from database
                 //worker & its 13 complements
+                
                 WorkerDAO.deleteAll();
                 WorkerComplementsDAO.deleteAll();
                 //job & its 9 complements
@@ -56,6 +62,8 @@ public class processBootstrap extends HttpServlet {
                 //problem & its 23 complements
                 ProblemDAO.deleteAll();
                 ProblemComplementsDAO.deleteAll();
+                //benefit
+                BenefitDAO.deleteAll();
                 //user & audit log 
                 //UserDAO.deleteAllUsers();
                 //UserAuditLogDAO.deleteAll();
@@ -74,7 +82,7 @@ public class processBootstrap extends HttpServlet {
                 out.println("Bootstrap Failed - Unable to delete existing data from database: " 
                         + ex.getMessage());
                 return;
-            }
+            }*/
             
             // Create a factory for disk-based file items
             DiskFileItemFactory diskFactory = new DiskFileItemFactory();
@@ -111,9 +119,9 @@ public class processBootstrap extends HttpServlet {
             // delete the files inside the directory
             FileUtils.cleanDirectory(file);
             filePath = file.getAbsolutePath() + File.separator;
-            file = new File(filePath + fileName);
+            File uploadFile = new File(filePath + fileName);
             // Write uploaded file to disk
-            fItem.write(file);
+            fItem.write(uploadFile);
             
             /* Extraction of zip content */
             // Input stream for the uploaded file
@@ -143,75 +151,64 @@ public class processBootstrap extends HttpServlet {
                 fileInStream.close();
             }
             
+            //folder to store the err data
+            String folderErrName = "dataErr";
+            //retrieve filePath of the app build folder
+            String fileErrPath = getServletContext().getRealPath("/");
+            // Creating folder to store the zip file
+            File fileErr = new File(fileErrPath + File.separator + folderErrName);
+            if (!fileErr.exists()) {fileErr.mkdir();} //data Error file
+            // delete the files inside the directory
+            FileUtils.cleanDirectory(fileErr);    
             
             //worker, job, problem
             String workerFile = filePath + "worker.csv";
+            String workerErrFile = fileErr.getAbsolutePath() + File.separator + "workerErr.csv";
             String jobFile = filePath + "job.csv";
+            String jobErrFile = fileErr.getAbsolutePath() + File.separator + "jobErr.csv";
             String problemFile = filePath + "problem.csv";
-            //worker complements
-            String workerNickNamesFile = filePath + "nickname.csv";
-            String workerPassportsFile = filePath + "passport.csv";
-            String workerHomeCountryPhFile = filePath + "homecountryph.csv";
-            String workerSgPhFile = filePath + "sgph.csv";
-            String workerHomeCountryAddressFile = filePath + "homecountryaddress.csv";
-            String workerSgAddressFile = filePath + "sgaddress.csv";
-            String workerDigitalContactFile = filePath + "digitalcontact.csv";
-            String workerNextKinFile = filePath + "nextofkin.csv";
-            String workerFamilyMemberFile = filePath + "familymember.csv";
-            String workerFriendFile = filePath + "friend.csv";
-            String workerLanguageFile = filePath + "language.csv";
-            String workerBankAcctFile = filePath + "bankacct.csv";
-            //job complements
-            String jobPassDetailsFile = filePath + "passdetails.csv";
-            String jobIPADetailsFile = filePath + "ipa.csv";
-            String jobVerbalAssuranceFile = filePath + "verbalassurance.csv";
-            String jobEmploymentContractFile = filePath + "employmentcontract.csv";
-            String jobIntermediaryAgentFile = filePath + "intermediaryagent.csv";
-            String jobEmployerFile = filePath + "employer.csv";
-            String jobWorkplaceFile = filePath + "workplace.csv";
-            String jobWorkHistoryFile = filePath + "workhistory.csv";
-            String jobAccomodationFile = filePath + "accomodation.csv";
-            //problem complements
-            String probAggravatingIssueFile = filePath + "aggravatingissue.csv";
-            String probLeadCaseWorkerFile = filePath + "leadcaseworker.csv";
-            String probAuxiliaryCaseWorkerFile = filePath + "auxiliaryworker.csv";
-            String probSalaryRelatedHistoryFile = filePath + "salaryrelatedhistory.csv";
-            String probInjuryFile = filePath + "injury.csv";
-            String probIllnessFile = filePath + "illness.csv";
-            String probOtherProblemFile = filePath + "otherproblems.csv";
-            String probSalaryClaimFile = filePath + "salaryclaim.csv";
-            String probWicaFile = filePath + "wica.csv";
-            String probWicClaimFile = filePath + "wicaclaim.csv";
-            String probNonWicaFile = filePath + "nonwicaclaim.csv";
-            String probPoliceReportFile = filePath + "policereport.csv";
-            String probOtherComplaintFile = filePath + "othercomplaints.csv";
-            String probCaseDiscussionFile = filePath + "casediscussion.csv";
-            String probHospitalFile = filePath + "hospital.csv";
-            String probMCStatusFile = filePath + "mcstatus.csv";
-            String probR2RFile = filePath + "r2r.csv";
-            String probLawyerFile = filePath + "lawyer.csv";
-            String probCaseMileStoneNC = filePath + "casemilestonenc.csv";
-            String probCaseMileStoneCR = filePath + "casemilestonecr.csv";
-            String probTTRFile = filePath + "ttr.csv";
+            String problemErrFile = fileErr.getAbsolutePath() + File.separator + "problemErr.csv";
             
-            HashMap<String, ArrayList<String>> errList = new HashMap<String, ArrayList<String>>();
-            HashMap<String, Integer> successList = new HashMap<String, Integer>();
-            
-            ArrayList<String> tmp = null;
-            try {
-                tmp = WorkerDAO.validateAndAddWorker(workerFile);
-                if (!tmp.isEmpty()) {
-                    errList.put("worker.csv", tmp);
-                } 
-                tmp = JobDAO.validateAndAddJob(jobFile);
-                if (!tmp.isEmpty()) {
-                    errList.put("job.csv", tmp);
+            ArrayList<String> fileList = new ArrayList<String>();
+            File[] filelistnames = file.listFiles();
+            for (int i = 0; i < filelistnames.length; i++) {
+                String tmpname = filelistnames[i].getName();
+                if (tmpname.endsWith(".csv") && !tmpname.equals("worker.csv") && !tmpname.equals("job.csv")
+                        && !tmpname.equals("problem.csv")) {
+                    fileList.add(tmpname);
                 }    
-                tmp = ProblemDAO.validateAndAddProblem(problemFile);
-                if (!tmp.isEmpty()) {
-                    errList.put("problem.csv", tmp);
+            }
+            
+            HashMap<String, Integer> successList = new HashMap<String, Integer>();
+            HashMap<String, Integer> errCountList = new HashMap<String, Integer> ();
+            try {
+                //tmp = WorkerDAO.validateAndAddWorker(workerFile, workerErrFile);
+                String errCountMsg = WorkerDAO.validateAndAddWorker(workerFile, workerErrFile);
+                if (errCountMsg != null) {
+                    String errFileName = errCountMsg.substring(0, errCountMsg.indexOf(":"));
+                    int errCount = Integer.parseInt(errCountMsg.substring(errCountMsg.indexOf(":")+1));
+                    if (errCount != 0) {
+                        errCountList.put(errFileName, errCount);
+                    }
                 }
                 
+                errCountMsg = JobDAO.validateAndAddJob(jobFile, jobErrFile);
+                if (errCountMsg != null) {
+                    String errFileName = errCountMsg.substring(0, errCountMsg.indexOf(":"));
+                    int errCount = Integer.parseInt(errCountMsg.substring(errCountMsg.indexOf(":")+1));
+                    if (errCount != 0) {
+                        errCountList.put(errFileName, errCount);
+                    }
+                }
+                
+                errCountMsg = ProblemDAO.validateAndAddProblem(problemFile, problemErrFile);
+                if (errCountMsg != null) {
+                    String errFileName = errCountMsg.substring(0, errCountMsg.indexOf(":"));
+                    int errCount = Integer.parseInt(errCountMsg.substring(errCountMsg.indexOf(":")+1));
+                    if (errCount != 0) {
+                        errCountList.put(errFileName, errCount);
+                    }
+                }
 
                 if (ProblemDAO.problemList != null && !ProblemDAO.problemList.isEmpty()) {
                     int probCount = 0;
@@ -242,80 +239,162 @@ public class processBootstrap extends HttpServlet {
                                                             workerCount++;
                                                             JobDAO.addJob(worker, tmpJob);
                                                             jobCount++;
-                                                            ProblemDAO.addProblem(worker, tmpJob, problem);
+                                                            ProblemDAO.addProblemData(worker, tmpJob, problem);
                                                             probCount++;
                                                         } else { //worker does not exit in list either
-                                                            ArrayList<String> tmpList = errList.get("problem.csv");
-                                                            if (tmpList == null) {
-                                                                tmpList = new ArrayList<String>();
+                                                           
+                                                            int errCount = 0;
+                                                            if (errCountList.containsKey("problem.csv")) {
+                                                                errCount = errCountList.get("problem.csv");
                                                             }
-                                                            tmpList.add(finNum + ":" + " invaild FinNumber,");
-                                                            errList.put("problem.csv", tmpList);
-                                                            tmpList = errList.get("job.csv");
-                                                            if (tmpList == null) {
-                                                                tmpList = new ArrayList<String>();
+                                                            
+                                                            errCount++;
+                                                            CSVWriter csvWriter = null;
+                                                            csvWriter = new CSVWriter(new FileWriter(problemErrFile, true));
+                                                            String str = finNum + "," + problem.getJobKey() + "," + 
+                                                                    problem.getProbKey() + "," + problem.getProblemRegisteredDate() +
+                                                                    "," + problem.getProblem() + "," + problem.getProblemMore() +
+                                                                    "," + problem.getProblemRemark() + "," + "invalid FinNumber";
+                                                            String[] record = str.split(",");
+                                                            csvWriter.writeNext(record);
+                                                            csvWriter.close();
+                                                            errCountList.put("problem.csv", errCount);
+                                                            
+                                                            errCount = 0;
+                                                            if (errCountList.containsKey("job.csv")) {
+                                                                errCount = errCountList.get("job.csv");
                                                             }
-                                                            tmpList.add(finNum + ":" + " invaild FinNumber,");
-                                                            errList.put("job.csv", tmpList);
+                                                            errCount++;
+                                                            csvWriter = null;
+                                                            csvWriter = new CSVWriter(new FileWriter(jobErrFile, true));
+                                                            str = finNum + "," + tmpJob.getJobKey() + "," + tmpJob.getEmployerName() +
+                                                                    "," + tmpJob.getWorkPassType() + "," + tmpJob.getWorkPassMore() +
+                                                                    "," + tmpJob.getJobSector() + "," + tmpJob.getJobSectorMore() +
+                                                                    "," + tmpJob.getOccupation() + "," + tmpJob.getJobStartDate() +
+                                                                    "," + tmpJob.getJobEndDate() + "," + tmpJob.getJobTJS() +
+                                                                    "," + tmpJob.getJobRemark() + "," + "invalid FinNumber";
+                                                            String[] record2 = str.split(",");
+                                                            csvWriter.writeNext(record2);
+                                                            csvWriter.close();
+                                                            errCountList.put("job.csv", errCount);
+                                                                    
                                                         }
-                                                    } else {
-                                                        ArrayList<String> tmpList = errList.get("problem.csv");
-                                                        if (tmpList == null) {
-                                                            tmpList = new ArrayList<String>();
+                                                    } else { //no worker list
+                                                        int errCount = 0;
+                                                        if (errCountList.containsKey("problem.csv")) {
+                                                            errCount = errCountList.get("problem.csv");
                                                         }
-                                                        tmpList.add(finNum + ":" + " invaild FinNumber,");
-                                                        errList.put("problem.csv", tmpList);
-                                                        tmpList = errList.get("job.csv");
-                                                        if (tmpList == null) {
-                                                            tmpList = new ArrayList<String>();
+                                                        errCount++;
+                                                        CSVWriter csvWriter = null;
+                                                        csvWriter = new CSVWriter(new FileWriter(problemErrFile, true));
+                                                        String str = finNum + "," + problem.getJobKey() + "," + 
+                                                                problem.getProbKey() + "," + problem.getProblemRegisteredDate() +
+                                                                "," + problem.getProblem() + "," + problem.getProblemMore() +
+                                                                "," + problem.getProblemRemark() + "," + "invalid FinNumber";
+                                                        String[] record = str.split(",");
+                                                        csvWriter.writeNext(record);
+                                                        csvWriter.close();
+                                                        errCountList.put("problem.csv", errCount);
+
+                                                        errCount = 0;
+                                                        if (errCountList.containsKey("job.csv")) {
+                                                            errCount = errCountList.get("job.csv");
                                                         }
-                                                        tmpList.add(finNum + ":" + " invaild FinNumber,");
-                                                        errList.put("job.csv", tmpList);
+                                                        errCount++;
+                                                        csvWriter = null;
+                                                        csvWriter = new CSVWriter(new FileWriter(jobErrFile, true));
+                                                        str = finNum + "," + tmpJob.getJobKey() + "," + tmpJob.getEmployerName() +
+                                                                "," + tmpJob.getWorkPassType() + "," + tmpJob.getWorkPassMore() +
+                                                                "," + tmpJob.getJobSector() + "," + tmpJob.getJobSectorMore() +
+                                                                "," + tmpJob.getOccupation() + "," + tmpJob.getJobStartDate() +
+                                                                "," + tmpJob.getJobEndDate() + "," + tmpJob.getJobTJS() +
+                                                                "," + tmpJob.getJobRemark() + "," + "invalid FinNumber";
+                                                        String[] record2 = str.split(",");
+                                                        csvWriter.writeNext(record2);
+                                                        csvWriter.close();
+                                                        errCountList.put("job.csv", errCount);
                                                     }     
                                                 } else { //worker already exist in db
                                                     JobDAO.addJob(worker, tmpJob);
                                                     jobCount++;
-                                                    ProblemDAO.addProblem(worker, tmpJob, problem); 
+                                                    ProblemDAO.addProblemData(worker, tmpJob, problem); 
                                                     probCount++;
                                                 }
                                                 break; //get out of loop
                                             } else { //does not exist in job list
-                                               ArrayList<String> tmpList = errList.get("problem.csv");
-                                                if (tmpList == null) {
-                                                    tmpList = new ArrayList<String>();
+                                               
+                                                int errCount = 0;
+                                                if (errCountList.containsKey("problem.csv")) {
+                                                    errCount = errCountList.get("problem.csv");
                                                 }
-                                                tmpList.add(finNum + ":" + " invalid job key or finNumber,");
-                                                errList.put("problem.csv", tmpList);  
+                                                errCount++;
+                                                CSVWriter csvWriter = null;
+                                                csvWriter = new CSVWriter(new FileWriter(problemErrFile, true));
+                                                String str = finNum + "," + problem.getJobKey() + "," + 
+                                                        problem.getProbKey() + "," + problem.getProblemRegisteredDate() +
+                                                        "," + problem.getProblem() + "," + problem.getProblemMore() +
+                                                        "," + problem.getProblemRemark() + "," + "invalid job key";
+                                                String[] record = str.split(",");
+                                                csvWriter.writeNext(record);
+                                                csvWriter.close();
+                                                errCountList.put("problem.csv", errCount);
                                             }
                                         }
                                     } else { //does not exist in job list
-                                       ArrayList<String> tmpList = errList.get("problem.csv");
-                                        if (tmpList == null) {
-                                            tmpList = new ArrayList<String>();
+                                       int errCount = 0;
+                                        if (errCountList.containsKey("problem.csv")) {
+                                            errCount = errCountList.get("problem.csv");
                                         }
-                                        tmpList.add(finNum + ":" + " no job record,");
-                                        errList.put("problem.csv", tmpList); 
+                                        errCount++;
+                                        CSVWriter csvWriter = null;
+                                        csvWriter = new CSVWriter(new FileWriter(problemErrFile, true));
+                                        String str = finNum + "," + problem.getJobKey() + "," + 
+                                                problem.getProbKey() + "," + problem.getProblemRegisteredDate() +
+                                                "," + problem.getProblem() + "," + problem.getProblemMore() +
+                                                "," + problem.getProblemRemark() + "," + "no job record, ";
+                                        String[] record = str.split(",");
+                                        csvWriter.writeNext(record);
+                                        csvWriter.close();
+                                        errCountList.put("problem.csv", errCount);
                                     } 
                                 } else {
-                                    ArrayList<String> tmpList = errList.get("problem.csv");
-                                    if (tmpList == null) {
-                                        tmpList = new ArrayList<String>();
+                                    int errCount = 0;
+                                    if (errCountList.containsKey("problem.csv")) {
+                                        errCount = errCountList.get("problem.csv");
                                     }
-                                    tmpList.add(finNum + ":" + " no job record, ");
-                                    errList.put("problem.csv", tmpList);
+                                    errCount++;
+                                    CSVWriter csvWriter = null;
+                                    csvWriter = new CSVWriter(new FileWriter(problemErrFile, true));
+                                    String str = finNum + "," + problem.getJobKey() + "," + 
+                                            problem.getProbKey() + "," + problem.getProblemRegisteredDate() +
+                                            "," + problem.getProblem() + "," + problem.getProblemMore() +
+                                            "," + problem.getProblemRemark() + "," + "no job record, ";
+                                    String[] record = str.split(",");
+                                    csvWriter.writeNext(record);
+                                    csvWriter.close();
+                                    errCountList.put("problem.csv", errCount);
                                 }
                             } else { //job already exist in db
                                 if (job.getWorkerFinNum().equals(finNum)) {
                                     Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
-                                    ProblemDAO.addProblem(worker, job, problem);
+                                    ProblemDAO.addProblemData(worker, job, problem);
                                     probCount++;
                                 } else { //job fin number & problem fin num not the same
-                                    ArrayList<String> tmpList = errList.get("problem.csv");
-                                    if (tmpList == null) {
-                                        tmpList = new ArrayList<String>();
+                                    int errCount = 0;
+                                    if (errCountList.containsKey("problem.csv")) {
+                                        errCount = errCountList.get("problem.csv");
                                     }
-                                    tmpList.add(finNum + ":" + " invalid FinNumber,");
-                                    errList.put("problem.csv", tmpList);
+                                    errCount++;
+                                    CSVWriter csvWriter = null;
+                                    csvWriter = new CSVWriter(new FileWriter(problemErrFile, true));
+                                    String str = finNum + "," + problem.getJobKey() + "," + 
+                                            problem.getProbKey() + "," + problem.getProblemRegisteredDate() +
+                                            "," + problem.getProblem() + "," + problem.getProblemMore() +
+                                            "," + problem.getProblemRemark() + "," + "invalid fin number, ";
+                                    String[] record = str.split(",");
+                                    csvWriter.writeNext(record);
+                                    csvWriter.close();
+                                    errCountList.put("problem.csv", errCount);
                                 }
                             } 
 
@@ -326,33 +405,75 @@ public class processBootstrap extends HttpServlet {
                     successList.put("problem.csv", probCount);
                     
                 } else { //problem.csv? 
-                    if (JobDAO.jobList != null && !JobDAO.jobList.isEmpty()) {
-                        ArrayList<String> tmpList = errList.get("job.csv");
-                        if (tmpList == null) {
-                            tmpList = new ArrayList<String>();
+                    if (JobDAO.jobList != null && !JobDAO.jobList.isEmpty()) {  
+                        Iterator iter = JobDAO.jobList.keySet().iterator();
+                        while (iter.hasNext()) {
+                            String fin = (String) iter.next();
+                            ArrayList<Job> jobList = JobDAO.jobList.get(fin);
+                            for (Job tmpJob: jobList) {
+                                int errCount = 0;
+                                if (errCountList.containsKey("job.csv")) {
+                                    errCount = errCountList.get("job.csv");
+                                }
+                                errCount++;
+                                CSVWriter csvWriter = null;
+                                csvWriter = new CSVWriter(new FileWriter(jobErrFile, true));
+                                String str = tmpJob.getWorkerFinNum() + "," + tmpJob.getJobKey() + "," + tmpJob.getEmployerName() +
+                                        "," + tmpJob.getWorkPassType() + "," + tmpJob.getWorkPassMore() +
+                                        "," + tmpJob.getJobSector() + "," + tmpJob.getJobSectorMore() +
+                                        "," + tmpJob.getOccupation() + "," + tmpJob.getJobStartDate() +
+                                        "," + tmpJob.getJobEndDate() + "," + tmpJob.getJobTJS() +
+                                        "," + tmpJob.getJobRemark() + "," + "no problem.csv file for new jobs";
+                                String[] record2 = str.split(",");
+                                csvWriter.writeNext(record2);
+                                csvWriter.close();
+                                errCountList.put("job.csv", errCount);
+                            }
                         }
-                        tmpList.add("job.csv" + ":" + " no problem.csv file for new jobs,");
-                        errList.put("job.csv", tmpList);
                     } else {
                         if (WorkerDAO.workerList != null && !WorkerDAO.workerList.isEmpty()) {
-                            ArrayList<String> tmpList = errList.get("worker.csv");
-                            if (tmpList == null) {
-                                tmpList = new ArrayList<String>();
+                             for(String finNum: WorkerDAO.workerList.keySet()) {   
+                                Worker worker = WorkerDAO.workerList.get(finNum);
+                                int errCount = 0;
+                                if (errCountList.containsKey("worker.csv")) {
+                                    errCount = errCountList.get("worker.csv");
+                                }
+                                errCount++;
+                                CSVWriter csvWriter = null;
+                                csvWriter = new CSVWriter(new FileWriter(workerErrFile, true));
+                                String str = finNum + "," + worker.getName() + "," + worker.getRegistrationDate() + 
+                                        "," + worker.getCreatedBy() + "," + worker.getCreatedFor() + "," +
+                                        worker.getGender() + "," + worker.getNationality() + "," +
+                                        worker.getNationalityMore() + "," + worker.getDateOfBirth() + "," +
+                                        "no job.csv file for new workers";
+                                String[] record = str.split(",");
+                                csvWriter.writeNext(record);
+                                csvWriter.close();
+                                errCountList.put("worker.csv", errCount);
+                                
                             }
-                            tmpList.add("worker.csv" + ":" + " no job.csv file for new workers,");
-                            errList.put("worker.csv", tmpList);  
                         }
                     }
                 }
                 for (String finNum: WorkerDAO.workerList.keySet()) {
-                    ArrayList<String> tmpList = errList.get("worker.csv");
-                    if (tmpList == null) {
-                        tmpList = new ArrayList<String>();
-                    }
                     Worker worker = WorkerDAO.workerList.get(finNum);
                     if (WorkerDAO.retrieveWorkerbyFinNumber(worker.getFinNumber()) == null) {
-                        tmpList.add(finNum + ":" + " no job or problem record,");
-                        errList.put("worker.csv", tmpList);
+                       int errCount = 0;
+                        if (errCountList.containsKey("worker.csv")) {
+                            errCount = errCountList.get("worker.csv");
+                        } 
+                        errCount++;
+                        CSVWriter csvWriter = null;
+                        csvWriter = new CSVWriter(new FileWriter(workerErrFile, true));
+                        String str = finNum + "," + worker.getName() + "," + worker.getRegistrationDate() + 
+                                "," + worker.getCreatedBy() + "," + worker.getCreatedFor() + "," +
+                                worker.getGender() + "," + worker.getNationality() + "," +
+                                worker.getNationalityMore() + "," + worker.getDateOfBirth() + "," +
+                                "no job or problem record";
+                        String[] record = str.split(",");
+                        csvWriter.writeNext(record);
+                        csvWriter.close();
+                        errCountList.put("worker.csv", errCount);
                     }
                     
                 }
@@ -362,411 +483,24 @@ public class processBootstrap extends HttpServlet {
                 JobDAO.jobList.clear();
                 ProblemDAO.problemList.clear();
                 
-                
-                
-                tmp = WorkerComplementsDAO.validateAndAddNickname(workerNickNamesFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("nickname.csv", tmp);
+                for (String inputFileName: fileList) {
+                    String inputFile = filePath + inputFileName;
+                    String errFile = fileErr.getAbsolutePath() + File.separator + inputFileName.substring(0,inputFileName.indexOf(".")) + "Err.csv";
+                    String msg = DataValidator.validateData(inputFile, errFile);
+                    if (!msg.equals("")) {
+                        String filename = msg.substring(0,msg.indexOf(":"));
+                        int succCount = Integer.parseInt(msg.substring(msg.indexOf(":")+1, msg.indexOf(",")));
+                        int errCount = Integer.parseInt(msg.substring(msg.indexOf(",")+1));
+                        successList.put(filename, succCount);
+                        if (errCount != 0) {
+                            errCountList.put(filename, errCount);
+                        }
                     }
                 }
                 
-                tmp = WorkerComplementsDAO.validateAndAddPassportDetails(workerPassportsFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("passport.csv", tmp);
-                    }    
-                }
-                
-                tmp = WorkerComplementsDAO.validateAndAddHomeCountryPhoneNum(workerHomeCountryPhFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("homecountryph.csv", tmp);
-                    }
-                }
-                
-                tmp = WorkerComplementsDAO.validateAndAddSgPhoneNum(workerSgPhFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("sgph.csv", tmp);
-                    }
-                }
-                
-                tmp = WorkerComplementsDAO.validateAndAddHomeCountryAddress(workerHomeCountryAddressFile );
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("homecountryaddress.csv", tmp);
-                    }
-                }
-                
-                tmp = WorkerComplementsDAO.validateAndAddSgAddress(workerSgAddressFile );
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()){
-                        errList.put("sgaddress.csv", tmp);
-                    }
-                }
-                
-                tmp = WorkerComplementsDAO.validateAndAddWorkerDigitalContact(workerDigitalContactFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("digitalcontact.csv", tmp);
-                    }
-                }
-                
-                tmp = WorkerComplementsDAO.validateAndAddWorkerNextOfKin(workerNextKinFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("nextofkin.csv", tmp);
-                    }
-                }
-                
-                tmp = WorkerComplementsDAO.validateAndAddWorkerFamilyMember(workerFamilyMemberFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("familymember.csv", tmp);
-                    }
-                }
-                
-                tmp = WorkerComplementsDAO.validateAndAddWorkerFriend(workerFriendFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("friend.csv", tmp);
-                    }
-                }
-                
-                tmp = WorkerComplementsDAO.validateAndAddWorkerLanguage(workerLanguageFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("language.csv", tmp);
-                    }
-                }
-                
-                tmp = WorkerComplementsDAO.validateAndAddWorkerBankAccountDetails(workerBankAcctFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("bankacct.csv", tmp);
-                    }
-                }
-                //job complements
-                tmp = JobComplementsDAO.validateAndAddJobPassDetails(jobPassDetailsFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("passdetails.csv", tmp);
-                    }
-                }
-                
-                tmp = JobComplementsDAO.validateAndAddJobIPADetails(jobIPADetailsFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("ipa.csv", tmp);
-                    }
-                }
-                
-                tmp = JobComplementsDAO.validateAndAddJobVerbalAssurance(jobVerbalAssuranceFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("verbalassurance.csv", tmp);
-                    }
-                }
-                
-                tmp = JobComplementsDAO.validateAndAddJobEmploymentContract(jobEmploymentContractFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("employmentcontract.csv", tmp);
-                    }
-                }
-                
-                tmp = JobComplementsDAO.validateAndAddJobIntermediaryAgent(jobIntermediaryAgentFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("intermediaryagent.csv", tmp);
-                    }
-                }
-                
-                tmp = JobComplementsDAO.validateAndAddJobEmployer(jobEmployerFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("employer.csv", tmp);
-                    }
-                }
-                
-                tmp = JobComplementsDAO.validateAndAddJobWorkplace(jobWorkplaceFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("workplace.csv", tmp);
-                    }
-                }
-                
-                tmp = JobComplementsDAO.validateAndAddJobWorkHistory(jobWorkHistoryFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("workhistory.csv", tmp);
-                    }
-                }
-                
-                tmp = JobComplementsDAO.validateAndAddJobAccomodation(jobAccomodationFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("accomodation.csv", tmp);
-                    }
-                }
-                //problem complements
-            
-                tmp = ProblemComplementsDAO.validateAndAddProblemAggravatingIsssue(probAggravatingIssueFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("aggravatingissue.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddLeadCaseWorker(probLeadCaseWorkerFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("leadcaseworker.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddAuxiliaryCaseWorker(probAuxiliaryCaseWorkerFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("auxiliaryworker.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemSalaryRelatedHistory(probSalaryRelatedHistoryFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("salaryrelatedhistory.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemInjury(probInjuryFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("injury.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemIllness(probIllnessFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("illness.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemOtherProblems(probOtherProblemFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("otherproblems.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemSalaryClaim(probSalaryClaimFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("salaryclaim.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemWica(probWicaFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("wica.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemWicaClaim(probWicClaimFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("wicaclaim.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemNonWicaClaim(probNonWicaFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("nonwicaclaim.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemPoliceReport(probPoliceReportFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("policereport.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemOtherComplaints(probOtherComplaintFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("othercomplaints.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemCaseDiscussions(probCaseDiscussionFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("casediscussion.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemHospital(probHospitalFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("hospital.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemMCStatus(probMCStatusFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("mcstatus.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemR2R(probR2RFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("r2r.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemLawyer(probLawyerFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("lawyer.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemCaseMilestoneNC(probCaseMileStoneNC);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("casemilestonenc.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemCaseMilestoneCR(probCaseMileStoneCR);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("casemilestonecr.csv", tmp);
-                    }
-                }
-                tmp = ProblemComplementsDAO.validateAndAddProblemTTR(probTTRFile);
-                if (!tmp.isEmpty()) {
-                    String str = tmp.get(tmp.size()-1);
-                    successList.put(str.substring(0, str.indexOf(":")), Integer.parseInt(str.substring(str.indexOf(":")+1)));
-                    tmp.remove(str);
-                    if (!tmp.isEmpty()) {
-                        errList.put("ttr.csv", tmp);
-                    }
-                }
-                
-                request.getSession().setAttribute("bootstrapResult", errList);
+                request.getSession().setAttribute("bootstrapResult", errCountList);
                 request.getSession().setAttribute("successList", successList);
+                
                 
                 response.sendRedirect("importexport.jsp");
             } catch (IOException ex) {

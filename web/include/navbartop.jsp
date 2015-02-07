@@ -49,9 +49,9 @@
             <div class="navbar-header">
                 <div class="col-md-1"></div>
                 <!--<a class="navbar-brand" href="home.jsp"><img id="logo" src="img/twc_logo.png"></a>-->
+                <h4><a href="home.jsp" style="color:white; font-family: Roboto">CAMANS</a></h4>
             </div>
-
-
+            
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="caseReferral.jsp">Referred Cases <span class="badge"><%=problemList.size()%></span></a></li>
                 <li class="dropdown">
@@ -65,7 +65,7 @@
 
                         <li class="divider"></li>
                         <li><a href="logout.jsp">
-                                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                                 Log Out
                             </a></li>
                     </ul>
