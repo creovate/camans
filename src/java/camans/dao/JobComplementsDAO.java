@@ -165,6 +165,24 @@ public class JobComplementsDAO {
         }        
     }
     
+    public static void deleteJobPassDetails(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_pass_details WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "jobPassDetails ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        } 
+    }
+    
     public static void deleteAllJobPassDetails() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -519,6 +537,24 @@ public class JobComplementsDAO {
         }        
     }
   
+    public static void deleteJobIPADetails(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_ipa_details WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "jobIPAPassDetails ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        } 
+    }
+    
     public static void deleteAllJobIPADetails() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -863,6 +899,24 @@ public class JobComplementsDAO {
         }        
     }
   
+    public static void deleteJobVerbalAssurance(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_verbal_assurances WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "job Verbal Assurance ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        } 
+    }
+    
     public static void deleteAllJobVerbalAssurances() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1150,6 +1204,24 @@ public class JobComplementsDAO {
         }        
     }
   
+    public static void deleteJobEmploymentContract(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_employment_contract WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Job Employment contract ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        } 
+    }
+    
     public static void deleteAllEmploymentContracts() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1492,6 +1564,24 @@ public class JobComplementsDAO {
         }        
     }
     
+    public static void deleteJobIntermediaryAgent(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_agent WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Job Intermediary Agent ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        } 
+    }
+    
     public static void deleteAllJobIntermediaryAgent() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1832,6 +1922,24 @@ public class JobComplementsDAO {
         }        
     }
     
+    public static void deleteJobEmployer(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_employer WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Job Employer ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        } 
+    }
+    
     public static void deleteAllJobEmployers() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2137,6 +2245,24 @@ public class JobComplementsDAO {
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }     
+    }
+    
+    public static void deleteJobWorkplace(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_workplace WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Job Workplace ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        } 
     }
     
     public static ArrayList<String> validateAndAddJobWorkplace(String jobIntermediaryAgentFile) 
@@ -2452,6 +2578,24 @@ public class JobComplementsDAO {
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }        
+    }
+    
+    public static void deleteJobWorkHistory(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_work_history WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Job Work History ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        } 
     }
     
     public static void deleteAllJobWorkHistories() {
@@ -2771,6 +2915,24 @@ public class JobComplementsDAO {
         }        
     }
  
+    public static void deleteJobAccomodation(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_accomodation WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Job Accomodation ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        } 
+    }
+    
     public static void deleteAllJobAccomodations() {
         Connection conn = null;
         PreparedStatement pstmt = null;

@@ -146,6 +146,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemAggravatingIssue(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_aggravating_issue WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "ProblemAggravatingIssue ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemAggravatingIssues() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -432,6 +449,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemLeadCaseWorker(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_lead_case_worker WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Lead Case Worker ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemLeadCaseWorkers() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -713,6 +747,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemAuxiliaryCaseWorker(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_auxillarycaseworker WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Auxiliary Case Worker ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemAuxiliaryCaseWorkers() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1025,6 +1076,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemSalaryRelatedHistory(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_salary_history WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Salary Related History ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemSalaryRelatedHistories() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1401,6 +1469,23 @@ public class ProblemComplementsDAO {
         }     
     }
 
+    public static void deleteProblemInjury(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_injury WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Injury ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static ArrayList<String> validateAndAddProblemInjury(String problemInjuryFile) 
             throws IOException{
         
@@ -1711,6 +1796,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemIllness(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_illness WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Illness ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemIllness() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1998,6 +2100,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemOtherProblem(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_other_problems WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Other Problem ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemtherProblems() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2264,6 +2383,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemSalaryClaim(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_salary_claim_lodged WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Salary Claim ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemSalaryClaims() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2545,6 +2681,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemWica(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_wica WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Wica ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemWicas() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2874,6 +3027,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemWicaClaim(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_wica_claim WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Wica Claim ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemWicaClaims() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3166,6 +3336,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemNonWicaClaim(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_non_wica_claim WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Non Wica Claim ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemNonWicaClaims() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3469,6 +3656,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemPoliceReport(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_police_report WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Police Report ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemPoliceReports() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3939,6 +4143,23 @@ public class ProblemComplementsDAO {
         return errList;
     }
         
+    public static void deleteProblemOtherComplaint(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_other_complaint WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Other Compliant ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemOtherComplaints() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -4340,6 +4561,23 @@ public class ProblemComplementsDAO {
         return errList;
     }
     
+    public static void deleteProblemCaseDiscussion(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_case_discussion WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Case Discussion ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemCaseDiscussions() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -4477,6 +4715,23 @@ public class ProblemComplementsDAO {
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             handleSQLException(ex, sql, "ProblemHospital={" + problemHospital + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
+    public static void deleteProblemHospital(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_hospital WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Hospital ID={" + id + "}");
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }
@@ -4776,6 +5031,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemMCStatus(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_MC_status WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem MC Status ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static ArrayList<String> validateAndAddProblemMCStatus(String probMCStatusFile) throws IOException {
         //Attributes
         ArrayList<String> errList = new ArrayList<String>();
@@ -5101,6 +5373,23 @@ public class ProblemComplementsDAO {
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             handleSQLException(ex, sql, "ProblemR2R={" + problemR2R + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
+    public static void deleteProblemR2R(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_R2R WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem R2R ID={" + id + "}");
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }
@@ -5445,6 +5734,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemLawyer(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_lawyer WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem Lawyer ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemLawyers() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -5745,6 +6051,23 @@ public class ProblemComplementsDAO {
         }
     }
     
+    public static void deleteProblemCaseMilestoneNC(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_casemilestone_noncriminal WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem CaseMilestone NCR ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static ArrayList<String> validateAndAddProblemCaseMilestoneNC (String probNCFile) throws IOException {
         //Attributes
         ArrayList<String> errList = new ArrayList<String>();
@@ -6040,6 +6363,23 @@ public class ProblemComplementsDAO {
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             handleSQLException(ex, sql, "ProblemCaseMilestoneCR={" + problemCaseMilestoneCR + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
+    public static void deleteProblemCaseMilestoneCR(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_casemilestone_criminal WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "ProblemCaseMileStone CR ID={" + id + "}");
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }
@@ -6364,6 +6704,23 @@ public class ProblemComplementsDAO {
         }
     }
 
+    public static void deleteProblemTTR(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE FROM tbl_ttr WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Problem TTR ID={" + id + "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllProblemTTRs() {
         Connection conn = null;
         PreparedStatement pstmt = null;

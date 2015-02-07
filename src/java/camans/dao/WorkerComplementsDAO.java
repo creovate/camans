@@ -134,6 +134,23 @@ public class WorkerComplementsDAO {
         }        
     }
     
+    public static void deleteNickname(int nicknameId) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE from tbl_worker_nickname WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, nicknameId);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker nicknameId=" + nicknameId);
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllNicknames() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -330,6 +347,23 @@ public class WorkerComplementsDAO {
         } finally {
             ConnectionManager.close(conn, stmt, null);
         }        
+    }
+    
+    public static void deletePassportDetails(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE from tbl_worker_passport_details WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker Passport Id=" + id);
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
     }
     
     public static void deleteAllPassportDetails() {
@@ -560,6 +594,23 @@ public class WorkerComplementsDAO {
         }        
     }
 
+    public static void deleteHomeCountryPhNumber(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE from tbl_home_country_phone_number WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker Home Country Ph Number Id=" + id);
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllHomeCountryPhoneNums() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -771,6 +822,23 @@ public class WorkerComplementsDAO {
         }        
     }
     
+    public static void deleteWorkerSgPhNum(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE from tbl_sg_phone_number WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker Sg Phone Number Id=" + id);
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllSgPhoneNums() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -976,7 +1044,24 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, stmt, null);
         }        
     }
-     
+    
+    public static void deleteWorkerSgAddress(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE from tbl_sg_address WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker Sg Address Id=" + id);
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllWorkerSgAddresses() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1183,6 +1268,23 @@ public class WorkerComplementsDAO {
         }        
     }
 
+    public static void deleteWorkerHomeCountryAddress(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE from tbl_home_country_address WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker Home Country Address Id=" + id);
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllHomeCountryAddresses() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1379,6 +1481,23 @@ public class WorkerComplementsDAO {
         }    
     }
 
+    public static void deleteWorkerDigitalContact(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE from tbl_digital_contact WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker Digital Contact Id=" + id);
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void updateWorkerDigitalContact(WorkerDigitalContact workerDigitalContact) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1644,6 +1763,23 @@ public class WorkerComplementsDAO {
         }    
     }
 
+    public static void deleteWorkerNextOfKin(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE from tbl_kin WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker Next of Kin Id=" + id);
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void updateWorkerNextOfKin(WorkerNextOfKin workerNextOfKin) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1908,6 +2044,23 @@ public class WorkerComplementsDAO {
         }    
     }
 
+    public static void deleteFamilyMember(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE from tbl_family_member WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker Family Member Id=" + id);
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void updateWorkerFamilyMember(WorkerFamilyMember workerFamilyMember) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2181,6 +2334,23 @@ public class WorkerComplementsDAO {
         }        
     }
     
+    public static void deleteWorkerFriend(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE from tbl_sg_friend WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker Sg Friend Id=" + id);
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllFriends() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2411,6 +2581,23 @@ public class WorkerComplementsDAO {
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }        
+    }
+    
+    public static void deleteWorkerLanguage(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE from tbl_language WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker Language Id=" + id);
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
     }
     
     public static void deleteAllLanguages() {
@@ -2672,7 +2859,24 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }        
     }
-       
+    
+    public static void deleteBankAccountDetails(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "DELETE from tbl_bank_acc_details WHERE ID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker Bank Account Id=" + id);
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }
+    }
+    
     public static void deleteAllBankAccountDetails() {
         Connection conn = null;
         PreparedStatement pstmt = null;

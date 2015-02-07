@@ -5,11 +5,13 @@
 package camans.dao;
 
 import au.com.bytecode.opencsv.CSVReader;
+import au.com.bytecode.opencsv.CSVWriter;
 import camans.entity.Job;
 import camans.entity.Problem;
 import camans.entity.Worker;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -177,12 +179,14 @@ public class ProblemDAO {
         }  
     }
     
-    public static ArrayList<String> validateAndAddProblem(String probFileName) throws IOException{
+    public static String validateAndAddProblem(String probFileName, String problemErrFile) throws IOException{
         problemList.clear();
         // Attributes
-        ArrayList<String> errList = new ArrayList<String>();
+        CSVReader csvReader = null;
+        CSVWriter csvWriter = null;
+        int errCount = 0;
         try {
-            CSVReader csvReader = new CSVReader(new FileReader(probFileName));
+            csvReader = new CSVReader(new FileReader(probFileName));
             String[] header = csvReader.readNext();
             String[] fields;
             int lineNum = 1;
@@ -284,8 +288,20 @@ public class ProblemDAO {
 
                 // if there is an error, the line number of the error and its relevant message is added into the errorList
                 if (!errorMsg.equals("")) {
-                    errList.add(lineNum + ":" + errorMsg);
+                    csvWriter = new CSVWriter(new FileWriter(problemErrFile, true));
+                    if (errCount == 0) {
+                        String[] newHeader = new String[8];
+                        newHeader[7] = "Error_Description";
+                        System.arraycopy(header, 0, newHeader, 0, header.length);
+                        csvWriter.writeNext(header);
+                    }
+                    String[] newFields = new String[8];
+                    newFields[7] = errorMsg.substring(0, errorMsg.indexOf(","));
+                    System.arraycopy(fields, 0, newFields, 0, fields.length);
+                    csvWriter.writeNext(newFields);
+                    csvWriter.close();
                     errorMsg = ""; // reset errorMsg variable
+                    errCount++;
                 } // if there is no error, a new Worker object is created and added to the workerList
                 else {
                     errorMsg = ""; // reset errorMsg variable
@@ -305,7 +321,10 @@ public class ProblemDAO {
         } catch (FileNotFoundException ex) {
             //filenotfoundexception
         }
-        return errList;
+        if (errCount != 0) {
+            return "worker.csv:" + errCount;
+        }
+        return null;
     }
     
     public static void addAll(ArrayList<Problem> problemList) {
