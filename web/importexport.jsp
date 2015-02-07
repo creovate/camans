@@ -147,50 +147,40 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <label class="modal-title" id="myModalLabel">Bootstrap     
+                        <label class="modal-title" id="myModalLabel">Data Import <font color="green">Successful </font> 
                         <% 
-                            if (errList == null || errList.isEmpty()) {
-                                out.println("<font color=\"green\">Successful</font></label>");
-                            } else {
-                                out.println("<font color=\"green\">Successful with the following errors</font></label>");
-                            }    
+                            if (errList != null) {
+                                if (!errList.isEmpty()){
+                                    out.println("with <font color=\"red\">errors</font></label>");
+                                }
+                            }   
                         %>
+                        </label>
                     </div> <!--header -->
                     <div class="modal-body"> 
 
                         <!-- record loaded -->
                         <table class="table table-curved table-hover table-condensed">                                         
                             <tr><th style="text-align:center;">File Name</th>
-                            <th style="text-align:center;">Records Loaded</th></tr>
+                            <th style="text-align:center;">Records Loaded</th>
+                            <th style="text-align:center;">Errors Count</th></tr>
 <%                          if (successList != null && !successList.isEmpty()) {
                                 for (String fileName: successList.keySet()) {
                                     int recordsLoaded = successList.get(fileName);
+                                    int errCount = 0;
+                                    if (errList != null & !errList.isEmpty() & errList.containsKey(fileName)) {
+                                        errCount = errList.get(fileName);
+                                    }
 %>
                                     <tr><td style="text-align:center;"><%=fileName%></td>
-                                    <td style="text-align:center;"><%=recordsLoaded%></td></tr>
+                                    <td style="text-align:center;"><%=recordsLoaded%></td>
+                                    <td style="text-align:center;color:red"><%=errCount%></td></tr>
 <%                            }
                             }    
 %>                            
                         </table>
-<%
-                        if (errList != null && !errList.isEmpty()) {
-%>                                               
-                        <div class="panel-group" id="accordion">
-                            <div class="panel panel-warning">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">Error Files <%=errList.size()%> files </h4>
-                                </div> <%--heading--%>    
-                                <div class="panel-body">
-<%
-                                for (String key: errList.keySet()) {
-                                    int errCount = errList.get(key);
-                                    out.println("<b>"+ key + " (" + errCount + " errors)</b><br/>");
-                                }
-%>
-                                </div><%--body--%>
-                            </div><%--panel--%>
-                        </div> <%--end accordion--%>
-<%                            } %> 
+                        
+                        <a href="fileUpload.do?action=downloaderrzipfile"><b>Download the error files heres.</b></a>
                     </div> <!--body-->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>                                

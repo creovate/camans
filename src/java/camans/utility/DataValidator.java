@@ -1387,20 +1387,24 @@ public class DataValidator {
                         if (!ipaBasicStr.equals("") && !ipaBasicStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += header[10] + " must have maximum 2 decimal places,";
                         } else {
-                            try {
-                                ipaBasic = Double.parseDouble(ipaBasicStr);
-                            } catch (Exception ex) {
-                                errorMsg += header[10] + " - invalid format,";
+                            if (!ipaBasicStr.equals("") ) {
+                                try {
+                                    ipaBasic = Double.parseDouble(ipaBasicStr);
+                                } catch (Exception ex) {
+                                    errorMsg += header[10] + " - invalid format,";
+                                }
                             }
                         }
-
+                        
                         if (!ipaAllowanceStr.equals("") && !ipaAllowanceStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += header[11] + " must have maximum 2 decimal places,";
                         } else {
-                            try {
-                                ipaAllowance = Double.parseDouble(ipaAllowanceStr);
-                            } catch (Exception ex) {
-                                errorMsg += header[11] + " - invalid format,";
+                            if (!ipaAllowanceStr.equals("")) {
+                                try {
+                                    ipaAllowance = Double.parseDouble(ipaAllowanceStr);
+                                } catch (Exception ex) {
+                                    errorMsg += header[11] + " - invalid format,";
+                                }
                             }
                         }
 
@@ -1411,10 +1415,12 @@ public class DataValidator {
                         if (!ipaDeductionStr.equals("") && !ipaDeductionStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += header[13] + " must have maximum 2 decimal places,";
                         } else {
-                            try {
-                                ipaDeduction = Double.parseDouble(ipaDeductionStr);
-                            } catch (Exception ex) {
-                                errorMsg += header[13] + " - invalid format,";
+                            if (!ipaDeductionStr.equals("")) {
+                                try {
+                                    ipaDeduction = Double.parseDouble(ipaDeductionStr);
+                                } catch (Exception ex) {
+                                    errorMsg += header[13] + " - invalid format,";
+                                }
                             }
                         }
 
@@ -1819,20 +1825,24 @@ public class DataValidator {
                     if (!agentAmtPaidStr.equals("") && !agentAmtPaidStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += header[8] + " must have maximum 2 decimal places,";
                     } else {
-                        try {
-                            agentAmtPaid = Double.parseDouble(agentAmtPaidStr);
-                        } catch (Exception ex) {
-                            errorMsg += header[8] + " - invalid format,";
+                        if (!agentAmtPaidStr.equals("") ) {
+                            try {
+                                agentAmtPaid = Double.parseDouble(agentAmtPaidStr);
+                            } catch (Exception ex) {
+                                errorMsg += header[8] + " - invalid format,";
+                            }
                         }
                     }
                     
                     if (!agentAmtOwnedStr.equals("") && !agentAmtOwnedStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += header[9] + " must have maximum 2 decimal places,";
                     } else {
-                        try {
-                            agentAmtOwned = Double.parseDouble(agentAmtOwnedStr);
-                        } catch (Exception ex) {
-                            errorMsg += header[9] + " - invalid format,";
+                        if (!agentAmtOwnedStr.equals("")) {
+                            try {
+                                agentAmtOwned = Double.parseDouble(agentAmtOwnedStr);
+                            } catch (Exception ex) {
+                                errorMsg += header[9] + " - invalid format,";
+                            }
                         }
                     }
                     
@@ -2422,20 +2432,24 @@ public class DataValidator {
                         if (!accomChargedStr.equals("") && !accomChargedStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += header[8] + " must have maximum 2 decimal places,";
                         } else {
-                            try {
-                                accomCharged = Double.parseDouble(accomChargedStr);
-                            } catch (Exception ex) {
-                                errorMsg += header[8] + " - invalid format,";
+                            if (!accomChargedStr.equals("")) {
+                                try {
+                                    accomCharged = Double.parseDouble(accomChargedStr);
+                                } catch (Exception ex) {
+                                    errorMsg += header[8] + " - invalid format,";
+                                }
                             }
                         }
 
                         if (!accomSelfPaidStr.equals("") && !accomSelfPaidStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += header[9] + " must have maximum 2 decimal places,";
                         } else {
-                            try {
-                                accomSelfPaid = Double.parseDouble(accomSelfPaidStr);
-                            } catch (Exception ex) {
-                                errorMsg += header[9] + " - invalid format,";
+                            if (!accomSelfPaidStr.equals("")) {
+                                try {
+                                    accomSelfPaid = Double.parseDouble(accomSelfPaidStr);
+                                } catch (Exception ex) {
+                                    errorMsg += header[9] + " - invalid format,";
+                                }
                             }
                         }
 

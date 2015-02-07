@@ -4,13 +4,16 @@
  */
 package camans.controller;
 
+import camans.dao.DropdownDAO;
 import camans.dao.UserAuditLogDAO;
 import camans.dao.WorkerComplementsDAO;
+import camans.dao.WorkerDAO;
 import camans.entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -42,345 +45,1026 @@ public class processAddWorkerComplement extends HttpServlet {
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
             User _user = (User) request.getSession().getAttribute("userLogin");
             String auditChange = "";
+            String idStr = request.getParameter("Id");
+            
             
             //=======================================//
             //   Server Side Validation Parameters
             //=======================================//
-            String err = ""; //to store error msg
+            String errorMsg = ""; //to store error msg
             String success = "";//to store success msgf
             
             //=======================================//
             //          Nick Name 
             //=======================================//            
             if (complementName.equals("WorkerNickname")) {
+
+                String nickName = "";
                 //get all the parameters for Nickname
-                String nickName = request.getParameter("nNickName");
-                
+                if (idStr == null) {
+                    nickName = request.getParameter("nNickName");
+                } else {
+                    nickName = request.getParameter("nickName");
+                }
+
                 //server side validaton 
                 if (nickName.equals("")) {
-                    err += "Nick name is blank,";
+                    errorMsg += "Nick name is blank,";
                 }
                 if (nickName.length() > 50) {
-                    err += "worker nickname cannot be longer than 50 characters,";
+                    errorMsg += "worker nickname cannot be longer than 50 characters,";
                 }
-                
-                if (err.equals("")) {
-                    //create nickname object
-                    WorkerNickname workerNickname = new WorkerNickname(workerFinNum, nickName);
-                    //addInto Database
-                    WorkerComplementsDAO.addNickname(workerNickname);
 
-                    //log the audit
-                    auditChange = workerNickname.toString2();
+                if (errorMsg.equals("")) {
 
-                    //success display
-                    success = "Worker Nickname has been succesfully added!";
-                    request.setAttribute("successWrkCompMsg", success);
-                }    
+                    if (idStr == null) {
+                        //create nickname object
+                        WorkerNickname workerNickname = new WorkerNickname(workerFinNum, nickName);
+                        //addInto Database
+                        WorkerComplementsDAO.addNickname(workerNickname);
+
+                        //log the audit
+                        auditChange = workerNickname.toString2();
+
+                        //success display
+                        success = "Worker Nickname has been succesfully added!";
+                    } else {     
+                        int id = Integer.parseInt(request.getParameter("Id"));
+                        WorkerNickname workerNickname = new WorkerNickname(workerFinNum,id, nickName);
+                        //update in the Database
+                        WorkerComplementsDAO.updateNickname(workerNickname); 
+
+                        //log the audit
+                        auditChange = workerNickname.toString2();
+
+                        //success display
+                        success = "Worker Nickname has been successfully updated!";
+                    }
+                } //no error
+                    
             //=======================================//
             //          Passport Details  
             //=======================================// 
             } else if (complementName.equals("WorkerPassportDetails")) {
 
                 //get all the parameters for passport
-                String passportCountry = request.getParameter("nPassportCountry");
-                String passportNum = request.getParameter("nPassportNum");
-                String passportIssueDateStr = request.getParameter("nPassportIssueDate");
-                String passportExpiryDateStr = request.getParameter("nPassportExpiryDate");
+                String passportCountry = "";
+                String passportNum = "";
+                String issueDateStr = "";
+                String expiryDateStr = "";
+                java.sql.Date issueDate = null;
+                java.sql.Date expiryDate = null;
                 
-                java.sql.Date passportIssueDate = null;
-                if (!passportIssueDateStr.equals("")) {
-                    java.util.Date tmp = sdf.parse(passportIssueDateStr);
-                    passportIssueDate = new java.sql.Date(tmp.getTime());
+                if (idStr == null) {
+                    passportCountry = request.getParameter("nPassportCountry");
+                    passportNum = request.getParameter("nPassportNum");
+                    issueDateStr = request.getParameter("nPassportIssueDate");
+                    expiryDateStr = request.getParameter("nPassportExpiryDate");
+                } else {
+                    passportCountry = request.getParameter("passportCountry");
+                    passportNum = request.getParameter("passportNum");
+                    issueDateStr = request.getParameter("passportIssueDate");
+                    expiryDateStr = request.getParameter("passportExpiryDate");
                 }
-                java.sql.Date passportExpiryDate = null;
-                if (!passportIssueDateStr.equals("")) {
-                    java.util.Date tmp = sdf.parse(passportExpiryDateStr);
-                    passportExpiryDate = new java.sql.Date(tmp.getTime());
-                }
-               
+                
+                /** Server Validation **/
+                boolean pass = true; //assume validation pass first;
 
-                //create passport object
-                WorkerPassportDetails workerPassportDetails = new WorkerPassportDetails(workerFinNum,
-                        passportNum, passportCountry, passportIssueDate, passportExpiryDate);
-                //addInto Database
-                WorkerComplementsDAO.addWorkerPassportDetails(workerPassportDetails);
-                //log the audit
-                auditChange = workerPassportDetails.toString2();
+                if (passportNum.equals("")) {
+                    errorMsg += "Passport Number is blank,";
+                    pass = false;
+                }
+                if (passportCountry.equals("")) {
+                    errorMsg += "Passport Country is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    if (passportNum.length() > 20) {
+                        errorMsg += "passport num cannot be longer than 20 characters,";
+                    }
+
+                    if (passportCountry.length() > 30) {
+                        errorMsg += "passport country cannot be longer than 30 characters,";
+                    }
+
+                    if (!issueDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(issueDateStr);
+                            issueDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Issue Date Format,";
+                        } 
+                    }
+
+                    if (!expiryDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(expiryDateStr);
+                            expiryDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Expiry Date Format,";
+                        } 
+                    }
+
+                }   //pass 
+                /*Server Validation Ends*/
                 
-                //success display
-                success = "Worker Passport Details has been succesfully added!";
+                if (errorMsg.equals("")) {
+                    if (idStr == null) {
+                        //create passport object
+                        WorkerPassportDetails workerPassportDetails = new WorkerPassportDetails(workerFinNum,
+                                passportNum, passportCountry, issueDate, expiryDate);
+                        //addInto Database
+                        WorkerComplementsDAO.addWorkerPassportDetails(workerPassportDetails);
+                        //log the audit
+                        auditChange = workerPassportDetails.toString2();
+
+                        //success display
+                        success = "Worker Passport Details has been succesfully added!";
+                    } else {
+                        int id = Integer.parseInt(request.getParameter("Id"));
+                                                //create passport object
+                        WorkerPassportDetails workerPassportDetails = new WorkerPassportDetails(workerFinNum,
+                                id, passportCountry, passportNum, issueDate, expiryDate);
+                        //update in the Database
+                        WorkerComplementsDAO.updatePassportDetails(workerPassportDetails);
+
+                        //log the audit
+                        auditChange = workerPassportDetails.toString2();
+                        //success display
+                        success = "Worker Passport Details has been succesfully updated!";
+                    }
+                }
             //=======================================//
             //          Home Country Phone Number  
             //=======================================//
             } else if (complementName.equals("WorkerHomeCountryPhNum")) {
 
-                //get all the parameters for HomeCountry
-                String phNum = request.getParameter("nPhNum");
-                String phOwner = request.getParameter("nPhOwner");
-                String obseleteDateStr = request.getParameter("nObseleteDate");
-
-                boolean pass = true; //date validation 
+                String phNum = "";
+                String phOwner = "";
+                String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                if (!obseleteDateStr.equals("")) {
-                    java.util.Date tmp = sdf.parse(obseleteDateStr);
-                    obseleteDate = new java.sql.Date(tmp.getTime());
+                
+                //get all the parameters for HomeCountry
+                if (idStr == null) {
+                    phNum = request.getParameter("nPhNum");
+                    phOwner = request.getParameter("nPhOwner");
+                    obseleteDateStr = request.getParameter("nObseleteDate");
+                } else {
+                    phNum = request.getParameter("phNum");
+                    phOwner = request.getParameter("phOwner");
+                    obseleteDateStr = request.getParameter("obseleteDate");
+                }
+                
+                /**Server Validation**/
+                boolean pass = true; //assume validation pass first;
+                if (phNum.equals("")) {
+                    errorMsg += "Phone Number is blank,";
+                    pass = false;
                 }
 
+                //proceed only after empty fields validation is passed
+                if (pass) { 
 
-                //create object
-                WorkerHomeCountryPhNum obj = new WorkerHomeCountryPhNum(workerFinNum,
-                        phNum, phOwner, obseleteDate);
-                //add into db
-                WorkerComplementsDAO.addWorkerHomeCountryPhNum(obj);
-                //log the audit
-                auditChange = obj.toString2();
-                             
-                //success display
-                success = "Home Country Phone Number has been succesfully added!";
+                    if (!phNum.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                        errorMsg += "invalid phone number, ";
+                    }
+
+                    if (!phOwner.equals("") && phOwner.length() > 20) {
+                        errorMsg += "Owner name cannot be longer than 20 characters,";
+                    }
+
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+                }   //pass 
+
+                if (errorMsg.equals("")) {
+                    if (idStr == null) {
+                        //create object
+                        WorkerHomeCountryPhNum obj = new WorkerHomeCountryPhNum(workerFinNum,
+                                phNum, phOwner, obseleteDate);
+                        //add into db
+                        WorkerComplementsDAO.addWorkerHomeCountryPhNum(obj);
+                        //log the audit
+                        auditChange = obj.toString2();
+
+                        //success display
+                        success = "Home Country Phone Number has been succesfully added!";
+                    } else {
+                        int id = Integer.parseInt(request.getParameter("Id"));
+                        WorkerHomeCountryPhNum obj = new WorkerHomeCountryPhNum(workerFinNum, id, 
+                                phNum, phOwner, obseleteDate);
+                        //update in the Database
+                        WorkerComplementsDAO.updateWorkerHomeCountryPhNum(obj);
+
+                        //log the audit
+                        auditChange = obj.toString2();
+                        
+                        //success Display
+                        success = "Home Country Phone Number has been succesfully updated!";
+                    }
+                }
             //=======================================//
             //          Singapore Phone Number  
             //=======================================//
             } else if (complementName.equals("WorkerSgPhNum")) {
                 //get all the parameters for HomeCountry
-                String phNum = request.getParameter("nPhNum");
-                String obseleteDateStr = request.getParameter("nObseleteDate");
+                String phNum = "";
+                String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                if (!obseleteDateStr.equals("")) {
-                    java.util.Date tmp = sdf.parse(obseleteDateStr);
-                    obseleteDate = new java.sql.Date(tmp.getTime());
+                
+                if (idStr == null) {
+                    phNum = request.getParameter("nPhNum");
+                    obseleteDateStr = request.getParameter("nObseleteDate");
+                } else {
+                    phNum = request.getParameter("phNum");
+                    obseleteDateStr = request.getParameter("obseleteDate");
                 }
 
-                WorkerSgPhNum obj = new WorkerSgPhNum(workerFinNum, phNum, obseleteDate);
-                //add into db
-                WorkerComplementsDAO.addWorkerSgPhNum(obj);
-                //log the audit
-                auditChange = obj.toString2();
-                //success display
-                success = "Worker's Singapore Phone Number has been succesfully added!";
+                /**Server Validation**/
+                boolean pass = true; //assume validation pass first;
+                if (phNum.equals("")) {
+                    errorMsg += "Phone Number is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    if (!phNum.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                        errorMsg += "invalid phone number, ";
+                    }
+
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+                }   //pass 
+                
+                if (errorMsg.equals("")) {
+                    if (idStr == null) {
+                        WorkerSgPhNum obj = new WorkerSgPhNum(workerFinNum, phNum, obseleteDate);
+                        //add into db
+                        WorkerComplementsDAO.addWorkerSgPhNum(obj);
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success display
+                        success = "Worker's Singapore Phone Number has been succesfully added!";
+                    } else {
+                        int id = Integer.parseInt(request.getParameter("Id"));
+                        WorkerSgPhNum obj = new WorkerSgPhNum(workerFinNum, id, phNum,obseleteDate);
+                        //update in the Database
+                        WorkerComplementsDAO.updateWorkerSgPhNum(obj);
+
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success display
+                        success = "Worker's Singapore Phone Number has been succesfully updated!";
+                    }
+                }
             //=======================================//
             //          Singapore Address  
             //=======================================//
             } else if (complementName.equals("WorkerSgAddress")) {
                 //get all the parameters for HomeCountry
-                String address = request.getParameter("nAddress");
-                String obseleteDateStr = request.getParameter("nObseleteDate");
-
+                String address = "";
+                String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                if (!obseleteDateStr.equals("")) {
-                    java.util.Date tmp = sdf.parse(obseleteDateStr);
-                    obseleteDate = new java.sql.Date(tmp.getTime());
+                
+                if (idStr == null) {
+                    address = request.getParameter("nAddress");
+                    obseleteDateStr = request.getParameter("nObseleteDate");
+                } else {
+                    address = request.getParameter("address");
+                    obseleteDateStr = request.getParameter("obseleteDate");
                 }
 
-                //add into db//create object
-                WorkerSgAddress obj = new WorkerSgAddress(workerFinNum, address, obseleteDate);
-                WorkerComplementsDAO.addWorkerSgAddress(obj);
-                //log the audit
-                auditChange = obj.toString2();
-                //success display
-                success = "Worker's Singapore Address has been succesfully added!";
+                /**Server Validation**/
+                boolean pass = true; //assume validation pass first;
+                if (address.equals("")) {
+                    errorMsg += "Address is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    if (address.length()>200) {
+                        errorMsg += "sg address cannot be more than 200 characters, ";
+                    }
+
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+
+                }   //pass 
+
+                if (errorMsg.equals("")) {
+                    if (idStr == null) {
+                        //add into db//create object
+                        WorkerSgAddress obj = new WorkerSgAddress(workerFinNum, address, obseleteDate);
+                        WorkerComplementsDAO.addWorkerSgAddress(obj);
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success display
+                        success = "Worker's Singapore Address has been succesfully added!";
+                    } else {
+                        int id = Integer.parseInt(request.getParameter("Id"));
+                        WorkerSgAddress obj = new WorkerSgAddress(workerFinNum, id, address,obseleteDate);
+                        //update in the Database
+                        WorkerComplementsDAO.updateWorkerSgAddress(obj);
+
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success Display
+                        success = "Worker's Singapore Address has been succesfully updated!";
+                    }
+                }
             //=======================================//
             //          Home Country Address   
             //=======================================//
             } else if (complementName.equals("WorkerHomeCountryAddress")) {
                 //get all the parameters for HomeCountry
-                String address = request.getParameter("nAddress");
-                String obseleteDateStr = request.getParameter("nObseleteDate");
-
+                String address = "";
+                String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                if (!obseleteDateStr.equals("")) {
-                    java.util.Date tmp = sdf.parse(obseleteDateStr);
-                    obseleteDate = new java.sql.Date(tmp.getTime());
+                if (idStr == null) {
+                    address = request.getParameter("nAddress");
+                    obseleteDateStr = request.getParameter("nObseleteDate");
+                } else {
+                    address = request.getParameter("address");
+                    obseleteDateStr = request.getParameter("obseleteDate");
                 }
 
-                //add into db
-                WorkerHomeCountryAddress obj = new WorkerHomeCountryAddress(workerFinNum, address, obseleteDate);
-                WorkerComplementsDAO.addWorkerHomeCountryAddress(obj);
-                //log the audit
-                auditChange = obj.toString2();
-                //success display
-                success = "Worker's Home Country Address has been succesfully added!";
+                /**Server Validation**/
+                boolean pass = true; //assume validation pass first;
+
+                if (address.equals("")) {
+                    errorMsg += "address is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    if (address.length()>200) {
+                        errorMsg += "home country address cannot be more than 200 characters, ";
+                    }
+
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+
+                }   //pass
+               
+                if (errorMsg.equals("")) {
+                    if (idStr == null) {
+                        //add into db
+                        WorkerHomeCountryAddress obj = new WorkerHomeCountryAddress(workerFinNum, address, obseleteDate);
+                        WorkerComplementsDAO.addWorkerHomeCountryAddress(obj);
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success display
+                        success = "Worker's Home Country Address has been succesfully added!";
+                    } else {
+                        int id = Integer.parseInt(request.getParameter("Id"));
+                        WorkerHomeCountryAddress obj = new WorkerHomeCountryAddress(workerFinNum, 
+                                        id, address,obseleteDate);
+                        //update in the Database
+                        WorkerComplementsDAO.updateWorkerHomeCountryAddress(obj);
+
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success display
+                        success = "Worker's Home Country Address has been succesfully updated!";
+                    }
+                }
             //=======================================//
             //          Digital Contacts  
             //=======================================//
             } else if (complementName.equals("WorkerDigitalContact")) {
 
-                //get all the parameters for Nickname
-                String digitalContactType = request.getParameter("nDigitalContactType");
-                String digitalMore = request.getParameter("nDigitalMore");
-                String digitalDetails = request.getParameter("nDigitalDetails");
-                String digitalOwner = request.getParameter("nDigitalOwner");
-                String remark = request.getParameter("nRemark");
-                String obseleteDateStr = request.getParameter("nObseleteDate");
-
+                //get all the parameters 
+                String digitalType = "";
+                String digitalTypeOther = "";
+                String digitalDetail = "";
+                String digitalOwner = "";
+                String digitalRemark = "";
+                String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                if (!obseleteDateStr.equals("")) {
-                    try {
-                        java.util.Date tmp = sdf.parse(obseleteDateStr);
-                        obseleteDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        out.println(ex);
-                    }
+                
+                if (idStr == null) {
+                
+                    digitalType = request.getParameter("nDigitalContactType");
+                    digitalTypeOther = request.getParameter("nDigitalMore");
+                    digitalDetail = request.getParameter("nDigitalDetails");
+                    digitalOwner = request.getParameter("nDigitalOwner");
+                    digitalRemark = request.getParameter("nRemark");
+                    obseleteDateStr = request.getParameter("nObseleteDate");
+                
+                } else {
+                    digitalType = request.getParameter("digitalContactType");
+                    digitalTypeOther = request.getParameter("digitalMore");
+                    digitalDetail = request.getParameter("digitalDetails");
+                    digitalOwner = request.getParameter("digitalOwner");
+                    digitalRemark = request.getParameter("remark");
+                    obseleteDateStr = request.getParameter("obseleteDate"); 
+                }
+                
+                /**Server Validation**/
+                boolean pass = true; //assume validation pass first;
+                
+                if (digitalType.equals("")) {
+                    errorMsg += "Digital Type is blank,";
+                    pass = false;
+                }
+                if (digitalDetail.equals("")) {
+                    errorMsg += "Digital Details is blank,";
+                    pass = false;
                 }
 
+                //proceed only after empty fields validation is passed
+                if (pass) { 
 
-                //create object
-                WorkerDigitalContact obj = new WorkerDigitalContact(workerFinNum, digitalContactType,
-                        digitalMore, digitalDetails, digitalOwner, remark, obseleteDate);
+                    ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfDigitalContactType();
+                    boolean exit = false;
+                    for (String tmp: list) {
+                        if (tmp.equalsIgnoreCase(digitalType)) {
+                            exit = true;
+                            break;
+                        }
+                    }
 
-                //add into db
-                WorkerComplementsDAO.addWorkerDigitalContact(obj);
-                //log the audit
-                auditChange = obj.toString2();
+                    if (!exit) {
+                        errorMsg += "Invalid Digital Type, ";
+                    }
+
+                    if (!digitalTypeOther.equals("") && digitalTypeOther.length()>50) {
+                        errorMsg += "Explain if other cannot be more than 50 characters, ";
+                    }
+
+                    if (digitalDetail.length() > 50) {
+                        errorMsg += "Digital Details cannot be more than 50 characters, ";
+                    }
+
+                    if (!digitalOwner.equals("") && digitalOwner.length() > 50) {
+                        errorMsg += "Digital Owner cannot be more than 50 characters, ";
+                    }
+
+                    if (!digitalRemark.equals("") && digitalRemark.length() > 200) {
+                        errorMsg += "Digital Remark cannot be more than 200 characters, ";
+                    }
+
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+
+
+                }   //pass 
+                
+                if (errorMsg.equals("")) {
+                    if (idStr == null) {
+                        //create object
+                        WorkerDigitalContact obj = new WorkerDigitalContact(workerFinNum, digitalType,
+                                digitalTypeOther, digitalDetail, digitalOwner, digitalRemark, obseleteDate);
+
+                        //add into db
+                        WorkerComplementsDAO.addWorkerDigitalContact(obj);
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success display
+                        success = "Worker's Digital Contact has been succesfully added!";
+                    } else {
+                       int id = Integer.parseInt(request.getParameter("Id"));
+                        WorkerDigitalContact obj = new WorkerDigitalContact(workerFinNum, digitalType,
+                                digitalTypeOther, digitalDetail, digitalOwner, digitalRemark, obseleteDate);      
+
+                        //update in the Database
+                        WorkerComplementsDAO.updateWorkerDigitalContact(obj);
+
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success display
+                        success = "Worker's Digital Contact has been successfully updated!";
+                    }
+                } 
             //=======================================//
             //          Next of Kin  
             //=======================================//
             } else if (complementName.equals("WorkerNextOfKin")) {
 
                 //get all the parameters for next of kin
-                String name = request.getParameter("nName");
-                String relation = request.getParameter("nRelation");
-                String phNum = request.getParameter("nNOKPhNum");
-                String digitalContact = request.getParameter("nDigitalContact");
-                String docReference = request.getParameter("nDocReference");
-                String address = request.getParameter("nNOKAddress");
-                String proofDoc = request.getParameter("nProofDoc");
-                String remark = request.getParameter("nRemark");
-                String obseleteDateStr = request.getParameter("nObseleteDate");
-
+                String name = "";
+                String relation = "";
+                String phNum = "";
+                String digitalContact = "";
+                String docReference = "";
+                String address = "";
+                String proofDoc = "";
+                String remark = "";
+                String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                if (!obseleteDateStr.equals("")) {
-                    try {
-                        java.util.Date tmp = sdf.parse(obseleteDateStr);
-                        obseleteDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        out.println(ex);
-                    }
+                
+                if (idStr == null) {
+                    name = request.getParameter("nName");
+                    relation = request.getParameter("nRelation");
+                    phNum = request.getParameter("nNOKPhNum");
+                    digitalContact = request.getParameter("nDigitalContact");
+                    docReference = request.getParameter("nDocReference");
+                    address = request.getParameter("nNOKAddress");
+                    proofDoc = request.getParameter("nProofDoc");
+                    remark = request.getParameter("nRemark");
+                    obseleteDateStr = request.getParameter("nObseleteDate");
+                } else {
+                    name = request.getParameter("name");
+                    relation = request.getParameter("relation");
+                    phNum = request.getParameter("nokphNum");
+                    digitalContact = request.getParameter("digitalContact");
+                    docReference = request.getParameter("docReference");
+                    address = request.getParameter("nokaddress");
+                    proofDoc = request.getParameter("proofDoc");
+                    remark = request.getParameter("remark");
+                    obseleteDateStr = request.getParameter("obseleteDate");
+                }
+                
+                /**Server Validation**/
+                boolean pass = true; //assume validation pass first;
+                if (name.equals("")) {
+                    errorMsg += "Next of Kin name is blank,";
+                    pass = false;
                 }
 
+                //proceed only after empty fields validation is passed
+                if (pass) { 
 
+                    if (name.length() > 50) {
+                        errorMsg += "Next of Kin name cannot be more than 50 characters, ";
+                    }
 
-                //create object
-                WorkerNextOfKin obj = new WorkerNextOfKin(workerFinNum, name,
-                        relation, docReference, phNum, digitalContact, address,
-                        proofDoc, remark, obseleteDate);
-                WorkerComplementsDAO.addWorkerNextOfKin(obj);
-                //log the audit
-                auditChange = obj.toString2();
+                    if (!docReference.equals("") && docReference.length()>50) {
+                        errorMsg += "Doc Referece cannot be more than 50 characters, ";
+                    }
+
+                    if (!relation.equals("") && relation.length() > 50) {
+                        errorMsg += "Relation cannot be more than 50 characters, ";
+                    }
+
+                    if (!phNum.equals("") && phNum.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                        errorMsg += "Phone number - invalid format, ";
+                    }
+
+                    if (!digitalContact.equals("") && digitalContact.length() > 200) {
+                        errorMsg += "Digital Contact cannot be more than 200 characters, ";
+                    }
+
+                    if (!address.equals("") && address.length() > 200) {
+                        errorMsg += "Address cannot be more than 200 characters, ";
+                    }
+
+                    if (!proofDoc.equals("") && proofDoc.length() > 200) {
+                        errorMsg += "Proof Document cannot be more than 200 characters, ";
+                    }
+
+                    if (!remark.equals("") && remark.length() > 200) {
+                        errorMsg += "Remark cannot be more than 200 characters, ";
+                    }
+
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+                }   //pass 
+                
+                if (errorMsg.equals("")) {
+                    if (idStr == null) {
+                        //create object
+                        WorkerNextOfKin obj = new WorkerNextOfKin(workerFinNum, name,
+                                relation, docReference, phNum, digitalContact, address,
+                                proofDoc, remark, obseleteDate);
+                        WorkerComplementsDAO.addWorkerNextOfKin(obj);
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success
+                        success = "Worker's Next of Kin has been successfully added!";
+                    } else {
+                        int id = Integer.parseInt(request.getParameter("Id"));
+                        //create object
+                        WorkerNextOfKin obj = new WorkerNextOfKin(workerFinNum, id, name,
+                                relation, docReference ,phNum, digitalContact, address, 
+                                proofDoc, remark, obseleteDate);
+                        WorkerComplementsDAO.updateWorkerNextOfKin(obj);
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success
+                        success = "Worker's Next of Kin has been successfully updated!";
+                    }
+                }
             //=======================================//
             //          Family Members   
             //=======================================//                
             } else if (complementName.equals("WorkerFamilyMember")) {
 
                 //get all the parameters for next of kin
-                String name = request.getParameter("nName");
-                String relation = request.getParameter("nRelation");
-                String address = request.getParameter("nFamilyAddress");
-                String phNum = request.getParameter("nFamilyPhNum");
-                String digitalContact = request.getParameter("nDigitalContact");
-                String remark = request.getParameter("nRemark");
-                String obseleteDateStr = request.getParameter("nObseleteDate");
-
+                String name = "";
+                String relation = "";
+                String address = "";
+                String phNum = "";
+                String digitalContact = "";
+                String remark = "";
+                String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                if (!obseleteDateStr.equals("")) {
-                    try {
-                        java.util.Date tmp = sdf.parse(obseleteDateStr);
-                        obseleteDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        out.println(ex);
-                    }
+                
+                if (idStr == null) {
+                    name = request.getParameter("nName");
+                    relation = request.getParameter("nRelation");
+                    address = request.getParameter("nFamilyAddress");
+                    phNum = request.getParameter("nFamilyPhNum");
+                    digitalContact = request.getParameter("nDigitalContact");
+                    remark = request.getParameter("nRemark");
+                    obseleteDateStr = request.getParameter("nObseleteDate");
+                } else {
+                    name = request.getParameter("name");
+                    relation = request.getParameter("relation");
+                    address = request.getParameter("familyaddress");
+                    phNum = request.getParameter("familyphNum");
+                    digitalContact = request.getParameter("digitalContact");
+                    remark = request.getParameter("remark");
+                    obseleteDateStr = request.getParameter("obseleteDate");
                 }
 
+                boolean pass = true; //assume validation pass first;
 
-                //add into db                //create object
-                WorkerFamilyMember obj = new WorkerFamilyMember(workerFinNum, name,
-                        relation, address, phNum, digitalContact, remark, obseleteDate);
-                WorkerComplementsDAO.addWorkerFamilyMember(obj);
-                //log the audit
-                auditChange = obj.toString2();
+                if (name.equals("")) {
+                    errorMsg += "name is blank,";
+                    pass = false;
+                }
+
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    if (name.length() > 50) {
+                        errorMsg += "name cannot be more than 50 characters, ";
+                    }
+
+                    if (!relation.equals("") && relation.length()>50) {
+                        errorMsg += "Relation cannot be more than 50 characters, ";
+                    }
+
+                    if (!address.equals("") && address.length() > 200) {
+                        errorMsg += "Address cannot be more than 200 characters, ";
+                    }
+
+                    if (!phNum.equals("") && phNum.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                        errorMsg += "Phone Number - invalid format, ";
+                    }
+
+                    if (!digitalContact.equals("") && digitalContact.length() > 200) {
+                        errorMsg += "digital Contact cannot be more than 200 characters, ";
+                    }
+
+                    if (!remark.equals("") && remark.length() > 200) {
+                        errorMsg += "Remark cannot be more than 200 characters, ";
+                    }
+
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+                } //pass    
+                if (errorMsg.equals("")) {
+                    if (idStr == null) {
+                        //add into db                //create object
+                        WorkerFamilyMember obj = new WorkerFamilyMember(workerFinNum, name,
+                                relation, address, phNum, digitalContact, remark, obseleteDate);
+                        WorkerComplementsDAO.addWorkerFamilyMember(obj);
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success
+                        success = "Worker's Family Member has been successfully updated!";
+                    } else {
+                        int id = Integer.parseInt(request.getParameter("Id"));
+                        WorkerFamilyMember obj = new WorkerFamilyMember(workerFinNum, id, name,
+                                relation, address,phNum, digitalContact, remark, obseleteDate);                    
+                        //update in the Database
+                        WorkerComplementsDAO.updateWorkerFamilyMember(obj);
+
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success
+                        success = "Worker's Family Member has been successfully updated!";
+                    }
+                } 
             //=======================================//
             //          Friends In Singapore 
             //=======================================//               
             } else if (complementName.equals("WorkerFriend")) {
 
                 //get all the parameters for next of kin
-                String name = request.getParameter("nName");
-                String relation = request.getParameter("nRelation");
-                String phNum = request.getParameter("nFriendPhNum");
-                String remark = request.getParameter("nRemark");
-                String obseleteDateStr = request.getParameter("nObseleteDate");
-
+                String name = "";
+                String relation = "";
+                String phNum = "";
+                String remark = "";
+                String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                if (!obseleteDateStr.equals("")) {
-                    java.util.Date tmp = sdf.parse(obseleteDateStr);
-                    obseleteDate = new java.sql.Date(tmp.getTime());
+                if (idStr == null) {
+                    name = request.getParameter("nName");
+                    relation = request.getParameter("nRelation");
+                    phNum = request.getParameter("nFriendPhNum");
+                    remark = request.getParameter("nRemark");
+                    obseleteDateStr = request.getParameter("nObseleteDate");
+                } else {
+                    name = request.getParameter("name");
+                    relation = request.getParameter("relation");
+                    phNum = request.getParameter("friendPhNum");
+                    remark = request.getParameter("remark");
+                    obseleteDateStr = request.getParameter("obseleteDate");
+                }
+                
+                boolean pass = true; //assume validation pass first;
+                if (name.equals("")) {
+                    errorMsg += "name is blank,";
+                    pass = false;
                 }
 
+                //proceed only after empty fields validation is passed
+                if (pass) { 
 
-                //add into db                //create object
-                WorkerFriend obj = new WorkerFriend(workerFinNum, name,
-                        phNum, relation, remark, obseleteDate);
-                WorkerComplementsDAO.addWorkerFriend(obj);
-                //log the audit
-                auditChange = obj.toString2();
-                //success display
-                success = "Worker's Friend record has been succesfully added!";
+                    if (name.length() > 50) {
+                        errorMsg += "name cannot be more than 50 characters, ";
+                    }
+
+                    if (!phNum.equals("") && phNum.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                        errorMsg += "Phone Number - invalid format, ";
+                    }
+
+                    if (!relation.equals("") && relation.length() > 50) {
+                        errorMsg += "Relation cannot be more than 50 characters, ";
+                    }
+
+                    if (!remark.equals("") && remark.length() > 200) {
+                        errorMsg += "Remark cannot be more than 200 characters, ";
+                    }
+
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+
+
+                }   //pass
+
+                if (errorMsg.equals("")) {
+                    if (idStr == null) {
+                        //add into db                //create object
+                        WorkerFriend obj = new WorkerFriend(workerFinNum, name,
+                                phNum, relation, remark, obseleteDate);
+                        WorkerComplementsDAO.addWorkerFriend(obj);
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success display
+                        success = "Worker's Friend record has been succesfully added!";
+                    } else {
+                        int id = Integer.parseInt(request.getParameter("Id"));
+                        WorkerFriend obj = new WorkerFriend(workerFinNum, id, name,
+                                phNum, relation, remark, obseleteDate);
+                        WorkerComplementsDAO.updateWorkerFriend(obj);
+
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //succes display
+                        success = "Worker's Friend record has been succesfully updated!";
+                    }
+                }
             //=======================================//
             //          Language 
             //=======================================//
             } else if (complementName.equals("WorkerLanguage")) {
 
                 //get all the parameters for next of kin
-                String mainLanguage = request.getParameter("nMainLanguage");
-                String languageMore = request.getParameter("nLanguageMore");
-                String englishStandard = request.getParameter("nEnglishStandard");
-                String remark = request.getParameter("nRemark");
+                String mainLanguage = "";
+                String languageMore = "";
+                String englishStandard = "";
+                String remark = "";
+                
+                if (idStr == null) {
+                    mainLanguage = request.getParameter("nMainLanguage");
+                    languageMore = request.getParameter("nLanguageMore");
+                    englishStandard = request.getParameter("nEnglishStandard");
+                    remark = request.getParameter("nRemark");
+                } else {
+                    mainLanguage = request.getParameter("mainLanguage");
+                    languageMore = request.getParameter("languageMore");
+                    englishStandard = request.getParameter("englishStandard");
+                    remark = request.getParameter("remark");
+                }
+                
+                boolean pass = true; //assume validation pass first;
+                if (mainLanguage.equals("")) {
+                    errorMsg += "Language is blank,";
+                    pass = false;
+                }
 
+                //proceed only after empty fields validation is passed
+                if (pass) { 
 
-                //add into db                //create object
-                WorkerLanguage obj = new WorkerLanguage(workerFinNum, mainLanguage,
-                        languageMore, englishStandard, remark);
-                WorkerComplementsDAO.addWorkerLanguage(obj);
-                //log the audit
-                auditChange = obj.toString2();
-                //success display
-                success = "Worker's Language has been succesfully added!";
+                    if (!languageMore.equals("") && languageMore.length() > 50) {
+                        errorMsg += "Explain if other cannot be more than 50 characters, ";
+                    }
+
+                    if (!remark.equals("") && remark.length() > 200) {
+                        errorMsg += "Remark cannot be more than 200 characters, ";
+                    }
+
+                }   //pass 
+                if (errorMsg.equals("")) {
+                    if (idStr == null) {
+                        //add into db                //create object
+                        WorkerLanguage obj = new WorkerLanguage(workerFinNum, mainLanguage,
+                                languageMore, englishStandard, remark);
+                        WorkerComplementsDAO.addWorkerLanguage(obj);
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success display
+                        success = "Worker's Language has been succesfully added!";
+                    } else {
+                        int id = Integer.parseInt(request.getParameter("Id"));
+                        WorkerLanguage obj = new WorkerLanguage(workerFinNum,id, mainLanguage,
+                                languageMore, englishStandard, remark);
+                        WorkerComplementsDAO.updateWorkerLanguage(obj);
+
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success
+                        success = "Worker's Language has been succesfully updated!";
+                    }
+                }
             //=======================================//
             //          Bank Account Details  
             //=======================================//
             } else if (complementName.equals("WorkerBankAcct")) {
                 //get all the parameters for next of kin
-                String bankAcctName = request.getParameter("nBankAcctName");
-                String bankAcctNum = request.getParameter("nBankAcctNum");
-                String bankName = request.getParameter("nBankName");
-                String bankBranch = request.getParameter("nBankBranch");
-                String bankBranchAddress = request.getParameter("nBankBranchAddress");
-                String bankBranchCode = request.getParameter("nBankBranchCode");
-                String bankSwift = request.getParameter("nBankSwift");
-                String remark = request.getParameter("nRemark");
-                String obseleteDateStr = request.getParameter("nObseleteDate");
-
+                String bankAcctName = "";
+                String bankAcctNum = "";
+                String bankName = "";
+                String bankBranch = "";
+                String bankBranchAddress = "";
+                String bankBranchCode = "";
+                String bankSwift = "";
+                String remark = "";
+                String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                if (!obseleteDateStr.equals("")) {
-                    try {
-                        java.util.Date tmp = sdf.parse(obseleteDateStr);
-                        obseleteDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        out.println(ex);
-                    }
+                
+                if (idStr == null) {
+                    bankAcctName = request.getParameter("nBankAcctName");
+                    bankAcctNum = request.getParameter("nBankAcctNum");
+                    bankName = request.getParameter("nBankName");
+                    bankBranch = request.getParameter("nBankBranch");
+                    bankBranchAddress = request.getParameter("nBankBranchAddress");
+                    bankBranchCode = request.getParameter("nBankBranchCode");
+                    bankSwift = request.getParameter("nBankSwift");
+                    remark = request.getParameter("nRemark");
+                    obseleteDateStr = request.getParameter("nObseleteDate");
+                } else {
+                    bankAcctName = request.getParameter("bankAcctName");
+                    bankAcctNum = request.getParameter("bankAcctNum");
+                    bankName = request.getParameter("bankName");
+                    bankBranch = request.getParameter("bankBranch");
+                    bankBranchAddress = request.getParameter("bankBranchAddress");
+                    bankBranchCode = request.getParameter("bankBranchCode");
+                    bankSwift = request.getParameter("bankSwift"); 
+                    remark = request.getParameter("remark");
+                    obseleteDateStr = request.getParameter("obseleteDate");
+                }
+                
+                //**Server Validaiton**//
+                boolean pass = true; //assume validation pass first;
+
+                if (bankAcctName.equals("")) {
+                    errorMsg += "bank Account name is blank,";
+                    pass = false;
                 }
 
+                if (bankAcctNum.equals("")) {
+                    errorMsg += "bank account num is blank,";
+                    pass = false;
+                }
 
-                //create object
-                WorkerBankAcct obj = new WorkerBankAcct(workerFinNum, bankAcctName,
-                        bankAcctNum, bankName, bankBranch, bankBranchAddress,
-                        bankBranchCode, bankSwift, remark, obseleteDate);
-                WorkerComplementsDAO.addWorkerBankAccountDetails(obj);
+                if (bankName.equals("")) {
+                    errorMsg += "bank name is blank,";
+                    pass = false;
+                }
 
-                //log the audit
-                auditChange = obj.toString2();
-                //success display
-                success = "Worker's Bank Account Details has been succesfully added!";
+                //proceed only after empty fields validation is passed
+                if (pass) { 
+
+                    if (bankAcctName.length() > 50) {
+                        errorMsg += "bank account name cannot be more than 50 characters, ";
+                    }
+
+                    if (bankAcctNum.length() > 50) {
+                        errorMsg += "bank account number cannot be more than 50 characters, ";
+                    }
+
+                    if (bankName.length() > 50) {
+                        errorMsg += "bank name cannot be more than 50 characters, ";
+                    }
+
+                    if (!bankBranch.equals("") && bankBranch.length() > 50) {
+                        errorMsg += "bank branch cannot be more than 50 characters, ";
+                    }
+
+                    if (!bankBranchAddress.equals("") && bankBranchAddress.length() > 300) {
+                        errorMsg += "bank branch address cannot be more than 300 characters, ";
+                    }
+
+                    if (!bankBranchCode.equals("") && bankBranchCode.length() > 50) {
+                        errorMsg += "bank branch code cannot be more than 50 characters, ";
+                    }
+
+                    if (!bankSwift.equals("") && bankSwift.length() > 50) {
+                        errorMsg += "bank swift cannot be more than 50 characters, ";
+                    }
+
+                    if (!remark.equals("") && remark.length() > 200) {
+                        errorMsg += "remark cannot be more than 200 characters, ";
+                    }
+
+                    if (!obseleteDateStr.equals("")) {
+                        try {
+                            java.util.Date tmp = sdf.parse(obseleteDateStr);
+                            obseleteDate = new java.sql.Date(tmp.getTime());
+                        } catch (ParseException ex) {
+                            errorMsg += "Invalid Obselete Date Format,";
+                        } 
+                    }
+
+                }   //pass 
+
+                if (errorMsg.equals("")){
+                    if (idStr == null) {
+                        //create object
+                        WorkerBankAcct obj = new WorkerBankAcct(workerFinNum, bankAcctName,
+                                bankAcctNum, bankName, bankBranch, bankBranchAddress,
+                                bankBranchCode, bankSwift, remark, obseleteDate);
+                        WorkerComplementsDAO.addWorkerBankAccountDetails(obj);
+
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success display
+                        success = "Worker's Bank Account Details has been succesfully added!";
+                    } else {
+                        int id = Integer.parseInt(request.getParameter("Id"));
+                        //create object
+                        WorkerBankAcct obj = new WorkerBankAcct(workerFinNum, id, bankAcctName,
+                                bankAcctNum, bankName,bankBranch, bankBranchAddress,
+                                bankBranchCode,bankSwift , remark,obseleteDate);                    
+                        WorkerComplementsDAO.updateWorkerBankAccountDetails(obj);
+
+                        //log the audit
+                        auditChange = obj.toString2();
+                        //success display
+                        success = "Worker's Bank Account Details has been succesfully updated!";
+                    }
+                }
             }
             
             //log to audit
@@ -389,7 +1073,8 @@ public class processAddWorkerComplement extends HttpServlet {
                     workerFinNum, "Added", "Worker Complement: " + auditChange);
             
             UserAuditLogDAO.addUserAuditLog(userAuditLog);       
-            //request.getSession().setAttribute("successWrkCompMsg", success);
+            request.getSession().setAttribute("successWrkCompMsg", success);
+            request.getSession().setAttribute("errorWrkCompMsg", errorMsg);
             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
         } catch (Exception e) {
             //error = "Worker Complement is not added. There is a parsing error.";

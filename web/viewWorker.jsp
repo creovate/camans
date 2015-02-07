@@ -49,7 +49,25 @@
         selectedJob = null;
     }
 
+    
+    String successWorkerMsg = (String) request.getSession().getAttribute("successWrkCompMsg");
+    request.getSession().removeAttribute("successWrkCompMsg");
 
+    String errorWorkerMsg = (String) request.getSession().getAttribute("errorWrkCompMsg");
+    request.getSession().removeAttribute("errorWrkCompMsg");
+    
+    String successJobMsg = (String) request.getSession().getAttribute("successJobCompMsg");
+    request.getSession().removeAttribute("successJobCompMsg");
+
+    String errorJobMsg = (String) request.getSession().getAttribute("errorJobCompMsg");
+    request.getSession().removeAttribute("errorJobCompMsg");
+    
+    String successBenefitMsg = (String) request.getSession().getAttribute("successBenefitMsg");
+    request.getSession().removeAttribute("successBenefitMsg");
+
+    String errorBenefitMsg = (String) request.getSession().getAttribute("errorBenefitMsg");
+    request.getSession().removeAttribute("errorBenefitMsg");
+    
     String successAttachMsg = (String) request.getSession().getAttribute("successAttachMsg");
     request.getSession().removeAttribute("successAttachMsg");
 
@@ -173,17 +191,19 @@
             #side-menu{
                 position: static !important;
             }
-
+            
+            
             .table th{
-                text-align: center;
+                text-align: left;
             }
 
             .table tr{
-                text-align: center;
+                text-align: left;
             }
+            
             .tbl-action-col{
                 width: 20%;
-                text-align: center;
+                text-align: left;
             }
 
             .alert{
@@ -304,7 +324,7 @@
                         </tr>
                         <tr>
                             <td class="col-md-6">Injured Date</td>
-                            <td class="col-md-6"><%=(injuryDate==null)?"-":sdf.format(injuryDate)%></td>
+                            <td class="col-md-6"><%=(injuryDate == null) ? "-" : injuryDate%></td>
                         </tr>
                         <tr>
                             <td class="col-md-6">Lead Caseworker</td>
@@ -329,6 +349,26 @@
                                     <% }%>    
                                     <br/>
 
+                                <!-- Worker Complement Success & Error Display --->
+
+                                    <% if (successWorkerMsg != null) { if (!successWorkerMsg.equals("")) {%>
+
+                                    <div class="alert alert-info" role="alert">
+                                        <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+                                        <%=successWorkerMsg%>
+                                    </div>
+
+                                    <% }}%>
+                                    <% if (errorWorkerMsg != null) { if (!errorWorkerMsg.equals("")) { %>
+
+                                    <div class="alert alert-danger" role="alert">
+                                        <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+                                        <%=errorWorkerMsg%>
+                                    </div>
+
+                                    <% }}%>
+                                    <!-- End of Worker Complement Success & Error Display --->
+                    
                                     <div class='row'>
                                         <!--Nickname-->
                                         <div class="panel panel-default">
@@ -1228,7 +1268,7 @@
                                             <div class="panel-heading">
 
                                                 <h4 class="panel-title">Language
-                                                    <a data-value='language' data-class="worker"  data-language='' href="" data-toggle="modal" data-title="Add A New Worker\'s Language" data-action = "add" data-target="#language_pop_up" class="edit_btn pop_up_open">
+                                                    <a data-value='language' data-class="worker"  data-language='' href="" data-toggle="modal" data-title='Add A New Worker\'s Language' data-action = "add" data-target="#language_pop_up" class="edit_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
@@ -1259,7 +1299,7 @@
                                                         <td><%=mlanguage%></td>
                                                         <td><%=engStd%></td>
 
-                                                        <td class="tbl-action-col"><a style="color: black"  data-class="worker" data-value='language' data-title='View Details of Worker\'s Language' 
+                                                        <td class="tbl-action-col"><a style="color: black"  data-class="worker" data-value='language' data-title='View Details of Worker Language' 
                                                                data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" 
                                                                data-action="viewedit" class="edit_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
@@ -1282,7 +1322,7 @@
                                                         <td><%=mlanguage%></td>
                                                         <td><%=engStd%></td>
 
-                                                        <td class="tbl-action-col"><a style="color: black"  data-class="worker" data-value='language' data-title='View Details of Worker\'s Language' 
+                                                        <td class="tbl-action-col"><a style="color: black"  data-class="worker" data-value='language' data-title='View Details of Worker Language' 
                                                                data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" 
                                                                data-action="viewedit" class="edit_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
@@ -1354,7 +1394,18 @@
                                                         <td><%=bank%></td>
                                                         <td><%=acctype%></td>
                                                         <td><%=accno%></td>
-                                                        <td><%=(obDate == null) ? "" : sdf.format(obDate)%></td>
+                                                        <%
+                                                            if (obDate == null) {
+                                                        %>
+                                                        <td>-</td>
+                                                        <%                                                } else {
+                                                            String obDateStr = sdf.format(obDate);
+                                                        %>
+                                                        <td><%=obDateStr%></td>
+                                                        <%
+                                                            }
+
+                                                        %>
                                                         <td class="tbl-action-col"><a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' href="" 
                                                                 data-toggle="modal" data-class="worker"  data-target="#bankAcc_pop_up" 
                                                                 data-action="viewedit" class="edit_btn pop_up_open">
@@ -1377,7 +1428,18 @@
                                                         <td><%=bank%></td>
                                                         <td><%=acctype%></td>
                                                         <td><%=accno%></td>
-                                                        <td><%=(obDate == null) ? "" : sdf.format(obDate)%></td>
+                                                        <%
+                                                            if (obDate == null) {
+                                                        %>
+                                                        <td>-</td>
+                                                        <%                                                } else {
+                                                            String obDateStr = sdf.format(obDate);
+                                                        %>
+                                                        <td><%=obDateStr%></td>
+                                                        <%
+                                                            }
+
+                                                        %>
                                                         <td class="tbl-action-col"><a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' 
                                                                 data-title="View Bank Account Details" href="" data-toggle="modal" data-class="worker"  data-target="#bankAcc_pop_up" 
                                                                 data-action="viewedit" class="edit_btn pop_up_open">
@@ -1412,9 +1474,28 @@
                                     </div>
                                 </div>
 
-                                <!----Job Complement Tab-->        
+                                <!----Job Complement Tab--->        
                                 <div class="tab-pane " id="job_complement">
                                     <br/>
+                                    <!-- Job Complement Success & Error Display --->
+
+                                    <% if (successJobMsg != null) { if (!successJobMsg.equals("")) {%>
+
+                                    <div class="alert alert-info" role="alert">
+                                        <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+                                        <%=successJobMsg%>
+                                    </div>
+
+                                    <% }}%>
+                                    <% if (errorJobMsg != null) { if (!errorJobMsg.equals("")) { %>
+
+                                    <div class="alert alert-danger" role="alert">
+                                        <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+                                        <%=errorJobMsg%>
+                                    </div>
+
+                                    <% }}%>
+                                    <!-- End of Job Complement Success & Error Display --->
                                     <div class="row">
                                         <form method="POST" action="changeToSelected">
                                             <div class="form-group">
@@ -1598,7 +1679,7 @@
                                                         <td><%=(ipaAppDate == null) ? "-" : sdf.format(ipaAppDate)%></td>
                                                         <td><%=empName%></td>
                                                         <td><%=salary%></td>
-                                                        <td class="tbl-action-col">
+                                                        <td>
                                                             <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' data-title="View IPA Pass Details"
                                                                data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
                                                                data-action="viewedit" class="view_btn pop_up_open">
@@ -1622,7 +1703,7 @@
                                                         <td><%=(ipaAppDate == null) ? "-" : sdf.format(ipaAppDate)%></td>
                                                         <td><%=empName%></td>
                                                         <td><%=salary%></td>
-                                                        <td class="tbl-action-col">
+                                                        <td>
                                                             <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' data-title="View IPA Pass Details"
                                                                data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
                                                                data-action="viewedit" class="view_btn pop_up_open">
@@ -1699,7 +1780,7 @@
                                                         <td><%=verbalRelation%></td>
                                                         <td><%=verbalWhen%></td>
                                                         <td><%=verbalWhere%></td>
-                                                        <td class="tbl-action-col">
+                                                        <td>
                                                             <a style="color: black" data-value='assurance' data-assurance='<%=assurance.getId()%>'  data-class="job" data-title="View Verbal Assurance Details"
                                                                href="" data-toggle="modal" data-target="#assurance_pop_up" data-action="viewedit" 
                                                                class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
@@ -1722,7 +1803,7 @@
                                                         <td><%=verbalRelation%></td>
                                                         <td><%=verbalWhen%></td>
                                                         <td><%=verbalWhere%></td>
-                                                        <td class="tbl-action-col">
+                                                        <td>
                                                             <a style="color: black" data-value='assurance' data-assurance='<%=assurance.getId()%>'  data-class="job" data-title="View Verbal Assurance Details"
                                                                href="" data-toggle="modal" data-target="#assurance_pop_up" data-action="viewedit" 
                                                                class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
@@ -1820,7 +1901,7 @@
                                                         <td><%=contraName%></td>
                                                         <td><%=contraSalary%></td>
 
-                                                        <td class="tbl-action-col">
+                                                        <td>
                                                             <a style="color: black"  data-class="job" data-value='empcontract' data-title="View Employment Contract Details"
                                                                data-empcontract='<%=empContract.getId()%>' 
                                                                href="" data-toggle="modal" data-target="#empcontract_pop_up" 
@@ -1899,7 +1980,7 @@
                                                         <td><%=agentPaidAmt%></td>
                                                         <td><%=agentFWhere%></td>
 
-                                                        <td class="tbl-action-col">
+                                                        <td>
                                                             <a style="color: black" data-value='agent' data-agent='<%=agent.getID()%>'  data-class="job" data-title="View Intermediary Agent"
                                                                href="" data-toggle="modal" data-target="#agent_pop_up" data-action="viewedit" 
                                                                class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
@@ -1922,7 +2003,7 @@
                                                         <td><%=agentPaidAmt%></td>
                                                         <td><%=agentFWhere%></td>
 
-                                                        <td class="tbl-action-col">
+                                                        <td>
                                                             <a style="color: black" data-value='agent' data-agent='<%=agent.getID()%>'  data-class="job" data-title="View Intermediary Agent"
                                                                href="" data-toggle="modal" data-target="#agent_pop_up" data-action="viewedit" 
                                                                class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
@@ -1999,7 +2080,7 @@
                                                                data-title="View Employer Details" href="" data-toggle="modal" data-target="#empdetails_pop_up" 
                                                                data-action="viewedit" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span></a>
-                                                        
+                                                        </td>
                                                         <% if (userLogin.getRole().equals("Administrator")) { %>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
@@ -2007,7 +2088,6 @@
                                                                data-action="delete" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span></a>
                                                         <% }%> 
-                                                    </td>
                                                     </tr>
                                                     <%
                                                     } else {
@@ -2090,7 +2170,7 @@
                                                         <td><%=wpSDate%></td>
                                                         <td><%=wpEDate%></td>
 
-                                                        <td class="tbl-action-col">
+                                                        <td>
                                                             <a style="color: black" data-value='wplace' data-wplace='<%=workPlace.getId()%>' data-class="job" 
                                                                data-title="View Workplace Details" href="" data-toggle="modal" data-target="#wplace_pop_up" 
                                                                data-action="viewedit" class="view_btn pop_up_open">
@@ -2115,7 +2195,7 @@
                                                         <td><%=wpSDate%></td>
                                                         <td><%=wpEDate%></td>
 
-                                                        <td class="tbl-action-col">
+                                                        <td>
                                                             <a style="color: black" data-value='wplace' data-wplace='<%=workPlace.getId()%>' data-class="job" 
                                                                data-title="View Workplace Details" href="" data-toggle="modal" data-target="#wplace_pop_up" 
                                                                data-action="viewedit" class="view_btn pop_up_open">
@@ -2339,7 +2419,7 @@
                                     </div>
                                 </div>
 
-                                <!----Problem Complement Tab-->             
+                                <!----Problem Complement Tab--->             
                                 <div class="tab-pane " id="problem_complement" >
                                     <br/>
                                     <br/>
@@ -2444,7 +2524,7 @@
                                                                             <td><%=(issueMore == null) ? "" : issueMore%></td>
                                                                             <td><%=(loss == 0) ? "0.00" : loss%></td>
                                                                             <td><%=remark%></td>
-                                                                            <td class="tbl-action-col">
+                                                                            <td>
                                                                                 <a style="color: black" data-value='aggravissue' data-class="problem" data-title="View Aggravating Issue Details" 
                                                                                    data-aggravissue='<%=aggravIs.getId()%>' href="#" data-toggle="modal" data-action="viewedit" 
                                                                                    data-target="#aggravIssue_pop_up" class="edit_btn pop_up_open">
@@ -2863,7 +2943,7 @@
                                                                                 </a>
                                                                                 <% if (userLogin.getRole().equals("Administrator")) { %>
                                                                                     &nbsp;&nbsp;&nbsp;
-                                                                                <a style="color: black" data-value='lawyer' data-lawyer='<%=id%>'
+                                                                                <a style="color: black" data-value='lawyer' data-lawyer='<%=id%>'"
                                                                                    data-class="problem"   href="" data-toggle="modal" data-action="delete" 
                                                                                    data-target="#lawyer_pop_up"  class="delete_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-trash"></span>
@@ -2946,7 +3026,7 @@
                                                                             <td><%=mode%></td>
                                                                             <td><%=tClaim%></td>
                                                                             <td><%=claim%></td>
-                                                                            <td class="tbl-action-col">
+                                                                            <td>
                                                                                 <a style="color: black" data-target="#salaryhistory_pop_up"  data-class="problem"  
                                                                                    data-value='salaryhistory' data-title="View Salary & Related History" 
                                                                                    data-salaryhistory='<%=historyId%>' href="" data-toggle="modal" data-action="viewedit" 
@@ -2972,7 +3052,7 @@
                                                                             <td><%=mode%></td>
                                                                             <td><%=tClaim%></td>
                                                                             <td><%=claim%></td>
-                                                                            <td class="tbl-action-col">
+                                                                            <td>
                                                                                 <a style="color: black" data-target="#salaryhistory_pop_up"  data-class="problem"  
                                                                                    data-title="View Salary & Related History" data-value='salaryhistory' 
                                                                                    data-salaryhistory='<%=historyId%>' href="#" data-toggle="modal" data-action="viewedit"  
@@ -3745,7 +3825,7 @@
                                                                             <th>Current Status</th>
                                                                             <th>MC Expiry Dt</th>
                                                                             <th>Cumul MC Days</th>
-                                                                            <th>Action</th>
+                                                                            <th class="tbl-action-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -4286,7 +4366,7 @@
                                                                             <td><%=(date==null)?"-":sdf.format(date)%></td> 
                                                                             <td><%=reached%></td>
 
-                                                                            <td class="tbl-action-col">
+                                                                            <td>
                                                                                 <a style="color: black" data-target="#milestonenc_pop_up" data-title="View Case Milestone (Non-Criminal) Details"
                                                                                    data-class="problem"  data-value='ncmilestone' data-ncmilestone='<%=nCaseMSId%>' href="" data-toggle="modal" 
                                                                                    data-action="viewedit"  class="edit_btn pop_up_open">
@@ -4385,7 +4465,7 @@
                                                                             <td><%=(date==null)?"-":sdf.format(date)%></td> 
                                                                             <td><%=reached%></td>
 
-                                                                            <td class="tbl-action-col">
+                                                                            <td>
                                                                                 <a style="color: black" data-target="#milestonecr_pop_up" data-title="View Case Milestone (Criminal) Details" 
                                                                                    data-value='cmilestone' data-cmilestone='<%=caseMSId%>' data-class="problem"  href="" 
                                                                                    data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
@@ -4407,7 +4487,7 @@
                                                                         <tr>
                                                                             <td><%=(date==null)?"-":sdf.format(date)%></td> 
                                                                             <td><%=reached%></td>
-                                                                            <td class="tbl-action-col">
+                                                                            <td>
                                                                                 <a style="color: black" data-target="#milestonecr_pop_up" data-title="View Case Milestone (Criminal) Details"
                                                                                    data-value='cmilestone' data-cmilestone='<%=caseMSId%>' data-class="problem"  href="" data-toggle="modal" 
                                                                                    data-action="viewedit"  class="edit_btn pop_up_open">
@@ -4549,6 +4629,25 @@
                                 <!----Benefits Complement Tab--->                             
                                 <div class="tab-pane" id="benefit_complement" >
                                     <br/>
+                                    <!-- Benefits Success & Error Display --->
+
+                                    <% if (successBenefitMsg != null) { if (!successBenefitMsg.equals("")) {%>
+
+                                    <div class="alert alert-info" role="alert">
+                                        <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+                                        <%=successBenefitMsg%>
+                                    </div>
+
+                                    <% }}%>
+                                    <% if (errorBenefitMsg != null) { if (!errorBenefitMsg.equals("")) { %>
+
+                                    <div class="alert alert-danger" role="alert">
+                                        <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+                                        <%=errorBenefitMsg%>
+                                    </div>
+
+                                    <% }}%>
+                                    <!-- End of Benefits Success & Error Display --->
                                     <div class='row'>
                                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
                                             <!--meal-->
@@ -4926,14 +5025,14 @@
                                     </div>
                                 </div>
 
-                                <!----Attachments Complement Tab-->          
+                                <!----Attachments Complement Tab--->          
                                 <% if (successAttachMsg != null || errorAttachMsg != null) {%>
                                 <div class="tab-pane active" id="attachment_complement">
                                     <% } else {%>    
                                     <div class="tab-pane" id="attachment_complement"> 
                                         <% }%> 
                                         <br/><br/>
-                                        <!-- Attachments Success & Error Display -->
+                                        <!-- Attachments Success & Error Display --->
 
                                         <% if (successAttachMsg != null) {%>
 
@@ -4951,7 +5050,7 @@
                                         </div>
 
                                         <% }%>
-                                        <!-- End of Attachments Success & Error Display -->
+                                        <!-- End of Attachments Success & Error Display --->
                                         <div class="panel panel-default">
                                             <div class="panel-body">
                                                 <form id="uploadAttachForm" action="fileUpload.do" method="post" enctype="multipart/form-data"> 
@@ -4993,7 +5092,7 @@
                                                     <td><%=docName%></td>
                                                     <td><%=sdf2.format(timeStamp)%></td>
                                                     <td><%=submitBy%></td>
-                                                    <td  class="tbl-action-col">
+                                                    <td class="tbl-action-col">
                                                         <% String extension = docName.substring(docName.lastIndexOf(".") + 1);
                                                             if (extension.equalsIgnoreCase("jpeg") || extension.equalsIgnoreCase("jpg")
                                                                     || extension.equalsIgnoreCase("png") || extension.equalsIgnoreCase("bmp")) {
@@ -5025,7 +5124,7 @@
                                         <br/>No file has been uploaded to this worker yet!
                                         <%  }%>
                                     </div>                
-                                    <!----End of Attachments Complement Tab--> 
+                                    <!----End of Attachments Complement Tab---> 
                                 </div>
                             </div>
 
@@ -5186,7 +5285,7 @@
                     <li class="active"><%=worker.getFinNumber()%></li>
                 </ol>
             </div>
-
+                
             <div class="col-md-offset-6" id="complement_header_tab">
                 <ul class="nav nav-tabs " role="tablist" id="sub_nav_tabs">
                     <%  if (successAttachMsg != null || errorAttachMsg != null) {%>

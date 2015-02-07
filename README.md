@@ -1,5 +1,16 @@
 camans
 ======
+<b>8th Feb 2015 - smm</b> <br/>
+1. bootstrap errors data into csv files and download link <br/>
+2. server validation: worker, job, benefit <br/>
+3. error/success message: worker, job, attachments, benefit
+
+<b>7th Feb 2015 - smm</b> <br/>
+1. delete Features/Functions for worker complements, job complements, problem complements, benefits <br/>
+2. export Select All Function <br/>
+
+Signed-off-by: soemyatmyat <soemyatmyat@openmailbox.org>
+
 ***Please exclude private files from nbproject folder when you commit.***
 
 <b>3rd Feb 2015 - nyein su</b>
@@ -8,7 +19,6 @@ camans
 3. Debug UAT2 bugs <br/>
 4. Edited in sql code <br/>
 **** All on git now. <br/>
-
 
 <b>2nd Feb 2015 - nyein su</b>
 1. imporve UI<br/>

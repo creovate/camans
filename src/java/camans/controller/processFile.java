@@ -277,16 +277,24 @@ public class processFile extends HttpServlet {
                 //         End of Process File Rename
                 //==========================================//  
                     
-                } else if (action.equals("download")) {
+                } else if (action.equals("download") || action.equals("downloaderrzipfile")) {
                 //==========================================//
                 //          Process File Download
-                //==========================================//   
-                    int id = Integer.parseInt(attachId);
-                    WorkerAttachment workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(id);
+                //==========================================//  
+                    String filePath = "";
+                    WorkerAttachment workerAttachment = null;
+                    if (action.equals("download")) {
+                        int id = Integer.parseInt(attachId);
+                        workerAttachment = WorkerComplementsDAO.retrieveAttachmentDetailsById(id);
+
+                        //retrieve filePath of the app build folder together with file dir
+                        filePath = getServletContext().getRealPath("/") + File.separator 
+                                + workerAttachment.getFilePath();
+                    } else if (action.equals("downloaderrzipfile")) {
+                        filePath = getServletContext().getRealPath("/") + File.separator + "dataErr" + 
+                                File.separator + "errData.zip";
+                    }
                     
-                    //retrieve filePath of the app build folder together with file dir
-                    String filePath = getServletContext().getRealPath("/") + File.separator 
-                            + workerAttachment.getFilePath();
                     File dlFile = new File(filePath);
                    //out.println(dlFile.toString());
                     
@@ -304,7 +312,12 @@ public class processFile extends HttpServlet {
  
                         // forces download
                         String headerKey = "Content-Disposition";
-                        String headerValue = String.format("attachment; filename=\"%s\"", workerAttachment.getDocumentName());
+                        String headerValue = "";
+                        if (action.equals("download")) {
+                            headerValue = String.format("attachment; filename=\"%s\"", workerAttachment.getDocumentName());
+                        } else if (action.equals("downloaderrzipfile")) {
+                            headerValue = String.format("attachment; filename=\"%s\"", "errData.zip");
+                        }
                         response.setHeader(headerKey, headerValue);
 
                         FileInputStream inStream = null;

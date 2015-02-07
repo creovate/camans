@@ -44,146 +44,143 @@ public class processAddBenefit extends HttpServlet {
             int jobKey = Integer.parseInt(request.getParameter("jobkey"));
             int problemKey = Integer.parseInt(request.getParameter("probKey"));
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+            String idStr = request.getParameter("Id");
             
-            //server side validation parameters
-            boolean pass = true; //Assume validaiton pass first
-            String err = null; //to store error msg
-            String success = null;//to store success msg
-            
+            //=======================================//
+            //   Server Side Validation Parameters
+            //=======================================//
+            String errorMsg = ""; //to store error msg
+            String success = "";//to store success msgf
             //audit paratmeters
             User _user = (User) request.getSession().getAttribute("userLogin");
             String auditChange = "";
+
+            String beneDateStr = "";
+            String beneGiver = "";
+            String beneType = "";
+            String beneTypeMore = "";
+            String beneSerial = "";
+            String benePurpose = "";
+            String beneRem = "";
+            String beneValueStr = "";
+            Double beneValue = 0.0;
+            java.sql.Date beneDate = null;
             //===============================================//
-            //     Add New Benefit
+            //     Add/Edit  Benefit
             //===============================================//
+            //Data Collection
             if (action.equals("add")) {
-                
-                //Data Collection
-                String beneDateStr = request.getParameter("nisDate");
-                String beneGiver = request.getParameter("ngivenby");
-                String beneType = request.getParameter("nbenetype");
-                String beneTypeMore = request.getParameter("nbenetypeMore");
-                String beneSerial = request.getParameter("nsernum");
-                String benePurpose = request.getParameter("npurpose");
-                String beneRem = request.getParameter("nremark");
-                String beneValueStr = request.getParameter("nvalue");
-                //End of Data Collection
-                
-                //Server side validation
-                java.sql.Date beneDate = null;
-                if (beneDateStr == null || beneDateStr.equals("")) {
-                    pass = false;
-                    err = "Benefit Issue Date cannot be empty.";
-                } else {        
-                    try {
-                        java.util.Date tmp = sdf.parse(beneDateStr);
-                        beneDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        //do not proceed & show error page
-                        err = "Benefit Iusse Date format is not correct.";
-                    }
+                beneDateStr = request.getParameter("nisDate");
+                beneGiver = request.getParameter("ngivenby");
+                beneType = request.getParameter("nbenetype");
+                beneTypeMore = request.getParameter("nbenetypeMore");
+                beneSerial = request.getParameter("nsernum");
+                benePurpose = request.getParameter("npurpose");
+                beneRem = request.getParameter("nremark");
+                beneValueStr = request.getParameter("nvalue");
+            } else {
+                beneDateStr = request.getParameter("isDate");
+                beneGiver = request.getParameter("givenby");
+                beneType = request.getParameter("benetype");
+                beneTypeMore = request.getParameter("benetypeMore");
+                beneSerial = request.getParameter("sernum");
+                benePurpose = request.getParameter("purpose");
+                beneRem = request.getParameter("remark");
+                beneValueStr = request.getParameter("value");
+            }    
+            //End of Data Collection
+
+            //Server side validation
+            boolean pass = true; //Assume validaiton pass first
+            if (beneDateStr == null || beneDateStr.equals("")) {
+                pass = false;
+                errorMsg = "Benefit Issue Date cannot be empty.";
+            } else {        
+                try {
+                    java.util.Date tmp = sdf.parse(beneDateStr);
+                    beneDate = new java.sql.Date(tmp.getTime());
+                } catch (ParseException ex) {
+                    //do not proceed & show error page
+                    errorMsg = "Benefit Iusse Date format is not correct.";
                 }
-                
-                if (beneType == null || beneType.equals("")) {
-                    pass = false;
-                    err += "Benefit Type cannot be empty.";
+            }
+            if (beneType == null || beneType.equals("")) {
+                pass = false;
+                errorMsg += "Benefit Type cannot be empty.";
+            }
+            
+            if (beneGiver == null || beneGiver.equals("")) {
+                pass = false;
+                errorMsg += "Benefit Giver cannot be empty.";
+            }
+
+            if (pass) {
+
+                if (beneGiver != null && beneGiver.length() > 20) {
+                    errorMsg += "Benefit Giver cannot be more than 20 characters.";
                 }
-                
                 if (beneSerial != null && beneSerial.length() > 30) {
-                    pass = false;
-                    err += "Benefit Serial cannot be more than 30 characters.";
+                    errorMsg += "Benefit Serial cannot be more than 30 characters.";
                 }
-                
+
                 if (benePurpose != null && benePurpose.length() > 200) {
-                    pass = false;
-                    err += "Benefit Purpose cannot be more than 200 characerers.";
+                    errorMsg += "Benefit Purpose cannot be more than 200 characerers.";
                 }
-                
+
                 if (beneRem != null && beneRem.length() > 500) {
-                    pass = false;
-                    err += "Benefit Remark cannot be more than 500 characters.";
+                    errorMsg += "Benefit Remark cannot be more than 500 characters.";
                 }
-                
-                Double beneValue = 0.0;
+
                 if (!beneValueStr.equals("")) {
                     try {
                         beneValue = Double.parseDouble(beneValueStr);
                     } catch (Exception ex) {
                         pass = false;
-                        err += "Benefit Value must have maximum 2 decimal place.";
-                        
+                        errorMsg += "Benefit Value must have maximum 2 decimal place.";
+
                     }
                 }
+            }//pass
                 
-                if (pass) {
-                    //create object
-                    Benefit benefit = new Benefit(workerFinNum, jobKey, problemKey, beneDate, beneGiver,
+            if (errorMsg.equals("")) {
+                if (idStr == null) {
+                //create object
+                Benefit benefit = new Benefit(workerFinNum, jobKey, problemKey, beneDate, beneGiver,
+                        beneType, beneTypeMore, beneSerial, benePurpose, beneRem, beneValue);
+                //add  to db  
+                BenefitDAO.addBenefit(benefit);
+
+                //log to audit
+                auditChange = benefit.toString2();
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
+                        workerFinNum, "Added", "Benefit: " + auditChange);
+
+                UserAuditLogDAO.addUserAuditLog(userAuditLog);
+
+                //sucesss
+                success = benefit.getBenefitType() + " has been created succesfully.";
+                } else {
+                    int id = Integer.parseInt(request.getParameter("Id"));
+                   //create object
+                    Benefit benefit = new Benefit(id, workerFinNum, jobKey, problemKey, beneDate, beneGiver,
                             beneType, beneTypeMore, beneSerial, benePurpose, beneRem, beneValue);
-                    //add  to db  
-                    BenefitDAO.addBenefit(benefit);
+                    //update to db
+                    out.println(benefit.toString());
+                    BenefitDAO.updateBenefit(benefit);
 
                     //log to audit
                     auditChange = benefit.toString2();
                     UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
                             workerFinNum, "Added", "Benefit: " + auditChange);
 
-                    UserAuditLogDAO.addUserAuditLog(userAuditLog);
-                    
+                    UserAuditLogDAO.addUserAuditLog(userAuditLog);  
                     //sucesss
-                    //success = benefit.getBenefitType() + " has been created succesfully.";
-                    //request.getSession().setAttribute("succBenefitMsg", success);
-                } else {
-                    //request.getSession().setAttribute("errBenefitMsg", err);
-                }
-            //===============================================//
-            //     Edit Benefit
-            //===============================================//    
-            } else if (action.equals("edit")) {
-                String beneDateStr = request.getParameter("isDate");
-                String beneGiver = request.getParameter("givenby");
-                String beneType = request.getParameter("benetype");
-                String beneTypeMore = request.getParameter("benetypeMore");
-                String beneSerial = request.getParameter("sernum");
-                String benePurpose = request.getParameter("purpose");
-                String beneRem = request.getParameter("remark");
-                String beneValueStr = request.getParameter("value");
-                int id = Integer.parseInt(request.getParameter("Id"));
-                
-                java.sql.Date beneDate = null;
-                if (!beneDateStr.equals("")) {
-                    try {
-                        java.util.Date tmp = sdf.parse(beneDateStr);
-                        beneDate = new java.sql.Date(tmp.getTime());
-                    } catch (ParseException ex) {
-                        out.println(ex);
-                    }
-                }
-                
-                Double beneValue = 0.0;
-                if (!beneValueStr.equals("")) {
-                    try {
-                        beneValue = Double.parseDouble(beneValueStr);
-                    } catch (Exception ex) {
-                        out.println(ex);
-                    }
-                }
-                //create object
-                Benefit benefit = new Benefit(id, workerFinNum, jobKey, problemKey, beneDate, beneGiver,
-                        beneType, beneTypeMore, beneSerial, benePurpose, beneRem, beneValue);
-                //update to db
-                out.println(benefit.toString());
-                BenefitDAO.updateBenefit(benefit);
-                
-                //log to audit
-                auditChange = benefit.toString2();
-                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
-                        workerFinNum, "Added", "Benefit: " + auditChange);
-
-                UserAuditLogDAO.addUserAuditLog(userAuditLog);  
-
-            }
+                    success = benefit.getBenefitType() + " has been updated succesfully.";
+                }    
+            } // no error
             
-            
+            request.getSession().setAttribute("successBenefitMsg", success);
+            request.getSession().setAttribute("errorBenefitMsg", errorMsg);
             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + 
                     "&selectedBenefit=" + problemKey);
 

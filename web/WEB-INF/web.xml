@@ -13,10 +13,6 @@
         <servlet-class>camans.controller.processAddJobComplement</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>processEditJobComplement</servlet-name>
-        <servlet-class>camans.controller.processEditJobComplement</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>processAddProblemComplement</servlet-name>
         <servlet-class>camans.controller.processAddProblemComplement</servlet-class>
     </servlet>
@@ -83,10 +79,6 @@
     <servlet-mapping>
         <servlet-name>processAddJobComplement</servlet-name>
         <url-pattern>/addJobComplement.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>processEditJobComplement</servlet-name>
-        <url-pattern>/editJobComplement.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>processAddProblemComplement</servlet-name>

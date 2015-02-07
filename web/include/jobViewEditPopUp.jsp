@@ -3281,7 +3281,7 @@
             <div class='form-group'>
                 <label for='condition' class="control-label">Conditions at living quarters:</label>
                 <br/>
-                <textarea class="form-control" name="location" rows="3" maxlength="500"><%=(condition==null)?"":condition%></textarea>
+                <textarea class="form-control" name="condition" rows="3" maxlength="500"><%=(condition==null)?"":condition%></textarea>
             </div>
 
             <div class='form-group'>
@@ -3722,7 +3722,7 @@
 
     function editComplement(div_id, category,title) {
         $('#pop_up_content').dialog('option', 'title', title);
-        $(div_id).prop("action", "editJobComplement.do");
+        $(div_id).prop("action", "addJobComplement.do");
         $(div_id + " .edit_comp").show();
         $(div_id + " .view_comp").hide();
         $(div_id + " .add_comp").hide();

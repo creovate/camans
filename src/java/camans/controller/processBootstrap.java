@@ -501,6 +501,36 @@ public class processBootstrap extends HttpServlet {
                 request.getSession().setAttribute("bootstrapResult", errCountList);
                 request.getSession().setAttribute("successList", successList);
                 
+                //zip all the err csv files
+                if (fileErr.exists()) {
+                    String zipFileName = "errData.zip";
+                    File[] errFileNames = fileErr.listFiles();
+                    //Output stream to create a zip file
+                    FileOutputStream fileOutStream = new FileOutputStream(fileErr.getAbsolutePath() + 
+                            File.separator + zipFileName);
+                    // Zip Output stream to write the files inside the zip file
+                    ZipOutputStream zos = new ZipOutputStream(fileOutStream);
+                    for (File errFileName: errFileNames) {
+                        // for ZipEntry we need to keep only relative file path
+                        String absolutePath = errFileName.getAbsolutePath();
+                        // ZipEntry to prepare to store the file
+                        ze = new ZipEntry(absolutePath.substring(filePath.length()+1));
+                        // Add the file to zip file
+                        zos.putNextEntry(ze);
+                        // InputStream to read the csv file
+                        fileInStream = new FileInputStream(errFileName.getAbsolutePath());
+                        byte[] buffer = new byte[2048];
+                        int size;
+                        while ((size = fileInStream.read(buffer)) > 0) {
+                            zos.write(buffer, 0, size);
+                        }
+                        zos.closeEntry();
+                        fileInStream.close();
+                    }
+                    zos.finish();
+                    zos.close(); 
+                    
+                }    
                 
                 response.sendRedirect("importexport.jsp");
             } catch (IOException ex) {

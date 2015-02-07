@@ -738,6 +738,7 @@
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="WorkerNickname"/>
+        
         <div class="form-group btn_group">
             <button type='submit' class="btn modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2010,9 +2011,9 @@
             </fieldset>
 
             <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#language_pop_up", "worker","Edit Details of Worker\'s Language");'>Edit</button>
+                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#language_pop_up", "worker","Edit Details of Worker Language");'>Edit</button>
                 <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#language_pop_up", "worker","Add A New Worker\'s Language");'>Add</button>                  
+                    <button type='button' class='btn modal_btn view_comp' onclick='add("#language_pop_up", "worker","Add A New Worker Language");'>Add</button>                  
                     <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
                 </div>
             </div>
@@ -2378,7 +2379,7 @@
 
     function editComplement(div_id, category, title) {
         $('#pop_up_content').dialog('option', 'title', title);
-        $(div_id).attr("action", "editWorkerComplement.do");
+        $(div_id).attr("action", "addWorkerComplement.do");
         $(div_id + " .edit_comp").show();
         $(div_id + " .view_comp").hide();
         $(div_id + " .add_comp").hide();
