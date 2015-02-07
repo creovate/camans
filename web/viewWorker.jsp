@@ -5034,7 +5034,9 @@
                         <div id="pop_up_content" ></div>
 
                         <div id="delete-dialog" title="Confirmation" visible="false">
+                            <br/>
                             <p>Are you sure you want to delete this item?</p>
+                            <br/>
                             <form method="POST" action="deleteComplement.do" id='delete_pop_up' class="delete_confirmation_form"  >
                                 <input type="hidden" id="hidden-id" name="id" />
                                 <input type="hidden" id="hidden-name" name="name"/>
@@ -5042,7 +5044,7 @@
                                 <input type="hidden" name="workerFinNum" value="<%=workerFin%>" />
                                 <input type="hidden" name="jobkey" value="<%=latestJob.getJobKey()%>" />
                                 <input type="hidden" name="probKey" value="<%=latestProblem.getProbKey()%>" />
-                                 <div class="form-group">
+                                 <div class="form-group pull-right">
                                     <button type='submit' class="btn btn-blue">Okay</button>
                                     <button type='button' class='btn cancel_btn'>Cancel</button>
                                 </div>

@@ -244,6 +244,25 @@ public class WorkerDAO {
         }     
     }
     
+    public static void deleteWorker(String workerFin) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_worker where FIN_number = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, workerFin);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Worker Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }     
+    }
+    
     public static String validateAndAddWorker(String workerFileName, String workerErrFile) throws IOException{
         
         // empty existing data in workerList before continuing

@@ -16,6 +16,7 @@
         $("span.ui-dialog-title").text('Edit ' + title);
         $(".edit_btn").toggle();
         $(".save_btn").show();
+        $('.delete_btn').hide();
         //$(".add_btn").toggle();
     }
     ;
@@ -356,6 +357,12 @@
     input{
         width: 10vh;
     }
+    button{
+        width : 6vw;
+    }
+    .btn-danger{
+        border-radius: 2%;
+    }
 </style>
 <%
     /* data collection */
@@ -363,6 +370,8 @@
     User userLogin = (User) request.getSession().getAttribute("userLogin");
     String status = (String) request.getSession().getAttribute("status");
     request.getSession().removeAttribute("status");
+
+    String userRole = userLogin.getRole();
 
     //worker complement passed data
     String workerFin = request.getParameter("workerFin");
@@ -446,15 +455,6 @@
             }
         }
     });
-
-//display others
-    function displayOther(div_id) {
-        var div = document.getElementById(div_id);
-        if (document.getElementById(div_id).value === 'Other') {
-            var other_div = div_id + "_other_div";
-            document.getElementById(other_div).style.display = 'block';
-        }
-    }
 
 </script>
 
@@ -575,11 +575,19 @@
             <br/>
         </div><br/>
     </fieldset>
-    <p class="alert-danger"></p>
+
     <input type="hidden" id="stub_name" name="stub" value="worker"/>
-    <button type='button' onclick="edit('worker_stub', 'Worker Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
-    <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
-    <button type='button' class='btn modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
+    <div class="form-group pull-right">
+        <button type='button' onclick="edit('worker_stub', 'Worker Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
+        <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
+        <%
+            if (userRole.equals("Administrator")) {
+        %>
+        <button type='button' onclick="deleteStub('worker');" class="btn btn-danger modal_btn delete_btn">Delete</button>
+        <%        }
+        %>
+        <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+    </div>
 </form>
 
 <%
@@ -713,10 +721,18 @@
     <input type="hidden" id="stub_name" name="stub" value="job"/>
     <input type="hidden" id="job_name" name="workerFin" value="<%=workerFin%>"/>
     <input type="hidden" id="job_name" name="jobKey" value="<%=jobKey%>"/>
-    <button type='button' onclick="edit('job_stub', 'Job Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
-    <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
-    <button type='button' class='btn modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
-    <button style="display:none" type='button' class="btn btn-blue modal_btn add_btn pull-right" onclick="add('job');">Add</button>
+    <div class="form-group pull-right">
+        <button type='button' onclick="edit('job_stub', 'Job Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
+        <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
+        <%
+            if (userRole.equals("Administrator")) {
+        %>
+        <button type='button' onclick="deleteStub('job');" class="btn btn-danger modal_btn delete_btn">Delete</button>
+        <%        }
+        %>
+        <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+        <button style="display:none" type='button' class="btn btn-blue modal_btn add_btn" onclick="add('job');">Add</button>
+    </div>
 </form>
 
 <%
@@ -782,10 +798,18 @@
     <input type="hidden" id="job_name" name="workerFin" value="<%=workerFin%>"/>
     <input type="hidden" id="job_name" name="jobKey" value="<%=jobKey%>"/>
     <input type="hidden" id="job_name" name="probKey" value="<%=probKey%>"/>
-    <button type='button' onclick="edit('problem_stub', 'problem Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
-    <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
-    <button type='button' class='btn modal_btn edit_comp cancel_btn pull-right'>Cancel</button>
-    <button style="display:none"  type='button' class="btn btn-blue modal_btn add_btn pull-right" onclick="add('problem');">Add</button>
+    <div class="form-group pull-right">
+        <button type='button' onclick="edit('problem_stub', 'problem Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
+        <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
+        <%
+            if (userRole.equals("Administrator")) {
+        %>
+        <button type='button' onclick="deleteStub('problem');" class="btn btn-danger modal_btn delete_btn">Delete</button>
+        <%        }
+        %>
+        <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+        <button style="display:none"  type='button' class="btn btn-blue modal_btn add_btn" onclick="add('problem');">Add</button>
+    </div>
 </form>
 
 <%
@@ -1018,27 +1042,60 @@
 <%
     }%>
 
+<div id="delete-stub-dialog" title="Confirmation" hidden>
+
+    <br/>
+    <p>Are you sure you want to delete this item?</p>
+    <br/>
+    <form method="POST" action="deleteStub.do" id='delete_pop_up' class="delete_confirmation_form"  >
+        <input type="hidden" id="hidden-stub" name="stub"/>
+        <input type="hidden" name="workerFinNum" value="<%=workerFin%>" />
+        <input type="hidden" name="jobKey" value="<%=jobKey%>" />
+        <input type="hidden" name="probKey" value="<%=probKey%>" />
+        <div class="form-group pull-right">
+            <button type='submit' class="btn btn-blue">Okay</button>
+            <button type='button' class='btn confirm_cancel_btn'>Cancel</button>
+        </div>
+    </form> 
+
+</div>
+
 <script>
 /////Change to Add pop up/////
     function add(stub) {
-
         $('#pop_up_content').empty();
         $("#pop_up_content").load('include/createcaseForm.jsp?workerFin=<%=workerFin%>&jobkey=<%=jobKey%>&probkey=<%=probKey%>&profile=' + stub + '&action=add').dialog({
-                        modal: true,
-                        position: ['center', 80],
-                        minWidth: $(window).width() - 750,
-                        title: div_title,
-                        resizable: false,
-                        draggable: false,close: function() {
+            modal: true,
+            position: ['center', 80],
+            minWidth: $(window).width() - 750,
+            title: div_title,
+            resizable: false,
+            draggable: false, close: function() {
                 $(this).dialog('destroy');
                 $('#pop_up_content').empty();
             }
         });
 
     }
+    
+    $(document).ready(function(){
+        $('.confirm_cancel_btn').click(function(){
+            $('#delete-stub-dialog').dialog('destroy');
+        });
+    });
+    function deleteStub(stub) {
+        $("#hidden-stub").val(stub);
+        $('#delete-stub-dialog').dialog({
+            position: ['center', 150],
+            resizable: false,
+            draggable: false,
+            close: function() {
+                $(this).dialog('destroy');
+            }
+        });
+    }
 
     $(document).ready(function() {
-        $('.cancel_btn').addClass('pull-right');
         $('.form-control').addClass('input-sm');
     });
 

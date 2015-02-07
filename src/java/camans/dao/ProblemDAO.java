@@ -206,6 +206,25 @@ public class ProblemDAO {
         }  
     }
     
+    public static void deleteProblem(int probKey) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            sql = "DELETE FROM tbl_problem WHERE Prob_key = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, probKey);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "not able to delete data from Problem Table. ");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        }  
+    }
+    
     public static String validateAndAddProblem(String probFileName, String problemErrFile) throws IOException{
         problemList.clear();
         // Attributes
