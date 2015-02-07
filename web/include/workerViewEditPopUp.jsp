@@ -6,8 +6,8 @@
 <%@page import="java.util.HashMap"%>
 
 <style>
-    h4{
-        color: #AF4454;
+    button{
+        width : 6vw;
     }
 
 </style>
@@ -21,7 +21,7 @@
         });
 
     });
-    
+
     //startdate & enddate 
     $(function() {
         $(".startDate").datepicker({
@@ -139,7 +139,7 @@
                             regexp: /^[\d|\-|(|)|+|\s]+$/,
                             message: 'Phone No can contain space, - , () , + and digits only.'
                         },
-                                notEmpty: {
+                        notEmpty: {
                             message: 'Phone No. cannot be empty.'
                         }
                     }
@@ -651,7 +651,6 @@
     });
 
     $(document).ready(function() {
-        $('.cancel_btn').addClass('pull-right');
         $('.form-control').addClass('input-sm');
     });
 </script>
@@ -704,12 +703,10 @@
                 <input class="form-control" type='text' name="nickName" value="<%=nickname%>">
             </div>
         </fieldset>
-        <div class="form-group btn_group view_comp">
-            <button type='button' class="btn modal_btn " onclick='editComplement("#nickname_pop_up", "worker","Edit Nickname")'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn modal_btn ' onclick='add("#nickname_pop_up", "worker","Add A New Nickname");'>Add</button>                  
-                <button type='button' class="btn modal_btn cancel_btn">Close</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#nickname_pop_up", "worker", "Edit Nickname");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#nickname_pop_up", "worker", "Add A New Nickname");'>Add</button>                  
+            <button type='button' class="btn modal_btn cancel_btn">Close</button>
         </div>
     </div>
 
@@ -799,12 +796,10 @@
 
         </fieldset>
 
-        <div class="form-group btn_group">
-            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#passport_pop_up", "worker","Edit Passport Details");'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn modal_btn view_comp' onclick='add("#passport_pop_up", "worker","Add A New Passport Details");'>Add</button>                  
-                <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#passport_pop_up", "worker", "Edit Passport Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#passport_pop_up", "worker", "Add A New Passport Details");'>Add</button>                  
+            <button type='button' class="btn modal_btn  cancel_btn">Close</button>
         </div>
     </div>
 
@@ -910,12 +905,10 @@
 
         </fieldset>
 
-        <div class="form-group btn_group">
-            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#sgphonenum_pop_up", "worker","Edit Singapore Phone Number Details");'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn modal_btn view_comp' onclick='add("#sgphonenum_pop_up", "worker","Add A New Singapore Phone Number ");'>Add</button>                  
-                <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#sgphonenum_pop_up", "worker", "Edit Singapore Phone Number Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#sgphonenum_pop_up", "worker", "Add A New Singapore Phone Number ");'>Add</button>                  
+            <button type='button' class="btn modal_btn  cancel_btn">Close</button>
         </div>
     </div>
 
@@ -1012,12 +1005,10 @@
 
         </fieldset>
 
-        <div class="form-group btn_group">
-            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#homephonenum_pop_up", "worker","Edit Home Country Phone Number Details")'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn modal_btn view_comp' onclick='add("#homephonenum_pop_up", "worker","Add A New Home Country Phone Number")'>Add</button>                  
-                <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#homephonenum_pop_up", "worker", "Edit Home Country Phone Number Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#homephonenum_pop_up", "worker", "Add A New Home Country Phone Number");'>Add</button>                  
+            <button type='button' class="btn modal_btn  cancel_btn">Close</button>
         </div>
     </div>
 
@@ -1111,12 +1102,10 @@
 
         </fieldset>
 
-        <div class="form-group btn_group">
-            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#sgAdd_pop_up", "worker","Edit Singapore Address Details");'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn modal_btn view_comp' onclick='add("#sgAdd_pop_up", "worker","Add A New Singapore Address");'>Add</button>                  
-                <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#sgAdd_pop_up", "worker", "Edit Singapore Address Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#sgAdd_pop_up", "worker", "Add A New Singapore Address");'>Add</button>                  
+            <button type='button' class="btn modal_btn  cancel_btn">Close</button>
         </div>
     </div>
 
@@ -1197,12 +1186,10 @@
             </div>
         </fieldset>
 
-        <div class="form-group btn_group">
-            <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#homeAdd_pop_up", "worker","Edit Home Country Address Details");'>Edit</button>
-            <div class='pull-right'>
-                <button type='button' class='btn modal_btn view_comp' onclick='add("#homeAdd_pop_up", "worker","Add A New Home Country Address")'>Add</button>                  
-                <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
-            </div>
+        <div class="form-group btn_group pull-right">
+            <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#homeAdd_pop_up", "worker", "Edit Home Country Address Details");'>Edit</button>
+            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#homeAdd_pop_up", "worker", "Add A New Home Country Address");'>Add</button>                  
+            <button type='button' class="btn modal_btn  cancel_btn">Close</button>
         </div>
     </div>
 
@@ -1290,7 +1277,7 @@
                 </div>
                 <div class="form-group" id="digitalContactType_other_div">
                     <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
-                    <input class="form-control" type='text' name="nDigitalMore" value="<%=(digiMore==null)?"":digiMore%>">
+                    <input class="form-control" type='text' name="nDigitalMore" value="<%=(digiMore == null) ? "" : digiMore%>">
                 </div>
                 <div class='form-group'>
                     <label for='digiAdd' class="control-label">Email/QQ Address or other details: </label>
@@ -1314,12 +1301,10 @@
                 </div>
             </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#digi_pop_up", "worker","Edit Digital Contact Address Details");'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#digi_pop_up", "worker","Add A New Digital Contact Address");'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
-                </div>
+            <div class="form-group btn_group pull-right">
+                <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#digi_pop_up", "worker", "Edit Digital Contact Address Details");'>Edit</button>
+                <button type='button' class='btn btn-blue modal_btn' onclick='add("#digi_pop_up", "worker", "Add A New Digital Contact Address");'>Add</button>                  
+                <button type='button' class="btn modal_btn cancel_btn">Close</button>
             </div>
         </div>
 
@@ -1346,7 +1331,7 @@
                 <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
                 <input class="form-control" type='text' name="nDigitalMore">
             </div>
-                    
+
             <div class='form-group'>
                 <label for='nDigitalDetails' class="control-label">Email/QQ Address or other details<span style="color: red">*</span>: </label>
                 <br/>
@@ -1399,12 +1384,12 @@
                     %>  
                 </select>
             </div>
-                
+
             <div class="form-group" id="digitalContactType_other_div">
                 <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
-                <input class="form-control" type='text' name="digitalMore" value="<%=(digiMore==null)?"":digiMore%>">
+                <input class="form-control" type='text' name="digitalMore" value="<%=(digiMore == null) ? "" : digiMore%>">
             </div>
-                
+
             <div class='form-group'>
                 <label for='digitalDetails' class="control-label">Email/QQ Address or other details<span style="color: red">*</span>: </label>
                 <br/>
@@ -1485,27 +1470,27 @@
                 <div class='form-group'>
                     <label for='nokIdDoc' class="control-label">Identity Docs/References of Next of Kin: </label>
                     <br/>
-                    <textarea class="form-control" name="nokIdDoc" rows="3" maxlength="200"><%=(nokIdDoc==null)?"":nokIdDoc%></textarea>
+                    <textarea class="form-control" name="nokIdDoc" rows="3" maxlength="200"><%=(nokIdDoc == null) ? "" : nokIdDoc%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokContactNo' class="control-label">Phone Number  of Next of Kin: </label>
                     <br/>
-                    <input class="form-control" type='text' name="nokContactNo" value="<%=(nokPhone==null)?"":nokPhone%>">
+                    <input class="form-control" type='text' name="nokContactNo" value="<%=(nokPhone == null) ? "" : nokPhone%>">
                 </div>
                 <div class='form-group'>
                     <label for='nokOtherContact' class="control-label">Other Contact Details of Next of Kin: </label>
                     <br/>
-                    <textarea class="form-control" name="nokOtherContact" rows="3" maxlength="200"><%=(nokDigital==null)?"":nokDigital%></textarea>
+                    <textarea class="form-control" name="nokOtherContact" rows="3" maxlength="200"><%=(nokDigital == null) ? "" : nokDigital%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokAddress' class="control-label">Address of Next of Kin: </label>
                     <br/>
-                    <textarea class="form-control" name="nokAddress" rows="3" maxlength="200"><%=(nokAddress==null)?"":nokAddress%></textarea>
+                    <textarea class="form-control" name="nokAddress" rows="3" maxlength="200"><%=(nokAddress == null) ? "" : nokAddress%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokProof' class="control-label">What Docs Attesting Next of Kin?: </label>
                     <br/>
-                    <textarea class="form-control" name="nokProof" rows="3" maxlength="200"><%=(nokProof==null)?"":nokProof%></textarea>
+                    <textarea class="form-control" name="nokProof" rows="3" maxlength="200"><%=(nokProof == null) ? "" : nokProof%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokRemark' class="control-label">Remark about Next of Kin:  </label>
@@ -1521,12 +1506,10 @@
                 </div>
             </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#nok_pop_up", "worker","Edit Next of Kin Details");'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#nok_pop_up", "worker","Add A New Next of Kin");'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
-                </div>
+            <div class="form-group btn_group pull-right">
+                <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#nok_pop_up", "worker", "Edit Next of Kin Details");'>Edit</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#nok_pop_up", "worker", "Add A New Next of Kin");'>Add</button>                  
+                <button type='button' class="btn modal_btn cancel_btn">Close</button>
             </div>
         </div>
 
@@ -1598,27 +1581,27 @@
             <div class='form-group'>
                 <label for='docReference' class="control-label">Identity Docs/References of Next of Kin: </label>
                 <br/>
-                <textarea class="form-control" name="docReference" rows="3" maxlength="200"><%=(nokIdDoc==null)?"":nokIdDoc%></textarea>
+                <textarea class="form-control" name="docReference" rows="3" maxlength="200"><%=(nokIdDoc == null) ? "" : nokIdDoc%></textarea>
             </div>
             <div class='form-group'>
                 <label for='phNum' class="control-label">Phone Number of Next of Kin: </label>
                 <br/>
-                <input class="form-control" type="text" name="nokphNum" value="<%=(nokPhone==null)?"":nokPhone%>">
+                <input class="form-control" type="text" name="nokphNum" value="<%=(nokPhone == null) ? "" : nokPhone%>">
             </div>
             <div class='form-group'>
                 <label for='digitalContact' class="control-label">Other Contact Details of Next of Kin: </label>
                 <br/>
-                <textarea class="form-control" name="digitalContact" rows="3" maxlength="200"><%=(nokDigital==null)?"":nokDigital%></textarea>
+                <textarea class="form-control" name="digitalContact" rows="3" maxlength="200"><%=(nokDigital == null) ? "" : nokDigital%></textarea>
             </div>
             <div class='form-group'>
                 <label for='address' class="control-label">Address of Next of Kin: </label>
                 <br/>
-                <textarea class="form-control" name="nokaddress" rows="3" maxlength="200"><%=(nokAddress==null)?"":nokAddress%></textarea>
+                <textarea class="form-control" name="nokaddress" rows="3" maxlength="200"><%=(nokAddress == null) ? "" : nokAddress%></textarea>
             </div>
             <div class='form-group'>
                 <label for='proofDoc' class="control-label">What Docs Attesting Next of Kin?: </label>
                 <br/>
-                <textarea class="form-control" name="proofDoc" rows="3" maxlength="200"><%=(nokProof==null)?"":nokProof%></textarea>            
+                <textarea class="form-control" name="proofDoc" rows="3" maxlength="200"><%=(nokProof == null) ? "" : nokProof%></textarea>            
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark about Next of Kin:  </label>
@@ -1687,7 +1670,7 @@
                 <div class='form-group'>
                     <label for='faddress' class="control-label">Is the Family Member in Singapore?: </label>
                     <br/>
-                    <input class="form-control" type='text' name="faddress" value="<%=(address==null)?"":address%>">
+                    <input class="form-control" type='text' name="faddress" value="<%=(address == null) ? "" : address%>">
                 </div>
                 <div class='form-group'>
                     <label for='fcontactNo' class="control-label">Phone Number of Family Member: </label>
@@ -1697,14 +1680,14 @@
                 <div class='form-group'>
                     <label for='fdigital' class="control-label">Other Contact Details of Family Member: </label>
                     <br/>
-                    <textarea class="form-control" name="digitalContact" rows="3" maxlength="200"><%=(contactAdd==null)?"":contactAdd%></textarea>
+                    <textarea class="form-control" name="digitalContact" rows="3" maxlength="200"><%=(contactAdd == null) ? "" : contactAdd%></textarea>
                 </div>
 
                 <div class='form-group'>
                     <label for='fremark' class="control-label">Remark about Family Member: </label>
                     <br/>
 
-                    <textarea class="form-control" name="fremark" rows="3" maxlength="200"><%=(remark==null)?"":remark%></textarea>
+                    <textarea class="form-control" name="fremark" rows="3" maxlength="200"><%=(remark == null) ? "" : remark%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokObDate' class="control-label">Date Discovered to be Obsolete: </label>
@@ -1715,12 +1698,10 @@
                 </div>
             </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#fm_pop_up", "worker","Edit Family Member Details");'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#fm_pop_up", "worker","Add A New Family Member");'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
-                </div>
+            <div class="form-group btn_group pull-right">
+                <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#fm_pop_up", "worker", "Edit Family Member Details");'>Edit</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#fm_pop_up", "worker", "Add A New Family Member");'>Add</button>                  
+                <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
 
@@ -1785,7 +1766,7 @@
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Is the Family Member in Singapore?: </label>
                 <br/>
-                <input class="form-control" type='text' name="familyAddress" value="<%=(address==null)?"":address%>">
+                <input class="form-control" type='text' name="familyAddress" value="<%=(address == null) ? "" : address%>">
             </div>
             <div class='form-group'>
                 <label for='phNum' class="control-label">Phone Number of Family Member: </label>
@@ -1795,7 +1776,7 @@
             <div class='form-group'>
                 <label for='digitalContact' class="control-label">Other Contact Details of Family Member: </label>
                 <br/>
-                <textarea class="form-control" name="digitalContact" rows="3" maxlength="200"><%=(contactAdd==null)?"":contactAdd%></textarea>
+                <textarea class="form-control" name="digitalContact" rows="3" maxlength="200"><%=(contactAdd == null) ? "" : contactAdd%></textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark about Family Member: </label>
@@ -1877,12 +1858,10 @@
                 </div>
             </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#sgFri_pop_up", "worker","Edit Details of Friend in Singapore");'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#sgFri_pop_up", "worker","Add A New Friend in Singapore");'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
-                </div>
+            <div class="form-group btn_group pull-right">
+                <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#sgFri_pop_up", "worker", "Edit Details of Friend in Singapore");'>Edit</button>
+                <button type='button' class='btn btn-blue modal_btn ' onclick='add("#sgFri_pop_up", "worker", "Add A New Friend in Singapore");'>Add</button>                  
+                <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
 
@@ -1995,7 +1974,7 @@
                     <label for="languageMore" class="control-label">Explain if above is 'Other':</label>
                     <br/>
                     <input class="form-control" type='text' name="nLanguageMore" 
-                           value="<%=(workerLanguage.getMainLangaugeMore()==null)?"":workerLanguage.getMainLangaugeMore()%>">
+                           value="<%=(workerLanguage.getMainLangaugeMore() == null) ? "" : workerLanguage.getMainLangaugeMore()%>">
                 </div>
                 <div class='form-group'>
                     <label for='englishStandard' class="control-label">Spoken English Standard: </label>
@@ -2005,16 +1984,14 @@
                 <div class='form-group'>
                     <label for='fremark' class="control-label">Remark about Language: </label>
                     <br/>
-                    <textarea class="form-control" name="fremark" rows="3"><%=(remark==null)?"":remark%></textarea>
+                    <textarea class="form-control" name="fremark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
                 </div>
             </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#language_pop_up", "worker","Edit Details of Worker\'s Language");'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#language_pop_up", "worker","Add A New Worker\'s Language");'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
-                </div>
+            <div class="form-group btn_group pull-right">
+                <button type='button' class="btn btn-blue  modal_btn " onclick='editComplement("#language_pop_up", "worker", "Edit Details of Worker\'s Language");'>Edit</button>
+                <button type='button' class='btn btn-blue  modal_btn ' onclick='add("#language_pop_up", "worker", "Add A New Worker\'s Language");'>Add</button>                  
+                <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
 
@@ -2090,11 +2067,11 @@
                 </select>
             </div>
             <div class="form-group" id="languageType_other_div" >
-                    <label for="languageMore" class="control-label">Explain if above is 'Other':</label>
-                    <br/>
-                    <input class="form-control" type='text' name="languageMore" 
-                           value="<%=(workerLanguage.getMainLangaugeMore()==null)?"":workerLanguage.getMainLangaugeMore()%>">
-                </div>
+                <label for="languageMore" class="control-label">Explain if above is 'Other':</label>
+                <br/>
+                <input class="form-control" type='text' name="languageMore" 
+                       value="<%=(workerLanguage.getMainLangaugeMore() == null) ? "" : workerLanguage.getMainLangaugeMore()%>">
+            </div>
             <div class='form-group'>
                 <label for='englishStandard' class="control-label">Spoken English Standard<span style="color: red">*</span>: </label>
                 <br/>
@@ -2120,7 +2097,7 @@
             <div class='form-group'>
                 <label for='fremark' class="control-label">Remark about Language: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark==null)?"":remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark == null) ? "" : remark%></textarea>
             </div>
 
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
@@ -2218,12 +2195,10 @@
                 </div>
             </fieldset>
 
-            <div class="form-group btn_group">
-                <button type='button' class="btn modal_btn view_comp" onclick='editComplement("#bk_pop_up", "worker","Edit Bank Account Details");'>Edit</button>
-                <div class='pull-right'>
-                    <button type='button' class='btn modal_btn view_comp' onclick='add("#bk_pop_up", "worker","Add A New Bank Account Details");'>Add</button>                  
-                    <button type='button' class="btn modal_btn view_comp cancel_btn">Close</button>
-                </div>
+            <div class="form-group btn_group pull-right">
+                <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#bk_pop_up", "worker", "Edit Bank Account Details");'>Edit</button>
+                <button type='button' class='btn btn-blue  modal_btn ' onclick='add("#bk_pop_up", "worker", "Add A New Bank Account Details");'>Add</button>                  
+                <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
 
