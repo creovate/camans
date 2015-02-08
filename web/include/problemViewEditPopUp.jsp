@@ -1750,7 +1750,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#injurycase_pop_up", "problem", "Edit Injury History Details")'>Edit</button>
-                <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#injurycase_pop_up", "problem", "Add A New Injury History")'>Add</button>                  
+                <!--<button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#injurycase_pop_up", "problem", "Add A New Injury History")'>Add</button>-->                  
                 <button type='button' class="btn view_comp cancel_btn">Cancel</button>
             </div>
         </div>
@@ -2011,7 +2011,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#illnesscase_pop_up", "problem", "Edit Illness History  Details");'>Edit</button>
-                <button type='button' class='btn btn-blue modal_btn' onclick='add("#illnesscase_pop_up", "problem", "Add A Illness History Details");'>Add</button>                  
+                <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#illnesscase_pop_up", "problem", "Add A Illness History Details");'>Add</button>-->                  
                 <button type='button' class="btn cancel_btn">Cancel</button>
             </div>
         </div>
@@ -2176,7 +2176,7 @@
             </fieldset>
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#othercase_pop_up", "problem", "Edit Details & History of Other Problems");'>Edit</button>
-                <button type='button' class='btn btn-blue modal_btn' onclick='add("#othercase_pop_up", "problem", "Add Details & History of Other Problems");'>Add</button>                  
+                <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#othercase_pop_up", "problem", "Add Details & History of Other Problems");'>Add</button>-->                  
                 <button type='button' class="btn cancel_btn">Cancel</button>
             </div>
         </div>
@@ -2282,7 +2282,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#salarycalim_pop_up", "problem", "Edit Salary Claim Lodged Details");'>Edit</button>
-                <button type='button' class='btn btn-blue modal_btn' onclick='add("#salarycalim_pop_up", "problem", "Add Salary Claim Lodged");'>Add</button>                  
+                <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#salarycalim_pop_up", "problem", "Add Salary Claim Lodged");'>Add</button>-->                  
                 <button type='button' class="btn cancel_btn">Cancel</button>
             </div>
         </div>
@@ -2410,7 +2410,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#wicaclaim_pop_up", "problem", "Edit Wica Claim Lodged Details");'>Edit</button>
-                <button type='button' class='btn btn-blue modal_btn' onclick='add("#wicaclaim_pop_up", "problem", "Add Wica Claim Lodged Details")'>Add</button>                  
+                <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#wicaclaim_pop_up", "problem", "Add Wica Claim Lodged Details")'>Add</button>-->                  
                 <button type='button' class="btn cancel_btn">Cancel</button>
             </div>
         </div>
@@ -2568,7 +2568,7 @@
 
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#nonwicaclaim_pop_up", "problem", "Edit Non-Wica Claim Lodged Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn' onclick='add("#nonwicaclaim_pop_up", "problem", "Add Non-Wica Claim Details");'>Add</button>                  
+            <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#nonwicaclaim_pop_up", "problem", "Add Non-Wica Claim Details");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -2725,7 +2725,7 @@
         </fieldset>
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#policareport_pop_up", "problem", "Edit Police Report Lodged Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#policareport_pop_up", "problem", "Add A New Police Report Lodged");'>Add</button>                  
+            <!--<button type='button' class='btn btn-blue modal_btn ' onclick='add("#policareport_pop_up", "problem", "Add A New Police Report Lodged");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -2899,7 +2899,7 @@
         </fieldset>
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#othercomplaint_pop_up", "problem", "Edit Other Complaint Lodged Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn' onclick='add("#othercomplaint_pop_up", "problem", "Add A New Other Complaint Lodged");'>Add</button>                  
+            <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#othercomplaint_pop_up", "problem", "Add A New Other Complaint Lodged");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -3189,7 +3189,7 @@
         </fieldset>
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#casediscussion_pop_up", "problem", "Edit Case Discussion Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#casediscussion_pop_up", "problem", "Add A New Case Discussion");'>Add</button>                  
+            <!--<!--<button type='button' class='btn btn-blue modal_btn ' onclick='add("#casediscussion_pop_up", "problem", "Add A New Case Discussion");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -3458,7 +3458,7 @@
         </fieldset>
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#hospital_pop_up", "problem", "Edit Hospital Providing Treatment Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#hospital_pop_up", "problem", "Add A New Hospital Providing Treatment");'>Add</button>                  
+            <!--<!--<button type='button' class='btn btn-blue modal_btn ' onclick='add("#hospital_pop_up", "problem", "Add A New Hospital Providing Treatment");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -3632,7 +3632,7 @@
         </fieldset>
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#mc_pop_up", "problem", "Edit MC/Light Duty Status Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#mc_pop_up", "problem", "Add A New MC/Light Duty Status");'>Add</button>                  
+            <!--<button type='button' class='btn btn-blue modal_btn ' onclick='add("#mc_pop_up", "problem", "Add A New MC/Light Duty Status");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -3854,7 +3854,7 @@
 
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#r2r_pop_up", "problem", "Edit R2R Appointment Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#r2r_pop_up", "problem", "Add A New R2R Appointment");'>Add</button>                  
+            <!--<button type='button' class='btn btn-blue modal_btn ' onclick='add("#r2r_pop_up", "problem", "Add A New R2R Appointment");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -4066,7 +4066,7 @@
         </fieldset>
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#wica_pop_up", "problem", "Edit Wica Status Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#wica_pop_up", "problem", "Add A New Wica Status");'>Add</button>                  
+            <!--<!--<button type='button' class='btn btn-blue modal_btn ' onclick='add("#wica_pop_up", "problem", "Add A New Wica Status");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -4247,7 +4247,7 @@
         </fieldset>
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#lawyer_pop_up", "problem", "Edit Law Firm Status Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#lawyer_pop_up", "problem", "Add A New Law Firm Status");'>Add</button>                  
+            <!--<!--<button type='button' class='btn btn-blue modal_btn ' onclick='add("#lawyer_pop_up", "problem", "Add A New Law Firm Status");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -4401,7 +4401,7 @@
         </fieldset>
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#milestonenc_pop_up", "problem", "Edit Case Milestone (Non-Criminal) Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonenc_pop_up", "problem", "Add A New Case Milestone (Non-Criminal)");'>Add</button>                  
+            <!--<button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonenc_pop_up", "problem", "Add A New Case Milestone (Non-Criminal)");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -4562,7 +4562,7 @@
         </fieldset>
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#milestonecr_pop_up", "problem", "Edit Case Milestone (Criminal) Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonecr_pop_up", "problem", "Add A New Case Milestone (Criminal)");'>Add</button>                  
+            <!--<button type='button' class='btn btn-blue modal_btn ' onclick='add("#milestonecr_pop_up", "problem", "Add A New Case Milestone (Criminal)");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -4749,7 +4749,7 @@
         </fieldset>
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#ttr_pop_up", "problem", "Edit Transfer, TJS & Repatriation Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn ' onclick='add("#ttr_pop_up", "problem", "Add A New Transfer, TJS & Repatriation");'>Add</button>                  
+            <!--<button type='button' class='btn btn-blue modal_btn ' onclick='add("#ttr_pop_up", "problem", "Add A New Transfer, TJS & Repatriation");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -4947,7 +4947,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#aggravIssue_pop_up", "problem", "Edit Aggravating Issue Details");'>Edit</button>
-                <button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#aggravIssue_pop_up", "problem", "Add A New Aggravating Issue");'>Add</button>                  
+                <!--<button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#aggravIssue_pop_up", "problem", "Add A New Aggravating Issue");'>Add</button>-->                  
                 <button type='button' class="btn cancel_btn">Cancel</button>
             </div>
         </div>
@@ -5092,7 +5092,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#leadcaseworker_pop_up", "problem", "Add A New Lead Caseworker");'>Edit</button>
-                <button type='button' class='btn btn-blue modal_btn' onclick='add("#leadcaseworker_pop_up", "problem");'>Add</button>                  
+                <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#leadcaseworker_pop_up", "problem");'>Add</button>-->                  
                 <button type='button' class="btn cancel_btn">Cancel</button>
             </div>
         </div>
@@ -5226,7 +5226,7 @@
 
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#auxcaseworker_pop_up", "problem", "Edit Auxiliary Caseworker Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn' onclick='add("#auxcaseworker_pop_up", "problem", "Add A New Auxiliary Caseworker");'>Add</button>                  
+            <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#auxcaseworker_pop_up", "problem", "Add A New Auxiliary Caseworker");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -5403,7 +5403,7 @@
 
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#salaryhistory_pop_up", "problem", "Edit Salary & Related History Details");'>Edit</button>
-            <button type='button' class='btn btn-blue modal_btn' onclick='add("#salaryhistory_pop_up", "problem", "Add New Salary & Related History Details");'>Add</button>                  
+            <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#salaryhistory_pop_up", "problem", "Add New Salary & Related History Details");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
@@ -5599,7 +5599,7 @@
 
     function editComplement(div_id, category, title) {
         $('#pop_up_content').dialog('option', 'title', title);
-        $(div_id).attr("action", "editProblemComplement.do");
+        $(div_id).attr("action", "addProblemComplement.do");
         $(div_id + " .edit_comp").show();
         $(div_id + " .view_comp").hide();
         $(div_id + " .add_comp").hide();

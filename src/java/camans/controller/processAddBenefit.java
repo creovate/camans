@@ -101,7 +101,7 @@ public class processAddBenefit extends HttpServlet {
                     beneDate = new java.sql.Date(tmp.getTime());
                 } catch (ParseException ex) {
                     //do not proceed & show error page
-                    errorMsg = "Benefit Iusse Date format is not correct.";
+                    errorMsg = "Benefit Issue Date format is not correct.";
                 }
             }
             if (beneType == null || beneType.equals("")) {

@@ -62,6 +62,12 @@
     String errorJobMsg = (String) request.getSession().getAttribute("errorJobCompMsg");
     request.getSession().removeAttribute("errorJobCompMsg");
     
+    String successProbMsg = (String) request.getSession().getAttribute("successProbCompMsg");
+    request.getSession().removeAttribute("successProbCompMsg");
+
+    String errorProbMsg = (String) request.getSession().getAttribute("errorProbCompMsg");
+    request.getSession().removeAttribute("errorProbCompMsg");
+    
     String successBenefitMsg = (String) request.getSession().getAttribute("successBenefitMsg");
     request.getSession().removeAttribute("successBenefitMsg");
 
@@ -2423,6 +2429,26 @@
                                 <div class="tab-pane " id="problem_complement" >
                                     <br/>
                                     <br/>
+                                    <!-- Problem Complement Success & Error Display --->
+
+                                    <% if (successProbMsg != null) { if (!successProbMsg.equals("")) {%>
+
+                                    <div class="alert alert-info" role="alert">
+                                        <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+                                        <%=successProbMsg%>
+                                    </div>
+
+                                    <% }}%>
+                                    <% if (errorProbMsg != null) { if (!errorProbMsg.equals("")) { %>
+
+                                    <div class="alert alert-danger" role="alert">
+                                        <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+                                        <%=errorProbMsg%>
+                                    </div>
+
+                                    <% }}%>
+                                    <!-- End of Problem Complement Success & Error Display --->
+                                    
                                     <div class="row">
                                         <form method="POST" action='changeToSelected'>
                                             <div class="form-group">

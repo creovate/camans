@@ -1392,7 +1392,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#passdetails_pop_up", "job", "Edit Pass Details");'>Edit</button>
-                <button type='button' class="btn btn-blue modal_btn" onclick='add("#passdetails_pop_up", "job", "Add A New Pass Details");'>Add</button>                  
+                <!--<button type='button' class="btn btn-blue modal_btn" onclick='add("#passdetails_pop_up", "job", "Add A New Pass Details");'>Add</button> -->                 
                 <button type='button' class="btn cancel_btn">Close</button>
             </div>
         </div>
@@ -1613,7 +1613,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#empdetails_pop_up", "job", "Edit Employer Details");'>Edit</button>
-                    <button type='button' class="btn btn-blue modal_btn" onclick='add("#empdetails_pop_up", "job", "Add A New Employer");'>Add</button>                  
+                   <!-- <button type='button' class="btn btn-blue modal_btn" onclick='add("#empdetails_pop_up", "job", "Add A New Employer");'>Add</button> -->                 
                     <button type='button' class="btn modal_btn cancel_btn">Close</button>
             </div>
         </div>
@@ -1806,7 +1806,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#contract_pop_up", "job", "Edit Employment Contract Details");'>Edit</button>
-                    <button type='button' class="btn btn-blue modal_btn " onclick='add("#contract_pop_up", "job", "Add A New Employment Contract");'>Add</button>                  
+                    <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#contract_pop_up", "job", "Add A New Employment Contract");'>Add</button> -->                 
                     <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
@@ -2082,7 +2082,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#agent_pop_up", "job", "Edit Intermediary Agent");'>Edit</button>
-                    <button type='button' class="btn btn-blue modal_btn " onclick='add("#agent_pop_up", "job", "Add A New Intermediary Agent");'>Add</button>                  
+                    <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#agent_pop_up", "job", "Add A New Intermediary Agent");'>Add</button> -->                 
                     <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
@@ -2357,7 +2357,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#assurance_pop_up", "job", "Edit Verbal Assurance Details");'>Edit</button>
-                    <button type='button' class="btn btn-blue modal_btn" onclick='add("#assurance_pop_up", "job", "Add A New Verbal Assurance");'>Add</button>                  
+                    <!--<button type='button' class="btn btn-blue modal_btn" onclick='add("#assurance_pop_up", "job", "Add A New Verbal Assurance");'>Add</button> -->                 
                     <button type='button' class="btn modal_btn cancel_btn">Close</button>
             </div>
         </div>
@@ -2540,7 +2540,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#workplace_pop_up", "job", "Edit Workplace Details");'>Edit</button>
-                    <button type='button' class="btn btn-blue modal_btn " onclick='add("#workplace_pop_up", "job", "Add A New Workplace");'>Add</button>                  
+                    <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#workplace_pop_up", "job", "Add A New Workplace");'>Add</button> -->                 
                     <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
@@ -2828,7 +2828,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#whistory_pop_up", "job", "Edit Work History Details");'>Edit</button>
-                    <button type='button' class="btn btn-blue modal_btn " onclick='add("#whistory_pop_up", "job", "Add A New Work History");'>Add</button>                  
+                    <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#whistory_pop_up", "job", "Add A New Work History");'>Add</button> -->                 
                     <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
@@ -3094,7 +3094,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#accomodation_pop_up", "job", "Edit Accommodation Details");'>Edit</button>
-                    <button type='button' class="btn btn-blue modal_btn " onclick='add("#accomodation_pop_up", "job", "Add A New Accommodation");'>Add</button>                  
+                    <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#accomodation_pop_up", "job", "Add A New Accommodation");'>Add</button> -->                 
                     <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
@@ -3429,7 +3429,7 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#ipa_pop_up", "job", "Edit IPA Pass Details");'>Edit</button>
-                    <button type='button' class="btn btn-blue modal_btn " onclick='add("#ipa_pop_up", "job", "Add A New IPA Pass");'>Add</button>                  
+                    <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#ipa_pop_up", "job", "Add A New IPA Pass");'>Add</button> -->                 
                     <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>

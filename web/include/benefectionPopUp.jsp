@@ -398,9 +398,9 @@
         </fieldset>
 
         <div class="form-group btn_group">
-            <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#benefit_pop_up", "Edit Benefection Details" );'data-title ="Edit Meal Benefection">Edit</button>
-            <div class='pull-right'>
-                <button type="button" class="btn btn-blue modal_btn view_comp" onclick="add('#benefit_pop_up', 'Add New Benefection');">Add</button>                
+            <div class='pull-right text-center'>
+                <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#benefit_pop_up", "Edit Benefection Details" );'data-title ="Edit Meal Benefection">Edit</button>
+                <!--<button type="button" class="btn btn-blue modal_btn view_comp" onclick="add('#benefit_pop_up', 'Add New Benefection');">Add</button>-->                
                 <button type='button' class="btn view_comp cancel_btn">Close</button>
             </div>
         </div>

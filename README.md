@@ -1,6 +1,11 @@
 camans
 ======
 <b>8th Feb 2015 - smm</b> <br/>
+1. removed add buttons from all the modals <br/>
+2. server validation: problems <br/>
+3. error/success message: problem
+
+<b>8th Feb 2015 - smm</b> <br/>
 1. bootstrap errors data into csv files and download link <br/>
 2. server validation: worker, job, benefit <br/>
 3. error/success message: worker, job, attachments, benefit

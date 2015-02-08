@@ -1379,7 +1379,7 @@ public class DataValidator {
                         if (!ipaOccupation .equals("") && ipaOccupation.length() > 30) {
                             errorMsg += header[8] + " cannot be longer than 30 characters,";
                         }
-
+                        /*
                         if (!ipaPeriod.equals("") && ipaPeriod.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += header[9] + " must have maximum 2 decimal places,";
                         }
@@ -1422,7 +1422,7 @@ public class DataValidator {
                                     errorMsg += header[13] + " - invalid format,";
                                 }
                             }
-                        }
+                        }*/
 
                         if (!ipaDeductionDetails.equals("") && ipaDeductionDetails.length() > 200) {
                             errorMsg += header[14] + " cannot be longer than 200 characters,";
@@ -1821,7 +1821,7 @@ public class DataValidator {
                     if (!agentContact.equals("") && agentContact.length() > 200) {
                         errorMsg += header[7] + " cannot be longer than 200 characters,";
                     }
-                    
+                    /*
                     if (!agentAmtPaidStr.equals("") && !agentAmtPaidStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += header[8] + " must have maximum 2 decimal places,";
                     } else {
@@ -1844,7 +1844,7 @@ public class DataValidator {
                                 errorMsg += header[9] + " - invalid format,";
                             }
                         }
-                    }
+                    }*/
                     
                     if (!agentFeeShared.equals("") && agentFeeShared.length() > 200) {
                         errorMsg += header[10] + " cannot be longer than 200 characters,";
@@ -2428,7 +2428,7 @@ public class DataValidator {
                         if (!accomConditions.equals("") && accomConditions.length() > 500) {
                             errorMsg += header[7] + " cannot be longer than 500 characters,";
                         }
-
+                        /*
                         if (!accomChargedStr.equals("") && !accomChargedStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += header[8] + " must have maximum 2 decimal places,";
                         } else {
@@ -2451,7 +2451,7 @@ public class DataValidator {
                                     errorMsg += header[9] + " - invalid format,";
                                 }
                             }
-                        }
+                        }*/
 
                         if (!accomMeals.equals("") && accomMeals.length() > 200) {
                             errorMsg += header[10] + " cannot be longer than 200 characters,";
@@ -2593,7 +2593,7 @@ public class DataValidator {
                         if (!aggraIssueMore.equals("") && aggraIssueMore.length() > 50){
                             errorMsg += header[4] + " cannot be more than 50 characters,";
                         }
-
+                        /*
                         if (!aggraLossStr.equals("")) {
                             if (!aggraLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += header[5] + " must have maximum 2 decimal places,";
@@ -2604,7 +2604,7 @@ public class DataValidator {
                                     errorMsg += header[5] + " - invalid format,";
                                 }
                             }
-                        } 
+                        } */
 
                         if (!aggraRemark.equals("") && aggraRemark.length() > 200) {
                             errorMsg += header[6] + " cannot be longer than 200 characters,";
@@ -3035,7 +3035,7 @@ public class DataValidator {
                         if (!salModeMore.equals("") && salModeMore.length() > 50){
                             errorMsg += header[10] + " cannot be more than 50 characters,";
                         }
-
+                        /*
                         if (!salLossTotalStr.equals("")) {
                             if(salLossTotalStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += header[11] + " must have maximum 2 decimal places,";
@@ -3058,7 +3058,7 @@ public class DataValidator {
                                     errorMsg += header[12] + " - invalid format,";
                                 }
                             }
-                        }
+                        }*/
 
                         if (!salHistRem.equals("") && salHistRem.length() > 200){
                             errorMsg += header[13] + " cannot be more than 200 characters,";
@@ -3613,12 +3613,12 @@ public class DataValidator {
                                 errorMsg += "Invalid Salary claim Date Format,";
                             } 
                         }
-
+                        /*
                         if(!salClaimLossStr.equals("")) {
                             if (salClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += header[4] + " must have maximum 2 decimal places,"; 
                             }
-                        }
+                        }*/
 
                         if (!salClaimBasis.equals("") && salClaimBasis.length() > 1000) {
                             errorMsg += header[5] + " cannot be longer than 1000 characters,";
@@ -3768,7 +3768,7 @@ public class DataValidator {
                         if (!statusMore.equals("") && statusMore.length() > 50) {
                             errorMsg += header[6] + " cannot be longer than 50 characters,";
                         }
-
+                        /*
                         if (!pointsStr.equals("")) {
                             if (!pointsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += header[7] + " must have maximum 2 decimal places,";
@@ -3791,7 +3791,7 @@ public class DataValidator {
                                     errorMsg += header[8] + " - invalid format,";
                                 }
                             }
-                        }
+                        }*/
 
 
                         if (!rem.equals("") && rem.length() > 200) {
@@ -4058,7 +4058,7 @@ public class DataValidator {
                                 errorMsg += "Invalid non-wica medical claim Date Format,";
                             } 
                         }
-
+                        /*
                         if (!medClaimLossStr.equals("")) {
                             if (!medClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += header[4] + " must have maximum 2 decimal places,";
@@ -4069,7 +4069,7 @@ public class DataValidator {
                                     errorMsg += header[4] + " - invalid format,";
                                 }
                             }
-                        }
+                        }*/
 
                         if (!medClaimInsurer.equals("") && medClaimInsurer.length() > 50) {
                             errorMsg += header[5] + " cannot be longer than 50 characters,";
@@ -5025,7 +5025,7 @@ public class DataValidator {
                                 errorMsg += "Invalid R2R Date Format,";
                             } 
                         }
-
+                        /*
                         if (!medCostStr.equals("")) {
                             if (!medCostStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += header[14] + " must have maximum 2 decimal places,";
@@ -5048,7 +5048,7 @@ public class DataValidator {
                                     errorMsg += header[14] + " - invalid format,";
                                 }
                             }    
-                        }
+                        }*/
 
                         if (!r2rTime.equals("") && r2rTime.length() > 20) {
                             errorMsg += header[5] + " cannot be longer than 20 characters,";
@@ -5747,6 +5747,178 @@ public class DataValidator {
                         succCount++;
                     } 
 
+                }
+            } else if (fileShortName.equals("benefit.csv")) {
+                //Loops through each line of the csv with an array of String
+                while ((fields = csvReader.readNext()) != null){
+                    
+                    //Assigning each field with its appropriate name
+                    String finNum = fields[0].trim();
+                    String jobKeyStr = fields[1].trim();
+                    String probKeyStr = fields[2].trim();
+                    String beneDateStr = fields[3].trim();
+                    String beneGiver = fields[4].trim();
+                    String beneType = fields[5].trim();
+                    String beneTypeMore = fields[6].trim();
+                    String beneSerial = fields[7].trim();
+                    String benePurpose = fields[8].trim();
+                    String beneRem = fields[9].trim();
+                    String beneValueStr = fields[10].trim();
+                    
+                    int jobKey = 0;
+                    int probKey = 0;
+                    Double beneValue = 0.0;
+                    java.sql.Date beneDate = null;
+                    
+
+                    /**
+                     * Validations for empty fields
+                     */
+                    boolean pass = true; //assume validation pass first;
+                    if (finNum.equals("")) {
+                        errorMsg += header[0] + " is blank,";
+                        pass = false;
+                    }
+
+                    if (jobKeyStr.equals("")) {
+                        errorMsg += header[1] + " is blank,";
+                        pass = false;
+                    }
+                    if (probKeyStr.equals("")) {
+                        errorMsg += header[2] + " is blank,";
+                        pass = false;
+                    }
+                    if (beneDateStr.equals("")) {
+                        errorMsg += header[3] + " is blank,";
+                        pass = false;
+                    }
+                    if (beneGiver.equals("")) {
+                        errorMsg += header[4] + " is blank,";
+                        pass = false;
+                    }
+                    
+                    if (beneType.equals("")) {
+                        errorMsg += header[5] + " is blank,";
+                        pass = false;
+                    }
+
+
+
+                    //proceed only after empty fields validation is passed
+                    if (pass) { 
+
+                        // check for any existing worker  with the same finNum. 
+                        Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(finNum);
+                        if (worker == null) {
+                            errorMsg += "FinNumber does not exist, ";
+                        }
+
+                        try {
+                            jobKey = Integer.parseInt(jobKeyStr);
+                            Job job = JobDAO.retrieveJobByJobId(jobKey);
+                            if (job == null) {
+                                errorMsg += "job key does not exist, ";
+                            } else {
+                                if (worker != null && 
+                                        !(worker.getFinNumber().equals(job.getWorkerFinNum()))) {
+                                    errorMsg += "invalid finNumber for this job key, ";
+                                }
+                            }
+                        } catch (Exception ex) {
+                            errorMsg += "invalid job key, ";
+                        }
+
+                        try {
+                            probKey = Integer.parseInt(probKeyStr);
+                            Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
+                            if (problem == null) {
+                                errorMsg += "problem key does not exist, ";
+                            } else {
+                                if (worker != null && 
+                                        !(worker.getFinNumber().equals(problem.getWorkerFinNum()))) {
+                                    errorMsg += "invalid finNumber for this problem key, ";
+                                }
+                            }
+                        } catch (Exception ex) {
+                            errorMsg += "invalid problem key, ";
+                        }
+
+                        if (!beneDateStr.equals("")) {
+                            try {
+                                java.util.Date tmp = sdf.parse(beneDateStr);
+                                beneDate = new java.sql.Date(tmp.getTime());
+                            } catch (ParseException ex) {
+                                errorMsg += "Invalid Benefit Given Date Format,";
+                            } 
+                        }
+                        ArrayList<String> list = DropdownDAO.retrieveAllDropdownListByType("Bene_type");
+                        boolean exit = false;
+                        for (String tmp: list) {
+                            if (tmp.equalsIgnoreCase(beneType)) {
+                                exit = true;
+                                break;
+                            }
+                        }
+
+                        if (!exit) {
+                            errorMsg += "invalid Benefit Type, ";
+                        }
+
+
+                        if (beneGiver != null && beneGiver.length() > 20) {
+                            errorMsg += "Benefit Giver cannot be more than 20 characters.";
+                        }
+                        if (beneSerial != null && beneSerial.length() > 30) {
+                            errorMsg += "Benefit Serial cannot be more than 30 characters.";
+                        }
+
+                        if (benePurpose != null && benePurpose.length() > 200) {
+                            errorMsg += "Benefit Purpose cannot be more than 200 characerers.";
+                        }
+
+                        if (beneRem != null && beneRem.length() > 500) {
+                            errorMsg += "Benefit Remark cannot be more than 500 characters.";
+                        }
+
+                        if (!beneValueStr.equals("")) {
+                            try {
+                                beneValue = Double.parseDouble(beneValueStr);
+                            } catch (Exception ex) {
+                                pass = false;
+                                errorMsg += "Benefit Value must have maximum 2 decimal place.";
+
+                            }
+                        }
+
+
+                    } //pass
+
+                    // if there is an error, the line number of the error and its relevant message is 
+                    // added into the errorList
+                    if (!errorMsg.equals("")) {
+                        csvWriter = new CSVWriter(new FileWriter(errFileName, true));
+                        if (errCount == 0) {
+                            String[] newHeader = new String[header.length+1];
+                            newHeader[header.length] = "Error_Description";
+                            System.arraycopy(header, 0, newHeader, 0, header.length);
+                            csvWriter.writeNext(newHeader);
+                        }
+                        String[] newFields = new String[fields.length+1];
+                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        csvWriter.writeNext(newFields);
+                        csvWriter.close();
+                        errorMsg = ""; // reset errorMsg variable
+                        errCount++;
+                    } // if there is no error, a new Worker object is created and added to the workerList
+                    else {
+                        errorMsg = ""; // reset errorMsg variable
+                        Benefit benefit = new Benefit(finNum, jobKey, probKey, beneDate, beneGiver,
+                        beneType, beneTypeMore, beneSerial, benePurpose, beneRem, beneValue);
+                        //add  to db  
+                        BenefitDAO.addBenefit(benefit);
+                        succCount++;
+                    }  
                 }
             }   
             returnMsg = fileShortName + ":" + succCount + "," + errCount;
