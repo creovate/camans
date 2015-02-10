@@ -27,6 +27,7 @@
         <script src="js/bootstrap.min.js"></script>         
         <!--bootstrap session timeout, added by soemyatmyat-->
         <script src="js/bootstrap-session-timeout.min.js"></script> 
+        <script src=""></script>
         
         <link rel="shortcut icon" href="img/twc_logo.png">
         <title>CAMANS</title>
@@ -180,7 +181,7 @@
 %>                            
                         </table>
                         
-                        <a href="fileUpload.do?action=downloaderrzipfile"><b>Download the error files heres.</b></a>
+                        <a href="fileUpload.do?action=downloaderrzipfile"><b>Download the error files here.</b></a>
                     </div> <!--body-->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>                                

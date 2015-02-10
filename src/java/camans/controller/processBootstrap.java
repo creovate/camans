@@ -97,7 +97,7 @@ public class processBootstrap extends HttpServlet {
             // If no file is selected, redirect back & stop further processing
             if (fileName.equals("")) {
                 request.getSession().setAttribute("error", "Bootstrap Failed - Please choose a file.");
-                response.sendRedirect("admin.jsp");
+                response.sendRedirect("importexport.jsp");
                 return;
             }
             // If it is not a zip file, redirect back & stop further processing
@@ -105,7 +105,7 @@ public class processBootstrap extends HttpServlet {
             String ext = split[split.length - 1];
             if (!ext.equalsIgnoreCase("zip")) {
                 request.getSession().setAttribute("error", "Bootstrap Failed - Please choose only files with zip extension.");
-                response.sendRedirect("admin.jsp");
+                response.sendRedirect("importexport.jsp");
                 return;
             }
             

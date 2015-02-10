@@ -33,6 +33,7 @@ public class DataExport {
           csvWriter = new CSVWriter (new FileWriter(fileName));
           conn = ConnectionManager.getConnection();
           String csvfileName = fileName.substring(fileName.lastIndexOf("\\")+1);
+          //String csvfileName = fileName.substring(fileName.lastIndexOf("/")+1);
           if (csvfileName.equalsIgnoreCase("worker.csv")) {
              sql = "SELECT FIN_number, Name_of_worker, Worker_registration_date, Created_by, Create_for, Gender, "
                     + "Nationality, Nationality_more, Date_of_birth FROM tbl_worker";

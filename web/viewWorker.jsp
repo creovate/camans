@@ -5498,8 +5498,10 @@
                         fileInput: {
                             validators: {
                                 file: {
+                                    extension:'doc,docx,pdf,xls,csv,ppt,ppts,gif,jpeg,jpg,png,bmp,css,html,htm,shtml,txt,xml,csv',
+                                    type: 'application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.ms-excel,application/vnd.ms-powerpoint,image/gif,image/jpeg,image/png,image/bmp,text/css,text/html,text/plain,text/xml,text/csv',
                                     maxSize: 10 * 1024 * 1024,
-                                    message: 'Please choose a file with a size less than 10M only.'
+                                    message: 'Please choose a valid file with a size less than 10M only.'
                                 }
                             }
                         }

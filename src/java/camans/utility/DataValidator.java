@@ -34,6 +34,7 @@ public class DataValidator {
         try {
             csvReader = new CSVReader(new FileReader(fileName));
             String fileShortName = fileName.substring(fileName.lastIndexOf("\\")+1);
+            //String fileShortName = fileName.substring(fileName.lastIndexOf("/")+1);
             String[] header = csvReader.readNext();
             String[] fields;
             String errorMsg = "";
