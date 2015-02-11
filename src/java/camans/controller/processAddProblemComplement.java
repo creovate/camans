@@ -209,13 +209,16 @@ public class processAddProblemComplement extends HttpServlet {
                         //create object
                         ProblemLeadCaseWorker problemLeadCaseWrk = new ProblemLeadCaseWorker(workerFinNum,
                                 jobKey, problemKey, leadName, leadStart, leadEnd);
+                        
+                        CaseManagementDAO.terminateLeadCaseWroker(problemKey);
+                        
                         //add into db
                         ProblemComplementsDAO.addProblemLeadCaseWorker(problemLeadCaseWrk);
                         
                         //update leadcaseworker
                         User leadCaseWorker = UserDAO.retrieveUserByUsername(leadName);
                         
-                        CaseManagementDAO.assignCase(_user, null);
+                        
                         //log the audit
                         auditChange = problemLeadCaseWrk.toString2();
                         //success display

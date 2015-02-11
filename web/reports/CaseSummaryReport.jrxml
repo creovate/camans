@@ -26,6 +26,15 @@ GROUP BY Chief_problem
 	<field name="Male" class="java.math.BigDecimal"/>
 	<field name="Female" class="java.math.BigDecimal"/>
 	<field name="Total" class="java.math.BigDecimal"/>
+	<variable name="totalMale" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Male}]]></variableExpression>
+	</variable>
+	<variable name="totalFemale" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Female}]]></variableExpression>
+	</variable>
+	<variable name="totalAll" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Total}]]></variableExpression>
+	</variable>
 	<background>
 		<band/>
 	</background>
@@ -109,21 +118,21 @@ GROUP BY Chief_problem
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="138" y="0" width="138" height="20" uuid="3204fa15-536b-4e35-85fe-5d50726f948a"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Male}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="276" y="0" width="138" height="20" uuid="cc1f81a7-5433-4efa-89a9-915579716bf8"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Female}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="414" y="0" width="138" height="20" uuid="a2908655-13a7-4ac2-93cc-93e2c6ce695d"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
@@ -151,6 +160,38 @@ GROUP BY Chief_problem
 		</band>
 	</pageFooter>
 	<summary>
-		<band/>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="ae3e2663-4871-4478-a78a-b43099589879"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="138" y="0" width="138" height="20" uuid="3204fa15-536b-4e35-85fe-5d50726f948a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalMale}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="276" y="0" width="138" height="20" uuid="cc1f81a7-5433-4efa-89a9-915579716bf8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalFemale}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="414" y="0" width="138" height="20" uuid="a2908655-13a7-4ac2-93cc-93e2c6ce695d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalAll}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="138" height="20" uuid="76f88428-6655-4214-9679-e11edcdfeff9"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>

@@ -33,7 +33,7 @@ onClick="Check(document.myform.check_list)">   <br/>
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 
-<!-- Begin
+
 function Check(chk)
 {
 if(document.myform.Check_All.value=="Check All"){

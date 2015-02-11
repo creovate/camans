@@ -12,18 +12,15 @@
 
 </style>
 <script>
-    //----initialize datepicker----//
-    $(function() {
+    $(document).ready(function() {
+        //----initialize datepicker----//
         $(".dateInput").datepicker({
             dateFormat: 'dd-M-yy',
             changeMonth: true,
             changeYear: true
         });
-
-    });
-
-    //startdate & enddate 
-    $(function() {
+        
+        //startdate & enddate
         $(".startDate").datepicker({
             dateFormat: 'dd-M-yy',
             changeMonth: true,
@@ -41,14 +38,15 @@
                 $(".startDate").datepicker("option", "maxDate", selectedDate);
             }
         });
-    });
-
-    //----disable manual input in date fields----//
-    $(document).ready(function() {
+        
+        //----disable manual input in date fields----//
         $('.dateInput').focus(function() {
             $('.dateInput').blur();
         });
+        $('.form-control').addClass('input-sm');
+        $('.btn_group').addClass('pull-right');
     });
+
 
     //worker form validation 
     $(document).ready(function() {
@@ -650,9 +648,6 @@
 
     });
 
-    $(document).ready(function() {
-        $('.form-control').addClass('input-sm');
-    });
 </script>
 <%
     /* data collection */
@@ -722,7 +717,7 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
             <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -737,7 +732,7 @@
         <input type="hidden" name="complementName" value="WorkerNickname"/>
         
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -830,7 +825,7 @@
             <input type="hidden" name="complementName" value="WorkerPassportDetails"/>
         </div>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -866,7 +861,7 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
             <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -931,7 +926,7 @@
         </div>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -955,7 +950,7 @@
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
             <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -1036,7 +1031,7 @@
         </div>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -1064,7 +1059,7 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
             <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -1128,7 +1123,7 @@
         </div>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -1151,7 +1146,7 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
             <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -1212,7 +1207,7 @@
         </div>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn add_comp">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -1235,7 +1230,7 @@
         <input type="hidden" name="Id" value="<%=id%>"/>
 
         <div class="form-group btn_group">
-            <button type='submit' class="btn modal_btn edit_comp ">Save</button>
+            <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
             <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
@@ -1356,7 +1351,7 @@
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerDigitalContact"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -1419,7 +1414,7 @@
             <input type="hidden" name="Id" value="<%=id%>"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -1563,7 +1558,7 @@
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerNextOfKin"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -1621,7 +1616,7 @@
             <input type="hidden" name="Id" value="<%=id%>"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -1747,7 +1742,7 @@
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerFamilyMember"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -1796,7 +1791,7 @@
             <input type="hidden" name="Id" value="<%=id%>"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -1896,7 +1891,7 @@
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerFriend"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -1935,7 +1930,7 @@
             <input type="hidden" name="complementName" value="WorkerFriend"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2040,7 +2035,7 @@
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerLanguage"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2105,7 +2100,7 @@
             <input type="hidden" name="complementName" value="WorkerLanguage"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
+                <button type='submit' class="btn btn-blue modal_btn">Save</button>
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2253,7 +2248,7 @@
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerBankAcct"/>
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn add_comp">Save</button>
+                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2312,7 +2307,7 @@
             <input type="hidden" name="Id" value="<%=id%>"/>
 
             <div class="form-group btn_group">
-                <button type='submit' class="btn modal_btn edit_comp ">Save</button>
+                <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
@@ -2334,18 +2329,13 @@
                         .addClass("ui-icon-close");
             }
         });
-    })
-
-
-    $(document).ready(function(event) {
-
+        
         $('.view_comp').show();
         $('.edit_comp').hide();
         $('.add_comp').hide();
         $('.complement_detailed_form').attr("action", "");
-
-
     });
+
     $('.cancel_btn').click(function() {
         $('#pop_up_content').dialog("destroy");
         $('#pop_up_content').empty();

@@ -4444,7 +4444,7 @@
             <div class='form-group'>
                 <label for='nstartDate' class="control-label">Start Date:</label>
                 <br/>
-                <input class="form-control startDate" type='text' name="nstartDate">
+                <input class="form-control startDate" type='text' name="nstartDate" value="<%=sdf.format(today)%>">
             </div>
             <div class='form-group'>
                 <label for='nendDate' class="control-label">End Date: </label>

@@ -10,18 +10,15 @@
 <%@page import="camans.entity.*"%>
 
 <script>
-    //----initialize datepicker----//
-    $(function() {
+    $(document).ready(function() {
+        //----initialize datepicker----//
         $(".dateInput").datepicker({
             dateFormat: 'dd-M-yy',
             changeMonth: true,
             changeYear: true
         });
-
-    });
-
-    //----validation for start date and end date----//
-    $(function() {
+        
+        //----validation for start date and end date----//
         $(".startDate").datepicker({
             dateFormat: 'dd-M-yy',
             changeMonth: true,
@@ -39,13 +36,14 @@
                 $(".startDate").datepicker("option", "maxDate", selectedDate);
             }
         });
-    });
-
-    //----disable manual input in date fields----//
-    $(document).ready(function() {
+        
+        //----disable manual input in date fields----//
         $('.dateInput').focus(function() {
             $('.dateInput').blur();
         });
+        
+        $('.form-control').addClass('input-sm');
+        $('.btn_group').addClass('pull-right');
     });
 
     //----problem form validation----//
@@ -1618,11 +1616,6 @@
 
     });
 
-
-
-    $(document).ready(function() {
-        $('.form-control').addClass('input-sm');
-    });
 </script>
 <style>
     button{
@@ -5117,7 +5110,7 @@
             <div class='form-group'>
                 <label for='nstartDate' class="control-label">Start Date:</label>
                 <br/>
-                <input class="form-control startDate" type='text' name="nstartDate">
+                <input class="form-control startDate" type='text' name="nstartDate" value="<%=sdf.format(today)%>">
             </div>
             <div class='form-group'>
                 <label for='nendDate' class="control-label">End Date:</label>

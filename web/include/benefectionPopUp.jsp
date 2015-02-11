@@ -14,8 +14,8 @@
 
 
 <style>
-    h4{
-        color: #AF4454;
+    button{
+        width : 6vw;
     }
 
 </style>
@@ -276,7 +276,7 @@
     });
     
     $(document).ready(function(){
-        $('.cancel_btn').addClass('pull-right');
+        $('.btn_group').addClass('pull-right');
         $('.form-control').addClass('input-sm');
     });
 </script>
@@ -594,7 +594,7 @@
     </div>
     <div class="form-group btn_group">
         <button type='submit' class="btn btn-blue modal_btn">Save</button>
-        <button type='button' class='btn btn-blue modal_btn cancel_btn'>Cancel</button>
+        <button type='button' class='btn modal_btn cancel_btn'>Cancel</button>
     </div>
 
 

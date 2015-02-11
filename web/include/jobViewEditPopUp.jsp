@@ -15,24 +15,22 @@
 
 </style>
 <script>
-    //----initialize datepicker----//
-    $(function() {
+    
+    
+    $(document).ready(function() {
+        //----initialize datepicker----//
         $(".dateInput").datepicker({
             dateFormat: 'dd-M-yy',
             changeMonth: true,
             changeYear: true
         });
-
-    });
-
-    //----disable manual input in date fields----//
-    $(document).ready(function() {
+        //----disable manual input in date fields----//
         $('.dateInput').focus(function() {
             $('.dateInput').blur();
         });
-    });
-    $(document).ready(function() {
+        
         $('.form-control').addClass('input-sm');
+        $('.btn_group').addClass('pull-right');
     });
     //job form validation 
     $(document).ready(function() {

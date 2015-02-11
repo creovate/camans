@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="292e877d-5057-48de-b226-51cb3c3568e2">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ed1f73cf-a18f-4b3f-ae15-acd4cd3fa426">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="year" class="java.lang.Integer"/>
 	<queryString language="SQL">
-		<![CDATA[select Name, COALESCE(client, 0), COALESCE(benes, 0), COALESCE(amt, 0) from 
+		<![CDATA[select Name, COALESCE(client, 0), COALESCE(benes, 0), COALESCE(amt, 0.00) from 
 (select Name from tbl_dropdown
 where dropdownType = "Bene_type" order by displayRank) as t1
 left join 
@@ -16,9 +16,18 @@ on t1.Name = t2.Bene_type]]>
 	<field name="Name" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="COALESCE(client, 0)" class="java.lang.Long"/>
-	<field name="COALESCE(benes, 0)" class="java.lang.Long"/>
-	<field name="COALESCE(amt, 0)" class="java.math.BigDecimal"/>
+	<field name="COALESCE(client, 0)" class="java.lang.Integer"/>
+	<field name="COALESCE(benes, 0)" class="java.lang.Integer"/>
+	<field name="COALESCE(amt, 0.00)" class="java.math.BigDecimal"/>
+	<variable name="totalClient" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{COALESCE(client, 0)}]]></variableExpression>
+	</variable>
+	<variable name="totalBenefit" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{COALESCE(benes, 0)}]]></variableExpression>
+	</variable>
+	<variable name="totalAmount" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COALESCE(amt, 0.00)}]]></variableExpression>
+	</variable>
 	<background>
 		<band/>
 	</background>
@@ -95,31 +104,31 @@ on t1.Name = t2.Bene_type]]>
 			</line>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="0" y="0" width="138" height="20" uuid="45a6a678-c380-4546-ae76-8c621dec4fb1"/>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="138" y="0" width="138" height="20" uuid="4da31c2f-7e72-4ccf-b165-7a5a76e0af78"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{COALESCE(client, 0)}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="276" y="0" width="138" height="20" uuid="fbfe80a7-8d90-4327-be25-592fa4a6588f"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{COALESCE(benes, 0)}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="414" y="0" width="138" height="20" uuid="241be5f4-e62a-411d-bdc8-a657d2c98974"/>
-				<textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{COALESCE(amt, 0)}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{COALESCE(amt, 0.00)}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -129,21 +138,53 @@ on t1.Name = t2.Bene_type]]>
 	<pageFooter>
 		<band height="17">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="56fa2020-eb5a-4427-97db-21cca90e7f1d"/>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="de2be35b-ac96-4f4e-9a77-b9bf830551a4"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="92af3484-a59f-47e7-96ea-6f8249255373"/>
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="5d6207cf-6bed-4d05-bd59-b4130f8057e0"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13" uuid="143acefa-3506-4294-bc09-57ccfc06b170"/>
+				<reportElement x="0" y="4" width="100" height="13" uuid="04050d29-0b6b-4784-b71c-c36e9bdd6eff"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
 	<summary>
-		<band/>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="f61e72f0-3516-4671-91d3-47951e2a39d8"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="138" y="0" width="138" height="20" uuid="4da31c2f-7e72-4ccf-b165-7a5a76e0af78"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalClient}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="276" y="0" width="138" height="20" uuid="fbfe80a7-8d90-4327-be25-592fa4a6588f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalBenefit}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="414" y="0" width="138" height="20" uuid="241be5f4-e62a-411d-bdc8-a657d2c98974"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="138" height="20" uuid="b24001dc-8a0d-463c-bedc-c19db1d3716e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>

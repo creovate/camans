@@ -159,6 +159,8 @@
                 });
 
                 $('.moreObjs').hide();
+                
+                $('.alert').fadeOut(4000);
             });
 
 
@@ -640,7 +642,7 @@
                                                        href="" data-toggle="modal" data-class="worker"  
                                                        data-target="#homePhone_pop_up" class="edit_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right>
-                                                    </a></span></h4>
+                                                    </span></a></h4>
 
 
                                             </div>
@@ -727,7 +729,7 @@
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
 
-                                                <h4 class="panel-title">Singapore Address <a data-value='sgadd' data-action = "add" data-sgadd='' data-title="Add A New Singapore Address" href="" data-toggle="modal" data-class="worker"  data-target="#sgAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-plus pull-right" pull-right></a></span></h4>
+                                                <h4 class="panel-title">Singapore Address <a data-value='sgadd' data-action = "add" data-sgadd='' data-title="Add A New Singapore Address" href="" data-toggle="modal" data-class="worker"  data-target="#sgAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
 
 
                                             </div>
@@ -810,7 +812,7 @@
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
 
-                                                <h4 class="panel-title">Home Country Address <a data-value='homeadd' data-action = "add" data-title="Add A New Home Country Address" data-homeadd='' href="" data-toggle="modal" data-class="worker"  data-target="#homeAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-plus pull-right" pull-right></a></span></h4>
+                                                <h4 class="panel-title">Home Country Address <a data-value='homeadd' data-action = "add" data-title="Add A New Home Country Address" data-homeadd='' href="" data-toggle="modal" data-class="worker"  data-target="#homeAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
 
 
                                             </div>

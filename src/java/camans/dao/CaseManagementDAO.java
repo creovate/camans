@@ -109,6 +109,7 @@ public class CaseManagementDAO {
 
                 pstmt.setInt(1, problem.getProbKey());
                 pstmt.executeUpdate();
+
             }
 
 
@@ -153,17 +154,20 @@ public class CaseManagementDAO {
 
         ArrayList<Integer> leadCaseWorkerList = ProblemComplementsDAO.retrieveLeadCaseWorkerIdsOfProblem(problem_temp);
 
-        int lcw_id = leadCaseWorkerList.get(leadCaseWorkerList.size() - 1);
-        ProblemLeadCaseWorker leadCaseWorker = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(lcw_id);
-        java.sql.Date lcwEnd = leadCaseWorker.getLeadEnd();
-        if (lcwEnd == null) {
-            String lcwName = leadCaseWorker.getLeadCaseWorker();
-            java.sql.Date lcwStart = leadCaseWorker.getLeadStart();
-            java.util.Date endDate = new java.util.Date();
-            lcwEnd = new java.sql.Date(endDate.getTime());
+        if (leadCaseWorkerList != null && leadCaseWorkerList.size() > 0) {
+            int lcw_id = leadCaseWorkerList.get(leadCaseWorkerList.size() - 1);
+            ProblemLeadCaseWorker leadCaseWorker = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(lcw_id);
+            java.sql.Date lcwEnd = leadCaseWorker.getLeadEnd();
+            if (lcwEnd == null) {
+                String lcwName = leadCaseWorker.getLeadCaseWorker();
+                java.sql.Date lcwStart = leadCaseWorker.getLeadStart();
+                java.util.Date endDate = new java.util.Date();
+                lcwEnd = new java.sql.Date(endDate.getTime());
 
-            leadCaseWorker = new ProblemLeadCaseWorker(lcw_id, workerFin, jobKey, probKey, lcwName, lcwStart, lcwEnd);
-            ProblemComplementsDAO.updateProblemLeadCaseWorker(leadCaseWorker);
+                leadCaseWorker = new ProblemLeadCaseWorker(lcw_id, workerFin, jobKey, probKey, lcwName, lcwStart, lcwEnd);
+                ProblemComplementsDAO.updateProblemLeadCaseWorker(leadCaseWorker);
+            }
+        
         }
     }
 
