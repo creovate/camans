@@ -1,5 +1,14 @@
 camans
 ======
+<b>12th Feb 2015 - smm</b><br/>
+1. debug workercomplements<br/>
+2. debug JobComplements<br/>
+3. debug problem complements [decimal validation only] <br/>
+4. debug dropdown medical<br/>
+5. updated sql for Job IPA<br/>
+
+Signed-off-by: soemyatmyat <soemyatmyat@openmailbox.org>
+
 <b>8th Feb 2015 - smm</b> <br/>
 1. removed add buttons from all the modals <br/>
 2. server validation: problems <br/>
