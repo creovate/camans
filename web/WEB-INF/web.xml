@@ -21,10 +21,6 @@
         <servlet-class>camans.controller.processGenerateTWC2Fin</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>processEditProblemComplement</servlet-name>
-        <servlet-class>camans.controller.processEditProblemComplement</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>processSearchWorker</servlet-name>
         <servlet-class>camans.controller.processSearchWorker</servlet-class>
     </servlet>
@@ -87,10 +83,6 @@
     <servlet-mapping>
         <servlet-name>processAddProblemComplement</servlet-name>
         <url-pattern>/addProblemComplement.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>processEditProblemComplement</servlet-name>
-        <url-pattern>/editProblemComplement.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>processUser</servlet-name>

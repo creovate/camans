@@ -845,14 +845,14 @@
         <div class='form-group'>
             <label for='passportIssueDate' class="control-label">Passport Issue Date: </label>
             <br/>
-            <input class="form-control dateInput startDate" type='text' name="passportIssueDate" 
+            <input class="form-control startDate" type='text' name="passportIssueDate" 
                    value="<%=(passportdetails.getPassportIssueDate() == null) ? ""
                            : sdf.format(passportdetails.getPassportIssueDate())%>">
         </div>
         <div class='form-group'>
             <label for='passportExpiryDate' class="control-label">Passport Expiry Date: </label>
             <br/>
-            <input class="form-control dateInput endDate" type='text' name="passportExpiryDate" 
+            <input class="form-control endDate" type='text' name="passportExpiryDate" 
                    value="<%=(passportdetails.getPassportExpirtyDate() == null) ? ""
                            : sdf.format(passportdetails.getPassportExpirtyDate())%>">
         </div>
@@ -1293,7 +1293,7 @@
                 <div class='form-group'>
                     <label for='digiObDate' class="control-label">Date Discovered to be Obsolete: </label>
                     <br/>
-                    <input class="form-control" type='text' name="digiObDate" value="<%=(digitalContact.getObseleteDate() == null) ? "" : digitalContact.getObseleteDate()%>">
+                    <input class="form-control" type='text' name="digiObDate" value="<%=(digitalContact.getObseleteDate() == null) ? "" : sdf.format(digitalContact.getObseleteDate())%>">
                 </div>
             </fieldset>
 

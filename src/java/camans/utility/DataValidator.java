@@ -33,8 +33,8 @@ public class DataValidator {
         
         try {
             csvReader = new CSVReader(new FileReader(fileName));
-            String fileShortName = fileName.substring(fileName.lastIndexOf("\\")+1);
-            //String fileShortName = fileName.substring(fileName.lastIndexOf("/")+1);
+            //String fileShortName = fileName.substring(fileName.lastIndexOf("\\")+1);
+            String fileShortName = fileName.substring(fileName.lastIndexOf("/")+1);
             String[] header = csvReader.readNext();
             String[] fields;
             String errorMsg = "";
@@ -225,7 +225,7 @@ public class DataValidator {
                             errorMsg += "FinNumber does not exist, ";
                         }
 
-                        if (!homecountryph.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                        if (!homecountryph.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                             errorMsg += "invalid phone number, ";
                         }
 
@@ -301,7 +301,7 @@ public class DataValidator {
                             errorMsg += "FinNumber does not exist, ";
                         }
 
-                        if (!sgPh.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                        if (!sgPh.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                             errorMsg += "invalid phone number, ";
                         }
 
@@ -636,15 +636,16 @@ public class DataValidator {
                             errorMsg += header[1] + " cannot be more than 50 characters, ";
                         }
 
-                        if (!kinDoc.equals("") && kinDoc.length()>50) {
-                            errorMsg += header[3]  + " cannot be more than 50 characters, ";
+                        if (!kinDoc.equals("") && kinDoc.length()>200) {
+                            errorMsg += header[3]  + " cannot be more than 200 characters, ";
                         }
 
                         if (!kinRel.equals("") && kinRel.length() > 50) {
                             errorMsg += header[2]  + " cannot be more than 50 characters, ";
                         }
 
-                        if (!kinPhone.equals("") && kinPhone.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                        
+                        if (!kinPhone.equals("") && !kinPhone.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                             errorMsg += header[4]  + " - invalid format, ";
                         }
 
@@ -751,8 +752,9 @@ public class DataValidator {
                         if (!famMemWhere.equals("") && famMemWhere.length() > 200) {
                             errorMsg += header[3]  + " cannot be more than 200 characters, ";
                         }
-
-                        if (!famMemPhone.equals("") && famMemPhone.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                        
+                        
+                        if (!famMemPhone.equals("") && !famMemPhone.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                             errorMsg += header[4]  + " - invalid format, ";
                         }
 
@@ -842,7 +844,7 @@ public class DataValidator {
                             errorMsg += header[1] + " cannot be more than 50 characters, ";
                         }
 
-                        if (!frdPh.equals("") && frdPh.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                        if (!frdPh.equals("") && !frdPh.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                             errorMsg += header[2]  + "- invalid format, ";
                         }
 
@@ -1282,7 +1284,7 @@ public class DataValidator {
                     String ipaAgent = fields[6].trim();
                     String ipaIndustry = fields[7].trim();
                     String ipaOccupation = fields[8].trim();
-                    String ipaPeriod = fields[9].trim();
+                    String ipaPeriodStr = fields[9].trim();
                     String ipaBasicStr = fields[10].trim();
                     String ipaAllowanceStr = fields[11].trim();
                     String ipaAllowDetails = fields[12].trim();
@@ -1296,7 +1298,7 @@ public class DataValidator {
                     double ipaBasic = 0.0;
                     double ipaAllowance = 0.0;
                     double ipaDeduction = 0.0;
-                    
+                    double ipaPeriod = 0.0;
                     /**
                      * Validations for empty fields
                      */
@@ -1380,10 +1382,19 @@ public class DataValidator {
                         if (!ipaOccupation .equals("") && ipaOccupation.length() > 30) {
                             errorMsg += header[8] + " cannot be longer than 30 characters,";
                         }
-                        /*
-                        if (!ipaPeriod.equals("") && ipaPeriod.matches("^\\d+(\\.\\d{1,2})?$")) {
-                            errorMsg += header[9] + " must have maximum 2 decimal places,";
+                        
+                        if (!ipaPeriodStr.equals("") && !ipaPeriodStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                        errorMsg += "Period must have maximum 2 decimal places,";
+                        } else {
+                            if (!ipaPeriodStr.equals("")) {
+                                try {
+                                    ipaPeriod = Double.parseDouble(ipaPeriodStr);
+                                } catch (Exception ex) {
+                                    errorMsg += "Basic Salry - invalid format,";
+                                }
+                            }
                         }
+                    
 
                         if (!ipaBasicStr.equals("") && !ipaBasicStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += header[10] + " must have maximum 2 decimal places,";
@@ -1423,7 +1434,7 @@ public class DataValidator {
                                     errorMsg += header[13] + " - invalid format,";
                                 }
                             }
-                        }*/
+                        }
 
                         if (!ipaDeductionDetails.equals("") && ipaDeductionDetails.length() > 200) {
                             errorMsg += header[14] + " cannot be longer than 200 characters,";
@@ -1822,7 +1833,7 @@ public class DataValidator {
                     if (!agentContact.equals("") && agentContact.length() > 200) {
                         errorMsg += header[7] + " cannot be longer than 200 characters,";
                     }
-                    /*
+                    
                     if (!agentAmtPaidStr.equals("") && !agentAmtPaidStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += header[8] + " must have maximum 2 decimal places,";
                     } else {
@@ -1845,7 +1856,7 @@ public class DataValidator {
                                 errorMsg += header[9] + " - invalid format,";
                             }
                         }
-                    }*/
+                    }
                     
                     if (!agentFeeShared.equals("") && agentFeeShared.length() > 200) {
                         errorMsg += header[10] + " cannot be longer than 200 characters,";
@@ -2429,7 +2440,7 @@ public class DataValidator {
                         if (!accomConditions.equals("") && accomConditions.length() > 500) {
                             errorMsg += header[7] + " cannot be longer than 500 characters,";
                         }
-                        /*
+                        
                         if (!accomChargedStr.equals("") && !accomChargedStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += header[8] + " must have maximum 2 decimal places,";
                         } else {
@@ -2452,7 +2463,7 @@ public class DataValidator {
                                     errorMsg += header[9] + " - invalid format,";
                                 }
                             }
-                        }*/
+                        }
 
                         if (!accomMeals.equals("") && accomMeals.length() > 200) {
                             errorMsg += header[10] + " cannot be longer than 200 characters,";
@@ -2594,7 +2605,7 @@ public class DataValidator {
                         if (!aggraIssueMore.equals("") && aggraIssueMore.length() > 50){
                             errorMsg += header[4] + " cannot be more than 50 characters,";
                         }
-                        /*
+                        
                         if (!aggraLossStr.equals("")) {
                             if (!aggraLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += header[5] + " must have maximum 2 decimal places,";
@@ -2605,7 +2616,7 @@ public class DataValidator {
                                     errorMsg += header[5] + " - invalid format,";
                                 }
                             }
-                        } */
+                        } 
 
                         if (!aggraRemark.equals("") && aggraRemark.length() > 200) {
                             errorMsg += header[6] + " cannot be longer than 200 characters,";
@@ -3036,9 +3047,9 @@ public class DataValidator {
                         if (!salModeMore.equals("") && salModeMore.length() > 50){
                             errorMsg += header[10] + " cannot be more than 50 characters,";
                         }
-                        /*
+                        
                         if (!salLossTotalStr.equals("")) {
-                            if(salLossTotalStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            if(!salLossTotalStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += header[11] + " must have maximum 2 decimal places,";
                             } else {
                                 try {
@@ -3050,7 +3061,7 @@ public class DataValidator {
                         }
 
                         if (!salLoss1YrStr.equals("")) {
-                            if (salLoss1YrStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            if (!salLoss1YrStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += header[12] + " must have maximum 2 decimal places,";
                             } else {
                                 try {
@@ -3059,7 +3070,7 @@ public class DataValidator {
                                     errorMsg += header[12] + " - invalid format,";
                                 }
                             }
-                        }*/
+                        }
 
                         if (!salHistRem.equals("") && salHistRem.length() > 200){
                             errorMsg += header[13] + " cannot be more than 200 characters,";
@@ -3614,12 +3625,18 @@ public class DataValidator {
                                 errorMsg += "Invalid Salary claim Date Format,";
                             } 
                         }
-                        /*
+                        
                         if(!salClaimLossStr.equals("")) {
-                            if (salClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            if (!salClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += header[4] + " must have maximum 2 decimal places,"; 
+                            } else {
+                                try {
+                                    salClaimLoss = Double.parseDouble(salClaimLossStr);
+                                } catch (Exception ex) {
+                                    errorMsg += header[4] + " - invalid format,";
+                                }
                             }
-                        }*/
+                        }
 
                         if (!salClaimBasis.equals("") && salClaimBasis.length() > 1000) {
                             errorMsg += header[5] + " cannot be longer than 1000 characters,";
@@ -3769,7 +3786,7 @@ public class DataValidator {
                         if (!statusMore.equals("") && statusMore.length() > 50) {
                             errorMsg += header[6] + " cannot be longer than 50 characters,";
                         }
-                        /*
+                        
                         if (!pointsStr.equals("")) {
                             if (!pointsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += header[7] + " must have maximum 2 decimal places,";
@@ -3792,7 +3809,7 @@ public class DataValidator {
                                     errorMsg += header[8] + " - invalid format,";
                                 }
                             }
-                        }*/
+                        }
 
 
                         if (!rem.equals("") && rem.length() > 200) {
@@ -4059,7 +4076,7 @@ public class DataValidator {
                                 errorMsg += "Invalid non-wica medical claim Date Format,";
                             } 
                         }
-                        /*
+                        
                         if (!medClaimLossStr.equals("")) {
                             if (!medClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += header[4] + " must have maximum 2 decimal places,";
@@ -4070,7 +4087,7 @@ public class DataValidator {
                                     errorMsg += header[4] + " - invalid format,";
                                 }
                             }
-                        }*/
+                        }
 
                         if (!medClaimInsurer.equals("") && medClaimInsurer.length() > 50) {
                             errorMsg += header[5] + " cannot be longer than 50 characters,";
@@ -4726,8 +4743,17 @@ public class DataValidator {
                             } 
                         }
 
-                        if (!hospName.equals("") && hospName.length() > 30) {
-                            errorMsg += header[5] + " cannot be longer than 30 characters,";
+                        ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfHosptialType();
+                        boolean exit = false;
+                        for (String tmp: list) {
+                            if (tmp.equalsIgnoreCase(hospName)) {
+                                exit = true;
+                                break;
+                            }
+                        }
+
+                        if (!exit) {
+                            errorMsg += "invalid Hospital Name, ";
                         }
 
                         if (!hospNameMore.equals("") && hospNameMore.length() > 50) {
@@ -5026,7 +5052,7 @@ public class DataValidator {
                                 errorMsg += "Invalid R2R Date Format,";
                             } 
                         }
-                        /*
+                        
                         if (!medCostStr.equals("")) {
                             if (!medCostStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += header[14] + " must have maximum 2 decimal places,";
@@ -5044,12 +5070,12 @@ public class DataValidator {
                                 errorMsg += header[15] + " must have maximum 2 decimal places,";
                             } else {
                                 try {
-                                    medCost = Double.parseDouble(medCostStr);
+                                    outlay = Double.parseDouble(outlayStr);
                                 } catch (Exception ex) {
                                     errorMsg += header[14] + " - invalid format,";
                                 }
                             }    
-                        }*/
+                        }
 
                         if (!r2rTime.equals("") && r2rTime.length() > 20) {
                             errorMsg += header[5] + " cannot be longer than 20 characters,";

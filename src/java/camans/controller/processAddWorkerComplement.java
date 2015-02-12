@@ -44,6 +44,7 @@ public class processAddWorkerComplement extends HttpServlet {
             String workerFinNum = request.getParameter("workerFinNum");
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
             User _user = (User) request.getSession().getAttribute("userLogin");
+            String action = "";
             String auditChange = "";
             String idStr = request.getParameter("Id");
             
@@ -187,7 +188,7 @@ public class processAddWorkerComplement extends HttpServlet {
                         int id = Integer.parseInt(request.getParameter("Id"));
                                                 //create passport object
                         WorkerPassportDetails workerPassportDetails = new WorkerPassportDetails(workerFinNum,
-                                id, passportCountry, passportNum, issueDate, expiryDate);
+                                id, passportNum, passportCountry, issueDate, expiryDate);
                         //update in the Database
                         WorkerComplementsDAO.updatePassportDetails(workerPassportDetails);
 
@@ -227,8 +228,8 @@ public class processAddWorkerComplement extends HttpServlet {
 
                 //proceed only after empty fields validation is passed
                 if (pass) { 
-
-                    if (!phNum.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                    
+                    if (!phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                         errorMsg += "invalid phone number, ";
                     }
 
@@ -298,8 +299,8 @@ public class processAddWorkerComplement extends HttpServlet {
 
                 //proceed only after empty fields validation is passed
                 if (pass) { 
-
-                    if (!phNum.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                    
+                    if (!phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                         errorMsg += "invalid phone number, ";
                     }
 
@@ -563,7 +564,7 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker's Digital Contact has been succesfully added!";
                     } else {
                        int id = Integer.parseInt(request.getParameter("Id"));
-                        WorkerDigitalContact obj = new WorkerDigitalContact(workerFinNum, digitalType,
+                        WorkerDigitalContact obj = new WorkerDigitalContact(workerFinNum, id, digitalType,
                                 digitalTypeOther, digitalDetail, digitalOwner, digitalRemark, obseleteDate);      
 
                         //update in the Database
@@ -628,15 +629,15 @@ public class processAddWorkerComplement extends HttpServlet {
                         errorMsg += "Next of Kin name cannot be more than 50 characters, ";
                     }
 
-                    if (!docReference.equals("") && docReference.length()>50) {
-                        errorMsg += "Doc Referece cannot be more than 50 characters, ";
+                    if (!docReference.equals("") && docReference.length()>200) {
+                        errorMsg += "Doc Referece cannot be more than 200 characters, ";
                     }
 
                     if (!relation.equals("") && relation.length() > 50) {
                         errorMsg += "Relation cannot be more than 50 characters, ";
                     }
-
-                    if (!phNum.equals("") && phNum.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                    
+                    if (!phNum.equals("") && !phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                         errorMsg += "Phone number - invalid format, ";
                     }
 
@@ -741,11 +742,12 @@ public class processAddWorkerComplement extends HttpServlet {
                         errorMsg += "Relation cannot be more than 50 characters, ";
                     }
 
-                    if (!address.equals("") && address.length() > 200) {
+                    if (address != null && 
+                            !address.equals("") && address.length() > 200) {
                         errorMsg += "Address cannot be more than 200 characters, ";
                     }
-
-                    if (!phNum.equals("") && phNum.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                    
+                    if (!phNum.equals("") && !phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                         errorMsg += "Phone Number - invalid format, ";
                     }
 
@@ -828,7 +830,8 @@ public class processAddWorkerComplement extends HttpServlet {
                         errorMsg += "name cannot be more than 50 characters, ";
                     }
 
-                    if (!phNum.equals("") && phNum.matches("^[\\d\\(\\-\\s\\)]+$")) {
+                    
+                    if (!phNum.equals("") && !phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                         errorMsg += "Phone Number - invalid format, ";
                     }
 
@@ -1067,18 +1070,30 @@ public class processAddWorkerComplement extends HttpServlet {
                 }
             }
             
-            //log to audit
-            
-            UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), workerFinNum, 
-                    workerFinNum, "Added", "Worker Complement: " + auditChange);
-            
-            UserAuditLogDAO.addUserAuditLog(userAuditLog);       
+            if (errorMsg.equals("")) {
+                //log to audit
+                auditChange = auditChange.replace("{", " [");
+                auditChange = auditChange.replace("}", "]");
+
+
+                if (idStr == null) {
+                    action = "Added";
+                } else {
+                    action = "Edited";
+                }
+
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), workerFinNum, 
+                        workerFinNum, action, "Worker Complement: " + auditChange);
+
+                UserAuditLogDAO.addUserAuditLog(userAuditLog);  
+            }
             request.getSession().setAttribute("successWrkCompMsg", success);
             request.getSession().setAttribute("errorWrkCompMsg", errorMsg);
             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
         } catch (Exception e) {
             //error = "Worker Complement is not added. There is a parsing error.";
             //log to logfile
+            out.println(e);
             
         } finally {
             out.close();

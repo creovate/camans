@@ -1891,12 +1891,12 @@
             <div class='form-group'>
                 <label for='nPassportIssueDate' class="control-label">Passport Issue Date: </label>
                 <br/>
-                <input class="form-control dateInput startDate" type='text' name="nPassportIssueDate" >
+                <input class="form-control startDate" type='text' name="nPassportIssueDate" >
             </div>
             <div class='form-group'>
                 <label for='nPassportExpiryDate' class="control-label">Passport Expiry Date: </label>
                 <br/>
-                <input class="form-control dateInput endDate" type='text' name="nPassportExpiryDate" >
+                <input class="form-control endDate" type='text' name="nPassportExpiryDate" >
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="complementName" value="WorkerPassportDetails"/>

@@ -44,6 +44,7 @@ public class processAddJobComplement extends HttpServlet {
             User _user = (User) request.getSession().getAttribute("userLogin");
             String auditChange = "";
             String idStr = request.getParameter("Id");
+            String action = "";
             
             //=======================================//
             //   Server Side Validation Parameters
@@ -503,7 +504,7 @@ public class processAddJobComplement extends HttpServlet {
                         errorMsg += "Agent Contact cannot be longer than 200 characters,";
                     }
                     
-                    /*
+                    
                     if (!agentAmtPaidStr.equals("") && !agentAmtPaidStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += "Amount Paid must have maximum 2 decimal places,";
                     } else {
@@ -514,9 +515,9 @@ public class processAddJobComplement extends HttpServlet {
                                 errorMsg += "Amount Paid - invalid format,";
                             }
                         }
-                    }*/
+                    }
                     
-                    /*
+                    
                     if (!agentAmtOwedStr.equals("") && !agentAmtOwedStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += "Agent Owed must have maximum 2 decimal places,";
                     } else {
@@ -527,7 +528,7 @@ public class processAddJobComplement extends HttpServlet {
                                 errorMsg += "Agent Owed - invalid format,";
                             }
                         }
-                    }*/
+                    }
                     
                     if (!agentFeeShared.equals("") && agentFeeShared.length() > 200) {
                         errorMsg += "Agent Fee Shared cannot be longer than 200 characters,";
@@ -986,7 +987,7 @@ public class processAddJobComplement extends HttpServlet {
                     if (!accCondition.equals("") && accCondition.length() > 500) {
                         errorMsg += "Condition cannot be longer than 500 characters,";
                     }
-                    /*
+                    
                     if (!accChargedStr.equals("") && !accChargedStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += "Amount Charged must have maximum 2 decimal places,";
                     } else {
@@ -997,8 +998,8 @@ public class processAddJobComplement extends HttpServlet {
                                 errorMsg += "Amount Charged - invalid format,";
                             }
                         }
-                    }*/
-                    /*
+                    }
+                    
                     if (!accPaidStr.equals("") && !accPaidStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += "Self paid amount must have maximum 2 decimal places,";
                     } else {
@@ -1009,7 +1010,7 @@ public class processAddJobComplement extends HttpServlet {
                                 errorMsg += "Self paid amount - invalid format,";
                             }
                         }
-                    }*/
+                    }
 
                     if (!accMeal.equals("") && accMeal.length() > 200) {
                         errorMsg += "meal cannot be longer than 200 characters,";
@@ -1067,7 +1068,7 @@ public class processAddJobComplement extends HttpServlet {
                 String ipaAgentName = "";
                 String ipaIndustry = "";
                 String ipaOccupation = "";
-                String ipaPeriods = "";
+                String ipaPeriodsStr = "";
                 String ipaBasicSalaryStr = "";
                 String ipaTotalAllowanceStr = "";
                 String ipaTotalAllowanceDetails = "";
@@ -1078,6 +1079,7 @@ public class processAddJobComplement extends HttpServlet {
                 double ipaBasicSalary = 0.0;
                 double ipaTotalAllowance = 0.0;
                 double ipaDeduction = 0.0;
+                double ipaPeriods = 0.0;
                 java.sql.Date ipaDate = null;
                 if (idStr == null) {
                     ipaPassType = request.getParameter("nworkpassType");
@@ -1087,7 +1089,7 @@ public class processAddJobComplement extends HttpServlet {
                     ipaAgentName = request.getParameter("nagentName");
                     ipaIndustry = request.getParameter("nindustry");
                     ipaOccupation = request.getParameter("nipaoccupation");
-                    ipaPeriods = request.getParameter("nperiods");
+                    ipaPeriodsStr = request.getParameter("nperiods");
                     ipaBasicSalaryStr = request.getParameter("nbasicSalary");
                     ipaTotalAllowanceStr = request.getParameter("ntotalAllowance");
                     ipaTotalAllowanceDetails = request.getParameter("nallowanceDetails");
@@ -1103,7 +1105,7 @@ public class processAddJobComplement extends HttpServlet {
                     ipaAgentName = request.getParameter("agentName");
                     ipaIndustry = request.getParameter("industry");
                     ipaOccupation = request.getParameter("ipaoccupation");
-                    ipaPeriods = request.getParameter("periods");
+                    ipaPeriodsStr = request.getParameter("periods");
                     ipaBasicSalaryStr = request.getParameter("basicSalary");
                     ipaTotalAllowanceStr = request.getParameter("totalAllowance");
                     ipaTotalAllowanceDetails = request.getParameter("nallowanceDetails");
@@ -1156,7 +1158,19 @@ public class processAddJobComplement extends HttpServlet {
                     if (!ipaPeriods.equals("") && ipaPeriods.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += "Period must have maximum 2 decimal places,";
                     }*/
-                    /*
+                    
+                    if (!ipaPeriodsStr.equals("") && !ipaPeriodsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                        errorMsg += "Period must have maximum 2 decimal places,";
+                    } else {
+                        if (!ipaPeriodsStr.equals("")) {
+                            try {
+                                ipaPeriods = Double.parseDouble(ipaPeriodsStr);
+                            } catch (Exception ex) {
+                                errorMsg += "Basic Salry - invalid format,";
+                            }
+                        }
+                    }
+                    
                     if (!ipaBasicSalaryStr.equals("") && !ipaBasicSalaryStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += "Basic Salary must have maximum 2 decimal places,";
                     } else {
@@ -1167,8 +1181,8 @@ public class processAddJobComplement extends HttpServlet {
                                 errorMsg += "Basic Salry - invalid format,";
                             }
                         }
-                    }*/
-                    /*
+                    }
+                    
                     if (!ipaTotalAllowanceStr.equals("") && !ipaTotalAllowanceStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += "allowance must have maximum 2 decimal places,";
                     } else {
@@ -1179,12 +1193,12 @@ public class processAddJobComplement extends HttpServlet {
                                 errorMsg += "allowance - invalid format,";
                             }
                         }
-                    }*/
+                    }
                     
                     if (!ipaTotalAllowanceDetails.equals("") && ipaTotalAllowanceDetails.length() > 200) {
                         errorMsg += "Allowance details cannot be longer than 200 characters,";
                     }
-                    /*
+                    
                     if (!ipaDeductionStr.equals("") && !ipaDeductionStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += "deduction amount must have maximum 2 decimal places,";
                     } else {
@@ -1195,7 +1209,7 @@ public class processAddJobComplement extends HttpServlet {
                                 errorMsg += "deduction amount - invalid format,";
                             }
                         }
-                    }*/
+                    }
 
                     if (!ipaDeductionDetails.equals("") && ipaDeductionDetails.length() > 200) {
                         errorMsg += "deduction details cannot be longer than 200 characters,";
@@ -1237,12 +1251,23 @@ public class processAddJobComplement extends HttpServlet {
                     }
                 } 
             }
-            
-            //log to audit
-            UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), jobKey + "", 
-                    workerFinNum, "Added", "Job Complement: " + auditChange);
+            if (errorMsg.equals("")) {
+                //log to audit
+                auditChange = auditChange.replace("{", " [");
+                auditChange = auditChange.replace("}", "]");
 
-            UserAuditLogDAO.addUserAuditLog(userAuditLog);  
+
+                if (idStr == null) {
+                    action = "Added";
+                } else {
+                    action = "Edited";
+                }
+                //log to audit
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), jobKey + "", 
+                        workerFinNum, action, "Job Complement: " + auditChange);
+
+                UserAuditLogDAO.addUserAuditLog(userAuditLog);  
+            }
             request.getSession().setAttribute("successJobCompMsg", success);
             request.getSession().setAttribute("errorJobCompMsg", errorMsg);
             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + "&selectedJob=" + jobKey);

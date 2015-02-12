@@ -51,6 +51,9 @@ public class processDropdown extends HttpServlet {
                 Dropdown dropdownItem = null;
                 if (type.startsWith("Bene_type")) {
                     String remark = type.substring(type.lastIndexOf("_")+1);
+                    if (remark.equals("medical")) {
+                        remark = "Medical & Karunya";
+                    }
                     dropdownItem = new Dropdown("Bene_type", itemName, remark, rank);   
                 } else {
                     dropdownItem = new Dropdown(type, itemName, null, rank);    

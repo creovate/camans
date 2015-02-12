@@ -259,7 +259,7 @@ public class JobComplementsDAO {
                 String IPA_agent_name = rs.getString(5);
                 String IPA_industry = rs.getString(6);
                 String IPA_occupation = rs.getString(7);
-                String IPA_period_years = rs.getString(8);
+                Double IPA_period_years = rs.getDouble(8);
                 Double IPA_basic_salary = rs.getDouble(9);
                 Double IPA_allownaces = rs.getDouble(10);
                 String IPA_allowances_details = rs.getString(11);
@@ -307,7 +307,7 @@ public class JobComplementsDAO {
             pstmt.setString(5, jobIPADetails.getIpaAgentName());
             pstmt.setString(6, jobIPADetails.getIndustry());
             pstmt.setString(7, jobIPADetails.getOccuupation());
-            pstmt.setString(8, jobIPADetails.getPeriodYears());
+            pstmt.setDouble(8, jobIPADetails.getPeriodYears());
             pstmt.setDouble(9, jobIPADetails.getBasicSalary());
             pstmt.setDouble(10, jobIPADetails.getIpaAllowances());
             pstmt.setString(11, jobIPADetails.getIpaAllowancesDetails());
@@ -348,7 +348,7 @@ public class JobComplementsDAO {
             pstmt.setString(5, jobIPADetails.getIpaAgentName());
             pstmt.setString(6, jobIPADetails.getIndustry());
             pstmt.setString(7, jobIPADetails.getOccuupation());
-            pstmt.setString(8, jobIPADetails.getPeriodYears());
+            pstmt.setDouble(8, jobIPADetails.getPeriodYears());
             pstmt.setDouble(9, jobIPADetails.getBasicSalary());
             pstmt.setDouble(10, jobIPADetails.getIpaAllowances());
             pstmt.setString(11, jobIPADetails.getIpaAllowancesDetails());

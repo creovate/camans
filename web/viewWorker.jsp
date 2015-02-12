@@ -1071,7 +1071,7 @@
                                                 %>
 
                                                 <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_nok_seemore" onclick="seemore('.other_nok');">See more</a>
-                                                <a style="cursor:pointer display:none" class="text-center col-sm-12 seemore_btn other_nok_seemore" onclick="seemore('.other_nok');">View Less</a>
+                                                <a style="cursor:pointer; display:none" class="text-center col-sm-12 seemore_btn other_nok_seemore" onclick="seemore('.other_nok');">View Less</a>
                                                 <%                                                            }
                                                     }
                                                 %>
@@ -2088,7 +2088,6 @@
                                                                data-title="View Employer Details" href="" data-toggle="modal" data-target="#empdetails_pop_up" 
                                                                data-action="viewedit" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span></a>
-                                                        </td>
                                                         <% if (userLogin.getRole().equals("Administrator")) { %>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
@@ -2096,6 +2095,7 @@
                                                                data-action="delete" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span></a>
                                                         <% }%> 
+                                                        </td>
                                                     </tr>
                                                     <%
                                                     } else {

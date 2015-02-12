@@ -56,6 +56,7 @@ public class processAddProblemComplement extends HttpServlet {
             String idStr = request.getParameter("Id");
 
             String auditChange = "";
+            String action =  "";
             //=======================================//
             //          Sucess & Error Parameters  
             //=======================================//
@@ -706,9 +707,9 @@ public class processAddProblemComplement extends HttpServlet {
                         if (!salModeMore.equals("") && salModeMore.length() > 50){
                             errorMsg += "Salary Mode cannot be more than 50 characters,";
                         }
-                        /*
+                        
                         if (!salLossTotalStr.equals("")) {
-                            if(salLossTotalStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            if(!salLossTotalStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += "Salary Loss Total must have maximum 2 decimal places,";
                             } else {
                                     try {
@@ -720,7 +721,7 @@ public class processAddProblemComplement extends HttpServlet {
                         }
 
                         if (!salLossYearStr.equals("")) {
-                            if (salLossYearStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            if (!salLossYearStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += "Salary Loss Year must have maximum 2 decimal places,";
                             } else {
                                     try {
@@ -729,7 +730,7 @@ public class processAddProblemComplement extends HttpServlet {
                                         errorMsg += "Salary Loss Year - invalid format,";
                                     }
                             }
-                        }*/
+                        }
 
                         if (!salHistRemark.equals("") && salHistRemark.length() > 200){
                             errorMsg += "Remark cannot be more than 200 characters,";
@@ -812,8 +813,14 @@ public class processAddProblemComplement extends HttpServlet {
                         }
 
                         if(!salClaimLossStr.equals("")) {
-                            if (salClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            if (!salClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += "Salary Claim Loss must have maximum 2 decimal places,"; 
+                            } else {
+                                try {
+                                    salClaimLoss = Double.parseDouble(salClaimLossStr);
+                                } catch (Exception ex) {
+                                    errorMsg += "Salary Claim Loss - invalid format,";
+                                }
                             }
                         }
 
@@ -1398,30 +1405,30 @@ public class processAddProblemComplement extends HttpServlet {
                     if (!wicaStatusMore.equals("") && wicaStatusMore.length() > 50) {
                         errorMsg += "explain if above is other cannot be longer than 50 characters,";
                     }
-                    /*
-                    if (!pointsStr.equals("")) {
-                        if (!pointsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                            errorMsg += header[7] + " must have maximum 2 decimal places,";
+                    
+                    if (!wicaPointsStr.equals("")) {
+                        if (!wicaPointsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += "WICA point must have maximum 2 decimal places,";
                         } else {
                             try {
-                                points = Double.parseDouble(pointsStr);
+                                wicaPoints = Double.parseDouble(wicaPointsStr);
                             } catch (Exception ex) {
-                                errorMsg += header[14] + " - invalid format,";
+                                errorMsg += "WICA point - invalid format,";
                             }
                         }
                     }
 
-                    if (!dollarsStr.equals("")) {
-                        if (!dollarsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                            errorMsg += header[8] + " must have maximum 2 decimal places,";
+                    if (!wicaDollarsStr.equals("")) {
+                        if (!wicaDollarsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += "WICA Dollar must have maximum 2 decimal places,";
                         } else {
                             try {
-                                dollars = Double.parseDouble(dollarsStr);
+                                wicaDollars = Double.parseDouble(wicaDollarsStr);
                             } catch (Exception ex) {
-                                errorMsg += header[8] + " - invalid format,";
+                                errorMsg += "WICA Dollar - invalid format,";
                             }
                         }
-                    }*/
+                    }
 
 
                     if (!wicaRemarks.equals("") && wicaRemarks.length() > 200) {
@@ -1765,7 +1772,7 @@ public class processAddProblemComplement extends HttpServlet {
 
                         if (!r2rMedCostStr.equals("")) {
                             if (!r2rMedCostStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                            errorMsg += "Medical Cost must have maximum 2 decimal places,";
+                                errorMsg += "Medical Cost must have maximum 2 decimal places,";
                             } else {
                                 try {
                                     r2rMedCost = Double.parseDouble(r2rMedCostStr);
@@ -1776,7 +1783,7 @@ public class processAddProblemComplement extends HttpServlet {
                         }    
 
                         if (!r2rOutlayStr.equals("")) {
-                            if (!r2rMedCostStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            if (!r2rOutlayStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += "Outlay Cost must have maximum 2 decimal places,";
                             } else {
                                 try {
@@ -2510,11 +2517,23 @@ public class processAddProblemComplement extends HttpServlet {
                 }
             }   
             
-            //log to audit
-            UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
-                    workerFinNum, "Added", "Problem Complement: " + auditChange);
+            if (errorMsg.equals("")) {
+                //log to audit
+                auditChange = auditChange.replace("{", " [");
+                auditChange = auditChange.replace("}", "]");
 
-            UserAuditLogDAO.addUserAuditLog(userAuditLog);         
+                if (idStr == null) {
+                    action = "Added";
+                } else {
+                    action = "Edited";
+                }
+                //log to audit
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
+                        workerFinNum, action, "Problem Complement: " + auditChange);
+
+                UserAuditLogDAO.addUserAuditLog(userAuditLog);     
+            
+            }
             request.getSession().setAttribute("successProbCompMsg", success);
             request.getSession().setAttribute("errorProbCompMsg", errorMsg);
             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + "&selectedProb=" + problemKey);

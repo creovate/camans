@@ -25,7 +25,7 @@ public class JobIPADetails {
     private String ipaAgentName;
     private String industry;
     private String occuupation;
-    private String periodYears;
+    private double periodYears;
     private double basicSalary;
     private double ipaAllowances;
     private String ipaAllowancesDetails;
@@ -34,7 +34,7 @@ public class JobIPADetails {
     private String housingProvided;
     private String ipaRemarks;
 
-    public JobIPADetails(int id, String workerFinNum, int jobKey, String ipaPassType, String ipaPassTypeMore, Date ipaApplicationDate, String ipaEmployerName, String ipaAgentName, String industry, String occuupation, String periodYears, double basicSalary, double ipaAllowances, String ipaAllowancesDetails, double ipaDeduction, String ipaDeductionDetails, String housingProvided, String ipaRemarks) {
+    public JobIPADetails(int id, String workerFinNum, int jobKey, String ipaPassType, String ipaPassTypeMore, Date ipaApplicationDate, String ipaEmployerName, String ipaAgentName, String industry, String occuupation, double periodYears, double basicSalary, double ipaAllowances, String ipaAllowancesDetails, double ipaDeduction, String ipaDeductionDetails, String housingProvided, String ipaRemarks) {
         this.id = id;
         this.workerFinNum = workerFinNum;
         this.jobKey = jobKey;
@@ -55,7 +55,7 @@ public class JobIPADetails {
         this.ipaRemarks = ipaRemarks;
     }
 
-    public JobIPADetails(String workerFinNum, int jobKey, String ipaPassType, String ipaPassTypeMore, Date ipaApplicationDate, String ipaEmployerName, String ipaAgentName, String industry, String occuupation, String periodYears, double basicSalary, double ipaAllowances, String ipaAllowancesDetails, double ipaDeduction, String ipaDeductionDetails, String housingProvided, String ipaRemarks) {
+    public JobIPADetails(String workerFinNum, int jobKey, String ipaPassType, String ipaPassTypeMore, Date ipaApplicationDate, String ipaEmployerName, String ipaAgentName, String industry, String occuupation, double periodYears, double basicSalary, double ipaAllowances, String ipaAllowancesDetails, double ipaDeduction, String ipaDeductionDetails, String housingProvided, String ipaRemarks) {
         this.workerFinNum = workerFinNum;
         this.jobKey = jobKey;
         this.ipaPassType = ipaPassType;
@@ -155,11 +155,11 @@ public class JobIPADetails {
         this.occuupation = occuupation;
     }
 
-    public String getPeriodYears() {
+    public double getPeriodYears() {
         return periodYears;
     }
 
-    public void setPeriodYears(String periodYears) {
+    public void setPeriodYears(double periodYears) {
         this.periodYears = periodYears;
     }
 

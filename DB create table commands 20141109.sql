@@ -432,7 +432,7 @@ Create table tbl_ipa_details (
 	IPA_agent_name varchar (50) null,
 	IPA_industry varchar (50) null,
 	IPA_occupation varchar (30) null,
-	IPA_period_years varchar(30) null,
+	IPA_period_years decimal(13,2) null,
 	IPA_basic_salary decimal(13,2) null,
 	IPA_allowances decimal(13,2) null,
 	IPA_allowances_details varchar (200) null,

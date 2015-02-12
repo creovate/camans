@@ -152,6 +152,8 @@ public class processAddBenefit extends HttpServlet {
 
                 //log to audit
                 auditChange = benefit.toString2();
+                auditChange = auditChange.replace("{", " [");
+                auditChange = auditChange.replace("}", "]");
                 UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
                         workerFinNum, "Added", "Benefit: " + auditChange);
 
@@ -170,6 +172,8 @@ public class processAddBenefit extends HttpServlet {
 
                     //log to audit
                     auditChange = benefit.toString2();
+                    auditChange = auditChange.replace("{", " [");
+                    auditChange = auditChange.replace("}", "]");
                     UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
                             workerFinNum, "Added", "Benefit: " + auditChange);
 

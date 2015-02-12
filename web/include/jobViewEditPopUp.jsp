@@ -3263,7 +3263,6 @@
                 <label for='condition' class="control-label">Conditions at living quarters:</label>
                 <br/>
                 <textarea class="form-control" name="location" rows="3" maxlength="500"><%=(condition==null)?"":condition%></textarea>
-				<textarea class="form-control" name="condition" rows="3" maxlength="500"><%=(condition==null)?"":condition%></textarea>            </div>
 
             <div class='form-group'>
                 <label for='accCharged' class="control-label">Cost charged by employer per month S$</label>
@@ -3332,7 +3331,7 @@
             String agentName = jipa.getIpaAgentName();
             String industry = jipa.getIndustry();
             String occupation = jipa.getOccuupation();
-            String periods = jipa.getPeriodYears();
+            double periods = jipa.getPeriodYears();
             double basicSalary = jipa.getBasicSalary();
             double totalAllowance = jipa.getIpaAllowances();
             double deduction = jipa.getIpaDeduction();
@@ -3340,6 +3339,10 @@
             String deductionDetails = jipa.getIpaDeductionDetails();
             String isHousingProvided = jipa.getHousingProvided();
             String remark = jipa.getIpaRemarks();
+            String ipadate = "-";
+            if (jipa.getIpaApplicationDate() != null) {
+                ipadate = sdf.format(jipa.getIpaApplicationDate());
+            }
 
         %>  
 
@@ -3360,8 +3363,7 @@
                 <div class='form-group'>
                     <label for='name' class="control-label">IPA application Date:</label>
                     <br/>
-                    <input class="form-control" type='text' name="name" 
-                           value="<%=(jipa.getIpaApplicationDate() == null) ? "" : sdf.format(jipa.getIpaApplicationDate())%>">
+                    <input class="form-control" type='text' name="nappDate" value="<%=ipadate%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA Employer Name: </label>
