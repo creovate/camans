@@ -1,5 +1,10 @@
 camans
 ======
+<b>12th Feb 2015 - nyein su</b><br/>
+1. debug problemcomplements<br/>
+2. debug DeleteStubs<br/>
+3. added editable FIN for admin
+
 <b>12th Feb 2015 - smm</b><br/>
 1. debug workercomplements<br/>
 2. debug JobComplements<br/>
