@@ -9,6 +9,98 @@
 <script src="js/jquery.validate.js"></script>
 <script src="js/additional-methods.js"></script>
 
+
+
+<style>
+    input{
+        width: 10vh;
+    }
+    button{
+        width : 6vw;
+    }
+    .btn-danger{
+        border-radius: 2%;
+    }
+</style>
+<%
+    /* data collection */
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+    User userLogin = (User) request.getSession().getAttribute("userLogin");
+    String status = (String) request.getSession().getAttribute("status");
+    request.getSession().removeAttribute("status");
+
+    String userRole = userLogin.getRole();
+    boolean isAdmin = false;
+    if(userRole.equals("Administrator")){
+        isAdmin = true;
+    }
+    //worker complement passed data
+    String workerFin = request.getParameter("workerFin");
+    String jobKeyStr = request.getParameter("jobkey");         //passed from viewWorker.jsp
+    String probKeyStr = request.getParameter("probkey");
+    String profile = request.getParameter("profile");
+    String action = request.getParameter("action");
+    //end of data collection
+
+    //get worker data
+    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);
+
+    java.util.Date regDate = worker.getRegistrationDate();
+    String createdBy = worker.getCreatedBy();
+    String createdFor = worker.getCreatedFor();
+    String workerName = worker.getName();
+    String gender = worker.getGender();
+    String nationality = worker.getNationality();
+    String nationalityMore = worker.getNationalityMore();
+    java.util.Date dob = worker.getDateOfBirth();
+
+    //get job data
+    int jobKey = Integer.parseInt(jobKeyStr);
+    Job job = JobDAO.retrieveJobByJobId(jobKey);
+
+    String empName = job.getEmployerName();
+    String wpType = job.getWorkPassType();
+    String wpMore = job.getWorkPassMore();
+    String jSector = job.getJobSector();
+    String jSectorMore = job.getJobSectorMore();
+    String occupation = job.getOccupation();
+    String startWhen = job.getJobStartDate();
+    String endWhen = job.getJobEndDate();
+    String isTjs = job.getJobTJS();
+    String jRemark = job.getJobRemark();
+
+    //get problem data
+    int probKey = Integer.parseInt(probKeyStr);
+    Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
+
+    java.util.Date pRegDate = problem.getProblemRegisteredDate();
+    String problemType = problem.getProblem();
+    String pTypeMore = problem.getProblemMore();
+    String pRemark = problem.getProblemRemark();
+
+    //get Dropdown data
+    ArrayList<String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
+    ArrayList<String> problemList = DropdownDAO.retrieveAllDropdownListOfProblems();
+    ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListByType("Work_pass_type");
+    ArrayList<String> jobSectorList = DropdownDAO.retrieveAllDropdownListOfJobSector();
+    ArrayList<String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
+    //javascript method to blur the input fields if the action is view
+    //if the action is view, 
+    /**
+     * if the action is view disable the fields if the user chosoe to edit,
+     * enable the fields this is similar logic for all 3 categories
+     *
+     */
+    /**
+     * if the user click add, it will destroy the view/edit pop up and run a new
+     * pop up again which is add pop up if the user click on worker, just
+     * display the whole form if the user click on job, disable the fields of
+     * worker and get the data previously had if the user click on problem,
+     * diable the fields of worker and job and get the prev data.
+     *
+     */
+
+%>
 <script>
     function edit(stub_name, title) {
         var fieldset_div = document.getElementsByTagName('fieldset');
@@ -18,38 +110,32 @@
         $(".save_btn").show();
         $('.delete_btn').hide();
         //$(".add_btn").toggle();
-    }
-    ;
+        if(<%= isAdmin%> == true){
+            $('#workerFin').removeClass('no_change');
+        }
+    };
 
-    $(function() {
+
+    //for not type-able inputs
+    $(document).ready(function() {
+        $('.dateInput').focus(function() {
+
+            $('.dateInput').blur();
+
+        });
+        
+        $('.no_change').focus(function() {
+            $('.no_change').blur();
+
+        });
         $(".dateInput").datepicker({
             dateFormat: 'dd-M-yy',
             changeMonth: true,
             changeYear: true,
             maxDate: 0
         });
-
-    });
-
-    //for date inputs
-    $(document).ready(function() {
-
-        $('.dateInput').focus(function() {
-
-            $('.dateInput').blur();
-
-        });
-
-    });
-
-    //for not type-able inputs
-    $(document).ready(function() {
-
-        $('.no_change').focus(function() {
-            $('.no_change').blur();
-
-        });
-
+        
+        
     });
 
     $('.cancel_btn').click(function() {
@@ -351,96 +437,6 @@
         }
     }
 
-</script>
-
-<style>
-    input{
-        width: 10vh;
-    }
-    button{
-        width : 6vw;
-    }
-    .btn-danger{
-        border-radius: 2%;
-    }
-</style>
-<%
-    /* data collection */
-    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-    User userLogin = (User) request.getSession().getAttribute("userLogin");
-    String status = (String) request.getSession().getAttribute("status");
-    request.getSession().removeAttribute("status");
-
-    String userRole = userLogin.getRole();
-
-    //worker complement passed data
-    String workerFin = request.getParameter("workerFin");
-    String jobKeyStr = request.getParameter("jobkey");         //passed from viewWorker.jsp
-    String probKeyStr = request.getParameter("probkey");
-    String profile = request.getParameter("profile");
-    String action = request.getParameter("action");
-    //end of data collection
-
-    //get worker data
-    Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);
-
-    java.util.Date regDate = worker.getRegistrationDate();
-    String createdBy = worker.getCreatedBy();
-    String createdFor = worker.getCreatedFor();
-    String workerName = worker.getName();
-    String gender = worker.getGender();
-    String nationality = worker.getNationality();
-    String nationalityMore = worker.getNationalityMore();
-    java.util.Date dob = worker.getDateOfBirth();
-
-    //get job data
-    int jobKey = Integer.parseInt(jobKeyStr);
-    Job job = JobDAO.retrieveJobByJobId(jobKey);
-
-    String empName = job.getEmployerName();
-    String wpType = job.getWorkPassType();
-    String wpMore = job.getWorkPassMore();
-    String jSector = job.getJobSector();
-    String jSectorMore = job.getJobSectorMore();
-    String occupation = job.getOccupation();
-    String startWhen = job.getJobStartDate();
-    String endWhen = job.getJobEndDate();
-    String isTjs = job.getJobTJS();
-    String jRemark = job.getJobRemark();
-
-    //get problem data
-    int probKey = Integer.parseInt(probKeyStr);
-    Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
-
-    java.util.Date pRegDate = problem.getProblemRegisteredDate();
-    String problemType = problem.getProblem();
-    String pTypeMore = problem.getProblemMore();
-    String pRemark = problem.getProblemRemark();
-
-    //get Dropdown data
-    ArrayList<String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
-    ArrayList<String> problemList = DropdownDAO.retrieveAllDropdownListOfProblems();
-    ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListByType("Work_pass_type");
-    ArrayList<String> jobSectorList = DropdownDAO.retrieveAllDropdownListOfJobSector();
-    ArrayList<String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
-    //javascript method to blur the input fields if the action is view
-    //if the action is view, 
-    /**
-     * if the action is view disable the fields if the user chosoe to edit,
-     * enable the fields this is similar logic for all 3 categories
-     *
-     */
-    /**
-     * if the user click add, it will destroy the view/edit pop up and run a new
-     * pop up again which is add pop up if the user click on worker, just
-     * display the whole form if the user click on job, disable the fields of
-     * worker and get the data previously had if the user click on problem,
-     * diable the fields of worker and job and get the prev data.
-     *
-     */
-
-%>
-<script>
     $(document).ready(function() {
         var action_val = "<%=action%>";
         if (action_val === 'add') {
@@ -506,7 +502,7 @@
                 <label for='isdate' class="control-label ">FIN Number: </label>
             </div>
             <div class='col-md-7'>
-                <input class="form-control no_change" type='text' name="workerFin" value="<%=workerFin%>">
+                <input class="form-control no_change" id="workerFin" type='text' name="workerFin" value="<%=workerFin%>">
             </div>
             <br/>
         </div><br/>

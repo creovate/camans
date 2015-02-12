@@ -2654,11 +2654,11 @@ public class ProblemComplementsDAO {
         try {
             conn = ConnectionManager.getConnection();
             
-            sql = "DELETE FROM tbl_MC_status";
+            sql = "DELETE FROM tbl_mc_status";
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
-            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_MC_status Table. ");
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_mc_status Table. ");
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }     
@@ -2925,7 +2925,7 @@ public class ProblemComplementsDAO {
         String sql = "";
         try {
             conn = ConnectionManager.getConnection();
-            sql = "INSERT INTO tbl_Lawyer (Lawyer_update,"
+            sql = "INSERT INTO tbl_lawyer (Lawyer_update,"
                     + " Lawyer_firm, Lawyer_firm_more, Lawyer_Name, Lawyer_remarks,"
                     + "Worker_FIN_number, Job_key, Prob_key) "
                     + "VALUES (?,?,?,?,?,?,?,?)";
