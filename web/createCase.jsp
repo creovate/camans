@@ -81,7 +81,7 @@
                 //methods for jquery validator
                 jQuery.validator.addMethod("FIN", function(value, element) {
                     return this.optional(element) || /^[G][0-9]{7}[A-Z]/.test(value) || /^GEN[0-9]{6}/.test(value);
-                }, "Invalid FIN number. Please check again.");
+                }, "Invalid FIN number format. Please check again.");
                 jQuery.validator.addMethod("FileSize", function(value, element) {
                     return this.optional(element) || (element.files[0].size <= 1048576);
                 }, "Invalid File size. Please Check again.");

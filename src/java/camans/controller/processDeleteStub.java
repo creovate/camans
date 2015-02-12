@@ -72,7 +72,7 @@ public class processDeleteStub extends HttpServlet {
                 }
             }
             
-            response.sendRedirect("viewWorker.jsp?worker" + workerFin);
+            response.sendRedirect(url);
         } finally {            
             out.close();
         }
