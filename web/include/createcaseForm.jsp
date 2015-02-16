@@ -31,7 +31,7 @@
 
     String userRole = userLogin.getRole();
     boolean isAdmin = false;
-    if(userRole.equals("Administrator")){
+    if (userRole.equals("Administrator")) {
         isAdmin = true;
     }
     //worker complement passed data
@@ -110,10 +110,11 @@
         $(".save_btn").show();
         $('.delete_btn').hide();
         //$(".add_btn").toggle();
-        if(<%= isAdmin%> == true){
+        if (<%= isAdmin%> == true) {
             $('#workerFin').removeClass('no_change');
         }
-    };
+    }
+    ;
 
 
     //for not type-able inputs
@@ -123,7 +124,7 @@
             $('.dateInput').blur();
 
         });
-        
+
         $('.no_change').focus(function() {
             $('.no_change').blur();
 
@@ -134,20 +135,50 @@
             changeYear: true,
             maxDate: 0
         });
-        
-        
-    });
 
-    $('.cancel_btn').click(function() {
-        $('#pop_up_content').dialog("destroy");
-        $('#pop_up_content').empty();
-    });
-
-    /**
-     * Add Job & Problem particulars validation
-     **/
-    $('#addCase').validate({
+        $('.control-label').addClass("pull-left");
+        $('#addCase').validate({
         ignore: ":hidden",
+        rules: {
+            jobPassType: {
+                required: true
+            },
+            passMore: {
+                maxlength: 50
+            },
+            workpassMore: {
+                maxlength: 200
+            },
+            employerName: {
+                maxlength: 50,
+                required:true
+            },
+            jobSectorMore: {
+                maxlength: 50
+            },
+            occupation: {
+                maxlength: 50
+            },
+            jobStartDate: {
+                maxlength: 50
+            },
+            jobEndDate: {
+                maxlength: 50
+            },
+            jobRemark: {
+                maxlength: 200
+            },
+            //problem profile
+            problem: {
+                required: true
+            },
+            problemMore: {
+                maxlength: 50
+            },
+            problemRemark: {
+                maxlength: 200
+            }
+        },
         highlight: function(element) {
             $(element).closest('.form-group').addClass('has-error');
         },
@@ -165,11 +196,21 @@
         }
     });
 
+    });
+
+    $('.cancel_btn').click(function() {
+        $('#pop_up_content').dialog("destroy");
+        $('#pop_up_content').empty();
+    });
+
+    /**
+     * Add Job & Problem particulars validation
+     **/
     $("#job_next_btn").click(function() {
         $('#addCase').valid();
     });
 
-    /**
+ /**
      $(document).ready(function() {
      $('#addCase')
      .bootstrapValidator({
@@ -708,7 +749,7 @@
                 <label for='isdate' class="control-label">Remark about this Job: </label>
             </div>
             <div class='col-md-7'>
-                <textarea class="form-control" name="jobRemark" rows="3" maxlength="200" ><%=jRemark%></textarea>
+                <textarea class="form-control" name="jobRemark" rows="3" ><%=jRemark%></textarea>
             </div>
             <br/>
         </div><br/>
@@ -726,7 +767,7 @@
         <button type='button' onclick="deleteStub('job');" class="btn btn-danger modal_btn delete_btn">Delete</button>
         <%        }
         %>
-        <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+        <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         <button style="display:none" type='button' class="btn btn-blue modal_btn add_btn" onclick="add('job');">Add</button>
     </div>
 </form>
@@ -823,14 +864,14 @@
     <!--Job Profile-->
     <div class="sub_div" id="new_job_profile">
         <br/>
-        <div class="form-group" class="col-md-12">
+        <div class="form-group">
             <label for="emp_name" class="col-md-5 control-label" >Name of Employer <span class="required_input">*</span> </label>
             <div class=" col-md-7">
-                <input type="text" class="form-control required" maxlength="50" name="employerName" required/></div><br/><br/>
+                <input type="text" class="form-control required" name="employerName"/></div><br/><br/>
         </div>
 
 
-        <div class="form-group" class="col-md-12">
+        <div class="form-group">
             <label for="job_pass_type" class="col-md-5 control-label">Work pass type that comes with the job<span class="required_input">*</span></label>
             <div class=" col-md-7">
                 <select name="workpassType" class="form-control" id="job_pass_type" required>
@@ -848,14 +889,14 @@
 
 
         <!--this to appear only if above is selected as other-->
-        <div class="form-group col-md-12" id="job_pass_type_other_div" >
+        <div class="form-group" id="job_pass_type_other_div" >
             <label for="job_pass_type_other_In" class="col-md-5 control-label">Explain if above is 'Other'</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" maxlength="50" name="workpassMore"/></div><br/><br/>
+                <input type="text" class="form-control" name="workpassMore"/></div><br/><br/>
         </div>
 
 
-        <div class="form-group col-md-12">
+        <div class="form-group">
             <label for="job_sector" class="col-md-5 control-label">Job Sector</label>
             <div class=" col-md-7">
                 <select class="form-control" name="jobSector" id="job_sector" >
@@ -873,34 +914,34 @@
 
 
         <!--this to appear only if above is selected as other-->
-        <div class="form-group col-md-12" id="job_sector_other_div" >
+        <div class="form-group" id="job_sector_other_div" >
             <label for="job_sector_other_In" class="col-md-5 control-label">Explain if above is 'other'</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" maxlength="50" name="jobSectorMore" /></div><br/><br/>
+                <input type="text" class="form-control" name="jobSectorMore" /></div><br/><br/>
         </div>
 
 
-        <div class="form-group col-md-12">
+        <div class="form-group">
             <label for="occupation" class="col-md-5 control-label" >Occupation</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="occupation" maxlength="50"/></div><br/><br/>
+                <input type="text" class="form-control" name="occupation"/></div><br/><br/>
         </div>
 
 
-        <div class="form-group col-md-12">
+        <div class="form-group">
             <label for="job_start_date" class="col-md-5 control-label" >Start Date</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="jobStartDate" maxlength="50"/></div>
+                <input type="text" class="form-control" name="jobStartDate"/></div><br/><br/>
         </div>
 
-        <div class="form-group col-md-12">
+        <div class="form-group">
             <label for="job_end_date" class="col-md-5 control-label">End Date</label>
             <div class=" col-md-7">
-                <input type="text"  class="form-control" name="jobEndDate" maxlength="50"/></div><br/><br/>
+                <input type="text"  class="form-control" name="jobEndDate"/></div><br/><br/>
         </div>
 
 
-        <div class="form-group col-md-12">
+        <div class="form-group">
             <label for="is_tjs" class="col-md-5 control-label">Is this a TJS job?</label>
             <div class=" col-md-7">
                 <select name="tjs" class="form-control">
@@ -911,31 +952,34 @@
         </div>
 
 
-        <div class="form-group col-md-12" id="job_sector_other_div">
+        <div class="form-group" id="job_sector_other_div">
             <label for="job_remark" class="col-md-5 control-label">Remark</label>
             <div class=" col-md-7">
-                <textarea class='form-control' name='jobRemark' rows='3' maxlength="50"><%=jRemark%></textarea> 
+                <textarea class='form-control' name='jobRemark' rows='3'><%=jRemark%></textarea> 
             </div><br/><br/>
         </div>
 
         <p class="alert-danger"></p>
-
-        <button type='' class="btn cancel_btn pull-left" style="bottom: 0">Cancel</button>
+        <br/><br/>
+        <div>
+        <button type='button' class="btn cancel_btn pull-left" style="top: 2%; bottom: 2%;">Cancel</button>
         <div class="pull-right">
-            <button type='button' onclick="swapDiv('new_prob_profile', 'new_job_profile', 1);" class="btn btn-blue btn btn-blue-default " id="job_next_btn" style="bottom: 0">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
-        </div><br/><br/>
+            <button type='button' onclick="swapDiv('new_prob_profile', 'new_job_profile', 1);" class="btn btn-blue btn btn-blue-default " id="job_next_btn" style="top: 2%; bottom: 2%;">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+        </div>
+        </div>
+        <br/><br/>
 
     </div>
 
     <!--problem profile-->
     <div class="sub_div" id="new_prob_profile" style="display : none">
         <br/>
-        <div class="form-group col-md-12">
+        <div class="form-group">
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Problem Registration Date<span class="required_input">*</span>:</label>
             <div class=" col-md-7">
                 <input class="form-control dateInput" type='text' name="registeredDate" value="<%=sdf.format(pRegDate)%>" autofocus/></div><br/><br/>
         </div>
-        <div class="form-group col-md-12">
+        <div class="form-group">
             <label for="prob_type" class="col-md-5 control-label">Problem Type<span class="required_input">*</span></label>
             <div class=" col-md-7"> 
                 <select name="problem" id="prob_type" class="form-control" required>
@@ -953,14 +997,14 @@
 
 
         <!--this to appear only if above is selected as other-->
-        <div class="form-group col-md-12" id="prob_type_other_div" >
+        <div class="form-group" id="prob_type_other_div" >
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Explain if above is other</label>
             <div class=" col-md-7">
                 <input type="text" class="form-control" name="problemMore" /></div><br/><br/>
         </div>
 
 
-        <div class="form-group col-md-12" id="job_sector_other_div" >
+        <div class="form-group" id="job_sector_other_div" >
             <label for="prob_remark" class="col-md-5 control-label">Remark</label>
             <div class=" col-md-7">
                 <textarea class='form-control' name='problemRemark' rows="3"></textarea>
@@ -970,10 +1014,13 @@
         </div>
 
         <input type="hidden" id="hiddenWorkerFin" name="workerFinNum" value="<%=workerFin%>"/>
+        <br/><br/>
+        <div>
         <button type='' class="btn cancel_btn" style="bottom: 0">Cancel</button>
         <div class="pull-right">
             <button  type='button' onclick="swapDiv('new_job_profile', 'new_prob_profile', -1);" class="btn btn-blue ">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
             <button  type='submit' class="btn btn-blue">Submit</button>
+        </div>
         </div>
     </div>
 </form> 
@@ -1027,7 +1074,9 @@
         </div>
 
         <input type="hidden" id="hiddenWorkerFin" name="workerFinNum" value="<%=workerFin%>"/>
-        <div class="form-group btn btn-blue-div col-md-12">
+        <br/><br/>
+        <div class="form-group">
+            <button type='button' class="btn cancel_btn" style="bottom: 0">Cancel</button>
             <div class="pull-right">
                 <button  type='submit' class="btn btn-blue">Submit</button>
             </div>
@@ -1073,9 +1122,9 @@
         });
 
     }
-    
-    $(document).ready(function(){
-        $('.confirm_cancel_btn').click(function(){
+
+    $(document).ready(function() {
+        $('.confirm_cancel_btn').click(function() {
             $('#delete-stub-dialog').dialog('destroy');
         });
     });

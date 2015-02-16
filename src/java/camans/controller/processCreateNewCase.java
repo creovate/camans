@@ -91,6 +91,7 @@ public class processCreateNewCase extends HttpServlet {
             //==========================================//
             //     Problem Info Data Collection
             //==========================================//
+             
             String problemName = request.getParameter("problem");
             String problemMore = request.getParameter("problemMore");
             String problemRemark = request.getParameter("problemRemark");

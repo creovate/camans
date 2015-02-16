@@ -3,6 +3,7 @@
     Created on : Nov 6, 2014, 5:12:37 PM
     Author     : Nyein Su
 --%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.HashMap"%>
@@ -108,7 +109,23 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remarks: must be less than 200 characters.'
+                            message: 'Remarks must be less than 200 characters.'
+                        }
+                    }
+                },
+                nNWicaremark:{
+                    valudators: {
+                        stringLength: {
+                            max: 1000,
+                            message: 'Remarks must be less than 1000 characters.'
+                        }
+                    }
+                },
+                NWicaremark:{
+                    valudators: {
+                        stringLength: {
+                            max: 1000,
+                            message: 'Remarks must be less than 1000 characters.'
                         }
                     }
                 },
@@ -139,7 +156,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must be less than 1000 characters.'
                         }
                     }
                 },
@@ -147,7 +164,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must be less than 1000 characters.'
                         }
                     }
                 },
@@ -1657,6 +1674,7 @@
     //end of data collection
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
     java.util.Date today = new java.util.Date();
+    DecimalFormat df = new DecimalFormat("#,###,###.00");
 %>
 
 <%
@@ -1966,7 +1984,7 @@
         <div class="view_comp">
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='name' class="control-label">When Illness Begin:</label>
+                    <label for='name' class="control-label">When Illness Began:</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=(startTime == null) ? "" : startTime%>">
                 </div>
@@ -2011,7 +2029,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nstartTime' class="control-label">When Illness Begin<span style="color: red">*</span>:</label>
+                <label for='nstartTime' class="control-label">When Illness Began<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="nstartTime">
             </div>
@@ -2063,7 +2081,7 @@
 
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='startTime' class="control-label">When Illness Begin<span style="color: red">*</span>:</label>
+                <label for='startTime' class="control-label">When Illness Began<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="startTime" value="<%=(startTime == null) ? "" : startTime%>">
             </div>
@@ -2159,7 +2177,7 @@
                 <div class='form-group'>
                     <label for='name' class="control-label">Estimated value of claim S$</label>
                     <br/>
-                    <input class="form-control" type='text' name="name" value="<%=(loss == 0.0) ? "" : loss%>">
+                    <input class="form-control" type='text' name="name" value="<%=(loss == 0.0) ? "" : df.format(loss)%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Remarks about History of Other Problems:</label>
@@ -2210,7 +2228,7 @@
             <div class='form-group'>
                 <label for='loss' class="control-label">Estimated value of claim S$</label>
                 <br/>
-                <input class="form-control" type='text' name="loss" value="<%=(loss == 0.0) ? "" : loss%>">
+                <input class="form-control" type='text' name="loss" value="<%=(loss == 0.0) ? "" : df.format(loss)%>">
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about History of Other Problems:</label>
@@ -2264,7 +2282,7 @@
                 <div class='form-group'>
                     <label for='name' class="control-label">Initial value of claim S$</label>
                     <br/>
-                    <input class="form-control" type='text' name="name" value="<%=(loss == 0.0) ? "" : loss%>">
+                    <input class="form-control" type='text' name="name" value="<%=(loss == 0.0) ? "" : df.format(loss)%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Describe basis for amount claimed</label>
@@ -2323,7 +2341,7 @@
             <div class='form-group'>
                 <label for='loss' class="control-label">Initial value of claim S$</label>
                 <br/>
-                <input class="form-control" type='text' name="loss" value="<%=(loss == 0.0) ? "" : loss%>">
+                <input class="form-control" type='text' name="loss" value="<%=(loss == 0.0) ? "" : df.format(loss)%>">
             </div>
             <div class='form-group'>
                 <label for='basis' class="control-label">Describe basis for amount claimed</label>
@@ -2535,7 +2553,7 @@
             <div class='form-group'>
                 <label for='name' class="control-label">Initial value of claim S$</label>
                 <br/>
-                <input class="form-control" type='text' name="name" value="<%=(loss == 0.0) ? "" : loss%>">
+                <input class="form-control" type='text' name="name" value="<%=(loss == 0.0) ? "" : df.format(loss)%>">
             </div>
             <div class='form-group'>
                 <label for='name' class="control-label">Insurance company</label>
@@ -2597,7 +2615,7 @@
         <div class='form-group'>
             <label for='remark' class="control-label">Remarks about Medical Claim:</label>
             <br/>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
+            <textarea class="form-control" name="nNWicaremark" rows="3"></textarea>
         </div>
 
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
@@ -2624,7 +2642,7 @@
         <div class='form-group'>
             <label for='loss' class="control-label">Initial value of claim S$</label>
             <br/>
-            <input class="form-control" type='text' name="loss" value="<%=(loss == 0.0) ? "" : loss%>">
+            <input class="form-control" type='text' name="loss" value="<%=(loss == 0.0) ? "" : df.format(loss)%>">
         </div>
         <div class='form-group'>
             <label for='insurer' class="control-label">Insurance company</label>
@@ -2644,7 +2662,7 @@
         <div class='form-group'>
             <label for='remark' class="control-label">Remarks about Medical Claim:</label>
             <br/>
-            <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
+            <textarea class="form-control" name="NWicaremark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="nonwicaclaim"/>
@@ -3836,12 +3854,12 @@
             <div class='form-group'>
                 <label for='r2rMed' class="control-label">Medical Cost of this Appt(S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="r2rMed" value="<%=med%>">
+                <input class="form-control" type='text' name="r2rMed" value="<%=(med == 0.0)? "-" : df.format(med)%>">
             </div>
             <div class='form-group'>
                 <label for='r2rOut' class="control-label">How much paid by volunteer(S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="r2rOut" value="<%=outlay%>">
+                <input class="form-control" type='text' name="r2rOut" value="<%=(outlay == 0.0)? "-" : df.format(outlay)%>">
             </div>
         </fieldset>
 
@@ -3909,12 +3927,12 @@
         <div class='form-group'>
             <label for='r2rMed' class="control-label">Medical Cost of this Appt(S$):</label>
             <br/>
-            <input class="form-control" type='text' name="r2rMed" value="<%=med%>">
+            <input class="form-control" type='text' name="r2rMed" value="<%=(med == 0.0) ? "-" : df.format(med)%>">
         </div>
         <div class='form-group'>
             <label for='r2rOut' class="control-label">How much paid by volunteer(S$):</label>
             <br/>
-            <input class="form-control" type='text' name="r2rOut" value="<%=outlay%>">
+            <input class="form-control" type='text' name="r2rOut" value="<%=(outlay == 0.0) ? "-" : df.format(outlay)%>">
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="r2r"/>
@@ -4048,12 +4066,12 @@
             <div class='form-group'>
                 <label for='wicaDollars' class="control-label"> Wica S$ compensation:</label>
                 <br/>
-                <input class="form-control" type='text' name="wicaDollars" value="<%=wDollars%>">
+                <input class="form-control" type='text' name="wicaDollars" value="<%=(wDollars == 0.0)? "-": df.format(wDollars) %>">
             </div>
             <div class='form-group'>
                 <label for='wicaRemarks' class="control-label">Remarks about WICA Status :</label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3"><%=wRemarks%></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=(wRemarks == null) ? "-" : wRemarks %></textarea>
             </div>
 
         </fieldset>
@@ -4109,12 +4127,12 @@
         <div class='form-group'>
             <label for='wicaDollars' class="control-label">Wica S$ Compensation:</label>
             <br/>
-            <input class="form-control" type='text' name="wicaDollars" value="<%=wDollars%>">
+            <input class="form-control" type='text' name="wicaDollars" value="<%=(wDollars == 0.0)? "-": df.format(wDollars)%>">
         </div>
         <div class='form-group'>
             <label for='wicaRemarks' class="control-label">Remarks about WICA Status:</label>
             <br/>
-            <textarea class="form-control" name="remark" rows="3"><%=wRemarks%></textarea>
+            <textarea class="form-control" name="remark" rows="3"><%= (wRemarks == null)? "-" : wRemarks%></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="wica"/>
@@ -4914,22 +4932,15 @@
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=type%>">
                 </div>
-                <%
-                    if (type.equalsIgnoreCase("other")) {
-                %>
                 <div class='form-group'>
                     <label for='name' class="control-label">Explain if above is other:</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=typeMore%>">
                 </div>
-
-                <%
-                    }
-                %>
                 <div class='form-group'>
                     <label for='name' class="control-label">Monetary loss/value of this Aggravating Issue S$</label>
                     <br/>
-                    <input class="form-control" type='text' name="name" value="<%=(loss == 0) ? "0.00" : loss%>">
+                    <input class="form-control" type='text' name="name" value="<%=(loss == 0) ? "0.00" : df.format(loss)%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Remarks about Aggravating Issue:</label>
@@ -5021,7 +5032,7 @@
             <div class='form-group'>
                 <label for='aggravLoss' class="control-label">Monetary loss/value of this Aggravating Issue S$</label>
                 <br/>
-                <input class="form-control" type='text' name="aggravLoss" value="<%=loss%>">
+                <input class="form-control" type='text' name="aggravLoss" value="<%=(loss == 0.0) ? "-" : df.format(loss)%>">
             </div>
             <div class='form-group'>
                 <label for='aggravRemark' class="control-label">Remarks about Aggravating Issue:</label>
@@ -5380,12 +5391,12 @@
             <div class='form-group'>
                 <label for='remark' class="control-label">Estimated Total Value of Claim (S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="remark" value="<%=totalValue%>">
+                <input class="form-control" type='text' name="remark" value="<%=(totalValue == 0.0) ? "-" : df.format(totalValue)%>">
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Estimated 12 Months' Value of Claim (S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="remark" value="<%=oneYearValue%>">
+                <input class="form-control" type='text' name="remark" value="<%=(oneYearValue == 0.0) ? "-":  df.format(oneYearValue)%>">
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about Salary & Related History:</label>
@@ -5539,12 +5550,12 @@
         <div class='form-group'>
             <label for='totalValue' class="control-label">Estimated Total Value of Claim (S$):</label>
             <br/>
-            <input class="form-control" type='text' name="totalLoss" value="<%=totalValue%>">
+            <input class="form-control" type='text' name="totalLoss" value="<%=(totalValue == 0.0)? "-" : df.format(totalValue)%>">
         </div>
         <div class='form-group'>
             <label for='oneYearValue' class="control-label">Estimated 12 Months' Value of Claim(S$):</label>
             <br/>
-            <input class="form-control" type='text' name="oneYearLoss" value="<%=oneYearValue%>">
+            <input class="form-control" type='text' name="oneYearLoss" value="<%=(oneYearValue == 0.0)? "-" : df.format(oneYearValue)%>">
         </div>
         <div class='form-group'>
             <label for='remark' class="control-label">Remarks about Salary & Related History:</label>

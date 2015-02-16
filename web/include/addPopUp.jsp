@@ -4,6 +4,7 @@
     Author     : Nyein Su
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="camans.dao.DropdownDAO"%>
@@ -1029,7 +1030,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must be less than 1000 characters.'
                         }
                     }
                 }
@@ -1100,6 +1101,14 @@
                         stringLength: {
                             max: 200,
                             message: 'Remarks must be less than 200 characters.'
+                        }
+                    }
+                },
+                nNWicaremark:{
+                    valudators: {
+                        stringLength: {
+                            max: 1000,
+                            message: 'Remarks must be less than 1000 characters.'
                         }
                     }
                 },
@@ -1837,7 +1846,7 @@
     String jobKey = request.getParameter("jobkey");         //passed from viewWorker.jsp
     String probKey = request.getParameter("probkey");    //passed from viewWorker.jsp
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-    
+    DecimalFormat df = new DecimalFormat("#,###,###.00");
     java.util.Date today = new java.util.Date();
 %>
 
@@ -3787,7 +3796,7 @@
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about Medical Claim:</label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3"></textarea>
+                <textarea class="form-control" name="nNWicaremark" rows="3"></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -3930,7 +3939,7 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nstartTime' class="control-label">When Illness Begin<span style="color: red">*</span>:</label>
+                <label for='nstartTime' class="control-label">When Illness Began<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="nstartTime">
             </div>

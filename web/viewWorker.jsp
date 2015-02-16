@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="camans.entity.*"%>
 <%@page import="java.util.ArrayList"%>
@@ -82,7 +83,8 @@
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
     
     String userRole =  userLogin.getRole();
-
+    
+    DecimalFormat df = new DecimalFormat("#,###,###.00");
 %>
 
 
@@ -245,7 +247,7 @@
 
                     <!--worker stub-->
                     <div class="col-md-12 worker_profile_header text-center">Worker Stub
-                        <a id="worker_profile_details" style="color: white" data-target="#worker_stub"  data-value='worker' href="#" data-title="View Worker Stub" data-toggle="modal" data-action="view" class="profile_details"><span class="glyphicon glyphicon-eye-open pull-right" pull-right></span></a>
+                        <a id="worker_profile_details" style="color: white" data-target="#worker_stub"  data-value='worker' href="#" data-title="View Worker Profile" data-toggle="modal" data-action="view" class="profile_details"><span class="glyphicon glyphicon-eye-open pull-right" pull-right></span></a>
                     </div>
                     <%
                         String wkername = worker.getName();
@@ -276,7 +278,7 @@
                     </table>
 
                     <!--job stub-->
-                    <div class="col-md-12 worker_profile_header text-center">Job Stub<a id="job_profile_details" style="color: white"  data-value='job' href="#" data-title="View Job Stub" data-toggle="modal" data-action="view" class="profile_details"><span class="glyphicon glyphicon-eye-open pull-right" pull-right></span></a>
+                    <div class="col-md-12 worker_profile_header text-center">Job Stub<a id="job_profile_details" style="color: white"  data-value='job' href="#" data-title="View Job Profile" data-toggle="modal" data-action="view" class="profile_details"><span class="glyphicon glyphicon-eye-open pull-right" pull-right></span></a>
                     </div>
                     <table class="table table-condensed" class="stub-table">
                         <tr>
@@ -300,7 +302,7 @@
 
                     <!--Problem Stub-->
                     <!--job stub-->
-                    <div class="col-md-12 worker_profile_header text-center">Problem Stub<a id="problem_profile_details" style="color: white"  data-value='problem' href="#" data-title="View Problem Stub" data-toggle="modal" data-action="view" class="profile_details"><span class="glyphicon glyphicon-eye-open pull-right" pull-right></span></a>
+                    <div class="col-md-12 worker_profile_header text-center">Problem Stub<a id="problem_profile_details" style="color: white"  data-value='problem' href="#" data-title="View Problem Profile" data-toggle="modal" data-action="view" class="profile_details"><span class="glyphicon glyphicon-eye-open pull-right" pull-right></span></a>
                     </div>
                     <%
                         ArrayList<Integer> injuryList = ProblemComplementsDAO.retrieveProblemInjuryIdsOfProblem(latestProblem);
@@ -332,7 +334,7 @@
                         </tr>
                         <tr>
                             <td class="col-md-6">Injured Date</td>
-                            <td class="col-md-6"><%=(injuryDate == null) ? "-" : injuryDate%></td>
+                            <td class="col-md-6"><%=(injuryDate == null) ? "-" : sdf.format(injuryDate)%></td>
                         </tr>
                         <tr>
                             <td class="col-md-6">Lead Caseworker</td>
@@ -1686,7 +1688,7 @@
                                                         <td><%=ipaPass%></td>
                                                         <td><%=(ipaAppDate == null) ? "-" : sdf.format(ipaAppDate)%></td>
                                                         <td><%=empName%></td>
-                                                        <td><%=salary%></td>
+                                                        <td><%=(salary == 0.0) ? "-" : df.format(salary) %></td>
                                                         <td>
                                                             <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' data-title="View IPA Pass Details"
                                                                data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
@@ -1710,7 +1712,7 @@
                                                         <td><%=ipaPass%></td>
                                                         <td><%=(ipaAppDate == null) ? "-" : sdf.format(ipaAppDate)%></td>
                                                         <td><%=empName%></td>
-                                                        <td><%=salary%></td>
+                                                        <td><%=(salary == 0.0)? "-" : df.format(salary)%></td>
                                                         <td>
                                                             <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' data-title="View IPA Pass Details"
                                                                data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
@@ -1749,7 +1751,7 @@
 
                                             <div class="panel-heading">
 
-                                                <h4 class="panel-title">Verbal Assurance of Previous Job
+                                                <h4 class="panel-title">Verbal Assurance Pre-Job
                                                     <a style="color: black" data-value='assurance' data-assurance='' href=""  data-class="job" data-title="Add A New Verbal Assurance" data-toggle="modal" data-target="#assurance_pop_up" data-action="add" class="view_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
@@ -1985,7 +1987,7 @@
                                                     <tr class="other_agent moreObjs">
                                                         <td><%=agentName%></td>
                                                         <td><%=agentPName%></td>
-                                                        <td><%=agentPaidAmt%></td>
+                                                        <td><%=(agentPaidAmt == 0.0)? "-": df.format(agentPaidAmt) %></td>
                                                         <td><%=agentFWhere%></td>
 
                                                         <td>
@@ -2008,7 +2010,7 @@
                                                     <tr>
                                                         <td><%=agentName%></td>
                                                         <td><%=agentPName%></td>
-                                                        <td><%=agentPaidAmt%></td>
+                                                        <td><%=(agentPaidAmt == 0.0)? "-" : df.format(agentPaidAmt)%></td>
                                                         <td><%=agentFWhere%></td>
 
                                                         <td>
@@ -2550,7 +2552,7 @@
                                                                         <tr class="other_aggravissue moreObjs">
                                                                             <td><%=issue%></td>
                                                                             <td><%=(issueMore == null) ? "" : issueMore%></td>
-                                                                            <td><%=(loss == 0) ? "0.00" : loss%></td>
+                                                                            <td><%=(loss == 0) ? "-" : df.format(loss)%></td>
                                                                             <td><%=remark%></td>
                                                                             <td>
                                                                                 <a style="color: black" data-value='aggravissue' data-class="problem" data-title="View Aggravating Issue Details" 
@@ -2574,7 +2576,7 @@
                                                                         <tr>
                                                                             <td><%=issue%></td>
                                                                             <td><%=(issueMore == null) ? "" : issueMore%></td>
-                                                                            <td><%=(loss == 0) ? "0.00" : loss%></td>
+                                                                            <td><%=(loss == 0) ? "-" : df.format(loss)%></td>
                                                                             <td><%=remark%></td>
                                                                             <td class="tbl-action-col"><a style="color: black" data-value='aggravissue' data-class="problem" data-title="View Aggravating Issue Details" 
                                                                                    data-aggravissue='<%=aggravIs.getId()%>' href="" data-toggle="modal" data-action="viewedit" 
@@ -3016,7 +3018,7 @@
                                                             <div class="panel panel-default">
 
                                                                 <div class="panel-heading">
-                                                                    <h4 class="panel-title">Salary Related History
+                                                                    <h4 class="panel-title">Salary & Related History
                                                                         <a href="" id="salaryHistoryAddBtn" data-toggle="modal"  data-action = "add" data-class="problem" data-title="Add New Salary & Related History"  data-target="#salaryhistory_pop_up" data-value='salaryhistory' data-salaryhistory='' class="add_btn pop_up_open pull-right">
                                                                             <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                         </a>
@@ -3052,8 +3054,8 @@
                                                                         <tr class="other_salaryhistory moreObjs">
                                                                             <td><%=history%></td>
                                                                             <td><%=mode%></td>
-                                                                            <td><%=tClaim%></td>
-                                                                            <td><%=claim%></td>
+                                                                            <td><%=(tClaim == 0.0)? "-" : df.format(tClaim)%></td>
+                                                                            <td><%=(claim == 0.0)? "-" : df.format(claim)%></td>
                                                                             <td>
                                                                                 <a style="color: black" data-target="#salaryhistory_pop_up"  data-class="problem"  
                                                                                    data-value='salaryhistory' data-title="View Salary & Related History" 
@@ -3078,8 +3080,8 @@
                                                                         <tr>
                                                                             <td><%=history%></td>
                                                                             <td><%=mode%></td>
-                                                                            <td><%=tClaim%></td>
-                                                                            <td><%=claim%></td>
+                                                                            <td><%=(tClaim == 0.0) ? "-" : df.format(tClaim) %></td>
+                                                                            <td><%=(claim == 0.0) ? "-" : df.format(claim) %></td>
                                                                             <td>
                                                                                 <a style="color: black" data-target="#salaryhistory_pop_up"  data-class="problem"  
                                                                                    data-title="View Salary & Related History" data-value='salaryhistory' 
@@ -3152,7 +3154,7 @@
                                                                         %>
                                                                         <tr class="other_salaryClaim moreObjs">
                                                                             <td><%=(date==null)?"-":sdf.format(date)%></td>
-                                                                            <td><%=loss%></td>
+                                                                            <td><%=(loss == 0.0)? "-" : df.format(loss)%></td>
                                                                             <td class="tbl-action-col"><a style="color: black" data-target="#salarycalim_pop_up" data-class="problem" 
                                                                                    data-title="View Salary Claim Lodged Details"  data-value='salarycalim' 
                                                                                    data-salarycalim='<%=salaryClaimId%>' href="" data-toggle="modal" 
@@ -3175,7 +3177,7 @@
                                                                         %>
                                                                         <tr>
                                                                             <td><%=(date==null)?"-":sdf.format(date)%></td>
-                                                                            <td><%=loss%></td>
+                                                                            <td><%=(loss == 0.0)? "-" : df.format(loss) %></td>
 
                                                                             <td class="tbl-action-col"><a style="color: black" data-target="#salarycalim_pop_up" data-class="problem" 
                                                                                    data-title="View Salary Claim Lodged Details"  data-value='salarycalim' 
@@ -3528,7 +3530,7 @@
                                                             <div class="panel panel-default">
 
                                                                 <div class="panel-heading">
-                                                                    <h4 class="panel-title">Non-WICA Claim Lodged
+                                                                    <h4 class="panel-title">Non-WICA Medical Claim Lodged
                                                                         <a href="" id="nonwicaclaimAddBtn" data-toggle="modal" data-action = "add" data-title="Add Non-Wica Claim Lodged Details" data-class="problem"   data-target="#nonwicaclaim_pop_up" data-value='nonwicaclaim' data-nonwicaclaim='' class="add_btn pop_up_open pull-right">
                                                                             <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                         </a>
@@ -3565,7 +3567,7 @@
                                                                         %>
                                                                         <tr class="other_nonWica moreObjs">
                                                                             <td><%=(date==null)?"-":sdf.format(date)%></td>
-                                                                            <td><%=loss%></td>
+                                                                            <td><%=(loss == 0.0)? "-" : df.format(loss)%></td>
                                                                             <td><%=insurer%></td>
                                                                             <td><%=pNo%></td>
                                                                             <td class="tbl-action-col"><a style="color: black"  data-target="#nonwicaclaim_pop_up"  data-class="problem" 
@@ -3590,7 +3592,7 @@
                                                                         %>
                                                                         <tr>
                                                                             <td><%=(date==null)?"-":sdf.format(date)%></td>
-                                                                            <td><%=loss%></td>
+                                                                            <td><%=(loss == 0.0)? "-": df.format(loss) %></td>
                                                                             <td><%=insurer%></td>
                                                                             <td><%=pNo%></td>
                                                                             <td class="tbl-action-col"><a style="color: black"  data-target="#nonwicaclaim_pop_up"  data-class="problem" 
@@ -3632,7 +3634,7 @@
                                                             <div class="panel panel-default">
 
                                                                 <div class="panel-heading">
-                                                                    <h4 class="panel-title">WICA Monthly Status
+                                                                    <h4 class="panel-title">WICA Status
                                                                         <a href="" id="wicaAddBtn" data-toggle="modal" data-action = "add" data-title="Add A New Wica Status" data-class="problem"   data-target="#wica_pop_up" data-value='wica' data-wica='' class="add_btn pop_up_open pull-right">
                                                                             <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                         </a>
@@ -3670,8 +3672,8 @@
                                                                         <tr class="other_wicaStatus moreObjs">
                                                                             <td><%=status%></td>
                                                                             <td><%=(date==null)?"-":sdf.format(date)%></td>
-                                                                            <td><%=point%></td>
-                                                                            <td><%=comp%></td>
+                                                                            <td><%=(point == 0.0) ? "-" : df.format(point)%></td>
+                                                                            <td><%=(comp == 0.0) ? "-" : df.format(comp)%></td>
                                                                             <td class="tbl-action-col"><a style="color: black"  data-target="#wica_pop_up" data-value='wica' 
                                                                                    data-class="problem" data-title="View Wica Status Details"  data-wica='<%=wicaId%>' 
                                                                                    href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
@@ -3693,8 +3695,8 @@
                                                                         <tr>
                                                                             <td><%=status%></td>
                                                                             <td><%=(date==null)?"-":sdf.format(date)%></td>
-                                                                            <td><%=point%></td>
-                                                                            <td><%=comp%></td>
+                                                                            <td><%=(point == 0.0) ? "-" : df.format(point)%></td>
+                                                                            <td><%=(comp == 0.0) ? "-" : df.format(comp) %></td>
                                                                             <td class="tbl-action-col"><a style="color: black"  data-target="#wica_pop_up" data-value='wica' data-class="problem" 
                                                                                    data-title="View Wica Status Details"  data-wica='<%=wicaId%>' href="" data-toggle="modal" 
                                                                                    data-action="viewedit"  class="edit_btn pop_up_open">
@@ -4090,7 +4092,7 @@
                                                                         %>
                                                                         <tr class="other_othercase moreObjs">
                                                                             <td><%=description%></td>
-                                                                            <td><%=loss%></td>
+                                                                            <td><%=(loss == 0.0)? "-" : df.format(loss) %></td>
 
                                                                             <td class="tbl-action-col"><a style="color: black" data-target="#othercase_pop_up" data-value='othercase' 
                                                                                    data-class="problem" data-title="View Details & history of other problems"  
@@ -4113,7 +4115,7 @@
 
                                                                         <tr>
                                                                             <td><%=description%></td>
-                                                                            <td><%=loss%></td>
+                                                                            <td><%=(loss == 0.0)? "-": df.format(loss)%></td>
 
                                                                             <td class="tbl-action-col"><a style="color: black" data-target="#othercase_pop_up" data-value='othercase' 
                                                                                    data-class="problem" data-title="View Details & history of other problems"  

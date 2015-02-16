@@ -422,7 +422,7 @@ public class processEditProblemComplement extends HttpServlet {
                 String nonwicaClaimInsurer = request.getParameter("insurer");
                 String nonwicaClaimPolicyNbr = request.getParameter("policyNumber");
                 String nonwicaClaimBasic = request.getParameter("basis");
-                String remark = request.getParameter("remark");
+                String remark = request.getParameter("NWicaremark");
                 java.sql.Date nonwicaClaimDate = null;
                 if (!nonwicaClaimDateStr.equals("")) {
                     try {

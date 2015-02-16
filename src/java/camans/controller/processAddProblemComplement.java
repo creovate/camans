@@ -1237,7 +1237,7 @@ public class processAddProblemComplement extends HttpServlet {
                 String nonwicaClaimInsurer = request.getParameter("ninsurer");
                 String nonwicaClaimPolicyNbr = request.getParameter("npolicyNumber");
                 String nonwicaClaimBasic = request.getParameter("nbasis");
-                String remark = request.getParameter("nremark");
+                String remark = request.getParameter("nNWicaremark");
                 java.sql.Date nonwicaClaimDate = null;
                 Double nonwicaClaimLoss = 0.0;
                
