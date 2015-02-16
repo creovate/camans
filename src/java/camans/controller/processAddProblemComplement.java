@@ -367,7 +367,7 @@ public class processAddProblemComplement extends HttpServlet {
                      discussAssist = request.getParameter("ndiscussionAssist");
                      discussCalculate = request.getParameter("ndiscussionCal");
                      discussAction = request.getParameter("ndiscussionAction");
-                     discussRem =request.getParameter("nremark");
+                     discussRem =request.getParameter("ninternalRemarks");
                     
                 } else {
 
@@ -385,7 +385,7 @@ public class processAddProblemComplement extends HttpServlet {
                      discussAssist = request.getParameter("discussionAssist");
                      discussCalculate = request.getParameter("discussionCal");
                      discussAction = request.getParameter("discussionAction");
-                     discussRem =request.getParameter("remark");
+                     discussRem =request.getParameter("internalRemarks");
                 }
 
                 /** server validation **/
@@ -1958,7 +1958,7 @@ public class processAddProblemComplement extends HttpServlet {
             } else if (complementName.equals("policareport")) {
                 String policeReportDateStr = request.getParameter("ndate");
                 String policeReportStation = request.getParameter("npoliceReportStation");
-                String policeReportPerson = request.getParameter("nperson");
+                String policeReportPerson = request.getParameter("npoliceReportPerson");
                 String policeReportRefNumber = request.getParameter("npoliceReportRefNumber");
                 String policeReportRefDetails = request.getParameter("npoliceReportDetails");
                 String policeReportRemark = request.getParameter("nremark");
@@ -1967,7 +1967,7 @@ public class processAddProblemComplement extends HttpServlet {
                 if (idStr==null) {
                   policeReportDateStr = request.getParameter("ndate");
                   policeReportStation = request.getParameter("npoliceReportStation");
-                  policeReportPerson = request.getParameter("nperson");
+                  policeReportPerson = request.getParameter("npoliceReportPerson");
                   policeReportRefNumber = request.getParameter("npoliceReportRefNumber");
                   policeReportRefDetails = request.getParameter("npoliceReportDetails");
                   policeReportRemark = request.getParameter("nremark");
@@ -2040,7 +2040,7 @@ public class processAddProblemComplement extends HttpServlet {
                     auditChange = policeReport.toString2();
 
                     //success display
-                    success = "Police Report has been successfully updated!";
+                    success = "Police Report has been added successfully!";
 
                 } else {
                     int id = Integer.parseInt(request.getParameter("Id"));
@@ -2055,7 +2055,7 @@ public class processAddProblemComplement extends HttpServlet {
                         auditChange = policeReport.toString2();
 
                         //success display
-                        success = "Police Report has been successfully updated!";
+                        success = "Police Report has been added successfully!";
                 }
             }
 
@@ -2413,7 +2413,7 @@ public class processAddProblemComplement extends HttpServlet {
                   ttrDepatureDateStr = request.getParameter("nttrDepartureDate");
                   ttrNewEmployer = request.getParameter("nttrEmployerName");
                   ttrNewJob = request.getParameter("nttrJob");
-                  ttrRemark = request.getParameter("nremark");
+                  ttrRemark = request.getParameter("nttrremark");
                 } else {
                   ttrUpdateDateStr = request.getParameter("date");
                   ttrStatus = request.getParameter("ttrStatus");
@@ -2421,7 +2421,7 @@ public class processAddProblemComplement extends HttpServlet {
                   ttrDepatureDateStr = request.getParameter("ttrDepartureDate");
                   ttrNewEmployer = request.getParameter("ttrEmployerName");
                   ttrNewJob = request.getParameter("ttrJob");
-                  ttrRemark = request.getParameter("remark");
+                  ttrRemark = request.getParameter("ttrremark");
 
                 }
 

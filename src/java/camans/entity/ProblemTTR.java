@@ -36,6 +36,7 @@ public class ProblemTTR {
         this.problemKey = problemKey;
         this.TTRUpdate = TTRUpdate;
         this.TTRStatus = TTRStatus;
+        this.TTRStatusMore = TTRStatusMore;
         this.departureDate = departureDate;
         this.newEmployerName = newEmployerName;
         this.newJob = newJob;
@@ -52,6 +53,7 @@ public class ProblemTTR {
             this.problemKey = problemKey;
             this.TTRUpdate = TTRUpdate;
             this.TTRStatus = TTRStatus;
+            this.TTRStatusMore = TTRStatusMore;
             this.departureDate = departureDate;
             this.newEmployerName = newEmployerName;
             this.newJob = newJob;

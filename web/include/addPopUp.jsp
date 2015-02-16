@@ -486,7 +486,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Key person name must be less than 200 characters.'
+                            message: 'This field must be less than 200 characters.'
                         }
                     }
                 },
@@ -1230,6 +1230,14 @@
                         }
                     }
                 },
+                npoliceReportPerson: {
+                    validators: {
+                        stringLength: {
+                            max: 200,
+                            message: 'Accompanying person name must be less than 200 characters.'
+                        }
+                    }
+                },
                 npoliceReportRefNumber: {
                     validators: {
                         stringLength: {
@@ -1265,7 +1273,7 @@
                         }
                     }
                 },
-                ncompleintWhoMore: {
+                ncomplaintWhoMore: {
                     validators: {
                         stringLength: {
                             max: 50,
@@ -1273,7 +1281,7 @@
                         }
                     }
                 },
-                ncompaintModeMore: {
+                ncomplaintModeMore: {
                     validators: {
                         stringLength: {
                             max: 200,
@@ -1378,8 +1386,8 @@
                 ndiscussionCal: {
                     validators: {
                         stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
+                            max: 1000,
+                            message: 'This field must be less than 1000 characters.'
                         }
                     }
                 },
@@ -1412,6 +1420,14 @@
                         stringLength: {
                             max: 200,
                             message: 'This field must be less than 200 characters.'
+                        }
+                    }
+                },
+                ninternalRemarks: {
+                    validators: {
+                        stringLength: {
+                            max: 500,
+                            message: 'Remarks must be less than 500 characters.'
                         }
                     }
                 },
@@ -1455,6 +1471,14 @@
                         stringLength: {
                             max: 50,
                             message: 'This field must be less than 50 characters.'
+                        }
+                    }
+                },
+                nr2rTime: {
+                    validators: {
+                        stringLength: {
+                            max: 20,
+                            message: 'This field must be less than 20 characters.'
                         }
                     }
                 },
@@ -1550,7 +1574,7 @@
                             message: 'This field must be a number'
                         },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1675,6 +1699,14 @@
                         stringLength: {
                             max: 200,
                             message: 'This field must be less than 200 characters.'
+                        }
+                    }
+                },
+                nttrremark: {
+                    validators: {
+                        stringLength: {
+                            max: 500,
+                            message: 'Remarks must be less than 500 characters.'
                         }
                     }
                 },
@@ -2527,22 +2559,22 @@
             <div class='form-group'>
                 <label for='nremark' class="control-label">Employer Address: </label>
                 <br/>
-                <textarea class="form-control" name="naddress" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="naddress" rows="3"></textarea>
             </div>
             <div class='form-group'>
                 <label for='ncontact' class="control-label">Employer Phone, Email Contacts:</label>
                 <br/>
-                <textarea class="form-control" name="ncontact" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="ncontact" rows="3"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nperson' class="control-label">Key Persons in Employer:</label>
                 <br/>
-                <textarea class="form-control" name="nperson" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nperson" rows="3"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about Employer: </label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -2838,7 +2870,7 @@
             <div class='form-group' id="wrokplaceType_other_div" >
                 <label for='nwpTypeMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="nwpTypeMore" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nwpTypeMore" rows="3"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nwhose' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
@@ -2848,7 +2880,7 @@
             <div class='form-group'>
                 <label for='npersonDetails' class="control-label">Key Person Controlling Workplace & Contact Details: </label>
                 <br/>
-                <textarea class="form-control" name="npersonDetails" maxlength="200"></textarea>
+                <textarea class="form-control" name="npersonDetails"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nrelationship' class="control-label">Relationship of Workplace to Employer: </label>
@@ -2874,7 +2906,7 @@
             <div class='form-group' id="direct_other_div" >
                 <label for='ndirectMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="ndirectMore" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="ndirectMore" rows="3"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nstart' class="control-label">When Start at Workplace?: </label>
@@ -2889,12 +2921,12 @@
             <div class='form-group'>
                 <label for='ncondition' class="control-label">Work Conditions at the Workplace: </label>
                 <br/>
-                <textarea class="form-control" name="ncondition" rows="3" maxlength="500"></textarea>
+                <textarea class="form-control" name="ncondition" rows="3""></textarea>
             </div>
             <div class='form-group'>
                 <label for='nsafety' class="control-label">Safety Issues At Workplace: </label>
                 <br/>
-                <textarea class="form-control" name="nsafety" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nsafety" rows="3"></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about Workplace: </label>
@@ -3238,7 +3270,7 @@
         <div class='form-group '>
             <label for='date' class="control-label">Date Police Report Made<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="ndate" >
+            <input class="form-control dateInput" type='text' name="ndate" value="<%= sdf.format(today)%>">
         </div>
         <div class='form-group '>
             <label for='date' class="control-label">Police Station where Report Lodged: </label>
@@ -3248,7 +3280,7 @@
         <div class='form-group'>
             <label for='' class="control-label">Accompanying TWC2 Person: </label>
             <br/>
-            <input class="form-control" type='text' name="nperson" >
+            <input class="form-control" type='text' name="npoliceReportPerson">
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Police Report Ref Number:</label>
@@ -3374,7 +3406,7 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='ttrUpdate' class="control-label">Date of Update: <span style="color: red">*</span>: </label>
+            <label for='ttrUpdate' class="control-label">Date of Update<span style="color: red">*</span>: </label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
@@ -3396,12 +3428,12 @@
         <div class='form-group' id="ttrStatus_other_div" >
             <label for='nttrStatusMore' class="control-label">Explain if above is 'Other': </label>
             <br/>
-            <input class="form-control" type='text' name="nttrStatusMore">
+            <textarea class="form-control" name="nttrStatusMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
             <label for='ttrDepartureDate' class="control-label">Date of Departure from Singapore: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="nttrDepartureDate">
+            <input class="form-control" type='text' name="nttrDepartureDate">
         </div>
         <div class='form-group'>
             <label for='ttrEmployerName' class="control-label">Name of TJS or New Employer: </label>
@@ -3416,7 +3448,7 @@
         <div class='form-group'>
             <label for='nremark' class="control-label">Remarks re Transfer, TJS or Repatriation: </label>
             <br/>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
+            <textarea class="form-control" name="nttrremark" rows="3"></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
         <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -3445,12 +3477,12 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='nmilestoneCRDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>: </label>
+            <label for='nmilestoneCRDate' class="control-label">Date Milestone Reached<span style="color: red">*</span>: </label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='nmilestoneCRReached' class="control-label">Miestone Reached: <span style="color: red">*</span>:</label>
+            <label for='nmilestoneCRReached' class="control-label">Milestone Reached<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneCRReached">
                 <option value="">Select from list:</option>
@@ -3510,12 +3542,12 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='milestoneNCDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>: </label>
+            <label for='milestoneNCDate' class="control-label">Date Milestone Reached<span style="color: red">*</span>: </label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='nmilestoneNCReached' class="control-label">Milestone Reached: <span style="color: red">*</span>:</label>
+            <label for='nmilestoneNCReached' class="control-label">Milestone Reached<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneNCReached" >
                 <option value="">Select from list:</option>
@@ -3566,7 +3598,7 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='r2rDate' class="control-label">Date of Appointment: <span style="color: red">*</span>: </label>
+            <label for='r2rDate' class="control-label">Date of Appointment<span style="color: red">*</span>: </label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
@@ -3576,7 +3608,7 @@
             <input class="form-control" type='text' name="nr2rTime">
         </div>
         <div class='form-group'>
-            <label for='r2rHosp' class="control-label">Hospital for appointment: <span style="color: red">*</span>: </label>
+            <label for='r2rHosp' class="control-label">Hospital for appointment<span style="color: red">*</span>: </label>
             <br/>
             <input class="form-control" type='text' name="nr2rHosp">
         </div>
@@ -4171,7 +4203,7 @@
         <div class='form-group'>
             <label for='' class="control-label">Internal Remarks about Discussion:</label>
             <br/>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
+            <textarea class="form-control" name="ninternalRemarks" rows="3"></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
         <input type="hidden" name="jobkey" value="<%=jobKey%>"/>

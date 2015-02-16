@@ -2534,7 +2534,7 @@
                                                                             <th>Aggrav Issue</th>
                                                                             <th>Explain if other</th>
                                                                             <th>Loss Value</th>
-                                                                            <th>Remarks</th>
+                                                                            <th class="tbl-action-col">Remarks</th>
                                                                             <th class="tbl-action-col">Action</th>
                                                                         </tr>
 
@@ -2546,6 +2546,9 @@
                                                                                 String issueMore = aggravIs.getAggravatingIssueMore();
 
                                                                                 String remark = aggravIs.getAggravatingRemark();
+                                                                                if(remark.length() > 60 ){
+                                                                                    remark = remark.substring(0, 60) + "...";
+                                                                                }
                                                                                 double loss = aggravIs.getAggravatingLoss();
                                                                                 if (i < aggravissueIds.size() - 1) {
                                                                         %>
@@ -2822,7 +2825,7 @@
                                                                             <th>Event dt</th>
                                                                             <th>Where or how</th>
                                                                             <th>TWC2 Person</th>
-                                                                            <th>Topic</th>
+                                                                            <th class='tbl-action-col'>Topic</th>
                                                                             <th class="tbl-action-col">Action</th>
                                                                         </tr>
 
@@ -2835,6 +2838,9 @@
                                                                                 String mode = caseDiscussion.getCaseDiscussionWhere();
                                                                                 String consultant = caseDiscussion.getCaseDiscussionTWC2Person1();
                                                                                 String topic = caseDiscussion.getCaseDiscussionTopic();
+                                                                                if(topic.length() > 60 ){
+                                                                                    topic = topic.substring(0, 60) + "...";
+                                                                                }
                                                                                 String location = caseDiscussion.getCaseDiscussionWhere();
                                                                                 if (location.equals("other") || location.equals("Other") || location == null) {
                                                                                     location = caseDiscussion.getCaseDiscussionWhereMore();
@@ -2870,7 +2876,7 @@
                                                                             <td><%=(discussionDate==null)?"-":sdf.format(discussionDate)%></td>
                                                                             <td><%=mode%></td>
                                                                             <td><%=consultant%></td>
-                                                                            <td><%=topic%></td>
+                                                                            <td class='tbl-action-col'><%=topic%></td>
                                                                             <td class="tbl-action-col"><a style="color: black" data-value='casediscussion' data-class="problem" 
                                                                                    data-title="View Case Discussion Details"  data-casediscussion='<%=id%>'
                                                                                    href="" data-toggle="modal" data-action="viewedit" data-target="#casediscussion_pop_up"  
@@ -2924,7 +2930,7 @@
                                                                         <tr>
                                                                             <th>Update dt</th>
                                                                             <th>Law Firm</th>
-                                                                            <th>Lawyer/asst Name</th>
+                                                                            <th class="tbl-action-col">Lawyer/asst Name</th>
                                                                             <th class="tbl-action-col">Action</th>
                                                                         </tr>
 
@@ -2937,6 +2943,10 @@
                                                                                 String lawFirm = lawyer.getLawyerFirm();
                                                                                 java.util.Date updateDate = lawyer.getLawyerUpdate();
                                                                                 String lawyerName = lawyer.getLawyerName();
+                                                                                
+                                                                                if(lawyerName.length() > 60 ){
+                                                                                    lawyerName = lawyerName.substring(0, 60) + "...";
+                                                                                }
                                                                                 if (i < lawyerIds.size() - 1) {
 
                                                                         %>
@@ -3751,7 +3761,7 @@
 
                                                                             <th>Update Dt</th>
                                                                             <th>Hospital</th>
-                                                                            <th>Dept/Doctor</th>
+                                                                            <th class="tbl-action-col">Dept/Doctor</th>
                                                                             <th class="tbl-action-col">Action</th>
                                                                         </tr>
 
@@ -3766,6 +3776,9 @@
                                                                                 }
 
                                                                                 String doctor = hospital.getHospitalDoctor();
+                                                                                if(doctor.length() > 60 ){
+                                                                                    doctor = doctor.substring(0, 60) + "...";
+                                                                                }
                                                                                 java.util.Date date = hospital.getHospitalUpdate();
 
                                                                                 if (i < hospitalIds.size() - 1) {
@@ -4074,7 +4087,7 @@
                                                                     <table class="table table-condensed">
                                                                         <tr>
                                                                             <th>Describe Prob</th>
-                                                                            <th>Claim Value</th>
+                                                                            <th class="tbl-action-col">Claim Value</th>
 
                                                                             <th class="tbl-action-col">Action</th>
                                                                         </tr>
@@ -4086,6 +4099,9 @@
                                                                                 ProblemOtherProblems otherCase = ProblemComplementsDAO.retrieveProblemOtherProblemsById(otherCaseId);
 
                                                                                 String description = otherCase.getOtherProblemDesc();
+                                                                                if(description.length() > 60){
+                                                                                    description = description.substring(0,60) + "...";
+                                                                                }
                                                                                 double loss = otherCase.getOtherProblemLoss();
                                                                                 //String remark = otherCase.getOtherProblemRemark();
                                                                                 if (i < otherCaseIds.size() - 1) {
@@ -4573,7 +4589,7 @@
                                                                             <th>Updated Dt</th>
                                                                             <th>Status</th>
                                                                             <th>Depart SG Dt</th>
-                                                                            <th>New Employer</th>
+                                                                            <th class="tbl-action-col">New Employer</th>
                                                                             <th class="tbl-action-col">Action</th>
                                                                         </tr>
 

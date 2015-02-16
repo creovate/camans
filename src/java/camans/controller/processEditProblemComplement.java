@@ -174,7 +174,7 @@ public class processEditProblemComplement extends HttpServlet {
                 String discussAssist = request.getParameter("discussionAssist");
                 String discussCalculate = request.getParameter("discussionCal");
                 String discussAction = request.getParameter("discussionAction");
-                String discussRem =request.getParameter("remark");
+                String discussRem =request.getParameter("internalRemarks");
                 
                 java.sql.Date discussDate = null;
                 if (!discussDateStr.equals("")) {
@@ -812,7 +812,7 @@ public class processEditProblemComplement extends HttpServlet {
                 String ttrDepatureDateStr = request.getParameter("ttrDepartureDate");
                 String ttrNewEmployer = request.getParameter("ttrEmployerName");
                 String ttrNewJob = request.getParameter("ttrJob");
-                String ttrRemark = request.getParameter("remark");
+                String ttrRemark = request.getParameter("ttrremark");
                 
                 java.sql.Date ttrUpdateDate = null;
                 if (!ttrUpdateDateStr.equals("")) {

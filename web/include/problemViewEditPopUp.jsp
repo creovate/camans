@@ -18,7 +18,7 @@
             changeMonth: true,
             changeYear: true
         });
-        
+
         //----validation for start date and end date----//
         $(".startDate").datepicker({
             dateFormat: 'dd-M-yy',
@@ -37,12 +37,12 @@
                 $(".startDate").datepicker("option", "maxDate", selectedDate);
             }
         });
-        
+
         //----disable manual input in date fields----//
         $('.dateInput').focus(function() {
             $('.dateInput').blur();
         });
-        
+
         $('.form-control').addClass('input-sm');
         $('.btn_group').addClass('pull-right');
     });
@@ -113,7 +113,7 @@
                         }
                     }
                 },
-                nNWicaremark:{
+                nNWicaremark: {
                     valudators: {
                         stringLength: {
                             max: 1000,
@@ -121,7 +121,7 @@
                         }
                     }
                 },
-                NWicaremark:{
+                NWicaremark: {
                     valudators: {
                         stringLength: {
                             max: 1000,
@@ -301,11 +301,8 @@
                 },
                 loss: {
                     validators: {
-                        numeric: {
-                            message: 'Salary must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -472,6 +469,14 @@
                         }
                     }
                 },
+                npoliceReportPerson: {
+                    validators: {
+                        stringLength: {
+                            max: 200,
+                            message: 'Accompanying person name must be less than 200 characters.'
+                        }
+                    }
+                },
                 npoliceReportRefNumber: {
                     validators: {
                         stringLength: {
@@ -504,6 +509,14 @@
                         }
                     }
                 },
+                policeReportPerson: {
+                    validators: {
+                        stringLength: {
+                            max: 200,
+                            message: 'Accompanying person name must be less than 200 characters.'
+                        }
+                    }
+                },
                 policeReportDetails: {
                     validators: {
                         stringLength: {
@@ -531,7 +544,7 @@
                         }
                     }
                 },
-                compleintWhoMore: {
+                complaintWhoMore: {
                     validators: {
                         stringLength: {
                             max: 50,
@@ -573,7 +586,7 @@
                         }
                     }
                 },
-                ncompleintWhoMore: {
+                ncomplaintWhoMore: {
                     validators: {
                         stringLength: {
                             max: 50,
@@ -581,7 +594,7 @@
                         }
                     }
                 },
-                ncompaintModeMore: {
+                ncomplaintModeMore: {
                     validators: {
                         stringLength: {
                             max: 200,
@@ -686,8 +699,8 @@
                 discussionCal: {
                     validators: {
                         stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
+                            max: 1000,
+                            message: 'This field must be less than 1000 characters.'
                         }
                     }
                 },
@@ -696,6 +709,14 @@
                         stringLength: {
                             max: 500,
                             message: 'This field must be less than 500 characters.'
+                        }
+                    }
+                },
+                internalRemarks: {
+                    validators: {
+                        stringLength: {
+                            max: 500,
+                            message: 'Remarks must be less than 500 characters.'
                         }
                     }
                 },
@@ -787,8 +808,8 @@
                 ndiscussionCal: {
                     validators: {
                         stringLength: {
-                            max: 500,
-                            message: 'This field must be less than 500 characters.'
+                            max: 1000,
+                            message: 'This field must be less than 1000 characters.'
                         }
                     }
                 },
@@ -797,6 +818,14 @@
                         stringLength: {
                             max: 500,
                             message: 'This field must be less than 500 characters.'
+                        }
+                    }
+                },
+                ninternalRemarks: {
+                    validators: {
+                        stringLength: {
+                            max: 500,
+                            message: 'Remarks must be less than 500 characters.'
                         }
                     }
                 },
@@ -970,22 +999,16 @@
                 },
                 r2rMed: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 r2rOut: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1105,22 +1128,16 @@
                 },
                 wicaPoints: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 wicaDollars: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1343,6 +1360,14 @@
                         }
                     }
                 },
+                ttrremark: {
+                    validators: {
+                        stringLength: {
+                            max: 500,
+                            message: 'Remarks must be less than 500 characters.'
+                        }
+                    }
+                },
                 nttrStatus: {
                     validators: {
                         notEmpty: {
@@ -1382,6 +1407,14 @@
                         }
                     }
                 },
+                nttrremark: {
+                    validators: {
+                        stringLength: {
+                            max: 500,
+                            message: 'Remarks must be less than 500 characters.'
+                        }
+                    }
+                },
                 //aggravating issues
                 aggravissueType: {
                     validators: {
@@ -1400,11 +1433,8 @@
                 },
                 aggravLoss: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1527,22 +1557,16 @@
                 },
                 totalLoss: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 oneYearLoss: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -2887,6 +2911,11 @@
                 <br/>
                 <input class="form-control" type='text' name="complaintAgency" value="<%=who%>">
             </div>
+            <div class='form-group' id="complaintModeView_other_div" >
+                <label for='location' class="control-label">Explain if above is 'Other':</label>
+                <br/>
+                <textarea class="form-control" name="complaintModeMore" rows="3"><%=(whoMore == null) ? "" : whoMore%></textarea>
+            </div>
             <div class='form-group'>
                 <label for='complaintAgency' class="control-label">If TWC2 or third party, name of person lodging complaint:</label>
                 <br/>
@@ -2896,7 +2925,12 @@
                 <label for='complaintAgency' class="control-label">Mode of lodging complaint:</label>
                 <br/>
                 <input class="form-control" type='text' name="complaintAgency" value="<%=mode%>">
-            </div>    
+            </div>   
+            <div class='form-group'>
+                <label for='complaintAgency' class="control-label">Explain if above is 'Other':</label>
+                <br/>
+                <textarea class="form-control" name="complaintAgency" rows="3"><%=(modeMore == null) ? "" : modeMore%></textarea>
+            </div>
             <div class='form-group'>
                 <label for='complaintDetails' class="control-label">Details of complaint lodged:</label>
                 <br/>
@@ -2954,11 +2988,15 @@
         <div class='form-group' id="complaintTypeView_other_div" >
             <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="complaintWhoMore" value="<%=(whoMore == null) ? "" : whoMore%>">
+            <textarea class="form-control" name="complaintWhoMore" rows="3"><%=(whoMore == null) ? "" : whoMore%></textarea>
         </div>
-
         <div class='form-group'>
-            <label for='complaintMode' class="control-label">Complaint Mode:</label>
+            <label for='complaintAgency' class="control-label">If TWC2 or third party, name of person lodging complaint:</label>
+            <br/>
+            <input class="form-control" type='text' name="complaintAgency" value="<%=(whoMore == null) ? "" : whoMore%>">
+        </div>
+        <div class='form-group'>
+            <label for='complaintMode' class="control-label">Mode of lodging complaint:</label>
             <br/>
             <select class="form-control" id="complaintModeView" name="complaintMode" >
                 <%
@@ -2982,7 +3020,7 @@
         <div class='form-group' id="complaintModeView_other_div" >
             <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="complaintModeMore" value="<%=(modeMore == null) ? "" : modeMore%>">
+            <textarea class="form-control" name="complaintModeMore" rows="3"><%=(whoMore == null) ? "" : whoMore%></textarea>
         </div>
 
         <div class='form-group'>
@@ -3063,7 +3101,7 @@
         <div class='form-group' id="complaintMode_other_div" >
             <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="ncomplaintModeMore">
+            <textarea class="form-control" name="ncomplaintModeMore" rows="3"></textarea>
         </div>
         <div class='form-group '>
             <label for='date' class="control-label">Details of complaint lodged:</label>
@@ -3142,6 +3180,11 @@
                 <br/>
                 <input class="form-control" type='text' name="discussionWhere" value="<%=dWhere%>">
             </div>
+            <div class='form-group' id="discussionWhere_other_div" >
+                <label for='location' class="control-label">Explain if above is 'Other':</label>
+                <br/>
+                <textarea class="form-control" name="discussionWhereOther" rows="3"><%=(dWhereMore == null) ? "-" : dWhereMore%></textarea>
+            </div>
             <div class='form-group'>
                 <label for='discussionWorkerPresent' class="control-label">Was worker participating?:</label>
                 <br/>
@@ -3195,7 +3238,7 @@
             <div class='form-group'>
                 <label for='discussionRemark' class="control-label">Internal Remarks about Discussion:</label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
+                <textarea class="form-control" name="internalRemarks" rows="3"><%=remark%></textarea>
             </div>
         </fieldset>
         <div class="form-group btn_group pull-right">
@@ -3244,7 +3287,7 @@
         <div class='form-group' id="discussionWhere_other_div" >
             <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="discussionWhereOther" value=<%=dWhereMore%>>
+            <textarea class="form-control" name="discussionWhereOther" rows="3"><%=(dWhereMore == null) ? "-" : dWhereMore%></textarea>
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Was worker participating?:</label>
@@ -3265,11 +3308,11 @@
         </div>
         <div class='form-group'>
             <label for='' class="control-label">TWC2 Person Consulted, Assisting or Informed<span style="color: red">*</span>:</label>
-            <input class="form-control" value='<%=twcP1%>' type='text' name="discussionTWC2P1" >
+            <input class="form-control" value='<%=(twcP1 == null) ? "-" : twcP1%>' type='text' name="discussionTWC2P1" >
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Names of Other TWC2 Persons Present:</label>
-            <input class="form-control" value='<%=twcP2%>' type='text' name="discussionTWC2P2" >
+            <input class="form-control" value='<%=(twcP2 == null) ? "-" : twcP2%>' type='text' name="discussionTWC2P2" >
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Names of Other Persons Present:</label>
@@ -3281,7 +3324,7 @@
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Topic of Discussion/Information Received<span style="color: red">*</span>:</label>
-            <input class="form-control" value='<%=topic%>' type='text' name="discussionTopic" >
+            <input class="form-control" value="<%=topic%>" type='text' name="discussionTopic" >
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Gist of Discussion or New Information Received: </label>
@@ -3301,7 +3344,7 @@
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Internal Remarks about Discussion:</label>
-            <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
+            <textarea class="form-control" name="internalRemarks" rows="3"><%=remark%></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="casediscussion"/>
@@ -3345,7 +3388,7 @@
         <div class='form-group' id="discussionWhere_other_div" >
             <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="ndiscussionWhereMore">
+            <textarea class="form-control" name="ndiscussionWhereOther" rows="3"></textarea>
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Was worker participating:</label>
@@ -3403,7 +3446,7 @@
         <div class='form-group'>
             <label for='' class="control-label">Internal Remarks about Discussion:</label>
             <br/>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
+            <textarea class="form-control" name="ninternalRemarks" rows="3"></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="casediscussion"/>
@@ -3509,7 +3552,7 @@
         <div class='form-group' id="hospName_other_div" >
             <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="hospNameMore" value="<%=hospNameMore%>">
+            <textarea class="form-control" name="hospNameMore" rows="3"><%=(hospNameMore == null) ? "-" : hospNameMore%></textarea>
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Department/Doctor:</label>
@@ -3560,7 +3603,7 @@
         <div class='form-group' id="nhospName_other_div" >
             <label for='nhospNameMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="nhospNameMore">
+            <textarea class="form-control" name="nhospNameMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
             <label for='nhospDoctor' class="control-label">Department/doctor within hospital if known:</label>
@@ -3597,6 +3640,7 @@
 
         java.util.Date mcUpdate = mcStatus.getMCUpdate();
         String status = mcStatus.getMCStatus();
+        String statusMore = mcStatus.getMCStatusMore();
         java.util.Date exp = mcStatus.getMCExpDate();
         int cum = mcStatus.getMCDaysCumul();
         String mcRem = mcStatus.getMCRem();
@@ -3653,8 +3697,8 @@
 
         <div class='form-group'>
             <label for='' class="control-label">Date of Update<span style="color: red">*</span>:</label>
-                   <input class="form-control dateInput" value="<%=(mcUpdate == null) ? ""
-                    : sdf.format(mcUpdate)%>" type='text' name="date" >
+            <input class="form-control dateInput" value="<%=(mcUpdate == null) ? ""
+                           : sdf.format(mcUpdate)%>" type='text' name="date" >
         </div>
         <div class='form-group'>
             <label for='status' class="control-label">Current MC/Light Duty Status<span style="color: red">*</span>:</label>
@@ -3681,7 +3725,7 @@
         <div class='form-group' id="status_other_div" >
             <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="mcStatusMore">
+            <textarea class="form-control" name="mcStatusMore" rows="3"><%= (statusMore == null) ? "-" : statusMore%></textarea>
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Latest Known MC Expiry Date:</label>
@@ -3738,7 +3782,7 @@
         <div class='form-group' class="nmcStatus_other_div" >
             <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="nmcStatusMore">
+            <textarea class="form-control" name="nmcStatusMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Latest Known MC Expiry Date:</label>
@@ -3854,12 +3898,12 @@
             <div class='form-group'>
                 <label for='r2rMed' class="control-label">Medical Cost of this Appt(S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="r2rMed" value="<%=(med == 0.0)? "-" : df.format(med)%>">
+                <input class="form-control" type='text' name="r2rMed" value="<%=(med == 0.0) ? "-" : df.format(med)%>">
             </div>
             <div class='form-group'>
                 <label for='r2rOut' class="control-label">How much paid by volunteer(S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="r2rOut" value="<%=(outlay == 0.0)? "-" : df.format(outlay)%>">
+                <input class="form-control" type='text' name="r2rOut" value="<%=(outlay == 0.0) ? "-" : df.format(outlay)%>">
             </div>
         </fieldset>
 
@@ -3874,7 +3918,7 @@
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='r2rDate' class="control-label">Date of Appointment: <span style="color: red">*</span>::</label>
+            <label for='r2rDate' class="control-label">Date of Appointment<span style="color: red">*</span>::</label>
             <br/>
             <input class="form-control dateInput" type='text' name="date" 
                    value="<%=(r2rDate == null) ? "" : sdf.format(r2rDate)%>">
@@ -3885,7 +3929,7 @@
             <input class="form-control" type='text' name="r2rTime" value="<%=r2rTime%>">
         </div>
         <div class='form-group'>
-            <label for='r2rHosp' class="control-label">Hospital for Appointment: <span style="color: red">*</span>:</label>
+            <label for='r2rHosp' class="control-label">Hospital for Appointment<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control" type='text' name="r2rHosp" value="<%=hosp%>">
         </div>
@@ -3949,7 +3993,7 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='r2rDate' class="control-label">Date of Appointment: <span style="color: red">*</span>:</label>
+            <label for='r2rDate' class="control-label">Date of Appointment<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" >
         </div>
@@ -3959,7 +4003,7 @@
             <input class="form-control" type='text' name="nr2rTime">
         </div>
         <div class='form-group'>
-            <label for='r2rHosp' class="control-label">Hospital for appointment: <span style="color: red">*</span>:</label>
+            <label for='r2rHosp' class="control-label">Hospital for appointment<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control" type='text' name="nr2rHosp">
         </div>
@@ -4058,20 +4102,25 @@
                 <br/>
                 <input class="form-control" type='text' name="wicaStatus" value="<%=wStatus%>">
             </div>
+            <div class='form-group' id="wicaStatus_other_div" >
+                <label for='wicaStatusMore' class="control-label">Explain if above is 'Other':</label>
+                <br/>
+                <textarea class="form-control" name="wicaStatusMore" rows="3"><%=(wStatusMore == null) ? "" : wStatusMore%></textarea>
+            </div>
             <div class='form-group'>
                 <label for='wicaPoints' class="control-label">Wica Points:</label>
                 <br/>
-                <input class="form-control" type='text' name="wicaPoints" value="<%=wPoints%>">
+                <input class="form-control" type='text' name="wicaPoints" value="<%=(wPoints == 0.0) ? "-" : df.format(wPoints)%>">
             </div>
             <div class='form-group'>
                 <label for='wicaDollars' class="control-label"> Wica S$ compensation:</label>
                 <br/>
-                <input class="form-control" type='text' name="wicaDollars" value="<%=(wDollars == 0.0)? "-": df.format(wDollars) %>">
+                <input class="form-control" type='text' name="wicaDollars" value="<%=(wDollars == 0.0) ? "-" : df.format(wDollars)%>">
             </div>
             <div class='form-group'>
                 <label for='wicaRemarks' class="control-label">Remarks about WICA Status :</label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3"><%=(wRemarks == null) ? "-" : wRemarks %></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=(wRemarks == null) ? "-" : wRemarks%></textarea>
             </div>
 
         </fieldset>
@@ -4117,22 +4166,22 @@
         <div class='form-group' id="wicaStatus_other_div" >
             <label for='wicaStatusMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <textarea class="form-control" name="wicaStatusMore" rows="3"><%=wStatusMore%></textarea>
+            <textarea class="form-control" name="wicaStatusMore" rows="3"><%=(wStatusMore == null) ? "" : wStatusMore%></textarea>
         </div>
         <div class='form-group'>
             <label for='wicaPoints' class="control-label">Wica Points:</label>
             <br/>
-            <input class="form-control" type='text' name="wicaPoints" value="<%=wPoints%>">
+            <input class="form-control" type='text' name="wicaPoints" value="<%=(wPoints == 0.0) ? "-" : df.format(wPoints)%>">
         </div>
         <div class='form-group'>
             <label for='wicaDollars' class="control-label">Wica S$ Compensation:</label>
             <br/>
-            <input class="form-control" type='text' name="wicaDollars" value="<%=(wDollars == 0.0)? "-": df.format(wDollars)%>">
+            <input class="form-control" type='text' name="wicaDollars" value="<%=(wDollars == 0.0) ? "-" : df.format(wDollars)%>">
         </div>
         <div class='form-group'>
             <label for='wicaRemarks' class="control-label">Remarks about WICA Status:</label>
             <br/>
-            <textarea class="form-control" name="remark" rows="3"><%= (wRemarks == null)? "-" : wRemarks%></textarea>
+            <textarea class="form-control" name="remark" rows="3"><%= (wRemarks == null) ? "-" : wRemarks%></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="wica"/>
@@ -4243,7 +4292,7 @@
             <div class='form-group'>
                 <label for='lawyerFirmMore' class="control-label">Explain if above is 'Other':</label>
                 <br/>
-                <input class="form-control" type='text' name="lawyerFirmMore" value="<%=firmMore%>">
+                <textarea class="form-control" name="lawyerFirmMore" rows="3"><%=(firmMore == null) ? "" : firmMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='lawyerName' class="control-label">Name of lawyer or assistant:</label>
@@ -4294,7 +4343,7 @@
         <div class='form-group' id="nlawyerFirm_other_div" >
             <label for='lawyerFirmMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <textarea class="form-control" name="lawyerFirmMore" rows="3"><%=firmMore%></textarea>
+            <textarea class="form-control" name="lawyerFirmMore" rows="3"><%=(firmMore == null) ? "" : firmMore%></textarea>
         </div>
         <div class='form-group'>
             <label for='lawyerName' class="control-label">Name of lawyer or assistant:</label>
@@ -4404,8 +4453,13 @@
                 <br/>
                 <input class="form-control" type='text' name="milestoneNCReached" value="<%=ncReached%>">
             </div>
+            <div class='form-group' id="ncReached_other_div" >
+                <label for='milestoneNCReachedMore' class="control-label">Explain if above is 'Other':</label>
+                <br/>
+                <textarea class="form-control" name="milestoneNCReachedMore" rows="3"><%=(ncReachedMore == null) ? "" : ncReachedMore%></textarea>
+            </div>
             <div class='form-group'>
-                <label for='milestoneNCRem' class="control-label">Remarks: re Milestone Reached:</label>
+                <label for='milestoneNCRem' class="control-label">Remarks re Milestone Reached:</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=ncRem%></textarea>
             </div>
@@ -4421,13 +4475,13 @@
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='milestoneNCDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>:</label>
+            <label for='milestoneNCDate' class="control-label">Date Milestone Reached<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="date" 
                    value="<%=(ncDate == null) ? "" : sdf.format(ncDate)%>">
         </div>
         <div class='form-group'>
-            <label for='milestoneNCReached' class="control-label">Milestone Reached: <span style="color: red">*</span>:</label>
+            <label for='milestoneNCReached' class="control-label">Milestone Reached<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="milestoneNCReached" >
                 <%
@@ -4451,7 +4505,7 @@
         <div class='form-group' id="ncReached_other_div" >
             <label for='milestoneNCReachedMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="milestoneNCReachedMore" value="<%=ncReachedMore%>">
+            <textarea class="form-control" name="milestoneNCReachedMore" rows="3"><%=(ncReachedMore == null) ? "" : ncReachedMore%></textarea>
         </div>
         <div class='form-group'>
             <label for='milestoneNCRem' class="control-label">Remarks re Milestone Reached:</label>
@@ -4474,12 +4528,12 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='milestoneNCDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>:</label>
+            <label for='milestoneNCDate' class="control-label">Date Milestone Reached<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput input-append date dateInput" type='text' name="ndate">
         </div>
         <div class='form-group'>
-            <label for='nmilestoneNCReached' class="control-label">Milestone Reached: <span style="color: red">*</span>:</label>
+            <label for='nmilestoneNCReached' class="control-label">Milestone Reached<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneNCReached" >
                 <option value="">Select from list:</option>
@@ -4497,10 +4551,10 @@
         <div class='form-group' id="ncReached_other_div" >
             <label for='nmilestoneNCReachedMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="nmilestoneNCReachedMore">
+            <textarea class="form-control" name="nmilestoneNCReachedMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='milestoneNCRem' class="control-label">Remarks: re Milestone Reached:</label>
+            <label for='milestoneNCRem' class="control-label">Remarks re Milestone Reached:</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -4530,6 +4584,7 @@
 
         java.util.Date crDate = cr.getMilesCRDate();
         String crReached = cr.getMilesCRReached();
+        String crReachedMore = cr.getMilesCRReachedMore();
         String crCharges = cr.getMilesCRCharges();
         String crSentence = cr.getMilesCRSentence();
         String crRem = cr.getMilesCRRem();
@@ -4554,6 +4609,11 @@
                 <label for='milestoneCRReached' class="control-label">Milestone Reached:</label>
                 <br/>
                 <input class="form-control" type='text' name="milestoneCRReached" value="<%=crReached%>">
+            </div>
+            <div class='form-group' id="crReached_other_div" >
+                <label for='milestoneCRReachedMore' class="control-label">Explain if above is 'Other':</label>
+                <br/>
+                <textarea class="form-control" name="milestoneCRReachedMore" rows="3"><%= (crReachedMore == null) ? "" : crReachedMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='milestoneCRCharge' class="control-label">Details of Charges:</label>
@@ -4583,13 +4643,13 @@
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='milestoneCRDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>:</label>
+            <label for='milestoneCRDate' class="control-label">Date Milestone Reached<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="date" 
                    value="<%=(crDate == null) ? "" : sdf.format(crDate)%>">
         </div>
         <div class='form-group'>
-            <label for='milestoneCRReached' class="control-label">Milestone Reached: <span style="color: red">*</span>:</label>
+            <label for='milestoneCRReached' class="control-label">Milestone Reached<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="crReached" name="milestoneCRReached" >
                 <%
@@ -4614,7 +4674,7 @@
         <div class='form-group' id="crReached_other_div" >
             <label for='milestoneCRReachedMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="milestoneCRReachedMore">
+            <textarea class="form-control" name="milestoneCRReachedMore" rows="3"><%= (crReachedMore == null) ? "" : crReachedMore%></textarea>
         </div>
         <div class='form-group'>
             <label for='milestoneCRCharges' class="control-label">Details of Charges:</label>
@@ -4647,12 +4707,12 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='nmilestoneCRDate' class="control-label">Date Milestone Reached: <span style="color: red">*</span>:</label>
+            <label for='nmilestoneCRDate' class="control-label">Date Milestone Reached<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate">
         </div>
         <div class='form-group'>
-            <label for='nmilestoneCRReached' class="control-label">Miestone Reached: <span style="color: red">*</span>:</label>
+            <label for='nmilestoneCRReached' class="control-label">Miestone Reached<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneCRReached" >
                 <option value="">Select from list:</option>
@@ -4670,7 +4730,7 @@
         <div class='form-group' id="ncReached_other_div" >
             <label for='nmilestoneCRReachedMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="nmilestoneCRReachedMore">
+            <textarea class="form-control" name="nmilestoneCRReachedMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
             <label for='milestoneCRCharges' class="control-label">Details of Charges:</label>
@@ -4711,6 +4771,7 @@
 
         java.util.Date update = ttr.getTTRUpdate();
         String status = ttr.getTTRStatus();
+        String ttrStatusMore = ttr.getTTRStatusMore();
         java.util.Date departureDate = ttr.getDepartureDate();
         String employerName = ttr.getNewEmployerName();
         String job = ttr.getNewJob();
@@ -4726,7 +4787,7 @@
         <fieldset disabled>
 
             <div class='form-group'>
-                <label for='ttrUpdate' class="control-label">Date of Update: <span style="color: red">*</span>:</label>
+                <label for='ttrUpdate' class="control-label">Date of Update<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="date" 
                        value="<%=(update == null) ? "" : sdf.format(update)%>">
@@ -4735,6 +4796,11 @@
                 <label for='ttrStatus' class="control-label">Transfer, TJS or Repatriation Status<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="ttrStatus" value="<%=status%>">
+            </div>
+            <div class='form-group' id="ttrStatus_other_div" >
+                <label for='ttrStatusMore' class="control-label">Explain if above is 'Other':</label>
+                <br/>
+                <textarea class="form-control" name="ttrstatusMore" rows="3"><%= (ttrStatusMore == null) ? "" : ttrStatusMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='ttrDepartureDate' class="control-label">Date of Departure from Singapore:</label>
@@ -4755,7 +4821,7 @@
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks: re Transfer, TJS or Repatriation:</label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3"><%=ttrRem%></textarea>
+                <textarea class="form-control" name="ttrremark" rows="3"><%=ttrRem%></textarea>
             </div>
         </fieldset>
         <div class="form-group btn_group pull-right">
@@ -4769,13 +4835,13 @@
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='ttrUpdate' class="control-label">Date of Update: <span style="color: red">*</span>:</label>
+            <label for='ttrUpdate' class="control-label">Date of Update<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="date" 
                    value="<%=(update == null) ? "" : sdf.format(update)%>">
         </div>
         <div class='form-group'>
-            <label for='ttrStatus' class="control-label">Transfer, TJS or Repatriation Status: <span style="color: red">*</span>:</label>
+            <label for='ttrStatus' class="control-label">Transfer, TJS or Repatriation Status<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ttrStatus" name="ttrStatus" >
                 <%
@@ -4800,7 +4866,7 @@
         <div class='form-group' id="ttrStatus_other_div" >
             <label for='ttrStatusMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="ttrstatusMore">
+            <textarea class="form-control" name="ttrstatusMore" rows="3"><%= (ttrStatusMore == null) ? "" : ttrStatusMore%></textarea>
         </div>
         <div class='form-group'>
             <label for='ttrDepartureDate' class="control-label">Date of Departure from Singapore:</label>
@@ -4821,7 +4887,7 @@
         <div class='form-group'>
             <label for='remark' class="control-label">Remarks: re Transfer, TJS or Repatriation:</label>
             <br/>
-            <textarea class="form-control" name="remark" rows="3"><%=ttrRem%></textarea>
+            <textarea class="form-control" name="ttrremark" rows="3"><%=ttrRem%></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="ttr"/>
@@ -4839,7 +4905,7 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='ttrUpdate' class="control-label">Date of Update: <span style="color: red">*</span>:</label>
+            <label for='ttrUpdate' class="control-label">Date of Update<span style="color: red">*</span>:</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate">
         </div>
@@ -4861,7 +4927,7 @@
         <div class='form-group' id="nttrStatus_other_div" >
             <label for='nttrStatusMore' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <input class="form-control" type='text' name="nttrStatusMore">
+            <textarea class="form-control" name="nttrStatusMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
             <label for='ttrDepartureDate' class="control-label">Date of Departure from Singapore:</label>
@@ -4881,7 +4947,7 @@
         <div class='form-group'>
             <label for='nremark' class="control-label">Remarks: re Transfer, TJS or Repatriation:</label>
             <br/>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
+            <textarea class="form-control" name="nttrremark" rows="3"></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="ttr"/>
@@ -4935,7 +5001,7 @@
                 <div class='form-group'>
                     <label for='name' class="control-label">Explain if above is other:</label>
                     <br/>
-                    <input class="form-control" type='text' name="name" value="<%=typeMore%>">
+                    <textarea class="form-control" name="name" rows="3"><%=typeMore%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='name' class="control-label">Monetary loss/value of this Aggravating Issue S$</label>
@@ -4977,7 +5043,7 @@
             <div class='form-group' id='naggravissueType_other_div' >
                 <label for='naggravissueTypeMore' class="control-label">Explain if above is other</label>
                 <br/>
-                <input class="form-control" type='text' name="naggravissueTypeMore">
+                <textarea class="form-control" name="naggravissueTypeMore" rows="3"></textarea>
             </div>
             <div class='form-group'>
                 <label for='naggravLoss' class="control-label">Monetary loss/value of this Aggravating Issue S$</label>
@@ -5027,7 +5093,7 @@
             <div class='form-group' id='aggravissueType_other_div' >
                 <label for='aggravissueTypeMore' class="control-label">Explain if above is other</label>
                 <br/>
-                <input class="form-control" type='text' name="aggravissueTypeMore" value="<%=typeMore%>">
+                <textarea class="form-control" name="aggravissueTypeMore" rows="3"><%=typeMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='aggravLoss' class="control-label">Monetary loss/value of this Aggravating Issue S$</label>
@@ -5396,7 +5462,7 @@
             <div class='form-group'>
                 <label for='remark' class="control-label">Estimated 12 Months' Value of Claim (S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="remark" value="<%=(oneYearValue == 0.0) ? "-":  df.format(oneYearValue)%>">
+                <input class="form-control" type='text' name="remark" value="<%=(oneYearValue == 0.0) ? "-" : df.format(oneYearValue)%>">
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about Salary & Related History:</label>
@@ -5462,7 +5528,7 @@
         <div class='form-group' id='nmode_other_div' >
             <label for='nmodeMore' class="control-label">Explain if above is other</label>
             <br/>
-            <input class="form-control" type='text' name="nmodeMore">
+            <textarea class="form-control" name="nmodeMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
             <label for='ntotalLoss' class="control-label">Estimated Total Value of Claim (S$):</label>
@@ -5545,17 +5611,17 @@
         </div>
         <div class='form-group' id='mode_other_div' >
             <label for='modeMore' class="control-label">Explain if above is other</label><br/>
-            <input class="form-control" type='text' name="modeMore" value="<%=modeMore%>">
+            <textarea class="form-control" name="modeMore" rows="3"><%=modeMore%></textarea>
         </div>
         <div class='form-group'>
             <label for='totalValue' class="control-label">Estimated Total Value of Claim (S$):</label>
             <br/>
-            <input class="form-control" type='text' name="totalLoss" value="<%=(totalValue == 0.0)? "-" : df.format(totalValue)%>">
+            <input class="form-control" type='text' name="totalLoss" value="<%=(totalValue == 0.0) ? "-" : df.format(totalValue)%>">
         </div>
         <div class='form-group'>
             <label for='oneYearValue' class="control-label">Estimated 12 Months' Value of Claim(S$):</label>
             <br/>
-            <input class="form-control" type='text' name="oneYearLoss" value="<%=(oneYearValue == 0.0)? "-" : df.format(oneYearValue)%>">
+            <input class="form-control" type='text' name="oneYearLoss" value="<%=(oneYearValue == 0.0) ? "-" : df.format(oneYearValue)%>">
         </div>
         <div class='form-group'>
             <label for='remark' class="control-label">Remarks about Salary & Related History:</label>
