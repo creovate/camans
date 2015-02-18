@@ -2550,19 +2550,19 @@
     }
     if (nonWICAClaimId != null) {
         int id = Integer.parseInt(nonWICAClaimId);
-        ProblemNonWICAClaim pnonWICAClaim = ProblemComplementsDAO.retrieveProblemNonWICAClaimById(id);
+        ProblemNonWicaClaim pnonWicaClaim = ProblemComplementsDAO.retrieveProblemNonWicaClaimById(id);
 %>
 
 <form method="POST" id='nonwicaclaim_pop_up' class="form complement_detailed_form problem_pop_up"  >
 
 
     <%
-        java.util.Date date = pnonWICAClaim.getMedicalClaimDate();
-        double loss = pnonWICAClaim.getMedicalClaimLoss();
-        String insurer = pnonWICAClaim.getMedicalClaimInsurer();
-        String policyNumber = pnonWICAClaim.getMedicalClaimPolicyNumber();
-        String basis = pnonWICAClaim.getMedicalClaimBasis();
-        String remark = pnonWICAClaim.getRemark();
+        java.util.Date date = pnonWicaClaim.getMedicalClaimDate();
+        double loss = pnonWicaClaim.getMedicalClaimLoss();
+        String insurer = pnonWicaClaim.getMedicalClaimInsurer();
+        String policyNumber = pnonWicaClaim.getMedicalClaimPolicyNumber();
+        String basis = pnonWicaClaim.getMedicalClaimBasis();
+        String remark = pnonWicaClaim.getRemark();
     %>  
 
     <div class="view_comp">

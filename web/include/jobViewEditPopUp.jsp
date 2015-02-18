@@ -16,8 +16,8 @@
 
 </style>
 <script>
-    
-    
+
+
     $(document).ready(function() {
         //----initialize datepicker----//
         $(".dateInput").datepicker({
@@ -29,7 +29,7 @@
         $('.dateInput').focus(function() {
             $('.dateInput').blur();
         });
-        
+
         $('.form-control').addClass('input-sm');
         $('.btn_group').addClass('pull-right');
     });
@@ -430,22 +430,16 @@
                 },
                 amtowed: {
                     validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 amtpaid: {
                     validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -948,22 +942,16 @@
                 },
                 accCharged: {
                     validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 accPaid: {
                     validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1115,29 +1103,24 @@
                             max: 20,
                             message: 'Period of pass must be less than 20 characters.'
                         },
-                        numeric: {
-                            message: 'Period of pass must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 basicSalary: {
                     validators: {
-                        numeric: {
-                            message: 'Salary must be a number.'
+                        regexp: {
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 totalAllowance: {
                     validators: {
-                        numeric: {
-                            message: 'Total allowance must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1152,11 +1135,8 @@
                 },
                 totalDeduction: {
                     validators: {
-                        numeric: {
-                            message: 'Deduction must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1309,12 +1289,12 @@
 
     //to track the selected problem
     String probKey = request.getParameter("probkey");
-    
+
     //end of data collection
-    
+
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
     DecimalFormat df = new DecimalFormat("#,###,###.00");
-    
+
     if (passId != null) {
         int id = Integer.parseInt(passId);
         JobPassDetails pass = JobComplementsDAO.retrieveJobPassDetailsById(id);
@@ -1619,8 +1599,8 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#empdetails_pop_up", "job", "Edit employer details");'>Edit</button>
-                   <!-- <button type='button' class="btn btn-blue modal_btn" onclick='add("#empdetails_pop_up", "job", "Add A New employer");'>Add</button> -->                 
-                    <button type='button' class="btn modal_btn cancel_btn">Close</button>
+                <!-- <button type='button' class="btn btn-blue modal_btn" onclick='add("#empdetails_pop_up", "job", "Add A New employer");'>Add</button> -->                 
+                <button type='button' class="btn modal_btn cancel_btn">Close</button>
             </div>
         </div>
 
@@ -1813,8 +1793,8 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#contract_pop_up", "job", "Edit Employment contract details");'>Edit</button>
-                    <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#contract_pop_up", "job", "Add A New Employment contract");'>Add</button> -->                 
-                    <button type='button' class="btn modal_btn  cancel_btn">Close</button>
+                <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#contract_pop_up", "job", "Add A New Employment contract");'>Add</button> -->                 
+                <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
 
@@ -2044,7 +2024,7 @@
                 <div class='form-group'>
                     <label for='person' class="control-label">Amount Owed to This agent at the start of work(S$):</label>
                     <br/>
-                    <input class="form-control" type='text' name="person" value="<%=(amtOwed == 0.0)? "" : df.format(amtOwed)%>">
+                    <input class="form-control" type='text' name="person" value="<%=(amtOwed == 0.0) ? "" : df.format(amtOwed)%>">
                 </div>
                 <div class='form-group'>
                     <label for='contact' class="control-label">Any suspicion fee was shared with others?:</label>
@@ -2090,8 +2070,8 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#agent_pop_up", "job", "Edit Intermediary agent");'>Edit</button>
-                    <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#agent_pop_up", "job", "Add A New Intermediary agent");'>Add</button> -->                 
-                    <button type='button' class="btn modal_btn  cancel_btn">Close</button>
+                <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#agent_pop_up", "job", "Add A New Intermediary agent");'>Add</button> -->                 
+                <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
 
@@ -2249,12 +2229,12 @@
             <div class='form-group'>
                 <label for='amtpaid' class="control-label">Amount paid to this agent(S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="amtpaid" value="<%=(amtPaid == 0.0)?"" : df.format(amtPaid)%>">
+                <input class="form-control" type='text' name="amtpaid" value="<%=(amtPaid == 0.0) ? "" : df.format(amtPaid)%>">
             </div>
             <div class='form-group'>
                 <label for='amtowed' class="control-label">Amount owed to this agent at the start of work(S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="amtowed" value="<%=(amtOwed == 0.0)? "" : df.format(amtOwed)%>">
+                <input class="form-control" type='text' name="amtowed" value="<%=(amtOwed == 0.0) ? "" : df.format(amtOwed)%>">
             </div>
             <div class='form-group'>
                 <label for='feeshared' class="control-label">Any suspicion fee was shared With others?:</label>
@@ -2366,8 +2346,8 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#assurance_pop_up", "job", "Edit verbal assurance details");'>Edit</button>
-                    <!--<button type='button' class="btn btn-blue modal_btn" onclick='add("#assurance_pop_up", "job", "Add A New verbal assurance");'>Add</button> -->                 
-                    <button type='button' class="btn modal_btn cancel_btn">Close</button>
+                <!--<button type='button' class="btn btn-blue modal_btn" onclick='add("#assurance_pop_up", "job", "Add A New verbal assurance");'>Add</button> -->                 
+                <button type='button' class="btn modal_btn cancel_btn">Close</button>
             </div>
         </div>
 
@@ -2550,8 +2530,8 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#workplace_pop_up", "job", "Edit workplace details");'>Edit</button>
-                    <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#workplace_pop_up", "job", "Add A New workplace");'>Add</button> -->                 
-                    <button type='button' class="btn modal_btn  cancel_btn">Close</button>
+                <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#workplace_pop_up", "job", "Add A New workplace");'>Add</button> -->                 
+                <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
 
@@ -2839,8 +2819,8 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#whistory_pop_up", "job", "Edit Work History details");'>Edit</button>
-                    <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#whistory_pop_up", "job", "Add A New Work History");'>Add</button> -->                 
-                    <button type='button' class="btn modal_btn  cancel_btn">Close</button>
+                <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#whistory_pop_up", "job", "Add A New Work History");'>Add</button> -->                 
+                <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
 
@@ -3075,7 +3055,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Cost charged by employer per month S$</label>
                     <br/>
-                    <input class="form-control" type='text' name="remark" value="<%=(accCharged == 0.0)? "" : df.format(accCharged)%>">
+                    <input class="form-control" type='text' name="remark" value="<%=(accCharged == 0.0) ? "" : df.format(accCharged)%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Cost paid by self per month S$</label>
@@ -3106,8 +3086,8 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#accomodation_pop_up", "job", "Edit Accommodation details");'>Edit</button>
-                    <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#accomodation_pop_up", "job", "Add A New Accommodation");'>Add</button> -->                 
-                    <button type='button' class="btn modal_btn  cancel_btn">Close</button>
+                <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#accomodation_pop_up", "job", "Add A New Accommodation");'>Add</button> -->                 
+                <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
 
@@ -3276,50 +3256,50 @@
             <div class='form-group'>
                 <label for='condition' class="control-label">Conditions at living quarters:</label>
                 <br/>
-                <textarea class="form-control" name="location" rows="3" maxlength="500"><%=(condition==null)?"":condition%></textarea>
+                <textarea class="form-control" name="location" rows="3" maxlength="500"><%=(condition == null) ? "" : condition%></textarea>
 
-            <div class='form-group'>
-                <label for='accCharged' class="control-label">Cost charged by employer per month S$</label>
-                <br/>
-                <input class="form-control" type='text' name="accCharged" value="<%=(accCharged == 0.0)? "" : df.format(accCharged)%>">
-            </div>
-            <div class='form-group'>
-                <label for='accPaid' class="control-label">Cost paid by self per month S$</label>
-                <br/>
-                <input class="form-control" type='text' name="accPaid" value="<%=(accPaid == 0.0) ? "" : df.format(accPaid)%>">
-            </div>
-            <div class='form-group'>
-                <label for='meal' class="control-label">Meal arrangements</label>
-                <br/>
-                <textarea class="form-control" name="meal" rows="3" maxlength="200"><%=(meal == null) ? "" : meal%></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='from' class="control-label">When start staying here?:</label>
-                <br/>
-                <input class="form-control" type='text' name="from" value="<%=from%>">
-            </div>
-            <div class='form-group'>
-                <label for='to' class="control-label">When stop staying here?</label>
-                <br/>
-                <input class="form-control" type='text' name="to" value="<%=to%>">
-            </div>
-            <div class='form-group'>
-                <label for='remark' class="control-label">Remarks about accommodation: </label>
-                <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark == null) ? "" : remark%></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="Accommodation"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
+                <div class='form-group'>
+                    <label for='accCharged' class="control-label">Cost charged by employer per month S$</label>
+                    <br/>
+                    <input class="form-control" type='text' name="accCharged" value="<%=(accCharged == 0.0) ? "" : df.format(accCharged)%>">
+                </div>
+                <div class='form-group'>
+                    <label for='accPaid' class="control-label">Cost paid by self per month S$</label>
+                    <br/>
+                    <input class="form-control" type='text' name="accPaid" value="<%=(accPaid == 0.0) ? "" : df.format(accPaid)%>">
+                </div>
+                <div class='form-group'>
+                    <label for='meal' class="control-label">Meal arrangements</label>
+                    <br/>
+                    <textarea class="form-control" name="meal" rows="3" maxlength="200"><%=(meal == null) ? "" : meal%></textarea>
+                </div>
+                <div class='form-group'>
+                    <label for='from' class="control-label">When start staying here?:</label>
+                    <br/>
+                    <input class="form-control" type='text' name="from" value="<%=from%>">
+                </div>
+                <div class='form-group'>
+                    <label for='to' class="control-label">When stop staying here?</label>
+                    <br/>
+                    <input class="form-control" type='text' name="to" value="<%=to%>">
+                </div>
+                <div class='form-group'>
+                    <label for='remark' class="control-label">Remarks about accommodation: </label>
+                    <br/>
+                    <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark == null) ? "" : remark%></textarea>
+                </div>
+                <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
+                <input type="hidden" name="complementName" value="Accommodation"/>
+                <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
+                <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
+                <input type="hidden" name="Id" value="<%=id%>"/>
 
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn edit_comp">Save</button>
-                <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+                <div class="form-group btn_group">
+                    <button type='submit' class="btn btn-blue modal_btn edit_comp">Save</button>
+                    <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+                </div>
             </div>
         </div>
-    </div>
 </form>
 
 <!------->
@@ -3413,7 +3393,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA total allowance(S$):</label>
                     <br/>
-                    <input class="form-control" type='text' name="remark" value="<%=(totalAllowance == 0)? "" : df.format(totalAllowance)%>">
+                    <input class="form-control" type='text' name="remark" value="<%=(totalAllowance == 0) ? "" : df.format(totalAllowance)%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA allowance details:</label>
@@ -3423,7 +3403,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA total Deduction(S$):</label>
                     <br/>
-                    <input class="form-control" type='text' name="remark" value="<%=(deduction == 0)? "" : df.format(deduction)%>">
+                    <input class="form-control" type='text' name="remark" value="<%=(deduction == 0) ? "" : df.format(deduction)%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA Deduction details:</label>
@@ -3444,8 +3424,8 @@
 
             <div class="form-group btn_group pull-right">
                 <button type='button' class="btn btn-blue modal_btn " onclick='editComplement("#ipa_pop_up", "job", "Edit IPA Pass details");'>Edit</button>
-                    <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#ipa_pop_up", "job", "Add A New IPA Pass");'>Add</button> -->                 
-                    <button type='button' class="btn modal_btn  cancel_btn">Close</button>
+                <!--<button type='button' class="btn btn-blue modal_btn " onclick='add("#ipa_pop_up", "job", "Add A New IPA Pass");'>Add</button> -->                 
+                <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
 
@@ -3626,7 +3606,7 @@
             <div class='form-group'>
                 <label for='totalAllowance' class="control-label">IPA total allowance(S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="totalAllowance" value="<%=(totalAllowance == 0)? "" : df.format(totalAllowance)%>">
+                <input class="form-control" type='text' name="totalAllowance" value="<%=(totalAllowance == 0) ? "" : df.format(totalAllowance)%>">
             </div>
             <div class='form-group'>
                 <label for='allowanceDetails' class="control-label">IPA allowance details:</label>
