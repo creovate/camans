@@ -67,7 +67,7 @@ public class JobDAO {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         String sql = "";
-
+        String finNum = worker.getFinNumber();
         try {
             conn = ConnectionManager.getConnection();
             sql = "SELECT Job_key FROM tbl_job where Worker_FIN_number = ?";

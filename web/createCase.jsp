@@ -23,6 +23,9 @@
 
     String status = (String) request.getSession().getAttribute("status");
     request.getSession().removeAttribute("status");
+
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+    java.util.Date today = new java.util.Date();
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -111,7 +114,7 @@
                     messages: {
                         facePic: "Please choose an image file with a size less than 1M only.",
                         finNum: {
-                        remote: "FIN Number already exists. Please check again"
+                            remote: "FIN Number already exists. Please check again"
                         }
 
                     },
@@ -208,8 +211,6 @@
                 <div class="col-xs-12 col-md-12" >
                     <%
                         if (status == null) {
-                            java.util.Date date = new java.util.Date();
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 
                     %>
                     <form method="post" action="createNewCase.do" class="form-horizontal col-md-offset-1 col-md-10" 
@@ -224,7 +225,7 @@
                             <div class="form-group">
                                 <label for="registration_date_In" class=" col-md-3 control-label">Registration Date <span class="required_input">*</span> </label>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control input-append date dateInput" name="registeredDate" value="<%=sdf.format(date)%>"  />
+                                    <input type="text" class="form-control input-append date dateInput" name="registeredDate" value="<%=sdf.format(today)%>"  />
                                 </div>
                             </div>
 
@@ -248,7 +249,7 @@
                             <div class="form-group">
                                 <label for="worker_name" class="col-md-3 control-label " >Name of Worker <span class="required_input">*</span> </label>
                                 <div class=" col-md-6">
-                                    <input type="text" class="form-control required" name="workerName" maxlength="20" required/>
+                                    <input type="text" class="form-control required" name="workerName" maxlength="50" required/>
                                 </div>
                             </div>
 
@@ -386,13 +387,13 @@
 
                             <div class="form-group">
                                 <label for="job_start_date" class="col-md-3 control-label" >When Job Start?</label>
-                                <div class=" col-md-3">
+                                <div class=" col-md-6">
                                     <input type="text" class="form-control" name="jobStartDate" maxlength="50"/></div>
                             </div>
 
                             <div class="form-group">
                                 <label for="job_end_date" class="col-md-3 control-label">When Job End?</label>
-                                <div class=" col-md-3">
+                                <div class=" col-md-6">
                                     <input type="text"  class="form-control" name="jobEndDate" maxlength="50"/></div>
                             </div>
 
@@ -431,6 +432,15 @@
                             <br/>
                             <h2 id="title">Case Creation Form - Problem Profile</h2> 
                             <br/>
+
+                            <div class='form-group'>
+                                <label for='isdate' class="col-md-3 control-label">Problem Registration Date<span class="required_input">*</span>: </label>
+
+                                <div class='col-md-6'>
+                                    <input class="form-control dateInput" type='text' name="problemRegDate" value="<%=sdf.format(today)%>" required>
+                                </div>
+                                <br/>
+                            </div>
 
                             <div class="form-group">
                                 <label for="prob_type" class="col-md-3 control-label">Problem Presented<span class="required_input">*</span></label>

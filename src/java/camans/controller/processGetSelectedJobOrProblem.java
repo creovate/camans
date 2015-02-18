@@ -35,29 +35,28 @@ public class processGetSelectedJobOrProblem extends HttpServlet {
         try {
             String workerFin = request.getParameter("workerFin");
             String selectedType = request.getParameter("selectedType");
-            
-            if(selectedType.equals("job")){
+
+            if (selectedType.equals("job")) {
                 String jobId = request.getParameter("selectedJob");
-                
-                request.setAttribute("worker",workerFin);
-                
-                request.setAttribute("selectedJob", jobId);
-                
-                RequestDispatcher rd = request.getRequestDispatcher("viewWorker.jsp");
-                rd.forward(request, response);
+
+                request.getSession().setAttribute("worker", workerFin);
+
+                request.getSession().setAttribute("selectedJob", jobId);
+
+                request.getSession().setAttribute("tabIndicator", "job");
+                response.sendRedirect("viewWorker.jsp");
                 //response.sendRedirect("viewWorker.jsp");
-                
-            }else if(selectedType.equals("problem")){
+
+            } else if (selectedType.equals("problem")) {
                 String jobKeyStr = request.getParameter("jobKey");
                 String problemId = request.getParameter("selectedProblem");
-                
-                request.setAttribute("worker",workerFin);
-                //request.setAttribute("selectedJob",jobKeyStr);
-                request.setAttribute("selectedProb", problemId);
-                RequestDispatcher rd = request.getRequestDispatcher("viewWorker.jsp");
-                rd.forward(request, response);
+
+                request.getSession().setAttribute("tabIndicator", "problem");
+                request.getSession().setAttribute("worker", workerFin);
+                request.getSession().setAttribute("selectedProb", problemId);
+                response.sendRedirect("viewWorker.jsp");
             }
-        } finally {            
+        } finally {
             out.close();
         }
     }

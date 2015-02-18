@@ -41,16 +41,16 @@ public class processCreateNewCase extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-                     
+
             boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
-            
+
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
             java.util.Date date = new java.util.Date();
             //get FIN & job Key
-            
+
             String finNumber = request.getParameter("workerFinNum");
             String jobKeyStr = request.getParameter("jobKey");
-            
+
             //==========================================//
             //     Worker Info Data Collection
             //==========================================//
@@ -72,7 +72,7 @@ public class processCreateNewCase extends HttpServlet {
             //String passMore = null;
             //String passNumber = null;
             //String passIssueDate = null;
-            
+
             //==========================================//
             //     Job Info Data Collection
             //==========================================//
@@ -91,7 +91,8 @@ public class processCreateNewCase extends HttpServlet {
             //==========================================//
             //     Problem Info Data Collection
             //==========================================//
-             
+            String problemRegDateStr = request.getParameter("problemRegDate");
+            java.sql.Date problemRegDate = null;
             String problemName = request.getParameter("problem");
             String problemMore = request.getParameter("problemMore");
             String problemRemark = request.getParameter("problemRemark");
@@ -103,14 +104,14 @@ public class processCreateNewCase extends HttpServlet {
             String lawfirmName = request.getParameter("lawfirmName");
             // end of to confirm these
             Problem problem = null;
-            
+
             //=======================================//
             //   Server Side Validation Parameters
             //=======================================//
             boolean pass = true; //Assume validaiton pass first
             String err = null; //to store error msg
             String success = null;//to store success msg
-            
+
             //check that we have a file upload request
             if (isMultiPart) {
                 //==========================================//
@@ -126,7 +127,7 @@ public class processCreateNewCase extends HttpServlet {
                 //          Data Collection
                 //==========================================//
 
-                while(iter.hasNext()) {
+                while (iter.hasNext()) {
                     FileItemStream item = iter.next();
                     if (item.isFormField()) {
                         String fieldName = item.getFieldName();
@@ -149,19 +150,19 @@ public class processCreateNewCase extends HttpServlet {
                         } else if ("nationality".equalsIgnoreCase(fieldName)) {
                             nationality = value;
                         } else if ("nationalityMore".equalsIgnoreCase(fieldName)) {
-                           nationalityMore = value;
-                        }  else if ("dob".equalsIgnoreCase(fieldName)) {
-                           dobStr = value;
-                        }  else if ("employerName".equalsIgnoreCase(fieldName)) {
-                           employerName = value;
-                        }  else if ("workpassType".equalsIgnoreCase(fieldName)) {
+                            nationalityMore = value;
+                        } else if ("dob".equalsIgnoreCase(fieldName)) {
+                            dobStr = value;
+                        } else if ("employerName".equalsIgnoreCase(fieldName)) {
+                            employerName = value;
+                        } else if ("workpassType".equalsIgnoreCase(fieldName)) {
                             workpassType = value;
-                        }  else if ("workpassMore".equalsIgnoreCase(fieldName)) {
+                        } else if ("workpassMore".equalsIgnoreCase(fieldName)) {
                             workpassMore = value;
                         } else if ("jobSector".equalsIgnoreCase(fieldName)) {
                             jobSector = value;
                         } else if ("jobSectorMore".equalsIgnoreCase(fieldName)) {
-                            jobSectorMore = value;    
+                            jobSectorMore = value;
                         } else if ("occupation".equalsIgnoreCase(fieldName)) {
                             occupation = value;
                         } else if ("jobStartDate".equalsIgnoreCase(fieldName)) {
@@ -172,20 +173,22 @@ public class processCreateNewCase extends HttpServlet {
                             tjs = value;
                         } else if ("jobRemark".equalsIgnoreCase(fieldName)) {
                             jobRemark = value;
+                        } else if ("problemRegDate".equalsIgnoreCase(fieldName)) {
+                            problemRegDateStr = value;
                         } else if ("problem".equalsIgnoreCase(fieldName)) {
                             problemName = value;
                         } else if ("problemMore".equalsIgnoreCase(fieldName)) {
                             problemMore = value;
                         } else if ("problemRemark".equalsIgnoreCase(fieldName)) {
                             problemRemark = value;
-                        } 
+                        }
                     } else { //image upload
                         if (!item.getName().equals("")) { //only if there is file
-                            String extension = item.getName().substring(item.getName().lastIndexOf(".")+1);
-                            
-                            if (extension.equalsIgnoreCase("jpeg") || extension.equalsIgnoreCase("jpg") ||
-                                    extension.equalsIgnoreCase("png")|| extension.equalsIgnoreCase("bmp")) {
-                       
+                            String extension = item.getName().substring(item.getName().lastIndexOf(".") + 1);
+
+                            if (extension.equalsIgnoreCase("jpeg") || extension.equalsIgnoreCase("jpg")
+                                    || extension.equalsIgnoreCase("png") || extension.equalsIgnoreCase("bmp")) {
+
                                 //retrieve filePath of the app build folder
                                 String filePath = getServletContext().getRealPath("/");
                                 //to append in image file name
@@ -193,25 +196,29 @@ public class processCreateNewCase extends HttpServlet {
                                 FileOutputStream outStream = null;
                                 InputStream inStream = null;
                                 try {
-                                    File file = new File (filePath + File.separator + "workers");
-                                    if (!file.exists()) {file.mkdir();} //workers file
-                                    file = new File (filePath + File.separator + "workers" + File.separator + finNum);
+                                    File file = new File(filePath + File.separator + "workers");
+                                    if (!file.exists()) {
+                                        file.mkdir();
+                                    } //workers file
+                                    file = new File(filePath + File.separator + "workers" + File.separator + finNum);
                                     //create a image fie directory with workerFinNumber
-                                    if (!file.exists()) {file.mkdir();} //workers/workerFinNumber files
+                                    if (!file.exists()) {
+                                        file.mkdir();
+                                    } //workers/workerFinNumber files
                                     //set the file Name
                                     String fileName = uniqueID + "-xx-" + item.getName();
                                     file = new File(file.getAbsolutePath() + File.separator + fileName);
                                     outStream = new FileOutputStream(file);
                                     inStream = item.openStream();
                                     int bytesRead = 0;
-                                    byte[] buffer  = new byte[1024];
-                                    while((bytesRead = inStream.read(buffer))!= -1){
-                                        outStream.write(buffer,0,bytesRead);
+                                    byte[] buffer = new byte[1024];
+                                    while ((bytesRead = inStream.read(buffer)) != -1) {
+                                        outStream.write(buffer, 0, bytesRead);
                                     }
                                     //set the photoPath for database update
                                     photoPath = "workers/" + finNum + "/" + fileName;
                                     photoName = item.getName();
-                                                                   } catch (Exception e) {
+                                } catch (Exception e) {
                                     out.println("Error:" + e);
                                 } finally {
                                     if (outStream != null) {
@@ -231,12 +238,12 @@ public class processCreateNewCase extends HttpServlet {
                     } //image upload
                 } //while iter.hasNext
             } //isMultipart    
-            
+
             //==========================================//
             //     Server side validation
             //==========================================//
             if (finNum != null) {
-                if (!createdFor.equals("") && createdFor.length() > 20 ) {
+                if (!createdFor.equals("") && createdFor.length() > 20) {
                     pass = false;
                     err += "Created For cannot be longer than 20 characters, ";
                 }
@@ -246,17 +253,28 @@ public class processCreateNewCase extends HttpServlet {
                 }
                 if (finNum.matches("^[G][0-9]{7}[A-Z]") || finNum.matches("^GEN[0-9]{6}")) {
                 } else {
-                    pass = false; 
+                    pass = false;
                     err += "Invalid Fin Number,";
                 }
                 try {
                     java.util.Date tmp = sdf.parse(registeredDateStr);
                     registeredDate = new java.sql.Date(tmp.getTime());
+
                 } catch (ParseException ex) {
                     //out.println(ex);
                     pass = false;
                     err += "Invalid Registered Date Format";
-                }  
+                }
+
+                try {
+                    java.util.Date tmp = sdf.parse(problemRegDateStr);
+                    problemRegDate = new java.sql.Date(tmp.getTime());
+
+                } catch (ParseException ex) {
+                    //out.println(ex);
+                    pass = false;
+                    err += "Invalid Problem Registered Date Format";
+                }
                 if (!dobStr.equals("")) {
                     try {
                         java.util.Date tmp = sdf.parse(dobStr);
@@ -277,15 +295,15 @@ public class processCreateNewCase extends HttpServlet {
                     pass = false;
                     err += "Invalid occupation Format,";
                 }
-                if (jobStartDateStr !=null && jobStartDateStr.length() > 50) {
+                if (jobStartDateStr != null && jobStartDateStr.length() > 50) {
                     pass = false;
                     err += "Job Start Date cannot be more than 50 characters, ";
                 }
-                if (jobEndDateStr !=null && jobEndDateStr.length() > 50) {
+                if (jobEndDateStr != null && jobEndDateStr.length() > 50) {
                     pass = false;
                     err += "Job End Date cannot be more than 50 characters, ";
                 }
-                if (jobRemark !=null && jobRemark.length() > 200) {
+                if (jobRemark != null && jobRemark.length() > 200) {
                     pass = false;
                     err += "Job Remark cannot be more than 200 characters, ";
                 }
@@ -294,44 +312,44 @@ public class processCreateNewCase extends HttpServlet {
                 pass = false;
                 err += "Explain if above is other cannot be more than 50 charcters, ";
             }
-            
-            if (problemRemark != null && problemRemark.length() > 200){
+
+            if (problemRemark != null && problemRemark.length() > 200) {
                 pass = false;
                 err += "Problem Remark cannot be more than 200 characters, ";
             }
             //==========================================//
             //     End of Server side validation
             //==========================================//
-            
+
             //===============================================//
             //      Server Side Valdiation: Errors & Success
             //===============================================//
             //validation pass
             if (pass) {
                 //all fields are correct & parsed to date            
-                if(finNumber != null){
+                if (finNumber != null) {
                     finNum = finNumber;
                     registeredDate = new java.sql.Date(date.getTime());
                     worker = WorkerDAO.retrieveWorkerbyFinNumber(finNumber);
                 } else {
                     //create new Worker Object and add to db
-                    worker = new Worker(finNum, workerName,registeredDate, createdBy, createdFor,
+                    worker = new Worker(finNum, workerName, registeredDate, createdBy, createdFor,
                             gender, nationality, nationalityMore, dob, photoPath);
                     WorkerDAO.addWorker(worker);
                     if (photoPath != null) {
                         //update the attachment database
                         User _user = (User) request.getSession().getAttribute("userLogin");
-                        WorkerAttachment workerAttachment = 
-                                new WorkerAttachment(finNum,photoName,photoPath,_user.getUsername());
+                        WorkerAttachment workerAttachment =
+                                new WorkerAttachment(finNum, photoName, photoPath, _user.getUsername());
                         WorkerComplementsDAO.addAttachmentDetails(workerAttachment);
                     }
                 }
-                
+
                 int jobKey = -1;
-                if(jobKeyStr == null){
+                if (jobKeyStr == null) {
                     //create new Job Object and add to db
                     jobKey = JobDAO.retrieveMaxJobId() + 1;
-                    job = new Job(finNum, jobKey, employerName, workpassType, workpassMore, jobSector, 
+                    job = new Job(finNum, jobKey, employerName, workpassType, workpassMore, jobSector,
                             jobSectorMore, occupation, jobStartDateStr, jobEndDateStr, tjs, jobRemark);
                     //jobKey = job.getJobKey();
                     JobDAO.addJob(worker, job);
@@ -340,44 +358,48 @@ public class processCreateNewCase extends HttpServlet {
                     worker = WorkerDAO.retrieveWorkerbyFinNumber(finNumber);
                     job = JobDAO.retrieveJobByJobId(jobKey);
                 }
-                
+
                 problem = new Problem(finNum, jobKey, registeredDate, problemName,
-                    problemMore, problemRemark, null, null, null, null);
-            
-            
+                        problemMore, problemRemark, null, null, null, null);
+
+
                 ProblemDAO.addProblem(worker, job, problem);
-                
+
                 //===============================================//
                 //     Audit Log
                 //===============================================//
                 User _user = (User) request.getSession().getAttribute("userLogin");
                 String auditChange = job.toString() + "," + problem.toString();
-                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), finNum, 
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), finNum,
                         finNum, "Added", "New Case: " + auditChange);
 
-                UserAuditLogDAO.addUserAuditLog(userAuditLog); 
-                
+                UserAuditLogDAO.addUserAuditLog(userAuditLog);
+
                 //===============================================//
                 //     End of Audit Log
                 //===============================================//
-                
+
             } else { //validation fail
                 request.getSession().setAttribute("errorMsg", err);
                 response.sendRedirect("createCase.jsp");
             }
-            
-            if(finNumber == null){
+
+            if (finNumber == null) {
                 //Redirect Back to CreateNewCase Successful Page
                 success = "success";
-                request.getSession().setAttribute("worker", worker);
-                request.getSession().setAttribute("status",success);
+                
 
-                response.sendRedirect("createCase.jsp");
+                request.getSession().setAttribute("worker", worker);
+                request.getSession().setAttribute("status", success);
+                
+                String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + ") has been successfully created.";
+                request.getSession().setAttribute("successWrkCompMsg", successMsg);
+                response.sendRedirect("viewWorker.jsp?worker=" + worker.getFinNumber());
             } else {
                 //request.getSession().setAttribute("worker", worker);
-                response.sendRedirect("viewWorker.jsp?worker="+finNumber);
+                response.sendRedirect("viewWorker.jsp?worker=" + finNumber);
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             out.println(e);
             //do not proceed & show error page
 

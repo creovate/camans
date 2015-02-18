@@ -21,6 +21,10 @@
     .btn-danger{
         border-radius: 2%;
     }
+    
+    .col-md-12{
+        padding:0;
+    }
 </style>
 <%
     /* data collection */
@@ -410,8 +414,8 @@
                 jobRemark: {
                     validators: {
                         stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            max: 200,
+                            message: 'This field must be less than 200 characters.'
                         }
                     }
                 }
@@ -502,7 +506,7 @@
 <form method="POST" action="editStubs.do" id='worker_stub' class="form complement_detailed_form "  >
     <br/>
     <fieldset disabled>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label">Worker Registration Date: </label>
             </div>
@@ -511,7 +515,7 @@
             </div>
             <br/>
         </div><br/>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label ">Created By: </label>
             </div>
@@ -520,7 +524,7 @@
             </div>
             <br/>
         </div><br/>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label">Created For: </label>
             </div>
@@ -529,7 +533,7 @@
             </div>
             <br/>
         </div><br/>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label">Worker's Name: </label>
             </div>
@@ -538,7 +542,7 @@
             </div>
             <br/>
         </div><br/>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label ">FIN Number: </label>
             </div>
@@ -547,7 +551,7 @@
             </div>
             <br/>
         </div><br/>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for="worker_gender" class="control-label">Gender:</label>
             </div>
@@ -568,7 +572,7 @@
             </div>
             <br/>
         </div><br/>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for="worker_nationality" class="control-label">Nationality</label>
             </div>
@@ -591,17 +595,17 @@
             </div>
             <br/>
         </div><br/>
-        <div class="form-group" id="worker_nationality_other_div" >
+        <div class="form-group col-sm-12 col-md-12">
             <div class='col-md-5'>
                 <label for="worker_nationality_other_In" class="control-label">Explain if above is other</label>
             </div>
             <div class='col-md-7'>
-                <input type="text" class="form-control" name="nationalityMore" value="<%=nationalityMore%>">
+                <textarea class="form-control" name="nationalityMore" rows="3"><%=(nationalityMore == null) ? "" : nationalityMore%></textarea>
             </div>
             <br/>
             <br/>
-        </div>
-        <div class='form-group'>
+        </div><br/>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label">Date of Birth: </label>
             </div>
@@ -633,7 +637,7 @@
 <form method="POST" id='job_stub' action="editStubs.do" class="form complement_detailed_form "  >
     <br/>
     <fieldset disabled>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label">Employer Name: </label>
             </div>
@@ -642,7 +646,7 @@
             </div>
             <br/>
         </div><br/>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for="worker_nationality" class="control-label">WorkpassType</label>
             </div>
@@ -665,17 +669,17 @@
             </div>
             <br/>
         </div><br/>
-        <div class="form-group" id="workpass_other_div" >
+        <div class="form-group  col-sm-12 col-md-12">
             <div class='col-md-5'>
                 <label for="worker_nationality_other_In" class="control-label">Explain if above is other</label>
             </div>
             <div class='col-md-7'>
-                <input type="text" class="form-control" name="wpMore" value="<%=wpMore%>">
+                <textarea class="form-control" name="wpMore" rows="3"><%=(wpMore == null) ? "" : wpMore%></textarea>
             </div>
             <br/>
             <br/>
-        </div>
-        <div class='form-group'>
+        </div><br/>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for="worker_nationality" class="control-label">Job Sector</label>
             </div>
@@ -698,17 +702,17 @@
             </div>
             <br/>
         </div><br/>
-        <div class="form-group" id="jSector_other_div" >
+        <div class="form-group col-sm-12 col-md-12">
             <div class='col-md-5'>
                 <label for="jSecotr_other_In" class="control-label">Explain if above is other</label>
             </div>
             <div class='col-md-7'>
-                <input type="text" class="form-control" name="jobSectorMore" value="<%=wpMore%>">
+                <textarea class="form-control" name="jobSectorMore" rows="3"><%=(jSectorMore == null) ? "" : jSectorMore%></textarea>
             </div>
             <br/>
             <br/>
-        </div>
-        <div class='form-group'>
+        </div><br/>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label">Occupation: </label>
             </div>
@@ -717,7 +721,7 @@
             </div>
             <br/>
         </div><br/>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label">Job Start Date: </label>
             </div>
@@ -726,7 +730,7 @@
             </div>
             <br/>
         </div><br/>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label">Job End Date: </label>
             </div>
@@ -735,7 +739,7 @@
             </div>
             <br/>
         </div><br/>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label">Is This a TJS job?: </label>
             </div>
@@ -744,7 +748,7 @@
             </div>
             <br/>
         </div><br/>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label">Remark about this Job: </label>
             </div>
@@ -778,16 +782,16 @@
 <form method="POST" action="editStubs.do" id='problem_stub' class="form complement_detailed_form "  >
     <br/>
     <fieldset disabled>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label">Problem Registration Date: </label>
             </div>
             <div class='col-md-7'>
-                <input class="form-control dateInput" type='text' name="pRegDate" value="<%=sdf.format(pRegDate)%>">
+                <input class="form-control dateInput" type='text' name="problemRegDate" value="<%=sdf.format(pRegDate)%>">
             </div>
             <br/>
         </div><br/>
-        <div class='form-group'>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for="worker_nationality" class="control-label">Problem:</label>
             </div>
@@ -810,17 +814,17 @@
             </div>
             <br/>
         </div><br/>
-        <div class="form-group" id="workpass_other_div" >
+        <div class="form-group col-sm-12 col-md-12">
             <div class='col-md-5'>
                 <label for="worker_nationality_other_In" class="control-label">Explain if above is other</label>
             </div>
             <div class='col-md-7'>
-                <input type="text" class="form-control" name="problemMore" value="<%=pTypeMore%>">
+                <textarea class="form-control" name="problemMore" rows="3"><%=(pTypeMore == null) ? "" : pTypeMore%></textarea>
             </div>
             <br/>
             <br/>
-        </div>
-        <div class='form-group'>
+        </div><br/>
+        <div class='form-group col-sm-12 col-md-12'>
             <div class='col-md-5'>
                 <label for='isdate' class="control-label">Remark about this Problem: </label>
             </div>
@@ -864,14 +868,14 @@
     <!--Job Profile-->
     <div class="sub_div" id="new_job_profile">
         <br/>
-        <div class="form-group">
+        <div class="form-group col-sm-12 col-md-12">
             <label for="emp_name" class="col-md-5 control-label" >Name of Employer <span class="required_input">*</span> </label>
             <div class=" col-md-7">
                 <input type="text" class="form-control required" name="employerName"/></div><br/><br/>
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group col-sm-12 col-md-12">
             <label for="job_pass_type" class="col-md-5 control-label">Work pass type that comes with the job<span class="required_input">*</span></label>
             <div class=" col-md-7">
                 <select name="workpassType" class="form-control" id="job_pass_type" required>
@@ -889,14 +893,14 @@
 
 
         <!--this to appear only if above is selected as other-->
-        <div class="form-group" id="job_pass_type_other_div" >
+        <div class="form-group col-sm-12 col-md-12" id="job_pass_type_other_div" >
             <label for="job_pass_type_other_In" class="col-md-5 control-label">Explain if above is 'Other'</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="workpassMore"/></div><br/><br/>
-        </div>
+                <textarea class="form-control" name="workpassMore" rows="3"></textarea>
+        </div><br/><br/></div>
 
 
-        <div class="form-group">
+        <div class="form-group col-sm-12 col-md-12">
             <label for="job_sector" class="col-md-5 control-label">Job Sector</label>
             <div class=" col-md-7">
                 <select class="form-control" name="jobSector" id="job_sector" >
@@ -914,34 +918,34 @@
 
 
         <!--this to appear only if above is selected as other-->
-        <div class="form-group" id="job_sector_other_div" >
+        <div class="form-group col-sm-12 col-md-12" id="job_sector_other_div" >
             <label for="job_sector_other_In" class="col-md-5 control-label">Explain if above is 'other'</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="jobSectorMore" /></div><br/><br/>
+                <textarea class="form-control" name="jobSectorMore" rows="3"></textarea></div><br/><br/>
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group col-sm-12 col-md-12">
             <label for="occupation" class="col-md-5 control-label" >Occupation</label>
             <div class=" col-md-7">
                 <input type="text" class="form-control" name="occupation"/></div><br/><br/>
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group col-sm-12 col-md-12">
             <label for="job_start_date" class="col-md-5 control-label" >Start Date</label>
             <div class=" col-md-7">
                 <input type="text" class="form-control" name="jobStartDate"/></div><br/><br/>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-sm-12 col-md-12">
             <label for="job_end_date" class="col-md-5 control-label">End Date</label>
             <div class=" col-md-7">
                 <input type="text"  class="form-control" name="jobEndDate"/></div><br/><br/>
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group col-sm-12 col-md-12">
             <label for="is_tjs" class="col-md-5 control-label">Is this a TJS job?</label>
             <div class=" col-md-7">
                 <select name="tjs" class="form-control">
@@ -952,10 +956,10 @@
         </div>
 
 
-        <div class="form-group" id="job_sector_other_div">
+        <div class="form-group col-sm-12 col-md-12" id="job_sector_other_div">
             <label for="job_remark" class="col-md-5 control-label">Remark</label>
             <div class=" col-md-7">
-                <textarea class='form-control' name='jobRemark' rows='3'><%=jRemark%></textarea> 
+                <textarea class='form-control' name='jobRemark' rows='3'></textarea> 
             </div><br/><br/>
         </div>
 
@@ -974,12 +978,12 @@
     <!--problem profile-->
     <div class="sub_div" id="new_prob_profile" style="display : none">
         <br/>
-        <div class="form-group">
+        <div class="form-group col-sm-12 col-md-12">
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Problem Registration Date<span class="required_input">*</span>:</label>
             <div class=" col-md-7">
                 <input class="form-control dateInput" type='text' name="registeredDate" value="<%=sdf.format(pRegDate)%>" autofocus/></div><br/><br/>
         </div>
-        <div class="form-group">
+        <div class="form-group col-sm-12 col-md-12">
             <label for="prob_type" class="col-md-5 control-label">Problem Type<span class="required_input">*</span></label>
             <div class=" col-md-7"> 
                 <select name="problem" id="prob_type" class="form-control" required>
@@ -997,14 +1001,15 @@
 
 
         <!--this to appear only if above is selected as other-->
-        <div class="form-group" id="prob_type_other_div" >
+        <div class="form-group col-sm-12 col-md-12" id="prob_type_other_div" >
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Explain if above is other</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="problemMore" /></div><br/><br/>
+                <textarea class="form-control" name="problemMore" rows="3"></textarea>
+                </div><br/><br/>
         </div>
 
 
-        <div class="form-group" id="job_sector_other_div" >
+        <div class="form-group col-sm-12 col-md-12" id="job_sector_other_div" >
             <label for="prob_remark" class="col-md-5 control-label">Remark</label>
             <div class=" col-md-7">
                 <textarea class='form-control' name='problemRemark' rows="3"></textarea>
@@ -1037,12 +1042,12 @@
     <!--problem profile-->
     <div class="sub_div" id="new_prob_profile">
         <br/>
-        <div class="form-group">
+        <div class="form-group col-sm-12 col-md-12">
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Problem Registration Date<span class="required_input">*</span>:</label>
             <div class=" col-md-7">
                 <input class="form-control dateInput" type='text' name="registeredDate" value="<%=sdf.format(pRegDate)%>"/></div><br/><br/>
         </div>
-        <div class="form-group">
+        <div class="form-group col-sm-12 col-md-12">
             <label for="prob_type" class="col-md-5 control-label">Problem Type<span class="required_input">*</span></label>
             <div class=" col-md-7"> 
                 <select name="problem" id="prob_type" class="form-control" required>
@@ -1060,14 +1065,14 @@
 
 
         <!--this to appear only if above is selected as other-->
-        <div class="form-group" id="prob_type_other_div" >
+        <div class="form-group col-sm-12 col-md-12" id="prob_type_other_div" >
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Explain if above is other</label>
             <div class=" col-md-7">
-                <input type="text" class="form-control" name="problemMore" /></div><br/><br/>
+                <textarea class="form-control" name="problemMore" rows="3"></textarea></div><br/><br/>
         </div>
 
 
-        <div class="form-group" id="job_sector_other_div" >
+        <div class="form-group col-sm-12 col-md-12" id="job_sector_other_div" >
             <label for="prob_remark" class="col-md-5 control-label">Remark</label>
             <div class=" col-md-7">
                 <textarea class='form-control' name='problemRemark' rows="3"></textarea></div><br/><br/>
@@ -1075,7 +1080,7 @@
 
         <input type="hidden" id="hiddenWorkerFin" name="workerFinNum" value="<%=workerFin%>"/>
         <br/><br/>
-        <div class="form-group">
+        <div class="form-group col-sm-12 col-md-12">
             <button type='button' class="btn cancel_btn" style="bottom: 0">Cancel</button>
             <div class="pull-right">
                 <button  type='submit' class="btn btn-blue">Submit</button>

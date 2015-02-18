@@ -5,32 +5,40 @@
 <%@page import="camans.dao.*"%>
 <%@ include file="protect.jsp"%>
 <%
+    Job latestJob = null;
+    Problem latestProblem = null;
+
+
+    boolean isJob = false;
+    boolean isProblem = false;
+    boolean isBenefit = false;
+    boolean isAttachment = false;
+
     User userLogin = (User) session.getAttribute("userLogin");
     String workerFin = request.getParameter("worker");
     if (workerFin == null) {
-        workerFin = (String) request.getAttribute("worker");
+        workerFin = (String) request.getSession().getAttribute("worker");
     }
+
     Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);
     //request.getSession().removeAttribute("workerTmp");
-    ArrayList<Integer> jobIds = JobDAO.retrieveJobIdsOfWorker(worker);
-    Job latestJob = JobDAO.retrieveJobByJobId(jobIds.get(jobIds.size() - 1));
-    ArrayList<Integer> problemIds = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, latestJob);
-    Problem latestProblem = ProblemDAO.retrieveProblemByProblemId(problemIds.get(problemIds.size() - 1));
 
-    String selectedJob = request.getParameter("selectedJob");
-    if (selectedJob == null) {
-        selectedJob = (String) request.getAttribute("selectedJob");
-    }
+    String selectedJob = (String) request.getSession().getAttribute("selectedJob");
+    request.getSession().removeAttribute("selectedJob");
+
+    String selectedProb = (String) request.getSession().getAttribute("selectedProb");
+    request.getSession().removeAttribute("selectedProb");
+
+    ArrayList<Integer> jobIds = JobDAO.retrieveJobIdsOfWorker(worker);
+    ArrayList<Integer> problemIds = new ArrayList<Integer>();
     if (selectedJob != null) {
         int selectedJobId = Integer.parseInt(selectedJob);
         latestJob = JobDAO.retrieveJobByJobId(selectedJobId);
         problemIds = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, latestJob);
         latestProblem = ProblemDAO.retrieveProblemByProblemId(problemIds.get(problemIds.size() - 1));
-    }
-
-    String selectedProb = request.getParameter("selectedProb");
-    if (selectedProb == null) {
-        selectedProb = (String) request.getAttribute("selectedProb");
+    } else {
+        latestJob = JobDAO.retrieveJobByJobId(jobIds.get(jobIds.size() - 1));
+        problemIds = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, latestJob);
     }
 
     if (selectedProb != null) {
@@ -38,52 +46,64 @@
         latestProblem = ProblemDAO.retrieveProblemByProblemId(selectedProbId);
         int selectedJobId = latestProblem.getJobKey();
         latestJob = JobDAO.retrieveJobByJobId(selectedJobId);
+        problemIds = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, latestJob);
+    } else {
+
+        latestProblem = ProblemDAO.retrieveProblemByProblemId(problemIds.get(problemIds.size() - 1));
     }
 
-    String selectedBenefit = request.getParameter("selectedBenefit");
-    if (selectedBenefit == null) {
-        selectedBenefit = (String) request.getAttribute("selectedBenefit");
-    }
+    //messages
+    String successCaseMsg = (String) request.getSession().getAttribute("successCaseMsg");
+    request.getSession().removeAttribute("successCaseMsg");
 
-    if (selectedBenefit != null) {
-        selectedProb = null;
-        selectedJob = null;
-    }
-
-    
     String successWorkerMsg = (String) request.getSession().getAttribute("successWrkCompMsg");
     request.getSession().removeAttribute("successWrkCompMsg");
 
     String errorWorkerMsg = (String) request.getSession().getAttribute("errorWrkCompMsg");
     request.getSession().removeAttribute("errorWrkCompMsg");
-    
+
     String successJobMsg = (String) request.getSession().getAttribute("successJobCompMsg");
     request.getSession().removeAttribute("successJobCompMsg");
 
     String errorJobMsg = (String) request.getSession().getAttribute("errorJobCompMsg");
     request.getSession().removeAttribute("errorJobCompMsg");
-    
+
     String successProbMsg = (String) request.getSession().getAttribute("successProbCompMsg");
     request.getSession().removeAttribute("successProbCompMsg");
 
     String errorProbMsg = (String) request.getSession().getAttribute("errorProbCompMsg");
     request.getSession().removeAttribute("errorProbCompMsg");
-    
+
     String successBenefitMsg = (String) request.getSession().getAttribute("successBenefitMsg");
     request.getSession().removeAttribute("successBenefitMsg");
 
     String errorBenefitMsg = (String) request.getSession().getAttribute("errorBenefitMsg");
     request.getSession().removeAttribute("errorBenefitMsg");
-    
+
     String successAttachMsg = (String) request.getSession().getAttribute("successAttachMsg");
     request.getSession().removeAttribute("successAttachMsg");
 
     String errorAttachMsg = (String) request.getSession().getAttribute("errAttachMsg");
     request.getSession().removeAttribute("errAttachMsg");
+
+    //tab indicator
+    String tabIndicator = (String) request.getSession().getAttribute("tabIndicator");
+    request.getSession().removeAttribute("tabIndicator");
+
+    if (tabIndicator != null && tabIndicator.equals("job")) {
+        isJob = true;
+    } else if (tabIndicator != null && tabIndicator.equals("problem")) {
+        isProblem = true;
+    } else if (tabIndicator != null && tabIndicator.equals("benefit")) {
+        isBenefit = true;
+    } else if (successAttachMsg != null || errorAttachMsg != null) {
+        isAttachment = true;
+    }
+
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-    
-    String userRole =  userLogin.getRole();
-    
+
+    String userRole = userLogin.getRole();
+
     DecimalFormat df = new DecimalFormat("#,###,###.00");
 %>
 
@@ -122,47 +142,47 @@
 
         <script>
             $(document).ready(function() {
-                if (<%=selectedJob%> !== null) {
-                    $(".complement_tabs").removeClass("active");
-                    $("#job_complement_tab").addClass("active");
-                    $(".tab-pane").removeClass("active");
-                    $("#job_complement").addClass("active");
-                    $("#jobSelected").val('<%=latestJob.getJobKey()%>');
-                }
-                if (<%=selectedProb%> !== null) {
+                if (<%=isProblem%> === true) {
                     $(".complement_tabs").removeClass("active");
                     $("#worker_complement").removeClass("active");
                     $("#job_complement").removeClass("active");
                     $("#problem_complement_tab").addClass("active");
                     $("#problem_complement").addClass("active");
                     $("#problemSelected").val('<%=latestProblem.getProbKey()%>');
-                }
-                if (<%=selectedBenefit%> !== null) {
+
+                } else if (<%=isJob%> === true) {
+                    $(".complement_tabs").removeClass("active");
+                    $("#job_complement_tab").addClass("active");
+                    $(".tab-pane").removeClass("active");
+                    $("#job_complement").addClass("active");
+                    $("#jobSelected").val('<%=latestJob.getJobKey()%>');
+
+                } else if (<%=isBenefit%> === true) {
                     $(".complement_tabs").removeClass("active");
                     $("#worker_complement").removeClass("active");
                     $("#job_complement").removeClass("active");
                     $("#benefit_complement_tab").addClass("active");
                     $("#benefit_complement").addClass("active");
-                }
-                if (<%=successAttachMsg%> !== null || <%=errorAttachMsg%> !== null) {
+
+                } else if (<%=isAttachment%> === true) {
                     $(".complement_tabs").removeClass("active");
                     $("#worker_complement").removeClass("active");
                     $("#job_complement").removeClass("active");
                     $("#benefit_complement").removeClass("active");
                     $("#attachment_complement_tab").addClass("active");
                     $("#attachment_complement").addClass("active");
+
+
                 }
-
             });
-
             $(document).ready(function() {
                 $('[data-toggle=offcanvas]').click(function() {
                     $('.row-offcanvas').toggleClass('active');
                 });
 
                 $('.moreObjs').hide();
-                
-                $('.alert').fadeOut(4000);
+
+                $('.alert').fadeOut(9999);
             });
 
 
@@ -197,12 +217,12 @@
                 color: #006C9A;
 
             }
-            
+
             #side-menu{
                 position: static !important;
             }
-            
-            
+
+
             .table th{
                 text-align: left;
             }
@@ -210,9 +230,14 @@
             .table tr{
                 text-align: left;
             }
-            
-            .tbl-action-col{
+
+            .tbl-20-col{
                 width: 20%;
+                text-align: left;
+            }
+
+            .tbl-25-col{
+                width: 25%;
                 text-align: left;
             }
 
@@ -234,7 +259,7 @@
                 <jsp:include page="include/navbarside.jsp"/>
                 <!--stubs-->
                 <div class="col-md-6" style="left: 50% "  id="worker_profile_div">
-                    <!-- Face Picture -->
+                    <!-- face Picture -->
                     <br/>
                     <div id="worker_profile_pic" class="text-center">
                         <% if (worker.getPhotoPath() == null) {%>
@@ -286,7 +311,7 @@
                             <td class="col-md-6"><%=latestJob.getEmployerName()%></td>
                         </tr>
                         <tr>
-                            <td class="col-md-6">Work Pass</td>
+                            <td class="col-md-6">Work pass</td>
                             <td class="col-md-6"><%=latestJob.getWorkPassType()%></td>
                         </tr>
                         <tr>
@@ -294,7 +319,7 @@
                             <td class="col-md-6"><%=(latestJob.getOccupation() == null) ? "-" : latestJob.getOccupation()%></td>
                         </tr>
                         <tr>
-                            <td class="col-md-6">Start Date</td>
+                            <td class="col-md-6">Start date</td>
                             <td class="col-md-6"><%=(latestJob.getJobStartDate() == null) ? "-" : latestJob.getJobStartDate()%></td>
                         </tr>
                     </table>
@@ -329,15 +354,15 @@
                         </tr>
 
                         <tr>
-                            <td class="col-md-6">Registered Date</td>
+                            <td class="col-md-6">Registered date</td>
                             <td class="col-md-6"><%=sdf.format(latestProblem.getProblemRegisteredDate())%></td>
                         </tr>
                         <tr>
-                            <td class="col-md-6">Injured Date</td>
+                            <td class="col-md-6">Injured date</td>
                             <td class="col-md-6"><%=(injuryDate == null) ? "-" : sdf.format(injuryDate)%></td>
                         </tr>
                         <tr>
-                            <td class="col-md-6">Lead Caseworker</td>
+                            <td class="col-md-6">Lead caseworker</td>
                             <td class="col-md-6"><%=(leadCaseWorkerName == null) ? "-" : leadCaseWorkerName%></td>
                         </tr>
                     </table>
@@ -359,26 +384,43 @@
                                     <% }%>    
                                     <br/>
 
-                                <!-- Worker Complement Success & Error Display --->
+                                    <!-- Worker Complement Success & Error Display --->
 
-                                    <% if (successWorkerMsg != null) { if (!successWorkerMsg.equals("")) {%>
+                                    <%
+
+                                        if (successCaseMsg != null) {
+                                            if (!successCaseMsg.equals("")) {%>
+
+                                    <div class="alert alert-info" role="alert">
+                                        <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+                                        <%=successCaseMsg%>
+                                    </div>
+
+                                    <% }
+                                        }%>
+                                    <%
+                                        if (successWorkerMsg != null) {
+                                            if (!successWorkerMsg.equals("")) {%>
 
                                     <div class="alert alert-info" role="alert">
                                         <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
                                         <%=successWorkerMsg%>
                                     </div>
 
-                                    <% }}%>
-                                    <% if (errorWorkerMsg != null) { if (!errorWorkerMsg.equals("")) { %>
+                                    <% }
+                                        }%>
+                                    <% if (errorWorkerMsg != null) {
+                                            if (!errorWorkerMsg.equals("")) {%>
 
                                     <div class="alert alert-danger" role="alert">
                                         <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
                                         <%=errorWorkerMsg%>
                                     </div>
 
-                                    <% }}%>
+                                    <% }
+                                        }%>
                                     <!-- End of Worker Complement Success & Error Display --->
-                    
+
                                     <div class='row'>
                                         <!--Nickname-->
                                         <div class="panel panel-default">
@@ -411,7 +453,7 @@
                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                 </a>  
                                                             </td>
-                                                            <% if (userRole.equals("Administrator")) { %>
+                                                            <% if (userRole.equals("Administrator")) {%>
                                                             <td class="text-center" style="width:20%"> 
                                                                 <a style="color: black"  data-class="worker" data-value='nickname' 
                                                                    data-nickname='<%=nicknameObj.getId()%>' href="" data-toggle="modal" data-action="delete" 
@@ -419,7 +461,7 @@
                                                                     <span class="glyphicon glyphicon-trash"></span>
                                                                 </a>   
                                                             </td>
-                                                            <% } %>   
+                                                            <% }%>   
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -431,7 +473,7 @@
                                                         <tr>
                                                             <td style="width:80%"><%=nickname%></td>
                                                             <td class="text-center" style="width:20%"><a style="color: black"  data-class="worker" data-title="View Worker's Nickname" data-value='nickname' data-nickname='<%=nicknameObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#nickname_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-                                                            <% if (userRole.equals("Administrator")) { %>
+                                                                    <% if (userRole.equals("Administrator")) {%>
                                                             <td class="text-center" style="width:20%"> 
                                                                 <a style="color: black"  data-class="worker" data-value='nickname' 
                                                                    data-nickname='<%=nicknameObj.getId()%>' href="" data-toggle="modal" data-action="delete" 
@@ -439,7 +481,7 @@
                                                                     <span class="glyphicon glyphicon-trash"></span>
                                                                 </a>   
                                                             </td>
-                                                            <% } %> 
+                                                            <% }%> 
                                                         </tr>
                                                     </table>
                                                 </div>        
@@ -463,7 +505,7 @@
 
                                             <div class="panel-heading">
 
-                                                <h4 class="panel-title">Passport Details 
+                                                <h4 class="panel-title">Passport
                                                     <a href="" id="passportAddBtn" data-toggle="modal" data-target="#passport_pop_up" data-action = "add" data-title="Add A New Passport Details" data-value='passport' data-passport='' data-class="worker"  class="add_btn pop_up_open pull-right">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
@@ -477,11 +519,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Passport Country</th>
-                                                        <th>Passport nbr</th>
-                                                        <th>Issued dt</th>
-                                                        <th>Expiry dt</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class='tbl-20-col'>Passport country</th>
+                                                        <th class='tbl-20-col'>Passport number</th>
+                                                        <th class='tbl-20-col'>Issued date</th>
+                                                        <th class='tbl-20-col'>Expiry date</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -500,18 +542,18 @@
                                                         <td><%=passportNo%></td>
                                                         <td><%=(isDate == null) ? "-" : sdf.format(isDate)%></td>
                                                         <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td>  
-                                                        <td class="tbl-action-col"><a style="color: black" data-value='passport' data-passport='<%=passportDetails.getId()%>' 
-                                                       data-title="View Passport Details" href="" data-toggle="modal" data-class="worker"  data-action="viewedit" 
-                                                       data-target="#passport_pop_up" class="edit_btn pop_up_open">
-                                                        <span class="glyphicon glyphicon-eye-open"></span>
-                                                        </a>
-                                                        <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                        &nbsp;&nbsp;&nbsp;
-                                                        <a style="color:black" data-value='passport' data-passport='<%=passportDetails.getId()%>' 
-                                                        href="" data-toggle="modal" data-class="worker" data-action="delete"
-                                                        data-target="" class="delete_btn pop_up_open">
-                                                          <span class="glyphicon glyphicon-trash"></span></a>
-                                                        <% }%> 
+                                                        <td class="tbl-20-col"><a style="color: black" data-value='passport' data-passport='<%=passportDetails.getId()%>' 
+                                                                                  data-title="View Passport Details" href="" data-toggle="modal" data-class="worker"  data-action="viewedit" 
+                                                                                  data-target="#passport_pop_up" class="edit_btn pop_up_open text-center">
+                                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                                            </a>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color:black" data-value='passport' data-passport='<%=passportDetails.getId()%>' 
+                                                               href="" data-toggle="modal" data-class="worker" data-action="delete"
+                                                               data-target="" class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span></a>
+                                                                <% }%> 
                                                         </td>
                                                     </tr>
                                                     <%
@@ -522,18 +564,18 @@
                                                         <td><%=passportNo%></td>
                                                         <td><%=(isDate == null) ? "-" : sdf.format(isDate)%></td>
                                                         <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td> 
-                                                        <td class="tbl-action-col"><a style="color: black" data-value='passport' data-passport='<%=passportDetails.getId()%>' 
-                                                            data-title="View Passport Details" href="" data-toggle="modal" data-class="worker"  data-action="viewedit" 
-                                                            data-target="#passport_pop_up" class="edit_btn pop_up_open">
-                                                             <span class="glyphicon glyphicon-eye-open"></span>
-                                                         </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                             &nbsp;&nbsp;&nbsp;
-                                                             <a style="color:black" data-value='passport' data-passport='<%=passportDetails.getId()%>' 
-                                                                data-title="View Passport Details" href="" data-toggle="modal" data-class="worker" data-action="delete"
-                                                                data-target="" class="delete_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-trash"></span></a>
-                                                             <% }%>    
+                                                        <td class="tbl-20-col"><a style="color: black" data-value='passport' data-passport='<%=passportDetails.getId()%>' 
+                                                                                  data-title="View Passport Details" href="" data-toggle="modal" data-class="worker"  data-action="viewedit" 
+                                                                                  data-target="#passport_pop_up" class="edit_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                                            </a>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color:black" data-value='passport' data-passport='<%=passportDetails.getId()%>' 
+                                                               data-title="View Passport Details" href="" data-toggle="modal" data-class="worker" data-action="delete"
+                                                               data-target="" class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span></a>
+                                                                <% }%>    
                                                         </td>
                                                     </tr>
                                                     <%
@@ -568,7 +610,7 @@
                                                             String phNum = phNumObj.getPhNumber();
                                                             java.util.Date obsolete = phNumObj.getObseleteDate();
                                                             if (obsolete != null) {
-                                                                phNum = phNum + " (Obsoleted on " + sdf.format(obsolete) + ")";
+                                                                phNum = phNum + " (Obsolete on " + sdf.format(obsolete) + ")";
                                                             } else {
                                                                 phNum += " (Active)";
                                                             }
@@ -587,7 +629,7 @@
                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                 </a>
                                                             </td>
-                                                            <% if (userRole.equals("Administrator")) { %>
+                                                            <% if (userRole.equals("Administrator")) {%>
                                                             <td class="text-center" style="width:20%">
                                                                 <a style="color: black" data-value='sgphone'
                                                                    data-sgphone='<%=phId%>' href="" data-toggle="modal" data-target="#sgPhone_pop_up" data-class="worker" 
@@ -595,7 +637,7 @@
                                                                     <span class="glyphicon glyphicon-trash"></span>
                                                                 </a>
                                                             </td>
-                                                            <% } %>  
+                                                            <% }%>  
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -607,7 +649,7 @@
                                                         <tr>
                                                             <td style="width:80%"><%=phNum%></td>
                                                             <td class="text-center" style="width:20%"><a style="color: black" data-value='sgphone' data-title="View Singapore Phone Number Details" data-sgphone='<%=phId%>' href="" data-toggle="modal" data-target="#sgPhone_pop_up" data-class="worker"  data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-                                                            <% if (userRole.equals("Administrator")) { %>
+                                                                    <% if (userRole.equals("Administrator")) {%>
                                                             <td class="text-center" style="width:20%">
                                                                 <a style="color: black" data-value='sgphone'
                                                                    data-sgphone='<%=phId%>' href="" data-toggle="modal" data-target="#sgPhone_pop_up" data-class="worker" 
@@ -615,7 +657,7 @@
                                                                     <span class="glyphicon glyphicon-trash"></span>
                                                                 </a>
                                                             </td>
-                                                            <% } %> 
+                                                            <% }%> 
                                                         </tr>
                                                     </table> 
                                                 </div>
@@ -634,7 +676,6 @@
                                             </div>
                                         </div>
 
-
                                         <!--Home Country Phone Number-->
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
@@ -644,7 +685,7 @@
                                                        href="" data-toggle="modal" data-class="worker"  
                                                        data-target="#homePhone_pop_up" class="edit_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right>
-                                                    </span></a></h4>
+                                                        </span></a></h4>
 
 
                                             </div>
@@ -655,10 +696,10 @@
                                                 %>
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Phone nbr</th>
-                                                        <th>Owner of nbr</th>
+                                                        <th>Phone number</th>
+                                                        <th>Owner of number</th>
                                                         <th>Obsolete</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -674,20 +715,20 @@
                                                         <td><%=phNum%></td>
                                                         <td><%=owner%></td>
                                                         <td><%=(oDate == null) ? "-" : sdf.format(oDate)%></td>
-                                                        <td class="tbl-action-col"><a style="color: black" data-value='homephone' 
-                                                                data-title="View Home Country Phone Number Details" data-homephone='<%=homePhNum.getId()%>' href="" data-toggle="modal" 
-                                                                data-class="worker"  data-target="#homePhone_pop_up" data-action="viewedit" 
-                                                                class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
-                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                             &nbsp;&nbsp;&nbsp;
-                                                             <a style="color: black" data-value='homephone' 
-                                                                data-homephone='<%=homePhNum.getId()%>' href="" data-toggle="modal" 
-                                                                data-class="worker"  data-target="" data-action="delete" 
-                                                                class="delete_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-trash"></span>
-                                                             </a>
-                                                             <% }%>     
+                                                        <td class="tbl-20-col"><a style="color: black" data-value='homephone' 
+                                                                                  data-title="View Home Country Phone Number Details" data-homephone='<%=homePhNum.getId()%>' href="" data-toggle="modal" 
+                                                                                  data-class="worker"  data-target="#homePhone_pop_up" data-action="viewedit" 
+                                                                                  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                            </a>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black" data-value='homephone' 
+                                                               data-homephone='<%=homePhNum.getId()%>' href="" data-toggle="modal" 
+                                                               data-class="worker"  data-target="" data-action="delete" 
+                                                               class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                            </a>
+                                                            <% }%>     
                                                         </td>
                                                     </tr>     
                                                     <%} else {%>
@@ -695,24 +736,24 @@
                                                         <td><%=phNum%></td>
                                                         <td><%=owner%></td>
                                                         <td><%=(oDate == null) ? "-" : sdf.format(oDate)%></td>
-                                                        <td class="tbl-action-col"><a style="color: black" data-value='homephone' data-homephone='<%=homePhNum.getId()%>' 
-                                                            data-title="View Home Country Phone Number Details" href="" data-toggle="modal" data-class="worker"  data-target="#homePhone_pop_up" 
-                                                            data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                        <td class="tbl-20-col"><a style="color: black" data-value='homephone' data-homephone='<%=homePhNum.getId()%>' 
+                                                                                  data-title="View Home Country Phone Number Details" href="" data-toggle="modal" data-class="worker"  data-target="#homePhone_pop_up" 
+                                                                                  data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                             &nbsp;&nbsp;&nbsp;
-                                                             <a style="color: black" data-value='homephone' 
-                                                                data-homephone='<%=homePhNum.getId()%>' href="" data-toggle="modal" 
-                                                                data-class="worker"  data-target="" data-action="delete" 
-                                                                class="delete_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-trash"></span>
-                                                             </a>
-                                                             <% }%>     
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black" data-value='homephone' 
+                                                               data-homephone='<%=homePhNum.getId()%>' href="" data-toggle="modal" 
+                                                               data-class="worker"  data-target="" data-action="delete" 
+                                                               class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                            </a>
+                                                            <% }%>     
                                                         </td>                                                    </tr>    
-                                                    <%
+                                                        <%
+                                                                }
                                                             }
-                                                        }
-                                                    %>
+                                                        %>
                                                 </table>
                                                 <%
                                                     if (homePhIds.size() > 1) {
@@ -725,7 +766,6 @@
                                                 %>
                                             </div>
                                         </div>
-
 
                                         <!--Singapore Address-->
                                         <div class="panel panel-default">
@@ -744,7 +784,7 @@
                                                             String address = sgAddress.getAddress();
                                                             java.util.Date oDate = sgAddress.getObseleteDate();
                                                             if (oDate != null) {
-                                                                address += " (Obsoleted on " + sdf.format(oDate) + ")";
+                                                                address += " (Obsolete on " + sdf.format(oDate) + ")";
                                                             } else {
                                                                 address += " (Active)";
                                                             }
@@ -762,7 +802,7 @@
                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                 </a>
                                                             </td>
-                                                            <% if (userRole.equals("Administrator")) { %>
+                                                            <% if (userRole.equals("Administrator")) {%>
                                                             <td class="text-center" style="width:20%">
                                                                 <a style="color: black" data-class="worker" data-title="View Singapore Address Details" 
                                                                    data-value='sgadd' data-sgadd='<%=sgAddress.getId()%>' href="" data-toggle="modal" 
@@ -770,7 +810,7 @@
                                                                     <span class="glyphicon glyphicon-trash"></span>
                                                                 </a>
                                                             </td>
-                                                            <% } %> 
+                                                            <% }%> 
                                                         </tr>
                                                     </table> 
                                                 </div>
@@ -781,7 +821,7 @@
                                                         <tr>
                                                             <td style="width:87%"><%=address%></td>
                                                             <td class="text-center" style="width:13%"><a style="color: black" data-class="worker" data-title="View Singapore Address Details" data-value='sgadd' data-sgadd='<%=sgAddress.getId()%>' href="" data-toggle="modal" data-target="#sgAdd_pop_up" data-action="viewedit" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-                                                            <% if (userRole.equals("Administrator")) { %>
+                                                                    <% if (userRole.equals("Administrator")) {%>
                                                             <td class="text-center" style="width:20%">
                                                                 <a style="color: black" data-class="worker" data-title="View Singapore Address Details" 
                                                                    data-value='sgadd' data-sgadd='<%=sgAddress.getId()%>' href="" data-toggle="modal" 
@@ -789,7 +829,7 @@
                                                                     <span class="glyphicon glyphicon-trash"></span>
                                                                 </a>
                                                             </td>
-                                                            <% } %>
+                                                            <% }%>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -807,8 +847,6 @@
                                                 %>
                                             </div>
                                         </div>
-
-
 
                                         <!--Home Country Address-->
                                         <div class="panel panel-default">
@@ -828,7 +866,7 @@
                                                             String address = addressObj.getAddress();
                                                             java.util.Date oDate = addressObj.getObseleteDate();
                                                             if (oDate != null) {
-                                                                address += " (Obsoleted on " + sdf.format(oDate) + ")";
+                                                                address += " (Obsolete on " + sdf.format(oDate) + ")";
                                                             } else {
                                                                 address += " (Active)";
                                                             }
@@ -846,7 +884,7 @@
                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                 </a>
                                                             </td>
-                                                            <% if (userRole.equals("Administrator")) { %>
+                                                            <% if (userRole.equals("Administrator")) {%>
                                                             <td class="text-center" style="width:20%">
                                                                 <a style="color: black" data-class="worker" 
                                                                    data-value='homeadd' data-homeadd='<%=addressObj.getId()%>' href="" data-toggle="modal" 
@@ -854,7 +892,7 @@
                                                                     <span class="glyphicon glyphicon-trash"></span>
                                                                 </a>
                                                             </td>
-                                                            <% } %>
+                                                            <% }%>
                                                         </tr>
                                                     </table>
 
@@ -866,7 +904,7 @@
                                                         <tr>
                                                             <td style="width:90%"><%=address%></td>
                                                             <td class="text-center" style="width:10%"><a style="color: black" data-class="worker" data-title="View Home Country Address Details" data-value='homeadd' data-homeadd='<%=addressObj.getId()%>' href="" data-toggle="modal" data-action="viewedit" data-target="#homeAdd_pop_up" class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-                                                            <% if (userRole.equals("Administrator")) { %>
+                                                                    <% if (userRole.equals("Administrator")) {%>
                                                             <td class="text-center" style="width:20%">
                                                                 <a style="color: black" data-class="worker" 
                                                                    data-value='homeadd' data-homeadd='<%=addressObj.getId()%>' href="" data-toggle="modal" 
@@ -874,7 +912,7 @@
                                                                     <span class="glyphicon glyphicon-trash"></span>
                                                                 </a>
                                                             </td>
-                                                            <% } %>
+                                                            <% }%>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -911,11 +949,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Type</th>
-                                                        <th>Email/QQ etc</th>
-                                                        <th>Owner of address</th>
-                                                        <th>Obsolete</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class='tbl-20-col'>Type</th>
+                                                        <th class='tbl-20-col'>Email/QQ etc</th>
+                                                        <th class='tbl-20-col'>Owner of address</th>
+                                                        <th class='tbl-20-col'>Obsolete</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -933,44 +971,44 @@
                                                         <td><%=contactAdd%></td>
                                                         <td><%=owner%></td>
                                                         <td><%=(obDate == null) ? "Still In use" : sdf.format(obDate)%></td>
-                                                        <td class="tbl-action-col"><a style="color: black" data-class="worker"  data-value='digcontact' 
-                                                            data-title="View Digital Contact Details" data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" 
-                                                            data-action="viewedit" data-target="#digContact_pop_up" class="edit_btn pop_up_open">
-                                                             <span class="glyphicon glyphicon-eye-open"></span>
+                                                        <td class="tbl-20-col"><a style="color: black" data-class="worker"  data-value='digcontact' 
+                                                                                  data-title="View Digital Contact Details" data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" 
+                                                                                  data-action="viewedit" data-target="#digContact_pop_up" class="edit_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black" data-class="worker"  data-value='digcontact' 
-                                                            data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" 
-                                                            data-action="delete" data-target="#" class="delete_btn pop_up_open">
-                                                             <span class="glyphicon glyphicon-trash"></span>
+                                                               data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" 
+                                                               data-action="delete" data-target="#" class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span>
                                                             </a>
                                                             <% }%>    
                                                         </td>                                                    </tr>
-                                                    <%} else {%>
+                                                        <%} else {%>
                                                     <tr>
                                                         <td><%=type%></td>
                                                         <td><%=contactAdd%></td>
                                                         <td><%=owner%></td>
                                                         <td><%=(obDate == null) ? "Still In use" : sdf.format(obDate)%></td>
-                                                        <td class="tbl-action-col"><a style="color: black" data-class="worker"  data-value='digcontact' 
-                                                                data-title="View Digital Contact Details" data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" 
-                                                                data-action="viewedit" data-target="#digContact_pop_up" class="edit_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                                             </a>
-                                                             <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                             &nbsp;&nbsp;&nbsp;
-                                                             <a style="color: black" data-class="worker"  data-value='digcontact' 
-                                                            data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" 
-                                                            data-action="delete" data-target="#" class="delete_btn pop_up_open">
-                                                             <span class="glyphicon glyphicon-trash"></span>
+                                                        <td class="tbl-20-col"><a style="color: black" data-class="worker"  data-value='digcontact' 
+                                                                                  data-title="View Digital Contact Details" data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" 
+                                                                                  data-action="viewedit" data-target="#digContact_pop_up" class="edit_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                             <% }%>    
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black" data-class="worker"  data-value='digcontact' 
+                                                               data-digcontact='<%=digitalContact.getId()%>' href="" data-toggle="modal" 
+                                                               data-action="delete" data-target="#" class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                            </a>
+                                                            <% }%>    
                                                         </td>                                                    </tr>
-                                                    <%
+                                                        <%
+                                                                }
                                                             }
-                                                        }
-                                                    %>
+                                                        %>
                                                 </table>
                                                 <%
                                                     if (digitalContactsIds.size() > 1) {
@@ -1002,11 +1040,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>NOK Name</th>
-                                                        <th>How related</th>
-                                                        <th>NOK phone</th>
-                                                        <th>NOK Other Contact</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class='tbl-20-col'>NOK name</th>
+                                                        <th class="tbl-20-col">How related</th>
+                                                        <th class='tbl-20-col'>NOK phone</th>
+                                                        <th class='tbl-20-col'>NOK other contact</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -1014,6 +1052,11 @@
                                                             WorkerNextOfKin nextOfKins = WorkerComplementsDAO.retrieveWorkerNextOfKinById(nextOfKinsIds.get(i));
                                                             String name = nextOfKins.getName();
                                                             String relationship = nextOfKins.getRelation();
+
+                                                            if (relationship.length() > 60) {
+                                                                relationship = relationship.substring(0, 60) + "...";
+                                                            }
+
                                                             String phNum = nextOfKins.getPhoneNumber();
                                                             String otherContact = nextOfKins.getDigital();
                                                             if (i < nextOfKinsIds.size() - 1) {
@@ -1024,20 +1067,20 @@
                                                         <td><%=(relationship == null) ? "" : relationship%></td>
                                                         <td><%=(phNum == null) ? "" : phNum%></td>
                                                         <td><%=(otherContact == null) ? "" : otherContact%></td>
-                                                        <td class="tbl-action-col"><a style="color: black"  data-class="worker" data-value='nok' 
-                                                                data-title="View Next of Kin Details" data-nok='<%=nextOfKins.getId()%>' href="" data-toggle="modal" data-target="#nok_pop_up" 
-                                                                data-action="viewedit" class="edit_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                                             </a>
-                                                             <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                             &nbsp;&nbsp;&nbsp;
-                                                             <a style="color: black"  data-class="worker" data-value='nok' 
-                                                                data-nok='<%=nextOfKins.getId()%>' href="" data-toggle="modal" data-target="#nok_pop_up" 
-                                                                data-action="delete" class="delete_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-trash"></span>
-                                                             </a>
-                                                             <% }%>    
-                                                         </td>
+                                                        <td class="tbl-20-col"><a style="color: black"  data-class="worker" data-value='nok' 
+                                                                                  data-title="View Next of Kin Details" data-nok='<%=nextOfKins.getId()%>' href="" data-toggle="modal" data-target="#nok_pop_up" 
+                                                                                  data-action="viewedit" class="edit_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                                            </a>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black"  data-class="worker" data-value='nok' 
+                                                               data-nok='<%=nextOfKins.getId()%>' href="" data-toggle="modal" data-target="#nok_pop_up" 
+                                                               data-action="delete" class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                            </a>
+                                                            <% }%>    
+                                                        </td>
 
                                                     </tr>
                                                     <%
@@ -1048,20 +1091,20 @@
                                                         <td><%=(relationship == null) ? "" : relationship%></td>
                                                         <td><%=(phNum == null) ? "" : phNum%></td>
                                                         <td><%=(otherContact == null) ? "" : otherContact%></td>
-                                                        <td class="tbl-action-col"><a style="color: black"  data-class="worker" data-value='nok' 
-                                                                data-title="View Next of Kin Details" data-nok='<%=nextOfKins.getId()%>' href="" data-toggle="modal" data-target="#nok_pop_up" 
-                                                                data-action="viewedit" class="edit_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                                             </a>
-                                                             <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                             &nbsp;&nbsp;&nbsp;
-                                                             <a style="color: black"  data-class="worker" data-value='nok' 
-                                                                data-nok='<%=nextOfKins.getId()%>' href="" data-toggle="modal" data-target="#nok_pop_up" 
-                                                                data-action="delete" class="delete_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-trash"></span>
-                                                             </a>
-                                                             <% }%>    
-                                                         </td>
+                                                        <td class="tbl-20-col"><a style="color: black"  data-class="worker" data-value='nok' 
+                                                                                  data-title="View Next of Kin Details" data-nok='<%=nextOfKins.getId()%>' href="" data-toggle="modal" data-target="#nok_pop_up" 
+                                                                                  data-action="viewedit" class="edit_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                                            </a>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black"  data-class="worker" data-value='nok' 
+                                                               data-nok='<%=nextOfKins.getId()%>' href="" data-toggle="modal" data-target="#nok_pop_up" 
+                                                               data-action="delete" class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                            </a>
+                                                            <% }%>    
+                                                        </td>
                                                     </tr>
                                                     <%
                                                             }
@@ -1086,7 +1129,7 @@
                                             <div class="panel-heading">
 
                                                 <h4 class="panel-title">Family Members
-                                                    <a data-value='familymember' data-class="worker"  data-familymember='' href="" data-title="Add A New Family Member" data-action = "add" data-toggle="modal" data-target="#familyMember_pop_up" class="edit_btn pop_up_open">
+                                                    <a data-value='familymember' data-class="worker"  data-familymember='' href="" data-title="Add A New family Member" data-action = "add" data-toggle="modal" data-target="#familyMember_pop_up" class="edit_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
@@ -1098,11 +1141,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>FamMem Name</th>
-                                                        <th>How related</th>
-                                                        <th>FamMem phone</th>
-                                                        <th>FamMem Other Contact</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class='tbl-20-col'>FamMem name</th>
+                                                        <th class="tbl-20-col">How related</th>
+                                                        <th class='tbl-20-col'>FamMem phone</th>
+                                                        <th class='tbl-20-col'>FamMem other contact</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -1121,20 +1164,20 @@
                                                         <td><%=relationship%></td>
                                                         <td><%=phNum%></td>
                                                         <td><%=otherContact%></td>
-                                                        <td class="tbl-action-col"><a style="color: black" data-class="worker"  data-value='familymember' 
-                                                                data-title="View Family Member Details" data-familymember='<%=familyMember.getId()%>' href="" data-toggle="modal" 
-                                                                data-action="viewedit" data-target="#familyMember_pop_up" class="edit_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                                             </a>
-                                                             <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                             &nbsp;&nbsp;&nbsp;
-                                                             <a style="color: black" data-class="worker"  data-value='familymember' 
-                                                                data-familymember='<%=familyMember.getId()%>' href="" data-toggle="modal" 
-                                                                data-action="delete" data-target="#" class="delete_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-trash"></span>
-                                                             </a>
-                                                             <% }%>    
-                                                         </td>
+                                                        <td class="tbl-20-col"><a style="color: black" data-class="worker"  data-value='familymember' 
+                                                                                  data-title="View family Member Details" data-familymember='<%=familyMember.getId()%>' href="" data-toggle="modal" 
+                                                                                  data-action="viewedit" data-target="#familyMember_pop_up" class="edit_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                                            </a>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black" data-class="worker"  data-value='familymember' 
+                                                               data-familymember='<%=familyMember.getId()%>' href="" data-toggle="modal" 
+                                                               data-action="delete" data-target="#" class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                            </a>
+                                                            <% }%>    
+                                                        </td>
                                                     </tr>
                                                     <%
                                                     } else {
@@ -1144,20 +1187,20 @@
                                                         <td><%=relationship%></td>
                                                         <td><%=phNum%></td>
                                                         <td><%=otherContact%></td>
-                                                        <td class="tbl-action-col"><a style="color: black" data-class="worker"  data-value='familymember' 
-                                                                data-title="View Family Member Details" data-familymember='<%=familyMember.getId()%>' href="" data-toggle="modal" 
-                                                                data-action="viewedit" data-target="#familyMember_pop_up" class="edit_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                                             </a>
-                                                             <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                             &nbsp;&nbsp;&nbsp;
-                                                             <a style="color: black" data-class="worker"  data-value='familymember' 
-                                                                data-familymember='<%=familyMember.getId()%>' href="" data-toggle="modal" 
-                                                                data-action="delete" data-target="#" class="delete_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-trash"></span>
-                                                             </a>
-                                                             <% }%>    
-                                                         </td>
+                                                        <td class="tbl-20-col"><a style="color: black" data-class="worker"  data-value='familymember' 
+                                                                                  data-title="View family Member Details" data-familymember='<%=familyMember.getId()%>' href="" data-toggle="modal" 
+                                                                                  data-action="viewedit" data-target="#familyMember_pop_up" class="edit_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                                            </a>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black" data-class="worker"  data-value='familymember' 
+                                                               data-familymember='<%=familyMember.getId()%>' href="" data-toggle="modal" 
+                                                               data-action="delete" data-target="#" class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                            </a>
+                                                            <% }%>    
+                                                        </td>
                                                     </tr>
                                                     <%
                                                             }
@@ -1182,7 +1225,7 @@
                                             <div class="panel-heading">
 
                                                 <h4 class="panel-title">Friends In Singapore
-                                                    <a data-value='sgfri' data-sgfri='' data-class="worker"  href="" data-toggle="modal" data-title="Add A New Friend in Singapore" data-action = "add" data-target="#sgFri_pop_up" class="edit_btn pop_up_open">
+                                                    <a data-value='sgfri' data-sgfri='' data-class="worker"  href="" data-toggle="modal" data-title="Add A New friend in Singapore" data-action = "add" data-target="#sgFri_pop_up" class="edit_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
@@ -1194,11 +1237,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Friend Name</th>
-                                                        <th>Friend phone</th>
-                                                        <th>How related</th>
-                                                        <th>Friend remarks</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class='tbl-20-col'>Friend name</th>
+                                                        <th class='tbl-20-col'>Friend phone</th>
+                                                        <th class="tbl-20-col">How related</th>
+                                                        <th class='tbl-20-col'>Friend remarks</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -1217,20 +1260,20 @@
                                                         <td><%=relationship%></td>
                                                         <td><%=phNum%></td>
                                                         <td><%=(obDate == null) ? "" : sdf.format(obDate)%></td>
-                                                        <td class="tbl-action-col"><a style="color: black" data-class="worker"  data-value='sgfri' 
-                                                                data-title="View Details of Friend in Singapore" data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#sgFri_pop_up" 
-                                                                data-action="viewedit" class="edit_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                                             </a>
-                                                             <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                             &nbsp;&nbsp;&nbsp;
-                                                             <a style="color: black" data-class="worker"  data-value='sgfri' 
-                                                                data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#" 
-                                                                data-action="delete" class="delete_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-trash"></span>
-                                                             </a>
-                                                             <% }%>    
-                                                         </td>    
+                                                        <td class="tbl-20-col"><a style="color: black" data-class="worker"  data-value='sgfri' 
+                                                                                  data-title="View Details of friend in Singapore" data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#sgFri_pop_up" 
+                                                                                  data-action="viewedit" class="edit_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                                            </a>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black" data-class="worker"  data-value='sgfri' 
+                                                               data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#" 
+                                                               data-action="delete" class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                            </a>
+                                                            <% }%>    
+                                                        </td>    
                                                     </tr>
                                                     <%
                                                     } else {
@@ -1240,20 +1283,20 @@
                                                         <td><%=relationship%></td>
                                                         <td><%=phNum%></td>
                                                         <td><%=(obDate == null) ? "" : sdf.format(obDate)%></td>
-                                                        <td class="tbl-action-col"><a style="color: black" data-class="worker"  data-value='sgfri' 
-                                                                data-title="View Details of Friend in Singapore" data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#sgFri_pop_up" 
-                                                                data-action="viewedit" class="edit_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                                             </a>
-                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                             &nbsp;&nbsp;&nbsp;
-                                                             <a style="color: black" data-class="worker"  data-value='sgfri' 
-                                                                data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#" 
-                                                                data-action="delete" class="delete_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-trash"></span>
-                                                             </a>
-                                                             <% }%> 
-                                                         </td>
+                                                        <td class="tbl-20-col"><a style="color: black" data-class="worker"  data-value='sgfri' 
+                                                                                  data-title="View Details of friend in Singapore" data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#sgFri_pop_up" 
+                                                                                  data-action="viewedit" class="edit_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                                            </a>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black" data-class="worker"  data-value='sgfri' 
+                                                               data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#" 
+                                                               data-action="delete" class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                            </a>
+                                                            <% }%> 
+                                                        </td>
                                                     </tr>
                                                     <%
                                                             }
@@ -1290,10 +1333,10 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Main Language</th>
+                                                        <th>Main language</th>
                                                         <th>Spoken English</th>
 
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -1309,20 +1352,20 @@
                                                         <td><%=mlanguage%></td>
                                                         <td><%=engStd%></td>
 
-                                                        <td class="tbl-action-col"><a style="color: black"  data-class="worker" data-value='language' data-title='View Details of Worker Language' 
-                                                               data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" 
-                                                               data-action="viewedit" class="edit_btn pop_up_open">
+                                                        <td class="tbl-20-col"><a style="color: black"  data-class="worker" data-value='language' data-title='View Details of Worker Language' 
+                                                                                  data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" 
+                                                                                  data-action="viewedit" class="edit_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                        
-                                                        <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                          &nbsp;&nbsp;&nbsp;
-                                                          <a style="color: black"  data-class="worker" data-value='language'
+
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black"  data-class="worker" data-value='language'
                                                                data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" 
                                                                data-action="delete" class="delete_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span>
                                                             </a>
-                                                          <% }%> 
+                                                            <% }%> 
                                                         </td>   
                                                     </tr>
                                                     <%
@@ -1332,20 +1375,20 @@
                                                         <td><%=mlanguage%></td>
                                                         <td><%=engStd%></td>
 
-                                                        <td class="tbl-action-col"><a style="color: black"  data-class="worker" data-value='language' data-title='View Details of Worker Language' 
-                                                               data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" 
-                                                               data-action="viewedit" class="edit_btn pop_up_open">
+                                                        <td class="tbl-20-col"><a style="color: black"  data-class="worker" data-value='language' data-title='View Details of Worker Language' 
+                                                                                  data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" 
+                                                                                  data-action="viewedit" class="edit_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                     
-                                                        <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                          &nbsp;&nbsp;&nbsp;
-                                                          <a style="color: black"  data-class="worker" data-value='language'
+
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black"  data-class="worker" data-value='language'
                                                                data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" 
                                                                data-action="delete" class="delete_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span>
                                                             </a>
-                                                          <% }%>
+                                                            <% }%>
                                                         </td>   
                                                     </tr>
                                                     <%
@@ -1370,7 +1413,7 @@
 
                                             <div class="panel-heading">
 
-                                                <h4 class="panel-title">Bank Account Details
+                                                <h4 class="panel-title">Bank Account
                                                     <a data-value='bankacc' data-class="worker"  data-bankacc='' href="" data-toggle="modal" data-title='Add A New Bank Account Details' data-action = "add" data-target="#bankAcc_pop_up" class="edit_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
@@ -1383,11 +1426,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Bank Name</th>
-                                                        <th>Account Name</th>
-                                                        <th>Account Nbr</th>
-                                                        <th>Obsolete</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class='tbl-20-col'>Bank name</th>
+                                                        <th class='tbl-20-col'>Account name</th>
+                                                        <th class='tbl-20-col'>Account number</th>
+                                                        <th class='tbl-20-col'>Obsolete</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -1416,20 +1459,20 @@
                                                             }
 
                                                         %>
-                                                        <td class="tbl-action-col"><a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' href="" 
-                                                                data-toggle="modal" data-class="worker"  data-target="#bankAcc_pop_up" 
-                                                                data-action="viewedit" class="edit_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                             &nbsp;&nbsp;&nbsp;
-                                                             <a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' href="" 
-                                                                data-title="View Bank Account Details" data-toggle="modal" data-class="worker"  data-target="#" 
-                                                                data-action="delete" class="delete_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-trash"></span>
-                                                             </a>
-                                                             <% }%>     
-                                                         </td>
+                                                        <td class="tbl-20-col"><a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' href="" 
+                                                                                  data-toggle="modal" data-class="worker"  data-target="#bankAcc_pop_up" 
+                                                                                  data-action="viewedit" class="edit_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                                            </a>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' href="" 
+                                                               data-title="View Bank Account Details" data-toggle="modal" data-class="worker"  data-target="#" 
+                                                               data-action="delete" class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                            </a>
+                                                            <% }%>     
+                                                        </td>
                                                     </tr>
                                                     <%
                                                     } else {
@@ -1450,20 +1493,20 @@
                                                             }
 
                                                         %>
-                                                        <td class="tbl-action-col"><a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' 
-                                                                data-title="View Bank Account Details" href="" data-toggle="modal" data-class="worker"  data-target="#bankAcc_pop_up" 
-                                                                data-action="viewedit" class="edit_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                                             </a>
-                                                             <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                             &nbsp;&nbsp;&nbsp;
-                                                             <a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' href="" 
-                                                                data-toggle="modal" data-class="worker"  data-target="#" 
-                                                                data-action="delete" class="delete_btn pop_up_open">
-                                                                 <span class="glyphicon glyphicon-trash"></span>
-                                                             </a>
-                                                             <% }%>    
-                                                         </td>
+                                                        <td class="tbl-20-col"><a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' 
+                                                                                  data-title="View Bank Account Details" href="" data-toggle="modal" data-class="worker"  data-target="#bankAcc_pop_up" 
+                                                                                  data-action="viewedit" class="edit_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                                            </a>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black" data-value='bankacc' data-bankacc='<%=bankAcct.getId()%>' href="" 
+                                                               data-toggle="modal" data-class="worker"  data-target="#" 
+                                                               data-action="delete" class="delete_btn pop_up_open">
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                            </a>
+                                                            <% }%>    
+                                                        </td>
                                                     </tr>
                                                     <%
                                                             }
@@ -1489,28 +1532,32 @@
                                     <br/>
                                     <!-- Job Complement Success & Error Display --->
 
-                                    <% if (successJobMsg != null) { if (!successJobMsg.equals("")) {%>
+                                    <% if (successJobMsg != null) {
+                                            if (!successJobMsg.equals("")) {%>
 
                                     <div class="alert alert-info" role="alert">
                                         <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
                                         <%=successJobMsg%>
                                     </div>
 
-                                    <% }}%>
-                                    <% if (errorJobMsg != null) { if (!errorJobMsg.equals("")) { %>
+                                    <% }
+                                        }%>
+                                    <% if (errorJobMsg != null) {
+                                            if (!errorJobMsg.equals("")) {%>
 
                                     <div class="alert alert-danger" role="alert">
                                         <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
                                         <%=errorJobMsg%>
                                     </div>
 
-                                    <% }}%>
+                                    <% }
+                                        }%>
                                     <!-- End of Job Complement Success & Error Display --->
                                     <div class="row">
                                         <form method="POST" action="changeToSelected">
-                                            <div class="form-group">
+                                            <div class="form-group col-md-12">
                                                 <label for="jobSelected" class="col-md-1 control-label">Select Job:</label>
-                                                <div class="col-md-6">
+                                                <div class="col-md-5">
                                                     <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
                                                     <input type="hidden" name="selectedType" value="job"/>
                                                     <select class="form-control " id="jobSelected" name="selectedJob" required>
@@ -1519,7 +1566,7 @@
                                                                 int Id = jobIds.get(i);
                                                                 Job tempJob = JobDAO.retrieveJobByJobId(Id);
                                                                 String jobEmp = tempJob.getEmployerName();
-                                                                if ((i + 1) == jobIds.size()) {
+                                                                if (Id == latestJob.getJobKey()) {
                                                         %>
                                                         <option value="<%=Id%>" selected><%=jobEmp%></option>
                                                         <%
@@ -1533,7 +1580,6 @@
 
                                                     </select>
                                                 </div>
-
                                                 <button type='submit' onclick="" class="btn btn-blue  col-md-1">Submit</button>
                                                 <button type='button' data-title="Add New Job" data-action="add" data-value="job" class="btn btn-blue profile_details  pull-right">Add New Job</button>
                                             </div>
@@ -1554,7 +1600,7 @@
                                             <div class="panel-heading">
 
 
-                                                <h4 class="panel-title">Currently Held Pass Details
+                                                <h4 class="panel-title">Currently Held Pass
                                                     <a style="color: black" data-class="job"  data-value='passdetails' data-passdetails='' href="" data-title="Add A New Pass Details" data-toggle="modal" data-target="#passdetails_pop_up" data-action="add" class="view_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
@@ -1568,11 +1614,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Pass Type</th>
-                                                        <th>Pass Nbr</th>
-                                                        <th>Issue dt</th>
-                                                        <th>Expiry dt</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class="tbl-20-col">Pass type</th>
+                                                        <th class="tbl-20-col">Pass number</th>
+                                                        <th class="tbl-20-col">Issue date</th>
+                                                        <th class="tbl-20-col">Expiry date</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -1594,17 +1640,17 @@
                                                         <td><%=(isDate == null) ? "-" : sdf.format(isDate)%></td>
                                                         <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td>
 
-                                                        <td class="tbl-action-col"><a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" 
-                                                               data-title="View Pass Details" href="" data-toggle="modal" data-action="viewedit" 
-                                                               data-target="#passdetails_pop_up" class="edit_btn pop_up_open">
+                                                        <td class="tbl-20-col"><a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" 
+                                                                                  data-title="View Pass Details" href="" data-toggle="modal" data-action="viewedit" 
+                                                                                  data-target="#passdetails_pop_up" class="edit_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span></a>
-                                                        <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                        &nbsp;&nbsp;&nbsp;
-                                                          <a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" 
+                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" 
                                                                href="" data-toggle="modal" data-action="delete" 
                                                                data-target="#passdetails_pop_up" class="delete_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span></a>
-                                                        <% }%>
+                                                                <% }%>
                                                         </td>
                                                     </tr>
                                                     <%
@@ -1615,18 +1661,18 @@
                                                         <td><%=passNo%></td>
                                                         <td><%=(isDate == null) ? "-" : sdf.format(isDate)%></td>
                                                         <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td>
-                                                        <td class="tbl-action-col"><a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" 
-                                                               data-title="View Pass Details" href="" data-toggle="modal" data-action="viewedit" 
-                                                               data-target="#passdetails_pop_up" class="edit_btn pop_up_open">
+                                                        <td class="tbl-20-col"><a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" 
+                                                                                  data-title="View Pass Details" href="" data-toggle="modal" data-action="viewedit" 
+                                                                                  data-target="#passdetails_pop_up" class="edit_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
-                                                          <a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" 
+                                                            <a style="color: black" data-class="job"  data-value="passdetails" data-passdetails="<%=tempPass.getId()%>" 
                                                                href="" data-toggle="modal" data-action="delete" 
                                                                data-target="#passdetails_pop_up" class="delete_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span></a>
-                                                        <% }%>  
+                                                                <% }%>  
                                                         </td>
                                                     </tr>
                                                     <%
@@ -1651,7 +1697,7 @@
 
                                             <div class="panel-heading">
 
-                                                <h4 class="panel-title">IPA Details
+                                                <h4 class="panel-title">IPA
                                                     <a style="color: black" data-value='ipa' data-ipa='' href="" data-toggle="modal" data-class="job" data-title="Add A New IPA Pass" data-target="#ipa_pop_up" data-action="add" class="view_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
@@ -1665,11 +1711,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Specified workpass</th>
-                                                        <th>Applic dt</th>
-                                                        <th>Employer</th>
-                                                        <th>Basic Sal</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class="tbl-20-col">Specified workpass</th>
+                                                        <th class="tbl-20-col">Applic date</th>
+                                                        <th class="tbl-20-col">Employer</th>
+                                                        <th class="tbl-20-col">Basic sal</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -1688,21 +1734,21 @@
                                                         <td><%=ipaPass%></td>
                                                         <td><%=(ipaAppDate == null) ? "-" : sdf.format(ipaAppDate)%></td>
                                                         <td><%=empName%></td>
-                                                        <td><%=(salary == 0.0) ? "-" : df.format(salary) %></td>
+                                                        <td><%=(salary == 0.0) ? "" : df.format(salary)%></td>
                                                         <td>
                                                             <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' data-title="View IPA Pass Details"
                                                                data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
                                                                data-action="viewedit" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>'
                                                                data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
                                                                data-action="delete" class="delete_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span>
                                                             </a>
-                                                        <% }%>   
+                                                            <% }%>   
                                                         </td>
                                                     </tr>
                                                     <%
@@ -1712,21 +1758,21 @@
                                                         <td><%=ipaPass%></td>
                                                         <td><%=(ipaAppDate == null) ? "-" : sdf.format(ipaAppDate)%></td>
                                                         <td><%=empName%></td>
-                                                        <td><%=(salary == 0.0)? "-" : df.format(salary)%></td>
+                                                        <td><%=(salary == 0.0) ? "" : df.format(salary)%></td>
                                                         <td>
                                                             <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' data-title="View IPA Pass Details"
                                                                data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
                                                                data-action="viewedit" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
-                                                          <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>'
+                                                            <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>'
                                                                data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
                                                                data-action="delete" class="delete_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span>
                                                             </a>
-                                                        <% }%>   
+                                                            <% }%>   
                                                         </td>
                                                     </tr>
                                                     <%
@@ -1765,11 +1811,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Who promised</th>
-                                                        <th>How related</th>
-                                                        <th>When promised</th>
-                                                        <th>Where promised</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class="tbl-20-col">Who promised</th>
+                                                        <th class="tbl-20-col">How related</th>
+                                                        <th class="tbl-20-col">When promised</th>
+                                                        <th class="tbl-20-col">Where promised</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -1778,6 +1824,10 @@
 
                                                             String verbalName = assurance.getVerbalName();
                                                             String verbalRelation = assurance.getVerbalRelationship();
+
+                                                            if (verbalRelation.length() > 60) {
+                                                                verbalRelation = verbalRelation.substring(0, 60) + "...";
+                                                            }
                                                             String verbalWhen = assurance.getWhen();
                                                             String verbalWhere = assurance.getWhere();
                                                             String verbalContent = assurance.getContent();
@@ -1795,13 +1845,13 @@
                                                                href="" data-toggle="modal" data-target="#assurance_pop_up" data-action="viewedit" 
                                                                class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black" data-value='assurance' data-assurance='<%=assurance.getId()%>'  data-class="job"
                                                                href="" data-toggle="modal" data-target="#assurance_pop_up" data-action="delete" 
                                                                class="delete_btn pop_up_open"><span class="glyphicon glyphicon-trash"></span>
                                                             </a>
-                                                        <% }%>   
+                                                            <% }%>   
                                                         </td>
                                                     </tr>
                                                     <%
@@ -1818,7 +1868,7 @@
                                                                href="" data-toggle="modal" data-target="#assurance_pop_up" data-action="viewedit" 
                                                                class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black" data-value='assurance' data-assurance='<%=assurance.getId()%>'  data-class="job"
                                                                href="" data-toggle="modal" data-target="#assurance_pop_up" data-action="delete" 
@@ -1863,11 +1913,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Contract Dt</th>
-                                                        <th>Where Signed</th>
-                                                        <th>Opposite Party</th>
-                                                        <th>Basic Sal</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class="tbl-20-col">Contract date</th>
+                                                        <th class="tbl-20-col">Where signed</th>
+                                                        <th class="tbl-20-col">Opposite party</th>
+                                                        <th class="tbl-20-col">Basic sal</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -1880,33 +1930,33 @@
                                                             if (i < empContractIdsList.size() - 1) {
                                                     %>
                                                     <tr class="other_contract moreObjs">
-                                                       
-                                                        <td><%=(contraDate==null)?"-":sdf.format(contraDate)%></td>
+
+                                                        <td><%=(contraDate == null) ? "-" : sdf.format(contraDate)%></td>
                                                         <td><%=contraWhere%></td>
                                                         <td><%=contraName%></td>
                                                         <td><%=contraSalary%></td>
 
-                                                        <td class="tbl-action-col"><a style="color: black"  data-class="job" data-value='empcontract' data-title="View Employment Contract Details"
-                                                               data-empcontract='<%=empContract.getId()%>' href="" 
-                                                               data-toggle="modal" data-target="#empcontract_pop_up" 
-                                                               data-action="viewedit" class="view_btn pop_up_open">
+                                                        <td class="tbl-20-col"><a style="color: black"  data-class="job" data-value='empcontract' data-title="View Employment Contract Details"
+                                                                                  data-empcontract='<%=empContract.getId()%>' href="" 
+                                                                                  data-toggle="modal" data-target="#empcontract_pop_up" 
+                                                                                  data-action="viewedit" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span></a>
-                                                        <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black"  data-class="job" data-value='empcontract'
                                                                data-empcontract='<%=empContract.getId()%>' href="" 
                                                                data-toggle="modal" data-target="#empcontract_pop_up" 
                                                                data-action="delete" class="delete_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span></a>
-                                                        <% }%> 
+                                                                <% }%> 
                                                         </td>
                                                     </tr>
                                                     <%
                                                     } else {
                                                     %>
                                                     <tr>
-                                                        
-                                                        <td><%=(contraDate==null)?"-":sdf.format(contraDate)%></td>
+
+                                                        <td><%=(contraDate == null) ? "-" : sdf.format(contraDate)%></td>
                                                         <td><%=contraWhere%></td>
                                                         <td><%=contraName%></td>
                                                         <td><%=contraSalary%></td>
@@ -1918,14 +1968,14 @@
                                                                data-action="viewedit" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black"  data-class="job" data-value='empcontract'
                                                                data-empcontract='<%=empContract.getId()%>' href="" 
                                                                data-toggle="modal" data-target="#empcontract_pop_up" 
                                                                data-action="delete" class="delete_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span></a>
-                                                            <% }%>    
+                                                                <% }%>    
                                                         </td>
                                                     </tr>
                                                     <%
@@ -1965,11 +2015,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Agency Name</th>
-                                                        <th>Key Person Name</th>
-                                                        <th>S$ Paid</th>
-                                                        <th>Where Paid</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class="tbl-20-col">Agency name</th>
+                                                        <th class="tbl-20-col">Key person name</th>
+                                                        <th class="tbl-20-col">S$ paid</th>
+                                                        <th class="tbl-20-col">Where paid</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -1987,7 +2037,7 @@
                                                     <tr class="other_agent moreObjs">
                                                         <td><%=agentName%></td>
                                                         <td><%=agentPName%></td>
-                                                        <td><%=(agentPaidAmt == 0.0)? "-": df.format(agentPaidAmt) %></td>
+                                                        <td><%=(agentPaidAmt == 0.0) ? "" : df.format(agentPaidAmt)%></td>
                                                         <td><%=agentFWhere%></td>
 
                                                         <td>
@@ -1995,13 +2045,13 @@
                                                                href="" data-toggle="modal" data-target="#agent_pop_up" data-action="viewedit" 
                                                                class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black" data-value='agent' data-agent='<%=agent.getID()%>'  data-class="job"
                                                                href="" data-toggle="modal" data-target="#agent_pop_up" data-action="delete" 
                                                                class="delete_btn pop_up_open"><span class="glyphicon glyphicon-trash"></span>
                                                             </a>
-                                                        <% }%>    
+                                                            <% }%>    
                                                         </td>
                                                     </tr>
                                                     <%
@@ -2010,7 +2060,7 @@
                                                     <tr>
                                                         <td><%=agentName%></td>
                                                         <td><%=agentPName%></td>
-                                                        <td><%=(agentPaidAmt == 0.0)? "-" : df.format(agentPaidAmt)%></td>
+                                                        <td><%=(agentPaidAmt == 0.0) ? "" : df.format(agentPaidAmt)%></td>
                                                         <td><%=agentFWhere%></td>
 
                                                         <td>
@@ -2018,13 +2068,13 @@
                                                                href="" data-toggle="modal" data-target="#agent_pop_up" data-action="viewedit" 
                                                                class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black" data-value='agent' data-agent='<%=agent.getID()%>'  data-class="job"
                                                                href="" data-toggle="modal" data-target="#agent_pop_up" data-action="delete" 
                                                                class="delete_btn pop_up_open"><span class="glyphicon glyphicon-trash"></span>
                                                             </a>
-                                                        <% }%>    
+                                                            <% }%>    
                                                         </td>
                                                     </tr>
                                                     <%
@@ -2049,7 +2099,7 @@
 
                                             <div class="panel-heading">
 
-                                                <h4 class="panel-title">Employer Details
+                                                <h4 class="panel-title">Employer
                                                     <a style="color: black" data-class="job"  data-value='empdetails' data-empdetails='' href="" data-title="Add A New Employer" data-toggle="modal" data-target="#empdetails_pop_up" data-action="add" class="view_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
@@ -2063,11 +2113,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Employer Name</th>
-                                                        <th>Employer ID</th>
-                                                        <th>Phone/email</th>
-                                                        <th>Key Persons</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class="tbl-20-col">Employer name</th>
+                                                        <th class="tbl-20-col">Employer ID</th>
+                                                        <th class="tbl-20-col">Phone/email</th>
+                                                        <th class="tbl-20-col">Key persons</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -2086,17 +2136,17 @@
                                                         <td><%=empId%></td>
                                                         <td><%=empContact%></td>
                                                         <td><%=empKeyPerson%></td>
-                                                        <td class="tbl-action-col"><a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
-                                                               data-title="View Employer Details" href="" data-toggle="modal" data-target="#empdetails_pop_up" 
-                                                               data-action="viewedit" class="view_btn pop_up_open">
+                                                        <td class="tbl-20-col"><a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
+                                                                                  data-title="View Employer Details" href="" data-toggle="modal" data-target="#empdetails_pop_up" 
+                                                                                  data-action="viewedit" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span></a>
-                                                        <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
                                                                href="" data-toggle="modal" data-target="#empdetails_pop_up" 
                                                                data-action="delete" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span></a>
-                                                        <% }%> 
+                                                                <% }%> 
                                                         </td>
                                                     </tr>
                                                     <%
@@ -2107,17 +2157,17 @@
                                                         <td><%=empId%></td>
                                                         <td><%=empContact%></td>
                                                         <td><%=empKeyPerson%></td>
-                                                        <td class="tbl-action-col"><a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
-                                                               data-title="View Employer Details" href="" data-toggle="modal" data-target="#empdetails_pop_up" 
-                                                               data-action="viewedit" class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                        <td class="tbl-20-col"><a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
+                                                                                  data-title="View Employer Details" href="" data-toggle="modal" data-target="#empdetails_pop_up" 
+                                                                                  data-action="viewedit" class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                               <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black"  data-class="job" data-value='empdetails' data-empdetails='<%=jobEmp.getId()%>' 
                                                                href="" data-toggle="modal" data-target="#empdetails_pop_up" 
                                                                data-action="delete" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span></a>
-                                                        <% }%> 
+                                                                <% }%> 
                                                         </td>
                                                     </tr>
                                                     <%
@@ -2142,7 +2192,7 @@
 
                                             <div class="panel-heading">
 
-                                                <h4 class="panel-title">Work Place Details
+                                                <h4 class="panel-title">Work Place
                                                     <a style="color: black" data-value='wplace' data-wplace='' href="" data-toggle="modal"  data-class="job" data-title="Add A New Workplace" data-target="#wplace_pop_up" data-action="add" class="view_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
@@ -2156,11 +2206,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Workplace Type</th>
-                                                        <th>Employer controlled</th>
-                                                        <th>When start here</th>
-                                                        <th>When cease here</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class="tbl-20-col">Workplace type</th>
+                                                        <th class="tbl-20-col">Employer controlled</th>
+                                                        <th class="tbl-20-col">When start here</th>
+                                                        <th class="tbl-20-col">When cease here</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -2186,14 +2236,14 @@
                                                                data-action="viewedit" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black" data-value='wplace' data-wplace='<%=workPlace.getId()%>' data-class="job" 
                                                                href="" data-toggle="modal" data-target="#wplace_pop_up" 
                                                                data-action="delete" class="delete_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span>
                                                             </a>
-                                                        <% }%>     
+                                                            <% }%>     
                                                         </td>
                                                     </tr>
                                                     <%
@@ -2211,14 +2261,14 @@
                                                                data-action="viewedit" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black" data-value='wplace' data-wplace='<%=workPlace.getId()%>' data-class="job" 
                                                                href="" data-toggle="modal" data-target="#wplace_pop_up" 
                                                                data-action="delete" class="delete_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-trash"></span>
                                                             </a>
-                                                        <% }%>     
+                                                            <% }%>     
                                                         </td>
                                                     </tr>
                                                     <%
@@ -2258,11 +2308,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>How found this job</th>
-                                                        <th>Dt Arrive Sg</th>
-                                                        <th>This first job here?</th>
-                                                        <th>First came to Sg</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class="tbl-20-col">How found this job</th>
+                                                        <th class="tbl-20-col">Date arrived Sg</th>
+                                                        <th class="tbl-20-col">This first job here?</th>
+                                                        <th class="tbl-20-col">First came to Sg</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -2281,17 +2331,17 @@
                                                         <td><%=historyFirstJob%></td>
                                                         <td><%=historyArrYear%></td>
 
-                                                        <td class="tbl-action-col"><a style="color: black" data-value='whistory' data-whistory='<%=history.getId()%>' 
-                                                               href="" data-title="View Work History Details" data-toggle="modal" 
-                                                               data-class="job" data-target="#whistory_pop_up" data-action="viewedit" 
-                                                               class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                        <td class="tbl-20-col"><a style="color: black" data-value='whistory' data-whistory='<%=history.getId()%>' 
+                                                                                  href="" data-title="View Work History Details" data-toggle="modal" 
+                                                                                  data-class="job" data-target="#whistory_pop_up" data-action="viewedit" 
+                                                                                  class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black" data-value='whistory' data-whistory='<%=history.getId()%>' 
                                                                href="" data-toggle="modal" 
                                                                data-class="job" data-target="#whistory_pop_up" data-action="delete" 
                                                                class="delete_btn pop_up_open"><span class="glyphicon glyphicon-trash"></span></a>
-                                                        <% }%>    
+                                                                <% }%>    
                                                         </td>
                                                     </tr>
                                                     <%
@@ -2303,18 +2353,18 @@
                                                         <td><%=historyFirstJob%></td>
                                                         <td><%=historyArrYear%></td>
 
-                                                        <td class="tbl-action-col"><a style="color: black" data-value='whistory' data-whistory='<%=history.getId()%>' href="" 
-                                                               data-title="View Work History Details" data-toggle="modal"  data-class="job" 
-                                                               data-target="#whistory_pop_up" data-action="viewedit" class="view_btn pop_up_open">
+                                                        <td class="tbl-20-col"><a style="color: black" data-value='whistory' data-whistory='<%=history.getId()%>' href="" 
+                                                                                  data-title="View Work History Details" data-toggle="modal"  data-class="job" 
+                                                                                  data-target="#whistory_pop_up" data-action="viewedit" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black" data-value='whistory' data-whistory='<%=history.getId()%>' 
                                                                href="" data-toggle="modal" 
                                                                data-class="job" data-target="#whistory_pop_up" data-action="delete" 
                                                                class="delete_btn pop_up_open"><span class="glyphicon glyphicon-trash"></span></a>
-                                                            <% }%>    
+                                                                <% }%>    
                                                         </td>
                                                     </tr>
                                                     <%
@@ -2353,11 +2403,11 @@
 
                                                 <table class="table table-condensed">
                                                     <tr>
-                                                        <th>Employer provide?</th>
-                                                        <th>Type</th>
-                                                        <th>Location</th>
-                                                        <th>When Existed</th>
-                                                        <th class="tbl-action-col">Action</th>
+                                                        <th class="tbl-20-col">Employer provide?</th>
+                                                        <th class="tbl-20-col">Type</th>
+                                                        <th class="tbl-20-col">Location</th>
+                                                        <th class="tbl-20-col">When ended</th>
+                                                        <th class="tbl-20-col">Action</th>
                                                     </tr>
 
                                                     <%
@@ -2376,16 +2426,16 @@
                                                         <td><%=accomLocation%></td>
                                                         <td><%=accomEnd%></td>
 
-                                                        <td class="tbl-action-col"><a style="color: black" data-value='waccom' data-waccom='<%=accomodation.getId()%>'  data-class="job"  href="" data-toggle="modal" data-target="#waccom_pop_up" data-action="viewedit" data-title="View Accommodation Details"
-                                                               class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                        <td class="tbl-20-col"><a style="color: black" data-value='waccom' data-waccom='<%=accomodation.getId()%>'  data-class="job"  href="" data-toggle="modal" data-target="#waccom_pop_up" data-action="viewedit" data-title="View Accommodation Details"
+                                                                                  class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black" data-value='waccom' data-waccom='<%=accomodation.getId()%>'  data-class="job"  href="" 
                                                                data-toggle="modal" data-target="#waccom_pop_up" data-action="delete" 
                                                                class="delete_btn pop_up_open"><span class="glyphicon glyphicon-trash"></span>
                                                             </a>
-                                                        <% }%>    
+                                                            <% }%>    
                                                         </td>
                                                     </tr>
                                                     <%
@@ -2397,16 +2447,16 @@
                                                         <td><%=accomLocation%></td>
                                                         <td><%=accomEnd%></td>
 
-                                                        <td class="tbl-action-col"><a style="color: black" data-value='waccom' data-waccom='<%=accomodation.getId()%>' data-title="View Accommodation Details" data-class="job"  href="" data-toggle="modal" data-target="#waccom_pop_up" data-action="viewedit" 
-                                                               class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                        <td class="tbl-20-col"><a style="color: black" data-value='waccom' data-waccom='<%=accomodation.getId()%>' data-title="View Accommodation Details" data-class="job"  href="" data-toggle="modal" data-target="#waccom_pop_up" data-action="viewedit" 
+                                                                                  class="view_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                             </a>
-                                                            <% if (userLogin.getRole().equals("Administrator")) { %>
+                                                            <% if (userLogin.getRole().equals("Administrator")) {%>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <a style="color: black" data-value='waccom' data-waccom='<%=accomodation.getId()%>'  data-class="job"  href="" 
                                                                data-toggle="modal" data-target="#waccom_pop_up" data-action="delete" 
                                                                class="delete_btn pop_up_open"><span class="glyphicon glyphicon-trash"></span>
                                                             </a>
-                                                        <% }%>    
+                                                            <% }%>    
                                                         </td>
                                                     </tr>
                                                     <%
@@ -2435,24 +2485,28 @@
                                     <br/>
                                     <!-- Problem Complement Success & Error Display --->
 
-                                    <% if (successProbMsg != null) { if (!successProbMsg.equals("")) {%>
+                                    <% if (successProbMsg != null) {
+                                            if (!successProbMsg.equals("")) {%>
 
                                     <div class="alert alert-info" role="alert">
                                         <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
                                         <%=successProbMsg%>
                                     </div>
 
-                                    <% }}%>
-                                    <% if (errorProbMsg != null) { if (!errorProbMsg.equals("")) { %>
+                                    <% }
+                                        }%>
+                                    <% if (errorProbMsg != null) {
+                                            if (!errorProbMsg.equals("")) {%>
 
                                     <div class="alert alert-danger" role="alert">
                                         <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
                                         <%=errorProbMsg%>
                                     </div>
 
-                                    <% }}%>
+                                    <% }
+                                        }%>
                                     <!-- End of Problem Complement Success & Error Display --->
-                                    
+
                                     <div class="row">
                                         <form method="POST" action='changeToSelected'>
                                             <div class="form-group">
@@ -2470,7 +2524,7 @@
                                                                 String problemType = tempProb.getProblem();
                                                                 java.util.Date tempDate = tempProb.getProblemRegisteredDate();
 
-                                                                if (tempProb == latestProblem) {
+                                                                if (Id == latestProblem.getProbKey()) {
                                                         %>
                                                         <option value="<%=Id%>" selected><%=problemType%></option>
                                                         <%
@@ -2531,11 +2585,11 @@
 
                                                                     <table class="table table-condensed">
                                                                         <tr>
-                                                                            <th>Aggrav Issue</th>
-                                                                            <th>Explain if other</th>
-                                                                            <th>Loss Value</th>
-                                                                            <th class="tbl-action-col">Remarks</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th class="tbl-20-col">Aggrav issue</th>
+                                                                            <th class="tbl-20-col">Explain if other</th>
+                                                                            <th class="tbl-20-col">Loss value</th>
+                                                                            <th class="tbl-20-col">Remarks</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -2544,9 +2598,12 @@
 
                                                                                 String issue = aggravIs.getAggravatingIssue();
                                                                                 String issueMore = aggravIs.getAggravatingIssueMore();
+                                                                                if (issueMore.length() > 60) {
+                                                                                    issueMore = issueMore.substring(0, 60) + "...";
+                                                                                }
 
                                                                                 String remark = aggravIs.getAggravatingRemark();
-                                                                                if(remark.length() > 60 ){
+                                                                                if (remark.length() > 60) {
                                                                                     remark = remark.substring(0, 60) + "...";
                                                                                 }
                                                                                 double loss = aggravIs.getAggravatingLoss();
@@ -2555,7 +2612,7 @@
                                                                         <tr class="other_aggravissue moreObjs">
                                                                             <td><%=issue%></td>
                                                                             <td><%=(issueMore == null) ? "" : issueMore%></td>
-                                                                            <td><%=(loss == 0) ? "-" : df.format(loss)%></td>
+                                                                            <td><%=(loss == 0) ? "" : df.format(loss)%></td>
                                                                             <td><%=remark%></td>
                                                                             <td>
                                                                                 <a style="color: black" data-value='aggravissue' data-class="problem" data-title="View Aggravating Issue Details" 
@@ -2563,13 +2620,13 @@
                                                                                    data-target="#aggravIssue_pop_up" class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
-                                                                                    <a style="color: black" data-value='aggravissue' data-class="problem"
-                                                                                        data-aggravissue='<%=aggravIs.getId()%>' href="#" data-toggle="modal" data-action="delete" 
-                                                                                        data-target="#aggravIssue_pop_up" class="delete_btn pop_up_open">
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
+                                                                                <a style="color: black" data-value='aggravissue' data-class="problem"
+                                                                                   data-aggravissue='<%=aggravIs.getId()%>' href="#" data-toggle="modal" data-action="delete" 
+                                                                                   data-target="#aggravIssue_pop_up" class="delete_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-trash"></span>
-                                                                                    </a>
+                                                                                </a>
                                                                                 <% }%>     
                                                                             </td>
                                                                         </tr>
@@ -2579,20 +2636,20 @@
                                                                         <tr>
                                                                             <td><%=issue%></td>
                                                                             <td><%=(issueMore == null) ? "" : issueMore%></td>
-                                                                            <td><%=(loss == 0) ? "-" : df.format(loss)%></td>
+                                                                            <td><%=(loss == 0) ? "" : df.format(loss)%></td>
                                                                             <td><%=remark%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-value='aggravissue' data-class="problem" data-title="View Aggravating Issue Details" 
-                                                                                   data-aggravissue='<%=aggravIs.getId()%>' href="" data-toggle="modal" data-action="viewedit" 
-                                                                                   data-target="#aggravIssue_pop_up"  class="edit_btn pop_up_open">
+                                                                            <td class="tbl-20-col"><a style="color: black" data-value='aggravissue' data-class="problem" data-title="View Aggravating Issue Details" 
+                                                                                                      data-aggravissue='<%=aggravIs.getId()%>' href="" data-toggle="modal" data-action="viewedit" 
+                                                                                                      data-target="#aggravIssue_pop_up"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
-                                                                                    <a style="color: black" data-value='aggravissue' data-class="problem"
-                                                                                        data-aggravissue='<%=aggravIs.getId()%>' href="#" data-toggle="modal" data-action="delete" 
-                                                                                        data-target="#aggravIssue_pop_up" class="delete_btn pop_up_open">
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
+                                                                                <a style="color: black" data-value='aggravissue' data-class="problem"
+                                                                                   data-aggravissue='<%=aggravIs.getId()%>' href="#" data-toggle="modal" data-action="delete" 
+                                                                                   data-target="#aggravIssue_pop_up" class="delete_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-trash"></span>
-                                                                                    </a>
+                                                                                </a>
                                                                                 <% }%>    
                                                                             </td>
                                                                         </tr>
@@ -2633,10 +2690,10 @@
 
                                                                     <table class="table table-condensed">
                                                                         <tr>
-                                                                            <th>Lead</th>
-                                                                            <th>Start Dt</th>
-                                                                            <th>End Dt</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th>Lead name</th>
+                                                                            <th>Start date</th>
+                                                                            <th>End date</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -2651,21 +2708,21 @@
                                                                         %>
                                                                         <tr class="other_leadcaseworker moreObjs">
                                                                             <td><%=name%></td>
-                                                                            <td><%=(start==null)?"-":sdf.format(start)%></td>
-                                                                            <td><%=(end==null)?"-":sdf.format(end)%></td>
-                                                                            
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#leadcaseworker_pop_up"  data-class="problem"  
-                                                                                   data-value='leadcaseworker' data-leadcaseworker='<%=icwid%>' href="" 
-                                                                                   data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td><%=(start == null) ? "-" : sdf.format(start)%></td>
+                                                                            <td><%=(end == null) ? "-" : sdf.format(end)%></td>
+
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#leadcaseworker_pop_up"  data-class="problem"  
+                                                                                                      data-value='leadcaseworker' data-leadcaseworker='<%=icwid%>' href="" 
+                                                                                                      data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
-                                                                                    <a style="color: black" data-target="#leadcaseworker_pop_up"  data-class="problem"  
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
+                                                                                <a style="color: black" data-target="#leadcaseworker_pop_up"  data-class="problem"  
                                                                                    data-value='leadcaseworker' data-leadcaseworker='<%=icwid%>' href="" 
                                                                                    data-toggle="modal" data-action="delete"  class="delete_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-trash"></span>
-                                                                                    </a>
+                                                                                </a>
                                                                                 <% }%>    
                                                                             </td>
                                                                         </tr>
@@ -2674,19 +2731,19 @@
                                                                         %>
                                                                         <tr>
                                                                             <td><%=name%></td>
-                                                                            <td><%=(start==null)?"-":sdf.format(start)%></td>
-                                                                            <td><%=(end==null)?"-":sdf.format(end)%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#leadcaseworker_pop_up"  data-class="problem"  
-                                                                                   data-value='leadcaseworker' data-leadcaseworker='<%=icwid%>' href="" data-toggle="modal" 
-                                                                                   data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td><%=(start == null) ? "-" : sdf.format(start)%></td>
+                                                                            <td><%=(end == null) ? "-" : sdf.format(end)%></td>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#leadcaseworker_pop_up"  data-class="problem"  
+                                                                                                      data-value='leadcaseworker' data-leadcaseworker='<%=icwid%>' href="" data-toggle="modal" 
+                                                                                                      data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span></a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
-                                                                                    <a style="color: black" data-target="#leadcaseworker_pop_up"  data-class="problem"  
+                                                                                    <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
+                                                                                <a style="color: black" data-target="#leadcaseworker_pop_up"  data-class="problem"  
                                                                                    data-value='leadcaseworker' data-leadcaseworker='<%=icwid%>' href="" 
                                                                                    data-toggle="modal" data-action="delete"  class="delete_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-trash"></span>
-                                                                                    </a>
+                                                                                </a>
                                                                                 <% }%>     
                                                                             </td>
                                                                         </tr>
@@ -2729,10 +2786,10 @@
                                                                     <table class="table table-condensed">
 
                                                                         <tr>
-                                                                            <th>Auxilliary</th>
-                                                                            <th>Start Dt</th>
-                                                                            <th>End Dt</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th>Auxiliary name</th>
+                                                                            <th>Start date</th>
+                                                                            <th>End date</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -2748,20 +2805,20 @@
                                                                         %>
                                                                         <tr class="other_auxCaseworker moreObjs">
                                                                             <td><%=name%></td>
-                                                                            <td><%=(start==null)?"-":sdf.format(start)%></td>
-                                                                            <td><%=(end==null)?"-":sdf.format(end)%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-value='auxcaseworker' data-class="problem"  
-                                                                                   data-title="View Auxiliary Caseworker Details" data-auxcaseworker='<%=auxid%>' 
-                                                                                   href="" data-toggle="modal" data-action="viewedit" data-target="#auxcaseworker_pop_up"  
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td><%=(start == null) ? "-" : sdf.format(start)%></td>
+                                                                            <td><%=(end == null) ? "-" : sdf.format(end)%></td>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-value='auxcaseworker' data-class="problem"  
+                                                                                                      data-title="View Auxiliary Caseworker Details" data-auxcaseworker='<%=auxid%>' 
+                                                                                                      href="" data-toggle="modal" data-action="viewedit" data-target="#auxcaseworker_pop_up"  
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
-                                                                                    <a style="color: black" data-value='auxcaseworker' data-class="problem"  
-                                                                                        data-auxcaseworker='<%=auxid%>' 
-                                                                                        href="" data-toggle="modal" data-action="delete" data-target="#auxcaseworker_pop_up"  
-                                                                                        class="delete_btn pop_up_open"><span class="glyphicon glyphicon-trash"></span>
-                                                                                    </a>
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
+                                                                                <a style="color: black" data-value='auxcaseworker' data-class="problem"  
+                                                                                   data-auxcaseworker='<%=auxid%>' 
+                                                                                   href="" data-toggle="modal" data-action="delete" data-target="#auxcaseworker_pop_up"  
+                                                                                   class="delete_btn pop_up_open"><span class="glyphicon glyphicon-trash"></span>
+                                                                                </a>
                                                                                 <% }%>   
                                                                             </td>
                                                                         </tr>
@@ -2770,19 +2827,19 @@
                                                                         %>
                                                                         <tr>
                                                                             <td><%=name%></td>
-                                                                            <td><%=(start==null)?"-":sdf.format(start)%></td>
-                                                                            <td><%=(end==null)?"-":sdf.format(end)%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-value='auxcaseworker' data-class="problem" data-title="View Auxiliary Caseworker Details"  
-                                                                                   data-auxcaseworker='<%=auxid%>' href="" data-toggle="modal" data-action="viewedit" data-target="#auxcaseworker_pop_up"  
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td><%=(start == null) ? "-" : sdf.format(start)%></td>
+                                                                            <td><%=(end == null) ? "-" : sdf.format(end)%></td>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-value='auxcaseworker' data-class="problem" data-title="View Auxiliary Caseworker Details"  
+                                                                                                      data-auxcaseworker='<%=auxid%>' href="" data-toggle="modal" data-action="viewedit" data-target="#auxcaseworker_pop_up"  
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
-                                                                                    <a style="color: black" data-value='auxcaseworker' data-class="problem"  
-                                                                                        data-auxcaseworker='<%=auxid%>' 
-                                                                                        href="" data-toggle="modal" data-action="delete" data-target="#auxcaseworker_pop_up"  
-                                                                                        class="delete_btn pop_up_open"><span class="glyphicon glyphicon-trash"></span>
-                                                                                    </a>
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
+                                                                                <a style="color: black" data-value='auxcaseworker' data-class="problem"  
+                                                                                   data-auxcaseworker='<%=auxid%>' 
+                                                                                   href="" data-toggle="modal" data-action="delete" data-target="#auxcaseworker_pop_up"  
+                                                                                   class="delete_btn pop_up_open"><span class="glyphicon glyphicon-trash"></span>
+                                                                                </a>
                                                                                 <% }%>    
                                                                             </td>
                                                                         </tr>
@@ -2822,11 +2879,11 @@
 
                                                                     <table class="table table-condensed">
                                                                         <tr>
-                                                                            <th>Event dt</th>
-                                                                            <th>Where or how</th>
-                                                                            <th>TWC2 Person</th>
-                                                                            <th class='tbl-action-col'>Topic</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th class='tbl-20-col'>Event date</th>
+                                                                            <th class='tbl-20-col'>Where or how</th>
+                                                                            <th class='tbl-20-col'>TWC2 person</th>
+                                                                            <th class='tbl-20-col'>Topic</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -2838,7 +2895,7 @@
                                                                                 String mode = caseDiscussion.getCaseDiscussionWhere();
                                                                                 String consultant = caseDiscussion.getCaseDiscussionTWC2Person1();
                                                                                 String topic = caseDiscussion.getCaseDiscussionTopic();
-                                                                                if(topic.length() > 60 ){
+                                                                                if (topic.length() > 60) {
                                                                                     topic = topic.substring(0, 60) + "...";
                                                                                 }
                                                                                 String location = caseDiscussion.getCaseDiscussionWhere();
@@ -2849,18 +2906,18 @@
                                                                                 if (i < caseDiscussIds.size() - 1) {
                                                                         %>
                                                                         <tr class="other_casediscuss moreObjs">
-                                                                            <td><%=(discussionDate==null)?"-":sdf.format(discussionDate)%></td>
+                                                                            <td><%=(discussionDate == null) ? "-" : sdf.format(discussionDate)%></td>
                                                                             <td><%=mode%></td>
                                                                             <td><%=consultant%></td>
                                                                             <td><%=topic%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-value='casediscussion' data-class="problem"  data-title="View Case Discussion Details" 
-                                                                                   data-casediscussion='<%=id%>' href="" data-toggle="modal" data-action="viewedit" 
-                                                                                   data-target="#casediscussion_pop_up"  class="edit_btn pop_up_open">
+                                                                            <td class="tbl-20-col"><a style="color: black" data-value='casediscussion' data-class="problem"  data-title="View Case Discussion Details" 
+                                                                                                      data-casediscussion='<%=id%>' href="" data-toggle="modal" data-action="viewedit" 
+                                                                                                      data-target="#casediscussion_pop_up"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
-                                                                                    <a style="color: black" data-value='casediscussion' data-class="problem"
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
+                                                                                <a style="color: black" data-value='casediscussion' data-class="problem"
                                                                                    data-casediscussion='<%=id%>' href="" data-toggle="modal" data-action="delete" 
                                                                                    data-target="#casediscussion_pop_up"  class="delete_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-trash"></span>
@@ -2873,18 +2930,18 @@
 
                                                                         %>
                                                                         <tr>
-                                                                            <td><%=(discussionDate==null)?"-":sdf.format(discussionDate)%></td>
+                                                                            <td><%=(discussionDate == null) ? "-" : sdf.format(discussionDate)%></td>
                                                                             <td><%=mode%></td>
                                                                             <td><%=consultant%></td>
-                                                                            <td class='tbl-action-col'><%=topic%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-value='casediscussion' data-class="problem" 
-                                                                                   data-title="View Case Discussion Details"  data-casediscussion='<%=id%>'
-                                                                                   href="" data-toggle="modal" data-action="viewedit" data-target="#casediscussion_pop_up"  
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class='tbl-20-col'><%=topic%></td>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-value='casediscussion' data-class="problem" 
+                                                                                                      data-title="View Case Discussion Details"  data-casediscussion='<%=id%>'
+                                                                                                      href="" data-toggle="modal" data-action="viewedit" data-target="#casediscussion_pop_up"  
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
-                                                                                    <a style="color: black" data-value='casediscussion' data-class="problem"
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
+                                                                                <a style="color: black" data-value='casediscussion' data-class="problem"
                                                                                    data-casediscussion='<%=id%>' href="" data-toggle="modal" data-action="delete" 
                                                                                    data-target="#casediscussion_pop_up"  class="delete_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-trash"></span>
@@ -2914,7 +2971,7 @@
 
                                                                 <div class="panel-heading">
                                                                     <h4 class="panel-title">Lawyer
-                                                                        <a href="" id="lawyerAddBtn" data-toggle="modal" data-target="#lawyer_pop_up" data-title="Add A New Law Firm Status" data-class="problem"   data-action = "add" data-value='lawyer' data-lawyer='' class="add_btn pop_up_open pull-right">
+                                                                        <a href="" id="lawyerAddBtn" data-toggle="modal" data-target="#lawyer_pop_up" data-title="Add A New Law firm Status" data-class="problem"   data-action = "add" data-value='lawyer' data-lawyer='' class="add_btn pop_up_open pull-right">
                                                                             <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                         </a>
                                                                     </h4>
@@ -2928,10 +2985,10 @@
 
                                                                     <table class="table table-condensed">
                                                                         <tr>
-                                                                            <th>Update dt</th>
-                                                                            <th>Law Firm</th>
-                                                                            <th class="tbl-action-col">Lawyer/asst Name</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th>Update date</th>
+                                                                            <th>Law firm</th>
+                                                                            <th class="tbl-25-col">Lawyer/asst name</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -2943,24 +3000,24 @@
                                                                                 String lawFirm = lawyer.getLawyerFirm();
                                                                                 java.util.Date updateDate = lawyer.getLawyerUpdate();
                                                                                 String lawyerName = lawyer.getLawyerName();
-                                                                                
-                                                                                if(lawyerName.length() > 60 ){
+
+                                                                                if (lawyerName.length() > 60) {
                                                                                     lawyerName = lawyerName.substring(0, 60) + "...";
                                                                                 }
                                                                                 if (i < lawyerIds.size() - 1) {
 
                                                                         %>
                                                                         <tr class="other_lawyer moreObjs">
-                                                                            <td><%=(updateDate==null)?"-":sdf.format(updateDate)%></td>
+                                                                            <td><%=(updateDate == null) ? "-" : sdf.format(updateDate)%></td>
                                                                             <td><%=lawFirm%></td>
                                                                             <td><%=lawyerName%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-value='lawyer' data-lawyer='<%=id%>' data-title="View Law Firm Status"
-                                                                                   data-class="problem"   href="" data-toggle="modal" data-action="viewedit" 
-                                                                                   data-target="#lawyer_pop_up"  class="edit_btn pop_up_open">
+                                                                            <td class="tbl-20-col"><a style="color: black" data-value='lawyer' data-lawyer='<%=id%>' data-title="View Law firm Status"
+                                                                                                      data-class="problem"   href="" data-toggle="modal" data-action="viewedit" 
+                                                                                                      data-target="#lawyer_pop_up"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-value='lawyer' data-lawyer='<%=id%>'
                                                                                    data-class="problem"   href="" data-toggle="modal" data-action="delete" 
                                                                                    data-target="#lawyer_pop_up"  class="delete_btn pop_up_open">
@@ -2973,16 +3030,16 @@
                                                                         } else {
                                                                         %>
                                                                         <tr>
-                                                                            <td><%=(updateDate==null)?"-":sdf.format(updateDate)%></td>
+                                                                            <td><%=(updateDate == null) ? "-" : sdf.format(updateDate)%></td>
                                                                             <td><%=lawFirm%></td>
                                                                             <td><%=lawyerName%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-value='lawyer' data-lawyer='<%=id%>' data-class="problem" 
-                                                                                   data-title="View Law Firm Status"  href="" data-toggle="modal" data-action="viewedit" 
-                                                                                   data-target="#lawyer_pop_up"  class="edit_btn pop_up_open">
+                                                                            <td class="tbl-20-col"><a style="color: black" data-value='lawyer' data-lawyer='<%=id%>' data-class="problem" 
+                                                                                                      data-title="View Law firm Status"  href="" data-toggle="modal" data-action="viewedit" 
+                                                                                                      data-target="#lawyer_pop_up"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-value='lawyer' data-lawyer='<%=id%>'"
                                                                                    data-class="problem"   href="" data-toggle="modal" data-action="delete" 
                                                                                    data-target="#lawyer_pop_up"  class="delete_btn pop_up_open">
@@ -3043,11 +3100,11 @@
 
                                                                     <table class="table table-condensed">
                                                                         <tr>
-                                                                            <th>Prob with basic sal</th>
-                                                                            <th>Payment Mode</th>
-                                                                            <th>Total Claim</th>
-                                                                            <th>12 Mths Claim</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th class='tbl-20-col'>Prob with basic sal</th>
+                                                                            <th class='tbl-20-col'>Payment mode</th>
+                                                                            <th class='tbl-20-col'>Total claim</th>
+                                                                            <th class='tbl-20-col'>12 mths claim</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -3064,8 +3121,8 @@
                                                                         <tr class="other_salaryhistory moreObjs">
                                                                             <td><%=history%></td>
                                                                             <td><%=mode%></td>
-                                                                            <td><%=(tClaim == 0.0)? "-" : df.format(tClaim)%></td>
-                                                                            <td><%=(claim == 0.0)? "-" : df.format(claim)%></td>
+                                                                            <td><%=(tClaim == 0.0) ? "" : df.format(tClaim)%></td>
+                                                                            <td><%=(claim == 0.0) ? "" : df.format(claim)%></td>
                                                                             <td>
                                                                                 <a style="color: black" data-target="#salaryhistory_pop_up"  data-class="problem"  
                                                                                    data-value='salaryhistory' data-title="View Salary & Related History" 
@@ -3073,8 +3130,8 @@
                                                                                    class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#salaryhistory_pop_up"  data-class="problem"  
                                                                                    data-value='salaryhistory' 
                                                                                    data-salaryhistory='<%=historyId%>' href="" data-toggle="modal" data-action="delete" 
@@ -3090,8 +3147,8 @@
                                                                         <tr>
                                                                             <td><%=history%></td>
                                                                             <td><%=mode%></td>
-                                                                            <td><%=(tClaim == 0.0) ? "-" : df.format(tClaim) %></td>
-                                                                            <td><%=(claim == 0.0) ? "-" : df.format(claim) %></td>
+                                                                            <td><%=(tClaim == 0.0) ? "" : df.format(tClaim)%></td>
+                                                                            <td><%=(claim == 0.0) ? "" : df.format(claim)%></td>
                                                                             <td>
                                                                                 <a style="color: black" data-target="#salaryhistory_pop_up"  data-class="problem"  
                                                                                    data-title="View Salary & Related History" data-value='salaryhistory' 
@@ -3099,8 +3156,8 @@
                                                                                    class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#salaryhistory_pop_up"  data-class="problem"  
                                                                                    data-value='salaryhistory' 
                                                                                    data-salaryhistory='<%=historyId%>' href="" data-toggle="modal" data-action="delete" 
@@ -3147,9 +3204,9 @@
                                                                     <table class="table table-condensed">
                                                                         <tr>
                                                                             <th>When lodged</th>
-                                                                            <th>Claim Value</th>
+                                                                            <th>Claim value</th>
 
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -3163,16 +3220,16 @@
                                                                                 if (i < salaryClaimIds.size() - 1) {
                                                                         %>
                                                                         <tr class="other_salaryClaim moreObjs">
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
-                                                                            <td><%=(loss == 0.0)? "-" : df.format(loss)%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#salarycalim_pop_up" data-class="problem" 
-                                                                                   data-title="View Salary Claim Lodged Details"  data-value='salarycalim' 
-                                                                                   data-salarycalim='<%=salaryClaimId%>' href="" data-toggle="modal" 
-                                                                                   data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
+                                                                            <td><%=(loss == 0.0) ? "" : df.format(loss)%></td>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#salarycalim_pop_up" data-class="problem" 
+                                                                                                      data-title="View Salary Claim Lodged Details"  data-value='salarycalim' 
+                                                                                                      data-salarycalim='<%=salaryClaimId%>' href="" data-toggle="modal" 
+                                                                                                      data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#salarycalim_pop_up" data-class="problem" 
                                                                                    data-value='salarycalim' 
                                                                                    data-salarycalim='<%=salaryClaimId%>' href="" data-toggle="modal" 
@@ -3186,16 +3243,16 @@
                                                                         } else {
                                                                         %>
                                                                         <tr>
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
-                                                                            <td><%=(loss == 0.0)? "-" : df.format(loss) %></td>
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
+                                                                            <td><%=(loss == 0.0) ? "" : df.format(loss)%></td>
 
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#salarycalim_pop_up" data-class="problem" 
-                                                                                   data-title="View Salary Claim Lodged Details"  data-value='salarycalim' 
-                                                                                   data-salarycalim='<%=salaryClaimId%>' href="" data-toggle="modal" data-action="viewedit" 
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#salarycalim_pop_up" data-class="problem" 
+                                                                                                      data-title="View Salary Claim Lodged Details"  data-value='salarycalim' 
+                                                                                                      data-salarycalim='<%=salaryClaimId%>' href="" data-toggle="modal" data-action="viewedit" 
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#salarycalim_pop_up" data-class="problem" 
                                                                                    data-value='salarycalim' 
                                                                                    data-salarycalim='<%=salaryClaimId%>' href="" data-toggle="modal" 
@@ -3257,11 +3314,11 @@
 
                                                                     <table class="table table-condensed">
                                                                         <tr>
-                                                                            <th>Injury Dt</th>
-                                                                            <th>Location</th>
-                                                                            <th>Body Parts</th>
-                                                                            <th>Initially Treated at</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th class='tbl-20-col'>Injury date</th>
+                                                                            <th class='tbl-20-col'>Location</th>
+                                                                            <th class='tbl-20-col'>Body parts</th>
+                                                                            <th class='tbl-20-col'>Initially treated at</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -3281,16 +3338,16 @@
 
                                                                         %>
                                                                         <tr class="other_injury moreObjs">
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
                                                                             <td><%=location%></td>
                                                                             <td><%=bodyPart%></td>
                                                                             <td><%=treatment%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#injurycase_pop_up" data-class="problem" data-title="View Injury History Details" 
-                                                                                   data-value='injurycase' data-injurycase='<%=injuryId%>' href="" data-toggle="modal" data-action="viewedit" 
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#injurycase_pop_up" data-class="problem" data-title="View Injury History Details" 
+                                                                                                      data-value='injurycase' data-injurycase='<%=injuryId%>' href="" data-toggle="modal" data-action="viewedit" 
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#injurycase_pop_up" data-class="problem"
                                                                                    data-value='injurycase' data-injurycase='<%=injuryId%>' href="" data-toggle="modal" data-action="delete"  
                                                                                    class="edit_btn pop_up_open"><span class="glyphicon glyphicon-trash"></span>
@@ -3302,16 +3359,16 @@
                                                                         } else {
                                                                         %>
                                                                         <tr>
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
                                                                             <td><%=location%></td>
                                                                             <td><%=bodyPart%></td>
                                                                             <td><%=treatment%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#injurycase_pop_up" data-class="problem" data-title="View Injury History Details"  
-                                                                                   data-value='injurycase' data-injurycase='<%=injuryId%>' href="" data-toggle="modal" data-action="viewedit"  
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#injurycase_pop_up" data-class="problem" data-title="View Injury History Details"  
+                                                                                                      data-value='injurycase' data-injurycase='<%=injuryId%>' href="" data-toggle="modal" data-action="viewedit"  
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#injurycase_pop_up" data-class="problem"
                                                                                    data-value='injurycase' data-injurycase='<%=injuryId%>' href="" data-toggle="modal" data-action="delete"  
                                                                                    class="edit_btn pop_up_open"><span class="glyphicon glyphicon-trash"></span>
@@ -3356,10 +3413,10 @@
                                                                     <table class="table table-condensed">
                                                                         <tr>
                                                                             <th>When began</th>
-                                                                            <th>When Diagnosed</th>
-                                                                            <th>Who Diagnosed</th>
-                                                                            <th>Nature of Illness</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th>When diagnosed</th>
+                                                                            <th>Who diagnosed</th>
+                                                                            <th>Nature of illness</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -3379,13 +3436,13 @@
                                                                             <td><%=dDate%></td>
                                                                             <td><%=dWho%></td>
                                                                             <td><%=nature%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#illnesscase_pop_up" data-class="problem" 
-                                                                                   data-title="View Illness History Details"  data-value='illnesscase' data-illnesscase='<%=illnessId%>' 
-                                                                                   href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#illnesscase_pop_up" data-class="problem" 
+                                                                                                      data-title="View Illness History Details"  data-value='illnesscase' data-illnesscase='<%=illnessId%>' 
+                                                                                                      href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#illnesscase_pop_up" data-class="problem" 
                                                                                    data-value='illnesscase' data-illnesscase='<%=illnessId%>' 
                                                                                    href="" data-toggle="modal" data-action="delete"  class="delete_btn pop_up_open">
@@ -3402,13 +3459,13 @@
                                                                             <td><%=dDate%></td>
                                                                             <td><%=dWho%></td>
                                                                             <td><%=nature%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#illnesscase_pop_up" data-class="problem" 
-                                                                                   data-title="View Illness History Details"  data-value='illnesscase' 
-                                                                                   data-illnesscase='<%=illnessId%>' href="" data-toggle="modal" data-action="viewedit"  
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#illnesscase_pop_up" data-class="problem" 
+                                                                                                      data-title="View Illness History Details"  data-value='illnesscase' 
+                                                                                                      data-illnesscase='<%=illnessId%>' href="" data-toggle="modal" data-action="viewedit"  
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#illnesscase_pop_up" data-class="problem" 
                                                                                    data-value='illnesscase' data-illnesscase='<%=illnessId%>' 
                                                                                    href="" data-toggle="modal" data-action="delete"  class="delete_btn pop_up_open">
@@ -3440,7 +3497,7 @@
 
                                                                 <div class="panel-heading">
                                                                     <h4 class="panel-title">WICA Claim Lodged
-                                                                        <a href="" id="wicaclaimAddBtn" data-toggle="modal" data-action = "add" data-title="Add Wica Claim Lodged Details" data-class="problem"   data-target="#wicaclaim_pop_up" data-value='wicaclaim' data-wicaclaim='' class="add_btn pop_up_open pull-right">
+                                                                        <a href="" id="wicaclaimAddBtn" data-toggle="modal" data-action = "add" data-title="Add WICA Claim Lodged Details" data-class="problem"   data-target="#wicaclaim_pop_up" data-value='wicaclaim' data-wicaclaim='' class="add_btn pop_up_open pull-right">
                                                                             <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                         </a>
                                                                     </h4>
@@ -3455,10 +3512,10 @@
                                                                     <table class="table table-condensed">
                                                                         <tr>
                                                                             <th>When lodged</th>
-                                                                            <th>Wica Ref Nbr</th>
+                                                                            <th>WICA ref Number</th>
                                                                             <th>Insurer</th>
-                                                                            <th>Policy Nbr</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th>Policy number</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -3475,17 +3532,17 @@
                                                                                 if (i < wicaclaimIds.size() - 1) {
                                                                         %>
                                                                         <tr class="other_wicaClaim moreObjs">
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
                                                                             <td><%=refNo%></td>
                                                                             <td><%=insurer%></td>
                                                                             <td><%=policyNo%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#wicaclaim_pop_up" data-value='wicaclaim' 
-                                                                                   data-class="problem" data-title="View Wica Claim Lodged Details"  
-                                                                                   data-wicaclaim='<%=wicaclaimId%>' href="" data-toggle="modal" data-action="viewedit" 
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#wicaclaim_pop_up" data-value='wicaclaim' 
+                                                                                                      data-class="problem" data-title="View WICA Claim Lodged Details"  
+                                                                                                      data-wicaclaim='<%=wicaclaimId%>' href="" data-toggle="modal" data-action="viewedit" 
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#wicaclaim_pop_up" data-value='wicaclaim' 
                                                                                    data-class="problem"
                                                                                    data-wicaclaim='<%=wicaclaimId%>' href="" data-toggle="modal" data-action="delete" 
@@ -3498,17 +3555,17 @@
                                                                         } else {
                                                                         %>
                                                                         <tr>
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
                                                                             <td><%=refNo%></td>
                                                                             <td><%=insurer%></td>
                                                                             <td><%=policyNo%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#wicaclaim_pop_up" data-value='wicaclaim' 
-                                                                                   data-class="problem" data-title="View Wica Claim Lodged Details"  
-                                                                                   data-wicaclaim='<%=wicaclaimId%>' href="" data-toggle="modal" data-action="viewedit"  
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#wicaclaim_pop_up" data-value='wicaclaim' 
+                                                                                                      data-class="problem" data-title="View WICA Claim Lodged Details"  
+                                                                                                      data-wicaclaim='<%=wicaclaimId%>' href="" data-toggle="modal" data-action="viewedit"  
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#wicaclaim_pop_up" data-value='wicaclaim' 
                                                                                    data-class="problem"
                                                                                    data-wicaclaim='<%=wicaclaimId%>' href="" data-toggle="modal" data-action="delete" 
@@ -3541,7 +3598,7 @@
 
                                                                 <div class="panel-heading">
                                                                     <h4 class="panel-title">Non-WICA Medical Claim Lodged
-                                                                        <a href="" id="nonwicaclaimAddBtn" data-toggle="modal" data-action = "add" data-title="Add Non-Wica Claim Lodged Details" data-class="problem"   data-target="#nonwicaclaim_pop_up" data-value='nonwicaclaim' data-nonwicaclaim='' class="add_btn pop_up_open pull-right">
+                                                                        <a href="" id="nonwicaclaimAddBtn" data-toggle="modal" data-action = "add" data-title="Add Non-WICA Claim Lodged Details" data-class="problem"   data-target="#nonwicaclaim_pop_up" data-value='nonwicaclaim' data-nonwicaclaim='' class="add_btn pop_up_open pull-right">
                                                                             <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                         </a>
                                                                     </h4>
@@ -3555,11 +3612,11 @@
 
                                                                     <table class="table table-condensed">
                                                                         <tr>
-                                                                            <th>Date MOM Notified</th>
-                                                                            <th>Claim Value</th>
-                                                                            <th>Insurer</th>
-                                                                            <th>Policy Nbr</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th class="tbl-20-col">Date MOM notified</th>
+                                                                            <th class="tbl-20-col">Claim value</th>
+                                                                            <th class="tbl-20-col">Insurer</th>
+                                                                            <th class="tbl-20-col">Policy number</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -3576,18 +3633,18 @@
                                                                                 if (i < nonwicaClaimIds.size() - 1) {
                                                                         %>
                                                                         <tr class="other_nonWica moreObjs">
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
-                                                                            <td><%=(loss == 0.0)? "-" : df.format(loss)%></td>
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
+                                                                            <td><%=(loss == 0.0) ? "" : df.format(loss)%></td>
                                                                             <td><%=insurer%></td>
                                                                             <td><%=pNo%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black"  data-target="#nonwicaclaim_pop_up"  data-class="problem" 
-                                                                                   data-title="View Non-Wica Claim Lodged Details" data-value='nonwicaclaim' 
-                                                                                   data-nonwicaclaim='<%=nonwicaClaimId%>' href="" data-toggle="modal" 
-                                                                                   data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td class="tbl-20-col"><a style="color: black"  data-target="#nonwicaclaim_pop_up"  data-class="problem" 
+                                                                                                      data-title="View Non-WICA Claim Lodged Details" data-value='nonwicaclaim' 
+                                                                                                      data-nonwicaclaim='<%=nonwicaClaimId%>' href="" data-toggle="modal" 
+                                                                                                      data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black"  data-target="#nonwicaclaim_pop_up"  data-class="problem" 
                                                                                    data-value='nonwicaclaim' 
                                                                                    data-nonwicaclaim='<%=nonwicaClaimId%>' href="" data-toggle="modal" 
@@ -3601,18 +3658,18 @@
                                                                         } else {
                                                                         %>
                                                                         <tr>
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
-                                                                            <td><%=(loss == 0.0)? "-": df.format(loss) %></td>
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
+                                                                            <td><%=(loss == 0.0) ? "" : df.format(loss)%></td>
                                                                             <td><%=insurer%></td>
                                                                             <td><%=pNo%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black"  data-target="#nonwicaclaim_pop_up"  data-class="problem" 
-                                                                                   data-title="View Non-Wica Claim Lodged Details" data-value='nonwicaclaim' 
-                                                                                   data-nonwicaclaim='<%=nonwicaClaimId%>' href="" data-toggle="modal" 
-                                                                                   data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td class="tbl-20-col"><a style="color: black"  data-target="#nonwicaclaim_pop_up"  data-class="problem" 
+                                                                                                      data-title="View Non-WICA Claim Lodged Details" data-value='nonwicaclaim' 
+                                                                                                      data-nonwicaclaim='<%=nonwicaClaimId%>' href="" data-toggle="modal" 
+                                                                                                      data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black"  data-target="#nonwicaclaim_pop_up"  data-class="problem" 
                                                                                    data-value='nonwicaclaim' 
                                                                                    data-nonwicaclaim='<%=nonwicaClaimId%>' href="" data-toggle="modal" 
@@ -3645,7 +3702,7 @@
 
                                                                 <div class="panel-heading">
                                                                     <h4 class="panel-title">WICA Status
-                                                                        <a href="" id="wicaAddBtn" data-toggle="modal" data-action = "add" data-title="Add A New Wica Status" data-class="problem"   data-target="#wica_pop_up" data-value='wica' data-wica='' class="add_btn pop_up_open pull-right">
+                                                                        <a href="" id="wicaAddBtn" data-toggle="modal" data-action = "add" data-title="Add A New WICA Status" data-class="problem"   data-target="#wica_pop_up" data-value='wica' data-wica='' class="add_btn pop_up_open pull-right">
                                                                             <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                                         </a>
                                                                     </h4>
@@ -3660,10 +3717,10 @@
                                                                     <table class="table table-condensed">
                                                                         <tr>
                                                                             <th>Status</th>
-                                                                            <th>Update Dt</th>
-                                                                            <th>Wica Points</th>
-                                                                            <th>Wica S$ Comp</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th>Update date</th>
+                                                                            <th>WICA points</th>
+                                                                            <th>WICA S$ comp</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -3681,16 +3738,16 @@
                                                                         %>
                                                                         <tr class="other_wicaStatus moreObjs">
                                                                             <td><%=status%></td>
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
-                                                                            <td><%=(point == 0.0) ? "-" : df.format(point)%></td>
-                                                                            <td><%=(comp == 0.0) ? "-" : df.format(comp)%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black"  data-target="#wica_pop_up" data-value='wica' 
-                                                                                   data-class="problem" data-title="View Wica Status Details"  data-wica='<%=wicaId%>' 
-                                                                                   href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
+                                                                            <td><%=(point == 0.0) ? "" : df.format(point)%></td>
+                                                                            <td><%=(comp == 0.0) ? "" : df.format(comp)%></td>
+                                                                            <td class="tbl-20-col"><a style="color: black"  data-target="#wica_pop_up" data-value='wica' 
+                                                                                                      data-class="problem" data-title="View WICA Status Details"  data-wica='<%=wicaId%>' 
+                                                                                                      href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black"  data-target="#wica_pop_up" data-value='wica' 
                                                                                    data-class="problem" data-wica='<%=wicaId%>' 
                                                                                    href="" data-toggle="modal" data-action="delete"  class="delete_btn pop_up_open">
@@ -3704,16 +3761,16 @@
                                                                         %>
                                                                         <tr>
                                                                             <td><%=status%></td>
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
-                                                                            <td><%=(point == 0.0) ? "-" : df.format(point)%></td>
-                                                                            <td><%=(comp == 0.0) ? "-" : df.format(comp) %></td>
-                                                                            <td class="tbl-action-col"><a style="color: black"  data-target="#wica_pop_up" data-value='wica' data-class="problem" 
-                                                                                   data-title="View Wica Status Details"  data-wica='<%=wicaId%>' href="" data-toggle="modal" 
-                                                                                   data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
+                                                                            <td><%=(point == 0.0) ? "" : df.format(point)%></td>
+                                                                            <td><%=(comp == 0.0) ? "" : df.format(comp)%></td>
+                                                                            <td class="tbl-20-col"><a style="color: black"  data-target="#wica_pop_up" data-value='wica' data-class="problem" 
+                                                                                                      data-title="View WICA Status Details"  data-wica='<%=wicaId%>' href="" data-toggle="modal" 
+                                                                                                      data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black"  data-target="#wica_pop_up" data-value='wica' 
                                                                                    data-class="problem" data-wica='<%=wicaId%>' 
                                                                                    href="" data-toggle="modal" data-action="delete"  class="delete_btn pop_up_open">
@@ -3759,10 +3816,10 @@
                                                                     <table class="table table-condensed">
                                                                         <tr>
 
-                                                                            <th>Update Dt</th>
+                                                                            <th>Update date</th>
                                                                             <th>Hospital</th>
-                                                                            <th class="tbl-action-col">Dept/Doctor</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th class="tbl-20-col">Dept/Doctor</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -3776,7 +3833,7 @@
                                                                                 }
 
                                                                                 String doctor = hospital.getHospitalDoctor();
-                                                                                if(doctor.length() > 60 ){
+                                                                                if (doctor.length() > 60) {
                                                                                     doctor = doctor.substring(0, 60) + "...";
                                                                                 }
                                                                                 java.util.Date date = hospital.getHospitalUpdate();
@@ -3785,16 +3842,16 @@
                                                                         %>
                                                                         <tr class="other_hospital moreObjs">
 
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
                                                                             <td><%=name%></td>
                                                                             <td><%=doctor%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#hospital_pop_up"  data-class="problem" 
-                                                                                   data-title="View Hospital Providing Treatment Details" data-value='hospital' 
-                                                                                   data-hospital='<%=hospitalId%>' href="" data-toggle="modal" data-action="viewedit"  
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#hospital_pop_up"  data-class="problem" 
+                                                                                                      data-title="View Hospital Providing Treatment Details" data-value='hospital' 
+                                                                                                      data-hospital='<%=hospitalId%>' href="" data-toggle="modal" data-action="viewedit"  
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#hospital_pop_up"  data-class="problem" 
                                                                                    data-value='hospital' 
                                                                                    data-hospital='<%=hospitalId%>' href="" data-toggle="modal" data-action="delete"  
@@ -3808,16 +3865,16 @@
                                                                         %>
                                                                         <tr>
 
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
                                                                             <td><%=name%></td>
                                                                             <td><%=doctor%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#hospital_pop_up"  data-class="problem" 
-                                                                                   data-title="View Hospital Providing Treatment Details" data-value='hospital' 
-                                                                                   data-hospital='<%=hospitalId%>' href="" data-toggle="modal" data-action="viewedit"  
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#hospital_pop_up"  data-class="problem" 
+                                                                                                      data-title="View Hospital Providing Treatment Details" data-value='hospital' 
+                                                                                                      data-hospital='<%=hospitalId%>' href="" data-toggle="modal" data-action="viewedit"  
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#hospital_pop_up"  data-class="problem" 
                                                                                    data-value='hospital' 
                                                                                    data-hospital='<%=hospitalId%>' href="" data-toggle="modal" data-action="delete"  
@@ -3864,11 +3921,11 @@
                                                                     <table class="table table-condensed">
                                                                         <tr>
 
-                                                                            <th>Update Dt</th>
-                                                                            <th>Current Status</th>
-                                                                            <th>MC Expiry Dt</th>
-                                                                            <th>Cumul MC Days</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th>Update date</th>
+                                                                            <th>Current status</th>
+                                                                            <th>MC expiry date</th>
+                                                                            <th>Cumul MC days</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -3889,17 +3946,17 @@
                                                                         %>
                                                                         <tr class="other_mc moreObjs">
 
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
                                                                             <td><%=status%></td>
-                                                                            <td><%=(exDate==null)?"-":sdf.format(exDate)%></td>
+                                                                            <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td>
                                                                             <td><%=cdays%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#mc_pop_up" data-value='mc' data-class="problem" 
-                                                                                   data-title="View MC/Light Duty Status Details"  data-mc='<%=mcId%>' 
-                                                                                   href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#mc_pop_up" data-value='mc' data-class="problem" 
+                                                                                                      data-title="View MC/Light Duty Status Details"  data-mc='<%=mcId%>' 
+                                                                                                      href="" data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#mc_pop_up" data-value='mc' data-class="problem" 
                                                                                    data-mc='<%=mcId%>' 
                                                                                    href="" data-toggle="modal" data-action="delete"  class="delete_btn pop_up_open">
@@ -3913,17 +3970,17 @@
                                                                         %>
                                                                         <tr>
 
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
                                                                             <td><%=status%></td>
-                                                                            <td><%=(exDate==null)?"-":sdf.format(exDate)%></td>
+                                                                            <td><%=(exDate == null) ? "-" : sdf.format(exDate)%></td>
                                                                             <td><%=cdays%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#mc_pop_up" data-value='mc' data-class="problem" 
-                                                                                   data-title="View MC/Light Duty Status Details" data-mc='<%=mcId%>' href="" 
-                                                                                   data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#mc_pop_up" data-value='mc' data-class="problem" 
+                                                                                                      data-title="View MC/Light Duty Status Details" data-mc='<%=mcId%>' href="" 
+                                                                                                      data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#mc_pop_up" data-value='mc' data-class="problem" 
                                                                                    data-mc='<%=mcId%>' 
                                                                                    href="" data-toggle="modal" data-action="delete"  class="delete_btn pop_up_open">
@@ -3970,11 +4027,11 @@
                                                                     <table class="table table-condensed">
                                                                         <tr>
 
-                                                                            <th>Appt Dt</th>
-                                                                            <th>Appt Time</th>
+                                                                            <th>Appt date</th>
+                                                                            <th>Appt time</th>
                                                                             <th>Hospital</th>
-                                                                            <th>R2R 1st Volunteer</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th>R2R 1st volunteer</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -3992,17 +4049,17 @@
                                                                         %>
                                                                         <tr class="other_r2r moreObjs">
 
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
                                                                             <td><%=time%></td>
                                                                             <td><%=hospital%></td>
                                                                             <td><%=r2r1%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#r2r_pop_up" data-value='r2r' data-class="problem" 
-                                                                                   data-title="View R2R Appointment Details"  data-r2r='<%=r2rId%>' href="" 
-                                                                                   data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#r2r_pop_up" data-value='r2r' data-class="problem" 
+                                                                                                      data-title="View R2R Appointment Details"  data-r2r='<%=r2rId%>' href="" 
+                                                                                                      data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#r2r_pop_up" data-value='r2r' data-class="problem" 
                                                                                    data-r2r='<%=r2rId%>' href="" 
                                                                                    data-toggle="modal" data-action="delete"  class="delete_btn pop_up_open">
@@ -4015,17 +4072,17 @@
                                                                         } else {
                                                                         %>
                                                                         <tr>
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>
                                                                             <td><%=time%></td>
                                                                             <td><%=hospital%></td>
                                                                             <td><%=r2r1%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#r2r_pop_up" data-value='r2r' data-class="problem" 
-                                                                                   data-title="View R2R Appointment Details" data-r2r='<%=r2rId%>' href="" data-toggle="modal"
-                                                                                   data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#r2r_pop_up" data-value='r2r' data-class="problem" 
+                                                                                                      data-title="View R2R Appointment Details" data-r2r='<%=r2rId%>' href="" data-toggle="modal"
+                                                                                                      data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#r2r_pop_up" data-value='r2r' data-class="problem" 
                                                                                    data-r2r='<%=r2rId%>' href="" 
                                                                                    data-toggle="modal" data-action="delete"  class="delete_btn pop_up_open">
@@ -4086,10 +4143,10 @@
 
                                                                     <table class="table table-condensed">
                                                                         <tr>
-                                                                            <th>Describe Prob</th>
-                                                                            <th class="tbl-action-col">Claim Value</th>
+                                                                            <th>Description</th>
+                                                                            <th class="tbl-20-col">Claim value</th>
 
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -4099,8 +4156,8 @@
                                                                                 ProblemOtherProblems otherCase = ProblemComplementsDAO.retrieveProblemOtherProblemsById(otherCaseId);
 
                                                                                 String description = otherCase.getOtherProblemDesc();
-                                                                                if(description.length() > 60){
-                                                                                    description = description.substring(0,60) + "...";
+                                                                                if (description.length() > 60) {
+                                                                                    description = description.substring(0, 60) + "...";
                                                                                 }
                                                                                 double loss = otherCase.getOtherProblemLoss();
                                                                                 //String remark = otherCase.getOtherProblemRemark();
@@ -4108,15 +4165,15 @@
                                                                         %>
                                                                         <tr class="other_othercase moreObjs">
                                                                             <td><%=description%></td>
-                                                                            <td><%=(loss == 0.0)? "-" : df.format(loss) %></td>
+                                                                            <td><%=(loss == 0.0) ? "" : df.format(loss)%></td>
 
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#othercase_pop_up" data-value='othercase' 
-                                                                                   data-class="problem" data-title="View Details & history of other problems"  
-                                                                                   data-othercase='<%=otherCaseId%>' href="" data-toggle="modal" data-action="viewedit"  
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#othercase_pop_up" data-value='othercase' 
+                                                                                                      data-class="problem" data-title="View Details & history of other problems"  
+                                                                                                      data-othercase='<%=otherCaseId%>' href="" data-toggle="modal" data-action="viewedit"  
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#othercase_pop_up" data-value='othercase' 
                                                                                    data-class="problem"
                                                                                    data-othercase='<%=otherCaseId%>' href="" data-toggle="modal" data-action="delete"  
@@ -4131,15 +4188,15 @@
 
                                                                         <tr>
                                                                             <td><%=description%></td>
-                                                                            <td><%=(loss == 0.0)? "-": df.format(loss)%></td>
+                                                                            <td><%=(loss == 0.0) ? "" : df.format(loss)%></td>
 
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#othercase_pop_up" data-value='othercase' 
-                                                                                   data-class="problem" data-title="View Details & history of other problems"  
-                                                                                   data-othercase='<%=otherCaseId%>' href="" data-toggle="modal" data-action="viewedit"  
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#othercase_pop_up" data-value='othercase' 
+                                                                                                      data-class="problem" data-title="View Details & history of other problems"  
+                                                                                                      data-othercase='<%=otherCaseId%>' href="" data-toggle="modal" data-action="viewedit"  
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#othercase_pop_up" data-value='othercase' 
                                                                                    data-class="problem"
                                                                                    data-othercase='<%=otherCaseId%>' href="" data-toggle="modal" data-action="delete"  
@@ -4185,11 +4242,11 @@
 
                                                                     <table class="table table-condensed">
                                                                         <tr>
-                                                                            <th>When lodged</th>
-                                                                            <th>Police Station</th>
-                                                                            <th>TWC2 Escort</th>
-                                                                            <th>Report Ref Nbr</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th class="tbl-20-col">When lodged</th>
+                                                                            <th class="tbl-20-col">Police station</th>
+                                                                            <th class="tbl-20-col">TWC2 escort</th>
+                                                                            <th class="tbl-20-col">Report Ref number</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -4205,17 +4262,17 @@
                                                                                 if (i < policeReportIds.size() - 1) {
                                                                         %>
                                                                         <tr class="other_police moreObjs">
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td> 
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td> 
                                                                             <td><%=station%></td>
                                                                             <td><%=accompany%></td>
                                                                             <td><%=reference%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#policareport_pop_up" data-value='policareport'
-                                                                                   data-class="problem" data-title="View Police Report Lodged Details"  
-                                                                                   data-policareport='<%=policeReportId%>' href="" data-toggle="modal" data-action="viewedit" 
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#policareport_pop_up" data-value='policareport'
+                                                                                                      data-class="problem" data-title="View Police Report Lodged Details"  
+                                                                                                      data-policareport='<%=policeReportId%>' href="" data-toggle="modal" data-action="viewedit" 
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#policareport_pop_up" data-value='policareport'
                                                                                    data-class="problem" 
                                                                                    data-policareport='<%=policeReportId%>' href="" data-toggle="modal" data-action="delete" 
@@ -4228,17 +4285,17 @@
                                                                         } else {
                                                                         %>
                                                                         <tr>
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td> 
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td> 
                                                                             <td><%=station%></td>
                                                                             <td><%=accompany%></td>
                                                                             <td><%=reference%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#policareport_pop_up" data-value='policareport'
-                                                                                   data-class="problem" data-title="View Police Report Lodged Details"  
-                                                                                   data-policareport='<%=policeReportId%>' href="" data-toggle="modal" data-action="viewedit" 
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#policareport_pop_up" data-value='policareport'
+                                                                                                      data-class="problem" data-title="View Police Report Lodged Details"  
+                                                                                                      data-policareport='<%=policeReportId%>' href="" data-toggle="modal" data-action="viewedit" 
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#policareport_pop_up" data-value='policareport'
                                                                                    data-class="problem" 
                                                                                    data-policareport='<%=policeReportId%>' href="" data-toggle="modal" data-action="delete" 
@@ -4283,11 +4340,11 @@
 
                                                                     <table class="table table-condensed">
                                                                         <tr>
-                                                                            <th>When Lodged</th>
+                                                                            <th>When lodged</th>
                                                                             <th>Complained to</th>
                                                                             <th>Complainant</th>
-                                                                            <th>How Lodged</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th>How lodged</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -4307,17 +4364,17 @@
                                                                                 if (i < otherComplaintIds.size() - 1) {
                                                                         %>
                                                                         <tr class="other_othercomplaints moreObjs">
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td> 
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td> 
                                                                             <td><%=agency%></td>
                                                                             <td><%=by%></td>
                                                                             <td><%=mode%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#othercomplaint_pop_up" data-class="problem" 
-                                                                                   data-title="View Other Complaint Lodged Details" data-value='othercomplaint' 
-                                                                                   data-othercomplaint='<%=otherComplaintId%>' href="" data-toggle="modal" data-action="viewedit"  
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#othercomplaint_pop_up" data-class="problem" 
+                                                                                                      data-title="View Other Complaint Lodged Details" data-value='othercomplaint' 
+                                                                                                      data-othercomplaint='<%=otherComplaintId%>' href="" data-toggle="modal" data-action="viewedit"  
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#othercomplaint_pop_up" data-class="problem" 
                                                                                    data-value='othercomplaint' 
                                                                                    data-othercomplaint='<%=otherComplaintId%>' href="" data-toggle="modal" data-action="delete"  
@@ -4330,17 +4387,17 @@
                                                                         } else {
                                                                         %>
                                                                         <tr>
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td> 
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td> 
                                                                             <td><%=agency%></td>
                                                                             <td><%=by%></td>
                                                                             <td><%=mode%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#othercomplaint_pop_up" data-class="problem" 
-                                                                                   data-title="View Other Complaint Lodged Details" data-value='othercomplaint' 
-                                                                                   data-othercomplaint='<%=otherComplaintId%>' href="" data-toggle="modal" data-action="viewedit" 
-                                                                                   class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#othercomplaint_pop_up" data-class="problem" 
+                                                                                                      data-title="View Other Complaint Lodged Details" data-value='othercomplaint' 
+                                                                                                      data-othercomplaint='<%=otherComplaintId%>' href="" data-toggle="modal" data-action="viewedit" 
+                                                                                                      class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#othercomplaint_pop_up" data-class="problem" 
                                                                                    data-value='othercomplaint' 
                                                                                    data-othercomplaint='<%=otherComplaintId%>' href="" data-toggle="modal" data-action="delete"  
@@ -4387,10 +4444,10 @@
 
                                                                     <table class="table table-condensed">
                                                                         <tr>
-                                                                            <th>Milestone Dt</th>
-                                                                            <th>Milestone Reached</th>
+                                                                            <th>Milestone date</th>
+                                                                            <th>Milestone reached</th>
 
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -4409,7 +4466,7 @@
                                                                                 if (i < nCaseMSIds.size() - 1) {
                                                                         %>
                                                                         <tr class="other_casemsnc moreObjs">
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td> 
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td> 
                                                                             <td><%=reached%></td>
 
                                                                             <td>
@@ -4418,8 +4475,8 @@
                                                                                    data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#milestonenc_pop_up"
                                                                                    data-class="problem"  data-value='ncmilestone' data-ncmilestone='<%=nCaseMSId%>' href="" data-toggle="modal" 
                                                                                    data-action="delete"  class="delete_btn pop_up_open">
@@ -4432,15 +4489,15 @@
                                                                         } else {
                                                                         %>
                                                                         <tr>
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td> 
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td> 
                                                                             <td><%=reached%></td>
 
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#milestonenc_pop_up"  data-class="problem" data-title="View Case Milestone (Non-Criminal) Details" 
-                                                                                   data-value='ncmilestone' data-ncmilestone='<%=nCaseMSId%>' href="" data-toggle="modal" 
-                                                                                   data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#milestonenc_pop_up"  data-class="problem" data-title="View Case Milestone (Non-Criminal) Details" 
+                                                                                                      data-value='ncmilestone' data-ncmilestone='<%=nCaseMSId%>' href="" data-toggle="modal" 
+                                                                                                      data-action="viewedit"  class="edit_btn pop_up_open"><span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#milestonenc_pop_up"
                                                                                    data-class="problem"  data-value='ncmilestone' data-ncmilestone='<%=nCaseMSId%>' href="" data-toggle="modal" 
                                                                                    data-action="delete"  class="delete_btn pop_up_open">
@@ -4486,10 +4543,10 @@
 
                                                                     <table class="table table-condensed">
                                                                         <tr>
-                                                                            <th>Milestone Datet</th>
-                                                                            <th>Milestone Reached</th>
+                                                                            <th>Milestone date</th>
+                                                                            <th>Milestone reached</th>
 
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -4508,7 +4565,7 @@
                                                                                 if (i < caseMSIds.size() - 1) {
                                                                         %>
                                                                         <tr class="other_casemscr moreObjs">
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td> 
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td> 
                                                                             <td><%=reached%></td>
 
                                                                             <td>
@@ -4517,8 +4574,8 @@
                                                                                    data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#milestonecr_pop_up" data-title="View Case Milestone (Criminal) Details" 
                                                                                    data-value='cmilestone' data-cmilestone='<%=caseMSId%>' data-class="problem"  href="" 
                                                                                    data-toggle="modal" data-action="delete"  class="delete_btn pop_up_open">
@@ -4531,7 +4588,7 @@
                                                                         } else {
                                                                         %>
                                                                         <tr>
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td> 
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td> 
                                                                             <td><%=reached%></td>
                                                                             <td>
                                                                                 <a style="color: black" data-target="#milestonecr_pop_up" data-title="View Case Milestone (Criminal) Details"
@@ -4539,8 +4596,8 @@
                                                                                    data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#milestonecr_pop_up" data-title="View Case Milestone (Criminal) Details" 
                                                                                    data-value='cmilestone' data-cmilestone='<%=caseMSId%>' data-class="problem"  href="" 
                                                                                    data-toggle="modal" data-action="delete"  class="delete_btn pop_up_open">
@@ -4586,11 +4643,11 @@
 
                                                                     <table class="table table-condensed">
                                                                         <tr>
-                                                                            <th>Updated Dt</th>
+                                                                            <th>Updated date</th>
                                                                             <th>Status</th>
-                                                                            <th>Depart SG Dt</th>
-                                                                            <th class="tbl-action-col">New Employer</th>
-                                                                            <th class="tbl-action-col">Action</th>
+                                                                            <th>Depart SG date</th>
+                                                                            <th class="tbl-20-col">New employer</th>
+                                                                            <th class="tbl-20-col">Action</th>
                                                                         </tr>
 
                                                                         <%
@@ -4606,17 +4663,17 @@
                                                                                 if (i < ttrIds.size() - 1) {
                                                                         %>
                                                                         <tr class="other_ttr moreObjs">
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>                                                         
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>                                                         
                                                                             <td><%=status%></td>
-                                                                            <td><%=(dDate==null)?"-":sdf.format(dDate)%></td>
+                                                                            <td><%=(dDate == null) ? "-" : sdf.format(dDate)%></td>
                                                                             <td><%=name%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' 
-                                                                                   data-title="Add A New Transfer, TJS & Repatriation" href="" data-toggle="modal" 
-                                                                                   data-class="problem" data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' 
+                                                                                                      data-title="Add A New Transfer, TJS & Repatriation" href="" data-toggle="modal" 
+                                                                                                      data-class="problem" data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' 
                                                                                    data-title="Add A New Transfer, TJS & Repatriation" href="" data-toggle="modal" 
                                                                                    data-class="problem" data-action="delete"  class="delete_btn pop_up_open">
@@ -4629,17 +4686,17 @@
                                                                         } else {
                                                                         %>
                                                                         <tr>
-                                                                            <td><%=(date==null)?"-":sdf.format(date)%></td>                                                         
+                                                                            <td><%=(date == null) ? "-" : sdf.format(date)%></td>                                                         
                                                                             <td><%=status%></td>
-                                                                            <td><%=(dDate==null)?"-":sdf.format(dDate)%></td>
+                                                                            <td><%=(dDate == null) ? "-" : sdf.format(dDate)%></td>
                                                                             <td><%=name%></td>
-                                                                            <td class="tbl-action-col"><a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' 
-                                                                                   data-title="Add A New Transfer, TJS & Repatriation" href="" data-toggle="modal" 
-                                                                                   data-class="problem" data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' 
+                                                                                                      data-title="Add A New Transfer, TJS & Repatriation" href="" data-toggle="modal" 
+                                                                                                      data-class="problem" data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
-                                                                                <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                                    &nbsp;&nbsp;&nbsp;
+                                                                                <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                                &nbsp;&nbsp;&nbsp;
                                                                                 <a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' 
                                                                                    data-title="Add A New Transfer, TJS & Repatriation" href="" data-toggle="modal" 
                                                                                    data-class="problem" data-action="delete"  class="delete_btn pop_up_open">
@@ -4677,22 +4734,26 @@
                                     <br/>
                                     <!-- Benefits Success & Error Display --->
 
-                                    <% if (successBenefitMsg != null) { if (!successBenefitMsg.equals("")) {%>
+                                    <% if (successBenefitMsg != null) {
+                                            if (!successBenefitMsg.equals("")) {%>
 
                                     <div class="alert alert-info" role="alert">
                                         <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
                                         <%=successBenefitMsg%>
                                     </div>
 
-                                    <% }}%>
-                                    <% if (errorBenefitMsg != null) { if (!errorBenefitMsg.equals("")) { %>
+                                    <% }
+                                        }%>
+                                    <% if (errorBenefitMsg != null) {
+                                            if (!errorBenefitMsg.equals("")) {%>
 
                                     <div class="alert alert-danger" role="alert">
                                         <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
                                         <%=errorBenefitMsg%>
                                     </div>
 
-                                    <% }}%>
+                                    <% }
+                                        }%>
                                     <!-- End of Benefits Success & Error Display --->
                                     <div class='row'>
                                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
@@ -4701,7 +4762,7 @@
                                                 <div class="panel-heading" role="tab" id="foodbeneHead">
                                                     <h4 class="panel-title">
                                                         <a data-toggle="collapse" data-parent="#accordion" href="#foodBeneCol" aria-expanded="true" aria-controls="foodBeneCol">
-                                                            Meal Benefaction </a>
+                                                            Meal </a>
                                                         <a href="" id="foodbeneAddBtn" data-toggle="modal" data-class="benefection" 
                                                            data-target="#foodbene_pop_up"   data-title='Add New Meal Benefection'  
                                                            data-action = "add" data-value='foodbene' data-foodbene='' class="add_btn pop_up_open pull-right">
@@ -4729,11 +4790,11 @@
 
                                                         <table class="table table-condensed">
                                                             <tr>
-                                                                <th>Date Benefit Given</th>
-                                                                <th>Benefit Given By</th>
-                                                                <th>Type</th>
-                                                                <th>Value</th>
-                                                                <th class="tbl-action-col">Action</th>
+                                                                <th class='tbl-20-col'>Date benefit given</th>
+                                                                <th class='tbl-20-col'>Benefit given by</th>
+                                                                <th class='tbl-20-col'>Type</th>
+                                                                <th class='tbl-20-col'>Value</th>
+                                                                <th class="tbl-20-col">Action</th>
                                                             </tr>
                                                             <%
                                                                 for (int i = mealIds.size() - 1; i >= 0; i--) {
@@ -4744,17 +4805,17 @@
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
                                                                 <td><%=benefit.getBenefitType()%></td>
-                                                                <td><%=benefit.getBenefitValue()%></td>
-                                                                <td class="tbl-action-col">
+                                                                <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
+                                                                <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#foodbene_pop_up"  data-class="benefection" 
                                                                        data-value='foodbene' data-title='View Meal Benefection' 
                                                                        data-foodbene='<%=id%>' href="" data-toggle="modal" 
                                                                        data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
-                                                                    <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                        &nbsp;&nbsp;&nbsp;
-                                                                        <a style="color: black" data-target="#foodbene_pop_up"  data-class="benefit" 
+                                                                    <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <a style="color: black" data-target="#foodbene_pop_up"  data-class="benefit" 
                                                                        data-value='foodbene'  
                                                                        data-foodbene='<%=id%>' href="" data-toggle="modal" 
                                                                        data-action="delete" class="delete_btn pop_up_open">
@@ -4780,7 +4841,7 @@
                                                 <div class="panel-heading" role="tab" id="transpoBeneHead">
                                                     <h4 class="panel-title">
                                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#transpoBeneCol" aria-expanded="true" aria-controls="transpoBeneCol">
-                                                            Transportation Benefaction </a>
+                                                            Transportation</a>
                                                         <a href="" id="transpobeneAddBtn" data-toggle="modal" data-target="#transpobene_pop_up"  data-class="benefection" data-title='Add New Transportation Benefection'  data-action = "add" data-value='transpobene' data-transpobene='' class="add_btn pop_up_open pull-right">
                                                             <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                         </a>
@@ -4804,11 +4865,11 @@
                                                         %>
                                                         <table class="table table-condensed">
                                                             <tr>
-                                                                <th>Date Benefit Given</th>
-                                                                <th>Benefit Given By</th>
-                                                                <th>Type</th>
-                                                                <th>Value</th>
-                                                                <th class="tbl-action-col">Action</th>
+                                                                <th class='tbl-20-col'>Date benefit given</th>
+                                                                <th class='tbl-20-col'>Benefit given by</th>
+                                                                <th class='tbl-20-col'>Type</th>
+                                                                <th class='tbl-20-col'>Value</th>
+                                                                <th class="tbl-20-col">Action</th>
                                                             </tr>
                                                             <%
                                                                 for (int i = transportIds.size() - 1; i >= 0; i--) {
@@ -4819,22 +4880,22 @@
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
                                                                 <td><%=benefit.getBenefitType()%></td>
-                                                                <td><%=benefit.getBenefitValue()%></td>
-                                                                <td class="tbl-action-col">
+                                                                <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
+                                                                <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#transpobene_pop_up"  data-class="benefection" 
                                                                        data-value='transpobene' data-title='View Transportation Benefection' 
                                                                        data-transpobene='<%=id%>' href="" data-toggle="modal" 
                                                                        data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
-                                                                    <% if (userLogin.getRole().equals("Administrator")) { %>   
-                                                                       &nbsp;&nbsp;&nbsp;
-                                                                   <a style="color: black" data-target="#transpobene_pop_up"  data-class="benefit" 
+                                                                    <% if (userLogin.getRole().equals("Administrator")) {%>   
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <a style="color: black" data-target="#transpobene_pop_up"  data-class="benefit" 
                                                                        data-value='transpobene' 
                                                                        data-transpobene='<%=id%>' href="" data-toggle="modal" 
                                                                        data-action="delete" class="delete_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-trash"></span>    
-                                                                   <% } %>     
+                                                                        <% }%>     
                                                                 </td>
                                                             </tr>
                                                             <%
@@ -4853,7 +4914,7 @@
                                                 <div class="panel-heading" role="tab" id="mediBeneHead">
                                                     <h4 class="panel-title">
                                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#mediBeneCol" aria-expanded="true" aria-controls="mediBeneCol">
-                                                            Medical Benefaction </a>
+                                                            Medical</a>
                                                         <a href="" id="medibeneAddBtn" data-toggle="modal" data-target="#medibene_pop_up"  data-class="benefection" data-title='Add New Medical Benefection'  data-action = "add" data-value='medibene' data-medibene='' class="add_btn pop_up_open pull-right">
                                                             <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                         </a>
@@ -4876,11 +4937,11 @@
                                                         %>
                                                         <table class="table table-condensed">
                                                             <tr>
-                                                                <th>Date Benefit Given</th>
-                                                                <th>Benefit Given By</th>
-                                                                <th>Type</th>
-                                                                <th>Value</th>
-                                                                <th class="tbl-action-col">Action</th>
+                                                                <th class='tbl-20-col'>Date benefit given</th>
+                                                                <th class='tbl-20-col'>Benefit given by</th>
+                                                                <th class='tbl-20-col'>Type</th>
+                                                                <th class='tbl-20-col'>Value</th>
+                                                                <th class="tbl-20-col">Action</th>
                                                             </tr>
                                                             <%
                                                                 for (int i = medicalIds.size() - 1; i >= 0; i--) {
@@ -4891,16 +4952,16 @@
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
                                                                 <td><%=benefit.getBenefitType()%></td>
-                                                                <td><%=benefit.getBenefitValue()%></td>
-                                                                <td class="tbl-action-col">
+                                                                <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
+                                                                <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#medibene_pop_up"  data-class="benefection" 
                                                                        data-value='medibene' data-title='View Medical Benefection' 
                                                                        data-medibene='<%=id%>' href="" data-toggle="modal" 
                                                                        data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
-                                                                    <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                        &nbsp;&nbsp;&nbsp;
+                                                                    <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                    &nbsp;&nbsp;&nbsp;
                                                                     <a style="color: black" data-target="#medibene_pop_up"  data-class="benefit" 
                                                                        data-value='medibene' 
                                                                        data-medibene='<%=id%>' href="" data-toggle="modal" 
@@ -4908,7 +4969,7 @@
                                                                         <span class="glyphicon glyphicon-trash"></span>
                                                                     </a>
                                                                     <% }%>    
-                                                                       
+
                                                                 </td>
                                                             </tr>
                                                             <%
@@ -4927,7 +4988,7 @@
                                                 <div class="panel-heading" role="tab" id="roofBeneHead">
                                                     <h4 class="panel-title">
                                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#roofBeneCol" data-title='Add New Roof Benefections' aria-expanded="true" aria-controls="roofBeneCol">
-                                                            Roof Benefaction </a>
+                                                            Shelter</a>
                                                         <a href="" id="roofbeneAddBtn" data-toggle="modal" data-target="#roofbene_pop_up"  data-class="benefection" data-title='Add New Roof Benefection'  data-action = "add" data-value='roofbene' data-roofbene='' class="add_btn pop_up_open pull-right">
                                                             <span class="glyphicon glyphicon-plus pull-right" pull-right></span>
                                                         </a>
@@ -4951,11 +5012,11 @@
                                                         %>
                                                         <table class="table table-condensed">
                                                             <tr>
-                                                                <th>Date Benefit Given</th>
-                                                                <th>Benefit Given By</th>
-                                                                <th>Type</th>
-                                                                <th>Value</th>
-                                                                <th class="tbl-action-col">Action</th>
+                                                                <th class='tbl-20-col'>Date benefit given</th>
+                                                                <th class='tbl-20-col'>Benefit given by</th>
+                                                                <th class='tbl-20-col'>Type</th>
+                                                                <th class='tbl-20-col'>Value</th>
+                                                                <th class="tbl-20-col">Action</th>
                                                             </tr>
                                                             <%
                                                                 for (int i = roofIds.size() - 1; i >= 0; i--) {
@@ -4966,15 +5027,15 @@
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
                                                                 <td><%=benefit.getBenefitType()%></td>
-                                                                <td><%=benefit.getBenefitValue()%></td>
-                                                                <td class="tbl-action-col">
+                                                                <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
+                                                                <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#roofbene_pop_up"  data-class="benefection" 
                                                                        data-value='roofbene' data-title='View Roof Benefection' data-roofbene='<%=id%>' 
                                                                        href="" data-toggle="modal" data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
-                                                                    <% if (userLogin.getRole().equals("Administrator")) { %>
-                                                                        &nbsp;&nbsp;&nbsp;
+                                                                    <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                    &nbsp;&nbsp;&nbsp;
                                                                     <a style="color: black" data-target="#roofbene_pop_up"  data-class="benefit" 
                                                                        data-value='roofbene' data-roofbene='<%=id%>' 
                                                                        href="" data-toggle="modal" data-action="delete" class="delete_btn pop_up_open">
@@ -4999,7 +5060,7 @@
                                                 <div class="panel-heading" role="tab" id="otherBeneHead">
                                                     <h4 class="panel-title">
                                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#otherBeneCol">
-                                                            Other Benefaction </a>
+                                                            Others</a>
                                                         <a href="" id="otherbeneAddBtn" data-toggle="modal" data-target="#otherbene_pop_up"  
                                                            data-class="benefection" data-title='Add New Benefection (Others)'  data-action = "add" 
                                                            data-value='otherbene' data-otherbene='' class="add_btn pop_up_open pull-right">
@@ -5024,11 +5085,11 @@
                                                         %>
                                                         <table class="table table-condensed">
                                                             <tr>
-                                                                <th>Date Benefit Given</th>
-                                                                <th>Benefit Given By</th>
-                                                                <th>Type</th>
-                                                                <th>Value</th>
-                                                                <th class="tbl-action-col">Action</th>
+                                                                <th class='tbl-20-col'>Date benefit given</th>
+                                                                <th class='tbl-20-col'>Benefit given by</th>
+                                                                <th class='tbl-20-col'>Type</th>
+                                                                <th class='tbl-20-col'>Value</th>
+                                                                <th class="tbl-20-col">Action</th>
                                                             </tr>
                                                             <%
                                                                 for (int i = otherIds.size() - 1; i >= 0; i--) {
@@ -5039,21 +5100,21 @@
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
                                                                 <td><%=benefit.getBenefitType()%></td>
-                                                                <td><%=benefit.getBenefitValue()%></td>
-                                                                <td class="tbl-action-col">
+                                                                <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
+                                                                <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#otherbene_pop_up"  data-class="benefection" 
                                                                        data-value='otherbene' data-title='View Benefection' data-otherbene='<%=id%>' 
                                                                        href="" data-toggle="modal" data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
-                                                                    <% if (userLogin.getRole().equals("Administrator")) { %>   
+                                                                    <% if (userLogin.getRole().equals("Administrator")) {%>   
                                                                     &nbsp;&nbsp;&nbsp;   
                                                                     <a style="color: black" data-target="#otherbene_pop_up"  data-class="benefit" 
                                                                        data-value='otherbene' data-otherbene='<%=id%>' 
                                                                        href="" data-toggle="modal" data-action="delete" class="delete_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-trash"></span>
                                                                     </a> 
-                                                                    <% } %>   
+                                                                    <% }%>   
                                                                 </td>
                                                             </tr>
                                                             <%
@@ -5103,7 +5164,7 @@
                                                     <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
                                                     <label>File Upload</label><br/>
                                                     Select file to upload: <input type="file" name="fileInput"/><br/> 
-                                                    <button type="submit">Upload File</button><br/><br/>
+                                                    <button type="submit">Upload file</button><br/><br/>
                                                 </form>
                                             </div>
                                         </div>
@@ -5117,11 +5178,11 @@
                                         <table class="table table-striped table-hover" id="worker_attachment">
                                             <thead bgcolor="#4c98b8">
                                                 <tr>
-                                                    <th><font color="#FFF">S/N</font></th>
-                                                    <th><font color="#FFF">Name</font></th>
-                                                    <th><font color="#FFF">Date & Time uploaded</font></th>
-                                                    <th><font color="#FFF">Upload By</font></th>
-                                                    <th class="tbl-action-col"><font color="#FFF">Actions</font></th>
+                                                    <th class='tbl-20-col'><font color="#FFF">S/N</font></th>
+                                                    <th class='tbl-20-col'><font color="#FFF">Name</font></th>
+                                                    <th class='tbl-20-col'><font color="#FFF">Date & Time uploaded</font></th>
+                                                    <th class='tbl-20-col'><font color="#FFF">Upload By</font></th>
+                                                    <th class="tbl-20-col"><font color="#FFF">Actions</font></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -5138,7 +5199,7 @@
                                                     <td><%=docName%></td>
                                                     <td><%=sdf2.format(timeStamp)%></td>
                                                     <td><%=submitBy%></td>
-                                                    <td class="tbl-action-col">
+                                                    <td class="tbl-20-col">
                                                         <% String extension = docName.substring(docName.lastIndexOf(".") + 1);
                                                             if (extension.equalsIgnoreCase("jpeg") || extension.equalsIgnoreCase("jpg")
                                                                     || extension.equalsIgnoreCase("png") || extension.equalsIgnoreCase("bmp")) {
@@ -5189,14 +5250,14 @@
                                 <input type="hidden" name="workerFinNum" value="<%=workerFin%>" />
                                 <input type="hidden" name="jobkey" value="<%=latestJob.getJobKey()%>" />
                                 <input type="hidden" name="probKey" value="<%=latestProblem.getProbKey()%>" />
-                                 <div class="form-group pull-right">
+                                <div class="form-group pull-right">
                                     <button type='submit' class="btn btn-blue">Okay</button>
                                     <button type='button' class='btn cancel_btn'>Cancel</button>
                                 </div>
                             </form> 
-                            
+
                         </div>	
-                        
+
                         <!-- Confirm Attachment Delete Modal -->
                         <div class="modal fade" id="attach_delete_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" 
                              aria-hidden="true">
@@ -5209,7 +5270,7 @@
                                             <span class="sr-only">Close</span>
                                         </button>
                                         <h3 class="modal-title" id="attach_pop_up_label" style="color:#2980b9" align="center">
-                                            Delete File
+                                            Delete file
                                         </h3>
                                     </div> <!--modal-header-->
                                     <form id="deleteConfirmForm" method="post" action="fileUpload.do">
@@ -5245,21 +5306,21 @@
                                             <span class="sr-only">Close</span>
                                         </button>
                                         <h3 class="modal-title" id="attach_pop_up_label" style="color:#2980b9" align="center">
-                                            Rename File
+                                            Rename file
                                         </h3>
                                     </div> <!--modal-header-->
                                     <form id="editAttachForm" method="post" action="fileUpload.do" class="form-horizontal">
                                         <div class="modal-body">
 
                                             <div class="form-group">
-                                                <label class="col-sm-3" for="InputDocName">Old File Name</label>
+                                                <label class="col-sm-3" for="InputDocName">Old file Name</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" id="InputDocName" name="fileName" readOnly="readOnly">
                                                 </div>    
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-sm-3" for="InputDocName">New File Name<span style="color: red">*</span></label>
+                                                <label class="col-sm-3" for="InputDocName">New file Name<span style="color: red">*</span></label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" id="InputNewFileName" name="nFileName" required>
                                                 </div>    
@@ -5333,7 +5394,7 @@
                     <li class="active"><%=worker.getFinNumber()%></li>
                 </ol>
             </div>
-                
+
             <div class="col-md-offset-6" id="complement_header_tab">
                 <ul class="nav nav-tabs " role="tablist" id="sub_nav_tabs">
                     <%  if (successAttachMsg != null || errorAttachMsg != null) {%>
@@ -5360,7 +5421,7 @@
 
                 $("#pop_up_content").load('include/createcaseForm.jsp?workerFin=<%=workerFin%>' + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + '&profile=' + div_id + '&action=' + div_action_val).dialog({modal: true,
                     position: ['center', 80],
-                    minWidth: $(window).width() - 750,
+                    minWidth: $(window).width() * 0.5,
                     title: div_title,
                     resizable: false,
                     draggable: false, close: function() {
@@ -5390,13 +5451,13 @@
                     url = 'benefectionPopUp.jsp';
                 }
                 if (div_action_val === 'viewedit' || div_class === 'benefection') {
-                    $("#pop_up_content").load('include/' + url + '?workerFin=<%=workerFin%>&' + 
-                        div_id + '=' + div_value + "&jobkey=<%=latestJob.getJobKey()%>" + 
-                        "&probkey=<%=latestProblem.getProbKey()%>&" + div_id + "=" + div_value + "&" + 
-                        "&action=" + div_action_val).dialog({
+                    $("#pop_up_content").load('include/' + url + '?workerFin=<%=workerFin%>&' +
+                            div_id + '=' + div_value + "&jobkey=<%=latestJob.getJobKey()%>" +
+                            "&probkey=<%=latestProblem.getProbKey()%>&" + div_id + "=" + div_value + "&" +
+                            "&action=" + div_action_val).dialog({
                         modal: true,
                         position: ['center', 80],
-                        minWidth: $(window).width() - 750,
+                        minWidth: $(window).width() * 0.5,
                         title: div_title,
                         resizable: false,
                         draggable: false,
@@ -5406,12 +5467,12 @@
                         }
                     });
                 } else if (div_action_val === 'add') {
-                    $("#pop_up_content").load('include/addPopUp.jsp?workerFin=<%=workerFin%>&complement=' + div_id 
-                        + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + 
-                        "&action='add'").dialog({
+                    $("#pop_up_content").load('include/addPopUp.jsp?workerFin=<%=workerFin%>&complement=' + div_id
+                            + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" +
+                            "&action='add'").dialog({
                         modal: true,
                         position: ['center', 80],
-                        minWidth: $(window).width() - 750,
+                        minWidth: $(window).width() * 0.5,
                         title: div_title,
                         resizable: false,
                         draggable: false,
@@ -5420,25 +5481,25 @@
                             $('#pop_up_content').empty();
                         }
                     });
-                //added by soemyatmayt for passing data to delete confirmation modal    
+                    //added by soemyatmayt for passing data to delete confirmation modal    
                 } else if (div_action_val === 'delete') {
                     $("#hidden-name").val(div_class);
                     $("#hidden-complement").val(div_id);
                     $("#hidden-id").val(div_value);
                     $('#delete-dialog').dialog('open');
                     //return false;
-                    
+
                 }
-                
-                
-                
+
+
+
             });
 
             function referCase() {
                 $("#pop_up_content").load('include/referCase.jsp?workerFin=<%=workerFin%>&jobkey=<%=latestJob.getJobKey()%>&probkey=<%=latestProblem.getProbKey()%>&user=<%= userLogin.getNricNumber()%>').dialog({
                     modal: true,
                     position: ['center', 80],
-                    minWidth: $(window).width() - 750,
+                    minWidth: $(window).width() * 0.5,
                     title: "Case Referral",
                     resizable: false,
                     draggable: false,
@@ -5454,12 +5515,12 @@
                     modal: true,
                     autoOpen: false,
                     position: ['center', 80],
-                    minWidth: $(window).width() - 750,
+                    minWidth: $(window).width() * 0.5,
                     resizable: false,
                     draggable: false
                 })
-                    
-             });
+
+            });
 
             function seemore(div_name) {
                 $(div_name).toggle();
@@ -5471,7 +5532,7 @@
                 var div = '#' + div_name + '_pop_up';
                 $(div).show();
             }
-            
+
             //close the delete confirm dialog - added by soemyatmyat
             $('.cancel_btn').click(function() {
                 $('#delete-dialog').dialog("close");
@@ -5518,7 +5579,7 @@
                         fileInput: {
                             validators: {
                                 file: {
-                                    extension:'doc,docx,pdf,xls,csv,ppt,ppts,gif,jpeg,jpg,png,bmp,css,html,htm,shtml,txt,xml,csv',
+                                    extension: 'doc,docx,pdf,xls,csv,ppt,ppts,gif,jpeg,jpg,png,bmp,css,html,htm,shtml,txt,xml,csv',
                                     type: 'application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.ms-excel,application/vnd.ms-powerpoint,image/gif,image/jpeg,image/png,image/bmp,text/css,text/html,text/plain,text/xml,text/csv',
                                     maxSize: 10 * 1024 * 1024,
                                     message: 'Please choose a valid file with a size less than 10M only.'

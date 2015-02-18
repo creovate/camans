@@ -46,6 +46,9 @@ public class processAddJobComplement extends HttpServlet {
             String idStr = request.getParameter("Id");
             String action = "";
             
+            //to keep track of selected problem
+            String probKeyStr = request.getParameter("selectedProb");
+            
             //=======================================//
             //   Server Side Validation Parameters
             //=======================================//
@@ -1270,7 +1273,11 @@ public class processAddJobComplement extends HttpServlet {
             }
             request.getSession().setAttribute("successJobCompMsg", success);
             request.getSession().setAttribute("errorJobCompMsg", errorMsg);
-            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + "&selectedJob=" + jobKey);
+            request.getSession().setAttribute("tabIndicator", "job");
+            request.getSession().setAttribute("worker",workerFinNum);
+            request.getSession().setAttribute("selectedProb",probKeyStr);
+            request.getSession().setAttribute("selectedJob", jobKey + "");
+            response.sendRedirect("viewWorker.jsp");
         } finally {
             out.close();
         }

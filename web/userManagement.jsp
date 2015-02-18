@@ -91,7 +91,7 @@
                 <h3 >All Users</h3>
                 <!--<div class="panel panel-default">
                     <div class="panel-body">-->       
-                        <table class="table table-curved table-bordered table-hover" id="users-table">
+                        <table class="table table-bordered table-hover" id="users-table">
                             <thead bgcolor="#4c98b8">
                                 <tr>
                                     <th><font color="#FFF">S/N</font></th>

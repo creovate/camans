@@ -185,8 +185,11 @@ public class processAddBenefit extends HttpServlet {
             
             request.getSession().setAttribute("successBenefitMsg", success);
             request.getSession().setAttribute("errorBenefitMsg", errorMsg);
-            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + 
-                    "&selectedBenefit=" + problemKey);
+            request.getSession().setAttribute("tabIndicator", "benefit");
+            request.getSession().setAttribute("worker",workerFinNum);
+            request.getSession().setAttribute("selectedProb", problemKey + "");
+            request.getSession().setAttribute("selectedBenefit", idStr);
+            response.sendRedirect("viewWorker.jsp");
 
         } finally {            
             out.close();

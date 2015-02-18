@@ -5,24 +5,18 @@
 package camans.controller;
 
 import camans.dao.CaseManagementDAO;
-import camans.dao.DropdownDAO;
-import camans.dao.JobDAO;
 import camans.dao.ProblemComplementsDAO;
-import camans.dao.ProblemDAO;
 import camans.dao.UserAuditLogDAO;
 import camans.dao.UserDAO;
-import camans.dao.WorkerDAO;
 import camans.entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -356,7 +350,7 @@ public class processAddProblemComplement extends HttpServlet {
                      discussDateStr = request.getParameter("ndate");
                      discussTime = request.getParameter("ndiscussionTime");
                      discussWhere = request.getParameter("ndiscussionWhere");
-                     discussWhereMore = request.getParameter("ndiscussionWhereOther");
+                     discussWhereMore = request.getParameter("ndiscussionWhereMore");
                      discussWorkerPresent = request.getParameter("ndiscussionWorkerPresent");
                      discussTWC2Pers1 = request.getParameter("ndiscussionTWC2P1");
                      discussTWC2Pers2 = request.getParameter("ndiscussionTWC2P2");
@@ -374,7 +368,7 @@ public class processAddProblemComplement extends HttpServlet {
                      discussDateStr = request.getParameter("date");
                      discussTime = request.getParameter("discussionTime");
                      discussWhere = request.getParameter("discussionWhere");
-                     discussWhereMore = request.getParameter("discussionWhereOther");
+                     discussWhereMore = request.getParameter("discussionWhereMore");
                      discussWorkerPresent = request.getParameter("discussionWorkerPresent");
                      discussTWC2Pers1 = request.getParameter("discussionTWC2P1");
                      discussTWC2Pers2 = request.getParameter("discussionTWC2P2");
@@ -463,7 +457,7 @@ public class processAddProblemComplement extends HttpServlet {
                         }
 
                         if (!discussGit.equals("") && discussGit.length() > 1000) {
-                            errorMsg += "Discuss Git cannot be longer than 1000 characters,";
+                            errorMsg += "Discuss Gist cannot be longer than 1000 characters,";
                         }
 
                         if (!discussAssist.equals("") && discussAssist.length() > 1000) {
@@ -1272,7 +1266,7 @@ public class processAddProblemComplement extends HttpServlet {
                         if (!nonwicaClaimDateStr.equals("")) {
                             try {
                                 java.util.Date tmp = sdf.parse(nonwicaClaimDateStr);
-                                nonwicaClaimDate = new java.sql.Date(tmp.getTime());
+                            nonwicaClaimDate = new java.sql.Date(tmp.getTime());
                             } catch (ParseException ex) {
                                 errorMsg += "Invalid non-wica medical claim Date Format,";
                             } 
@@ -2055,7 +2049,7 @@ public class processAddProblemComplement extends HttpServlet {
                         auditChange = policeReport.toString2();
 
                         //success display
-                        success = "Police Report has been added successfully!";
+                        success = "Police Report has been updated successfully!";
                 }
             }
 
@@ -2534,9 +2528,13 @@ public class processAddProblemComplement extends HttpServlet {
                 UserAuditLogDAO.addUserAuditLog(userAuditLog);     
             
             }
+            
             request.getSession().setAttribute("successProbCompMsg", success);
             request.getSession().setAttribute("errorProbCompMsg", errorMsg);
-            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + "&selectedProb=" + problemKey);
+            request.getSession().setAttribute("tabIndicator", "problem");
+            request.getSession().setAttribute("worker",workerFinNum);
+            request.getSession().setAttribute("selectedProb", problemKey + "");
+            response.sendRedirect("viewWorker.jsp");
         } catch (Exception ex) {
             out.println(ex);
         } finally {            

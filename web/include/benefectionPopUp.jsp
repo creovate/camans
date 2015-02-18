@@ -4,6 +4,7 @@
     Author     : Nyein Su
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="camans.entity.Benefit"%>
 <%@page import="camans.dao.BenefitDAO"%>
@@ -89,6 +90,17 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
+                givenby: {
+                   validators: {
+                        notEmpty: {
+                            message: 'Given by cannot be empty.'
+                        },
+                        stringLength: {
+                            max: 20,
+                            message: 'This field must be less than 20 characters.'
+                        }
+                    } 
+                },
                 isDate: {
                     validators: {
                         notEmpty: {
@@ -96,13 +108,7 @@
                         }
                     }
                 },
-                givenby: {
-                   validators: {
-                        notEmpty: {
-                            message: 'Given by cannot be empty.'
-                        }
-                    } 
-                },
+                
                 benetype: {
                     validators: {
                         notEmpty: {
@@ -145,19 +151,25 @@
                         }
                     }
                 },
+                
+                ngivenby: {
+                   validators: {
+                       stringLength: {
+                            max: 20,
+                            message: 'This field must be less than 20 characters.'
+                        },
+                        notEmpty: {
+                            message: 'Given by cannot be empty.'
+                        }
+                        
+                    } 
+                },
                 nisDate: {
                     validators: {
                         notEmpty: {
                             message: 'Date given cannot be empty.'
                         }
                     }
-                },
-                ngivenby: {
-                   validators: {
-                        notEmpty: {
-                            message: 'Given by cannot be empty.'
-                        }
-                    } 
                 },
                 nbenetype: {
                     validators: {
@@ -223,6 +235,10 @@
                 },
                 ngivenby: {
                    validators: {
+                       stringLength: {
+                            max: 20,
+                            message: 'This field must be less than 20 characters.'
+                        },
                         notEmpty: {
                             message: 'Given by cannot be empty.'
                         }
@@ -299,6 +315,8 @@
     //end of data collection
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
     java.util.Date today = new java.util.Date();
+    
+    DecimalFormat df = new DecimalFormat("#,###,###.00");
     
     //general dropdownlist
     //HashMap<Integer, String> meal = DropdownDAO.retrieveAllDropdownListOfSalaryMode();
@@ -393,7 +411,7 @@
             <div class='form-group'>
                 <label for='value' class="control-label">Value of Benefit/Refund (S$): </label>
                 <br/>
-                <input class="form-control" type='text' name="value" value="<%=(benefitValue == 0) ? "" : benefitValue%>">
+                <input class="form-control" type='text' name="value" value="<%=(benefitValue == 0.0) ? "" : df.format(benefitValue)%>">
             </div>
         </fieldset>
 
@@ -426,6 +444,11 @@
                 <option value="">Select from list: </option>
                 <%
                     for (String dropdownItem : dropdownList) {
+                        if(dropdownItem.equals("Meal card")){
+                %>
+                  <option value ="<%=dropdownItem%>"><%= dropdownItem%></option>
+                <%
+                        }
                 %>
                     <option value="<%=dropdownItem%>"><%=dropdownItem%></option>
                 <%
@@ -517,7 +540,7 @@
         <div class='form-group'>
             <label for='value' class="control-label">Value of Benefit/Refund (S$): </label>
             <br/>
-            <input class="form-control" type='text' name="value" value="<%=(benefitValue == 0) ? "" : benefitValue%>">
+            <input class="form-control" type='text' name="value" value="<%=(benefitValue == 0) ? "" : df.format(benefitValue)%>">
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -556,9 +579,15 @@
                 <option value="">Select from list: </option>
                 <%
                     for (String dropdownItem : dropdownList) {
+                        if(dropdownItem.equals("Meal card")){
+                %>
+                  <option value ="<%=dropdownItem%>" selected><%= dropdownItem%></option>
+                <%
+                        }else{
                 %>
                     <option value="<%=dropdownItem%>"><%=dropdownItem%></option>
                 <%
+                        }
 
                     }
                 %>  

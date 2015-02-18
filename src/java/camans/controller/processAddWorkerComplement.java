@@ -48,6 +48,9 @@ public class processAddWorkerComplement extends HttpServlet {
             String auditChange = "";
             String idStr = request.getParameter("Id");
             
+            //to keep track of chosen job and problem
+            String jobKeyStr = request.getParameter("selectedJob");
+            String probKeyStr = request.getParameter("selectedProb");
             
             //=======================================//
             //   Server Side Validation Parameters
@@ -1089,7 +1092,10 @@ public class processAddWorkerComplement extends HttpServlet {
             }
             request.getSession().setAttribute("successWrkCompMsg", success);
             request.getSession().setAttribute("errorWrkCompMsg", errorMsg);
-            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum);
+            request.getSession().setAttribute("worker",workerFinNum);
+            request.getSession().setAttribute("selectedJob",jobKeyStr);
+            request.getSession().setAttribute("selectedProb",probKeyStr);
+            response.sendRedirect("viewWorker.jsp");
         } catch (Exception e) {
             //error = "Worker Complement is not added. There is a parsing error.";
             //log to logfile

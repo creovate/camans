@@ -1,9 +1,25 @@
 camans
 ======
+<b>18th Feb 2015 - nyein su</b><br/>
+1. Decimal formats<br/>
+    i. all front end
+2. Capitalization according to Pat<br/>
+    i. Worker Complements
+    ii. Job Complements
+    iii. Problem Complements
+    iv. viewWorker Page
+3. Page redirect for successfully created worker<br/>
+4. Caught the escaped rabbit<br/>
+5. Tab tracking for all activities<br/>
+6. Debugged for problem complements<br/>
+7. Changes in db for case referral<br/>
+8. Fixed UI to fit in projector view<br/>
+9. Fixed the column size and character counts to display in view worker <br/>
+
 <b>12th Feb 2015 - nyein su</b><br/>
 1. debug problemcomplements<br/>
 2. debug DeleteStubs<br/>
-3. added editable FIN for admin
+3. added editable FIN for admin<br/>
 
 <b>12th Feb 2015 - smm</b><br/>
 1. debug workercomplements<br/>
