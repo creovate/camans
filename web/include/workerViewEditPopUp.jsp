@@ -64,7 +64,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The nickname must be less than 50 characters.'
+                            message: 'The nickname must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'The nickname cannot be empty.'
@@ -75,7 +75,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The nickname must be less than 50 characters.'
+                            message: 'The nickname must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'The nickname cannot be empty.'
@@ -87,7 +87,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Passport No. must be less than 20 characters.'
+                            message: 'Passport No. must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'Passport No. cannot be empty.'
@@ -98,7 +98,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Passport Country must be less than 20 characters.'
+                            message: 'Passport Country must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'Passport Country cannot be empty.'
@@ -109,7 +109,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Passport No. must be less than 20 characters.'
+                            message: 'Passport No. must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'Passport No. cannot be empty.'
@@ -120,7 +120,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Passport Country must be less than 20 characters.'
+                            message: 'Passport Country must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'Passport Country cannot be empty.'
@@ -128,11 +128,41 @@
                     }
                 },
                 //sgPhone & homePhone
+                nsgPhNum: {
+                    validators: {
+                        stringLength: {
+                            max: 12,
+                            message: 'Phone No must not exceed 12 characters.'
+                        },
+                        regexp: {
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
+                        },
+                        notEmpty: {
+                            message: 'Phone No. cannot be empty.'
+                        }
+                    }
+                },
                 nPhNum: {
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Phone No must be less than 20 characters.'
+                            message: 'Phone No must not exceed 20 characters.'
+                        },
+                        regexp: {
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
+                        },
+                        notEmpty: {
+                            message: 'Phone No. cannot be empty.'
+                        }
+                    }
+                },
+                sgPhNum: {
+                    validators: {
+                        stringLength: {
+                            max: 12,
+                            message: 'Phone No must not exceed 12 characters.'
                         },
                         regexp: {
                             regexp: /^[\d|\-|(|)|+|\s]+$/,
@@ -147,7 +177,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Phone No must be less than 20 characters.'
+                            message: 'Phone No must not exceed 20 characters.'
                         },
                         regexp: {
                             regexp: /^[\d|\-|(|)|+|\s]+$/,
@@ -162,7 +192,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Owner name must be less than 20 characters.'
+                            message: 'Owner name must not exceed 20 characters.'
                         }
                     }
                 },
@@ -170,7 +200,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Owner name must be less than 20 characters.'
+                            message: 'Owner name must not exceed 20 characters.'
                         }
                     }
                 },
@@ -179,7 +209,7 @@
                     validators: {
                         stringLength: {
                             max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            message: 'Address must not exceed 300 characters.'
                         },
                         notEmpty: {
                             message: 'Address cannot be empty.'
@@ -190,7 +220,7 @@
                     validators: {
                         stringLength: {
                             max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            message: 'Address must not exceed 300 characters.'
                         },
                         notEmpty: {
                             message: 'Address cannot be empty.'
@@ -209,7 +239,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Contact Type must be less than 50 characters.'
+                            message: 'Contact Type must not exceed 50 characters.'
                         }
                     }
                 },
@@ -217,7 +247,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Contact address must be less than 50 characters.'
+                            message: 'Contact address must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Contact address cannot be empty.'
@@ -228,7 +258,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Owner of Contact must be less than 50 characters.'
+                            message: 'Owner of Contact must not exceed 50 characters.'
                         }
                     }
                 },
@@ -236,7 +266,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remark must be less than 200 characters.'
+                            message: 'Remark must not exceed 200 characters.'
                         }
                     }
                 },
@@ -251,7 +281,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Contact Type must be less than 50 characters.'
+                            message: 'Contact Type must not exceed 50 characters.'
                         }
                     }
                 },
@@ -259,7 +289,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Contact address must be less than 50 characters.'
+                            message: 'Contact address must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Contact address cannot be empty.'
@@ -270,7 +300,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Owner of Contact must be less than 50 characters.'
+                            message: 'Owner of Contact must not exceed 50 characters.'
                         }
                     }
                 },
@@ -278,7 +308,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remark must be less than 200 characters.'
+                            message: 'Remark must not exceed 200 characters.'
                         }
                     }
                 },
@@ -287,7 +317,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'The name cannot be empty.'
@@ -298,7 +328,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Relationship must be less than 50 characters.'
+                            message: 'Relationship must not exceed 50 characters.'
                         }
                     }
                 },
@@ -306,7 +336,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Identity docs/references must be less than 200 characters.'
+                            message: 'Identity docs/references must not exceed 200 characters.'
                         }
                     }
                 },
@@ -314,7 +344,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Contact Details must be less than 200 characters.'
+                            message: 'Contact Details must not exceed 200 characters.'
                         }
                     }
                 },
@@ -322,7 +352,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Attesting Documents must be less than 200 characters.'
+                            message: 'Attesting Documents must not exceed 200 characters.'
                         }
                     }
                 },
@@ -330,7 +360,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Phone No must be less than 20 characters.'
+                            message: 'Phone No must not exceed 20 characters.'
                         },
                         regexp: {
                             regexp: /^[\d|\-|(|)|+|\s]+$/,
@@ -342,7 +372,7 @@
                     validators: {
                         stringLength: {
                             max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            message: 'Address must not exceed 300 characters.'
                         }
                     }
                 },
@@ -350,7 +380,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'The name cannot be empty.'
@@ -361,7 +391,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Relationship must be less than 50 characters.'
+                            message: 'Relationship must not exceed 50 characters.'
                         }
                     }
                 },
@@ -369,7 +399,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Identity docs/references must be less than 200 characters.'
+                            message: 'Identity docs/references must not exceed 200 characters.'
                         }
                     }
                 },
@@ -377,7 +407,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Contact Details must be less than 200 characters.'
+                            message: 'Contact Details must not exceed 200 characters.'
                         }
                     }
                 },
@@ -385,7 +415,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Attesting Documents must be less than 200 characters.'
+                            message: 'Attesting Documents must not exceed 200 characters.'
                         }
                     }
                 },
@@ -393,7 +423,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Phone No must be less than 20 characters.'
+                            message: 'Phone No must not exceed 20 characters.'
                         },
                         regexp: {
                             regexp: /^[\d|\-|(|)|+|\s]+$/,
@@ -405,7 +435,7 @@
                     validators: {
                         stringLength: {
                             max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            message: 'Address must not exceed 300 characters.'
                         }
                     }
                 },
@@ -414,7 +444,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Phone No must be less than 20 characters.'
+                            message: 'Phone No must not exceed 20 characters.'
                         },
                         regexp: {
                             regexp: /^[\d|\-|(|)|+|\s]+$/,
@@ -426,7 +456,7 @@
                     validators: {
                         stringLength: {
                             max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            message: 'Address must not exceed 300 characters.'
                         }
                     }
                 },
@@ -434,7 +464,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Phone No must be less than 20 characters.'
+                            message: 'Phone No must not exceed 20 characters.'
                         },
                         regexp: {
                             regexp: /^[\d|\-|(|)|+|\s]+$/,
@@ -442,11 +472,11 @@
                         }
                     }
                 },
-                familyaddress: {
+                familyAddress: {
                     validators: {
                         stringLength: {
-                            max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            max: 20,
+                            message: 'This field must not exceed 20 characters.'
                         }
                     }
                 },
@@ -455,7 +485,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Phone No must be less than 20 characters.'
+                            message: 'Phone No must not exceed 20 characters.'
                         },
                         regexp: {
                             regexp: /^[\d|\-|(|)|+|\s]+$/,
@@ -467,7 +497,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Phone No must be less than 20 characters.'
+                            message: 'Phone No must not exceed 20 characters.'
                         },
                         regexp: {
                             regexp: /^[\d|\-|(|)|+|\s]+$/,
@@ -487,7 +517,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Others must be less than 50 characters.'
+                            message: 'Others must not exceed 50 characters.'
                         }
                     }
                 },
@@ -509,7 +539,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Others must be less than 50 characters.'
+                            message: 'Others must not exceed 50 characters.'
                         }
                     }
                 },
@@ -518,7 +548,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Name must be less than 50 characters.'
+                            message: 'Name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Name cannot be empty.'
@@ -529,7 +559,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Account No. must be less than 50 characters.'
+                            message: 'Account No. must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Account No. cannot be empty.'
@@ -540,7 +570,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Bank name must be less than 50 characters.'
+                            message: 'Bank name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Bank name cannot be empty.'
@@ -551,7 +581,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Bank branch must be less than 50 characters.'
+                            message: 'Bank branch must not exceed 50 characters.'
                         }
                     }
                 },
@@ -559,7 +589,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Bank branch code must be less than 50 characters.'
+                            message: 'Bank branch code must not exceed 50 characters.'
                         }
                     }
                 },
@@ -567,7 +597,7 @@
                     validators: {
                         stringLength: {
                             max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            message: 'Address must not exceed 300 characters.'
                         }
                     }
                 },
@@ -575,7 +605,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Bank Swift must be less than 50 characters.'
+                            message: 'Bank Swift must not exceed 50 characters.'
                         }
                     }
                 },
@@ -583,7 +613,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Name must be less than 50 characters.'
+                            message: 'Name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Name cannot be empty.'
@@ -594,7 +624,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Account No. must be less than 50 characters.'
+                            message: 'Account No. must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Account No. cannot be empty.'
@@ -605,7 +635,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Bank name must be less than 50 characters.'
+                            message: 'Bank name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Bank name cannot be empty.'
@@ -616,7 +646,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Bank branch must be less than 50 characters.'
+                            message: 'Bank branch must not exceed 50 characters.'
                         }
                     }
                 },
@@ -624,7 +654,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Bank branch code must be less than 50 characters.'
+                            message: 'Bank branch code must not exceed 50 characters.'
                         }
                     }
                 },
@@ -632,7 +662,7 @@
                     validators: {
                         stringLength: {
                             max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            message: 'Address must not exceed 300 characters.'
                         }
                     }
                 },
@@ -640,7 +670,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Bank Swift must be less than 50 characters.'
+                            message: 'Bank Swift must not exceed 50 characters.'
                         }
                     }
                 }
@@ -946,7 +976,7 @@
         <div class='form-group'>
             <label for='phNum' class="control-label">SG phone number<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control" type='text' name="phNum" value="<%=phnum%>" required>
+            <input class="form-control" type='text' name="sgPhNum" value="<%=phnum%>" required>
         </div>
 
         <div class='form-group'>
@@ -1101,7 +1131,7 @@
             <div class='form-group'>
                 <label for='address' class="control-label">Worker address in Singapore:</label>
                 <br/>
-                <textarea class="form-control"name="address" rows="3" maxlength="200"><%=address%></textarea>
+                <textarea class="form-control"name="address" rows="3" ><%=address%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1125,7 +1155,7 @@
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Worker address in Singapore<span style="color: red">*</span>:</label>
                 <br/>
-                <textarea class="form-control" name="nAddress" rows="3" maxlength="200" required></textarea>
+                <textarea class="form-control" name="nAddress" rows="3"  required></textarea>
             </div>
 
             <div class='form-group'>
@@ -1147,7 +1177,7 @@
         <div class='form-group'>
             <label for='address' class="control-label">Worker address in Singapore<span style="color: red">*</span>: </label>
             <br/>
-            <textarea class="form-control"name="address" rows="3" maxlength="200" required><%=address%></textarea>
+            <textarea class="form-control"name="address" rows="3"  required><%=address%></textarea>
         </div>
         <div class='form-group'>
             <label for='obseleteDate' class="control-label">Date discovered to be obsolete:</label>
@@ -1189,7 +1219,7 @@
             <div class='form-group'>
                 <label for='address' class="control-label">Worker address in Home Country:</label>
                 <br/>
-                <textarea class="form-control"name="address" rows="3" maxlength="300" required><%=address%></textarea>
+                <textarea class="form-control"name="address" rows="3"  required><%=address%></textarea>
 
             </div>
             <div class='form-group'>
@@ -1211,7 +1241,7 @@
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Worker address in Home Country<span style="color: red">*</span>:</label>
                 <br/>
-                <textarea class="form-control" name="nAddress" rows="3"  maxlength="300" required></textarea>
+                <textarea class="form-control" name="nAddress" rows="3"   required></textarea>
 
             </div>
             <div class='form-group'>
@@ -1307,7 +1337,7 @@
                 <div class='form-group'>
                     <label for='digiRemark' class="control-label">Remark about digital contact: </label>
                     <br/>
-                    <textarea class="form-control"name="digiRemark" rows="3" maxlength="200"><%=digiRemark%></textarea>
+                    <textarea class="form-control"name="digiRemark" rows="3" ><%=digiRemark%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='digiObDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1360,7 +1390,7 @@
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about Digital Contact: </label>
                 <br/>
-                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1419,7 +1449,7 @@
                 <label for='remark' class="control-label">Remark about digital contact: </label>
 
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=digiRemark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" ><%=digiRemark%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1487,7 +1517,7 @@
                 <div class='form-group'>
                     <label for='nokIdDoc' class="control-label">Identity docs/references of next of kin: </label>
                     <br/>
-                    <textarea class="form-control" name="nokIdDoc" rows="3" maxlength="200"><%=(nokIdDoc == null) ? "" : nokIdDoc%></textarea>
+                    <textarea class="form-control" name="nokIdDoc" rows="3" ><%=(nokIdDoc == null) ? "" : nokIdDoc%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokContactNo' class="control-label">Phone number  of next of kin: </label>
@@ -1497,22 +1527,22 @@
                 <div class='form-group'>
                     <label for='nokOtherContact' class="control-label">Other contact details of next of kin: </label>
                     <br/>
-                    <textarea class="form-control" name="nokOtherContact" rows="3" maxlength="200"><%=(nokDigital == null) ? "" : nokDigital%></textarea>
+                    <textarea class="form-control" name="nokOtherContact" rows="3" ><%=(nokDigital == null) ? "" : nokDigital%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokAddress' class="control-label">Address of next of kin: </label>
                     <br/>
-                    <textarea class="form-control" name="nokAddress" rows="3" maxlength="200"><%=(nokAddress == null) ? "" : nokAddress%></textarea>
+                    <textarea class="form-control" name="nokAddress" rows="3" ><%=(nokAddress == null) ? "" : nokAddress%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokProof' class="control-label">What docs attesting next of kin?: </label>
                     <br/>
-                    <textarea class="form-control" name="nokProof" rows="3" maxlength="200"><%=(nokProof == null) ? "" : nokProof%></textarea>
+                    <textarea class="form-control" name="nokProof" rows="3" ><%=(nokProof == null) ? "" : nokProof%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokRemark' class="control-label">Remark about next of kin:  </label>
                     <br/>
-                    <textarea class="form-control" name="nRemark" rows="3" maxlength="200"><%=nokRemark%></textarea>
+                    <textarea class="form-control" name="nRemark" rows="3" ><%=nokRemark%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokObDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1544,7 +1574,7 @@
             <div class='form-group'>
                 <label for='nDocReference' class="control-label">Identity docs/references of next of kin: </label>
                 <br/>
-                <textarea class="form-control" name="nDocReference" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nDocReference" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nPhNum' class="control-label">Phone number of next of kin: </label>
@@ -1554,22 +1584,22 @@
             <div class='form-group'>
                 <label for='nDigitalContact' class="control-label">Other Contact Details of next of kin: </label>
                 <br/>
-                <textarea class="form-control" name="nDigitalContact" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nDigitalContact" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Address of next of kin: </label>
                 <br/>
-                <textarea class="form-control" name="nNOKAddress" rows="3" maxlength="200" ></textarea>
+                <textarea class="form-control" name="nNOKAddress" rows="3"  ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nProofDoc' class="control-label">What Docs Attesting next of kin?: </label>
                 <br/>
-                <textarea class="form-control" name="nProofDoc" rows="3" maxlength="200" ></textarea>
+                <textarea class="form-control" name="nProofDoc" rows="3"  ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about next of kin:  </label>
                 <br/>
-                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1598,7 +1628,7 @@
             <div class='form-group'>
                 <label for='docReference' class="control-label">Identity docs/references of next of kin: </label>
                 <br/>
-                <textarea class="form-control" name="docReference" rows="3" maxlength="200"><%=(nokIdDoc == null) ? "" : nokIdDoc%></textarea>
+                <textarea class="form-control" name="docReference" rows="3" ><%=(nokIdDoc == null) ? "" : nokIdDoc%></textarea>
             </div>
             <div class='form-group'>
                 <label for='phNum' class="control-label">Phone number of next of kin: </label>
@@ -1613,17 +1643,17 @@
             <div class='form-group'>
                 <label for='address' class="control-label">Address of next of kin: </label>
                 <br/>
-                <textarea class="form-control" name="nokaddress" rows="3" maxlength="200"><%=(nokAddress == null) ? "" : nokAddress%></textarea>
+                <textarea class="form-control" name="nokaddress" rows="3" ><%=(nokAddress == null) ? "" : nokAddress%></textarea>
             </div>
             <div class='form-group'>
                 <label for='proofDoc' class="control-label">What docs attesting next of kin?: </label>
                 <br/>
-                <textarea class="form-control" name="proofDoc" rows="3" maxlength="200"><%=(nokProof == null) ? "" : nokProof%></textarea>            
+                <textarea class="form-control" name="proofDoc" rows="3" ><%=(nokProof == null) ? "" : nokProof%></textarea>            
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark about next of kin:  </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=nokRemark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" ><%=nokRemark%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1699,14 +1729,14 @@
                 <div class='form-group'>
                     <label for='fdigital' class="control-label">Other contact details of family member: </label>
                     <br/>
-                    <textarea class="form-control" name="digitalContact" rows="3" maxlength="200"><%=(contactAdd == null) ? "" : contactAdd%></textarea>
+                    <textarea class="form-control" name="digitalContact" rows="3" ><%=(contactAdd == null) ? "" : contactAdd%></textarea>
                 </div>
 
                 <div class='form-group'>
                     <label for='fremark' class="control-label">Remark about family member: </label>
                     <br/>
 
-                    <textarea class="form-control" name="fremark" rows="3" maxlength="200"><%=(remark == null) ? "" : remark%></textarea>
+                    <textarea class="form-control" name="fremark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokObDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1749,13 +1779,13 @@
             <div class='form-group'>
                 <label for='nDigitalContact' class="control-label">Other Contact Details of family member: </label>
                 <br/>
-                <textarea class="form-control" name="nDigitalContact" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nDigitalContact" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about family member: </label>
 
                 <br/>
-                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1795,12 +1825,12 @@
             <div class='form-group'>
                 <label for='digitalContact' class="control-label">Other contact details of family member: </label>
                 <br/>
-                <textarea class="form-control" name="digitalContact" rows="3" maxlength="200"><%=(contactAdd == null) ? "" : contactAdd%></textarea>
+                <textarea class="form-control" name="digitalContact" rows="3" ><%=(contactAdd == null) ? "" : contactAdd%></textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark about family member: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1868,7 +1898,7 @@
                 <div class='form-group'>
                     <label for='fremark' class="control-label">Remark about friend: </label>
                     <br/>
-                    <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
+                    <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='nokObDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1942,7 +1972,7 @@
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark about friend: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -2057,7 +2087,7 @@
             <div class='form-group'>
                 <label for='fremark' class="control-label">Remark about language: </label>
                 <br/>
-                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkerLanguage"/>
@@ -2120,7 +2150,7 @@
             <div class='form-group'>
                 <label for='fremark' class="control-label">Remark about language: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark == null) ? "" : remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
             </div>
 
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
@@ -2257,7 +2287,7 @@
             <div class='form-group'>
                 <label for='nBankBranchAddress' class="control-label">Bank branch Address: </label>
                 <br/>
-                <textarea class="form-control" name="nBankBranchAddress" rows="3" maxlength="300"></textarea>
+                <textarea class="form-control" name="nBankBranchAddress" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nBankSwift' class="control-label">Bank Swift Code: </label>
@@ -2267,7 +2297,7 @@
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about Bank account: </label>
                 <br/>
-                <textarea class="form-control" name="nRemark" maxlength="200"></textarea>
+                <textarea class="form-control" name="nRemark" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -2312,7 +2342,7 @@
             <div class='form-group'>
                 <label for='bankBranchAddress' class="control-label">Bank branch address: </label>
                 <br/>
-                <textarea class="form-control" name="bankBranchAddress" rows="3" maxlength="300"><%=branchAdd%></textarea>
+                <textarea class="form-control" name="bankBranchAddress" rows="3" ><%=branchAdd%></textarea>
             </div>
             <div class='form-group'>
                 <label for='bankSwift' class="control-label">Bank swift code: </label>
@@ -2322,7 +2352,7 @@
             <div class='form-group'>
                 <label for='remark' class="control-label">Remark about bank account: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>

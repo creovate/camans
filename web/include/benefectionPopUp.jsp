@@ -97,7 +97,7 @@
                         },
                         stringLength: {
                             max: 20,
-                            message: 'This field must be less than 20 characters.'
+                            message: 'This field must not exceed 20 characters.'
                         }
                     } 
                 },
@@ -120,7 +120,7 @@
                     validators: {
                         stringLength: {
                             max: 30,
-                            message: 'This field must be less than 30 characters.'
+                            message: 'This field must not exceed 30 characters.'
                         }
                     }
                 },
@@ -128,7 +128,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'This field must be less than 500 characters.'
+                            message: 'This field must not exceed 500 characters.'
                         }
                     }
                 },
@@ -136,7 +136,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -156,7 +156,7 @@
                    validators: {
                        stringLength: {
                             max: 20,
-                            message: 'This field must be less than 20 characters.'
+                            message: 'This field must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'Given by cannot be empty.'
@@ -182,7 +182,7 @@
                     validators: {
                         stringLength: {
                             max: 30,
-                            message: 'This field must be less than 30 characters.'
+                            message: 'This field must not exceed 30 characters.'
                         }
                     }
                 },
@@ -190,7 +190,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -198,7 +198,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'This field must be less than 500 characters.'
+                            message: 'This field must not exceed 500 characters.'
                         }
                     }
                 },
@@ -237,7 +237,7 @@
                    validators: {
                        stringLength: {
                             max: 20,
-                            message: 'This field must be less than 20 characters.'
+                            message: 'This field must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'Given by cannot be empty.'
@@ -255,7 +255,7 @@
                     validators: {
                         stringLength: {
                             max: 30,
-                            message: 'This field must be less than 30 characters.'
+                            message: 'This field must not exceed 30 characters.'
                         }
                     }
                 },
@@ -263,7 +263,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -271,7 +271,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'This field must be less than 500 characters.'
+                            message: 'This field must not exceed 500 characters.'
                         }
                     }
                 },

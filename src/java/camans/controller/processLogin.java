@@ -40,10 +40,10 @@ public class processLogin extends HttpServlet {
         if (tempUser != null && tempUser.authenticate(password) && tempUser.getStatus().equals("Active")) {
             //store the student in session & display the home page
             request.getSession().setAttribute("userLogin", tempUser);
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("index.jsp");
         } else {
             //return back to login page & display errorMsg
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             request.setAttribute("errorMsg", "Invalid Username and/or Password");
             rd.forward(request,response);
         }

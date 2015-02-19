@@ -159,7 +159,7 @@
                                         </a>&nbsp; &nbsp; &nbsp; &nbsp;
                                         <a style="color: black" href="" class="user_reset_pwd" data-username='<%=username%>'
                                            data-toggle="modal" data-target="#user_reset_pwd">
-                                            <span data-toggle="tooltip" title="Reset Password" class="glyphicon glyphicon-lock"></span>
+                                            <span data-toggle="tooltip" title="Reset Password" class="glyphicon glyphicon-key"></span>
                                         </a>    
                                     <%
                                         } else {

@@ -99,6 +99,7 @@ public class processAddProblemComplement extends HttpServlet {
                     }
 
                     if (!aggraLossStr.equals("")) {
+                        aggraLossStr = aggraLossStr.replace(",", "");
                         if (!aggraLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += "Aggravating Loss Value must have maximum 2 decimal places,";
                         } else {
@@ -703,6 +704,7 @@ public class processAddProblemComplement extends HttpServlet {
                         }
                         
                         if (!salLossTotalStr.equals("")) {
+                            salLossTotalStr = salLossTotalStr.replace(",", "");
                             if(!salLossTotalStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += "Salary Loss Total must have maximum 2 decimal places,";
                             } else {
@@ -715,6 +717,7 @@ public class processAddProblemComplement extends HttpServlet {
                         }
 
                         if (!salLossYearStr.equals("")) {
+                            salLossYearStr = salLossYearStr.replace(",", "");
                             if (!salLossYearStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += "Salary Loss Year must have maximum 2 decimal places,";
                             } else {
@@ -807,6 +810,7 @@ public class processAddProblemComplement extends HttpServlet {
                         }
 
                         if(!salClaimLossStr.equals("")) {
+                            salClaimLossStr = salClaimLossStr.replace(",","");
                             if (!salClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += "Salary Claim Loss must have maximum 2 decimal places,"; 
                             } else {
@@ -1273,6 +1277,7 @@ public class processAddProblemComplement extends HttpServlet {
                         }
 
                         if (!nonwicaClaimLossStr.equals("")) {
+                            nonwicaClaimLossStr = nonwicaClaimLossStr.replace(",","");
                             if (!nonwicaClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += "Non WICA Claim Loss must have maximum 2 decimal places,";
                             } else {
@@ -1401,6 +1406,7 @@ public class processAddProblemComplement extends HttpServlet {
                     }
                     
                     if (!wicaPointsStr.equals("")) {
+                        wicaPointsStr = wicaPointsStr.replace(",","");
                         if (!wicaPointsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += "WICA point must have maximum 2 decimal places,";
                         } else {
@@ -1413,6 +1419,7 @@ public class processAddProblemComplement extends HttpServlet {
                     }
 
                     if (!wicaDollarsStr.equals("")) {
+                        wicaDollarsStr = wicaDollarsStr.replace(",","");
                         if (!wicaDollarsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                             errorMsg += "WICA Dollar must have maximum 2 decimal places,";
                         } else {
@@ -1765,6 +1772,7 @@ public class processAddProblemComplement extends HttpServlet {
                         }
 
                         if (!r2rMedCostStr.equals("")) {
+                            r2rMedCostStr = r2rMedCostStr.replace(",", "");
                             if (!r2rMedCostStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += "Medical Cost must have maximum 2 decimal places,";
                             } else {
@@ -1777,6 +1785,7 @@ public class processAddProblemComplement extends HttpServlet {
                         }    
 
                         if (!r2rOutlayStr.equals("")) {
+                            r2rOutlayStr = r2rOutlayStr.replace(",", "");
                             if (!r2rOutlayStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += "Outlay Cost must have maximum 2 decimal places,";
                             } else {

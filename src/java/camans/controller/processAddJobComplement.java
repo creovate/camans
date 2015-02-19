@@ -95,7 +95,7 @@ public class processAddJobComplement extends HttpServlet {
                 }
                 //**Server Validation**//
                 boolean pass = true; //assume validation pass first;
-
+                
                 if (passType.equals("")) {
                     errorMsg += "Pass Type is blank,";
                     pass = false;
@@ -109,11 +109,11 @@ public class processAddJobComplement extends HttpServlet {
                 if (pass) { 
                     
                     if (!passTypeMore.equals("") && passTypeMore.length() > 255){
-                        errorMsg += "Explain if above is other cannot be more than 255 characters,";
+                        errorMsg += "Explain if above is other must not exceed 255 characters,";
                     }
                     
                     if (passNum.length() > 20) {
-                        errorMsg += "Pass Number cannot be more than 20 characters,";
+                        errorMsg += "Pass Number must not exceed 20 characters,";
                     }
                     if (!apDateStr.equals("")) {
                         try {
@@ -143,11 +143,11 @@ public class processAddJobComplement extends HttpServlet {
                     }
                     
                     if (!issuer.equals("") && issuer.length() > 20) {
-                        errorMsg += "pass issuer cannot be longer than 20 characters,";
+                        errorMsg += "pass issuer must not exceed 20 characters,";
                     }
                     
                     if (!remark.equals("") && remark.length() > 200) {
-                        errorMsg += "pass remark cannot be longer than 200 characters,";
+                        errorMsg += "pass remark must not exceed 200 characters,";
                     }
                     
                     if (!obsoleteDateStr.equals("")) {
@@ -226,27 +226,27 @@ public class processAddJobComplement extends HttpServlet {
                 if (pass) { 
 
                     if (name.length() > 50) {
-                        errorMsg += "Employer Name cannot be longer than 50 characters,";
+                        errorMsg += "Employer Name must not exceed 50 characters,";
                     }
 
                     if (!employerId.equals("") && employerId.length() > 50) {
-                        errorMsg += "Employer ID cannot be longer than 50 characters,";
+                        errorMsg += "Employer ID must not exceed 50 characters,";
                     }
 
                     if (!address.equals("") && address.length() > 200) {
-                        errorMsg += "Employer Address cannot be longer than 200 characters,";
+                        errorMsg += "Employer Address must not exceed 200 characters,";
                     }
 
                     if (!contact.equals("") && contact.length() > 200) {
-                        errorMsg += "Employer Contact cannot be longer than 200 characters,";
+                        errorMsg += "Employer Contact must not exceed 200 characters,";
                     }
 
                     if (!person.equals("") && person.length() > 200) {
-                        errorMsg += "Employer Person cannot be longer than 200 characters,";
+                        errorMsg += "Employer Person must not exceed 200 characters,";
                     }
 
                     if (!remark.equals("") && remark.length() > 200) {
-                        errorMsg += "Remark cannot be longer than 200 characters,";
+                        errorMsg += "Remark must not exceed 200 characters,";
                     }
 
 
@@ -344,47 +344,47 @@ public class processAddJobComplement extends HttpServlet {
 
 
                     if (!contractWhere.equals("") && contractWhere.length() > 200) {
-                        errorMsg += "Contract Location cannot be longer than 200 characters,";
+                        errorMsg += "Contract Location must not exceed 200 characters,";
                     }
 
                     if (!language.equals("") && language.length() > 50) {
-                        errorMsg += "Language cannot be longer than 50 characters,";
+                        errorMsg += "Language must not exceed 50 characters,";
                     }
 
                     if (!contractOpName.equals("") && contractOpName.length() > 50) {
-                        errorMsg += "Contract Oppoiste Name cannot be longer than 50 characters,";
+                        errorMsg += "Contract Oppoiste Name must not exceed 50 characters,";
                     }
 
                     if (!opRelation.equals("") && opRelation.length() > 200) {
-                        errorMsg += "Relation cannot be longer than 200 characters,";
+                        errorMsg += "Relation must not exceed 200 characters,";
                     }
 
                     if (!occupation.equals("") && occupation.length() > 200) {
-                        errorMsg += "Occupation cannot be longer than 200 characters,";
+                        errorMsg += "Occupation must not exceed 200 characters,";
                     }
 
                     if (!salary.equals("") && salary.length() > 50) {
-                        errorMsg += "Salary cannot be longer than 50 characters,";
+                        errorMsg += "Salary must not exceed 50 characters,";
                     }
 
                     if (!allowance.equals("") && allowance.length() > 500) {
-                        errorMsg += "Allowance cannot be longer than 500 characters,";
+                        errorMsg += "Allowance must not exceed 500 characters,";
                     }
 
                     if (!deduction.equals("") && deduction.length() > 500) {
-                        errorMsg += "DEduction cannot be longer than 500 characters,";
+                        errorMsg += "DEduction must not exceed 500 characters,";
                     }
 
                     if (!duration.equals("") && duration.length() > 20) {
-                        errorMsg += "Duration cannot be longer than 20 characters,";
+                        errorMsg += "Duration must not exceed 20 characters,";
                     }
 
                     if (!duress.equals("") && duress.length() > 500) {
-                        errorMsg += "Duress cannot be longer than 500 characters,";
+                        errorMsg += "Duress must not exceed 500 characters,";
                     }
 
                     if (!remark.equals("") && remark.length() > 200) {
-                        errorMsg += "Remark cannot be longer than 200 characters,";
+                        errorMsg += "Remark must not exceed 200 characters,";
                     }
 
                 }   //pass 
@@ -488,81 +488,87 @@ public class processAddJobComplement extends HttpServlet {
 
                     
                     if (agentCompany.length() > 50) {
-                        errorMsg += "Agent company cannot be longer than 50 characters,";
+                        errorMsg += "Agent company must not exceed 50 characters,";
                     }
                          
                     if (!agentPersonName.equals("") && agentPersonName.length() > 50) {
-                        errorMsg += "Agent Person Name cannot be longer than 50 characters,";
+                        errorMsg += "Agent Person Name must not exceed 50 characters,";
                     }
                     
                     if (!agentlocationMore.equals("") && agentlocationMore.length() > 50) {
-                        errorMsg += "Explain if above is other cannot be longer than 50 characters,";
+                        errorMsg += "Explain if above is other must not exceed 50 characters,";
                     }
                     
                     if (!agentAddress.equals("") && agentAddress.length() > 300) {
-                        errorMsg += "Agent Address cannot be longer than 300 characters,";
+                        errorMsg += "Agent Address must not exceed 300 characters,";
                     }
                     
                     if (!agentContact.equals("") && agentContact.length() > 200) {
-                        errorMsg += "Agent Contact cannot be longer than 200 characters,";
+                        errorMsg += "Agent Contact must not exceed 200 characters,";
                     }
                     
                     
-                    if (!agentAmtPaidStr.equals("") && !agentAmtPaidStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                        errorMsg += "Amount Paid must have maximum 2 decimal places,";
-                    } else {
-                        if (!agentAmtPaidStr.equals("")) {
-                            try {
-                                agentAmtPaid = Double.parseDouble(agentAmtPaidStr);
-                            } catch (Exception ex) {
-                                errorMsg += "Amount Paid - invalid format,";
+                    if (!agentAmtPaidStr.equals("")) {
+                        agentAmtPaidStr = agentAmtPaidStr.replace(",","");
+                        if (!agentAmtPaidStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += "Amount Paid must have maximum 2 decimal places,";
+                        } else {
+                            if (!agentAmtPaidStr.equals("")) {
+                                try {
+                                    agentAmtPaid = Double.parseDouble(agentAmtPaidStr);
+                                } catch (Exception ex) {
+                                    errorMsg += "Amount Paid - invalid format,";
+                                }
                             }
                         }
                     }
                     
                     
-                    if (!agentAmtOwedStr.equals("") && !agentAmtOwedStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                    if (!agentAmtOwedStr.equals("")) {
+                        agentAmtOwedStr = agentAmtOwedStr.replace(",","");
+                        if (!agentAmtOwedStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += "Agent Owed must have maximum 2 decimal places,";
-                    } else {
-                        if (!agentAmtOwedStr.equals("")) {
-                            try {
-                                agentAmtOwed = Double.parseDouble(agentAmtOwedStr);
-                            } catch (Exception ex) {
-                                errorMsg += "Agent Owed - invalid format,";
+                        } else {
+                            if (!agentAmtOwedStr.equals("")) {
+                                try {
+                                    agentAmtOwed = Double.parseDouble(agentAmtOwedStr);
+                                } catch (Exception ex) {
+                                    errorMsg += "Agent Owed - invalid format,";
+                                }
                             }
                         }
                     }
                     
-                    if (!agentFeeShared.equals("") && agentFeeShared.length() > 200) {
-                        errorMsg += "Agent Fee Shared cannot be longer than 200 characters,";
+                    if (agentFeeShared != null && !agentFeeShared.equals("") && agentFeeShared.length() > 200) {
+                        errorMsg += "Agent Fee Shared must not exceed 200 characters,";
                     }
                     
-                    if (!agentFeeTraining.equals("") && agentFeeTraining.length() > 50) {
-                        errorMsg += "Agent Fee Training cannot be longer than 50 characters,";
+                    if (agentFeeTraining != null && !agentFeeTraining.equals("") && agentFeeTraining.length() > 50) {
+                        errorMsg += "Agent Fee Training must not exceed 50 characters,";
                     }
                     
-                    if (!agentFeeAirfare.equals("") && agentFeeAirfare.length() > 50) {
-                        errorMsg += "Agent Fee Airfare cannot be longer than 50 characters,";
+                    if (agentFeeAirfare != null && !agentFeeAirfare.equals("") && agentFeeAirfare.length() > 50) {
+                        errorMsg += "Agent Fee Airfare must not exceed 50 characters,";
                     }
                     
-                    if (!agentFeeWhen.equals("") && agentFeeWhen.length() > 50) {
-                        errorMsg += "When Agent Fee paid cannot be longer than 50 characters,";
+                    if (agentFeeWhen != null && !agentFeeWhen.equals("") && agentFeeWhen.length() > 50) {
+                        errorMsg += "When Agent Fee paid must not exceed 50 characters,";
                     }
                     
-                    if (!agentFeeWhere.equals("") && agentFeeWhere.length() > 50) {
-                        errorMsg += "Where Agent Field cannot be longer than 50 characters,";
+                    if (agentFeeWhere != null && !agentFeeWhere.equals("") && agentFeeWhere.length() > 50) {
+                        errorMsg += "Where Agent Field must not exceed 50 characters,";
                     }
                     
-                    if (!agentFeeRepay.equals("") && agentFeeRepay.length() > 200) {
-                        errorMsg += "Agent Fee Repay cannot be longer than 200 characters,";
+                    if (agentFeeRepay != null && !agentFeeRepay.equals("") && agentFeeRepay.length() > 200) {
+                        errorMsg += "Agent Fee Repay must not exceed 200 characters,";
                     }
                     
-                    if (!agentEmployer.equals("") && agentEmployer.length() > 200) {
-                        errorMsg += "Agent Employer cannot be longer than 200 characters,";
+                    if (agentEmployer != null && !agentEmployer.equals("") && agentEmployer.length() > 200) {
+                        errorMsg += "Agent Employer must not exceed 200 characters,";
                     }
                     
-                    if (!agentRemarks.equals("") && agentRemarks.length() > 1000) {
-                        errorMsg += "Agent Remarks cannot be longer than 1000 characters,";
+                    if (agentRemarks != null && !agentRemarks.equals("") && agentRemarks.length() > 1000) {
+                        errorMsg += "Agent Remarks must not exceed 1000 characters,";
                     }
                     
                 }   //pass   
@@ -629,23 +635,23 @@ public class processAddJobComplement extends HttpServlet {
 
 
                     if (verbalName.length() > 50){
-                        errorMsg += " verbalName cannot be more than 50 characters,";
+                        errorMsg += " verbalName must not exceed 50 characters,";
                     }
 
                     if (!VerbalRelationship.equals("") && VerbalRelationship.length() > 200) {
-                        errorMsg += "Relationship cannot be longer than 200 characters,";
+                        errorMsg += "Relationship must not exceed 200 characters,";
                     }
 
-                    if (!when.equals("") && when.length() > 50) {
-                        errorMsg += "When discussed cannot be longer than 50 characters,";
+                    if (when != null && !when.equals("") && when.length() > 50) {
+                        errorMsg += "When discussed must not exceed 50 characters,";
                     }
 
-                    if (!where.equals("") && where.length() > 50) {
-                        errorMsg += "Where discusssed cannot be longer than 50 characters,";
+                    if (where != null && !where.equals("") && where.length() > 50) {
+                        errorMsg += "Where discusssed must not exceed 50 characters,";
                     }
 
-                    if (!content.equals("") && content.length() > 1000) {
-                        errorMsg += "Content cannot be longer than 1000 characters,";
+                    if (content != null && !content.equals("") && content.length() > 1000) {
+                        errorMsg += "Content must not exceed 1000 characters,";
                     }
 
                 }   //pass 
@@ -735,44 +741,44 @@ public class processAddJobComplement extends HttpServlet {
                 if (pass) { 
 
                     if (!workplaceTypeMore.equals("") && workplaceTypeMore.length() > 200) {
-                        errorMsg += "Explain if above is other cannot be longer than 200 characters,";
+                        errorMsg += "Explain if above is other must not exceed 200 characters,";
                     }
 
                     if (!workplaceWhose.equals("") && workplaceWhose.length() > 50) {
-                        errorMsg += "Whose workplace cannot be longer than 50 characters,";
+                        errorMsg += "Whose workplace must not exceed 50 characters,";
                     }
 
 
                     if (!workplacePerson.equals("") && workplacePerson.length() > 200) {
-                        errorMsg += "Person cannot be longer than 200 characters,";
+                        errorMsg += "Person must not exceed 200 characters,";
                     }
 
                     if (!workplaceRelationship.equals("") && workplaceRelationship.length() > 50) {
-                        errorMsg += "Relation cannot be longer than 50 characters,";
+                        errorMsg += "Relation must not exceed 50 characters,";
                     }
 
                     if (!workplaceDirectMore.equals("") && workplaceDirectMore.length() > 200) {
-                        errorMsg += "Explain if above is other cannot be longer than 200 characters,";
+                        errorMsg += "Explain if above is other must not exceed 200 characters,";
                     }
 
                     if (!workplaceStart.equals("") && workplaceStart.length() > 50) {
-                        errorMsg += "Start date cannot be longer than 50 characters,";
+                        errorMsg += "Start date must not exceed 50 characters,";
                     }
 
                     if (!workplaceEnd.equals("") && workplaceEnd.length() > 50) {
-                        errorMsg += "End date cannot be longer than 50 characters,";
+                        errorMsg += "End date must not exceed 50 characters,";
                     }
 
                     if (!workplaceCondition.equals("") && workplaceCondition.length() > 500) {
-                        errorMsg += "Work place condition cannot be longer than 500 characters,";
+                        errorMsg += "Work place condition must not exceed 500 characters,";
                     }
 
                     if (!workplaceSafety.equals("") && workplaceSafety.length() > 200) {
-                        errorMsg += "Workplace Safety cannot be longer than 50 characters,";
+                        errorMsg += "Workplace Safety must not exceed 50 characters,";
                     }
 
                     if (!workplaceRemark.equals("") && workplaceRemark.length() > 200) {
-                        errorMsg += "Remark cannot be longer than 50 characters,";
+                        errorMsg += "Remark must not exceed 50 characters,";
                     }
 
                 }   //pass 
@@ -849,11 +855,11 @@ public class processAddJobComplement extends HttpServlet {
 
 
                     if (workHistHow.length() > 50) {
-                        errorMsg += "How cannot be longer than 50 characters,";
+                        errorMsg += "How must not exceed 50 characters,";
                     }
 
                     if (!workHistHowMore.equals("") && workHistHowMore.length() > 200) {
-                        errorMsg += "Explain if above is other cannot be longer than 200 characters,";
+                        errorMsg += "Explain if above is other must not exceed 200 characters,";
                     }
 
                     if (!strHistDate.equals("")) {
@@ -875,15 +881,15 @@ public class processAddJobComplement extends HttpServlet {
                     }
 
                     if (!workHistPreviousJob.equals("") && workHistPreviousJob.length() > 1000) {
-                        errorMsg += "Previous Job cannot be longer than 1000 characters,";
+                        errorMsg += "Previous Job must not exceed 1000 characters,";
                     }
 
                     if (!workHistPreviousProb.equals("") && workHistPreviousProb.length() > 1000) {
-                        errorMsg += "Previous Problem cannot be longer than 1000 characters,";
+                        errorMsg += "Previous Problem must not exceed 1000 characters,";
                     }
 
                     if (!workHistRemark.equals("") && workHistRemark.length() > 200) {
-                        errorMsg += "Remark cannot be longer than 200 characters,";
+                        errorMsg += "Remark must not exceed 200 characters,";
                     }
 
                 }   //pass 
@@ -940,7 +946,7 @@ public class processAddJobComplement extends HttpServlet {
                     accProvidedMore = request.getParameter("nisProvidedMore");
                     accType = request.getParameter("ntype");
                     accTypeMore = request.getParameter("ntypeMore");
-                    accLocation = request.getParameter("nlocation");
+                    accLocation = request.getParameter("nlocationAccom");
                     accCondition = request.getParameter("ncondition");
                     accChargedStr = request.getParameter("naccCharged");
                     accPaidStr = request.getParameter("naccPaid");
@@ -953,7 +959,7 @@ public class processAddJobComplement extends HttpServlet {
                     accProvidedMore = request.getParameter("isProvidedMore");
                     accType = request.getParameter("type");
                     accTypeMore = request.getParameter("typeMore");
-                    accLocation = request.getParameter("location");
+                    accLocation = request.getParameter("locationAccom");
                     accCondition = request.getParameter("condition");
                     accChargedStr = request.getParameter("accCharged");
                     accPaidStr = request.getParameter("accPaid");
@@ -974,61 +980,67 @@ public class processAddJobComplement extends HttpServlet {
                 //proceed only after empty fields validation is passed
                 if (pass) { 
 
-                    if (!accProvidedMore.equals("") && accProvidedMore.length() > 200) {
-                        errorMsg += "Provided Other cannot be longer than 200 characters,";
+                    if (accProvidedMore != null & !accProvidedMore.equals("") && accProvidedMore.length() > 200) {
+                        errorMsg += "Provided Other must not exceed 200 characters,";
                     }
 
 
-                    if (!accTypeMore.equals("") && accTypeMore.length() > 300) {
-                        errorMsg += "Explain if above is other cannot be longer than 300 characters,";
+                    if (accTypeMore != null && !accTypeMore.equals("") && accTypeMore.length() > 300) {
+                        errorMsg += "Explain if above is other must not exceed 300 characters,";
                     }
 
-                    if (!accLocation.equals("") && accLocation.length() > 200) {
-                        errorMsg += "Location cannot be longer than 200 characters,";
+                    if (accLocation != null && !accLocation.equals("") && accLocation.length() > 200) {
+                        errorMsg += "Location must not exceed 200 characters,";
                     }
 
-                    if (!accCondition.equals("") && accCondition.length() > 500) {
-                        errorMsg += "Condition cannot be longer than 500 characters,";
+                    if (accCondition != null && !accCondition.equals("") && accCondition.length() > 500) {
+                        errorMsg += "Condition must not exceed 500 characters,";
                     }
                     
-                    if (!accChargedStr.equals("") && !accChargedStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                        errorMsg += "Amount Charged must have maximum 2 decimal places,";
-                    } else {
-                        if (!accChargedStr.equals("")) {
-                            try {
-                                accCharged = Double.parseDouble(accChargedStr);
-                            } catch (Exception ex) {
-                                errorMsg += "Amount Charged - invalid format,";
+                    if (accChargedStr != null && !accChargedStr.equals("")) {
+                        accChargedStr = accChargedStr.replace(",", "");
+                        if (!accChargedStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += "Amount Charged must have maximum 2 decimal places,";
+                        } else {
+                            if (!accChargedStr.equals("")) {
+                                try {
+                                    accCharged = Double.parseDouble(accChargedStr);
+                                } catch (Exception ex) {
+                                    errorMsg += "Amount Charged - invalid format,";
+                                }
                             }
                         }
                     }
                     
-                    if (!accPaidStr.equals("") && !accPaidStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                        errorMsg += "Self paid amount must have maximum 2 decimal places,";
-                    } else {
-                        if (!accPaidStr.equals("") ) {
-                            try {
-                                accPaid = Double.parseDouble(accPaidStr);
-                            } catch (Exception ex) {
-                                errorMsg += "Self paid amount - invalid format,";
+                    if (accPaidStr != null && !accPaidStr.equals("")) {
+                        accPaidStr = accPaidStr.replace(",","");
+                        if (!accPaidStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += "Self paid amount must have maximum 2 decimal places,";
+                        } else {
+                            if (!accPaidStr.equals("") ) {
+                                try {
+                                    accPaid = Double.parseDouble(accPaidStr);
+                                } catch (Exception ex) {
+                                    errorMsg += "Self paid amount - invalid format,";
+                                }
                             }
                         }
                     }
 
-                    if (!accMeal.equals("") && accMeal.length() > 200) {
-                        errorMsg += "meal cannot be longer than 200 characters,";
+                    if (accMeal != null && !accMeal.equals("") && accMeal.length() > 200) {
+                        errorMsg += "meal must not exceed 200 characters,";
                     }
 
-                    if (!accStart.equals("") && accStart.length() > 50) {
-                        errorMsg += "start date cannot be longer than 50 characters,";
+                    if (accStart != null && !accStart.equals("") && accStart.length() > 50) {
+                        errorMsg += "start date must not exceed 50 characters,";
                     }
 
-                    if (!accEnd.equals("") && accEnd.length() > 50) {
-                        errorMsg += "end date cannot be longer than 50 characters,";
+                    if (accEnd != null && !accEnd.equals("") && accEnd.length() > 50) {
+                        errorMsg += "end date must not exceed 50 characters,";
                     }
 
-                    if (!accRemark.equals("") && accRemark.length() > 200) {
-                        errorMsg += "remark cannot be longer than 200 characters,";
+                    if (accRemark != null && !accRemark.equals("") && accRemark.length() > 200) {
+                        errorMsg += "remark must not exceed 200 characters,";
                     }
 
 
@@ -1130,7 +1142,7 @@ public class processAddJobComplement extends HttpServlet {
                 if (pass) { 
 
                     if (!ipaPassTypeMore.equals("") && ipaPassTypeMore.length() > 50){
-                        errorMsg += "Explain if above is other cannot be more than 50 characters,";
+                        errorMsg += "Explain if above is other must not exceed 50 characters,";
                     }
 
                     if (!ipaDateStr.equals("")) {
@@ -1143,29 +1155,30 @@ public class processAddJobComplement extends HttpServlet {
                     }
 
                     if (!ipaEmpName.equals("") && ipaEmpName.length() > 50) {
-                        errorMsg += "Employer Name cannot be longer than 50 characters,";
+                        errorMsg += "Employer Name must not exceed 50 characters,";
                     }
 
                     if (!ipaAgentName.equals("") && ipaAgentName.length() > 50) {
-                        errorMsg += "Agent Name cannot be longer than 50 characters,";
+                        errorMsg += "Agent Name must not exceed 50 characters,";
                     }
 
                     if (!ipaIndustry .equals("") && ipaIndustry.length() > 50) {
-                        errorMsg += "Industry cannot be longer than 50 characters,";
+                        errorMsg += "Industry must not exceed 50 characters,";
                     }
 
                     if (!ipaOccupation .equals("") && ipaOccupation.length() > 30) {
-                        errorMsg += "Occupation cannot be longer than 30 characters,";
+                        errorMsg += "Occupation must not exceed 30 characters,";
                     }
                     /*
                     if (!ipaPeriods.equals("") && ipaPeriods.matches("^\\d+(\\.\\d{1,2})?$")) {
                         errorMsg += "Period must have maximum 2 decimal places,";
                     }*/
                     
-                    if (!ipaPeriodsStr.equals("") && !ipaPeriodsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                        errorMsg += "Period must have maximum 2 decimal places,";
-                    } else {
-                        if (!ipaPeriodsStr.equals("")) {
+                    if (!ipaPeriodsStr.equals("")) {
+                        ipaPeriodsStr = ipaPeriodsStr.replace(",", "");
+                        if (!ipaPeriodsStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += "Period must have maximum 2 decimal places,";
+                        } else {
                             try {
                                 ipaPeriods = Double.parseDouble(ipaPeriodsStr);
                             } catch (Exception ex) {
@@ -1174,53 +1187,62 @@ public class processAddJobComplement extends HttpServlet {
                         }
                     }
                     
-                    if (!ipaBasicSalaryStr.equals("") && !ipaBasicSalaryStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                        errorMsg += "Basic Salary must have maximum 2 decimal places,";
-                    } else {
-                        if (!ipaBasicSalaryStr.equals("")) {
-                            try {
-                                ipaBasicSalary = Double.parseDouble(ipaBasicSalaryStr);
-                            } catch (Exception ex) {
-                                errorMsg += "Basic Salry - invalid format,";
+                    if (!ipaBasicSalaryStr.equals("")) {
+                        ipaBasicSalaryStr = ipaBasicSalaryStr.replace(",", "");
+                        if (!ipaBasicSalaryStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += "Basic Salary must have maximum 2 decimal places,";
+                        } else {
+                            if (!ipaBasicSalaryStr.equals("")) {
+                                try {
+                                    ipaBasicSalary = Double.parseDouble(ipaBasicSalaryStr);
+                                } catch (Exception ex) {
+                                    errorMsg += "Basic Salry - invalid format,";
+                                }
                             }
                         }
-                    }
+                    }   
                     
-                    if (!ipaTotalAllowanceStr.equals("") && !ipaTotalAllowanceStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                        errorMsg += "allowance must have maximum 2 decimal places,";
-                    } else {
-                        if (!ipaTotalAllowanceStr.equals("")) {
-                        try {
-                                ipaTotalAllowance = Double.parseDouble(ipaTotalAllowanceStr);
-                            } catch (Exception ex) {
-                                errorMsg += "allowance - invalid format,";
+                    if (!ipaTotalAllowanceStr.equals("")) {
+                        ipaTotalAllowanceStr = ipaTotalAllowanceStr.replace(",", "");
+                        if (!ipaTotalAllowanceStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += "allowance must have maximum 2 decimal places,";
+                        } else {
+                            if (!ipaTotalAllowanceStr.equals("")) {
+                            try {
+                                    ipaTotalAllowance = Double.parseDouble(ipaTotalAllowanceStr);
+                                } catch (Exception ex) {
+                                    errorMsg += "allowance - invalid format,";
+                                }
                             }
-                        }
+                        }    
                     }
                     
                     if (!ipaTotalAllowanceDetails.equals("") && ipaTotalAllowanceDetails.length() > 200) {
-                        errorMsg += "Allowance details cannot be longer than 200 characters,";
+                        errorMsg += "Allowance details must not exceed 200 characters,";
                     }
                     
-                    if (!ipaDeductionStr.equals("") && !ipaDeductionStr.matches("^\\d+(\\.\\d{1,2})?$")) {
-                        errorMsg += "deduction amount must have maximum 2 decimal places,";
-                    } else {
-                        if (!ipaDeductionStr.equals("")) {
-                            try {
-                                ipaDeduction = Double.parseDouble(ipaDeductionStr);
-                            } catch (Exception ex) {
-                                errorMsg += "deduction amount - invalid format,";
+                    if (!ipaDeductionStr.equals("")) {
+                        ipaDeductionStr = ipaDeductionStr.replace(",", "");
+                        if (!ipaDeductionStr.matches("^\\d+(\\.\\d{1,2})?$")) {
+                            errorMsg += "deduction amount must have maximum 2 decimal places,";
+                        } else {
+                            if (!ipaDeductionStr.equals("")) {
+                                try {
+                                    ipaDeduction = Double.parseDouble(ipaDeductionStr);
+                                } catch (Exception ex) {
+                                    errorMsg += "deduction amount - invalid format,";
+                                }
                             }
                         }
                     }
-
-                    if (!ipaDeductionDetails.equals("") && ipaDeductionDetails.length() > 200) {
-                        errorMsg += "deduction details cannot be longer than 200 characters,";
+                    
+                    if (ipaDeductionDetails!= null && !ipaDeductionDetails.equals("") && ipaDeductionDetails.length() > 200) {
+                        errorMsg += "deduction details must not exceed 200 characters,";
                     } 
 
 
-                    if (!ipaRemark.equals("") && ipaRemark.length() > 200) {
-                        errorMsg += "remark cannot be longer than 200 characters,";
+                    if (ipaRemark != null && !ipaRemark.equals("") && ipaRemark.length() > 200) {
+                        errorMsg += "remark must not exceed 200 characters,";
                     } 
 
                 }   //pass 
@@ -1278,6 +1300,8 @@ public class processAddJobComplement extends HttpServlet {
             request.getSession().setAttribute("selectedProb",probKeyStr);
             request.getSession().setAttribute("selectedJob", jobKey + "");
             response.sendRedirect("viewWorker.jsp");
+        } catch (Exception ex) {
+            out.println(ex);
         } finally {
             out.close();
         }

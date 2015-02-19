@@ -117,18 +117,18 @@ public class processAddBenefit extends HttpServlet {
             if (pass) {
 
                 if (beneGiver != null && beneGiver.length() > 20) {
-                    errorMsg += "Benefit Giver cannot be more than 20 characters.";
+                    errorMsg += "Benefit Giver must not exceed 20 characters.";
                 }
                 if (beneSerial != null && beneSerial.length() > 30) {
-                    errorMsg += "Benefit Serial cannot be more than 30 characters.";
+                    errorMsg += "Benefit Serial must not exceed 30 characters.";
                 }
 
                 if (benePurpose != null && benePurpose.length() > 200) {
-                    errorMsg += "Benefit Purpose cannot be more than 200 characerers.";
+                    errorMsg += "Benefit Purpose must not exceed 200 characerers.";
                 }
 
                 if (beneRem != null && beneRem.length() > 500) {
-                    errorMsg += "Benefit Remark cannot be more than 500 characters.";
+                    errorMsg += "Benefit Remark must not exceed 500 characters.";
                 }
 
                 if (!beneValueStr.equals("")) {

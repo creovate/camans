@@ -81,7 +81,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The nickname must be less than 50 characters.'
+                            message: 'The nickname must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'The nickname cannot be empty.'
@@ -93,7 +93,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Passport No. must be less than 20 characters.'
+                            message: 'Passport No. must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'Passport No. cannot be empty.'
@@ -104,7 +104,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Passport Country must be less than 20 characters.'
+                            message: 'Passport Country must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'Passport Country cannot be empty.'
@@ -112,11 +112,26 @@
                     }
                 },
                 //sgPhone & homePhone
+                nsgPhNum: {
+                    validators: {
+                        stringLength: {
+                            max: 12,
+                            message: 'Phone No must not exceed 12 characters.'
+                        },
+                        regexp: {
+                            regexp: /^[\d|\-|(|)|+|\s]+$/,
+                            message: 'Phone No can contain space, - , () , + and digits only.'
+                        },
+                        notEmpty: {
+                            message: 'Phone No. cannot be empty.'
+                        }
+                    }
+                },
                 nPhNum: {
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Phone No must be less than 20 characters.'
+                            message: 'Phone No must not exceed 20 characters.'
                         },
                         regexp: {
                             regexp: /^[\d|\-|(|)|+|\s]+$/,
@@ -131,7 +146,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Owner name must be less than 20 characters.'
+                            message: 'Owner name must not exceed 20 characters.'
                         }
                     }
                 },
@@ -140,7 +155,7 @@
                     validators: {
                         stringLength: {
                             max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            message: 'Address must not exceed 300 characters.'
                         },
                         notEmpty: {
                             message: 'Address cannot be empty.'
@@ -159,7 +174,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Contact Type must be less than 50 characters.'
+                            message: 'Contact Type must not exceed 50 characters.'
                         }
                     }
                 },
@@ -167,7 +182,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Contact address must be less than 50 characters.'
+                            message: 'Contact address must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Contact address cannot be empty.'
@@ -178,7 +193,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Owner of contact must be less than 50 characters.'
+                            message: 'Owner of contact must not exceed 50 characters.'
                         }
                     }
                 },
@@ -186,7 +201,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remarks must be less than 200 characters.'
+                            message: 'Remarks must not exceed 200 characters.'
                         }
                     }
                 },
@@ -195,7 +210,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'The name cannot be empty.'
@@ -206,7 +221,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Relationship must be less than 50 characters.'
+                            message: 'Relationship must not exceed 50 characters.'
                         }
                     }
                 },
@@ -214,7 +229,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Identity docs/references must be less than 200 characters.'
+                            message: 'Identity docs/references must not exceed 200 characters.'
                         }
                     }
                 },
@@ -222,7 +237,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Contact Details must be less than 200 characters.'
+                            message: 'Contact Details must not exceed 200 characters.'
                         }
                     }
                 },
@@ -230,7 +245,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Attesting Documents must be less than 200 characters.'
+                            message: 'Attesting Documents must not exceed 200 characters.'
                         }
                     }
                 },
@@ -238,7 +253,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Phone No must be less than 20 characters.'
+                            message: 'Phone No must not exceed 20 characters.'
                         },
                         regexp: {
                             regexp: /^[\d|\-|(|)|+|\s]+$/,
@@ -250,7 +265,7 @@
                     validators: {
                         stringLength: {
                             max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            message: 'Address must not exceed 300 characters.'
                         }
                     }
                 },
@@ -259,7 +274,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Phone No must be less than 20 characters.'
+                            message: 'Phone No must not exceed 20 characters.'
                         },
                         regexp: {
                             regexp: /^[\d|\-|(|)|+|\s]+$/,
@@ -270,8 +285,8 @@
                 nFamilyAddress: {
                     validators: {
                         stringLength: {
-                            max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            max: 20,
+                            message: 'This field must not exceed 20 characters.'
                         }
                     }
                 },
@@ -280,7 +295,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Phone No must be less than 20 characters.'
+                            message: 'Phone No must not exceed 20 characters.'
                         },
                         regexp: {
                             regexp: /^[\d|\-|(|)|+|\s]+$/,
@@ -300,7 +315,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Others must be less than 50 characters.'
+                            message: 'Others must not exceed 50 characters.'
                         }
                     }
                 },
@@ -316,7 +331,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Name must be less than 50 characters.'
+                            message: 'Name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Name cannot be empty.'
@@ -327,7 +342,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Account No. must be less than 50 characters.'
+                            message: 'Account No. must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Account No. cannot be empty.'
@@ -338,7 +353,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Bank name must be less than 50 characters.'
+                            message: 'Bank name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Bank name cannot be empty.'
@@ -349,7 +364,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Bank branch must be less than 50 characters.'
+                            message: 'Bank branch must not exceed 50 characters.'
                         }
                     }
                 },
@@ -357,7 +372,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Bank branch code must be less than 50 characters.'
+                            message: 'Bank branch code must not exceed 50 characters.'
                         }
                     }
                 },
@@ -365,7 +380,7 @@
                     validators: {
                         stringLength: {
                             max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            message: 'Address must not exceed 300 characters.'
                         }
                     }
                 },
@@ -373,7 +388,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Bank Swift must be less than 50 characters.'
+                            message: 'Bank Swift must not exceed 50 characters.'
                         }
                     }
                 },
@@ -381,7 +396,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Name must be less than 50 characters.'
+                            message: 'Name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Name cannot be empty.'
@@ -415,7 +430,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Pass type must be less than 50 characters.'
+                            message: 'Pass type must not exceed 50 characters.'
                         }
                     }
                 },
@@ -423,7 +438,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Pass number must be less than 20 characters.'
+                            message: 'Pass number must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'Pass number cannot be empty.'
@@ -434,7 +449,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Agency name must be less than 20 characters.'
+                            message: 'Agency name must not exceed 20 characters.'
                         }
                     }
                 },
@@ -442,7 +457,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remarks must be less than 200 characters.'
+                            message: 'Remarks must not exceed 200 characters.'
                         }
                     }
                 },
@@ -451,7 +466,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'The name cannot be empty.'
@@ -462,7 +477,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Employer ID must be less than 50 characters.'
+                            message: 'Employer ID must not exceed 50 characters.'
                         }
                     }
                 },
@@ -470,7 +485,7 @@
                     validators: {
                         stringLength: {
                             max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            message: 'Address must not exceed 300 characters.'
                         }
                     }
                 },
@@ -478,7 +493,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Contact details must be less than 200 characters.'
+                            message: 'Contact details must not exceed 200 characters.'
                         }
                     }
                 },
@@ -486,7 +501,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -502,7 +517,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'Location must not exceed 50 characters.'
                         }
                     }
                 },
@@ -510,7 +525,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Language must be less than 20 characters.'
+                            message: 'Language must not exceed 20 characters.'
                         }
                     }
                 },
@@ -518,7 +533,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'The name cannot be empty.'
@@ -529,7 +544,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Relationship must be less than 200 characters.'
+                            message: 'Relationship must not exceed 200 characters.'
                         }
                     }
                 },
@@ -537,7 +552,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'occupation must be less than 200 characters.'
+                            message: 'occupation must not exceed 200 characters.'
                         }
                     }
                 },
@@ -545,7 +560,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Salary must be less than 50 characters.'
+                            message: 'Salary must not exceed 50 characters.'
                         }
                     }
                 },
@@ -553,7 +568,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Allowance Details must be less than 500 characters.'
+                            message: 'Allowance Details must not exceed 500 characters.'
                         }
                     }
                 },
@@ -561,15 +576,15 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Deduction Details must be less than 500 characters.'
+                            message: 'Deduction Details must not exceed 500 characters.'
                         }
                     }
                 },
                 nduration: {
                     validators: {
                         stringLength: {
-                            max: 500,
-                            message: 'Deduction Details must be less than 500 characters.'
+                            max: 20,
+                            message: 'Length of contract must not exceed 20 characters.'
                         }
                     }
                 },
@@ -577,7 +592,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Deduction Details must be less than 500 characters.'
+                            message: 'Deduction Details must not exceed 500 characters.'
                         }
                     }
                 },
@@ -586,7 +601,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Company name must be less than 50 characters.'
+                            message: 'Company name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Company name cannot be empty.'
@@ -597,7 +612,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Agent key person name must be less than 50 characters.'
+                            message: 'Agent key person name must not exceed 50 characters.'
                         }
                     }
                 },
@@ -605,7 +620,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Agent location must be less than 50 characters.'
+                            message: 'Agent location must not exceed 50 characters.'
                         }
                     }
                 },
@@ -635,7 +650,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -643,7 +658,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Training expense details must be less than 50 characters.'
+                            message: 'Training expense details must not exceed 50 characters.'
                         }
                     }
                 },
@@ -651,7 +666,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Airfare fee must be less than 50 characters.'
+                            message: 'Airfare fee must not exceed 50 characters.'
                         }
                     }
                 },
@@ -659,7 +674,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -667,7 +682,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -675,7 +690,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Repayment plan must be less than 200 characters.'
+                            message: 'Repayment plan must not exceed 200 characters.'
                         }
                     }
                 },
@@ -683,7 +698,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Employer name must be less than 200 characters.'
+                            message: 'Employer name must not exceed 200 characters.'
                         }
                     }
                 },
@@ -691,7 +706,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'Remarks must be less than 1000 characters.'
+                            message: 'Remarks must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -700,7 +715,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -708,7 +723,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -716,7 +731,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'Content must be less than 1000 characters.'
+                            message: 'Content must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -732,7 +747,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Type must be less than 200 characters.'
+                            message: 'Type must not exceed 200 characters.'
                         }
                     }
                 },
@@ -740,7 +755,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -748,7 +763,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Key person details must be less than 200 characters.'
+                            message: 'Key person details must not exceed 200 characters.'
                         }
                     }
                 },
@@ -756,7 +771,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -771,15 +786,15 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
                 nstart: {
                     validators: {
                         stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            max: 50,
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -787,7 +802,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -795,7 +810,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Working conditions must be less than 500 characters.'
+                            message: 'Working conditions must not exceed 500 characters.'
                         }
                     }
                 },
@@ -803,7 +818,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Safety issues must be less than 200 characters.'
+                            message: 'Safety issues must not exceed 200 characters.'
                         }
                     }
                 },
@@ -819,7 +834,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -832,7 +847,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -840,7 +855,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -856,7 +871,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -864,7 +879,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -894,7 +909,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -902,7 +917,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -910,7 +925,15 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
+                        }
+                    }
+                },
+                nlocationAccom: {
+                    validators: {
+                        stringLength: {
+                            max: 200,
+                            message: 'Accomodation must not exceed 200 characters.'
                         }
                     }
                 },
@@ -926,7 +949,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -934,7 +957,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         }
                     }
                 },
@@ -942,7 +965,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         }
                     }
                 },
@@ -950,7 +973,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Industry must be less than 20 characters.'
+                            message: 'Industry must not exceed 20 characters.'
                         }
                     }
                 },
@@ -958,7 +981,7 @@
                     validators: {
                         stringLength: {
                             max: 30,
-                            message: 'Occupation must be less than 30 characters.'
+                            message: 'Occupation must not exceed 30 characters.'
                         }
                     }
                 },
@@ -966,7 +989,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Period of pass must be less than 20 characters.'
+                            message: 'Period of pass must not exceed 20 characters.'
                         },
                         numeric: {
                             message: 'Period of pass must be a number.'
@@ -1003,7 +1026,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1022,7 +1045,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1030,7 +1053,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 }
@@ -1061,7 +1084,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'The Approx time must be less than 20 characters.'
+                            message: 'The Approx time must not exceed 20 characters.'
                         }
                     }
                 },
@@ -1069,7 +1092,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Location must be less than 200 characters.'
+                            message: 'Location must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1077,7 +1100,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Body part(s) must be less than 500 characters.'
+                            message: 'Body part(s) must not exceed 500 characters.'
                         }
                     }
                 },
@@ -1092,7 +1115,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1100,7 +1123,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remarks must be less than 200 characters.'
+                            message: 'Remarks must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1108,7 +1131,7 @@
                     valudators: {
                         stringLength: {
                             max: 1000,
-                            message: 'Remarks must be less than 1000 characters.'
+                            message: 'Remarks must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -1117,7 +1140,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'This field cannot be empty.'
@@ -1128,7 +1151,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1136,7 +1159,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Doctor/hospital must be less than 200 characters.'
+                            message: 'Doctor/hospital must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1144,7 +1167,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Nature of illness must be less than 200 characters.'
+                            message: 'Nature of illness must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1152,7 +1175,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Doctor/hospital must be less than 500 characters.'
+                            message: 'Doctor/hospital must not exceed 500 characters.'
                         }
                     }
                 },
@@ -1161,7 +1184,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         },
                         notEmpty: {
                             message: 'This field cannot be empty.'
@@ -1184,7 +1207,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -1193,7 +1216,7 @@
                     validators: {
                         stringLength: {
                             max: 30,
-                            message: 'Reference number must be less than 30 characters.'
+                            message: 'Reference number must not exceed 30 characters.'
                         }
                     }
                 },
@@ -1201,7 +1224,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Insurance company name must be less than 50 characters.'
+                            message: 'Insurance company name must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1209,7 +1232,7 @@
                     validators: {
                         stringLength: {
                             max: 30,
-                            message: 'Insurance policy no must be less than 30 characters.'
+                            message: 'Insurance policy no must not exceed 30 characters.'
                         }
                     }
                 },
@@ -1217,7 +1240,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1226,7 +1249,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Police station name must be less than 50 characters.'
+                            message: 'Police station name must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1234,7 +1257,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Accompanying person name must be less than 200 characters.'
+                            message: 'Accompanying person name must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1242,7 +1265,7 @@
                     validators: {
                         stringLength: {
                             max: 30,
-                            message: 'Reference Number must be less than 30 characters.'
+                            message: 'Reference Number must not exceed 30 characters.'
                         }
                     }
                 },
@@ -1250,7 +1273,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -1259,7 +1282,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'This field cannot be empty.'
@@ -1277,7 +1300,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1285,7 +1308,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1293,7 +1316,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -1302,7 +1325,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'This field must be less than 20 characters.'
+                            message: 'This field must not exceed 20 characters.'
                         }
                     }
                 },
@@ -1317,7 +1340,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1325,7 +1348,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'This field must be less than 20 characters.'
+                            message: 'This field must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'This field cannot be empty.'
@@ -1336,7 +1359,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1344,7 +1367,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1352,7 +1375,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1360,7 +1383,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         },
                         notEmpty: {
                             message: 'This field cannot be empty.'
@@ -1371,7 +1394,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -1379,7 +1402,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -1387,7 +1410,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -1395,7 +1418,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'This field must be less than 500 characters.'
+                            message: 'This field must not exceed 500 characters.'
                         }
                     }
                 },
@@ -1411,7 +1434,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1419,7 +1442,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1427,7 +1450,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Remarks must be less than 500 characters.'
+                            message: 'Remarks must not exceed 500 characters.'
                         }
                     }
                 },
@@ -1443,7 +1466,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1459,7 +1482,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'This field must be less than 20 characters.'
+                            message: 'This field must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'This field cannot be empty.'
@@ -1470,7 +1493,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1478,7 +1501,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'This field must be less than 20 characters.'
+                            message: 'This field must not exceed 20 characters.'
                         }
                     }
                 },
@@ -1486,7 +1509,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'This field must be less than 20 characters.'
+                            message: 'This field must not exceed 20 characters.'
                         }
                     }
                 },
@@ -1494,7 +1517,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'This field must be less than 20 characters.'
+                            message: 'This field must not exceed 20 characters.'
                         }
                     }
                 },
@@ -1502,7 +1525,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1510,7 +1533,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1518,7 +1541,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1526,7 +1549,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1564,7 +1587,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1602,7 +1625,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1610,7 +1633,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1626,7 +1649,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1642,7 +1665,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1650,7 +1673,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1658,7 +1681,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1674,7 +1697,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1682,7 +1705,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1690,7 +1713,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1698,7 +1721,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1706,7 +1729,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Remarks must be less than 500 characters.'
+                            message: 'Remarks must not exceed 500 characters.'
                         }
                     }
                 },
@@ -1722,7 +1745,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1758,7 +1781,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'This field must be less than 500 characters.'
+                            message: 'This field must not exceed 500 characters.'
                         },
                         notEmpty: {
                             message: 'This field cannot be empty.'
@@ -1769,7 +1792,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'This field must be less than 500 characters.'
+                            message: 'This field must not exceed 500 characters.'
                         }
                     }
                 },
@@ -1777,7 +1800,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'This field must be less than 500 characters.'
+                            message: 'This field must not exceed 500 characters.'
                         }
                     }
                 },
@@ -1785,7 +1808,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'This field must be less than 500 characters.'
+                            message: 'This field must not exceed 500 characters.'
                         }
                     }
                 },
@@ -1793,7 +1816,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'This field must be less than 500 characters.'
+                            message: 'This field must not exceed 500 characters.'
                         }
                     }
                 },
@@ -1801,7 +1824,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'This field must be less than 500 characters.'
+                            message: 'This field must not exceed 500 characters.'
                         }
                     }
                 },
@@ -1809,7 +1832,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1967,7 +1990,7 @@
             <div class='form-group'>
                 <label for='nPhNum' class="control-label">SG phone number<span style="color: red">*</span>: </label>
                 <br/>
-                <input class="form-control" type='text' name="nPhNum" required>
+                <input class="form-control" type='text' name="nsgPhNum" required>
             </div>
 
             <div class='form-group'>
@@ -2041,7 +2064,7 @@
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Worker address in Singapore<span style="color: red">*</span>:</label>
                 <br/>
-                <textarea class="form-control" name="nAddress" rows="3" maxlength="200" required></textarea>
+                <textarea class="form-control" name="nAddress" rows="3"  required></textarea>
             </div>
 
             <div class='form-group'>
@@ -2077,7 +2100,7 @@
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Worker address in home country<span style="color: red">*</span>:</label>
                 <br/>
-                <textarea class="form-control" name="nAddress" rows="3"  maxlength="300" required></textarea>
+                <textarea class="form-control" name="nAddress" rows="3"   required></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -2143,7 +2166,7 @@
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about digital contact: </label>
                 <br/>
-                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -2186,7 +2209,7 @@
             <div class='form-group'>
                 <label for='nDocReference' class="control-label">Identity docs/references of next of kin: </label>
                 <br/>
-                <textarea class="form-control" name="nDocReference" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nDocReference" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nPhNum' class="control-label">Phone number of next of kin: </label>
@@ -2196,22 +2219,22 @@
             <div class='form-group'>
                 <label for='nDigitalContact' class="control-label">Other contact details of next of kin: </label>
                 <br/>
-                <textarea class="form-control" name="nDigitalContact" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nDigitalContact" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nAddress' class="control-label">Address of next of kin: </label>
                 <br/>
-                <textarea class="form-control" name="nNOKAddress" rows="3" maxlength="200" ></textarea>
+                <textarea class="form-control" name="nNOKAddress" rows="3"  ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nProofDoc' class="control-label">What docs attesting next of kin?: </label>
                 <br/>
-                <textarea class="form-control" name="nProofDoc" rows="3" maxlength="200" ></textarea>
+                <textarea class="form-control" name="nProofDoc" rows="3"  ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about next of kin:  </label>
                 <br/>
-                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -2264,13 +2287,13 @@
             <div class='form-group'>
                 <label for='nDigitalContact' class="control-label">Other contact details of family member: </label>
                 <br/>
-                <textarea class="form-control" name="nDigitalContact" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nDigitalContact" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about family member: </label>
 
                 <br/>
-                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -2318,7 +2341,7 @@
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about friend: </label>
                 <br/>
-                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -2391,7 +2414,7 @@
             <div class='form-group'>
                 <label for='fremark' class="control-label">Remark about language: </label>
                 <br/>
-                <textarea class="form-control" name="nRemark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
@@ -2447,7 +2470,7 @@
             <div class='form-group'>
                 <label for='nBankBranchAddress' class="control-label">Bank branch address: </label>
                 <br/>
-                <textarea class="form-control" name="nBankBranchAddress" rows="3" maxlength="300"></textarea>
+                <textarea class="form-control" name="nBankBranchAddress" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nBankSwift' class="control-label">Bank swift code: </label>
@@ -2457,7 +2480,7 @@
             <div class='form-group'>
                 <label for='nRemark' class="control-label">Remark about bank account: </label>
                 <br/>
-                <textarea class="form-control" name="nRemark" maxlength="200"></textarea>
+                <textarea class="form-control" name="nRemark" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -2542,7 +2565,7 @@
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about pass: </label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200" ></textarea>
+                <textarea class="form-control" name="nremark" rows="3"  ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nobsoleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -2647,12 +2670,12 @@
             <div class='form-group'>
                 <label for='noprelation' class="control-label">Relationship of opposite contracting party to job: </label>
                 <br/>
-                <textarea class="form-control" name="noprelation" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="noprelation" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='noccupation' class="control-label">Occupation stated in contract: </label>
                 <br/>
-                <textarea class="form-control" name="noccupation" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="noccupation" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nsalary' class="control-label">Basic salary: </label>
@@ -2662,12 +2685,12 @@
             <div class='form-group'>
                 <label for='nallowance' class="control-label">Allowance details: </label>
                 <br/>
-                <textarea class="form-control" name="nallowance" rows="3" maxlength="500"></textarea>
+                <textarea class="form-control" name="nallowance" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='ndeduction' class="control-label">Deductions details: </label>
                 <br/>
-                <textarea class="form-control" name="ndeduction" rows="3" maxlength="500"></textarea>
+                <textarea class="form-control" name="ndeduction" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nduration' class="control-label">Length of contract: </label>
@@ -2677,12 +2700,12 @@
             <div class='form-group'>
                 <label for='nduress' class="control-label">Describe if signed under duress or misrepresentation: </label>
                 <br/>
-                <textarea class="form-control" name="nduress" rows="3" maxlength="500"></textarea>
+                <textarea class="form-control" name="nduress" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about contract: </label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -2743,12 +2766,12 @@
             <div class='form-group'>
                 <label for='naddress' class="control-label">Agent address: </label>
                 <br/>
-                <textarea class="form-control" name="naddress" rows="3" maxlength="300"></textarea>
+                <textarea class="form-control" name="naddress" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='ncontact' class="control-label">Agent phone/email contact: </label>
                 <br/>
-                <textarea class="form-control" name="ncontact" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="ncontact" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='namtpaid' class="control-label">Amount paid to this agent(S$):</label>
@@ -2763,10 +2786,10 @@
             <div class='form-group'>
                 <label for='nfeeshared' class="control-label">Any suspicion fee was shared with others?:</label>
                 <br/>
-                <textarea class="form-control" name="nfeeshared" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nfeeshared" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nfeetraining' class="control-label" >Did fee includes training expenses? (Explain in Details) </label>
+                <label for='nfeetraining' class="control-label" >Did fee include training expenses? (Explain in detail) </label>
                 <br/>
                 <input class="form-control" type='text' name="nfeetraining">
             </div>
@@ -2788,17 +2811,17 @@
             <div class='form-group'>
                 <label for='nfeerepay' class="control-label">Repayment Plan if fee owed: </label>
                 <br/>
-                <textarea class="form-control" name="nfeerepay" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nfeerepay" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nemp' class="control-label">Employer that this agent placed worker to: </label>
                 <br/>
-                <textarea class="form-control" name="nemp" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nemp" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Agent remarks: </label>
                 <br/>
-                <textarea class="form-control" name="nagremark" rows="3" maxlength="1000"></textarea>
+                <textarea class="form-control" name="nagremark" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -2835,7 +2858,7 @@
             <div class='form-group'>
                 <label for='nrelationship' class="control-label">Relationship of giver to worker or agent or employer:</label>
                 <br/>
-                <textarea class="form-control" name="nrelation" maxlength="200"></textarea>
+                <textarea class="form-control" name="nrelation" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nvaWhen' class="control-label">When was verbal assurance given?: </label>
@@ -2850,7 +2873,7 @@
             <div class='form-group'>
                 <label for='nvaContent' class="control-label">Content of verbal assurance: </label>
                 <br/>
-                <textarea class="form-control" name="nvaContent" rows="3" maxlength="1000"></textarea>
+                <textarea class="form-control" name="nvaContent" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -2907,7 +2930,7 @@
                 <input class="form-control" type='text' name="nwhose" >
             </div>
             <div class='form-group'>
-                <label for='npersonDetails' class="control-label">Key person controlling workplace & contact Details: </label>
+                <label for='npersonDetails' class="control-label">Key persons controlling workplace & contact Details: </label>
                 <br/>
                 <textarea class="form-control" name="npersonDetails"></textarea>
             </div>
@@ -2960,7 +2983,7 @@
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about workplace: </label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -3004,7 +3027,7 @@
             <div class='form-group' id="workhistHow_other_div" >
                 <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="nhowMore" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nhowMore" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='narrivalDate' class="control-label">Date arrived Singapore for this job:</label>
@@ -3031,17 +3054,17 @@
             <div class='form-group'>
                 <label for='nprevJob' class="control-label">Describe previous jobs and home breaks </label>
                 <br/>
-                <textarea class="form-control" name="nprevJob" rows="3" maxlength="1000"></textarea>
+                <textarea class="form-control" name="nprevJob" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nprevProb' class="control-label">Describe problems in previous jobs</label>
                 <br/>
-                <textarea class="form-control" name="nprevProb" rows="3" maxlength="1000"></textarea>
+                <textarea class="form-control" name="nprevProb" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about work history: </label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -3088,7 +3111,7 @@
             <div class='form-group' id="accomProvided_other_div" >
                 <label for='location' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="nisProvidedMore" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nisProvidedMore" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='ntype' class="control-label">Type of accommodation:</label>
@@ -3109,18 +3132,18 @@
             <div class='form-group' id="accomtype_other_div" >
                 <label for='location' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="ntypeMore" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="ntypeMore" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nlocation' class="control-label">Location of accommodation: </label>
                 <br/>
-                <textarea class="form-control" name="nlocation" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nlocationAccom" rows="3" ></textarea>
             </div>
 
             <div class='form-group'>
                 <label for='ncondition' class="control-label">Conditions at living quarters:</label>
                 <br/>
-                <textarea class="form-control" name="ncondition" rows="3" maxlength="500"></textarea>
+                <textarea class="form-control" name="ncondition" rows="3" ></textarea>
             </div>
 
             <div class='form-group'>
@@ -3137,7 +3160,7 @@
             <div class='form-group'>
                 <label for='nmeal' class="control-label">Meal arrangements:</label>
                 <br/>
-                <textarea class="form-control" name="nmeal" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nmeal" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nfrom' class="control-label">When start staying here?:</label>
@@ -3152,7 +3175,7 @@
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about accommodation: </label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
@@ -3248,7 +3271,7 @@
             <div class='form-group'>
                 <label for='nallowanceDetails' class="control-label">IPA allowance details:</label>
                 <br/>
-                <textarea class="form-control" name="nallowanceDetails" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nallowanceDetails" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='ndeduction' class="control-label">IPA total deduction(S$):</label>
@@ -3258,7 +3281,7 @@
             <div class='form-group'>
                 <label for='ndeductionDetails' class="control-label">IPA deduction details:</label>
                 <br/>
-                <textarea class="form-control" name="ndeductionDetails" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="ndeductionDetails" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nisHousingProvided' class="control-label">Housing provided?</label>
@@ -3271,7 +3294,7 @@
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about IPA: </label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>

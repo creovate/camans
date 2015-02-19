@@ -5,7 +5,7 @@
 
     
     if (_user== null) {
-        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
         return;
     } 
 

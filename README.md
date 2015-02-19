@@ -1,5 +1,12 @@
 camans
 ======
+<b>19th Feb 2015 - smm</b><br/>
+1. Decimal formats<br/>
+    i. all back ends <br/>
+2. Debug worker complements [Bug_log_feb2015.xlsx] <br/>
+3. Debug job complements [Bug_log_feb2015.xlsx] <br/>
+4. Debug benefit complements [Bug_log_feb2015.xlsx] <br/>
+
 <b>18th Feb 2015 - nyein su</b><br/>
 1. Decimal formats<br/>
     i. all front end
@@ -34,7 +41,7 @@ Signed-off-by: soemyatmyat <soemyatmyat@openmailbox.org>
 1. removed add buttons from all the modals <br/>
 2. server validation: problems <br/>
 3. error/success message: problem
-
+UI
 <b>8th Feb 2015 - smm</b> <br/>
 1. bootstrap errors data into csv files and download link <br/>
 2. server validation: worker, job, benefit <br/>

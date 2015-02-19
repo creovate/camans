@@ -1321,7 +1321,7 @@
                                             <div class="panel-heading">
 
                                                 <h4 class="panel-title">Language
-                                                    <a data-value='language' data-class="worker"  data-language='' href="" data-toggle="modal" data-title='Add A New Worker\'s Language' data-action = "add" data-target="#language_pop_up" class="edit_btn pop_up_open">
+                                                    <a data-value='language' data-class="worker"  data-language='' href="" data-toggle="modal" data-title="Add Worker's Language" data-action = "add" data-target="#language_pop_up" class="edit_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
@@ -1352,7 +1352,7 @@
                                                         <td><%=mlanguage%></td>
                                                         <td><%=engStd%></td>
 
-                                                        <td class="tbl-20-col"><a style="color: black"  data-class="worker" data-value='language' data-title='View Details of Worker Language' 
+                                                        <td class="tbl-20-col"><a style="color: black"  data-class="worker" data-value='language' data-title="View Details of Worker's Language" 
                                                                                   data-language='<%=language.getId()%>' href="" data-toggle="modal" data-target="#language_pop_up" 
                                                                                   data-action="viewedit" class="edit_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
@@ -1698,7 +1698,7 @@
                                             <div class="panel-heading">
 
                                                 <h4 class="panel-title">IPA
-                                                    <a style="color: black" data-value='ipa' data-ipa='' href="" data-toggle="modal" data-class="job" data-title="Add A New IPA Pass" data-target="#ipa_pop_up" data-action="add" class="view_btn pop_up_open">
+                                                    <a style="color: black" data-value='ipa' data-ipa='' href="" data-toggle="modal" data-class="job" data-title="Add IPA details" data-target="#ipa_pop_up" data-action="add" class="view_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
 
@@ -1736,7 +1736,7 @@
                                                         <td><%=empName%></td>
                                                         <td><%=(salary == 0.0) ? "" : df.format(salary)%></td>
                                                         <td>
-                                                            <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' data-title="View IPA Pass Details"
+                                                            <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' data-title="View IPA details"
                                                                data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
                                                                data-action="viewedit" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
@@ -1760,7 +1760,7 @@
                                                         <td><%=empName%></td>
                                                         <td><%=(salary == 0.0) ? "" : df.format(salary)%></td>
                                                         <td>
-                                                            <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' data-title="View IPA Pass Details"
+                                                            <a style="color: black" data-value='ipa' data-ipa='<%=ipa.getId()%>' data-title="View IPA details"
                                                                data-class="job"   href="" data-toggle="modal" data-target="#ipa_pop_up" 
                                                                data-action="viewedit" class="view_btn pop_up_open">
                                                                 <span class="glyphicon glyphicon-eye-open"></span>
@@ -1797,7 +1797,7 @@
 
                                             <div class="panel-heading">
 
-                                                <h4 class="panel-title">Verbal Assurance Pre-Job
+                                                <h4 class="panel-title">Verbal assurances pre-Job
                                                     <a style="color: black" data-value='assurance' data-assurance='' href=""  data-class="job" data-title="Add A New Verbal Assurance" data-toggle="modal" data-target="#assurance_pop_up" data-action="add" class="view_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
@@ -2099,7 +2099,7 @@
 
                                             <div class="panel-heading">
 
-                                                <h4 class="panel-title">Employer
+                                                <h4 class="panel-title">Employer details
                                                     <a style="color: black" data-class="job"  data-value='empdetails' data-empdetails='' href="" data-title="Add A New Employer" data-toggle="modal" data-target="#empdetails_pop_up" data-action="add" class="view_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>
@@ -2192,7 +2192,7 @@
 
                                             <div class="panel-heading">
 
-                                                <h4 class="panel-title">Work Place
+                                                <h4 class="panel-title">Workplace
                                                     <a style="color: black" data-value='wplace' data-wplace='' href="" data-toggle="modal"  data-class="job" data-title="Add A New Workplace" data-target="#wplace_pop_up" data-action="add" class="view_btn pop_up_open">
                                                         <span class="glyphicon glyphicon-plus pull-right" pull-right></span></a></h4>
                                             </div>

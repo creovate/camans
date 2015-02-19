@@ -286,10 +286,10 @@ public class processAddWorkerComplement extends HttpServlet {
                 java.sql.Date obseleteDate = null;
                 
                 if (idStr == null) {
-                    phNum = request.getParameter("nPhNum");
+                    phNum = request.getParameter("nsgPhNum");
                     obseleteDateStr = request.getParameter("nObseleteDate");
                 } else {
-                    phNum = request.getParameter("phNum");
+                    phNum = request.getParameter("sgPhNum");
                     obseleteDateStr = request.getParameter("obseleteDate");
                 }
 
@@ -366,7 +366,7 @@ public class processAddWorkerComplement extends HttpServlet {
                 if (pass) { 
 
                     if (address.length()>200) {
-                        errorMsg += "sg address cannot be more than 200 characters, ";
+                        errorMsg += "sg address must not exceed 200 characters, ";
                     }
 
                     if (!obseleteDateStr.equals("")) {
@@ -428,8 +428,8 @@ public class processAddWorkerComplement extends HttpServlet {
                 //proceed only after empty fields validation is passed
                 if (pass) { 
 
-                    if (address.length()>200) {
-                        errorMsg += "home country address cannot be more than 200 characters, ";
+                    if (address.length()> 300) {
+                        errorMsg += "home country address must not exceed 300 characters, ";
                     }
 
                     if (!obseleteDateStr.equals("")) {
@@ -526,19 +526,19 @@ public class processAddWorkerComplement extends HttpServlet {
                     }
 
                     if (!digitalTypeOther.equals("") && digitalTypeOther.length()>50) {
-                        errorMsg += "Explain if other cannot be more than 50 characters, ";
+                        errorMsg += "Explain if other must not exceed 50 characters, ";
                     }
 
                     if (digitalDetail.length() > 50) {
-                        errorMsg += "Digital Details cannot be more than 50 characters, ";
+                        errorMsg += "Digital Details must not exceed 50 characters, ";
                     }
 
                     if (!digitalOwner.equals("") && digitalOwner.length() > 50) {
-                        errorMsg += "Digital Owner cannot be more than 50 characters, ";
+                        errorMsg += "Digital Owner must not exceed 50 characters, ";
                     }
 
                     if (!digitalRemark.equals("") && digitalRemark.length() > 200) {
-                        errorMsg += "Digital Remark cannot be more than 200 characters, ";
+                        errorMsg += "Digital Remark must not exceed 200 characters, ";
                     }
 
                     if (!obseleteDateStr.equals("")) {
@@ -629,15 +629,15 @@ public class processAddWorkerComplement extends HttpServlet {
                 if (pass) { 
 
                     if (name.length() > 50) {
-                        errorMsg += "Next of Kin name cannot be more than 50 characters, ";
+                        errorMsg += "Next of Kin name must not exceed 50 characters, ";
                     }
 
                     if (!docReference.equals("") && docReference.length()>200) {
-                        errorMsg += "Doc Referece cannot be more than 200 characters, ";
+                        errorMsg += "Doc Referece must not exceed 200 characters, ";
                     }
 
                     if (!relation.equals("") && relation.length() > 50) {
-                        errorMsg += "Relation cannot be more than 50 characters, ";
+                        errorMsg += "Relation must not exceed 50 characters, ";
                     }
                     
                     if (!phNum.equals("") && !phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
@@ -645,19 +645,19 @@ public class processAddWorkerComplement extends HttpServlet {
                     }
 
                     if (!digitalContact.equals("") && digitalContact.length() > 200) {
-                        errorMsg += "Digital Contact cannot be more than 200 characters, ";
+                        errorMsg += "Digital Contact must not exceed 200 characters, ";
                     }
 
                     if (!address.equals("") && address.length() > 200) {
-                        errorMsg += "Address cannot be more than 200 characters, ";
+                        errorMsg += "Address must not exceed 200 characters, ";
                     }
 
                     if (!proofDoc.equals("") && proofDoc.length() > 200) {
-                        errorMsg += "Proof Document cannot be more than 200 characters, ";
+                        errorMsg += "Proof Document must not exceed 200 characters, ";
                     }
 
                     if (!remark.equals("") && remark.length() > 200) {
-                        errorMsg += "Remark cannot be more than 200 characters, ";
+                        errorMsg += "Remark must not exceed 200 characters, ";
                     }
 
                     if (!obseleteDateStr.equals("")) {
@@ -738,16 +738,16 @@ public class processAddWorkerComplement extends HttpServlet {
                 if (pass) { 
 
                     if (name.length() > 50) {
-                        errorMsg += "name cannot be more than 50 characters, ";
+                        errorMsg += "name must not exceed 50 characters, ";
                     }
 
                     if (!relation.equals("") && relation.length()>50) {
-                        errorMsg += "Relation cannot be more than 50 characters, ";
+                        errorMsg += "Relation must not exceed 50 characters, ";
                     }
 
                     if (address != null && 
                             !address.equals("") && address.length() > 200) {
-                        errorMsg += "Address cannot be more than 200 characters, ";
+                        errorMsg += "Address must not exceed 200 characters, ";
                     }
                     
                     if (!phNum.equals("") && !phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
@@ -755,11 +755,11 @@ public class processAddWorkerComplement extends HttpServlet {
                     }
 
                     if (!digitalContact.equals("") && digitalContact.length() > 200) {
-                        errorMsg += "digital Contact cannot be more than 200 characters, ";
+                        errorMsg += "digital Contact must not exceed 200 characters, ";
                     }
 
                     if (!remark.equals("") && remark.length() > 200) {
-                        errorMsg += "Remark cannot be more than 200 characters, ";
+                        errorMsg += "Remark must not exceed 200 characters, ";
                     }
 
                     if (!obseleteDateStr.equals("")) {
@@ -830,7 +830,7 @@ public class processAddWorkerComplement extends HttpServlet {
                 if (pass) { 
 
                     if (name.length() > 50) {
-                        errorMsg += "name cannot be more than 50 characters, ";
+                        errorMsg += "name must not exceed 50 characters, ";
                     }
 
                     
@@ -839,11 +839,11 @@ public class processAddWorkerComplement extends HttpServlet {
                     }
 
                     if (!relation.equals("") && relation.length() > 50) {
-                        errorMsg += "Relation cannot be more than 50 characters, ";
+                        errorMsg += "Relation must not exceed 50 characters, ";
                     }
 
                     if (!remark.equals("") && remark.length() > 200) {
-                        errorMsg += "Remark cannot be more than 200 characters, ";
+                        errorMsg += "Remark must not exceed 200 characters, ";
                     }
 
                     if (!obseleteDateStr.equals("")) {
@@ -913,11 +913,11 @@ public class processAddWorkerComplement extends HttpServlet {
                 if (pass) { 
 
                     if (!languageMore.equals("") && languageMore.length() > 50) {
-                        errorMsg += "Explain if other cannot be more than 50 characters, ";
+                        errorMsg += "Explain if other must not exceed 50 characters, ";
                     }
 
                     if (!remark.equals("") && remark.length() > 200) {
-                        errorMsg += "Remark cannot be more than 200 characters, ";
+                        errorMsg += "Remark must not exceed 200 characters, ";
                     }
 
                 }   //pass 
@@ -1003,35 +1003,35 @@ public class processAddWorkerComplement extends HttpServlet {
                 if (pass) { 
 
                     if (bankAcctName.length() > 50) {
-                        errorMsg += "bank account name cannot be more than 50 characters, ";
+                        errorMsg += "bank account name must not exceed 50 characters, ";
                     }
 
                     if (bankAcctNum.length() > 50) {
-                        errorMsg += "bank account number cannot be more than 50 characters, ";
+                        errorMsg += "bank account number must not exceed 50 characters, ";
                     }
 
                     if (bankName.length() > 50) {
-                        errorMsg += "bank name cannot be more than 50 characters, ";
+                        errorMsg += "bank name must not exceed 50 characters, ";
                     }
 
                     if (!bankBranch.equals("") && bankBranch.length() > 50) {
-                        errorMsg += "bank branch cannot be more than 50 characters, ";
+                        errorMsg += "bank branch must not exceed 50 characters, ";
                     }
 
                     if (!bankBranchAddress.equals("") && bankBranchAddress.length() > 300) {
-                        errorMsg += "bank branch address cannot be more than 300 characters, ";
+                        errorMsg += "bank branch address must not exceed 300 characters, ";
                     }
 
                     if (!bankBranchCode.equals("") && bankBranchCode.length() > 50) {
-                        errorMsg += "bank branch code cannot be more than 50 characters, ";
+                        errorMsg += "bank branch code must not exceed 50 characters, ";
                     }
 
                     if (!bankSwift.equals("") && bankSwift.length() > 50) {
-                        errorMsg += "bank swift cannot be more than 50 characters, ";
+                        errorMsg += "bank swift must not exceed 50 characters, ";
                     }
 
                     if (!remark.equals("") && remark.length() > 200) {
-                        errorMsg += "remark cannot be more than 200 characters, ";
+                        errorMsg += "remark must not exceed 200 characters, ";
                     }
 
                     if (!obseleteDateStr.equals("")) {

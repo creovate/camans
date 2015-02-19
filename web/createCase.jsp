@@ -21,9 +21,6 @@
     //ArrayList<String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
     //ArrayList<String> lawFirmList = DropdownDAO.retrieveAllDropdownListOfLawFirms();
 
-    String status = (String) request.getSession().getAttribute("status");
-    request.getSession().removeAttribute("status");
-
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
     java.util.Date today = new java.util.Date();
 %>
@@ -61,7 +58,7 @@
         <script src="js/jquery.validate.js"></script>
         <script src="js/additional-methods.js"></script>
         <link rel="shortcut icon" href="img/twc_logo.png">
-        <title>JSP Page</title>
+        <title>CAMANS</title>
 
 
         <script>
@@ -83,7 +80,7 @@
                 });
                 //methods for jquery validator
                 jQuery.validator.addMethod("FIN", function(value, element) {
-                    return this.optional(element) || /^[G][0-9]{7}[A-Z]/.test(value) || /^GEN[0-9]{6}/.test(value);
+                    return this.optional(element) || /^[A-Z][0-9]{7}[A-Z]/.test(value) || /^GEN[0-9]{6}/.test(value);
                 }, "Invalid FIN number format. Please check again.");
                 jQuery.validator.addMethod("FileSize", function(value, element) {
                     return this.optional(element) || (element.files[0].size <= 1048576);
@@ -209,10 +206,6 @@
             <!-- Create Case From -->
             <div class="col-md-12">
                 <div class="col-xs-12 col-md-12" >
-                    <%
-                        if (status == null) {
-
-                    %>
                     <form method="post" action="createNewCase.do" class="form-horizontal col-md-offset-1 col-md-10" 
                           id="createworker_form" role="form" enctype="multipart/form-data">
 
@@ -514,17 +507,6 @@
 
                         </div>
                     </form> 
-                    <%
-                    } else {
-                        Worker worker = (Worker) request.getSession().getAttribute("worker");
-                    %>
-                    Case for Worker <a href="viewWorker.jsp?worker=<%=worker.getFinNumber()%>"> <%=worker.getFinNumber()%> </a> has been created successfully.<br/>
-                    To View, please click <a href="viewWorker.jsp?worker=<%=worker.getFinNumber()%>"><%=worker.getFinNumber()%></a>.<br/>
-                    To create new case for new worker. Please click <a href="createCase.jsp">Create Worker</a>.<br/>
-
-                    <%
-                        }
-                    %>
                 </div>
 
             </div>

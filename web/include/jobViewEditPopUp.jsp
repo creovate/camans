@@ -48,7 +48,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Pass type must be less than 20 characters.'
+                            message: 'Pass type must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'Pass type cannot be empty.'
@@ -59,7 +59,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Pass type must be less than 50 characters.'
+                            message: 'Pass type must not exceed 50 characters.'
                         }
                     }
                 },
@@ -67,7 +67,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Pass number must be less than 20 characters.'
+                            message: 'Pass number must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'Pass number cannot be empty.'
@@ -78,7 +78,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Agency name must be less than 20 characters.'
+                            message: 'Agency name must not exceed 20 characters.'
                         }
                     }
                 },
@@ -86,7 +86,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remarks must be less than 200 characters.'
+                            message: 'Remarks must not exceed 200 characters.'
                         }
                     }
                 },
@@ -101,7 +101,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Pass type must be less than 50 characters.'
+                            message: 'Pass type must not exceed 50 characters.'
                         }
                     }
                 },
@@ -109,7 +109,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Pass number must be less than 20 characters.'
+                            message: 'Pass number must not exceed 20 characters.'
                         },
                         notEmpty: {
                             message: 'Pass number cannot be empty.'
@@ -120,7 +120,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Agency name must be less than 20 characters.'
+                            message: 'Agency name must not exceed 20 characters.'
                         }
                     }
                 },
@@ -128,7 +128,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Remarks must be less than 200 characters.'
+                            message: 'Remarks must not exceed 200 characters.'
                         }
                     }
                 },
@@ -137,7 +137,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'The name cannot be empty.'
@@ -148,7 +148,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Employer ID must be less than 50 characters.'
+                            message: 'Employer ID must not exceed 50 characters.'
                         }
                     }
                 },
@@ -156,7 +156,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Address must be less than 200 characters.'
+                            message: 'Address must not exceed 200 characters.'
                         }
                     }
                 },
@@ -164,7 +164,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Contact details must be less than 200 characters.'
+                            message: 'Contact details must not exceed 200 characters.'
                         }
                     }
                 },
@@ -172,7 +172,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Key person name must be less than 200 characters.'
+                            message: 'Key persons name must not exceed 200 characters.'
                         }
                     }
                 },
@@ -180,7 +180,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'The name cannot be empty.'
@@ -191,7 +191,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Employer ID must be less than 50 characters.'
+                            message: 'Employer ID must not exceed 50 characters.'
                         }
                     }
                 },
@@ -199,7 +199,7 @@
                     validators: {
                         stringLength: {
                             max: 300,
-                            message: 'Address must be less than 300 characters.'
+                            message: 'Address must not exceed 300 characters.'
                         }
                     }
                 },
@@ -207,7 +207,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Contact details must be less than 200 characters.'
+                            message: 'Contact details must not exceed 200 characters.'
                         }
                     }
                 },
@@ -215,7 +215,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Key person name must be less than 200 characters.'
+                            message: 'Key persons name must not exceed 200 characters.'
                         }
                     }
                 },
@@ -231,7 +231,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'Location must not exceed 50 characters.'
                         }
                     }
                 },
@@ -239,7 +239,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Language must be less than 20 characters.'
+                            message: 'Language must not exceed 20 characters.'
                         }
                     }
                 },
@@ -247,7 +247,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'The name cannot be empty.'
@@ -258,7 +258,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Relationship must be less than 200 characters.'
+                            message: 'Relationship must not exceed 200 characters.'
                         }
                     }
                 },
@@ -266,7 +266,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'occupation must be less than 200 characters.'
+                            message: 'occupation must not exceed 200 characters.'
                         }
                     }
                 },
@@ -274,7 +274,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Salary must be less than 50 characters.'
+                            message: 'Salary must not exceed 50 characters.'
                         }
                     }
                 },
@@ -282,7 +282,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Allowance details must be less than 500 characters.'
+                            message: 'Allowance details must not exceed 500 characters.'
                         }
                     }
                 },
@@ -290,15 +290,15 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Deduction details must be less than 500 characters.'
+                            message: 'Deduction details must not exceed 500 characters.'
                         }
                     }
                 },
                 duration: {
                     validators: {
                         stringLength: {
-                            max: 500,
-                            message: 'Deduction details must be less than 500 characters.'
+                            max: 20,
+                            message: 'Length of contract must not exceed 20 characters.'
                         }
                     }
                 },
@@ -306,7 +306,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Deduction details must be less than 500 characters.'
+                            message: 'Deduction details must not exceed 500 characters.'
                         }
                     }
                 },
@@ -321,7 +321,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         }
                     }
                 },
@@ -329,7 +329,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Language must be less than 20 characters.'
+                            message: 'Language must not exceed 20 characters.'
                         }
                     }
                 },
@@ -337,7 +337,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'The name cannot be empty.'
@@ -348,7 +348,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Relationship must be less than 200 characters.'
+                            message: 'Relationship must not exceed 200 characters.'
                         }
                     }
                 },
@@ -356,7 +356,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'occupation must be less than 200 characters.'
+                            message: 'occupation must not exceed 200 characters.'
                         }
                     }
                 },
@@ -364,7 +364,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Salary must be less than 50 characters.'
+                            message: 'Salary must not exceed 50 characters.'
                         }
                     }
                 },
@@ -372,7 +372,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Allowance details must be less than 500 characters.'
+                            message: 'Allowance details must not exceed 500 characters.'
                         }
                     }
                 },
@@ -380,15 +380,15 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Deduction details must be less than 500 characters.'
+                            message: 'Deduction details must not exceed 500 characters.'
                         }
                     }
                 },
                 nduration: {
                     validators: {
                         stringLength: {
-                            max: 500,
-                            message: 'Deduction details must be less than 500 characters.'
+                            max: 20,
+                            message: 'Length of duration must not exceed 500 characters.'
                         }
                     }
                 },
@@ -396,7 +396,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Deduction details must be less than 500 characters.'
+                            message: 'Deduction details must not exceed 500 characters.'
                         }
                     }
                 },
@@ -405,7 +405,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Company name must be less than 50 characters.'
+                            message: 'Company name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Company name cannot be empty.'
@@ -416,7 +416,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Agent key person name must be less than 50 characters.'
+                            message: 'Agent key person name must not exceed 50 characters.'
                         }
                     }
                 },
@@ -424,7 +424,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Agent location must be less than 50 characters.'
+                            message: 'Agent location must not exceed 50 characters.'
                         }
                     }
                 },
@@ -448,7 +448,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -456,7 +456,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Training expense details must be less than 50 characters.'
+                            message: 'Training expense details must not exceed 50 characters.'
                         }
                     }
                 },
@@ -464,7 +464,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Airfare fee must be less than 50 characters.'
+                            message: 'Airfare fee must not exceed 50 characters.'
                         }
                     }
                 },
@@ -472,7 +472,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -480,7 +480,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -488,7 +488,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Repayment plan must be less than 200 characters.'
+                            message: 'Repayment plan must not exceed 200 characters.'
                         }
                     }
                 },
@@ -496,7 +496,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Employer name must be less than 200 characters.'
+                            message: 'Employer name must not exceed 200 characters.'
                         }
                     }
                 },
@@ -504,7 +504,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'Employer name must be less than 1000 characters.'
+                            message: 'Employer name must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -512,7 +512,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Company name must be less than 50 characters.'
+                            message: 'Company name must not exceed 50 characters.'
                         },
                         notEmpty: {
                             message: 'Company name cannot be empty.'
@@ -523,7 +523,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Agent key person name must be less than 50 characters.'
+                            message: 'Agent key person name must not exceed 50 characters.'
                         }
                     }
                 },
@@ -531,7 +531,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Agent location must be less than 50 characters.'
+                            message: 'Agent location must not exceed 50 characters.'
                         }
                     }
                 },
@@ -561,7 +561,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -569,7 +569,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Training expense details must be less than 50 characters.'
+                            message: 'Training expense details must not exceed 50 characters.'
                         }
                     }
                 },
@@ -577,7 +577,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'Airfare fee must be less than 50 characters.'
+                            message: 'Airfare fee must not exceed 50 characters.'
                         }
                     }
                 },
@@ -585,7 +585,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -593,7 +593,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -601,7 +601,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Repayment plan must be less than 200 characters.'
+                            message: 'Repayment plan must not exceed 200 characters.'
                         }
                     }
                 },
@@ -609,7 +609,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Employer name must be less than 200 characters.'
+                            message: 'Employer name must not exceed 200 characters.'
                         }
                     }
                 },
@@ -617,7 +617,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'Remarks must be less than 1000 characters.'
+                            message: 'Remarks must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -626,7 +626,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -634,7 +634,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -642,7 +642,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'Content must be less than 1000 characters.'
+                            message: 'Content must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -650,7 +650,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -658,7 +658,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -666,7 +666,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'Content must be less than 1000 characters.'
+                            message: 'Content must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -682,7 +682,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Type must be less than 200 characters.'
+                            message: 'Type must not exceed 200 characters.'
                         }
                     }
                 },
@@ -690,7 +690,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -698,7 +698,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Key person details must be less than 200 characters.'
+                            message: 'Key person details must not exceed 200 characters.'
                         }
                     }
                 },
@@ -706,7 +706,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -721,7 +721,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -729,7 +729,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -737,7 +737,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -745,7 +745,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Working conditions must be less than 500 characters.'
+                            message: 'Working conditions must not exceed 500 characters.'
                         }
                     }
                 },
@@ -753,7 +753,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Safety issues must be less than 200 characters.'
+                            message: 'Safety issues must not exceed 200 characters.'
                         }
                     }
                 },
@@ -768,7 +768,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Type must be less than 200 characters.'
+                            message: 'Type must not exceed 200 characters.'
                         }
                     }
                 },
@@ -776,7 +776,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -784,7 +784,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Key person details must be less than 200 characters.'
+                            message: 'Key person details must not exceed 200 characters.'
                         }
                     }
                 },
@@ -792,7 +792,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -807,15 +807,15 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
                 nstart: {
                     validators: {
                         stringLength: {
-                            max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            max: 50,
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -823,7 +823,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -831,7 +831,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Working conditions must be less than 500 characters.'
+                            message: 'Working conditions must not exceed 500 characters.'
                         }
                     }
                 },
@@ -839,7 +839,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Safety issues must be less than 200 characters.'
+                            message: 'Safety issues must not exceed 200 characters.'
                         }
                     }
                 },
@@ -855,7 +855,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -868,7 +868,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -876,7 +876,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -891,7 +891,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -904,7 +904,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -912,7 +912,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'This field must be less than 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -928,7 +928,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -936,7 +936,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -960,7 +960,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -968,7 +968,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -976,7 +976,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -991,7 +991,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -999,7 +999,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1029,7 +1029,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1037,7 +1037,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1045,7 +1045,15 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'This field must be less than 50 characters.'
+                            message: 'This field must not exceed 50 characters.'
+                        }
+                    }
+                },
+                locationAccom: {
+                    validators: {
+                        stringLength: {
+                            max: 200,
+                            message: 'Accomodation must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1061,7 +1069,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1069,7 +1077,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1077,7 +1085,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1085,7 +1093,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Industry must be less than 20 characters.'
+                            message: 'Industry must not exceed 20 characters.'
                         }
                     }
                 },
@@ -1093,7 +1101,7 @@
                     validators: {
                         stringLength: {
                             max: 30,
-                            message: 'Occupation must be less than 30 characters.'
+                            message: 'Occupation must not exceed 30 characters.'
                         }
                     }
                 },
@@ -1101,7 +1109,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Period of pass must be less than 20 characters.'
+                            message: 'Period of pass must not exceed 20 characters.'
                         },
                         regexp: {
                             regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
@@ -1129,7 +1137,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1145,7 +1153,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1160,7 +1168,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1168,7 +1176,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1176,7 +1184,7 @@
                     validators: {
                         stringLength: {
                             max: 50,
-                            message: 'The name must be less than 50 characters.'
+                            message: 'The name must not exceed 50 characters.'
                         }
                     }
                 },
@@ -1184,7 +1192,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Industry must be less than 20 characters.'
+                            message: 'Industry must not exceed 20 characters.'
                         }
                     }
                 },
@@ -1192,7 +1200,7 @@
                     validators: {
                         stringLength: {
                             max: 30,
-                            message: 'Occupation must be less than 30 characters.'
+                            message: 'Occupation must not exceed 30 characters.'
                         }
                     }
                 },
@@ -1200,7 +1208,7 @@
                     validators: {
                         stringLength: {
                             max: 20,
-                            message: 'Period of pass must be less than 20 characters.'
+                            message: 'Period of pass must not exceed 20 characters.'
                         },
                         numeric: {
                             message: 'Period of pass must be a number.'
@@ -1237,7 +1245,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1256,7 +1264,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'This field must be less than 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 }
@@ -1364,7 +1372,7 @@
                     <label for='remark' class="control-label">Remarks about pass: </label>
 
                     <br/>
-                    <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
+                    <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='obsoleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1432,7 +1440,7 @@
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about pass: </label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200" ></textarea>
+                <textarea class="form-control" name="nremark" rows="3"  ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nobsoleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1513,7 +1521,7 @@
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about pass: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obsoleteDate' class="control-label">Date discovered to be obsolete: </label>
@@ -1578,22 +1586,22 @@
                 <div class='form-group'>
                     <label for='contact' class="control-label">Employer address:</label>
                     <br/>
-                    <textarea class="form-control" name="address" rows="3" maxlength="200"><%=address%></textarea>
+                    <textarea class="form-control" name="address" rows="3" ><%=address%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='contact' class="control-label">Employer phone, email contacts:</label>
                     <br/>
-                    <textarea class="form-control" name="ncontact" rows="3" maxlength="200"><%=(contact == null) ? "" : contact%></textarea>
+                    <textarea class="form-control" name="ncontact" rows="3" ><%=(contact == null) ? "" : contact%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='person' class="control-label">Key persons in employer:</label>
                     <br/>
-                    <textarea class="form-control" name="nperson" rows="3" maxlength="200"><%=(person == null) ? "" : person%></textarea>
+                    <textarea class="form-control" name="nperson" rows="3" ><%=(person == null) ? "" : person%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Remarks about employer: </label>
                     <br/>
-                    <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark == null) ? "" : remark%></textarea>
+                    <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
                 </div>
             </fieldset>
 
@@ -1619,22 +1627,22 @@
             <div class='form-group'>
                 <label for='nremark' class="control-label">Employer address: </label>
                 <br/>
-                <textarea class="form-control" name="naddress" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="naddress" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='ncontact' class="control-label">Employer phone, email contacts:</label>
                 <br/>
-                <textarea class="form-control" name="ncontact" rows="3" maxlength="200"><%=(contact == null) ? "" : contact%></textarea>
+                <textarea class="form-control" name="ncontact" rows="3" ><%=(contact == null) ? "" : contact%></textarea>
             </div>
             <div class='form-group'>
                 <label for='nperson' class="control-label">Key persons in employer:</label>
                 <br/>
-                <textarea class="form-control" name="nperson" rows="3" maxlength="200"><%=(person == null) ? "" : person%></textarea>
+                <textarea class="form-control" name="nperson" rows="3" ><%=(person == null) ? "" : person%></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about employer: </label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
 
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
@@ -1661,22 +1669,22 @@
             <div class='form-group'>
                 <label for='address' class="control-label">Employer address: </label>
                 <br/>
-                <textarea class="form-control" name="address" rows="3" maxlength="200"><%=(address == null) ? "" : address%></textarea>
+                <textarea class="form-control" name="address" rows="3" ><%=(address == null) ? "" : address%></textarea>
             </div>
             <div class='form-group'>
                 <label for='contact' class="control-label">Employer phone, email contacts:</label>
                 <br/>
-                <textarea class="form-control" name="contact" rows="3" maxlength="200"><%=(contact == null) ? "" : contact%></textarea>
+                <textarea class="form-control" name="contact" rows="3" ><%=(contact == null) ? "" : contact%></textarea>
             </div>
             <div class='form-group'>
                 <label for='person' class="control-label">Key persons in employer:</label>
                 <br/>
-                <textarea class="form-control" name="person" rows="3" maxlength="200"><%=(person == null) ? "" : person%></textarea>
+                <textarea class="form-control" name="person" rows="3" ><%=(person == null) ? "" : person%></textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about employer: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark == null) ? "" : remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="EmployerDetails"/>
@@ -1752,12 +1760,12 @@
                 <div class='form-group'>
                     <label for='empid' class="control-label">Relationship of opposite contracting party to job:</label>
                     <br/>
-                    <textarea class="form-control" name="noprelation" rows="3" maxlength="200"><%=(oprelation == null) ? "" : oprelation%></textarea>
+                    <textarea class="form-control" name="noprelation" rows="3" ><%=(oprelation == null) ? "" : oprelation%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Occupation stated in contract: </label>
                     <br/>
-                    <textarea class="form-control" name="noccupation" rows="3" maxlength="200"><%=(occupation == null) ? "" : occupation%></textarea>
+                    <textarea class="form-control" name="noccupation" rows="3" ><%=(occupation == null) ? "" : occupation%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Basic salary: </label>
@@ -1823,12 +1831,12 @@
             <div class='form-group'>
                 <label for='empid' class="control-label">Relationship of opposite contracting party to job:</label>
                 <br/>
-                <textarea class="form-control" name="noprelation" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="noprelation" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Occupation stated in contract: </label>
                 <br/>
-                <textarea class="form-control" name="noccupation" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="noccupation" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nsalary' class="control-label">Basic salary: </label>
@@ -1838,12 +1846,12 @@
             <div class='form-group'>
                 <label for='nallowance' class="control-label">Allowance details: </label>
                 <br/>
-                <textarea class="form-control" name="nallowance" rows="3" maxlength="500"></textarea>
+                <textarea class="form-control" name="nallowance" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='ndeduction' class="control-label">Deductions details: </label>
                 <br/>
-                <textarea class="form-control" name="ndeduction" rows="3" maxlength="500"></textarea>
+                <textarea class="form-control" name="ndeduction" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nduration' class="control-label">Length of contract: </label>
@@ -1853,12 +1861,12 @@
             <div class='form-group'>
                 <label for='nduress' class="control-label">Describe if signed under duress or misrepresentation: </label>
                 <br/>
-                <textarea class="form-control" name="nduress" rows="3" maxlength="500"></textarea>
+                <textarea class="form-control" name="nduress" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about contract: </label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="ContractDetails"/>
@@ -1895,12 +1903,12 @@
             <div class='form-group'>
                 <label for='oprelation' class="control-label">Relationship of opposite contracting party to job:</label>
                 <br/>
-                <textarea class="form-control" name="oprelation" rows="3" maxlength="200"><%=(oprelation == null) ? "" : oprelation%></textarea>
+                <textarea class="form-control" name="oprelation" rows="3" ><%=(oprelation == null) ? "" : oprelation%></textarea>
             </div>
             <div class='form-group'>
                 <label for='occupation' class="control-label">Occupation stated in contract: </label>
                 <br/>
-                <textarea class="form-control" name="occupation" rows="3" maxlength="200"><%=(occupation == null) ? "" : occupation%></textarea>
+                <textarea class="form-control" name="occupation" rows="3" ><%=(occupation == null) ? "" : occupation%></textarea>
             </div>
             <div class='form-group'>
                 <label for='salary' class="control-label">Basic salary: </label>
@@ -2009,12 +2017,12 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Agent address: </label>
                     <br/>
-                    <textarea class="form-control" name="naddress" rows="3" maxlength="300"><%=(address == null) ? "" : address%></textarea>
+                    <textarea class="form-control" name="naddress" rows="3" ><%=(address == null) ? "" : address%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Agent phone/email contact: </label>
                     <br/>
-                    <textarea class="form-control" name="ncontact" rows="3" maxlength="200"><%=(contact == null) ? "" : contact%></textarea>
+                    <textarea class="form-control" name="ncontact" rows="3" ><%=(contact == null) ? "" : contact%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='empid' class="control-label">Amount paid to this agent(S$):</label>
@@ -2029,10 +2037,10 @@
                 <div class='form-group'>
                     <label for='contact' class="control-label">Any suspicion fee was shared with others?:</label>
                     <br/>
-                    <textarea class="form-control" name="nfeeshared" rows="3" maxlength="200"><%=(feeshared == null) ? "" : feeshared%></textarea>
+                    <textarea class="form-control" name="nfeeshared" rows="3" ><%=(feeshared == null) ? "" : feeshared%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Did fee includes training expenses? (Explain in details) </label>
+                    <label for='remark' class="control-label">Did fee include training expenses? (Explain in detail) </label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=feeTraining%>">
                 </div>
@@ -2054,12 +2062,12 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Repayment plan if fee owed: </label>
                     <br/>
-                    <textarea class="form-control" name="nfeerepay" rows="3" maxlength="200"><%=(feeRepay == null) ? "" : feeRepay%></textarea>
+                    <textarea class="form-control" name="nfeerepay" rows="3" ><%=(feeRepay == null) ? "" : feeRepay%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Employer that this agent placed worker to: </label>
                     <br/>
-                    <textarea class="form-control" name="nemp" rows="3" maxlength="200"><%=(emp == null) ? "" : emp%></textarea>
+                    <textarea class="form-control" name="nemp" rows="3" ><%=(emp == null) ? "" : emp%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Agent remarks: </label>
@@ -2110,12 +2118,12 @@
             <div class='form-group'>
                 <label for='naddress' class="control-label">Agent address: </label>
                 <br/>
-                <textarea class="form-control" name="naddress" rows="3" maxlength="300"></textarea>
+                <textarea class="form-control" name="naddress" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='ncontact' class="control-label">Agent phone/email contact: </label>
                 <br/>
-                <textarea class="form-control" name="ncontact" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="ncontact" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='namtpaid' class="control-label">Amount paid to this agent(S$):</label>
@@ -2130,7 +2138,7 @@
             <div class='form-group'>
                 <label for='nfeeshared' class="control-label">Any suspicion fee was shared with others?:</label>
                 <br/>
-                <textarea class="form-control" name="nfeeshared" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nfeeshared" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nfeetraining' class="control-label" >Did fee includes training expenses? (Explain in details) </label>
@@ -2155,17 +2163,17 @@
             <div class='form-group'>
                 <label for='nfeerepay' class="control-label">Repayment plan if fee owed: </label>
                 <br/>
-                <textarea class="form-control" name="nfeerepay" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nfeerepay" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nemp' class="control-label">Employer that this agent placed worker to: </label>
                 <br/>
-                <textarea class="form-control" name="nemp" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nemp" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Agent remarks: </label>
                 <br/>
-                <textarea class="form-control" name="nagremark" rows="3" maxlength="1000"></textarea>
+                <textarea class="form-control" name="nagremark" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="Agent"/>
@@ -2219,12 +2227,12 @@
             <div class='form-group'>
                 <label for='address' class="control-label">Agent address: </label>
                 <br/>
-                <textarea class="form-control" name="address" rows="3" maxlength="300"><%=(address == null) ? "" : address%></textarea>
+                <textarea class="form-control" name="address" rows="3" ><%=(address == null) ? "" : address%></textarea>
             </div>
             <div class='form-group'>
                 <label for='contact' class="control-label">Agent phone/email contact: </label>
                 <br/>
-                <textarea class="form-control" name="contact" rows="3" maxlength="200"><%=(contact == null) ? "" : contact%></textarea>
+                <textarea class="form-control" name="contact" rows="3" ><%=(contact == null) ? "" : contact%></textarea>
             </div>
             <div class='form-group'>
                 <label for='amtpaid' class="control-label">Amount paid to this agent(S$):</label>
@@ -2239,10 +2247,10 @@
             <div class='form-group'>
                 <label for='feeshared' class="control-label">Any suspicion fee was shared With others?:</label>
                 <br/>
-                <textarea class="form-control" name="feeshared" rows="3" maxlength="200"><%=(feeshared == null) ? "" : feeshared%></textarea>
+                <textarea class="form-control" name="feeshared" rows="3" ><%=(feeshared == null) ? "" : feeshared%></textarea>
             </div>
             <div class='form-group'>
-                <label for='feetraining' class="control-label">Did fee includes training expenses? (Explain in details) </label>
+                <label for='feetraining' class="control-label">Did fee include training expenses? (Explain in detail) </label>
                 <br/>
                 <input class="form-control" type='text' name="feetraining" value="<%=feeTraining%>">
             </div>
@@ -2264,12 +2272,12 @@
             <div class='form-group'>
                 <label for='feerepay' class="control-label">Repayment plan if fee owed: </label>
                 <br/>
-                <textarea class="form-control" name="feerepay" rows="3" maxlength="200"><%=(feeRepay == null) ? "" : feeRepay%></textarea>
+                <textarea class="form-control" name="feerepay" rows="3" ><%=(feeRepay == null) ? "" : feeRepay%></textarea>
             </div>
             <div class='form-group'>
                 <label for='emp' class="control-label">Employer that this agent placed worker to: </label>
                 <br/>
-                <textarea class="form-control" name="emp" rows="3" maxlength="200"><%=(emp == null) ? "" : emp%></textarea>
+                <textarea class="form-control" name="emp" rows="3" ><%=(emp == null) ? "" : emp%></textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Agent Remarks: </label>
@@ -2361,7 +2369,7 @@
             <div class='form-group'>
                 <label for='nrelationship' class="control-label">Relationship of giver to worker or agent or employer:</label>
                 <br/>
-                <textarea class="form-control" name="nrelation" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nrelation" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nvaWhen' class="control-label">When was verbal assurance given?: </label>
@@ -2376,7 +2384,7 @@
             <div class='form-group'>
                 <label for='nvaContent' class="control-label">Content of verbal assurance: </label>
                 <br/>
-                <textarea class="form-control" name="nvaContent" rows="3" maxlength="1000"></textarea>
+                <textarea class="form-control" name="nvaContent" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="VerbalAssurance"/>
@@ -2397,7 +2405,7 @@
             <div class='form-group'>
                 <label for='relationship' class="control-label">Relationship of giver to worker or agent or employer:</label>
                 <br/>
-                <textarea class="form-control" name="relation" rows="3" maxlength="200"><%=(relationship == null) ? "" : relationship%></textarea>
+                <textarea class="form-control" name="relation" rows="3" ><%=(relationship == null) ? "" : relationship%></textarea>
             </div>
             <div class='form-group'>
                 <label for='vaWhen' class="control-label">When was verbal assurance given?: </label>
@@ -2412,7 +2420,7 @@
             <div class='form-group'>
                 <label for='vaContent' class="control-label">Content of verbal assurance: </label>
                 <br/>
-                <textarea class="form-control" name="vaContent" rows="3" maxlength="1000"><%=content%></textarea>
+                <textarea class="form-control" name="vaContent" rows="3" ><%=content%></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="VerbalAssurance"/>
@@ -2474,7 +2482,7 @@
                 <div class='form-group' id="wrokplaceType_other_div" >
                     <label for='nwpTypeMore' class="control-label">Explain if above is 'Other': </label>
                     <br/>
-                    <textarea class="form-control" name="nwpTypeMore" rows="3" maxlength="200"><%=(wpTypeMore == null) ? "" : wpTypeMore%></textarea>
+                    <textarea class="form-control" name="nwpTypeMore" rows="3" ><%=(wpTypeMore == null) ? "" : wpTypeMore%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='name' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
@@ -2482,9 +2490,9 @@
                     <input class="form-control" type='text' name="name" value="<%=whose%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Key person controlling workplace & contact details: </label>
+                    <label for='remark' class="control-label">Key persons controlling workplace & contact details: </label>
                     <br/>
-                    <textarea class="form-control" name="npersonDetails" maxlength="200"><%=(personDetails == null) ? "" : personDetails%></textarea>
+                    <textarea class="form-control" name="npersonDetails" ><%=(personDetails == null) ? "" : personDetails%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Relationship of workplace to employer: </label>
@@ -2499,7 +2507,7 @@
                 <div class='form-group' id="direct_other_div" >
                     <label for='ndirectMore' class="control-label">Explain if above is 'Other': </label>
                     <br/>
-                    <textarea class="form-control" name="ndirectMore" rows="3" maxlength="200"><%=(directMore == null) ? "" : directMore%></textarea>
+                    <textarea class="form-control" name="ndirectMore" rows="3" ><%=(directMore == null) ? "" : directMore%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">When start at workplace?: </label>
@@ -2519,12 +2527,12 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Safety issues at workplace: </label>
                     <br/>
-                    <textarea class="form-control" name="nsafety" rows="3" maxlength="200"><%=(safety == null) ? "" : safety%></textarea>
+                    <textarea class="form-control" name="nsafety" rows="3" ><%=(safety == null) ? "" : safety%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Remarks about workplace: </label>
                     <br/>
-                    <textarea class="form-control" name="nremark" rows="3" maxlength="200"><%=(remark == null) ? "" : remark%></textarea>
+                    <textarea class="form-control" name="nremark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
                 </div>
             </fieldset>
 
@@ -2555,7 +2563,7 @@
             <div class='form-group' id="wrokplaceType_other_div" >
                 <label for='nwpTypeMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="nwpTypeMore" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nwpTypeMore" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nwhose' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
@@ -2563,9 +2571,9 @@
                 <input class="form-control" type='text' name="nwhose" >
             </div>
             <div class='form-group'>
-                <label for='npersonDetails' class="control-label">Key person Controlling workplace & contact details: </label>
+                <label for='npersonDetails' class="control-label">Key persons Controlling workplace & contact details: </label>
                 <br/>
-                <textarea class="form-control" name="npersonDetails" maxlength="200"></textarea>
+                <textarea class="form-control" name="npersonDetails" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nrelationship' class="control-label">Relationship of workplace to employer: </label>
@@ -2591,7 +2599,7 @@
             <div class='form-group' id="direct_other_div" >
                 <label for='ndirectMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="ndirectMore" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="ndirectMore" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nstart' class="control-label">When Start at workplace?: </label>
@@ -2606,17 +2614,17 @@
             <div class='form-group'>
                 <label for='ncondition' class="control-label">Work Conditions at the workplace: </label>
                 <br/>
-                <textarea class="form-control" name="ncondition" rows="3" maxlength="500"></textarea>
+                <textarea class="form-control" name="ncondition" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nsafety' class="control-label">Safety Issues At workplace: </label>
                 <br/>
-                <textarea class="form-control" name="nsafety" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nsafety" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about workplace: </label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkPlace"/>
@@ -2654,7 +2662,7 @@
             <div class='form-group' id="wpTypeEdit_other_div" >
                 <label for='wpTypeMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="wpTypeMore" rows="3" maxlength="200"><%=(wpTypeMore == null) ? "" : wpTypeMore%></textarea>
+                <textarea class="form-control" name="wpTypeMore" rows="3" ><%=(wpTypeMore == null) ? "" : wpTypeMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='whose' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
@@ -2662,9 +2670,9 @@
                 <input class="form-control" type='text' name="whose" value="<%=whose%>">
             </div>
             <div class='form-group'>
-                <label for='personDetails' class="control-label">Key person controlling workplace & contact details: </label>
+                <label for='personDetails' class="control-label">Key persons controlling workplace & contact details: </label>
                 <br/>
-                <textarea class="form-control" name="personDetails" maxlength="200"><%=(personDetails == null) ? "" : personDetails%></textarea>
+                <textarea class="form-control" name="personDetails" ><%=(personDetails == null) ? "" : personDetails%></textarea>
             </div>
             <div class='form-group'>
                 <label for='relation' class="control-label">Relationship of workplace to employer: </label>
@@ -2696,7 +2704,7 @@
             <div class='form-group' id="directEdit_other_div" >
                 <label for='directMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="directMore" rows="3" maxlength="200"><%=(directMore == null) ? "" : directMore%></textarea>
+                <textarea class="form-control" name="directMore" rows="3" ><%=(directMore == null) ? "" : directMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='start' class="control-label">When start at workplace?: </label>
@@ -2711,17 +2719,17 @@
             <div class='form-group'>
                 <label for='condition' class="control-label">Work conditions at the workplace: </label>
                 <br/>
-                <textarea class="form-control" name="condition" rows="3" maxlength="500"><%=(condition == null) ? "" : condition%></textarea>
+                <textarea class="form-control" name="condition" rows="3" ><%=(condition == null) ? "" : condition%></textarea>
             </div>
             <div class='form-group'>
                 <label for='safety' class="control-label">Safety issues at workplace: </label>
                 <br/>
-                <textarea class="form-control" name="safety" rows="3" maxlength="200"><%=(safety == null) ? "" : safety%></textarea>
+                <textarea class="form-control" name="safety" rows="3" ><%=(safety == null) ? "" : safety%></textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about workplace: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark == null) ? "" : remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkPlace"/>
@@ -2779,7 +2787,7 @@
                 <div class='form-group' id="howEdit_other_div" >
                     <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
                     <br/>
-                    <textarea class="form-control" name="howMore" maxlength="200"><%=(history.getWorkHistHowMore() == null) ? "" : history.getWorkHistHowMore()%></textarea>
+                    <textarea class="form-control" name="howMore" ><%=(history.getWorkHistHowMore() == null) ? "" : history.getWorkHistHowMore()%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='name' class="control-label">Date arrived Singapore for this job:</label>
@@ -2844,7 +2852,7 @@
             <div class='form-group' id="workhistHow_other_div" >
                 <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="nhowMore" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nhowMore" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='narrivalDate' class="control-label">Date arrived Singapore for this job:</label>
@@ -2872,17 +2880,17 @@
             <div class='form-group'>
                 <label for='nprevJob' class="control-label">Describe previous jobs and home breaks </label>
                 <br/>
-                <textarea class="form-control" name="nprevJob" rows="3" maxlength="1000"></textarea>
+                <textarea class="form-control" name="nprevJob" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nprevProb' class="control-label">Describe problems in previous jobs</label>
                 <br/>
-                <textarea class="form-control" name="nprevProb" rows="3" maxlength="1000"></textarea>
+                <textarea class="form-control" name="nprevProb" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about Work History: </label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkHistory"/>
@@ -2920,7 +2928,7 @@
             <div class='form-group' id="howEdit_other_div" >
                 <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="howMore" maxlength="200"><%=(history.getWorkHistHowMore() == null) ? "" : history.getWorkHistHowMore()%></textarea>
+                <textarea class="form-control" name="howMore" ><%=(history.getWorkHistHowMore() == null) ? "" : history.getWorkHistHowMore()%></textarea>
             </div>
             <div class='form-group'>
                 <label for='arrivalDate' class="control-label">Date arrived Singapore for this job:</label>
@@ -2956,18 +2964,18 @@
             <div class='form-group'>
                 <label for='prevJob' class="control-label">Describe previous jobs and home breaks </label>
                 <br/>
-                <textarea class="form-control" name="prevJob" rows="3" maxlength="1000"><%=prevJob%></textarea>
+                <textarea class="form-control" name="prevJob" rows="3" ><%=prevJob%></textarea>
 
             </div>
             <div class='form-group'>
                 <label for='prevProb' class="control-label">Describe problems in previous jobs</label>
                 <br/>
-                <textarea class="form-control" name="prevProb" rows="3" maxlength="1000"><%=prevProb%></textarea>
+                <textarea class="form-control" name="prevProb" rows="3" ><%=prevProb%></textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about work history: </label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="WorkHistory"/>
@@ -3028,7 +3036,7 @@
                 <div class='form-group' id="accomProvided_other_div" >
                     <label for='location' class="control-label">Explain if above is 'Other': </label>
                     <br/>
-                    <textarea class="form-control" name="nisProvidedMore" rows="3" maxlength="200"><%=(isProvidedMore == null) ? "" : isProvidedMore%></textarea>
+                    <textarea class="form-control" name="nisProvidedMore" rows="3" ><%=(isProvidedMore == null) ? "" : isProvidedMore%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='name' class="control-label">Type of accommodation:</label>
@@ -3038,7 +3046,7 @@
                 <div class='form-group' id="accomProvided_other_div" >
                     <label for='location' class="control-label">Explain if above is 'Other': </label>
                     <br/>
-                    <textarea class="form-control" name="nTypeMore" rows="3" maxlength="200"><%=(typeMore == null) ? "" : typeMore%></textarea>
+                    <textarea class="form-control" name="nTypeMore" rows="3" ><%=(typeMore == null) ? "" : typeMore%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Location of accommodation: </label>
@@ -3116,7 +3124,7 @@
             <div class='form-group' id="accomProvided_other_div" >
                 <label for='location' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="nisProvidedMore" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nisProvidedMore" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='ntype' class="control-label">Type of Accommodation:</label>
@@ -3137,18 +3145,18 @@
             <div class='form-group' id="accomtype_other_div" >
                 <label for='location' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="ntypeMore" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="ntypeMore" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nlocation' class="control-label">Location of Accommodation: </label>
                 <br/>
-                <textarea class="form-control" name="nlocation" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nlocation" rows="3" ></textarea>
             </div>
 
             <div class='form-group'>
                 <label for='ncondition' class="control-label">Conditions at living quarters:</label>
                 <br/>
-                <textarea class="form-control" name="ncondition" rows="3" maxlength="500"></textarea>
+                <textarea class="form-control" name="ncondition" rows="3" ></textarea>
             </div>
 
             <div class='form-group'>
@@ -3165,7 +3173,7 @@
             <div class='form-group'>
                 <label for='nmeal' class="control-label">Meal arrangements</label>
                 <br/>
-                <textarea class="form-control" name="nmeal" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nmeal" rows="3" ></textarea>
             </div>
             <div class='form-group'>
                 <label for='nfrom' class="control-label">When Start Staying Here?:</label>
@@ -3180,7 +3188,7 @@
             <div class='form-group'>
                 <label for='nremark' class="control-label">Remarks about Accommodation: </label>
                 <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
+                <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="Accommodation"/>
@@ -3218,7 +3226,7 @@
             <div class='form-group' id="accomProvidedView_other_div" >
                 <label for='location' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="isProvidedMore" rows="3" maxlength="200"><%=(isProvidedMore == null) ? "" : isProvidedMore%></textarea>
+                <textarea class="form-control" name="isProvidedMore" rows="3" ><%=(isProvidedMore == null) ? "" : isProvidedMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='type' class="control-label">Type of accommodation:</label>
@@ -3245,18 +3253,18 @@
             <div class='form-group' id="accomtypeView_other_div" >
                 <label for='location' class="control-label">Explain if above is 'Other': </label>
                 <br/>
-                <textarea class="form-control" name="typeMore" rows="3" maxlength="200"><%=(typeMore == null) ? "" : typeMore%></textarea>
+                <textarea class="form-control" name="typeMore" rows="3" ><%=(typeMore == null) ? "" : typeMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='location' class="control-label">Location of accommodation: </label>
                 <br/>
-                <textarea class="form-control" name="location" rows="3" maxlength="200"><%=(location == null) ? "" : location%></textarea>
+                <textarea class="form-control" name="locationAccom" rows="3" ><%=(location == null) ? "" : location%></textarea>
             </div>
 
             <div class='form-group'>
                 <label for='condition' class="control-label">Conditions at living quarters:</label>
                 <br/>
-                <textarea class="form-control" name="location" rows="3" maxlength="500"><%=(condition == null) ? "" : condition%></textarea>
+                <textarea class="form-control" name="location" rows="3" ><%=(condition == null) ? "" : condition%></textarea>
 
                 <div class='form-group'>
                     <label for='accCharged' class="control-label">Cost charged by employer per month S$</label>
@@ -3271,7 +3279,7 @@
                 <div class='form-group'>
                     <label for='meal' class="control-label">Meal arrangements</label>
                     <br/>
-                    <textarea class="form-control" name="meal" rows="3" maxlength="200"><%=(meal == null) ? "" : meal%></textarea>
+                    <textarea class="form-control" name="meal" rows="3" ><%=(meal == null) ? "" : meal%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='from' class="control-label">When start staying here?:</label>
@@ -3286,7 +3294,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Remarks about accommodation: </label>
                     <br/>
-                    <textarea class="form-control" name="remark" rows="3" maxlength="200"><%=(remark == null) ? "" : remark%></textarea>
+                    <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
                 </div>
                 <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
                 <input type="hidden" name="complementName" value="Accommodation"/>
@@ -3334,7 +3342,7 @@
             String deductionDetails = jipa.getIpaDeductionDetails();
             String isHousingProvided = jipa.getHousingProvided();
             String remark = jipa.getIpaRemarks();
-            String ipadate = "-";
+            String ipadate = "";
             if (jipa.getIpaApplicationDate() != null) {
                 ipadate = sdf.format(jipa.getIpaApplicationDate());
             }
@@ -3398,7 +3406,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA allowance details:</label>
                     <br/>
-                    <textarea class="form-control" name="nallowanceDetails" rows="3" maxlength="200"><%=(allowanceDetails == null) ? "" : allowanceDetails%></textarea>
+                    <textarea class="form-control" name="nallowanceDetails" rows="3" ><%=(allowanceDetails == null) ? "" : allowanceDetails%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA total Deduction(S$):</label>
@@ -3408,7 +3416,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA Deduction details:</label>
                     <br/>
-                    <textarea class="form-control" name="ndeductionDetails" rows="3" maxlength="200"><%=(deductionDetails == null) ? "" : deductionDetails%></textarea>
+                    <textarea class="form-control" name="ndeductionDetails" rows="3" ><%=(deductionDetails == null) ? "" : deductionDetails%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Housing Provided?</label>
@@ -3428,111 +3436,6 @@
                 <button type='button' class="btn modal_btn  cancel_btn">Close</button>
             </div>
         </div>
-
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nworkpassType' class="control-label">Workpass specified in IPA<span style="color: red">*</span></label>
-                <br/>
-                <select class="form-control" id="ipapassType" name="nworkpassType">
-                    <option value="">Select Workpass:</option>
-                    <%
-                        for (String ipatype : ipatypes) {
-                    %>
-                    <option value="<%=ipatype%>"><%=ipatype%></option>
-                    <%
-
-                        }
-                    %>  
-                </select>
-
-            </div>
-
-            <div class='form-group' id='ipapassType_other_div' >
-                <label for='nworkpassTypeMore' class="control-label">Explain if above is other</label>
-                <br/>
-                <input class="form-control" type='text' name="nworkpassTypeMore">
-            </div>
-            <div class='form-group'>
-                <label for='nappDate' class="control-label">IPA Application date:</label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="nappDate">
-            </div>
-            <div class='form-group'>
-                <label for='nempName' class="control-label">IPA employer name: </label>
-                <br/>
-                <input class="form-control" type='text' name="nempName">
-            </div>
-
-            <div class='form-group'>
-                <label for='nagentName' class="control-label">IPA agent name:</label>
-                <br/>
-                <input class="form-control" type='text' name="nagentName">
-            </div>
-
-            <div class='form-group'>
-                <label for='nindustry' class="control-label">IPA Industry:</label>
-                <br/>
-                <input class="form-control" type='text' name="nindustry">
-            </div>
-            <div class='form-group'>
-                <label for='nipaoccupation' class="control-label">IPA Occupation:</label>
-                <br/>
-                <input class="form-control" type='text' name="nipaoccupation">
-            </div>
-            <div class='form-group'>
-                <label for='nperiods' class="control-label">IPA period of pass(years)</label>
-                <br/>
-                <input class="form-control" type='text' name="nperiods">
-            </div>
-            <div class='form-group'>
-                <label for='nbasicSalary' class="control-label">IPA basic monthly salary (S$):</label>
-                <br/>
-                <input class="form-control" type='text' name="nbasicSalary">
-            </div>
-            <div class='form-group'>
-                <label for='ntotalAllowance' class="control-label">IPA total allowance(S$):</label>
-                <br/>
-                <input class="form-control" type='text' name="ntotalAllowance">
-            </div>
-            <div class='form-group'>
-                <label for='nallowanceDetails' class="control-label">IPA allowance details:</label>
-                <br/>
-                <textarea class="form-control" name="nallowanceDetails" rows="3" maxlength="200"></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='ndeduction' class="control-label">IPA total Deduction(S$):</label>
-                <br/>
-                <input class="form-control" type='text' name="ntotalDeduction">
-            </div>
-            <div class='form-group'>
-                <label for='ndeductionDetails' class="control-label">IPA Deduction details:</label>
-                <br/>
-                <textarea class="form-control" name="ndeductionDetails" rows="3" maxlength="200"></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nisHousingProvided' class="control-label">Housing Provided?</label>
-                <br/>
-                <select class="form-control" id="digitalContactType" name="nisHousingProvided">
-                    <option >No</option>
-                    <option selected>Yes</option>
-                </select>
-
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about IPA: </label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3" maxlength="200"></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="IPA"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
 
         <div class='edit_comp'>
             <div class='form-group'>
@@ -3569,7 +3472,7 @@
                 <label for='appDate' class="control-label">IPA application date:</label>
                 <br/>
                 <input class="form-control  dateInput" type='text' name="appDate" 
-                       value="<%=sdf.format(jipa.getIpaApplicationDate())%>">
+                       value="<%=ipadate%>">
             </div>
             <div class='form-group'>
                 <label for='empName' class="control-label">IPA employer name: </label>
@@ -3611,7 +3514,7 @@
             <div class='form-group'>
                 <label for='allowanceDetails' class="control-label">IPA allowance details:</label>
                 <br/>
-                <textarea class="form-control" name="nallowanceDetails" rows="3" maxlength="200"><%=(allowanceDetails == null) ? "" : allowanceDetails%></textarea>
+                <textarea class="form-control" name="nallowanceDetails" rows="3" ><%=(allowanceDetails == null) ? "" : allowanceDetails%></textarea>
             </div>
             <div class='form-group'>
                 <label for='deduction' class="control-label">IPA total deduction(S$):</label>
@@ -3621,7 +3524,7 @@
             <div class='form-group'>
                 <label for='deductionDetails' class="control-label">IPA deduction details:</label>
                 <br/>
-                <textarea class="form-control" name="ndeductionDetails" rows="3" maxlength="200"><%=(deductionDetails == null) ? "" : deductionDetails%></textarea>
+                <textarea class="form-control" name="ndeductionDetails" rows="3" ><%=(deductionDetails == null) ? "" : deductionDetails%></textarea>
             </div>
             <div class='form-group'>
                 <label for='isHousingProvided' class="control-label">Housing Provided?</label>
