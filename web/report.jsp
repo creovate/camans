@@ -86,16 +86,7 @@ if(userRole.equals("Specialist") || userRole.equals("Associate")){
                             <option value="" disabled selected>Choose a report type..</option>
                             <option value ="Case Summary">Case Summary</option>
                             <option value ="Benefit Summary">Benefit Summary</option>
-                            <%
-                            if(!isSpecialist){
-                                %>
-                            <option value ="Clients by nationality and gender">Clients by nationality and gender</option>
-<option value ="Clients by nationality and work pass">Clients by nationality and work pass</option>
-<option value ="Clients by problem and work pass">Clients by problem and work pass</option>
-<option value ="Clients by problem and nationality">Clients by problem and nationality</option>
-                            <%
-                            }
-                            %>
+                            
                         </select>
                     </div>
                 </div><br/><br/>
