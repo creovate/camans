@@ -3,13 +3,14 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="year" class="java.lang.Integer"/>
+	<parameter name="start" class="java.util.Date"/>
+	<parameter name="end" class="java.util.Date"/>
 	<queryString language="SQL">
 		<![CDATA[select Name, COALESCE(client, 0), COALESCE(benes, 0), COALESCE(amt, 0.00) from 
 (select Name from tbl_dropdown
 where dropdownType = "Bene_type" order by displayRank) as t1
 left join 
-(select Count(ID) as benes, Count(distinct(Worker_FIN_number)) as client, SUM(Bene_value) as amt, Bene_type from tbl_benefit where YEAR(Entry_date) = $P{year}
+(select Count(ID) as benes, Count(distinct(Worker_FIN_number)) as client, SUM(Bene_value) as amt, Bene_type from tbl_benefit where Bene_date BETWEEN $P{start} and $P{end}
 group by Bene_type) as t2
 on t1.Name = t2.Bene_type]]>
 	</queryString>
@@ -36,26 +37,40 @@ on t1.Name = t2.Bene_type]]>
 			<frame>
 				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="f84395b9-c7ce-42a4-b8dd-f0614e384595"/>
 				<staticText>
-					<reportElement x="20" y="20" width="414" height="43" forecolor="#FFFFFF" uuid="423c4e0f-39c1-4cac-87fb-3b5b7263c2af"/>
+					<reportElement x="20" y="0" width="401" height="43" forecolor="#FFFFFF" uuid="423c4e0f-39c1-4cac-87fb-3b5b7263c2af"/>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Benefit Summary Report]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="495" y="43" width="40" height="20" forecolor="#FFFFFF" uuid="dd49316a-86ea-40ad-80e9-7e0346d13bc2"/>
+					<reportElement x="409" y="43" width="58" height="20" forecolor="#FFFFFF" uuid="dd49316a-86ea-40ad-80e9-7e0346d13bc2"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Year : ]]></text>
+					<text><![CDATA[Period : ]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="535" y="43" width="50" height="20" forecolor="#FFFFFF" uuid="2bb18552-73c8-48c9-a4f4-a9e962e48347"/>
+					<reportElement x="467" y="43" width="57" height="20" forecolor="#FFFFFF" uuid="2bb18552-73c8-48c9-a4f4-a9e962e48347"/>
 					<textElement>
 						<font size="14" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$P{year}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{start}]]></textFieldExpression>
 				</textField>
+				<textField>
+					<reportElement x="534" y="43" width="61" height="20" forecolor="#FFFFFF" uuid="ecd7fc87-b2b5-4267-afca-7f89a6be97f3"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{end}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="517" y="43" width="15" height="20" forecolor="#FFFFFF" uuid="ec4effe8-7f1d-4af2-a1d2-3abfa2e6363f"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[-]]></text>
+				</staticText>
 			</frame>
 		</band>
 	</title>
