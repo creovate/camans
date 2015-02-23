@@ -1,6 +1,10 @@
 camans
 ======
 <b>19th Feb 2015 - smm</b><br/>
+1. added session timeout<br/>
+2. added Benefits see more/ view less<br/>
+
+<b>19th Feb 2015 - smm</b><br/>
 1. Decimal formats<br/>
     i. all back ends <br/>
 2. Debug worker complements [Bug_log_feb2015.xlsx] <br/>
