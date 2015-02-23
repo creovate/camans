@@ -21,7 +21,7 @@
     .btn-danger{
         border-radius: 2%;
     }
-    
+
     .col-md-12{
         padding:0;
     }
@@ -142,63 +142,63 @@
 
         $('.control-label').addClass("pull-left");
         $('#addCase').validate({
-        ignore: ":hidden",
-        rules: {
-            jobPassType: {
-                required: true
+            ignore: ":hidden",
+            rules: {
+                jobPassType: {
+                    required: true
+                },
+                passMore: {
+                    maxlength: 50
+                },
+                workpassMore: {
+                    maxlength: 200
+                },
+                employerName: {
+                    maxlength: 50,
+                    required: true
+                },
+                jobSectorMore: {
+                    maxlength: 50
+                },
+                occupation: {
+                    maxlength: 50
+                },
+                jobStartDate: {
+                    maxlength: 50
+                },
+                jobEndDate: {
+                    maxlength: 50
+                },
+                jobRemark: {
+                    maxlength: 200
+                },
+                //problem profile
+                problem: {
+                    required: true
+                },
+                problemMore: {
+                    maxlength: 50
+                },
+                problemRemark: {
+                    maxlength: 200
+                }
             },
-            passMore: {
-                maxlength: 50
+            highlight: function(element) {
+                $(element).closest('.form-group').addClass('has-error');
             },
-            workpassMore: {
-                maxlength: 200
+            unhighlight: function(element) {
+                $(element).closest('.form-group').removeClass('has-error');
             },
-            employerName: {
-                maxlength: 50,
-                required:true
-            },
-            jobSectorMore: {
-                maxlength: 50
-            },
-            occupation: {
-                maxlength: 50
-            },
-            jobStartDate: {
-                maxlength: 50
-            },
-            jobEndDate: {
-                maxlength: 50
-            },
-            jobRemark: {
-                maxlength: 200
-            },
-            //problem profile
-            problem: {
-                required: true
-            },
-            problemMore: {
-                maxlength: 50
-            },
-            problemRemark: {
-                maxlength: 200
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function(error, element) {
+                if (element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
             }
-        },
-        highlight: function(element) {
-            $(element).closest('.form-group').addClass('has-error');
-        },
-        unhighlight: function(element) {
-            $(element).closest('.form-group').removeClass('has-error');
-        },
-        errorElement: 'span',
-        errorClass: 'help-block',
-        errorPlacement: function(error, element) {
-            if (element.parent('.input-group').length) {
-                error.insertAfter(element.parent());
-            } else {
-                error.insertAfter(element);
-            }
-        }
-    });
+        });
 
     });
 
@@ -214,7 +214,7 @@
         $('#addCase').valid();
     });
 
- /**
+    /**
      $(document).ready(function() {
      $('#addCase')
      .bootstrapValidator({
@@ -318,7 +318,68 @@
     /**
      * Edit worker particulars validation
      **/
+
     $(document).ready(function() {
+        //methods for jquery validator
+        jQuery.validator.addMethod("FIN", function(value, element) {
+            return this.optional(element) || /^[A-Z][0-9]{7}[A-Z]/.test(value) || /^GEN[0-9]{6}/.test(value);
+        }, "Invalid FIN number format. Please check again.");
+        jQuery.validator.addMethod("FileSize", function(value, element) {
+            return this.optional(element) || (element.files[0].size <= 1048576);
+        }, "Invalid File size. Please Check again.");
+        //validation
+        $('#worker_stub').validate({
+            //ignore: ":hidden",
+            rules: {
+                workerFin: {
+                    required: true,
+                    FIN: true,
+                    remote: {
+                        url: "processValidate",
+                        type: "POST",
+                        data: {
+                            finNum: function() {
+                                return $("#workerFin").val();
+                            }
+                        }
+                    }
+                },
+                wkerName: {
+                    maxlength: 50,
+                    required: true
+                },
+                nationalityMore: {
+                    maxlength: 50
+                },
+                createdFor: {
+                    maxlength: 20
+                }
+            },
+            messages: {
+                finNum: {
+                    remote: "FIN Number already exists. Please check again"
+                }
+
+            },
+            highlight: function(element) {
+                $(element).closest('.form-group').addClass('has-error');
+            },
+            unhighlight: function(element) {
+                $(element).closest('.form-group').removeClass('has-error');
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function(error, element) {
+                if (element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
+
+
+/**
         $('#worker_stub')
                 .bootstrapValidator({
             fields: {
@@ -351,6 +412,8 @@
                 }
             }
         });
+        
+        **/
     });
 
     /**
@@ -897,7 +960,7 @@
             <label for="job_pass_type_other_In" class="col-md-5 control-label">Explain if above is 'Other'</label>
             <div class=" col-md-7">
                 <textarea class="form-control" name="workpassMore" rows="3"></textarea>
-        </div><br/><br/></div>
+            </div><br/><br/></div>
 
 
         <div class="form-group col-sm-12 col-md-12">
@@ -966,10 +1029,10 @@
         <p class="alert-danger"></p>
         <br/><br/>
         <div>
-        <button type='button' class="btn cancel_btn pull-left" style="top: 2%; bottom: 2%;">Cancel</button>
-        <div class="pull-right">
-            <button type='button' onclick="swapDiv('new_prob_profile', 'new_job_profile', 1);" class="btn btn-blue btn btn-blue-default " id="job_next_btn" style="top: 2%; bottom: 2%;">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
-        </div>
+            <button type='button' class="btn cancel_btn pull-left" style="top: 2%; bottom: 2%;">Cancel</button>
+            <div class="pull-right">
+                <button type='button' onclick="swapDiv('new_prob_profile', 'new_job_profile', 1);" class="btn btn-blue btn btn-blue-default " id="job_next_btn" style="top: 2%; bottom: 2%;">Next  <span class="glyphicon glyphicon-arrow-right"></span></button>
+            </div>
         </div>
         <br/><br/>
 
@@ -1005,7 +1068,7 @@
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Explain if above is other</label>
             <div class=" col-md-7">
                 <textarea class="form-control" name="problemMore" rows="3"></textarea>
-                </div><br/><br/>
+            </div><br/><br/>
         </div>
 
 
@@ -1021,11 +1084,11 @@
         <input type="hidden" id="hiddenWorkerFin" name="workerFinNum" value="<%=workerFin%>"/>
         <br/><br/>
         <div>
-        <button type='' class="btn cancel_btn" style="bottom: 0">Cancel</button>
-        <div class="pull-right">
-            <button  type='button' onclick="swapDiv('new_job_profile', 'new_prob_profile', -1);" class="btn btn-blue ">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
-            <button  type='submit' class="btn btn-blue">Submit</button>
-        </div>
+            <button type='' class="btn cancel_btn" style="bottom: 0">Cancel</button>
+            <div class="pull-right">
+                <button  type='button' onclick="swapDiv('new_job_profile', 'new_prob_profile', -1);" class="btn btn-blue ">Back  <span class="glyphicon glyphicon-arrow-left"></span></button>
+                <button  type='submit' class="btn btn-blue">Submit</button>
+            </div>
         </div>
     </div>
 </form> 

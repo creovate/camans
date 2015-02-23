@@ -225,6 +225,7 @@
                     redirAfter: 1200000 // 20 minutes
                 });
             });
+            });
         </script>
     </body>
 </html>

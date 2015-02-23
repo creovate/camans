@@ -331,7 +331,7 @@ public class WorkerDAO {
                         errorMsg += "duplicate FinNumber,";
                     }   
 
-                    if (finNum.matches("^[G|T][0-9]{7}[A-Z]") || finNum.matches("^GEN[0-9]{6}")) {
+                    if (finNum.matches("^[A-Z][0-9]{7}[A-Z]") || finNum.matches("^GEN[0-9]{6}")) {
                     } else {
                         errorMsg += "invalid FinNumber,";
                     }

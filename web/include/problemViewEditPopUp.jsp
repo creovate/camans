@@ -302,7 +302,7 @@
                 loss: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -320,11 +320,8 @@
                 },
                 nloss: {
                     validators: {
-                        numeric: {
-                            message: 'Salary must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1090,22 +1087,16 @@
                 },
                 nr2rMed: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 nr2rOut: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1159,22 +1150,16 @@
                 },
                 nwicaPoints: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 nwicaDollars: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1448,14 +1433,12 @@
                 },
                 naggravLoss: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
+                        regexp: {
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            message: 'This value must have maximum 2 decimal place.'
                         }
-                    },
-                    regexp: {
-                        regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
-                        message: 'This value must have maximum 2 decimal place.'
                     }
+
                 },
                 naggravissueTypeMore: {
                     validators: {
@@ -1632,22 +1615,16 @@
                 },
                 ntotalLoss: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 noneYearLoss: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -3702,7 +3679,7 @@
 
         <div class='form-group'>
             <label for='' class="control-label">Date of update<span style="color: red">*</span>:</label>
-                   <input class="form-control dateInput" value="<%=(mcUpdate == null) ? ""
+            <input class="form-control dateInput" value="<%=(mcUpdate == null) ? ""
                     : sdf.format(mcUpdate)%>" type='text' name="date" >
         </div>
         <div class='form-group'>

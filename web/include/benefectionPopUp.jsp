@@ -142,11 +142,8 @@
                 },
                 value: {
                     validators: {
-                        numeric: {
-                            message: 'Salary must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -204,11 +201,8 @@
                 },
                 nvalue: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -277,11 +271,8 @@
                 },
                 nvalue: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }

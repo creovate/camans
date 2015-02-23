@@ -32,6 +32,7 @@
         <!--jasny-bootstrap v3.1.3, added by soemyatmayt-->
         <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
+        <link rel="stylesheet" href="css/bootstrap.icon-large.css"/>
            
         <script src="js/jquery-2.1.1.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -101,7 +102,7 @@
                                     <th><font color="#FFF">Role</font></th>
                                     <th><font color="#FFF">Registered Date</font></th>
                                     <th><font color="#FFF">Status</font></th>
-                                    <th><font color="#FFF">Actions</font></th>
+                                    <th style="width: 15%"><font color="#FFF">Actions</font></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -143,7 +144,7 @@
                                     <%
                                         if (status.equals("Active")) {
                                     %>
-                                        <a style="color: black" href="" class="edit_popup" data-nric='<%=user.getNricNumber()%>' 
+                                        <a style="color: black;" href="" class="edit_popup" data-nric='<%=user.getNricNumber()%>' 
                                            data-fullname='<%=user.getFullName()%>' data-alias='<%=user.getAlias()%>'
                                            data-username='<%=username%>' data-gender='<%=user.getGender()%>'
                                            data-role='<%=user.getRole()%>' data-email='<%=email%>'
@@ -158,8 +159,7 @@
                                             <span data-toggle="tooltip" title="Deactivate" class="glyphicon glyphicon-remove"></span>
                                         </a>&nbsp; &nbsp; &nbsp; &nbsp;
                                         <a style="color: black" href="" class="user_reset_pwd" data-username='<%=username%>'
-                                           data-toggle="modal" data-target="#user_reset_pwd">
-                                            <span data-toggle="tooltip" title="Reset Password" class="glyphicons glyphicons-keys"></span>
+                                           data-toggle="modal" data-target="#user_reset_pwd"><img src="img/glyphicons-45-keys.png" data-toggle="tooltip" title="Reset Password" style="height: 3vh"/>
                                         </a>    
                                     <%
                                         } else {

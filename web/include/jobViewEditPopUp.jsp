@@ -431,7 +431,7 @@
                 amtowed: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -439,7 +439,7 @@
                 amtpaid: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -537,22 +537,16 @@
                 },
                 namtowed: {
                     validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 namtpaid: {
                     validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -943,7 +937,7 @@
                 accCharged: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -951,7 +945,7 @@
                 accPaid: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1005,22 +999,16 @@
                 },
                 naccCharged: {
                     validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 naccPaid: {
                     validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1112,7 +1100,7 @@
                             message: 'Period of pass must not exceed 20 characters.'
                         },
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1120,7 +1108,7 @@
                 basicSalary: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1128,7 +1116,7 @@
                 totalAllowance: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1144,7 +1132,7 @@
                 totalDeduction: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1210,33 +1198,24 @@
                             max: 20,
                             message: 'Period of pass must not exceed 20 characters.'
                         },
-                        numeric: {
-                            message: 'Period of pass must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 nbasicSalary: {
                     validators: {
-                        numeric: {
-                            message: 'Salary must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 ntotalAllowance: {
                     validators: {
-                        numeric: {
-                            message: 'Total allowance must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1251,11 +1230,8 @@
                 },
                 ntotalDeduction: {
                     validators: {
-                        numeric: {
-                            message: 'Deduction must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }

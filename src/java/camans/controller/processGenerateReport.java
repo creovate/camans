@@ -5,6 +5,8 @@
 package camans.controller;
 
 import camans.dao.ConnectionManager;
+import camans.dao.ReportDAO;
+import camans.entity.JasperDataSourceBuilder;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -102,7 +104,7 @@ public class processGenerateReport extends HttpServlet {
 
                 //generate report
 
-                JasperPrint print = JasperFillManager.fillReport(filePath, map);
+                JasperPrint print = JasperFillManager.fillReport(filePath, map,conn);
 
 //                JasperViewer.viewReport(print);
 
@@ -128,7 +130,7 @@ public class processGenerateReport extends HttpServlet {
                 filePath = getServletContext().getRealPath("/reports/BenefitSummaryReport.jasper");
 
                 //generate report
-                JasperPrint print = JasperFillManager.fillReport(filePath, map);
+                JasperPrint print = JasperFillManager.fillReport(filePath, map,conn);
 
                 JRXlsxExporter exporter = new JRXlsxExporter();
                 exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
@@ -139,7 +141,78 @@ public class processGenerateReport extends HttpServlet {
                 response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
                 response.setHeader("Content-Disposition", "attachment;filename=BenefitSummaryReport.xlsx");
 
-            } 
+            } else if (reportType.equals("Clients by nationality and gender")) {
+                //get the file path
+                filePath = getServletContext().getRealPath("/reports/NationalityGender.jasper");
+
+                //generate report
+                JasperPrint print = JasperFillManager.fillReport(filePath, map,conn);
+
+                JRXlsxExporter exporter = new JRXlsxExporter();
+                exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+
+                exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
+                exporter.exportReport();
+
+                response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                response.setHeader("Content-Disposition", "attachment;filename=ClientsByNationalityAndGender.xlsx");
+            } else if (reportType.equals("Clients by nationality and work pass") && start != null && end != null) {
+                //get the file path
+                filePath = getServletContext().getRealPath("/reports/NationalityGender.jasper");
+
+                int[][] nationalityWorkpassArr = ReportDAO.retrieveNationalityWorkpass(start, end);
+
+                //Map[] masterData = new Map[1];
+
+                //masterData[0] = new HashMap();
+
+                //masterData[0].put("filterDataSource", nationalityWorkpassArr);
+
+                //JRBeanArrayDataSource beanData = new JRBeanArrayDataSource(nationalityWorkpassArr);
+
+                //JRDataSource beanData = new JRDataSource(nationalityWorkpassArr);
+
+//                JasperPrint print = JasperFillManager.fillReport(filePath, map, new JasperDataSourceBuilder(nationalityWorkpassArr));
+//
+//                JRXlsxExporter exporter = new JRXlsxExporter();
+//                exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+//
+//                exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
+//                exporter.exportReport();
+//
+//                response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+//                response.setHeader("Content-Disposition", "attachment;filename=ClientsByNationalityAndGender.xlsx");
+
+
+                try {
+                    FileWriter writer = new FileWriter("report.csv");
+
+                    writer.append("DisplayName");
+                    writer.append(',');
+                    writer.append("Age");
+                    writer.append('\n');
+
+                    writer.append("MKYONG");
+                    writer.append(',');
+                    writer.append("26");
+                    writer.append('\n');
+
+                    writer.append("YOUR NAME");
+                    writer.append(',');
+                    writer.append("29");
+                    writer.append('\n');
+
+                    //generate whatever data you want
+
+                    writer.flush();
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            } else if (reportType.equals("Clients by problem and work pass")) {
+            } else if (reportType.equals("Clients by problem and nationality")) {
+            }
 
             response.getOutputStream().write(os.toByteArray());
             response.flushBuffer();
