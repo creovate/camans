@@ -215,16 +215,15 @@
             
             $(document).ready(function () {
                 //session timeout
-                
+                $(document).ready(function () {
                 $.sessionTimeout({
-                    message: 'Your session will be expired in one minute.',
+                    message: 'Your session will be expired in five minutes.',
                     keepAliveUrl: 'keep-alive.html',
-                    logoutUrl: 'index.jsp',
+                    logoutUrl: 'logout.jsp',
                     redirUrl: 'logout.jsp',
-                    warnAfter: 900000,
-                    redirAfter: 960000
+                    warnAfter: 900000, //15 minutes
+                    redirAfter: 1200000 // 20 minutes
                 });
-                
             });
         </script>
     </body>

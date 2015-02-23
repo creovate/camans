@@ -159,7 +159,7 @@
                                         </a>&nbsp; &nbsp; &nbsp; &nbsp;
                                         <a style="color: black" href="" class="user_reset_pwd" data-username='<%=username%>'
                                            data-toggle="modal" data-target="#user_reset_pwd">
-                                            <span data-toggle="tooltip" title="Reset Password" class="glyphicon glyphicon-key"></span>
+                                            <span data-toggle="tooltip" title="Reset Password" class="glyphicons glyphicons-keys"></span>
                                         </a>    
                                     <%
                                         } else {
@@ -575,15 +575,15 @@
             </div>                    
         </div>
         <script>
-            //ready the data in tables
+            //session timeout
             $(document).ready(function () {
                 $.sessionTimeout({
-                    message: 'Your session will be expired in one minute.',
+                    message: 'Your session will be expired in five minute.',
                     keepAliveUrl: 'keep-alive.html',
-                    logoutUrl: 'index.jsp',
+                    logoutUrl: 'logout.jsp',
                     redirUrl: 'logout.jsp',
-                    warnAfter: 900000,
-                    redirAfter: 120000
+                    warnAfter: 900000, //15 minutes
+                    redirAfter: 1200000 //20 minutes
                 });
             });
             

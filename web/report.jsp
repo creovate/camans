@@ -106,7 +106,16 @@ if(userRole.equals("Specialist") || userRole.equals("Associate")){
             </form>
         </div>
         <script>
-            
+            $(document).ready(function () {
+                $.sessionTimeout({
+                    message: 'Your session will be expired in five minutes.',
+                    keepAliveUrl: 'keep-alive.html',
+                    logoutUrl: 'logout.jsp',
+                    redirUrl: 'logout.jsp',
+                    warnAfter: 900000, //15 minutes
+                    redirAfter: 1200000 // 20 minutes
+                });
+            });
         </script> 
     </body>
 </html>

@@ -4784,8 +4784,6 @@
                                                                 mealIds.addAll(ids);
                                                             }
                                                             if (mealIds != null && !mealIds.isEmpty()) {
-
-
                                                         %>
 
                                                         <table class="table table-condensed">
@@ -4800,7 +4798,32 @@
                                                                 for (int i = mealIds.size() - 1; i >= 0; i--) {
                                                                     int id = mealIds.get(i);
                                                                     Benefit benefit = BenefitDAO.retrieveBenefitById(id);
+                                                                    if (i < mealIds.size() - 1) {
                                                             %>
+                                                            <tr class="other_foodbene moreobjs">
+                                                                <td><%=sdf.format(benefit.getIssueDate())%></td>
+                                                                <td><%=benefit.getBenefitGiver()%></td>
+                                                                <td><%=benefit.getBenefitType()%></td>
+                                                                <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
+                                                                <td class="tbl-20-col">
+                                                                    <a style="color: black" data-target="#foodbene_pop_up"  data-class="benefection" 
+                                                                       data-value='foodbene' data-title='View Meal Benefection' 
+                                                                       data-foodbene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-action="viewedit" class="edit_btn pop_up_open">
+                                                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                                                    </a>
+                                                                    <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <a style="color: black" data-target="#foodbene_pop_up"  data-class="benefit" 
+                                                                       data-value='foodbene'  
+                                                                       data-foodbene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-action="delete" class="delete_btn pop_up_open">
+                                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                                    </a>
+                                                                    <% }%>   
+                                                                </td>
+                                                            </tr>
+                                                            <% } else { %>
                                                             <tr class="foodbene">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
@@ -4823,14 +4846,18 @@
                                                                     </a>
                                                                     <% }%>   
                                                                 </td>
-                                                            </tr>                                    
-
-                                                            <%
-                                                                }
-                                                            %>        
+                                                            </tr>
+                                                          <% } //else 
+                                                         } //for %>  
                                                         </table>
-                                                        <%
-                                                            }
+                                                            <% 
+                                                                if (mealIds.size() > 1) {
+                                                            %>
+                                                                    <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_foodbene_seemore" onclick="seemore('.other_foodbene');">View Less</a>
+                                                                    <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_foodbene_seemore" onclick="seemore('.other_foodbene');">See more</a>
+                                                            <%
+                                                                   } //if seemore
+                                                          }//if
                                                         %>
                                                     </div>
                                                 </div>
@@ -4875,7 +4902,31 @@
                                                                 for (int i = transportIds.size() - 1; i >= 0; i--) {
                                                                     int id = transportIds.get(i);
                                                                     Benefit benefit = BenefitDAO.retrieveBenefitById(id);
+                                                                    if (i < transportIds.size() - 1) {
                                                             %>
+                                                            <tr class="other_transpoBene">
+                                                                <td><%=sdf.format(benefit.getIssueDate())%></td>
+                                                                <td><%=benefit.getBenefitGiver()%></td>
+                                                                <td><%=benefit.getBenefitType()%></td>
+                                                                <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
+                                                                <td class="tbl-20-col">
+                                                                    <a style="color: black" data-target="#transpobene_pop_up"  data-class="benefection" 
+                                                                       data-value='transpobene' data-title='View Transportation Benefection' 
+                                                                       data-transpobene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-action="viewedit" class="edit_btn pop_up_open">
+                                                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                                                    </a>
+                                                                    <% if (userLogin.getRole().equals("Administrator")) {%>   
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <a style="color: black" data-target="#transpobene_pop_up"  data-class="benefit" 
+                                                                       data-value='transpobene' 
+                                                                       data-transpobene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-action="delete" class="delete_btn pop_up_open">
+                                                                        <span class="glyphicon glyphicon-trash"></span>    
+                                                                        <% }%>     
+                                                                </td>
+                                                            </tr>
+                                                            <% } else { %>
                                                             <tr class="transpoBene">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
@@ -4898,11 +4949,16 @@
                                                                         <% }%>     
                                                                 </td>
                                                             </tr>
-                                                            <%
-                                                                }
-                                                            %>
+                                                       <%   } //else 
+                                                         } //for %> 
                                                         </table>
-                                                        <%
+                                                           <% 
+                                                                if (transportIds.size() > 1) {
+                                                            %>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_transpoBene_seemore" onclick="seemore('.other_transpoBene');">View Less</a>
+                                                                    <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_transpoBene_seemore" onclick="seemore('.other_transpoBene');">See More</a>
+                                                       <%
+                                                                   } //if seemore
                                                             }
                                                         %>
                                                     </div>
@@ -4947,7 +5003,33 @@
                                                                 for (int i = medicalIds.size() - 1; i >= 0; i--) {
                                                                     int id = medicalIds.get(i);
                                                                     Benefit benefit = BenefitDAO.retrieveBenefitById(id);
+                                                                     if (i < medicalIds.size() - 1) {
                                                             %>
+                                                            <tr class="other_mediBene">
+                                                                <td><%=sdf.format(benefit.getIssueDate())%></td>
+                                                                <td><%=benefit.getBenefitGiver()%></td>
+                                                                <td><%=benefit.getBenefitType()%></td>
+                                                                <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
+                                                                <td class="tbl-20-col">
+                                                                    <a style="color: black" data-target="#medibene_pop_up"  data-class="benefection" 
+                                                                       data-value='medibene' data-title='View Medical Benefection' 
+                                                                       data-medibene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-action="viewedit" class="edit_btn pop_up_open">
+                                                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                                                    </a>
+                                                                    <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <a style="color: black" data-target="#medibene_pop_up"  data-class="benefit" 
+                                                                       data-value='medibene' 
+                                                                       data-medibene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-action="delete" class="delete_btn pop_up_open">
+                                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                                    </a>
+                                                                    <% }%>    
+
+                                                                </td>
+                                                            </tr>
+                                                             <% } else { %>
                                                             <tr class="mediBene">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
@@ -4973,10 +5055,17 @@
                                                                 </td>
                                                             </tr>
                                                             <%
-                                                                }
+                                                                } //else
+                                                             } //for        
                                                             %>                                                    
                                                         </table>
+                                                         <% 
+                                                                if (medicalIds.size() > 1) {
+                                                            %>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_mediBene_seemore" onclick="seemore('.other_mediBene');">View Less</a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_mediBene_seemore" onclick="seemore('.other_mediBene');">See More</a>
                                                         <%
+                                                                 }
                                                             }
                                                         %>
                                                     </div>
@@ -5022,7 +5111,30 @@
                                                                 for (int i = roofIds.size() - 1; i >= 0; i--) {
                                                                     int id = roofIds.get(i);
                                                                     Benefit benefit = BenefitDAO.retrieveBenefitById(id);
+                                                                     if (i < roofIds.size() - 1) {
                                                             %>
+                                                            <tr class="other_roofBene">
+                                                                <td><%=sdf.format(benefit.getIssueDate())%></td>
+                                                                <td><%=benefit.getBenefitGiver()%></td>
+                                                                <td><%=benefit.getBenefitType()%></td>
+                                                                <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
+                                                                <td class="tbl-20-col">
+                                                                    <a style="color: black" data-target="#roofbene_pop_up"  data-class="benefection" 
+                                                                       data-value='roofbene' data-title='View Roof Benefection' data-roofbene='<%=id%>' 
+                                                                       href="" data-toggle="modal" data-action="viewedit" class="edit_btn pop_up_open">
+                                                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                                                    </a>
+                                                                    <% if (userLogin.getRole().equals("Administrator")) {%>
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <a style="color: black" data-target="#roofbene_pop_up"  data-class="benefit" 
+                                                                       data-value='roofbene' data-roofbene='<%=id%>' 
+                                                                       href="" data-toggle="modal" data-action="delete" class="delete_btn pop_up_open">
+                                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                                    </a>
+                                                                    <% }%>    
+                                                                </td>
+                                                            </tr>
+                                                            <% } else { %>
                                                             <tr class="roofBene">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
@@ -5045,10 +5157,17 @@
                                                                 </td>
                                                             </tr>
                                                             <%
-                                                                }
+                                                                } //else
+                                                             } //for        
                                                             %>          
                                                         </table>
-                                                        <%
+                                                        <% 
+                                                                if (roofIds.size() > 1) {
+                                                            %>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_roofBene_seemore" onclick="seemore('.other_roofBene');">View Less</a>
+                                                                    <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_roofBene_seemore" onclick="seemore('.other_roofBene');">See More</a>
+                                                            <%
+                                                                   } //if seemore
                                                             }
                                                         %>
                                                     </div>
@@ -5095,8 +5214,31 @@
                                                                 for (int i = otherIds.size() - 1; i >= 0; i--) {
                                                                     int id = otherIds.get(i);
                                                                     Benefit benefit = BenefitDAO.retrieveBenefitById(id);
+                                                                    if (i < otherIds.size() - 1) {
                                                             %>
-                                                            <tr class="roofBene">
+                                                            <tr class="other_Bene">
+                                                                <td><%=sdf.format(benefit.getIssueDate())%></td>
+                                                                <td><%=benefit.getBenefitGiver()%></td>
+                                                                <td><%=benefit.getBenefitType()%></td>
+                                                                <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
+                                                                <td class="tbl-20-col">
+                                                                    <a style="color: black" data-target="#otherbene_pop_up"  data-class="benefection" 
+                                                                       data-value='otherbene' data-title='View Benefection' data-otherbene='<%=id%>' 
+                                                                       href="" data-toggle="modal" data-action="viewedit" class="edit_btn pop_up_open">
+                                                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                                                    </a>
+                                                                    <% if (userLogin.getRole().equals("Administrator")) {%>   
+                                                                    &nbsp;&nbsp;&nbsp;   
+                                                                    <a style="color: black" data-target="#otherbene_pop_up"  data-class="benefit" 
+                                                                       data-value='otherbene' data-otherbene='<%=id%>' 
+                                                                       href="" data-toggle="modal" data-action="delete" class="delete_btn pop_up_open">
+                                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                                    </a> 
+                                                                    <% }%>   
+                                                                </td>
+                                                            </tr>
+                                                             <% } else { %>
+                                                             <tr class="Bene">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
                                                                 <td><%=benefit.getBenefitType()%></td>
@@ -5118,10 +5260,17 @@
                                                                 </td>
                                                             </tr>
                                                             <%
-                                                                }
+                                                                } //else
+                                                             } //for        
                                                             %>
                                                         </table>
-                                                        <%
+                                                         <% 
+                                                                if (otherIds.size() > 1) {
+                                                            %>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_Bene_seemore" onclick="seemore('.other_Bene');">See More</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_Bene_seemore" onclick="seemore('.other_Bene');">View Less</a>
+                                                            <%
+                                                                   } //if seemore
                                                             }
                                                         %>
                                                     </div>
@@ -5628,15 +5777,14 @@
                 $('#editAttachForm').bootstrapValidator('resetForm', true);
             });
 
-            //session time out
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $.sessionTimeout({
-                    message: 'Your session will be expired in one minute.',
-                    //keepAliveUrl: 'viewWorker.jsp',
-                    logoutUrl: 'index.jsp',
+                    message: 'Your session will be expired in five minutes.',
+                    keepAliveUrl: 'keep-alive.html',
+                    logoutUrl: 'logout.jsp',
                     redirUrl: 'logout.jsp',
-                    warnAfter: 900000,
-                    redirAfter: 960000
+                    warnAfter: 900000, //15 minutes
+                    redirAfter: 1200000 // 20 minutes
                 });
             });
 

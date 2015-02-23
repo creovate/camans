@@ -211,7 +211,7 @@ public class processSearchWorker extends HttpServlet {
             request.getSession().setAttribute("end",request.getParameter("endDate"));
             request.getSession().setAttribute("leadCase",request.getParameter("leadCaseWorker"));
             request.getSession().setAttribute("auxCase",request.getParameter("auxiliaryCaseWorker"));
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("home.jsp");
             
         } finally {            
             out.close();

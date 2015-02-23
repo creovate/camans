@@ -53,7 +53,7 @@
         <nav id="side-menu" class="navbar" role="navigation">
 
                 <ul class="nav navbar-nav nav-tabs col-md-12" role="tablist" id="nav_maintabs" style="padding-right: 1%">
-                    <li id='home_tab' class=''><a class='' href="index.jsp" role="tab" active><span class="glyphicon glyphicon-search"></span>&nbsp;Search Worker</a></li>
+                    <li id='home_tab' class=''><a class='' href="home.jsp" role="tab" active><span class="glyphicon glyphicon-search"></span>&nbsp;Search Worker</a></li>
                     <li id='createCase_tab'><a href="createCase.jsp" role="tab"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create Worker</a></li>
                     <li id='report_tab'><a href="report.jsp" role="tab" ><span class="glyphicon glyphicon-book"></span>&nbsp;Reports</a></li>
                         <%

@@ -5,8 +5,6 @@
 package camans.controller;
 
 import camans.dao.ConnectionManager;
-import camans.dao.ReportDAO;
-import camans.entity.JasperDataSourceBuilder;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;

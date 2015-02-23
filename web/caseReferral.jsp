@@ -285,17 +285,16 @@
                 </div>
             </div>
         <script>
-                                //session time out
-                                $(document).ready(function() {
-                                    $.sessionTimeout({
-                                        message: 'Your session will be expired in one minute.',
-                                        keepAliveUrl: 'keep-alive.html',
-                                        logoutUrl: 'index.jsp',
-                                        redirUrl: 'logout.jsp',
-                                        warnAfter: 900000,
-                                        redirAfter: 120000
-                                    });
-                                });
+            $(document).ready(function () {
+                $.sessionTimeout({
+                    message: 'Your session will be expired in five minutes.',
+                    keepAliveUrl: 'keep-alive.html',
+                    logoutUrl: 'logout.jsp',
+                    redirUrl: 'logout.jsp',
+                    warnAfter: 900000, //15 minutes
+                    redirAfter: 1200000 // 20 minutes
+                });
+            });
         </script>
     </body>
 </html>
