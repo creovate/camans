@@ -112,9 +112,10 @@ if(userRole.equals("Specialist") || userRole.equals("Associate")){
                     <div class="col-md-3">
                         <input type="text" class="form-control endDate" name="end" required/>
                     </div>
-                </div>
-                <button id="generateSubmitbtn" type="submit" class="btn btn-blue">Generate Report</button>
+                    <button id="generateSubmitbtn" type="submit" class="btn btn-blue pull-right">Generate Report</button>
 
+                </div>
+                
             </form>
         </div>
         <script>
