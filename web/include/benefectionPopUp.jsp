@@ -143,7 +143,7 @@
                 value: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -202,7 +202,7 @@
                 nvalue: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -272,7 +272,7 @@
                 nvalue: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }

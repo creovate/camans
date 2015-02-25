@@ -265,16 +265,20 @@ public class processCreateNewCase extends HttpServlet {
                     pass = false;
                     err += "Invalid Registered Date Format";
                 }
+                if (problemRegDateStr != null && problemRegDateStr.length() > 0) {
+                    try {
+                        java.util.Date tmp = sdf.parse(problemRegDateStr);
+                        problemRegDate = new java.sql.Date(tmp.getTime());
 
-                try {
-                    java.util.Date tmp = sdf.parse(problemRegDateStr);
-                    problemRegDate = new java.sql.Date(tmp.getTime());
-
-                } catch (ParseException ex) {
-                    //out.println(ex);
-                    pass = false;
-                    err += "Invalid Problem Registered Date Format";
+                    } catch (ParseException ex) {
+                        //out.println(ex);
+                        pass = false;
+                        err += "Invalid Problem Registered Date Format";
+                    }
+                } else {
+                    problemRegDate = registeredDate;
                 }
+
                 if (!dobStr.equals("")) {
                     try {
                         java.util.Date tmp = sdf.parse(dobStr);
@@ -308,6 +312,20 @@ public class processCreateNewCase extends HttpServlet {
                     err += "Job Remark cannot be more than 200 characters, ";
                 }
             }
+            if (problemRegDateStr != null && problemRegDateStr.length() > 0) {
+                try {
+                    java.util.Date tmp = sdf.parse(problemRegDateStr);
+                    problemRegDate = new java.sql.Date(tmp.getTime());
+
+                } catch (ParseException ex) {
+                    //out.println(ex);
+                    pass = false;
+                    err += "Invalid Problem Registered Date Format";
+                }
+            } else {
+                problemRegDate = registeredDate;
+            }
+
             if (problemMore != null && problemMore.length() > 50) {
                 pass = false;
                 err += "Explain if above is other cannot be more than 50 charcters, ";
@@ -359,7 +377,7 @@ public class processCreateNewCase extends HttpServlet {
                     job = JobDAO.retrieveJobByJobId(jobKey);
                 }
 
-                problem = new Problem(finNum, jobKey, registeredDate, problemName,
+                problem = new Problem(finNum, jobKey, problemRegDate, problemName,
                         problemMore, problemRemark, null, null, null, null);
 
 
@@ -387,17 +405,37 @@ public class processCreateNewCase extends HttpServlet {
             if (finNumber == null) {
                 //Redirect Back to CreateNewCase Successful Page
                 success = "success";
-                
 
                 request.getSession().setAttribute("worker", worker);
                 request.getSession().setAttribute("status", success);
-                
+
                 String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + ") has been successfully created.";
                 request.getSession().setAttribute("successWrkCompMsg", successMsg);
-                response.sendRedirect("viewWorker.jsp?worker=" + worker.getFinNumber());
+                request.getSession().setAttribute("worker", worker.getFinNumber());
+                response.sendRedirect("viewWorker.jsp");
             } else {
+                //Redirect Back to CreateNewCase Successful Page
+                success = "success";
+
+                request.getSession().setAttribute("worker", worker);
+                request.getSession().setAttribute("status", success);
+
+                String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + ") has been successfully created.";
+                request.getSession().setAttribute("successWrkCompMsg", successMsg);
+
+                if (finNumber != null && jobKeyStr != null) {
+                    //go back to prob tab
+                    request.getSession().setAttribute("tabIndicator", "problem");
+                    request.getSession().setAttribute("selectedJob", jobKeyStr);
+                    request.getSession().setAttribute("worker", worker.getFinNumber());
+                }else{
+                    //go back to job tab
+                    request.getSession().setAttribute("tabIndicator", "job");
+                    request.getSession().setAttribute("selectedJob", jobKeyStr);
+                    request.getSession().setAttribute("worker", worker.getFinNumber());
+                }
                 //request.getSession().setAttribute("worker", worker);
-                response.sendRedirect("viewWorker.jsp?worker=" + finNumber);
+                response.sendRedirect("viewWorker.jsp");
             }
         } catch (Exception e) {
             out.println(e);

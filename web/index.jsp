@@ -16,10 +16,10 @@
     ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListOfWorkpassType();
     ArrayList<String> problemList = DropdownDAO.retrieveAllDropdownListOfProblems();
     ArrayList<String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
-    
+
     ArrayList<Worker> searchWorkers = (ArrayList<Worker>) request.getSession().getAttribute("searchWorkers");
     request.getSession().removeAttribute("searchWorkers");
-    
+
     User userLogin = (User) request.getSession().getAttribute("userLogin");
     String finIn = (String) request.getSession().getAttribute("fin");
     String workerNameIn = (String) request.getSession().getAttribute("workerIn");
@@ -39,7 +39,7 @@
 
     String leadCaseWorkerIn = (String) request.getSession().getAttribute("leadCase");
     String auxCaseWorkerIn = (String) request.getSession().getAttribute("auxCase");
-    
+
     request.getSession().removeAttribute("fin");
     request.getSession().removeAttribute("workerIn");
     request.getSession().removeAttribute("gender");
@@ -56,13 +56,13 @@
     request.getSession().removeAttribute("end");
     request.getSession().removeAttribute("leadCase");
     request.getSession().removeAttribute("auxCase");
-    
+
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+
         <!--css-->
         <link rel="stylesheet" href="css/bootstrap.css" media="screen" />
         <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
@@ -71,7 +71,7 @@
         <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
         <!-------------->
-        
+
         <!--javascript-->
         <script src="js/jquery-2.1.1.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -82,19 +82,19 @@
         <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
         <script src="js/jasny-bootstrap.js"></script>  
         <!------------->
-        
+
         <!--tab icon-->
         <link rel="shortcut icon" href="img/twc_logo.png">
-        
+
         <!--page title-->
         <title>CAMANS</title>
-        
+
         <style>
             .navbar{
                 margin-bottom: 0 !important;
             }
-            
-            
+
+
         </style>
     </head>
     <body id="home">
@@ -118,12 +118,12 @@
                                         <!-- Fin Number -->
                                         <div class="form-group col-sm-3">
                                             <input type="text" class="form-control" id="workerFIN_In" 
-                                                   name="fin" placeholder=" FIN" value="<%=(finIn==null) ? "":finIn%>">
+                                                   name="fin" placeholder=" FIN" value="<%=(finIn == null) ? "" : finIn%>">
                                         </div>
                                         <!-- Name -->
                                         <div class ="form-group col-sm-3">
                                             <input type="text" class="form-control" id="workerName_In" 
-                                                   name="name" placeholder=" Worker Name" value="<%=(workerNameIn==null)? "":workerNameIn%>">
+                                                   name="name" placeholder=" Worker Name" value="<%=(workerNameIn == null) ? "" : workerNameIn%>">
                                         </div>
                                         <!-- Gender -->
                                         <div class ="form-group col-sm-3">
@@ -134,20 +134,17 @@
                                                 <option value="" default selected>Gender</option>
                                                 <option value="male">Male</option>
                                                 <option value="female">Female</option>
-                                                <%
-                                                    } else if (genderIn.equals("male")) {
+                                                <%                                                } else if (genderIn.equals("male")) {
                                                 %>
                                                 <option value=""> Gender </option>
                                                 <option value="male" selected>Male</option>
                                                 <option value="female">Female</option>
-                                                <%
-                                                    } else if (genderIn.equals("female")) {
+                                                <%                                                } else if (genderIn.equals("female")) {
                                                 %>
                                                 <option value=""> Gender </option>
                                                 <option value="male">Male</option>
                                                 <option value="female" selected>Female</option>
-                                                <%
-                                                    }
+                                                <%                                                    }
                                                 %>
                                             </select>
                                         </div>    
@@ -155,20 +152,20 @@
                                         <div class ="form-group col-sm-3">
                                             <select class="form-control" id="workerNationality_In" name="nationality">
                                                 <option value="" default selected>Nationality</option>
-                                            <%
-                                                for (String nationalityStr : nationalityList) {
-                                                    if (nationalityIn !=null && nationalityIn.equals(nationalityStr)) {
-                                            %>
+                                                <%
+                                                    for (String nationalityStr : nationalityList) {
+                                                        if (nationalityIn != null && nationalityIn.equals(nationalityStr)) {
+                                                %>
                                                 <option selected><%=nationalityStr%></option>
-                                            <%
-                                                    } else {
-                                            %>
+                                                <%
+                                                } else {
+                                                %>
                                                 <option><%=nationalityStr%></option>
-                                            <%
+                                                <%
 
+                                                        }
                                                     }
-                                                }    
-                                            %>    
+                                                %>    
                                             </select>
                                         </div>
                                     </div> <!--end of row 1-->
@@ -178,25 +175,25 @@
                                         <div class="form-group col-sm-3">
                                             <input type="text" class="form-control" id="workerSGPh_In" 
                                                    name="sgPhone" placeholder=" Singapore Phone" 
-                                                   value="<%=(sgPhoneIn==null) ? "":sgPhoneIn%>">
+                                                   value="<%=(sgPhoneIn == null) ? "" : sgPhoneIn%>">
                                         </div>
                                         <!-- home country phone -->
                                         <div class="form-group col-sm-3">
                                             <input type="text" class="form-control" id="workerHCPh_In" 
                                                    name="homeCountryPhone" placeholder=" Home Country Phone"
-                                                   value="<%=(homeCountryPhIn==null) ? "":homeCountryPhIn%>">
+                                                   value="<%=(homeCountryPhIn == null) ? "" : homeCountryPhIn%>">
                                         </div>
                                         <!-- employer Name -->
                                         <div class="form-group col-sm-3">
                                             <input type="text" class="form-control" id="workerEmpName_In" 
                                                    name="employer" placeholder=" Employer's Name"
-                                                   value="<%=(employerIn==null) ? "":employerIn%>">
+                                                   value="<%=(employerIn == null) ? "" : employerIn%>">
                                         </div>
                                         <!-- Occupation -->
                                         <div class="form-group col-sm-3">
                                             <input type="text" class="form-control" id="workerOccupation_In" 
                                                    name="occupation" placeholder=" Occupation"
-                                                   value="<%=(occupationIn==null) ? "":occupationIn%>">
+                                                   value="<%=(occupationIn == null) ? "" : occupationIn%>">
                                         </div>
                                     </div> <!-- end of row 2--> 
 
@@ -206,114 +203,114 @@
                                         <div class="form-group col-sm-3">
                                             <select class="form-control" id="workerWPType_In" name="workPassType">
                                                 <option value="" default selected>Work Pass Type</option>
-                                            <%
-                                                for (String passTypeStr : passTypeList) {
-                                                    if (workPassIn !=null && workPassIn.equals(passTypeStr)) {
-                                            %>
+                                                <%
+                                                    for (String passTypeStr : passTypeList) {
+                                                        if (workPassIn != null && workPassIn.equals(passTypeStr)) {
+                                                %>
                                                 <option selected><%=passTypeStr%></option>
-                                            <%
-                                                    } else {
-                                            %>
+                                                <%
+                                                } else {
+                                                %>
                                                 <option><%=passTypeStr%></option>
-                                            <%
+                                                <%
 
+                                                        }
                                                     }
-                                                }    
-                                            %>
+                                                %>
                                             </select>
                                         </div>
                                         <!--To retrieve from db dropdown list table-->
                                         <div class="form-group col-sm-3">
                                             <select class="form-control" id="workerProblem_In" name="problemType">
                                                 <option value="" default selected>Problem Type</option>
-                                           <%
-                                                for (String problemListStr : problemList) {
-                                                    if (problemTypeIn !=null && problemTypeIn.equals(problemListStr)) {
-                                            %>
+                                                <%
+                                                    for (String problemListStr : problemList) {
+                                                        if (problemTypeIn != null && problemTypeIn.equals(problemListStr)) {
+                                                %>
                                                 <option selected><%=problemListStr%></option>
-                                            <%
-                                                    } else {
-                                            %>
+                                                <%
+                                                } else {
+                                                %>
                                                 <option><%=problemListStr%></option>
-                                            <%
+                                                <%
 
+                                                        }
                                                     }
-                                                }    
-                                            %>
+                                                %>
                                             </select>
                                         </div>
 
                                         <div class="form-group col-sm-3">
                                             <select class="form-control" id="workerIssue_In" name="aggravatingIssue">
                                                 <option value="" default selected>Aggravating Issue</option>
-                                           <%
-                                                for (String problemListStr : problemList) {
-                                                    if (aggravatingIssueIn !=null && aggravatingIssueIn.equals(problemListStr)) {
-                                            %>
+                                                <%
+                                                    for (String problemListStr : problemList) {
+                                                        if (aggravatingIssueIn != null && aggravatingIssueIn.equals(problemListStr)) {
+                                                %>
                                                 <option selected><%=problemListStr%></option>
-                                            <%
-                                                    } else {
-                                            %>
+                                                <%
+                                                } else {
+                                                %>
                                                 <option><%=problemListStr%></option>
-                                            <%
+                                                <%
 
+                                                        }
                                                     }
-                                                }    
-                                            %>
+                                                %>
                                             </select>
                                         </div>
-                                    <div class="form-group col-sm-3">
-                                        <select class="form-control" id="workerHospital_In" name="hospital">
-                                            <option value="" default selected>Hospital</option>
-                                            <%
-                                                for (String hosptialStr : hospitalList) {
-                                                    if (hospitalIn !=null && hospitalIn.equals(hosptialStr)) {
-                                            %>
+                                        <div class="form-group col-sm-3">
+                                            <select class="form-control" id="workerHospital_In" name="hospital">
+                                                <option value="" default selected>Hospital</option>
+                                                <%
+                                                    for (String hosptialStr : hospitalList) {
+                                                        if (hospitalIn != null && hospitalIn.equals(hosptialStr)) {
+                                                %>
                                                 <option selected><%=hosptialStr%></option>
-                                            <%
-                                                    } else {
-                                            %>
+                                                <%
+                                                } else {
+                                                %>
                                                 <option><%=hosptialStr%></option>
-                                            <%
+                                                <%
 
+                                                        }
                                                     }
-                                                }    
-                                            %>
-                                        </select>
-                                    </div>
+                                                %>
+                                            </select>
+                                        </div>
                                     </div> <!-- end of row 3-->
                                     <div class="row"> <!-- row 4 -->
 
-                                    <div class="form-group col-sm-3">
-                                        <input type="text" id="reg_StartDate_In" placeholder=" Registered Start Date" name="startDate" 
-                                               class="form-control startDate" data-date-format="dd-mm-yyyy"
-                                               value="<%=(registeredStartIn==null) ? "":registeredStartIn%>">
-                                    </div>
+                                        <div class="form-group col-sm-3">
+                                            <input type="text" id="reg_StartDate_In" placeholder=" Registered Start Date" name="startDate" 
+                                                   class="form-control startDate" data-date-format="dd-mm-yyyy"
+                                                   value="<%=(registeredStartIn == null) ? "" : registeredStartIn%>">
+                                        </div>
 
-                                    <div class="form-group col-sm-3">
-                                        <input type="text" id="reg_EndDate_In" placeholder=" Registered End Date" name="endDate"
-                                               class="form-control endDate" data-date-format="dd-mm-yyyy"
-                                               value="<%=(registeredEndIn==null) ? "": registeredEndIn%>">
-                                    </div>
+                                        <div class="form-group col-sm-3">
+                                            <input type="text" id="reg_EndDate_In" placeholder=" Registered End Date" name="endDate"
+                                                   class="form-control endDate" data-date-format="dd-mm-yyyy"
+                                                   value="<%=(registeredEndIn == null) ? "" : registeredEndIn%>">
+                                        </div>
 
-                                    <div class="form-group col-sm-3">
-                                        <input type="text" class="form-control" id="auxiliaryCaseWorker_In" 
+                                        <div class="form-group col-sm-3">
+                                            <input type="text" class="form-control" id="auxiliaryCaseWorker_In" 
                                                    name="leadCaseWorker" placeholder=" Lead Case Worker"
-                                                   value="<%=(leadCaseWorkerIn==null) ? "":leadCaseWorkerIn%>">
-                                    </div>
+                                                   value="<%=(leadCaseWorkerIn == null) ? "" : leadCaseWorkerIn%>">
+                                        </div>
 
-                                    <div class="form-group col-sm-3">
-                                        <input type="text" class="form-control" id="auxiliaryCaseWorker_In" 
+                                        <div class="form-group col-sm-3">
+                                            <input type="text" class="form-control" id="auxiliaryCaseWorker_In" 
                                                    name="auxiliaryCaseWorker" placeholder=" Auxiliary Case Worker"
-                                                   value="<%=(auxCaseWorkerIn==null) ? "":auxCaseWorkerIn%>">
-                                    </div>
+                                                   value="<%=(auxCaseWorkerIn == null) ? "" : auxCaseWorkerIn%>">
+                                        </div>
                                     </div> <!--end of row 4--> 
 
                                     <div clas="row"> <!-- row 5 -->
                                         <div class="form-group col-sm-12 text-right">
                                             <button class="btn btn-blue" id="btnSearch" onclick="search()">Search</button>
                                             <button class="btn btn-info" id="btnReset" style="border-radius:2px"
-                                                    type="reset" onClick="window.location.href=window.location.href">Reset</button>
+                                                    type="reset" onClick="window.location.href = window.location.href">Reset</button>
                                         </div>
                                     </div> <!--end of row 5--> 
                                 </form> <!-- form close -->
@@ -338,16 +335,16 @@
                                         workersList = WorkerDAO.retrieveWorkersByUser(userLogin.getFullName());
                                     } else {
                                         workersList = searchWorkers;
-                                    } 
+                                    }
                                     if (workersList.isEmpty()) {
                                         if (searchWorkers != null && searchWorkers.isEmpty()) {
 
-                                            out.println("<h3>Search Results</h3>");    
+                                            out.println("<h3>Search Results</h3>");
                                             out.println("No records Found!");
 
                                         } else {
 
-                                            out.println("<h3>Assigned Cases</h3>");    
+                                            out.println("<h3>Assigned Cases</h3>");
                                             out.println("There is no case assigned to you!");
 
                                         }
@@ -355,24 +352,24 @@
                                     } else {
                                         if (searchWorkers == null) {
                                             out.println("<h3>Assigned Cases</h3>");
-                                        } else { 
+                                        } else {
                                             out.println("<h3>Search Results</h3>");
-                                        }   
+                                        }
                                 %>
 
-                                    <table class="table table-bordered table-hover text-center" id="workers-table">    
-                                        <thead bgcolor="#4c98b8">
-                                            <tr>
-                                                <th><font color="#fff">Lead Case Worker</font></th>
-                                                <th><font color="#fff">Auxiliary Case Worker</font></th>
-                                                <th><font color="#fff">Worker Fin Number</font></th>
-                                                <th><font color="#fff">Worker Name</font></th>
-                                                <th><font color="#fff">Worker Gender</font></th>
-                                                <th><font color="#fff">Worker Nationality</font></th>
-                                                <th><font color="#fff">Worker Registration Date</font></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                <table class="table table-bordered table-hover text-center" id="workers-table">    
+                                    <thead bgcolor="#4c98b8">
+                                        <tr>
+                                            <th><font color="#fff">Lead Case Worker</font></th>
+                                            <th><font color="#fff">Auxiliary Case Worker</font></th>
+                                            <th><font color="#fff">Worker Fin Number</font></th>
+                                            <th><font color="#fff">Worker Name</font></th>
+                                            <th><font color="#fff">Worker Gender</font></th>
+                                            <th><font color="#fff">Worker Nationality</font></th>
+                                            <th><font color="#fff">Worker Registration Date</font></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
                                         <%
 
@@ -397,15 +394,13 @@
                                                 ArrayList<Integer> leadCaseIds = ProblemComplementsDAO.retrieveLeadCaseWorkerIdsOfProblem(latestProblem);
                                                 String leadCaseWorker = "-";
                                                 if (!leadCaseIds.isEmpty()) {
-                                                    ProblemLeadCaseWorker latestLeadCaseWkr = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById
-                                                            (leadCaseIds.get(leadCaseIds.size()-1));
+                                                    ProblemLeadCaseWorker latestLeadCaseWkr = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(leadCaseIds.get(leadCaseIds.size() - 1));
                                                     leadCaseWorker = latestLeadCaseWkr.getLeadCaseWorker();
                                                 }
                                                 ArrayList<Integer> auxiCaseIds = ProblemComplementsDAO.retrieveProblemAuxiliaryCaseWorkerIdsOfProblem(latestProblem);
                                                 String auxiCaseWorker = "-";
                                                 if (!auxiCaseIds.isEmpty()) {
-                                                    ProblemAuxiliaryCaseWorker latestAuxiCaseWkr = ProblemComplementsDAO.retrieveProblemAuxiliaryCaseWorkerById
-                                                            (auxiCaseIds.get(auxiCaseIds.size()-1));
+                                                    ProblemAuxiliaryCaseWorker latestAuxiCaseWkr = ProblemComplementsDAO.retrieveProblemAuxiliaryCaseWorkerById(auxiCaseIds.get(auxiCaseIds.size() - 1));
                                                     auxiCaseWorker = latestAuxiCaseWkr.getAuxName();
                                                 }
                                         %>
@@ -423,9 +418,9 @@
                                         %>
                                     </tbody>
                                 </table>
-                            <%
-                                }
-                            %>    
+                                <%
+                                    }
+                                %>    
                             </div>
                         </div>
                     </div>
@@ -435,35 +430,31 @@
             </div>
         </div>                        
         <script>
+            //ready the data in tables 
+            $(document).ready(function() {
+                $('#workers-table').dataTable();
+                //startdate & enddate 
+                $(function() {
+                    $(".startDate").datepicker({
+                        dateFormat: 'dd-M-yy',
+                        changeMonth: true,
+                        changeYear: true,
+                        onClose: function(selectedDate) {
+                            $(".endDate").datepicker("option", "minDate", selectedDate);
+                        }
+                    });
+                    $(".endDate").datepicker({
+                        dateFormat: 'dd-M-yy',
+                        changeMonth: true,
+                        changeYear: true,
+                        onClose: function(selectedDate) {
 
-            //startdate & enddate 
-            $(function() {
-                $(".startDate").datepicker({
-                    dateFormat: 'dd-M-yy',
-                    changeMonth: true,
-                    changeYear: true,
-                    onClose: function(selectedDate) {
-                        $(".endDate").datepicker("option", "minDate", selectedDate);
-                    }
-                });
-                $(".endDate").datepicker({
-                    dateFormat: 'dd-M-yy',
-                    changeMonth: true,
-                    changeYear: true,
-                    onClose: function(selectedDate) {
-
-                        $(".startDate").datepicker("option", "maxDate", selectedDate);
-                    }
+                            $(".startDate").datepicker("option", "maxDate", selectedDate);
+                        }
+                    });
                 });
             });
-            
-            //ready the data in tables
-            $(document).ready(function () {
-                $('#workers-table').dataTable();
-            }); 
-            
-            
+
         </script>
     </body>
 </html>
- 

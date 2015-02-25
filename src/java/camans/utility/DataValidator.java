@@ -5724,13 +5724,8 @@ public class DataValidator {
                             errorMsg += header[6] + " cannot be longer than 200 characters,";
                         }
 
-                        if (!departureDateStr.equals("")) {
-                            try {
-                                java.util.Date tmp = sdf.parse(dateStr);
-                                depatureDate = new java.sql.Date(tmp.getTime());
-                            } catch (ParseException ex) {
-                                errorMsg += "Invalid depatureDate Date Format,";
-                            } 
+                        if (!departureDateStr.equals("") && departureDateStr.length() > 50) {
+                            errorMsg += header[7] + " cannot be longer than 50 characters,";
                         }
 
 
@@ -5770,7 +5765,7 @@ public class DataValidator {
                     else {
                         errorMsg = ""; // reset errorMsg variable
                         ProblemTTR problemTTR = new ProblemTTR
-                                (finNum, jobKey, probKey, updatedDate, status, statusMore, depatureDate, nameNew, newJob, rem);
+                                (finNum, jobKey, probKey, updatedDate, status, statusMore, departureDateStr, nameNew, newJob, rem);
                         ProblemComplementsDAO.addProblemTTR (problemTTR);
                         succCount++;
                     } 

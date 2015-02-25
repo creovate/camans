@@ -2579,7 +2579,7 @@ public class ProblemComplementsDAO {
         String sql = "";
         try {
             conn = ConnectionManager.getConnection();
-            sql = "INSERT INTO tbl_mc_status (MC_update, MC_status, "
+            sql = "INSERT INTO tbl_MC_status (MC_update, MC_status, "
                     + "MC_status_more,MC_exp_date, "
                     + "MC_days_cumul,MC_rem, "
                     + "Worker_FIN_number, Job_key, Prob_key) "
@@ -2654,11 +2654,11 @@ public class ProblemComplementsDAO {
         try {
             conn = ConnectionManager.getConnection();
             
-            sql = "DELETE FROM tbl_mc_status";
+            sql = "DELETE FROM tbl_MC_status";
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
-            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_mc_status Table. ");
+            handleSQLException(ex, sql, "not able to delete data from Problem-tbl_MC_status Table. ");
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         }     
@@ -3375,7 +3375,7 @@ public class ProblemComplementsDAO {
                 Date TTRUpdate = rs.getDate(1);
                 String TTRStatus = rs.getString(2);
                 String TTRStatusMore = rs.getString(3);
-                Date departureDate = rs.getDate(4);
+                String departureDate = rs.getString(4);
                 String newEmployerName = rs.getString(5);
                 String newJob = rs.getString(6);
                 String TTRRem = rs.getString(7);
@@ -3410,7 +3410,7 @@ public class ProblemComplementsDAO {
             pstmt.setDate(1, problemTTR.getTTRUpdate());
             pstmt.setString(2, problemTTR.getTTRStatus());
             pstmt.setString(3, problemTTR.getTTRStatusMore());
-            pstmt.setDate(4, problemTTR.getDepartureDate());
+            pstmt.setString(4, problemTTR.getDepartureDate());
             pstmt.setString(5, problemTTR.getNewEmployerName());
             pstmt.setString(6, problemTTR.getNewJob());
             pstmt.setString(7, problemTTR.getTTRRem());
@@ -3439,7 +3439,7 @@ public class ProblemComplementsDAO {
             pstmt.setDate(1, problemTTR.getTTRUpdate());
             pstmt.setString(2, problemTTR.getTTRStatus());
             pstmt.setString(3, problemTTR.getTTRStatusMore());
-            pstmt.setDate(4, problemTTR.getDepartureDate());
+            pstmt.setString(4, problemTTR.getDepartureDate());
             pstmt.setString(5, problemTTR.getNewEmployerName());
             pstmt.setString(6, problemTTR.getNewJob());
             pstmt.setString(7, problemTTR.getTTRRem());

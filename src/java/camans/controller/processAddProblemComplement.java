@@ -2460,15 +2460,19 @@ public class processAddProblemComplement extends HttpServlet {
                     if (ttrStatusMore != null && !ttrStatusMore.equals("") && ttrStatusMore.length() > 200) {
                         errorMsg += "explain if above is other cannot be longer than 200 characters,";
                     }
-
-                    if (!ttrDepatureDateStr.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(ttrDepatureDateStr);
-                            ttrDepatureDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid depatureDate Date Format,";
-                        } 
+                    
+                    if(!ttrDepatureDateStr.equals("") && ttrDepatureDateStr.length() > 50){
+                        errorMsg += "Departure date cannot be longer than 50 characters,";
                     }
+
+//                    if (!ttrDepatureDateStr.equals("")) {
+//                        try {
+//                            java.util.Date tmp = sdf.parse(ttrDepatureDateStr);
+//                            ttrDepatureDate = new java.sql.Date(tmp.getTime());
+//                        } catch (ParseException ex) {
+//                            errorMsg += "Invalid depatureDate Date Format,";
+//                        } 
+//                    }
 
 
                     if (!ttrNewEmployer.equals("") && ttrNewEmployer.length() > 50) {
@@ -2492,7 +2496,7 @@ public class processAddProblemComplement extends HttpServlet {
                     if (idStr==null) {
                         //create object
                         ProblemTTR problemTTR = new ProblemTTR(workerFinNum, jobKey, problemKey, ttrUpdateDate,
-                                ttrStatus, ttrStatusMore, ttrDepatureDate, ttrNewEmployer, ttrNewJob,
+                                ttrStatus, ttrStatusMore, ttrDepatureDateStr, ttrNewEmployer, ttrNewJob,
                                 ttrRemark);
                         //add to db
                         ProblemComplementsDAO.addProblemTTR(problemTTR);
@@ -2508,7 +2512,7 @@ public class processAddProblemComplement extends HttpServlet {
                         int id = Integer.parseInt(request.getParameter("Id"));
                         //create object
                         ProblemTTR problemTTR = new ProblemTTR(id, workerFinNum, jobKey, problemKey, ttrUpdateDate,
-                                ttrStatus, ttrStatusMore, ttrDepatureDate, ttrNewEmployer, ttrNewJob,
+                                ttrStatus, ttrStatusMore, ttrDepatureDateStr, ttrNewEmployer, ttrNewJob,
                                 ttrRemark);
                         //add to db
                         ProblemComplementsDAO.updateProblemTTR(problemTTR);

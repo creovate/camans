@@ -130,7 +130,7 @@ public class processEditStubs extends HttpServlet {
                 
             }else if(complement.equals("problem")){
                 java.util.Date date = new java.util.Date();
-                String registeredDateStr = request.getParameter("pRegDate");
+                String registeredDateStr = request.getParameter("problemRegDate");
                 java.sql.Date registeredDate = null;
                 try {
                     java.util.Date tmp = sdf.parse(registeredDateStr);

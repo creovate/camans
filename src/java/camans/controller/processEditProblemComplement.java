@@ -837,7 +837,7 @@ public class processEditProblemComplement extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("Id"));
                 //create object
                 ProblemTTR problemTTR = new ProblemTTR(id, workerFinNum, jobKey, problemKey, ttrUpdateDate,
-                        ttrStatus, ttrStatusMore, ttrDepatureDate, ttrNewEmployer, ttrNewJob,
+                        ttrStatus, ttrStatusMore, ttrDepatureDateStr, ttrNewEmployer, ttrNewJob,
                         ttrRemark);
                 //add to db
                 ProblemComplementsDAO.updateProblemTTR(problemTTR);

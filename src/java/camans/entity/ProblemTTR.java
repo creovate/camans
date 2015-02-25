@@ -20,7 +20,7 @@ public class ProblemTTR {
     private Date TTRUpdate;
     private String TTRStatus;
     private String TTRStatusMore ;
-    private Date departureDate;
+    private String departureDate;
     private String newEmployerName;
     private String newJob;
     private String TTRRem;
@@ -28,7 +28,7 @@ public class ProblemTTR {
     
     //constructor with id 
     public ProblemTTR(int id, String workerFinNumber, int jobKey, int problemKey , 
-            Date TTRUpdate, String TTRStatus, String TTRStatusMore, Date departureDate, 
+            Date TTRUpdate, String TTRStatus, String TTRStatusMore, String departureDate, 
             String newEmployerName, String newJob, String TTRRem) {
         this.id = id;
         this.workerFinNumber = workerFinNumber;
@@ -45,7 +45,7 @@ public class ProblemTTR {
 	
     //constructor without id
     public ProblemTTR(String workerFinNumber, int jobKey, int problemKey , 
-            Date TTRUpdate, String TTRStatus, String TTRStatusMore, Date departureDate, 
+            Date TTRUpdate, String TTRStatus, String TTRStatusMore, String departureDate, 
             String newEmployerName, String newJob, String TTRRem) {
 
             this.workerFinNumber = workerFinNumber;
@@ -116,11 +116,11 @@ public class ProblemTTR {
         this.TTRStatusMore = TTRStatusMore;
     }
 
-    public Date getDepartureDate() {
+    public String getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(Date MCExpDate) {
+    public void setDepartureDate(String departureDate) {
         this.departureDate = departureDate;
     }
 	

@@ -88,6 +88,9 @@
     ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListByType("Work_pass_type");
     ArrayList<String> jobSectorList = DropdownDAO.retrieveAllDropdownListOfJobSector();
     ArrayList<String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
+    
+    
+    java.util.Date today = new java.util.Date();
     //javascript method to blur the input fields if the action is view
     //if the action is view, 
     /**
@@ -151,7 +154,7 @@
                     maxlength: 50
                 },
                 workpassMore: {
-                    maxlength: 200
+                    maxlength: 50
                 },
                 employerName: {
                     maxlength: 50,
@@ -1044,7 +1047,7 @@
         <div class="form-group col-sm-12 col-md-12">
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Problem Registration Date<span class="required_input">*</span>:</label>
             <div class=" col-md-7">
-                <input class="form-control dateInput" type='text' name="registeredDate" value="<%=sdf.format(pRegDate)%>" autofocus/></div><br/><br/>
+                <input class="form-control dateInput" type='text' name="problemRegDate" value="<%=sdf.format(today)%>" autofocus/></div><br/><br/>
         </div>
         <div class="form-group col-sm-12 col-md-12">
             <label for="prob_type" class="col-md-5 control-label">Problem Type<span class="required_input">*</span></label>
@@ -1094,7 +1097,7 @@
 </form> 
 <%} else if (action.equals("add") && profile.equals("problem")) {
 %>
-<form method="POST" id='add_job' class="form create_case_form " action="createNewCase.do" style="font-size:small">
+<form method="POST" id='addCase' class="form create_case_form " action="createNewCase.do" style="font-size:small">
 
     <%
         java.util.Date date = new java.util.Date();
@@ -1108,7 +1111,7 @@
         <div class="form-group col-sm-12 col-md-12">
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Problem Registration Date<span class="required_input">*</span>:</label>
             <div class=" col-md-7">
-                <input class="form-control dateInput" type='text' name="registeredDate" value="<%=sdf.format(pRegDate)%>"/></div><br/><br/>
+                <input class="form-control dateInput" type='text' name="problemRegDate" value="<%=sdf.format(today)%>"/></div><br/><br/>
         </div>
         <div class="form-group col-sm-12 col-md-12">
             <label for="prob_type" class="col-md-5 control-label">Problem Type<span class="required_input">*</span></label>

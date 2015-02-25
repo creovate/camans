@@ -302,7 +302,7 @@
                 loss: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -321,7 +321,7 @@
                 nloss: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -997,7 +997,7 @@
                 r2rMed: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1005,7 +1005,7 @@
                 r2rOut: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1088,7 +1088,7 @@
                 nr2rMed: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1096,7 +1096,7 @@
                 nr2rOut: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1120,7 +1120,7 @@
                 wicaPoints: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1128,7 +1128,7 @@
                 wicaDollars: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1151,7 +1151,7 @@
                 nwicaPoints: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1159,7 +1159,7 @@
                 nwicaDollars: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1419,7 +1419,9 @@
                 aggravLoss: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            //regexp: /[1-9](?:\d{0,2})(?:,\d{3})*(?:\.\d*[1-9])?|0?\.\d*[1-9]|0/,
+                            //regexp: /^(\d+)?,+?(\d{3})*(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1434,7 +1436,7 @@
                 naggravLoss: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1541,7 +1543,7 @@
                 totalLoss: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1549,7 +1551,7 @@
                 oneYearLoss: {
                     validators: {
                         regexp: {
-                            regexp: /^(\d+)?,?\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1616,7 +1618,7 @@
                 ntotalLoss: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1624,7 +1626,7 @@
                 noneYearLoss: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -4751,7 +4753,7 @@
         java.util.Date update = ttr.getTTRUpdate();
         String status = ttr.getTTRStatus();
         String ttrStatusMore = ttr.getTTRStatusMore();
-        java.util.Date departureDate = ttr.getDepartureDate();
+        String departureDate = ttr.getDepartureDate();
         String employerName = ttr.getNewEmployerName();
         String job = ttr.getNewJob();
         String ttrRem = ttr.getTTRRem();

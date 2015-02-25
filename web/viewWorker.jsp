@@ -4656,7 +4656,7 @@
 
                                                                                 ProblemTTR ttr = ProblemComplementsDAO.retrieveProblemTTRById(ttrId);
                                                                                 java.util.Date date = ttr.getTTRUpdate();
-                                                                                java.util.Date dDate = ttr.getDepartureDate();
+                                                                                String dDate = ttr.getDepartureDate();
                                                                                 String status = ttr.getTTRStatus();
                                                                                 String name = ttr.getNewEmployerName();
 
@@ -4665,7 +4665,7 @@
                                                                         <tr class="other_ttr moreObjs">
                                                                             <td><%=(date == null) ? "-" : sdf.format(date)%></td>                                                         
                                                                             <td><%=status%></td>
-                                                                            <td><%=(dDate == null) ? "-" : sdf.format(dDate)%></td>
+                                                                            <td><%=(dDate == null) ? "-" : dDate%></td>
                                                                             <td><%=name%></td>
                                                                             <td class="tbl-20-col"><a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' 
                                                                                                       data-title="Add A New Transfer, TJS & Repatriation" href="" data-toggle="modal" 
@@ -4688,7 +4688,7 @@
                                                                         <tr>
                                                                             <td><%=(date == null) ? "-" : sdf.format(date)%></td>                                                         
                                                                             <td><%=status%></td>
-                                                                            <td><%=(dDate == null) ? "-" : sdf.format(dDate)%></td>
+                                                                            <td><%=(dDate == null) ? "-" : dDate%></td>
                                                                             <td><%=name%></td>
                                                                             <td class="tbl-20-col"><a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' 
                                                                                                       data-title="Add A New Transfer, TJS & Repatriation" href="" data-toggle="modal" 

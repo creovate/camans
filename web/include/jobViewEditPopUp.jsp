@@ -431,7 +431,7 @@
                 amtowed: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -439,7 +439,7 @@
                 amtpaid: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -496,7 +496,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Employer name must not exceed 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -504,7 +504,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'Remark must not exceed 1000 characters.'
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -538,7 +538,7 @@
                 namtowed: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -546,7 +546,7 @@
                 namtpaid: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -739,7 +739,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Working conditions must not exceed 500 characters.'
+                            message: 'This field must not exceed 500 characters.'
                         }
                     }
                 },
@@ -937,7 +937,7 @@
                 accCharged: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -945,7 +945,7 @@
                 accPaid: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1000,7 +1000,7 @@
                 naccCharged: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1008,7 +1008,7 @@
                 naccPaid: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1041,7 +1041,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Accomodation must not exceed 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1100,7 +1100,7 @@
                             message: 'Period of pass must not exceed 20 characters.'
                         },
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1108,7 +1108,7 @@
                 basicSalary: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1116,7 +1116,7 @@
                 totalAllowance: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1132,7 +1132,7 @@
                 totalDeduction: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1199,7 +1199,7 @@
                             message: 'Period of pass must not exceed 20 characters.'
                         },
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1207,7 +1207,7 @@
                 nbasicSalary: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1215,7 +1215,7 @@
                 ntotalAllowance: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1231,7 +1231,7 @@
                 ntotalDeduction: {
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,3}(,\d{3})*(\.\d\d)?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -2498,7 +2498,7 @@
                 <div class='form-group'>
                     <label for='remark' class="control-label">Work conditions at the workplace: </label>
                     <br/>
-                    <textarea class="form-control" name="ncondition" rows="3"><%=(condition == null) ? "" : condition%></textarea>
+                    <textarea class="form-control" name="condition" rows="3"><%=(condition == null) ? "" : condition%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Safety issues at workplace: </label>
@@ -2850,7 +2850,7 @@
             <div class='form-group'>
                 <label for='narrivalYear' class="control-label">If not, year in which worker arrived in Singapore for first job</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="narrivalYear">
+                <input class="form-control" type='text' name="narrivalYear">
             </div>
 
             <div class='form-group'>
@@ -3029,11 +3029,11 @@
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=location%></textarea>
                 </div>
-
+                
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Conditions at living quarters:</label>
+                    <label for='ncondition' class="control-label">Conditions at living quarters:</label>
                     <br/>
-                    <textarea class="form-control" name="remark" rows="3"><%=condition%></textarea>
+                    <textarea class="form-control" name="ncondition" rows="3" ><%=condition%></textarea>
                 </div>
 
                 <div class='form-group'>
@@ -3240,8 +3240,8 @@
             <div class='form-group'>
                 <label for='condition' class="control-label">Conditions at living quarters:</label>
                 <br/>
-                <textarea class="form-control" name="location" rows="3" ><%=(condition == null) ? "" : condition%></textarea>
-
+                <textarea class="form-control" name="condition" rows="3" ><%=(condition == null) ? "" : condition%></textarea>
+            </div>
                 <div class='form-group'>
                     <label for='accCharged' class="control-label">Cost charged by employer per month S$</label>
                     <br/>

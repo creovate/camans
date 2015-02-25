@@ -626,22 +626,16 @@
                 },
                 namtowed: {
                     validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 namtpaid: {
                     validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -810,7 +804,7 @@
                     validators: {
                         stringLength: {
                             max: 500,
-                            message: 'Working conditions must not exceed 500 characters.'
+                            message: 'This field must not exceed 500 characters.'
                         }
                     }
                 },
@@ -818,7 +812,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Safety issues must not exceed 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -840,7 +834,13 @@
                 },
                 narrivalYear: {
                     validators: {
-                        //gonna change it to year dropdown
+                        integer: {
+                            message: 'This field must be a number.'
+                        },
+                        stringLength:{
+                            max: 4,
+                            message: 'This field must be a year value.'
+                        }
                     }
                 },
                 nprevJob: {
@@ -885,22 +885,16 @@
                 },
                 naccCharged: {
                     validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 naccPaid: {
                     validators: {
-                        numeric: {
-                            message: 'Amount must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -933,7 +927,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Accomodation must not exceed 200 characters.'
+                            message: 'This field must not exceed 200 characters.'
                         }
                     }
                 },
@@ -991,33 +985,24 @@
                             max: 20,
                             message: 'Period of pass must not exceed 20 characters.'
                         },
-                        numeric: {
-                            message: 'Period of pass must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 nbasicSalary: {
                     validators: {
-                        numeric: {
-                            message: 'Salary must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 ntotalAllowance: {
                     validators: {
-                        numeric: {
-                            message: 'Total allowance must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1032,11 +1017,8 @@
                 },
                 ntotalDeduction: {
                     validators: {
-                        numeric: {
-                            message: 'Deduction must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1046,14 +1028,6 @@
                         stringLength: {
                             max: 200,
                             message: 'This field must not exceed 200 characters.'
-                        }
-                    }
-                },
-                nhowinjury: {
-                    validators: {
-                        stringLength: {
-                            max: 1000,
-                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 }
@@ -1108,6 +1082,14 @@
                     validators: {
                         notEmpty: {
                             message: 'This field cannot be empty. Please enter a value.'
+                        }
+                    }
+                },
+                nhowinjury: {
+                    validators: {
+                        stringLength: {
+                            max: 1000,
+                            message: 'This field must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -1193,11 +1175,8 @@
                 },
                 nloss: {
                     validators: {
-                        numeric: {
-                            message: 'Salary must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1555,22 +1534,16 @@
                 },
                 nr2rMed: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 nr2rOut: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number.'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1593,22 +1566,16 @@
                 },
                 nwicaPoints: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^\d+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 nwicaDollars: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1751,11 +1718,8 @@
                 },
                 naggravLoss: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -1838,22 +1802,16 @@
                 },
                 ntotalLoss: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
                 },
                 noneYearLoss: {
                     validators: {
-                        numeric: {
-                            message: 'This field must be a number'
-                        },
                         regexp: {
-                            regexp: /^[0-9]+(\.[0-9]{1,2})?$/,
+                            regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
                             message: 'This value must have maximum 2 decimal place.'
                         }
                     }
@@ -3049,7 +3007,7 @@
             <div class='form-group' id="nisFirstJob_other_div">
                 <label for='narrivalYear' class="control-label">If not, year in which worker arrived in Singapore for first job</label>
                 <br/>
-                <select class="form-control" name="narrivalYear" id="yearpicker"></select>
+                <input class="form-control" name="narrivalYear" id="" type="text"/>
             </div>
             <div class='form-group'>
                 <label for='nprevJob' class="control-label">Describe previous jobs and home breaks </label>
