@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+
 /**
  *
  * @author soemyatmyat
@@ -293,6 +295,7 @@ public class WorkerDAO {
                 java.sql.Date registeredDate = null;
                 java.sql.Date dob = null;
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                //SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
                 /**
                  * Validations for empty fields
                  */
@@ -392,13 +395,13 @@ public class WorkerDAO {
                     csvWriter = new CSVWriter(new FileWriter(workerErrFile, true));
                     if (errCount == 0) {
                         String[] newHeader = new String[10];
-                        newHeader[9] = "Error_Description";
+                        newHeader[header.length] = "Error_Description";
                         System.arraycopy(header, 0, newHeader, 0, header.length);
                         csvWriter.writeNext(newHeader);
                     }
-                    String[] newFields = new String[10];
-                    newFields[9] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                    System.arraycopy(fields, 0, newFields, 0, fields.length);
+                    String[] newFields = new String[header.length+1];
+                    newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                    System.arraycopy(fields, 0, newFields, 0, header.length);
                     csvWriter.writeNext(newFields);
                     csvWriter.close();
                     errorMsg = ""; // reset errorMsg variable

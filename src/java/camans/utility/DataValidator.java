@@ -30,6 +30,7 @@ public class DataValidator {
 
         String returnMsg = "";
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        //SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
         
         try {
             csvReader = new CSVReader(new FileReader(fileName));
@@ -87,9 +88,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -178,9 +179,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -255,9 +256,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -327,9 +328,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -399,9 +400,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -471,9 +472,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -577,9 +578,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -687,9 +688,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -788,9 +789,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -878,9 +879,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -974,9 +975,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -1092,9 +1093,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -1253,9 +1254,9 @@ public class DataValidator {
                         System.arraycopy(header, 0, newHeader, 0, header.length);
                         csvWriter.writeNext(newHeader);
                     }
-                    String[] newFields = new String[fields.length+1];
-                    newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                    System.arraycopy(fields, 0, newFields, 0, fields.length);
+                    String[] newFields = new String[header.length+1];
+                    newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                    System.arraycopy(fields, 0, newFields, 0, header.length);
                     csvWriter.writeNext(newFields);
                     csvWriter.close();
                     errorMsg = ""; // reset errorMsg variable
@@ -1464,9 +1465,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -1569,9 +1570,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -1713,9 +1714,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -1902,9 +1903,9 @@ public class DataValidator {
                         System.arraycopy(header, 0, newHeader, 0, header.length);
                         csvWriter.writeNext(newHeader);
                     }
-                    String[] newFields = new String[fields.length+1];
-                    newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                    System.arraycopy(fields, 0, newFields, 0, fields.length);
+                    String[] newFields = new String[header.length+1];
+                    newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                    System.arraycopy(fields, 0, newFields, 0, header.length);
                     csvWriter.writeNext(newFields);
                     csvWriter.close();
                     errorMsg = ""; // reset errorMsg variable
@@ -2015,9 +2016,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -2180,9 +2181,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -2316,9 +2317,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -2494,9 +2495,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -2634,9 +2635,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -2771,9 +2772,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -2908,9 +2909,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -3087,9 +3088,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -3255,9 +3256,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -3398,9 +3399,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -3521,9 +3522,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -3653,9 +3654,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -3829,9 +3830,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -3968,9 +3969,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -4116,9 +4117,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -4255,9 +4256,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -4415,9 +4416,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -4628,9 +4629,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -4781,9 +4782,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -4935,9 +4936,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -5126,9 +5127,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -5279,9 +5280,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -5428,9 +5429,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -5588,9 +5589,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -5758,9 +5759,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable
@@ -5930,9 +5931,9 @@ public class DataValidator {
                             System.arraycopy(header, 0, newHeader, 0, header.length);
                             csvWriter.writeNext(newHeader);
                         }
-                        String[] newFields = new String[fields.length+1];
-                        newFields[fields.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                        System.arraycopy(fields, 0, newFields, 0, fields.length);
+                        String[] newFields = new String[header.length+1];
+                        newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                        System.arraycopy(fields, 0, newFields, 0, header.length);
                         csvWriter.writeNext(newFields);
                         csvWriter.close();
                         errorMsg = ""; // reset errorMsg variable

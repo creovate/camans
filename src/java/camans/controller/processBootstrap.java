@@ -95,7 +95,7 @@ public class processBootstrap extends HttpServlet {
             // Get name of zip file
             String fileName = fItem.getName();
             // If no file is selected, redirect back & stop further processing
-            if (fileName.equals("")) {
+                if (fileName.equals("")) {
                 request.getSession().setAttribute("error", "Bootstrap Failed - Please choose a file.");
                 response.sendRedirect("importexport.jsp");
                 return;

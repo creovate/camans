@@ -338,13 +338,13 @@ public class JobDAO {
                     csvWriter = new CSVWriter(new FileWriter(jobErrFile, true));
                     if (errCount == 0) {
                         String[] newHeader = new String[13];
-                        newHeader[12] = "Error_Description";
+                        newHeader[header.length] = "Error_Description";
                         System.arraycopy(header, 0, newHeader, 0, header.length);
                         csvWriter.writeNext(newHeader);
                     }
-                    String[] newFields = new String[13];
-                    newFields[12] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
-                    System.arraycopy(fields, 0, newFields, 0, fields.length);
+                    String[] newFields = new String[header.length+1];
+                    newFields[header.length] = errorMsg.substring(0, errorMsg.lastIndexOf(","));
+                    System.arraycopy(fields, 0, newFields, 0, header.length);
                     csvWriter.writeNext(newFields);
                     csvWriter.close();
                     errorMsg = ""; // reset errorMsg variable

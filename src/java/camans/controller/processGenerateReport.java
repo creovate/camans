@@ -5,8 +5,8 @@
 package camans.controller;
 
 import camans.dao.ConnectionManager;
-import camans.dao.ReportDAO;
-import camans.entity.JasperDataSourceBuilder;
+//import camans.dao.ReportDAO;
+//import camans.entity.JasperDataSourceBuilder;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -160,7 +160,7 @@ public class processGenerateReport extends HttpServlet {
                 //get the file path
                 filePath = getServletContext().getRealPath("/reports/NationalityGender.jasper");
 
-                int[][] nationalityWorkpassArr = ReportDAO.retrieveNationalityWorkpass(start, end);
+                //int[][] nationalityWorkpassArr = ReportDAO.retrieveNationalityWorkpass(start, end);
 
                 //Map[] masterData = new Map[1];
 

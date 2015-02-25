@@ -720,7 +720,7 @@ public class processAddWorkerComplement extends HttpServlet {
                 } else {
                     name = request.getParameter("name");
                     relation = request.getParameter("relation");
-                    address = request.getParameter("familyaddress");
+                    address = request.getParameter("familyAddress");
                     phNum = request.getParameter("familyphNum");
                     digitalContact = request.getParameter("digitalContact");
                     remark = request.getParameter("remark");

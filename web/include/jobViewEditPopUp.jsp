@@ -504,7 +504,7 @@
                     validators: {
                         stringLength: {
                             max: 1000,
-                            message: 'Employer name must not exceed 1000 characters.'
+                            message: 'Remark must not exceed 1000 characters.'
                         }
                     }
                 },

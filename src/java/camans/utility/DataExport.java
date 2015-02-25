@@ -99,11 +99,11 @@ public class DataExport {
                       + "Hosp_doctor, Hosp_remark FROM tbl_hospital";
           } else if (csvfileName.equalsIgnoreCase("mcstatus.csv")) {
               sql = "SELECT Worker_FIN_number, Job_key, Prob_key, MC_update, MC_status, MC_status_more, "
-                      + "MC_exp_date, MC_days_cumul, MC_rem FROM tbl_mc_status";
+                      + "MC_exp_date, MC_days_cumul, MC_rem FROM tbl_MC_status";
           } else if (csvfileName.equalsIgnoreCase("r2r.csv")) {
               sql = "SELECT Worker_FIN_number, Job_key, Prob_key, R2R_date, R2R_time, R2R_hosp, R2R_dept, "
                       + "R2R1, R2R2, R2R_purpose, R2R_pre_appt_notes, R2R_post_appt_notes, R2R_feedback, "
-                      + "R2R_med_cost, R2R_outlay FROM tbl_r2r ";
+                      + "R2R_med_cost, R2R_outlay FROM tbl_R2R ";
           } else if (csvfileName.equalsIgnoreCase("lawyer.csv")) {
               sql = "SELECT Worker_FIN_number, Job_key, Prob_key,Lawyer_update, Lawyer_firm, Lawyer_firm_more, "
                       + "Lawyer_Name, Lawyer_remarks FROM tbl_lawyer";
