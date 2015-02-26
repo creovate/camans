@@ -63,6 +63,14 @@
 
         });
 
+        $(".removeBtn").click(function() {
+            var field = $(this).data('field');
+            alert(field);
+            //alert("hello");
+            $("." + field + "dateToRemove").val("");
+            //alert("hello");
+        });
+
     });
 
 
@@ -837,7 +845,7 @@
                         integer: {
                             message: 'This field must be a number.'
                         },
-                        stringLength:{
+                        stringLength: {
                             max: 4,
                             message: 'This field must be a year value.'
                         }
@@ -1109,14 +1117,7 @@
                         }
                     }
                 },
-                nNWicaremark: {
-                    valudators: {
-                        stringLength: {
-                            max: 1000,
-                            message: 'Remarks must not exceed 1000 characters.'
-                        }
-                    }
-                },
+                
                 //illness
                 nstartTime: {
                     validators: {
@@ -1215,11 +1216,20 @@
                         }
                     }
                 },
+                
                 nreason: {
                     validators: {
                         stringLength: {
                             max: 200,
                             message: 'This field must not exceed 200 characters.'
+                        }
+                    }
+                },
+                nNWicaremark: {
+                    validators: {
+                        stringLength: {
+                            max: 1000,
+                            message: 'Remarks must not exceed 1000 characters.'
                         }
                     }
                 },
@@ -1915,12 +1925,19 @@
             <div class='form-group'>
                 <label for='nPassportIssueDate' class="control-label">Passport issue date: </label>
                 <br/>
-                <input class="form-control startDate" type='text' name="nPassportIssueDate" >
+                <input class="form-control col-md-9 startDate startdateToRemove" type='text' name="nPassportIssueDate" style="width: 90%;"/>
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="start" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+
             </div>
             <div class='form-group'>
                 <label for='nPassportExpiryDate' class="control-label">Passport expiry date: </label>
                 <br/>
-                <input class="form-control endDate" type='text' name="nPassportExpiryDate" >
+                <input class="form-control endDate enddateToRemove col-md-9" type='text' name="nPassportExpiryDate" style="width:90%">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="end" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
@@ -1928,6 +1945,7 @@
             <input type="hidden" name="complementName" value="WorkerPassportDetails"/>
 
         </div>
+        <br/><br/>
         <div class="form-group btn_group">
             <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -1954,14 +1972,17 @@
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate" >
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerSgPhNum"/>
         </div>
-
+        <br/><br/>
         <div class="form-group btn_group">
             <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -1993,7 +2014,10 @@
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate" >
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
 
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
@@ -2001,7 +2025,7 @@
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerHomeCountryPhNum"/>
         </div>
-
+        <br/><br/>
         <div class="form-group btn_group">
             <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2028,7 +2052,10 @@
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate" >
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
@@ -2036,7 +2063,7 @@
             <input type="hidden" name="complementName" value="WorkerSgAddress"/>
 
         </div>
-
+        <br/><br/>
         <div class="form-group btn_group">
             <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2063,14 +2090,17 @@
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate" >
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerHomeCountryAddress"/>
         </div>
-
+        <br/><br/>
         <div class="form-group btn_group">
             <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
             <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2094,7 +2124,7 @@
                 <label for='nDigitalContactType' class="control-label">Type of digital contact<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nDigitalContactType">
-                    <option value="">Select contact type...</option>
+                    <option value="" disabled selected>Select contact type...</option>
                     <%
                         for (String contactType : digitalContactList) {
 
@@ -2129,12 +2159,16 @@
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate">
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerDigitalContact"/>
+            <br/><br/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2197,12 +2231,16 @@
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate">
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerNextOfKin"/>
+            <br/><br/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2256,12 +2294,16 @@
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate">
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerFamilyMember"/>
+            <br/><br/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2304,12 +2346,16 @@
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate">
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerFriend"/>
+            <br/><br/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2337,7 +2383,7 @@
                 <label for='nMainLanguage' class="control-label">Worker's main language<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="mainLang" name="nMainLanguage">
-                    <option value="">Select language...</option>
+                    <option value="" disabled selected>Select language...</option>
                     <%
                         for (String languageType : languageList) {
                     %>
@@ -2357,7 +2403,7 @@
                 <label for='nEnglishStandard' class="control-label">Spoken English standard<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nEnglishStandard">
-                    <option value="">Select English standard...</option>
+                    <option value="" disabled selected>Select English standard...</option>
                     <%
                         for (String engStd : spokenEnglishList) {
                     %> 
@@ -2443,12 +2489,16 @@
             <div class='form-group'>
                 <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate">
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerBankAcct"/>
+            <br/><br/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
                 <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
@@ -2478,7 +2528,7 @@
                 <label for='npasstype' class="control-label">Pass type<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="passtype" name="npasstype">
-                    <option value="">Select from list...</option>
+                    <option value="" disabled selected>Select from list...</option>
                     <%
                         for (String workpassType : workpassTypes) {
                     %>
@@ -2503,17 +2553,26 @@
             <div class='form-group'>
                 <label for='napdate' class="control-label">Pass application date:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="napdate" >
+                <input class="form-control dateInput apdateToRemove col-md-9" type='text' name="napdate" style="width:90%" >
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="ap" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <div class='form-group'>
                 <label for='nisdate' class="control-label">Pass issued date: </label>
                 <br/>
-                <input class="form-control dateInput startDate" type='text' name="nisdate" >
+                <input class="form-control startDate isdateToRemove col-md-9" type='text' name="nisdate" style="width:90%" >
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="is" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <div class='form-group'>
                 <label for='nexdate' class="control-label">Pass expiry date: </label>
                 <br/>
-                <input class="form-control dateInput endDate" type='text' name="nexdate" >
+                <input class="form-control endDate exdateToRemove col-md-9" type='text' name="nexdate" style="width:90%" >
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="ex" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <div class='form-group'>
                 <label for='nissuer' class="control-label">Pass issuing agency:</label>
@@ -2705,7 +2764,7 @@
                 <label for='nlocation' class="control-label">Location of agent: </label>
                 <br/>
                 <select class="form-control" id="agentLocation" name="naglocation">
-                    <option value="">Select from list...</option>
+                    <option value="" disabled selected>Select from list...</option>
                     <%
                         for (String agentLocation : agentLocations) {
                     %>
@@ -2866,7 +2925,7 @@
                 <label for='nwpType' class="control-label">Type of workplace<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="workplaceType" name="nwpType" >
-                    <option value="">Select from list...</option>
+                    <option value="" disabled selected>Select from list...</option>
                     <%
                         for (String type : workplaceTypes) {
                     %>
@@ -2901,7 +2960,7 @@
                 <label for='ndirect' class="control-label">Who directed worker to this workplace?<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="direct" name="ndirect" >
-                    <option value="">Select from list...</option>
+                    <option value="" disabled selected>Select from list...</option>
                     <%
                         for (String workplacedirect : workplacedirects) {
                     %>
@@ -2971,7 +3030,7 @@
                 <label for='nhow' class="control-label">How did worker get into job defined in job profile?<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="workhistHow" name="nhow" >
-                    <option value="">Select from list...</option>
+                    <option value="" disabled selected>Select from list...</option>
                     <%
                         for (String type : workhist) {
                     %>
@@ -2990,7 +3049,10 @@
             <div class='form-group'>
                 <label for='narrivalDate' class="control-label">Date arrived Singapore for this job:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="narrivalDate" >
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="narrivalDate" style="width:90%">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <div class='form-group'>
                 <label for='nisFirstJob' class="control-label">Is this first job in Singapore? </label>
@@ -3054,7 +3116,7 @@
                 <label for='nisProvided' class="control-label">Accommodation provided by employer?<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="accomProvided" name="nisProvided"  >
-                    <option value="">Select from list...</option>
+                    <option value="" disabled selected>Select from list...</option>
                     <%
                         for (String accomProvided : accomProvideds) {
                     %>        
@@ -3076,7 +3138,7 @@
                 <br/>
 
                 <select class="form-control" id="accomType" name="ntype"  >
-                    <option value="">Select from list...</option>
+                    <option value="" disabled selected>Select from list...</option>
                     <%
                         for (String accomtype : accomTypes) {
                     %>
@@ -3166,7 +3228,7 @@
                 <label for='nworkpassType' class="control-label">Workpass specified in IPA<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="ipapassType" name="nworkpassType">
-                    <option value="">Select from list...</option>
+                    <option value="" disabled selected>Select from list...</option>
                     <%
                         for (String ipatype : ipatypes) {
                     %>
@@ -3187,7 +3249,11 @@
             <div class='form-group'>
                 <label for='nappDate' class="control-label">IPA application date:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="nappDate">
+                <input class="form-control dateInput apdateToRemove col-md-9" type='text' name="nappDate" style="width:90%" >
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="ap" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+<br/><br/>
             </div>
             <div class='form-group'>
                 <label for='nempName' class="control-label">IPA employer name: </label>
@@ -3371,7 +3437,7 @@
             <label for='complaintMode' class="control-label">Mode of lodging complaint:</label>
             <br/>
             <select class="form-control" id="complaintMode" name="ncomplaintMode" >
-                <option value="">Select from list...</option>
+                <option value="" disabled selected>Select from list...</option>
                 <%
                     for (String complaintM : complaintMode) {
                 %>
@@ -3428,7 +3494,7 @@
             <label for='nttrStatus' class="control-label">Transfer, TJS or repatriation status<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ttrStatus" name="nttrStatus" >
-                <option value="">Select from list...</option>
+                <option value="" disabled selected>Select from list...</option>
                 <%
                     for (String tempStatus : ttrList) {
                 %>
@@ -3499,7 +3565,7 @@
             <label for='nmilestoneCRReached' class="control-label">Milestone reached<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneCRReached">
-                <option value="">Select from list...</option>
+                <option value="" disabled selected>Select from list...</option>
                 <%
                     for (String reached : crList) {
                 %>
@@ -3564,7 +3630,7 @@
             <label for='nmilestoneNCReached' class="control-label">Milestone reached<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneNCReached" >
-                <option value="">Select from list...</option>
+                <option value="" disabled selected>Select from list...</option>
                 <%
                     for (String reached : ncList) {
                 %>
@@ -3704,7 +3770,7 @@
             <label for='' class="control-label">Current MC or light Duty status<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nmcStatus" name="nmcStatus">
-                <option value="">Select from list...</option>
+                <option value="" disabled selected>Select from list...</option>
                 <%
                     for (String statusObj : statusList) {
                 %>
@@ -3768,7 +3834,7 @@
             <label for='' class="control-label">Current hospital<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nhospName" name="nhospName" >
-                <option value="">Select from list...</option>
+                <option value="" disabled selected>Select from list...</option>
                 <%            for (String name : names) {
                 %>
                 <option value="<%=name%>"><%=name%></option>
@@ -3875,7 +3941,7 @@
             <label for='nwicaStatus' class="control-label">WICA status <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nwicaStatus" name="nwicaStatus" >
-                <option value="">Select from list...</option>
+                <option value="" disabled selected>Select from list...</option>
                 <%
                     for (String tempStatus : wicaList) {
                 %>
@@ -4145,7 +4211,7 @@
             <label for='' class="control-label">Mode/Location of discussion, assistance or information-receipt<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="discussionWhere" name="ndiscussionWhere" >
-                <option value="">Select from list...</option>
+                <option value="" disabled selected>Select from list...</option>
                 <%
                     for (String location : locations) {
                 %>
@@ -4247,7 +4313,7 @@
             <div class='form-group'>
                 <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span>:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="ndate" >
+                <input class="form-control dateInput" type='text' name="ndate" value='<%=sdf.format(today)%>'>
             </div>
 
             <div class='form-group'>
@@ -4319,7 +4385,7 @@
                 <label for='nmode' class="control-label">Mode of salary payment</label>
                 <br/>
                 <select class="form-control" id="mode" name="nmode" >
-                    <option value="">Select from list...</option>
+                    <option value="" disabled selected>Select from list...</option>
                     <%
                         for (String pmode : modeOfPayment) {
                     %>
@@ -4382,7 +4448,7 @@
             <label for='lawyerFirm' class="control-label">Current law firm<span style="color: red">*</span>: </label>
             <br/>
             <select class="form-control" id="nlawyerFirm" name="nlawyerFirm" >
-                <option value="">Select from list...</option>
+                <option value="" disabled selected>Select from list...</option>
                 <%
                     for (String lawFirmName : lawFirmNameList) {
                 %>
@@ -4434,7 +4500,7 @@
                 <label for='nauxiliaryCaseWorkerName' class="control-label">Auxiliary caseworker<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nauxiliaryCaseWorkerName">
-                    <option value="">Select from list...</option>
+                    <option value="" disabled selected>Select from list...</option>
                     <%
                         for (String auxiliaryCaseWorkerName : auxiliaryCaseworkerNameList) {
                     %>
@@ -4449,13 +4515,21 @@
             <div class='form-group'>
                 <label for='nstartDate' class="control-label">Start date:</label>
                 <br/>
-                <input class="form-control startDate" type='text' name="nstartDate">
+                <input class="form-control col-md-9 startDate startdateToRemove" type='text' name="nstartDate" value="<%=sdf.format(today)%>" style="width: 90%;"/>
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="start" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <div class='form-group'>
                 <label for='nendDate' class="control-label">End date:</label>
                 <br/>
-                <input class="form-control endDate" type='text' name="nendDate">
+                <input class="form-control endDate enddateToRemove col-md-9" type='text' name="nendDate" style="width:90%">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="end" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
+            <br/>
+            <br/>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
@@ -4484,7 +4558,7 @@
                 <label for='nleadCaseWorkerName' class="control-label">Lead caseworker<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nleadCaseWorkerName">
-                    <option value="">Select from list...</option>
+                    <option value="" disabled selected>Select from list...</option>
                     <%
                         for (String leadCaseWorkerName : leadCaseWorkerNameList) {
                     %>
@@ -4499,17 +4573,24 @@
             <div class='form-group'>
                 <label for='nstartDate' class="control-label">Start date:</label>
                 <br/>
-                <input class="form-control startDate" type='text' name="nstartDate" value="<%=sdf.format(today)%>">
+                <input class="form-control" type='text' name="nstartDate" value="<%=sdf.format(today)%>"/>
+
+
             </div>
             <div class='form-group'>
                 <label for='nendDate' class="control-label">End date: </label>
                 <br/>
-                <input class="form-control endDate" type='text' name="nendDate">
+                <input class="form-control endDate enddateToRemove col-md-9" type='text' name="nendDate" style="width:90%">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="end" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+
             </div>
             <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="leadcaseworker"/>
+            <br/><br/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn btn-blue  modal_btn ">Save</button>
                 <button type='button' class='btn modal_btn  cancel_btn'>Cancel</button>
@@ -4535,7 +4616,7 @@
                 <label for='naggravissueType' class="control-label">Aggravating issue<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="aggravissueType" name="naggravissueType" >
-                    <option value="">Select from list...</option>
+                    <option value="" disabled selected>Select from list...</option>
                     <%
                         for (String aggravissueType : problemTypes) {
                     %>

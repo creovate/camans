@@ -45,6 +45,11 @@
 
         $('.form-control').addClass('input-sm');
         $('.btn_group').addClass('pull-right');
+
+        $(".removeBtn").click(function() {
+            var field = $(this).data('field');
+            $("." + field + "dateToRemove").val("");
+        });
     });
 
     //----problem form validation----//
@@ -2764,7 +2769,7 @@
             <label for='' class="control-label">Accompanying TWC2 person:</label>
             <br/>
             <input class="form-control" value='<%= (person == null) ? "" : person%>' 
-                   type='text' name="person" >
+                   type='text' name="policeReportPerson" >
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Police report ref number:</label>
@@ -2890,11 +2895,7 @@
                 <br/>
                 <input class="form-control" type='text' name="complaintAgency" value="<%=who%>">
             </div>
-            <div class='form-group' id="complaintModeView_other_div" >
-                <label for='location' class="control-label">Explain if above is 'Other':</label>
-                <br/>
-                <textarea class="form-control" name="complaintModeMore" rows="3"><%=(whoMore == null) ? "" : whoMore%></textarea>
-            </div>
+            
             <div class='form-group'>
                 <label for='complaintAgency' class="control-label">If TWC2 or third party, name of person lodging complaint:</label>
                 <br/>
@@ -2964,11 +2965,7 @@
                 %>  
             </select>
         </div>
-        <div class='form-group' id="complaintTypeView_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other':</label>
-            <br/>
-            <textarea class="form-control" name="complaintWhoMore" rows="3"><%=(whoMore == null) ? "" : whoMore%></textarea>
-        </div>
+        
         <div class='form-group'>
             <label for='complaintAgency' class="control-label">If TWC2 or third party, name of person lodging complaint:</label>
             <br/>
@@ -5211,21 +5208,25 @@
             <div class='form-group'>
                 <label for='startDate' class="control-label">Start date:</label>
                 <br/>
-                <input class="form-control startDate" type='text' name="startDate" 
-                       value="<%=(startDate == null) ? "" : sdf.format(startDate)%>">
+                <input class="form-control col-md-9 startDate startdateToRemove" type='text' name="startDate" style="width: 90%;" value="<%=(startDate == null) ? "" : sdf.format(startDate)%>"/>
+            <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="start" style="width:10%;">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
             </div>
             <div class='form-group'>
                 <label for='endDate' class="control-label">End date:</label>
                 <br/>
-                <input class="form-control endDate" type='text' name="endDate" 
-                       value="<%=(endDate == null) ? "" : sdf.format(endDate)%>">
+                <input class="form-control endDate enddateToRemove col-md-9" type='text' name="endDate" style="width:90%"  value='<%=(endDate == null) ? "" : sdf.format(endDate)%>'>
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="end" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="complementName" value="leadcaseworker"/>
             <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
             <input type="hidden" name="probKey" value="<%=probKey%>"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
-
+<br/><br/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
                 <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
@@ -5264,17 +5265,16 @@
             <div class='form-group'>
                 <label for='name' class="control-label">Start date:</label>
                 <br/>
-                <input class="form-control" type='text' name="name" 
-                       value="<%=(startDate == null) ? "" : sdf.format(startDate)%>">
+                <input class="form-control col-md-9" type='text' name="nendDate" value="<%=(startDate == null) ? "" : sdf.format(startDate)%>">
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">End date:</label>
                 <br/>
-                <input class="form-control" type='text' name="remark" 
-                       value="<%=(endDate == null) ? "" : sdf.format(endDate)%>">
+                <input class="form-control col-md-9" type='text' name="nendDate" value="<%=(endDate == null) ? "" : sdf.format(endDate)%>"/>
+
             </div>
         </fieldset>
-
+        <br/>
         <div class="form-group btn_group pull-right">
             <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#auxcaseworker_pop_up", "problem", "Edit Auxiliary Caseworker Details");'>Edit</button>
             <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#auxcaseworker_pop_up", "problem", "Add A New Auxiliary Caseworker");'>Add</button>-->                  
@@ -5302,6 +5302,7 @@
         <div class='form-group'>
             <label for='nstartDate' class="control-label">Start Date:</label>
             <br/>
+
             <input class="form-control dateInput" type='text' name="nstartDate">
         </div>
         <div class='form-group'>
@@ -5314,6 +5315,7 @@
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="auxcaseworker"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
+        <br/><br/>
         <div class="form-group btn_group">
             <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
             <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
@@ -5344,21 +5346,26 @@
         <div class='form-group'>
             <label for='startDate' class="control-label">Start date:</label>
             <br/>
-            <input class="form-control dateInput" type='text' name="startDate" 
-                   value="<%=(startDate == null) ? "" : sdf.format(startDate)%>">
+            <input class="form-control col-md-9 startDate startdateToRemove" type='text' name="startDate" value="<%=sdf.format(today)%>" style="width: 90%;" value="<%=(startDate == null) ? "" : sdf.format(startDate)%>"/>
+            <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="start" style="width:10%;">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
+
         </div>
         <div class='form-group'>
             <label for='endDate' class="control-label">End date:</label>
             <br/>
-            <input class="form-control dateInput" type='text' name="endDate" 
-                   value="<%=(endDate == null) ? "" : sdf.format(endDate)%>">
+            <input class="form-control endDate enddateToRemove col-md-9" type='text' name="endDate" style="width:90%"  value='<%=(endDate == null) ? "" : sdf.format(endDate)%>'>
+            <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="end" style="width:10%;">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="auxcaseworker"/>
         <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
         <input type="hidden" name="probKey" value="<%=probKey%>"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
-
+        <br/><br/>
         <div class="form-group btn_group">
             <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
             <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>

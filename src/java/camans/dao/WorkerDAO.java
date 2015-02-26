@@ -228,6 +228,24 @@ public class WorkerDAO {
         } 
     }
     
+    public static void updateWorkerFinNumber(String oldFin, String newFin){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = " update tbl_worker set FIN_number= ? where FIN_number = ?;";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,newFin);
+            pstmt.setString(2,oldFin);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "Worker={" +   "}");
+        } finally {
+            ConnectionManager.close(conn, pstmt, null);
+        } 
+    }
+    
     public static void deleteAll() {
         Connection conn = null;
         PreparedStatement pstmt = null;

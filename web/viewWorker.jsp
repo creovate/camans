@@ -379,12 +379,12 @@
                             <% if (successAttachMsg != null || errorAttachMsg != null) {%>
                             <div class="tab-pane" id="worker_complement">
                                 <% } else {%>    
-                                <!----Worker Complement Tab---> 
+                                <!--Worker Complement Tab--> 
                                 <div class="tab-pane active" id="worker_complement"> 
                                     <% }%>    
                                     <br/>
 
-                                    <!-- Worker Complement Success & Error Display --->
+                                    <!-- Worker Complement Success & Error Display -->
 
                                     <%
 
@@ -419,7 +419,7 @@
 
                                     <% }
                                         }%>
-                                    <!-- End of Worker Complement Success & Error Display --->
+                                    <!-- End of Worker Complement Success & Error Display -->
 
                                     <div class='row'>
                                         <!--Nickname-->
@@ -1527,10 +1527,10 @@
                                     </div>
                                 </div>
 
-                                <!----Job Complement Tab--->        
+                                <!--Job Complement Tab-->        
                                 <div class="tab-pane " id="job_complement">
                                     <br/>
-                                    <!-- Job Complement Success & Error Display --->
+                                    <!-- Job Complement Success & Error Display -->
 
                                     <% if (successJobMsg != null) {
                                             if (!successJobMsg.equals("")) {%>
@@ -1552,7 +1552,7 @@
 
                                     <% }
                                         }%>
-                                    <!-- End of Job Complement Success & Error Display --->
+                                    <!-- End of Job Complement Success & Error Display -->
                                     <div class="row">
                                         <form method="POST" action="changeToSelected">
                                             <div class="form-group col-md-12">
@@ -2479,11 +2479,11 @@
                                     </div>
                                 </div>
 
-                                <!----Problem Complement Tab--->             
+                                <!----Problem Complement Tab-->             
                                 <div class="tab-pane " id="problem_complement" >
                                     <br/>
                                     <br/>
-                                    <!-- Problem Complement Success & Error Display --->
+                                    <!-- Problem Complement Success & Error Display -->
 
                                     <% if (successProbMsg != null) {
                                             if (!successProbMsg.equals("")) {%>
@@ -2505,7 +2505,7 @@
 
                                     <% }
                                         }%>
-                                    <!-- End of Problem Complement Success & Error Display --->
+                                    <!-- End of Problem Complement Success & Error Display -->
 
                                     <div class="row">
                                         <form method="POST" action='changeToSelected'>
@@ -3040,7 +3040,7 @@
                                                                                 </a>
                                                                                 <% if (userLogin.getRole().equals("Administrator")) {%>
                                                                                 &nbsp;&nbsp;&nbsp;
-                                                                                <a style="color: black" data-value='lawyer' data-lawyer='<%=id%>'"
+                                                                                <a style="color: black" data-value="lawyer" data-lawyer="<%=id%>"
                                                                                    data-class="problem"   href="" data-toggle="modal" data-action="delete" 
                                                                                    data-target="#lawyer_pop_up"  class="delete_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-trash"></span>
@@ -4258,6 +4258,9 @@
                                                                                 java.util.Date date = policeReport.getPoliceReportDate();
                                                                                 String station = policeReport.getPoliceReportStation();
                                                                                 String accompany = policeReport.getPoliceReportPerson();
+                                                                                if(accompany.length() > 60){
+                                                                                    accompany = accompany.substring(0,60) + "...";
+                                                                                }
                                                                                 String reference = policeReport.getPoliceReportReferenceNumber();
                                                                                 if (i < policeReportIds.size() - 1) {
                                                                         %>
@@ -4729,10 +4732,10 @@
                                     </div>
                                 </div>
 
-                                <!----Benefits Complement Tab--->                             
+                                <!----Benefits Complement Tab-->                             
                                 <div class="tab-pane" id="benefit_complement" >
                                     <br/>
-                                    <!-- Benefits Success & Error Display --->
+                                    <!-- Benefits Success & Error Display -->
 
                                     <% if (successBenefitMsg != null) {
                                             if (!successBenefitMsg.equals("")) {%>
@@ -4754,7 +4757,7 @@
 
                                     <% }
                                         }%>
-                                    <!-- End of Benefits Success & Error Display --->
+                                    <!-- End of Benefits Success & Error Display -->
                                     <div class='row'>
                                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
                                             <!--meal-->
@@ -4800,7 +4803,7 @@
                                                                     Benefit benefit = BenefitDAO.retrieveBenefitById(id);
                                                                     if (i < mealIds.size() - 1) {
                                                             %>
-                                                            <tr class="other_foodbene moreobjs">
+                                                            <tr class="other_foodbene moreObjs">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
                                                                 <td><%=benefit.getBenefitType()%></td>
@@ -4853,8 +4856,8 @@
                                                             <% 
                                                                 if (mealIds.size() > 1) {
                                                             %>
-                                                                    <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_foodbene_seemore" onclick="seemore('.other_foodbene');">View Less</a>
-                                                                    <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_foodbene_seemore" onclick="seemore('.other_foodbene');">See more</a>
+                                                                    <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_foodbene_seemore" onclick="seemore('.other_foodbene');">See More</a>
+                                                                    <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_foodbene_seemore" onclick="seemore('.other_foodbene');">View Less</a>
                                                             <%
                                                                    } //if seemore
                                                           }//if
@@ -4904,7 +4907,7 @@
                                                                     Benefit benefit = BenefitDAO.retrieveBenefitById(id);
                                                                     if (i < transportIds.size() - 1) {
                                                             %>
-                                                            <tr class="other_transpoBene">
+                                                            <tr class="other_transpoBene moreObjs">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
                                                                 <td><%=benefit.getBenefitType()%></td>
@@ -4955,8 +4958,8 @@
                                                            <% 
                                                                 if (transportIds.size() > 1) {
                                                             %>
-                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_transpoBene_seemore" onclick="seemore('.other_transpoBene');">View Less</a>
-                                                                    <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_transpoBene_seemore" onclick="seemore('.other_transpoBene');">See More</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_transpoBene_seemore" onclick="seemore('.other_transpoBene');">See More</a>
+                                                                    <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_transpoBene_seemore" onclick="seemore('.other_transpoBene');">View Less</a>
                                                        <%
                                                                    } //if seemore
                                                             }
@@ -5005,7 +5008,7 @@
                                                                     Benefit benefit = BenefitDAO.retrieveBenefitById(id);
                                                                      if (i < medicalIds.size() - 1) {
                                                             %>
-                                                            <tr class="other_mediBene">
+                                                            <tr class="other_mediBene moreObjs">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
                                                                 <td><%=benefit.getBenefitType()%></td>
@@ -5062,8 +5065,8 @@
                                                          <% 
                                                                 if (medicalIds.size() > 1) {
                                                             %>
-                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_mediBene_seemore" onclick="seemore('.other_mediBene');">View Less</a>
-                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_mediBene_seemore" onclick="seemore('.other_mediBene');">See More</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_mediBene_seemore" onclick="seemore('.other_mediBene');">See More </a>
+                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_mediBene_seemore" onclick="seemore('.other_mediBene');">View Less</a>
                                                         <%
                                                                  }
                                                             }
@@ -5113,7 +5116,7 @@
                                                                     Benefit benefit = BenefitDAO.retrieveBenefitById(id);
                                                                      if (i < roofIds.size() - 1) {
                                                             %>
-                                                            <tr class="other_roofBene">
+                                                            <tr class="other_roofBene moreObjs">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
                                                                 <td><%=benefit.getBenefitType()%></td>
@@ -5164,8 +5167,8 @@
                                                         <% 
                                                                 if (roofIds.size() > 1) {
                                                             %>
-                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_roofBene_seemore" onclick="seemore('.other_roofBene');">View Less</a>
-                                                                    <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_roofBene_seemore" onclick="seemore('.other_roofBene');">See More</a>
+                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_roofBene_seemore" onclick="seemore('.other_roofBene');">See More</a>
+                                                                    <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_roofBene_seemore" onclick="seemore('.other_roofBene');">View Less</a>
                                                             <%
                                                                    } //if seemore
                                                             }
@@ -5281,14 +5284,14 @@
                                     </div>
                                 </div>
 
-                                <!----Attachments Complement Tab--->          
+                                <!----Attachments Complement Tab-->          
                                 <% if (successAttachMsg != null || errorAttachMsg != null) {%>
                                 <div class="tab-pane active" id="attachment_complement">
                                     <% } else {%>    
                                     <div class="tab-pane" id="attachment_complement"> 
                                         <% }%> 
                                         <br/><br/>
-                                        <!-- Attachments Success & Error Display --->
+                                        <!-- Attachments Success & Error Display -->
 
                                         <% if (successAttachMsg != null) {%>
 
@@ -5306,7 +5309,7 @@
                                         </div>
 
                                         <% }%>
-                                        <!-- End of Attachments Success & Error Display --->
+                                        <!-- End of Attachments Success & Error Display -->
                                         <div class="panel panel-default">
                                             <div class="panel-body">
                                                 <form id="uploadAttachForm" action="fileUpload.do" method="post" enctype="multipart/form-data"> 
@@ -5380,7 +5383,7 @@
                                         <br/>No file has been uploaded to this worker yet!
                                         <%  }%>
                                     </div>                
-                                    <!----End of Attachments Complement Tab---> 
+                                    <!----End of Attachments Complement Tab--> 
                                 </div>
                             </div>
 

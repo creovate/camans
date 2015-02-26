@@ -46,6 +46,11 @@
         });
         $('.form-control').addClass('input-sm');
         $('.btn_group').addClass('pull-right');
+
+        $(".removeBtn").click(function() {
+            var field = $(this).data('field');
+            $("." + field + "dateToRemove").val("");
+        });
     });
 
 
@@ -882,23 +887,29 @@
         <div class='form-group'>
             <label for='passportIssueDate' class="control-label">Passport issue date: </label>
             <br/>
-            <input class="form-control startDate" type='text' name="passportIssueDate" 
-                   value="<%=(passportdetails.getPassportIssueDate() == null) ? ""
-                           : sdf.format(passportdetails.getPassportIssueDate())%>">
+            <input class="form-control col-md-9 startDate startdateToRemove" type='text' name="passportIssueDate"style="width: 90%;" value="<%=(passportdetails.getPassportIssueDate() == null) ? ""
+                           : sdf.format(passportdetails.getPassportIssueDate())%>"/>
+            <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="start" style="width:10%;">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
+
         </div>
         <div class='form-group'>
             <label for='passportExpiryDate' class="control-label">Passport expiry date: </label>
             <br/>
-            <input class="form-control endDate" type='text' name="passportExpiryDate" 
-                   value="<%=(passportdetails.getPassportExpirtyDate() == null) ? ""
-                           : sdf.format(passportdetails.getPassportExpirtyDate())%>">
+                   <input class="form-control endDate enddateToRemove col-md-9" type='text' name="passportExpiryDate" style="width:90%" value="<%=(passportdetails.getPassportExpirtyDate() == null) ? ""
+                    : sdf.format(passportdetails.getPassportExpirtyDate())%>">
+            <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="end" style="width:10%;">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
+
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
         <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="WorkerPassportDetails"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
-
+        <br/><br/>
         <div class="form-group btn_group">
             <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
             <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
@@ -982,9 +993,11 @@
         <div class='form-group'>
             <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="obseleteDate" 
-                   value="<%=(sgPhNum.getObseleteDate() == null) ? ""
+            <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(sgPhNum.getObseleteDate() == null) ? ""
                            : sdf.format(sgPhNum.getObseleteDate())%>">
+            <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
         </div>
 
         <input type="hidden" name="complementName" value="WorkerSgPhNum"/>
@@ -992,6 +1005,7 @@
         <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
+        <br/><br/>
         <div class="form-group btn_group">
             <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
             <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
@@ -1093,16 +1107,18 @@
         <div class='form-group'>
             <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
             <br/>
-            <input class="form-control dateInput" type='text' name="obseleteDate" 
-                   value="<%=(homeCountryPhNum.getObseleteDate() == null) ? ""
+            <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(homeCountryPhNum.getObseleteDate() == null) ? ""
                            : sdf.format(homeCountryPhNum.getObseleteDate())%>">
+            <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
         <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="WorkerHomeCountryPhNum"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
-
+        <br/><br/>
         <div class="form-group btn_group">
             <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
             <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
@@ -1136,6 +1152,7 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
+
                 <input class="form-control" type='text' name="obseleteDate" 
                        value="<%=(sgAddress.getObseleteDate() == null) ? ""
                                : sdf.format(sgAddress.getObseleteDate())%>">
@@ -1182,16 +1199,18 @@
         <div class='form-group'>
             <label for='obseleteDate' class="control-label">Date discovered to be obsolete:</label>
             <br/>
-            <input class="form-control dateInput" type='text' name="obseleteDate" 
-                   value="<%=(sgAddress.getObseleteDate() == null) ? ""
+                   <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(sgAddress.getObseleteDate() == null) ? ""
                            : sdf.format(sgAddress.getObseleteDate())%>">
+            <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
         <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="WorkerSgAddress"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
-
+        <br/><br/>
         <div class="form-group btn_group">
             <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
             <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
@@ -1268,16 +1287,19 @@
         <div class='form-group'>
             <label for='obseleteDate' class="control-label">Date discovered to be obsolete:</label>
             <br/>
-            <input class="form-control dateInput" type='text' name="obseleteDate" 
-                   value="<%=(homeCountryAddress.getObseleteDate() == null) ? ""
+                   <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(homeCountryAddress.getObseleteDate() == null) ? ""
                            : sdf.format(homeCountryAddress.getObseleteDate())%>">
+            <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
+
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
         <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
         <input type="hidden" name="complementName" value="WorkerHomeCountryAddress"/>
         <input type="hidden" name="Id" value="<%=id%>"/>
-
+        <br/><br/>
         <div class="form-group btn_group">
             <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
             <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
@@ -1342,6 +1364,7 @@
                 <div class='form-group'>
                     <label for='digiObDate' class="control-label">Date discovered to be obsolete: </label>
                     <br/>
+
                     <input class="form-control" type='text' name="digiObDate" value="<%=(digitalContact.getObseleteDate() == null) ? "" : sdf.format(digitalContact.getObseleteDate())%>">
                 </div>
             </fieldset>
@@ -1359,7 +1382,7 @@
                 <label for='nDigitalContactType' class="control-label">Type of digital contact<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nDigitalContactType">
-                    <option value="">Select Contact Type:</option>
+                    <option value="" disabled selected>Select Contact Type:</option>
                     <%
                         for (String contactType : digitalContactList) {
                     %>
@@ -1454,16 +1477,18 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="obseleteDate" 
-                       value="<%=(digitalContact.getObseleteDate() == null) ? ""
-                               : sdf.format(digitalContact.getObseleteDate())%>">
+                       <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(digitalContact.getObseleteDate() == null) ? ""
+                        : sdf.format(digitalContact.getObseleteDate())%>">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerDigitalContact"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
-
+            <br/><br/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
@@ -1658,16 +1683,19 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="obseleteDate" 
-                       value="<%=(nextOfKin.getObseleteDate() == null) ? ""
-                               : sdf.format(nextOfKin.getObseleteDate())%>">
+                       <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(nextOfKin.getObseleteDate() == null) ? ""
+                        : sdf.format(nextOfKin.getObseleteDate())%>">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerNextOfKin"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
-
+<br/><br/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
@@ -1835,16 +1863,19 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="obseleteDate" 
-                       value="<%=(familyMember.getObseleteDate() == null) ? ""
-                               : sdf.format(familyMember.getObseleteDate())%>">
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(familyMember.getObseleteDate() == null) ? ""
+                        : sdf.format(familyMember.getObseleteDate())%>">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+                
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerFamilyMember"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
-
+<br/><br/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
@@ -1977,15 +2008,18 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="obseleteDate" 
-                       value="<%=(friend.getObseleteDate() == null) ? ""
-                               : sdf.format(friend.getObseleteDate())%>">
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(friend.getObseleteDate() == null) ? ""
+                        : sdf.format(friend.getObseleteDate())%>">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerFriend"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
+            <br/><br/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
@@ -2053,7 +2087,7 @@
                 <label for='nMainLanguage' class="control-label">Worker's main language<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nMainLanguage">
-                    <option value="">Select Language:</option>
+                    <option value="" disabled selected>Select Language:</option>
                     <%
                         for (String languageType : languageList) {
                     %>
@@ -2072,7 +2106,7 @@
                 <label for='nEnglishStandard' class="control-label">Spoken English standard<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nEnglishStandard">
-                    <option value="">Select spoken English standard:</option>
+                    <option value="" disabled selected>Select spoken English standard:</option>
                     <%
                         for (String engStd : spokenEnglishList) {
                     %> 
@@ -2357,16 +2391,18 @@
             <div class='form-group'>
                 <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="obseleteDate" 
-                       value="<%=(workerBankAcc.getObseleteDate() == null) ? ""
-                               : sdf.format(workerBankAcc.getObseleteDate())%>">
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(workerBankAcc.getObseleteDate() == null) ? ""
+                        : sdf.format(workerBankAcc.getObseleteDate())%>">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
             <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
             <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerBankAcct"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
-
+<br/><br/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>

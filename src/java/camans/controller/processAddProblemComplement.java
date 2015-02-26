@@ -1978,7 +1978,7 @@ public class processAddProblemComplement extends HttpServlet {
             } else {
                   policeReportDateStr = request.getParameter("date");
                   policeReportStation = request.getParameter("policeReportStation");
-                  policeReportPerson = request.getParameter("person");
+                  policeReportPerson = request.getParameter("policeReportPerson");
                   policeReportRefNumber = request.getParameter("policeReportRefNumber");
                   policeReportRefDetails = request.getParameter("policeReportDetails");
                   policeReportRemark = request.getParameter("remark");

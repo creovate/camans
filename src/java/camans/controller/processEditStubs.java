@@ -53,11 +53,17 @@ public class processEditStubs extends HttpServlet {
             
             if(complement.equals("worker")){
                 String registeredDateStr = request.getParameter("date");
+                String hiddenFin = request.getParameter("hiddenFin");
                 String createdBy = request.getParameter("createdBy");
                 String createdFor = request.getParameter("createdFor");
                 
                 java.sql.Date registeredDate = null;
-                
+                if(!hiddenFin.equals(workerFinNum)){
+                    //admin has edited the fin number
+                    
+                }else{
+                    
+                }
                 try {
                     java.util.Date tmp = sdf.parse(registeredDateStr);
                     registeredDate = new java.sql.Date(tmp.getTime());

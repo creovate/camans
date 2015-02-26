@@ -684,6 +684,7 @@
     </fieldset>
 
     <input type="hidden" id="stub_name" name="stub" value="worker"/>
+    <input type='hidden' name='hiddenFin' value='<%=workerFin%>'/>
     <div class="form-group pull-right">
         <button type='button' onclick="edit('worker_stub', 'Worker Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
         <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>

@@ -32,6 +32,11 @@
 
         $('.form-control').addClass('input-sm');
         $('.btn_group').addClass('pull-right');
+
+        $(".removeBtn").click(function() {
+            var field = $(this).data('field');
+            $("." + field + "dateToRemove").val("");
+        });
     });
     //job form validation 
     $(document).ready(function() {
@@ -1372,7 +1377,7 @@
                 <label for='npasstype' class="control-label">Pass type<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="passtype" name="npasstype">
-                    <option value="">Select Pass type:</option>
+                    <option value="" disabled selected>Select Pass type:</option>
                     <%
                         for (String workpassType : workpassTypes) {
                     %>
@@ -1467,27 +1472,37 @@
                 <label for='passno' class="control-label">Pass number<span style="color: red">*</span>:</label>
                 <br/>
                 <input class="form-control" type='text' name="passno" value="<%=passnum%>">
+                
             </div>
             <div class='form-group'>
                 <label for='apdate' class="control-label">Pass application date:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="apdate" 
-                       value="<%=(pass.getPassApplicationDate() == null) ? ""
-                               : sdf.format(pass.getPassApplicationDate())%>">
+                       <input class="form-control dateInput apdateToRemove col-md-9" type='text' name="apdate" style="width:90%" value="<%=(pass.getPassApplicationDate() == null) ? ""
+                        : sdf.format(pass.getPassApplicationDate())%>">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="ap" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+<br/><br/>
             </div>
             <div class='form-group'>
                 <label for='isdate' class="control-label">Pass issue date: </label>
                 <br/>
-                <input class="form-control dateInput startDate" type='text' name="isdate" 
-                       value="<%=(pass.getIssueDate() == null) ? ""
-                               : sdf.format(pass.getIssueDate())%>">
+                       <input class="form-control startDate isdateToRemove col-md-9" type='text' name="isdate" style="width:90%" value="<%=(pass.getIssueDate() == null) ? ""
+                        : sdf.format(pass.getIssueDate())%>">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="is" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+                <br/><br/>
             </div>
             <div class='form-group'>
                 <label for='exdate' class="control-label">Pass expiry date: </label>
                 <br/>
-                <input class="form-control dateInput endDate" type='text' name="exdate" 
-                       value="<%=(pass.getExpiryDate() == null) ? ""
-                               : sdf.format(pass.getExpiryDate())%>">
+                       <input class="form-control endDate exdateToRemove col-md-9" type='text' name="exdate" style="width:90%"  value="<%=(pass.getExpiryDate() == null) ? ""
+                        : sdf.format(pass.getExpiryDate())%>">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="ex" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+                <br/><br/>
             </div>
             <div class='form-group'>
                 <label for='issuer' class="control-label">Pass issuing agency:</label>
@@ -2075,7 +2090,7 @@
                 <label for='nlocation' class="control-label">Location of agent: </label>
                 <br/>
                 <select class="form-control" id="agentLocation" name="naglocation">
-                    <option value="">Select location:</option>
+                    <option value="" disabled selected>Select location:</option>
                     <%
                         for (String agentLocation : agentLocations) {
                     %>
@@ -2525,7 +2540,7 @@
                 <label for='nwpType' class="control-label">Type of workplace<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="workplaceType" name="nwpType">
-                    <option value="">Select from list:</option>
+                    <option value="" disabled selected>Select from list:</option>
                     <%
                         for (String type : workplaceTypes) {
                     %>
@@ -2560,7 +2575,7 @@
                 <label for='ndirect' class="control-label">Who directed worker to this workplace?<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="direct" name="ndirect">
-                    <option value="">Select from list:</option>
+                    <option value="" disabled selected>Select from list:</option>
                     <%
                         for (String workplacedirect : workplacedirects) {
                     %>
@@ -2814,7 +2829,7 @@
                 <label for='nhow' class="control-label">How did worker get into the job defined in Job Profile?<span style="color: red">*</span></label>
                 <br/>
                 <select class="form-control" id="workhistHow" name="nhow">
-                    <option value="">Select from list:</option>
+                    <option value="" disabled selected>Select from list:</option>
                     <%
                         for (String type : workhist) {
                     %>
@@ -2909,8 +2924,12 @@
             <div class='form-group'>
                 <label for='arrivalDate' class="control-label">Date arrived Singapore for this job:</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="arrivalDate" value="<%=(arrivalDate == null) ? "" : sdf.format(arrivalDate)%>">
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="arrivalDate" style="width:90%" value="<%=(arrivalDate == null) ? "" : sdf.format(arrivalDate)%>">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
             </div>
+                <br/><br/>
             <div class='form-group'>
                 <label for='isFirstJob' class="control-label">Is this first job in Singapore? </label>
                 <br/>
@@ -3029,7 +3048,7 @@
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=location%></textarea>
                 </div>
-                
+
                 <div class='form-group'>
                     <label for='ncondition' class="control-label">Conditions at living quarters:</label>
                     <br/>
@@ -3107,7 +3126,7 @@
                 <br/>
 
                 <select class="form-control" id="accomType" name="ntype">
-                    <option value="">Select from list:</option>
+                    <option value="" disabled selected>Select from list:</option>
                     <%
                         for (String accomtype : accomTypes) {
                     %>
@@ -3242,48 +3261,48 @@
                 <br/>
                 <textarea class="form-control" name="condition" rows="3" ><%=(condition == null) ? "" : condition%></textarea>
             </div>
-                <div class='form-group'>
-                    <label for='accCharged' class="control-label">Cost charged by employer per month S$</label>
-                    <br/>
-                    <input class="form-control" type='text' name="accCharged" value="<%=(accCharged == 0.0) ? "" : df.format(accCharged)%>">
-                </div>
-                <div class='form-group'>
-                    <label for='accPaid' class="control-label">Cost paid by self per month S$</label>
-                    <br/>
-                    <input class="form-control" type='text' name="accPaid" value="<%=(accPaid == 0.0) ? "" : df.format(accPaid)%>">
-                </div>
-                <div class='form-group'>
-                    <label for='meal' class="control-label">Meal arrangements</label>
-                    <br/>
-                    <textarea class="form-control" name="meal" rows="3" ><%=(meal == null) ? "" : meal%></textarea>
-                </div>
-                <div class='form-group'>
-                    <label for='from' class="control-label">When start staying here?:</label>
-                    <br/>
-                    <input class="form-control" type='text' name="from" value="<%=from%>">
-                </div>
-                <div class='form-group'>
-                    <label for='to' class="control-label">When stop staying here?</label>
-                    <br/>
-                    <input class="form-control" type='text' name="to" value="<%=to%>">
-                </div>
-                <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks about accommodation: </label>
-                    <br/>
-                    <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
-                </div>
-                <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-                <input type="hidden" name="complementName" value="Accommodation"/>
-                <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-                <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
-                <input type="hidden" name="Id" value="<%=id%>"/>
+            <div class='form-group'>
+                <label for='accCharged' class="control-label">Cost charged by employer per month S$</label>
+                <br/>
+                <input class="form-control" type='text' name="accCharged" value="<%=(accCharged == 0.0) ? "" : df.format(accCharged)%>">
+            </div>
+            <div class='form-group'>
+                <label for='accPaid' class="control-label">Cost paid by self per month S$</label>
+                <br/>
+                <input class="form-control" type='text' name="accPaid" value="<%=(accPaid == 0.0) ? "" : df.format(accPaid)%>">
+            </div>
+            <div class='form-group'>
+                <label for='meal' class="control-label">Meal arrangements</label>
+                <br/>
+                <textarea class="form-control" name="meal" rows="3" ><%=(meal == null) ? "" : meal%></textarea>
+            </div>
+            <div class='form-group'>
+                <label for='from' class="control-label">When start staying here?:</label>
+                <br/>
+                <input class="form-control" type='text' name="from" value="<%=from%>">
+            </div>
+            <div class='form-group'>
+                <label for='to' class="control-label">When stop staying here?</label>
+                <br/>
+                <input class="form-control" type='text' name="to" value="<%=to%>">
+            </div>
+            <div class='form-group'>
+                <label for='remark' class="control-label">Remarks about accommodation: </label>
+                <br/>
+                <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
+            </div>
+            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
+            <input type="hidden" name="complementName" value="Accommodation"/>
+            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
+            <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
+            <input type="hidden" name="Id" value="<%=id%>"/>
 
-                <div class="form-group btn_group">
-                    <button type='submit' class="btn btn-blue modal_btn edit_comp">Save</button>
-                    <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
-                </div>
+            <div class="form-group btn_group">
+                <button type='submit' class="btn btn-blue modal_btn edit_comp">Save</button>
+                <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
             </div>
         </div>
+    </div>
 </form>
 
 <!------->
@@ -3342,7 +3361,7 @@
                 <div class='form-group'>
                     <label for='name' class="control-label">IPA application date:</label>
                     <br/>
-                    <input class="form-control" type='text' name="nappDate" value="<%=ipadate%>">
+                    <input class="form-control" type='text' name="nappDate" value="<%=(ipadate == null) ? "" : sdf.format(ipadate)%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">IPA employer name: </label>
@@ -3447,8 +3466,11 @@
             <div class='form-group'>
                 <label for='appDate' class="control-label">IPA application date:</label>
                 <br/>
-                <input class="form-control  dateInput" type='text' name="appDate" 
-                       value="<%=ipadate%>">
+                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="appDate" style="width:90%" value="<%=(ipadate == null) ? "" : sdf.format(ipadate)%>">
+                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+<br/><br/>
             </div>
             <div class='form-group'>
                 <label for='empName' class="control-label">IPA employer name: </label>
