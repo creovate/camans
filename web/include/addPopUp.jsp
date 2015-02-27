@@ -65,10 +65,8 @@
 
         $(".removeBtn").click(function() {
             var field = $(this).data('field');
-            alert(field);
-            //alert("hello");
+            
             $("." + field + "dateToRemove").val("");
-            //alert("hello");
         });
 
     });

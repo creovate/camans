@@ -102,6 +102,52 @@
                                 }
                             }
                         },
+                        workerName: {
+                            maxlength: 50,
+                            required: true
+                        },
+                        nationalityMore: {
+                            maxlength: 50
+                        },
+                        createdFor: {
+                            maxlength: 20
+                        },
+                        employerName: {
+                            maxlength: 50,
+                            required: true
+                        },
+                        workpassMore: {
+                            maxlength: 50
+                        },
+                        jobSectorMore: {
+                            maxlength: 50
+                        },
+                        occupation: {
+                            maxlength: 50
+                        },
+                        jobStartDate: {
+                            maxlength: 50
+                        },
+                        jobEndDate: {
+                            maxlength: 50
+                        },
+                        
+                        jobRemark: {
+                            maxlength: 200
+                        },
+                        problemRegDate: {
+                            required: true
+                        },
+                        problem:{
+                            required: true
+                        },
+                        problemMore: {
+                            maxlength: 50
+                        },
+                        
+                        problemRemark: {
+                            maxlength: 200
+                        },
                         facePic: {
                             accept: "image/png,image/jpeg,image/jpg,image/bmp",
                             extension: "png,jpeg,jpg,bmp",
@@ -234,7 +280,7 @@
                             <div class="form-group">
                                 <label for="created_for_In" class="col-md-3 control-label">Created For</label>
                                 <div class=" col-md-6">
-                                    <input type="text" name="createdFor" class="form-control" maxlength="20"/>
+                                    <input type="text" name="createdFor" class="form-control" />
                                 </div>
                             </div>
 
@@ -242,7 +288,7 @@
                             <div class="form-group">
                                 <label for="worker_name" class="col-md-3 control-label " >Name of Worker <span class="required_input">*</span> </label>
                                 <div class=" col-md-6">
-                                    <input type="text" class="form-control required" name="workerName" maxlength="50" required/>
+                                    <input type="text" class="form-control required" name="workerName"/>
                                 </div>
                             </div>
 
@@ -289,7 +335,7 @@
                             <div class="form-group" id="worker_nationality_other_div">
                                 <label for="worker_nationality_other_In" class="col-md-3 control-label">Explain if above is other</label>
                                 <div class=" col-md-6">
-                                    <input type="text" class="form-control" name="nationalityMore" maxlength="50"/>
+                                    <input type="text" class="form-control" name="nationalityMore" />
                                 </div>
                             </div>
 
@@ -318,7 +364,7 @@
                             <div class="form-group">
                                 <label for="emp_name" class="col-md-3 control-label" >Name of Employer <span class="required_input">*</span> </label>
                                 <div class=" col-md-6">
-                                    <input type="text" class="form-control required" id="employerName" name="employerName" maxlength="50" required/></div>
+                                    <input type="text" class="form-control required" id="employerName" name="employerName"/></div>
                             </div>
 
 
@@ -343,7 +389,7 @@
                             <div class="form-group" id="job_pass_type_other_div">
                                 <label for="job_pass_type_other_In" class="col-md-3 control-label">Explain if above is 'Other'</label>
                                 <div class=" col-md-6">
-                                    <input type="text" class="form-control" name="workpassMore" maxlength="50"/></div>
+                                    <input type="text" class="form-control" name="workpassMore"/></div>
                             </div>
 
 
@@ -368,26 +414,26 @@
                             <div class="form-group" id="job_sector_other_div">
                                 <label for="job_sector_other_In" class="col-md-3 control-label">Explain if above is other</label>
                                 <div class=" col-md-6">
-                                    <input type="text" class="form-control" name="jobSectorMore" maxlength="50"/></div>
+                                    <input type="text" class="form-control" name="jobSectorMore"/></div>
                             </div>
 
                             <div class="form-group">
                                 <label for="occupation" class="col-md-3 control-label" >Occupation</label>
                                 <div class=" col-md-6">
-                                    <input type="text" class="form-control" name="occupation" maxlength="50"/></div>
+                                    <input type="text" class="form-control" name="occupation"/></div>
                             </div>
 
 
                             <div class="form-group">
                                 <label for="job_start_date" class="col-md-3 control-label" >When Job Start?</label>
                                 <div class=" col-md-6">
-                                    <input type="text" class="form-control" name="jobStartDate" maxlength="50"/></div>
+                                    <input type="text" class="form-control" name="jobStartDate"/></div>
                             </div>
 
                             <div class="form-group">
                                 <label for="job_end_date" class="col-md-3 control-label">When Job End?</label>
                                 <div class=" col-md-6">
-                                    <input type="text"  class="form-control" name="jobEndDate" maxlength="50"/></div>
+                                    <input type="text"  class="form-control" name="jobEndDate"/></div>
                             </div>
 
 
@@ -405,7 +451,7 @@
                             <div class="form-group" id="job_sector_other_div">
                                 <label for="job_remark" class="col-md-3 control-label">Remark about Job:</label>
                                 <div class=" col-md-6">
-                                    <input type="text" class="form-control" name="jobRemark" maxlength="200"/> 
+                                    <input type="text" class="form-control" name="jobRemark"/> 
                                 </div>
                             </div>
 
@@ -430,7 +476,7 @@
                                 <label for='isdate' class="col-md-3 control-label">Problem Registration Date<span class="required_input">*</span>: </label>
 
                                 <div class='col-md-6'>
-                                    <input class="form-control dateInput" type='text' name="problemRegDate" value="<%=sdf.format(today)%>" required>
+                                    <input class="form-control dateInput" type='text' name="problemRegDate" value="<%=sdf.format(today)%>">
                                 </div>
                                 <br/>
                             </div>
@@ -438,7 +484,7 @@
                             <div class="form-group">
                                 <label for="prob_type" class="col-md-3 control-label">Problem Presented<span class="required_input">*</span></label>
                                 <div class=" col-md-6"> 
-                                    <select name="problem" id="prob_type" class="form-control" required>
+                                    <select name="problem" id="prob_type" class="form-control">
                                         <option value="">Select Problem..</option>
                                         <%
                                             for (String problemStr : problemList) {
@@ -456,14 +502,14 @@
                             <div class="form-group" id="prob_type_other_div">
                                 <label for="worker_pass_type_other_In" class="col-md-3 control-label">Explain if above is other</label>
                                 <div class=" col-md-6">
-                                    <input type="text" class="form-control" name="problemMore" maxlength="50" /></div>
+                                    <input type="text" class="form-control" name="problemMore" /></div>
                             </div>
 
 
                             <div class="form-group" id="job_sector_other_div" >
                                 <label for="prob_remark" class="col-md-3 control-label">Remark about Problem:</label>
                                 <div class=" col-md-6">
-                                    <input type="text" class="form-control" name="problemRemark" maxlength="200"/></div>
+                                    <input type="text" class="form-control" name="problemRemark"/></div>
                             </div>
 
                             <div class="form-group btn btn-blue-div col-md-12">
@@ -515,179 +561,8 @@
     </body>
 </html>
 <script>
-            /**       
-             * form validation 
-             $(document).ready(function() {
-             $('#createworker_form')
-             .bootstrapValidator({
-             fields: {
-             facePic: {
-             validators: {
-             file: {
-             extension: 'png,jpeg,jpg,bmp',
-             type: 'image/png,image/jpeg,image/jpg,image/bmp',
-             maxSize: 1024 * 1024,
-             message: 'Please choose an image file with a size less than 1M only.'
-             }
-             }
-             },
-             //worker
-             
-             finNum: {
-             validators: {
-             stringLength: {
-             max: 12,
-             message: 'This field must be less than 12 characters.'
-             },
-             notEmpty: {
-             message: 'This field cannot be empty.'
-             },
-             callback: {
-             message: 'Wrong answer',
-             callback: function(value, validator, $field) {
-             var finType1 = /^[G][0-9]{7}[A-Z]$/;
-             var finType2 = /^GEN[0-9]{6}$/;
-             var finType1Res = finType1.test(value);
-             if (finType1.test(value) === false && finType2.test(value) === false) {
-             return {
-             valid: false,
-             message: 'FIN number is incorrect. Please Check again.'
-             };
-             }
-             return true;
-             }
-             },
-             remote: {
-             message: 'The FIN Number already exists.',
-             url: 'processValidate',
-             data: function(validator) {
-             return {
-             finNum: validator.getFieldElements('finNum').val()
-             };
-             }
-             }
-             }
-             },
-             nationalityMore: {
-             validators: {
-             stringLength: {
-             max: 50,
-             message: 'This field must be less than 50 characters.'
-             }
-             }
-             },
-             createdFor: {
-             validators: {
-             stringLength: {
-             max: 20,
-             message: 'This field must be less than 20 characters.'
-             }
-             }
-             },
-             //job Profile
-             employerName: {
-             validators: {
-             notEmpty: {
-             message: 'This field cannot be empty.'
-             },
-             stringLength: {
-             max: 50,
-             message: 'This field must be less than 50 characters.'
-             }
-             }
-             },
-             workpassType: {
-             validators: {
-             notEmpty: {
-             message: 'This field cannot be empty.'
-             }
-             }
-             },
-             workpassMore: {
-             validators: {
-             stringLength: {
-             max: 50,
-             message: 'This field must be less than 50 characters.'
-             }
-             }
-             },
-             jobSectorMore: {
-             validators: {
-             stringLength: {
-             max: 50,
-             message: 'This field must be less than 50 characters.'
-             }
-             }
-             },
-             occupation: {
-             validators: {
-             stringLength: {
-             min: 0,
-             max: 50,
-             message: 'This field must be less than 50 characters.'
-             }
-             }
-             },
-             jobStartDate: {
-             validators: {
-             stringLength: {
-             min: 0,
-             max: 50,
-             message: 'This field must be less than 50 characters.'
-             }
-             }
-             },
-             jobEndDate: {
-             validators: {
-             stringLength: {
-             min: 0,
-             max: 50,
-             message: 'This field must be less than 50 characters.'
-             }
-             }
-             },
-             jobRemark: {
-             validators: {
-             stringLength: {
-             min: 0,
-             max: 200,
-             message: 'This field must be less than 200 characters.'
-             }
-             }
-             },
-             //problem profile
-             problem: {
-             validators: {
-             notEmpty: {
-             message: 'This field cannot be empty.'
-             }
-             }
-             },
-             problemMore: {
-             validators: {
-             stringLength: {
-             max: 50,
-             message: 'This field must be less than 50 characters.'
-             }
-             }
-             },
-             problemRemark: {
-             validators: {
-             stringLength: {
-             max: 200,
-             message: 'This field must be less than 200 characters.'
-             }
-             }
-             }
-             }
-             });
-             
-             
-             });
-             **/
 
-
-<!--added by soemyatmyat for generating TWC2 In-house FinNumber-->
+//added by soemyatmyat for generating TWC2 In-house FinNumber
 
             $('#generateTWC2Fin').click(function() {
                 $.ajax({
@@ -710,15 +585,15 @@
             //session time out
 
 
-    $(document).ready(function () {
-        $.sessionTimeout({
-            message: 'Your session will be expired in five minutes.',
-            keepAliveUrl: 'keep-alive.html',
-            logoutUrl: 'logout.jsp',
-            redirUrl: 'logout.jsp',
-            warnAfter: 900000, //15 minutes
-            redirAfter: 1200000 // 20 minutes
-        });
-    });
+            $(document).ready(function() {
+                $.sessionTimeout({
+                    message: 'Your session will be expired in five minutes.',
+                    keepAliveUrl: 'keep-alive.html',
+                    logoutUrl: 'logout.jsp',
+                    redirUrl: 'logout.jsp',
+                    warnAfter: 900000, //15 minutes
+                    redirAfter: 1200000 // 20 minutes
+                });
+            });
 
 </script>  
