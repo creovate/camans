@@ -60,9 +60,8 @@ public class processEditStubs extends HttpServlet {
                 java.sql.Date registeredDate = null;
                 if(!hiddenFin.equals(workerFinNum)){
                     //admin has edited the fin number
-                    
-                }else{
-                    
+                    WorkerDAO.updateWorkerFinNumber(hiddenFin, workerFinNum);
+                    //workerFinNum = hiddenFin;
                 }
                 try {
                     java.util.Date tmp = sdf.parse(registeredDateStr);

@@ -240,7 +240,7 @@ public class WorkerDAO {
             pstmt.setString(2,oldFin);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
-            handleSQLException(ex, sql, "Worker={" +   "}");
+            handleSQLException(ex, sql, "FIN Number={" + oldFin +  " to " + newFin +"}");
         } finally {
             ConnectionManager.close(conn, pstmt, null);
         } 
