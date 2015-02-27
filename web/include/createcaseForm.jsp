@@ -88,8 +88,8 @@
     ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListByType("Work_pass_type");
     ArrayList<String> jobSectorList = DropdownDAO.retrieveAllDropdownListOfJobSector();
     ArrayList<String> hospitalList = DropdownDAO.retrieveAllDropdownListOfHosptialType();
-    
-    
+
+
     java.util.Date today = new java.util.Date();
     //javascript method to blur the input fields if the action is view
     //if the action is view, 
@@ -118,7 +118,7 @@
         $('.delete_btn').hide();
         //$(".add_btn").toggle();
         if (<%= isAdmin%> == true) {
-            $('#workerFin').removeClass('no_change');
+            $('#finNum').removeClass('no_change');
         }
     }
     ;
@@ -325,27 +325,21 @@
     $(document).ready(function() {
         //methods for jquery validator
         jQuery.validator.addMethod("FIN", function(value, element) {
-            return this.optional(element) || /^[A-Z][0-9]{7}[A-Z]/.test(value) || /^GEN[0-9]{6}/.test(value);
+            return this.optional(element) || /^[A-Z][0-9]{7}[A-Z]$/.test(value) || /^GEN[0-9]{6}$/.test(value);
         }, "Invalid FIN number format. Please check again.");
         jQuery.validator.addMethod("FileSize", function(value, element) {
             return this.optional(element) || (element.files[0].size <= 1048576);
         }, "Invalid File size. Please Check again.");
         //validation
+
+
         $('#worker_stub').validate({
             //ignore: ":hidden",
             rules: {
-                workerFin: {
+                finNum: {
                     required: true,
-                    FIN: true,
-                    remote: {
-                        url: "processValidate",
-                        type: "POST",
-                        data: {
-                            finNum: function() {
-                                return $("#workerFin").val();
-                            }
-                        }
-                    }
+                    FIN: true
+
                 },
                 wkerName: {
                     maxlength: 50,
@@ -382,41 +376,41 @@
         });
 
 
-/**
-        $('#worker_stub')
-                .bootstrapValidator({
-            fields: {
-                wkerName: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field cannot be empty.'
-                        },
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                nationalityMore: {
-                    validators: {
-                        stringLength: {
-                            max: 50,
-                            message: 'This field must be less than 50 characters.'
-                        }
-                    }
-                },
-                createdFor: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'This field must be less than 20 characters.'
-                        }
-                    }
-                }
-            }
-        });
-        
-        **/
+        /**
+         $('#worker_stub')
+         .bootstrapValidator({
+         fields: {
+         wkerName: {
+         validators: {
+         notEmpty: {
+         message: 'This field cannot be empty.'
+         },
+         stringLength: {
+         max: 50,
+         message: 'This field must be less than 50 characters.'
+         }
+         }
+         },
+         nationalityMore: {
+         validators: {
+         stringLength: {
+         max: 50,
+         message: 'This field must be less than 50 characters.'
+         }
+         }
+         },
+         createdFor: {
+         validators: {
+         stringLength: {
+         max: 20,
+         message: 'This field must be less than 20 characters.'
+         }
+         }
+         }
+         }
+         });
+         
+         **/
     });
 
     /**
@@ -487,6 +481,24 @@
                 }
             }
         });
+    });
+    $('#finNum').change(function() {
+        if ($('#finNum').val() !== $("#hiddenFin").val()) {
+            $('#finNum').rules('add', {
+                remote: {
+                    url: "processValidate",
+                    type: "POST",
+                    data: {
+                        finNum: function() {
+                            return $("#finNum").val();
+                        }
+                    }
+                }
+            });
+
+        } else {
+            $('#finNum').rules('remove', 'remote');
+        }
     });
 
     /**
@@ -613,7 +625,7 @@
                 <label for='isdate' class="control-label ">FIN Number: </label>
             </div>
             <div class='col-md-7'>
-                <input class="form-control no_change" id="workerFin" type='text' name="workerFin" value="<%=workerFin%>">
+                <input class="form-control no_change" id="finNum" type='text' name="finNum" value="<%=workerFin%>">
             </div>
             <br/>
         </div><br/>
@@ -684,7 +696,7 @@
     </fieldset>
 
     <input type="hidden" id="stub_name" name="stub" value="worker"/>
-    <input type='hidden' name='hiddenFin' value='<%=workerFin%>'/>
+    <input type='hidden' name='hiddenFin' id="hiddenFin" value='<%=workerFin%>'/>
     <div class="form-group pull-right">
         <button type='button' onclick="edit('worker_stub', 'Worker Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
         <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
