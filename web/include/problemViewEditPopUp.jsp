@@ -1711,6 +1711,7 @@
             String injuryRemark = pinjury.getInjuryRemarks();
         %>  
 
+<!--view-->
         <div class="view_comp" >
             <fieldset disabled>
                 <div class='form-group'>
@@ -1773,81 +1774,7 @@
                 <button type='button' class="btn view_comp cancel_btn">Cancel</button>
             </div>
         </div>
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='ndate' class="control-label">Date of injury<span style="color: red">*</span>:</label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>" >
-            </div>
-            <div class='form-group'>
-                <label for='ntime' class="control-label">Approx time of injury </label>
-                <br/>
-                <input class="form-control" type='text' name="ntime">
-            </div>
-            <div class='form-group'>
-                <label for='nlocation' class="control-label">Location of incident</label>
-                <br/>
-                <input class="form-control" type='text' name="nlocation">
-            </div>
-            <div class='form-group'>
-                <label for='ndeath' class="control-label">Did death ensue?</label>
-                <br/>
-                <select class="form-control" id="injuryDeath" name="ndeath">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <label for='nbodyPart' class="control-label">Body part(s) injured</label>
-                <br/>
-                <textarea class="form-control" name="nbodyPart" rows="3"></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nhowinjury' class="control-label">How injury happened</label>
-                <br/>
-                <textarea class="form-control" name="nhowinjury" rows="3"></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nambulance' class="control-label">Was worker conveyed to hospital in ambulance?</label>
-                <br/>
-                <select class="form-control" id="injuryAmbulance" name="nambulance">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Don't know</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <label for='ntreatement' class="control-label">Where (clinic/hospital) initially treated</label>
-                <br/>
-                <input class="form-control" type='text' name="ntreatement">
-            </div>
-            <div class='form-group'>
-                <label for='nworkRelated' class="control-label">Does worker consider incident work-related?</label>
-                <br/>
-                <select class="form-control" id="injuryWorkRelated" name="nworkRelated">
-                    <option selected>Yes</option>
-                    <option>No</option>
-                    <option>Don't know</option>
-                </select>
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about Injury history:</label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3"></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="injurycase"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
+<!--edit-->
         <div class='edit_comp'>
             <div class='form-group'>
                 <label for='date' class="control-label">Date of injury:</label>
@@ -1965,9 +1892,9 @@
     </div>
 </form>
 
-<!------------------->
-<!--illness history-->
-<!------------------->
+<!-- --------------- -->
+<!-- illness history -->
+<!-- --------------- -->
 <%
     }
     if (illnessCaseId != null) {
@@ -2035,57 +1962,6 @@
             </div>
         </div>
 
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nstartTime' class="control-label">When illness Began<span style="color: red">*</span>:</label>
-                <br/>
-                <input class="form-control" type='text' name="nstartTime">
-            </div>
-            <div class='form-group'>
-                <label for='ndiagnoseTime' class="control-label">When illness diagnosed:</label>
-                <br/>
-                <input class="form-control" type='text' name="ndiagnoseTime">
-            </div>
-            <div class='form-group'>
-                <label for='ndiagnosePerson' class="control-label">Who (Doctor/hospital name) Diagnosed:</label>
-                <br/>
-                <input class="form-control" type='text' name="ndiagnosePerson">
-            </div>
-            <div class='form-group'>
-                <label for='nnature' class="control-label">Nature of illness</label>
-                <br/>
-                <input class="form-control" type='text' name="nnature">
-            </div>
-            <div class='form-group'>
-                <lable for='nworkRelated' class='control-label'>Does worker consider illness work-related?</lable>
-                <br/>
-                <select class="form-control" id="workRelated" name="nworkRelated">
-                    <option selected>No</option>
-                    <option>Yes</option>
-                    <option>Don't know</option>
-                </select>
-            </div>
-            <div class='form-group' id='workRelatedYes_div'>
-                <label for='nworkRelatedYes' class='control-label'>If worker thinks work-related, why?</label>
-                <br/>
-                <textarea class="form-control" name="nworkRelatedYes" rows="3"></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about illness history:</label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3"></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="illnesscase"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
 
         <div class='edit_comp'>
             <div class='form-group'>
@@ -2128,12 +2004,13 @@
                     <option selected>Don't know</option>
                     <option>Yes</option>
                     <option>No</option>
-                    <% }
+                    <% 
+                }
                     %>
                 </select>
             </div>
-            <div class='form-group' id='workRelatedYes_div'>
-                <label for='workRelatedYes' class='control-label'>If worker thinks work-related, why?</label>
+            <div class="form-group" id="workRelatedYes_div">
+                <label for="workRelatedYes" class="control-label">If worker thinks work-related, why?</label>
                 <br/>
                 <textarea class="form-control" name="workRelatedYes" rows="3"><%=(why == null) ? "" : why%></textarea>
             </div>
@@ -2197,33 +2074,6 @@
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#othercase_pop_up", "problem", "Edit Details & history of Other Problems");'>Edit</button>
                 <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#othercase_pop_up", "problem", "Add Details & history of Other Problems");'>Add</button>-->                  
                 <button type='button' class="btn cancel_btn">Cancel</button>
-            </div>
-        </div>
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nother' class="control-label">Details of problem if it's not salary/injury/illness<span style="color: red">*</span>:</label>
-                <br/>
-                <textarea class="form-control" name="nother" rows="3"></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nloss' class="control-label">Estimated value of claim S$</label>
-                <br/>
-                <input class="form-control" type='text' name="nloss">
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about history of other problems:</label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3"></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="othercase"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2306,37 +2156,6 @@
             </div>
         </div>
 
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span>:</label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="ndate">
-            </div>
-
-            <div class='form-group'>
-                <label for='nloss' class="control-label">Initial value of claim S$</label>
-                <br/>
-                <input class="form-control" type='text' name="nloss">
-            </div>
-            <div class='form-group'>
-                <label for='nbasis' class="control-label">Describe basis for amount claimed</label>
-                <br/>
-                <textarea class="form-control" name="nbasis" rows="3"></textarea>
-            </div>
-
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="salarycalim"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
         <div class='edit_comp'>
 
             <div class='form-group'>
@@ -2381,7 +2200,7 @@
         ProblemWicaClaim pwicaClaim = ProblemComplementsDAO.retrieveProblemWicaClaimById(id);
 %>
 
-<form method="POST" id='wicaclaim_pop_up' class="form complement_detailed_form problem_pop_up"  >
+<form method="POST" id="wicaclaim_pop_up" class="form complement_detailed_form problem_pop_up"  >
 
     <div class='form-group'>
 
@@ -2431,50 +2250,6 @@
                 <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#wicaclaim_pop_up", "problem", "Edit WICA Claim Lodged Details");'>Edit</button>
                 <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#wicaclaim_pop_up", "problem", "Add WICA Claim Lodged Details")'>Add</button>-->                  
                 <button type='button' class="btn cancel_btn">Cancel</button>
-            </div>
-        </div>
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span>:</label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="ndate">
-            </div>
-
-            <div class='form-group'>
-                <label for='nrefNumber' class="control-label">WICA ref number:</label>
-                <br/>
-                <input class="form-control" type='text' name="nrefNumber">
-            </div>
-            <div class='form-group'>
-                <label for='ninsurer' class="control-label">WICA insurance company</label>
-                <br/>
-                <input class="form-control" type='text' name="ninsurer">
-            </div>
-            <div class='form-group'>
-                <label for='npolicyNumber' class="control-label">WICA insurance policy number</label>
-                <br/>
-                <input class="form-control" type='text' name="npolicyNumber">
-            </div>
-            <div class='form-group'>
-                <label for='nreason' class="control-label">State whether initially lodged by lawyer, worker or TWC2:</label>
-                <br/>
-                <textarea class="form-control" name="nreason" rows="3"></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about WICA Claim:</label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3"></textarea>
-            </div>
-
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="wicaclaim"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -2591,52 +2366,6 @@
             <button type='button' class="btn cancel_btn">Cancel</button>
         </div>
     </div>
-
-
-    <div class='add_comp'>
-        <div class='form-group'>
-            <label for='ndate' class="control-label">Date MOM notified<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control dateInput" type='text' name="ndate">
-        </div>
-
-        <div class='form-group'>
-            <label for='nloss' class="control-label">Initial value of claim S$</label>
-            <br/>
-            <input class="form-control" type='text' name="nloss">
-        </div>
-        <div class='form-group'>
-            <label for='ninsurer' class="control-label">Insurance company</label>
-            <br/>
-            <input class="form-control" type='text' name="ninsurer">
-        </div>
-        <div class='form-group'>
-            <label for='npolicyNumber' class="control-label">Insurance policy number</label>
-            <br/>
-            <input class="form-control" type='text' name="npolicyNumber">
-        </div>
-        <div class='form-group'>
-            <label for='nbasis' class="control-label">Describe basis for amount claimed</label>
-            <br/>
-            <textarea class="form-control" name="nbasis" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='remark' class="control-label">Remarks about medical claim:</label>
-            <br/>
-            <textarea class="form-control" name="nNWICAremark" rows="3"></textarea>
-        </div>
-
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="nonwicaclaim"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
-
 
     <div class='edit_comp'>
 
@@ -2799,51 +2528,6 @@
             <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-
-    <!--add-->
-    <div class='add_comp'>
-
-        <div class='form-group '>
-            <label for='date' class="control-label">Date police report made<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control dateInput" type='text' name="ndate" >
-        </div>
-        <div class='form-group '>
-            <label for='date' class="control-label">Police station where report lodged:</label>
-            <br/>
-            <input class="form-control" type='text' name="npoliceReportStation" >
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Accompanying TWC2 person:</label>
-            <br/>
-            <input class="form-control" type='text' name="nperson" >
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Police Report Ref Number:</label>
-            <br/>
-            <input class="form-control" type='text' name="npoliceReportRefNumber" >
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Details of police report:</label>
-            <br/>
-            <textarea class="form-control" name="npoliceReportDetails" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Remarks about Police Report:</label>
-            <br/>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
-        </div>
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="policareport"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
-
 
 </form>
 
@@ -3021,85 +2705,6 @@
             <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-
-    <!--add-->
-    <div class='add_comp'>
-        <div class='form-group '>
-            <label for='date' class="control-label">Date other complaint lodged<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
-        </div>
-        <div class='form-group '>
-            <label for='date' class="control-label">Agency/authority to whom complaint addressed<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control" type='text' name="ncomplaintAgency" >
-        </div>
-        <div class='form-group'>
-            <label for='complaintWho' class="control-label">This complaint is lodged by<span style="color: red">*</span>:</label>
-            <br/>
-            <select class="form-control" id="complaintWho" name="ncomplaintWho">
-                <%
-                    for (String complaintType : complaintWho) {
-                        if (complaintType.equals("Worker")) {
-                %>
-                <option selected><%=complaintType%></option>
-                <%
-                } else {
-                %>
-                <option><%=complaintType%></option>
-                <%
-                        }
-                    }
-                %>  
-            </select>
-        </div>
-
-        <div class='form-group' id="complaintWho_other_div" >
-            <label for='location' class="control-label">If TWC2 or third party, name of person lodging complaint:</label>
-            <br/>
-            <input class="form-control" type='text' name="ncomplaintWhoMore">
-        </div>
-        <div class='form-group'>
-            <label for='complaintMode' class="control-label">Mode of lodging complaint:</label>
-            <br/>
-            <select class="form-control" id="complaintMode" name="ncomplaintMode">
-                <option value="">Select from list:</option>
-                <%
-                    for (String complaintM : complaintMode) {
-                %>
-                <option value="<%=complaintM%>"><%=complaintM%></option>
-                <%
-
-                    }
-                %>  
-            </select>
-        </div>
-        <div class='form-group' id="complaintMode_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other':</label>
-            <br/>
-            <textarea class="form-control" name="ncomplaintModeMore" rows="3"></textarea>
-        </div>
-        <div class='form-group '>
-            <label for='date' class="control-label">Details of complaint lodged:</label>
-            <br/>
-            <textarea class="form-control" name="ncomplaintDetails" rows="3"></textarea>
-        </div>
-        <div class='form-group '>
-            <label for='date' class="control-label">Remarks about this Complaint:</label>
-            <br/>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
-        </div>
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="othercomplaint"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
-
 
 </form>
 
@@ -3333,108 +2938,6 @@
             <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-
-    <!--add-->
-    <div class='add_comp'>
-        <div class='form-group'>
-            <label for='' class="control-label">Date of discussion, assistance or information-receipt<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control dateInput" type='text' name="ndate" >
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Approx Time of event:</label>
-            <br/>
-            <input class="form-control" type='text' name="ndiscussionTime" >
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Mode/Location of discussion, assistance or information-receipt<span style="color: red">*</span>:</label>
-            <br/>
-            <select class="form-control" id="discussionWhere" name="ndiscussionWhere">
-                <option value="">Select from list:</option>
-                <%
-                    for (String location : locations) {
-                %>
-                <option value="<%=location%>"><%=location%></option>
-                <%
-
-                    }
-                %>  
-            </select>
-        </div>
-        <div class='form-group' id="discussionWhere_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other':</label>
-            <br/>
-            <textarea class="form-control" name="ndiscussionWhereOther" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Was worker participating:</label>
-            <br/>
-            <select class="form-control" id="isworkerpresent" name="ndiscussionWorkerPresent">
-                <option selected>Yes</option>
-                <option>No</option>
-            </select>
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">TWC2 Person Consulted, Assisting or Informed<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control" type='text' name="ndiscussionTWC2P1" >
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Names of Other TWC2 Persons Present:</label>
-            <br/>
-            <input class="form-control" type='text' name="ndiscussionTWC2P2" >
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Names of Other Persons Present:</label>
-            <br/>
-            <input class="form-control" type='text' name="ndiscussionOtherPerson" >
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Name of Translator(s) Present:</label>
-            <br/>
-            <input class="form-control" type='text' name="ndiscussionTranslator" >
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Topic of Discussion/Information Received<span style="color: red">*</span>: </label>
-            <br/>
-            <input class="form-control" type='text' name="ndiscussionTopic" >
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Gist of Discussion or New Information Received:</label>
-            <br/>
-            <textarea class="form-control" name="ndiscussionGist" rows="4"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Immediate Assistance or Referral Provided:</label>
-            <br/>
-            <textarea class="form-control" name="ndiscussionAssist" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Updated Calculation of claim value:</label>
-            <br/>
-            <textarea class="form-control" name="ndiscussionCal" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Action to follow:</label>
-            <br/>
-            <textarea class="form-control" name="ndiscussionAction" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Internal Remarks about Discussion:</label>
-            <br/>
-            <textarea class="form-control" name="ninternalRemarks" rows="3"></textarea>
-        </div>
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="casediscussion"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
 </form>
 
 <!------------>
@@ -3557,56 +3060,6 @@
         </div>
     </div>
 
-    <!--add-->
-    <div class='add_comp'>
-
-        <div class='form-group'>
-            <label for='' class="control-label">Date of update<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Current Hospital<span style="color: red">*</span>:</label>
-            <br/>
-            <select class="form-control" id="nhospName" name="nhospName">
-                <option value="">Select from list:</option>
-                <%
-                    for (String name : names) {
-                %>
-                <option value="<%=name%>"><%=name%></option>
-                <%
-
-                    }
-                %>  
-            </select>
-        </div>
-
-        <div class='form-group' id="nhospName_other_div" >
-            <label for='nhospNameMore' class="control-label">Explain if above is 'Other':</label>
-            <br/>
-            <textarea class="form-control" name="nhospNameMore" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='nhospDoctor' class="control-label">Department/doctor within hospital if known:</label>
-            <br/>
-            <input class="form-control" type='text' name="nhospDoctor">
-        </div>
-        <div class='form-group'>
-            <label for='nremark' class="control-label">Remarks about Hospital:</label>
-            <br/>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
-        </div>
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="hospital"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
 
 </form>
 
@@ -3732,60 +3185,6 @@
         <div class="form-group btn_group">
             <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
             <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
-
-    <!--add-->
-    <div class='add_comp'>
-
-        <div class='form-group'>
-            <label for='' class="control-label">Date of update<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Current MC/Light Duty Status<span style="color: red">*</span>:</label>
-            <br/>
-            <select class="form-control" id="nmcStatus" name="nmcStatus">
-                <option value="">Select from list:</option>
-                <%
-                    for (String statusObj : statusList) {
-                %>
-                <option value="<%=statusObj%>"><%=statusObj%></option>
-                <%
-
-                    }
-                %>  
-            </select>
-        </div>
-
-        <div class='form-group' class="nmcStatus_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other':</label>
-            <br/>
-            <textarea class="form-control" name="nmcStatusMore" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Latest Known MC Expiry Date:</label>
-            <br/>
-            <input class="form-control dateInput" type='text' name="nexpDate">
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Cumulative MC Days so far:</label>
-            <input class="form-control" type='text' name="nexpCum">
-        </div>
-        <div class='form-group'>
-            <label for='' class="control-label">Remarks about MC Status:</label>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
-        </div>
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="mc"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -3965,80 +3364,6 @@
             <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-
-    <!--add-->
-    <div class='add_comp'>
-
-        <div class='form-group'>
-            <label for='r2rDate' class="control-label">Date of Appointment<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control dateInput" type='text' name="ndate" >
-        </div>
-        <div class='form-group'>
-            <label for='r2rTime' class="control-label">Time of Appointment:</label>
-            <br/>
-            <input class="form-control" type='text' name="nr2rTime">
-        </div>
-        <div class='form-group'>
-            <label for='r2rHosp' class="control-label">Hospital for appointment<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control" type='text' name="nr2rHosp">
-        </div>
-        <div class='form-group'>
-            <label for='r2rDept' class="control-label">Department/doctor for appointment:</label>
-            <br/>
-            <input class="form-control" type='text' name="nr2rDept">
-        </div>
-        <div class='form-group'>
-            <label for='r2r1' class="control-label">R2R First Volunteer:</label>
-            <br/>
-            <input class="form-control" type='text' name="nr2r1">
-        </div>
-        <div class='form-group'>
-            <label for='r2r2' class="control-label">R2R Second Volunteer:</label>
-            <br/>
-            <input class="form-control" type='text' name="nr2r2">
-        </div>
-        <div class='form-group'>
-            <label for='r2rPurpose' class="control-label">Purpose of appointment:</label>
-            <br/>
-            <input class="form-control" type='text' name="nr2rPurpose">
-        </div>
-        <div class='form-group'>
-            <label for='r2rPreApptNotes' class="control-label">Pre-appointment Notes:</label>
-            <br/>
-            <textarea class="form-control" name="nr2rPreApptNotes" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='r2rPostApptNotes' class="control-label">Post-appointment Notes:</label>
-            <br/>
-            <textarea class="form-control" name="nr2rPostApptNotes" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='nr2rFeedback' class="control-label">Feedback:</label>
-            <br/>
-            <textarea class="form-control" name="nr2rFeedback" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='r2rMed' class="control-label">Medical Cost of this Appt(S$):</label>
-            <br/>
-            <input class="form-control" type='text' name="nr2rMed">
-        </div>
-        <div class='form-group'>
-            <label for='r2rOut' class="control-label">How much paid by volunteer(S$):</label>
-            <br/>
-            <input class="form-control" type='text' name="nr2rOut">
-        </div>
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="r2r"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
 </form>
 
 <!--------------->
@@ -4170,62 +3495,6 @@
             <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-
-    <!--add-->
-    <div class='add_comp'>
-
-        <div class='form-group'>
-            <label for='nwicaUpdate' class="control-label">Date of update<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control dateInput" type='text' name="ndate">
-        </div>
-        <div class='form-group'>
-            <label for='nwicaStatus' class="control-label">WICA Status <span style="color: red">*</span>:</label>
-            <br/>
-            <select class="form-control" id="nwicaStatus" name="nwicaStatus">
-                <option value="">Select from list:</option>
-                <%
-                    for (String tempStatus : wicaList) {
-                %>
-                <option value="<%=tempStatus%>"><%=tempStatus%></option>
-                <%
-
-                    }
-                %>  
-            </select>
-        </div>
-
-        <div class='form-group' id="nwicaStatus_other_div" >
-            <label for='nwicaStatusMore' class="control-label">Explain if above is 'Other':</label>
-            <br/>
-            <textarea class="form-control" name="nwicaStatusMore" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='nwicaPoints' class="control-label">WICA Points:</label>
-            <br/>
-            <input class="form-control" type='text' name="nwicaPoints">
-        </div>
-        <div class='form-group'>
-            <label for='nwicaDollars' class="control-label">WICA S$ Compensation:</label>
-            <br/>
-            <input class="form-control" type='text' name="nwicaDollars">
-        </div>
-        <div class='form-group'>
-            <label for='nwicaRemarks' class="control-label">Remarks: re WICA Status :</label>
-            <br/>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
-        </div>
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="wica"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
 </form>
 
 <!------------------->
@@ -4343,54 +3612,6 @@
             <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-
-    <!--add-->
-    <div class='add_comp'>
-
-        <div class='form-group'>
-            <label for='lawyerUpdate' class="control-label">Date of update<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control dateInput input-append date dateInput" type='text' name="ndate" >
-        </div>
-        <div class='form-group'>
-            <label for='lawyerFirm' class="control-label">Current Law Firm<span style="color: red">*</span>:</label>
-            <br/>
-            <select class="form-control" id="nlawyerFirm" name="nlawyerFirm" >
-                <option value="">Select from list:</option>
-                <%
-                    for (String lawFirmName : lawFirmNameList) {
-                %>
-                <option value="<%=lawFirmName%>"><%=lawFirmName%></option>
-                <%
-                    }
-                %>
-            </select>
-        </div>
-        <div class='form-group' id="nlawyerFirm_other_div" >
-            <label for='lawyerHave' class="control-label">Explain if above is 'other':</label>
-            <br/>
-            <input class="form-control" type='text' name="nlawyerFirmMore">
-        </div>
-        <div class='form-group'>
-            <label for='lawyerHave' class="control-label">Name of lawyer or assistant:</label>
-            <br/>
-            <input class="form-control" type='text' name="nlawyerName">
-        </div>
-        <div class='form-group'>
-            <label for='lawyerRemark' class="control-label">Remarks: re lawyer law firm status:</label>
-            <br/>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
-        </div>
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="lawyer"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
 </form>
 
 <!-------------------------->
@@ -4502,51 +3723,6 @@
         </div>
     </div>
 
-    <!--add-->
-    <div class='add_comp'>
-
-        <div class='form-group'>
-            <label for='milestoneNCDate' class="control-label">Date milestone reached<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control dateInput input-append date dateInput" type='text' name="ndate">
-        </div>
-        <div class='form-group'>
-            <label for='nmilestoneNCReached' class="control-label">Milestone Reached<span style="color: red">*</span>:</label>
-            <br/>
-            <select class="form-control" id="ncReached" name="nmilestoneNCReached" >
-                <option value="">Select from list:</option>
-                <%
-                    for (String reached : ncList) {
-                %>
-                <option value="<%=reached%>"><%=reached%></option>
-                <%
-
-                    }
-                %>  
-            </select>
-        </div>
-
-        <div class='form-group' id="ncReached_other_div" >
-            <label for='nmilestoneNCReachedMore' class="control-label">Explain if above is 'Other':</label>
-            <br/>
-            <textarea class="form-control" name="nmilestoneNCReachedMore" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='milestoneNCRem' class="control-label">Remarks re milestone reached:</label>
-            <br/>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
-        </div>
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="ncmilestone"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
 </form>
 
 <!---------------------->
@@ -4681,60 +3857,6 @@
         </div>
     </div>
 
-    <!--add-->
-    <div class='add_comp'>
-
-        <div class='form-group'>
-            <label for='nmilestoneCRDate' class="control-label">Date milestone reached<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control dateInput" type='text' name="ndate">
-        </div>
-        <div class='form-group'>
-            <label for='nmilestoneCRReached' class="control-label">Miestone Reached<span style="color: red">*</span>:</label>
-            <br/>
-            <select class="form-control" id="ncReached" name="nmilestoneCRReached" >
-                <option value="">Select from list:</option>
-                <%
-                    for (String reached : crList) {
-                %>
-                <option value="<%=reached%>"><%=reached%></option>
-                <%
-
-                    }
-                %>  
-            </select>
-        </div>
-
-        <div class='form-group' id="ncReached_other_div" >
-            <label for='nmilestoneCRReachedMore' class="control-label">Explain if above is 'Other':</label>
-            <br/>
-            <textarea class="form-control" name="nmilestoneCRReachedMore" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='milestoneCRCharges' class="control-label">Details of Charges:</label>
-            <br/>
-            <textarea class="form-control" name="nmilestoneCRCharges" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='milestoneCRSentence' class="control-label">Details of Sentence:</label>
-            <br/>
-            <textarea class="form-control" name="nmilestoneCRSentence" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='remark' class="control-label">Remarks: re milestone reached:</label>
-            <br/>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
-        </div>
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="cmilestone"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
 </form>
 
 <!------->
@@ -4878,66 +4000,6 @@
             <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         </div>
     </div>
-
-    <!--add-->
-    <div class='add_comp'>
-
-        <div class='form-group'>
-            <label for='ttrUpdate' class="control-label">Date of update<span style="color: red">*</span>:</label>
-            <br/>
-            <input class="form-control dateInput" type='text' name="ndate">
-        </div>
-        <div class='form-group'>
-            <label for='nttrStatus' class="control-label">Transfer, TJS or Repatriation Status<span style="color: red">*</span>:</label>
-            <br/>
-            <select class="form-control" id="nttrStatus" name="nttrStatus" >
-                <option value="">Select from list:</option>
-                <%
-                    for (String tempStatus : ttrList) {
-                %>
-                <option value="<%=tempStatus%>"><%=tempStatus%></option>
-                <%
-
-                    }
-                %>  
-            </select>
-        </div>
-        <div class='form-group' id="nttrStatus_other_div" >
-            <label for='nttrStatusMore' class="control-label">Explain if above is 'Other':</label>
-            <br/>
-            <textarea class="form-control" name="nttrStatusMore" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='ttrDepartureDate' class="control-label">Date of Departure from Singapore:</label>
-            <br/>
-            <input class="form-control dateInput" type='text' name="nttrDepartureDate">
-        </div>
-        <div class='form-group'>
-            <label for='ttrEmployerName' class="control-label">Name of TJS or New Employer:</label>
-            <br/>
-            <input class="form-control" type='text' name="nttrEmployerName">
-        </div>
-        <div class='form-group'>
-            <label for='ttrJob' class="control-label">Description of TJS or New Job :</label>
-            <br/>
-            <textarea class="form-control" name="nttrJob" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='nremark' class="control-label">Remarks: re Transfer, TJS or Repatriation:</label>
-            <br/>
-            <textarea class="form-control" name="nttrremark" rows="3"></textarea>
-        </div>
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="ttr"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp ">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
 </form>
 
 <!--------------------->
@@ -4997,50 +4059,6 @@
                 <button type='button' class="btn btn-blue modal_btn view_comp" onclick='editComplement("#aggravIssue_pop_up", "problem", "Edit Aggravating Issue Details");'>Edit</button>
                 <!--<button type='button' class='btn btn-blue modal_btn view_comp' onclick='add("#aggravIssue_pop_up", "problem", "Add A New Aggravating Issue");'>Add</button>-->                  
                 <button type='button' class="btn cancel_btn">Cancel</button>
-            </div>
-        </div>
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='naggravissueType' class="control-label">Aggravating issue<span style="color: red">*</span>:</label>
-                <br/>
-                <select class="form-control" id="naggravissueType" name="naggravissueType">
-                    <option value="">Select from list:</option>
-                    <%
-                        for (String aggravissueType : problemTypes) {
-                    %>
-                    <option value="<%=aggravissueType%>"><%=aggravissueType%></option>
-                    <%
-
-                        }
-                    %>  
-                </select>
-
-            </div>
-
-            <div class='form-group' id='naggravissueType_other_div' >
-                <label for='naggravissueTypeMore' class="control-label">Explain if above is other</label>
-                <br/>
-                <textarea class="form-control" name="naggravissueTypeMore" rows="3"></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='naggravLoss' class="control-label">Monetary loss/value of this Aggravating Issue S$</label>
-                <br/>
-                <input class="form-control" type='text' name="naggravLoss">
-            </div>
-            <div class='form-group'>
-                <label for='nRemark' class="control-label">Remarks about Aggravating Issue:</label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3"></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="aggravissue"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
             </div>
         </div>
 
@@ -5145,44 +4163,6 @@
             </div>
         </div>
 
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nleadCaseWorkerName' class="control-label">Lead Caseworker<span style="color: red">*</span>:</label>
-                <br/>
-                <select class="form-control" id="leadCaseWorker" name="nleadCaseWorkerName">
-                    <option value="">Select from list:</option>
-                    <%
-                        for (String leadCaseWorkerName : leadCaseWorkerNameList) {
-                    %>
-                    <option value="<%=leadCaseWorkerName%>"><%=leadCaseWorkerName%></option>
-                    <%
-
-                        }
-                    %>  
-                </select>
-
-            </div>
-            <div class='form-group'>
-                <label for='nstartDate' class="control-label">Start Date:</label>
-                <br/>
-                <input class="form-control startDate" type='text' name="nstartDate" value="<%=sdf.format(today)%>">
-            </div>
-            <div class='form-group'>
-                <label for='nendDate' class="control-label">End Date:</label>
-                <br/>
-                <input class="form-control endDate" type='text' name="nendDate">
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="leadcaseworker"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <input type="hidden" name="probKey" value="<%=probKey%>"/>
-            <input type="hidden" name="Id" value="<%=id%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
         <div class='edit_comp'>
             <div class='form-group'>
                 <label for='leadCaseWorker' class="control-label">Lead caseworker
@@ -5279,46 +4259,6 @@
             <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#auxcaseworker_pop_up", "problem", "Edit Auxiliary Caseworker Details");'>Edit</button>
             <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#auxcaseworker_pop_up", "problem", "Add A New Auxiliary Caseworker");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
-        </div>
-    </div>
-
-    <div class='add_comp'>
-        <div class='form-group'>
-            <label for='nauxiliaryCaseWorkerName' class="control-label">Auxiliary Caseworker<span style="color: red">*</span>:</label>
-            <br/>
-            <select class="form-control" id="leadCaseWorker" name="nauxiliaryCaseWorkerName">
-                <option value="">Select from list:</option>
-                <%
-                    for (String auxiliaryCaseWorkerName : auxiliaryCaseworkerNameList) {
-                %>
-                <option value="<%=auxiliaryCaseWorkerName%>"><%=auxiliaryCaseWorkerName%></option>
-                <%
-
-                    }
-                %>  
-            </select>
-
-        </div>
-        <div class='form-group'>
-            <label for='nstartDate' class="control-label">Start Date:</label>
-            <br/>
-
-            <input class="form-control dateInput" type='text' name="nstartDate">
-        </div>
-        <div class='form-group'>
-            <label for='nendDate' class="control-label">End Date:</label>
-            <br/>
-            <input class="form-control dateInput" type='text' name="nendDate">
-        </div>
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="complementName" value="auxcaseworker"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-        <br/><br/>
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
@@ -5463,84 +4403,6 @@
             <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#salaryhistory_pop_up", "problem", "Edit Salary & Related history Details");'>Edit</button>
             <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#salaryhistory_pop_up", "problem", "Add New Salary & Related history Details");'>Add</button>-->                  
             <button type='button' class="btn cancel_btn">Cancel</button>
-        </div>
-    </div>
-
-    <!--add-->
-    <div class='add_comp'>
-        <div class='form-group'>
-            <label for='nbasic' class="control-label">Describe complaint about basic salary incorrect or not paid<span style="color: red">*</span>:</label>
-            <br/>
-            <textarea class="form-control" name="nbasicSal" rows="3" required></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='novertime' class="control-label">Describe complaint about overtime incorrect or not paid:</label>
-            <br/>
-            <textarea class="form-control" name="novertime" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='nallowance' class="control-label">Describe complaint about allowance incorrect or not paid:</label>
-            <br/>
-            <textarea class="form-control" name="nallowance" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='ndeduction' class="control-label">Describe complaint about deductions:</label>
-            <br/>
-            <textarea class="form-control" name="ndeduction" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='nkickbacks' class="control-label">Describe complaint about kickbacks:</label>
-            <br/>
-            <textarea class="form-control" name="nkickbacks" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='nother' class="control-label">Other Related Details:</label>
-            <br/>
-            <textarea class="form-control" name="notherSal" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='nmode' class="control-label">Mode of Salary Payment</label>
-            <br/>
-            <select class="form-control" id="nmode" name="nmode">
-                <option value="">Select from list:</option>
-                <%
-                    for (String pmode : modeOfPayment) {
-                %>
-                <option value="<%=pmode%>"><%=pmode%></option>
-                <%
-
-                    }
-                %>  
-            </select>
-        </div>
-        <div class='form-group' id='nmode_other_div' >
-            <label for='nmodeMore' class="control-label">Explain if above is other</label>
-            <br/>
-            <textarea class="form-control" name="nmodeMore" rows="3"></textarea>
-        </div>
-        <div class='form-group'>
-            <label for='ntotalLoss' class="control-label">Estimated Total Value of Claim (S$):</label>
-            <br/>
-            <input class="form-control" type='text' name="ntotalLoss">
-        </div>
-        <div class='form-group'>
-            <label for='noneYearLoss' class="control-label">Estimated 12 Months' Value of Claim(S$):</label>
-            <br/>
-            <input class="form-control" type='text' name="noneYearLoss">
-        </div>
-        <div class='form-group'>
-            <label for='nremark' class="control-label">Remarks about Salary & Related history:</label>
-            <br/>
-            <textarea class="form-control" name="nremark" rows="3"></textarea>
-        </div>
-        <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-        <input type="hidden" name="complementName" value="salaryhistory"/>
-        <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-        <input type="hidden" name="probKey" value="<%=probKey%>"/>
-        <input type="hidden" name="Id" value="<%=id%>"/>
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-            <button type='button' class='btn add_comp cancel_btn'>Cancel</button>
         </div>
     </div>
 
