@@ -492,7 +492,7 @@
         <div class='form-group'>
             <label for='givenby' class="control-label" >Given By<span style="color: red">*</span>: </label>
             <br/>
-            <input class="form-control" type='text' name="givenby" value="<%=(benefitGiver == null)? "": benefitGiver%>"/>
+            <input class="form-control" type='text' name="givenby" value="<%=(benefitGiver == null)?"": benefitGiver%>"/>
         </div>
         <div class='form-group'>
             <label for='benetype' class="control-label">Benefit Type: </label>
@@ -567,7 +567,7 @@
             <label for='nbenetype' class="control-label">Benefit Type<span style="color: red">*</span>: </label>
             <br/>
             <select class="form-control" id="ipapassType" name="nbenetype">
-                <option value="" disabled selected>Select from list: </option>
+                <option value="">Select from list: </option>
                 <%
                     for (String dropdownItem : dropdownList) {
                         if(dropdownItem.equals("Meal card")){

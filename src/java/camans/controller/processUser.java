@@ -208,7 +208,7 @@ public class processUser extends HttpServlet {
                 //=======================================//
 
                 //nric
-                if (nric == null || nric.length() >9 || !nric.matches("^[A-Z][0-9]{7}[A-Z]")) {
+                if (nric == null || nric.length() >9 || !nric.matches("^[A-Z][0-9]{7}[A-Z]$")) {
                     pass = false;
                     err += "Invalid NRIC Format,";
                 }

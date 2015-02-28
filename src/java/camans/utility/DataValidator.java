@@ -42,7 +42,7 @@ public class DataValidator {
             int errCount = 0;
             int succCount = 0;
             
-            if (fileShortName.equals("nickname.csv")) {
+                if (fileShortName.equals("nickname.csv")) {
                
                 // Loops through each line of the csv with an array of String
                 while ((fields = csvReader.readNext()) != null) {

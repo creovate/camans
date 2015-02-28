@@ -55,7 +55,8 @@
         <div class="row-offcanvas row-offcanvas-left">
             <jsp:include page="include/navbarside.jsp"/> 
             <div class="col-md-offset-2 col-md-10">
-
+                
+                <div id ="pageloading"><img id="loading-image" src="images/loading.gif"/></div>
                 <div class="page-header">
                     <center><h2>Audit Logs</h2></center>    
                 </div>
@@ -142,6 +143,11 @@
             </div>                 
         </div>             
         <script>
+            
+            $(window).load(function() {
+                $('#pageloading').hide();
+            });
+            
             $(document).ready(function () {
                 $.sessionTimeout({
                     message: 'Your session will be expired in five minutes.',

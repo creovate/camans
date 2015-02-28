@@ -1230,12 +1230,12 @@ public class processAddProblemComplement extends HttpServlet {
             //=======================================//    
             } else if (complementName.equals("nonwicaclaim")) {
                 //get all the parameters
-                String nonwicaClaimDateStr = request.getParameter("ndate");
-                String nonwicaClaimLossStr = request.getParameter("nloss");
-                String nonwicaClaimInsurer = request.getParameter("ninsurer");
-                String nonwicaClaimPolicyNbr = request.getParameter("npolicyNumber");
-                String nonwicaClaimBasic = request.getParameter("nbasis");
-                String remark = request.getParameter("nNWicaremark");
+                String nonwicaClaimDateStr = "";
+                String nonwicaClaimLossStr = "";
+                String nonwicaClaimInsurer = "";
+                String nonwicaClaimPolicyNbr = "";
+                String nonwicaClaimBasic = "";
+                String remark = "";
                 java.sql.Date nonwicaClaimDate = null;
                 Double nonwicaClaimLoss = 0.0;
                
@@ -1245,14 +1245,14 @@ public class processAddProblemComplement extends HttpServlet {
                   nonwicaClaimInsurer = request.getParameter("ninsurer");
                   nonwicaClaimPolicyNbr = request.getParameter("npolicyNumber");
                   nonwicaClaimBasic = request.getParameter("nbasis");
-                  remark = request.getParameter("nremark");
+                  remark = request.getParameter("nNWicaremark");
                } else {
                   nonwicaClaimDateStr = request.getParameter("date");
                   nonwicaClaimLossStr = request.getParameter("loss");
                   nonwicaClaimInsurer = request.getParameter("insurer");
                   nonwicaClaimPolicyNbr = request.getParameter("policyNumber");
                   nonwicaClaimBasic = request.getParameter("basis");
-                  remark = request.getParameter("remark");
+                  remark = request.getParameter("NWICAremark");
 
                }
 
@@ -1267,7 +1267,7 @@ public class processAddProblemComplement extends HttpServlet {
                     //proceed only after empty fields validation is passed
                     if (pass) { 
 
-                        if (!nonwicaClaimDateStr.equals("")) {
+                        if (nonwicaClaimDateStr != null && !nonwicaClaimDateStr.equals("")) {
                             try {
                                 java.util.Date tmp = sdf.parse(nonwicaClaimDateStr);
                             nonwicaClaimDate = new java.sql.Date(tmp.getTime());
@@ -1276,7 +1276,7 @@ public class processAddProblemComplement extends HttpServlet {
                             } 
                         }
 
-                        if (!nonwicaClaimLossStr.equals("")) {
+                        if (nonwicaClaimLossStr != null && !nonwicaClaimLossStr.equals("")) {
                             nonwicaClaimLossStr = nonwicaClaimLossStr.replace(",","");
                             if (!nonwicaClaimLossStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += "Non WICA Claim Loss must have maximum 2 decimal places,";
@@ -1289,19 +1289,19 @@ public class processAddProblemComplement extends HttpServlet {
                             }
                         }
 
-                        if (!nonwicaClaimInsurer.equals("") && nonwicaClaimInsurer.length() > 50) {
+                        if (nonwicaClaimInsurer != null && !nonwicaClaimInsurer.equals("") && nonwicaClaimInsurer.length() > 50) {
                             errorMsg += "Insurer cannot be longer than 50 characters,";
                         }
 
-                        if (!nonwicaClaimPolicyNbr.equals("") && nonwicaClaimPolicyNbr.length() > 30) {
+                        if (nonwicaClaimPolicyNbr != null && !nonwicaClaimPolicyNbr.equals("") && nonwicaClaimPolicyNbr.length() > 30) {
                             errorMsg += "Policy Number cannot be longer than 30 characters,";
                         }
 
-                        if (!nonwicaClaimBasic.equals("") && nonwicaClaimBasic.length() > 1000) {
+                        if (nonwicaClaimBasic != null && !nonwicaClaimBasic.equals("") && nonwicaClaimBasic.length() > 1000) {
                             errorMsg += "Claim Baisc cannot be longer than 1000 characters,";
                         }
 
-                        if (!remark.equals("") && remark.length() > 1000) {
+                        if (remark != null && !remark.equals("") && remark.length() > 1000) {
                             errorMsg += "Remark cannot be longer than 1000 characters,";
                         }
                     }   //pass 

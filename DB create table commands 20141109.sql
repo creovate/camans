@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS TWC2DB;
-CREATE DATABASE TWC2DB;
-USE TWC2DB;
+DROP DATABASE IF EXISTS TWC2DB_PROD;
+CREATE DATABASE TWC2DB_PROD;
+USE TWC2DB_PROD;
 
 /*
 **==================================
@@ -1976,7 +1976,7 @@ Insert into tbl_dropdown (ID, dropdownType, Name, Remark, displayRank) Values (2
 Insert into tbl_user (NRIC_number,Full_name, Alias, Username, Password, Email_address, Phone_number, Gender, Role, Status) 
 	Values ("G1234567A", 'FullName', 'Alias', 'specialist', 'specialist', 'email@email.com', '12345', 'Male', "Specialist", "Active");
 Insert into tbl_user (NRIC_number,Full_name, Alias, Username, Password, Email_address, Phone_number, Gender, Role, Status) 
-	Values ("S0000000S", 'FullName', 'Alias', 'superadmin', '1000:713dd55467268ec15408f4f8ec970d4285179a121ca02ecf:2135aeab9a435c855956a4cdfaef2c7db9d89a808e0494e1', 'email@email.com', '12345', 'Male', "Administrator", "Active");
+	Values ("S0000000S", 'Superadmin', 'Alias', 'superadmin', '1000:713dd55467268ec15408f4f8ec970d4285179a121ca02ecf:2135aeab9a435c855956a4cdfaef2c7db9d89a808e0494e1', 'email@email.com', '12345', 'Male', "Administrator", "Active");
 
 /*	
 Insert into tbl_user (NRIC_number,Full_name, Alias, Username, Password, Email_address, Phone_number, Gender, Role, Status) 

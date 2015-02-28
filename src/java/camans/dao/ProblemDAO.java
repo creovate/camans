@@ -384,6 +384,121 @@ public class ProblemDAO {
         }  
     }
     
+    public static int getMaxYear() {
+        int year = 0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT Year(max(Chief_problem_date)) FROM tbl_problem;";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                year = rs.getInt(1);
+            }
+
+           
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "getMaxYear={" + year + "}");           
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        return year;
+    }
+    
+    public static int getMinYear() {
+        int year = 0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT Year(min(Chief_problem_date)) FROM tbl_problem;";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                year = rs.getInt(1);
+            }
+
+           
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "getMinYear={" + year + "}");           
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        return year;
+    }
+    
+    public static int retrieveProblemCountByNationalityAndYear(String nationality, int year) {
+        int count = 0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT COUNT(*) from "
+                    + "(select Worker_FIN_number from tbl_problem where Year(Chief_problem_date) = ?) as table1 "
+                    + "INNER JOIN (select FIN_number from tbl_worker where Nationality = ?) as table2 "
+                    + "on table1.Worker_FIN_number = table2.FIN_number;";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, year);
+            pstmt.setString(2, nationality);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }                
+
+           
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "ProblemCountByNationalityAndYear={" + count + "}");           
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        return count;
+    }
+    
+    public static int retrieveProblemCountByNationalityAndYearAndJobSector (String nationality, 
+            int year, String jobSector) {
+        int count = 0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT count(distinct Prob_key) "
+                    + "FROM (SELECT * from (select Worker_FIN_number, Prob_key from tbl_problem "
+                    + "where Year(Chief_problem_date) = ?) as table1 INNER JOIN "
+                    + "(select * from tbl_worker where Nationality = ?) as table2 "
+                    + "on table1.Worker_FIN_number = table2.FIN_number) as table3 "
+                    + "INNER JOIN (select * from tbl_job where Job_sector = ?) as table4 "
+                    + "on table3.Worker_FIN_number = table4.Worker_FIN_number;";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, year);
+            pstmt.setString(2, nationality);
+            pstmt.setString(3, jobSector);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }                
+
+           
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql, "ProblemCountByNationalityAndYearAndJobSector={" + count + "}");           
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        return count;
+    }
+    
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
       String msg = "Unable to access data; SQL=" + sql + "\n";
       for (String parameter : parameters) {

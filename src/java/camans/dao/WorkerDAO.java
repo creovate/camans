@@ -282,7 +282,7 @@ public class WorkerDAO {
             ConnectionManager.close(conn, pstmt, null);
         }     
     }
-    
+  
     public static String validateAndAddWorker(String workerFileName, String workerErrFile) throws IOException{
         
         // empty existing data in workerList before continuing

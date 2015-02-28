@@ -1251,15 +1251,15 @@
                                                             String name = friend.getName();
                                                             String relationship = friend.getRelation();
                                                             String phNum = friend.getPhone();
-                                                            //String remark = friend.getRemark();
-                                                            java.util.Date obDate = friend.getObseleteDate();
+                                                            String remark = friend.getRemark();
+                                                            //java.util.Date obDate = friend.getObseleteDate();
                                                             if (i < friendIds.size() - 1) {
                                                     %>
                                                     <tr class="moreObjs other_friend">
                                                         <td><%=name%></td>
-                                                        <td><%=relationship%></td>
                                                         <td><%=phNum%></td>
-                                                        <td><%=(obDate == null) ? "" : sdf.format(obDate)%></td>
+                                                        <td><%=relationship%></td>
+                                                        <td><%=(remark == null) ? "" : remark%></td>
                                                         <td class="tbl-20-col"><a style="color: black" data-class="worker"  data-value='sgfri' 
                                                                                   data-title="View Details of friend in Singapore" data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#sgFri_pop_up" 
                                                                                   data-action="viewedit" class="edit_btn pop_up_open">
@@ -1280,9 +1280,9 @@
                                                     %>
                                                     <tr>
                                                         <td><%=name%></td>
-                                                        <td><%=relationship%></td>
                                                         <td><%=phNum%></td>
-                                                        <td><%=(obDate == null) ? "" : sdf.format(obDate)%></td>
+                                                        <td><%=relationship%></td>
+                                                        <td><%=(remark == null) ? "" : remark%></td>
                                                         <td class="tbl-20-col"><a style="color: black" data-class="worker"  data-value='sgfri' 
                                                                                   data-title="View Details of friend in Singapore" data-sgfri='<%=friend.getId()%>' href="" data-toggle="modal" data-target="#sgFri_pop_up" 
                                                                                   data-action="viewedit" class="edit_btn pop_up_open">

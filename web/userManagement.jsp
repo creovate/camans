@@ -664,7 +664,7 @@
                                     message: 'NRIC number must be exactly 9 characters long.'
                                 },
                                 regexp: {
-                                  regexp: /^[A-Z][0-9]{7}[A-Z]/,
+                                  regexp: /^[A-Z][0-9]{7}[A-Z]$/,
                                   message: 'NRIC number must start with an alphabet followed by 7 digits and ends with an alphabet.'
                                 },
                                 remote: {

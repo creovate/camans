@@ -3337,11 +3337,7 @@
             String deductionDetails = jipa.getIpaDeductionDetails();
             String isHousingProvided = jipa.getHousingProvided();
             String remark = jipa.getIpaRemarks();
-            String ipadate = "";
-            if (jipa.getIpaApplicationDate() != null) {
-                ipadate = sdf.format(jipa.getIpaApplicationDate());
-            }
-
+            java.util.Date ipadate = jipa.getIpaApplicationDate();
         %>  
 
         <div class="view_comp">
