@@ -1128,7 +1128,7 @@ Create table tbl_non_wica_claim(
 	Med_claim_insurer varchar(50) null,
 	Med_claim_policy_nbr varchar(30) null,
 	Med_claim_basis varchar(1000) null,
-	Med_claim_rem varchar(200) null,
+	Med_claim_rem varchar(1000) null,
 	index (Worker_FIN_number),
 	index (Job_key),
 	index (Prob_key),
@@ -1368,7 +1368,7 @@ Create table tbl_R2R (
 	index (Prob_key),
 	Primary Key(ID),
 	FOREIGN KEY (Worker_FIN_number) 
-		REFERENCES tbl_worker(FIN_number)
+		REFERENCES f(FIN_number)
 			ON DELETE CASCADE ON UPDATE CASCADE,
 
 	FOREIGN KEY (Job_key)
