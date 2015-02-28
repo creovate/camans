@@ -140,7 +140,8 @@
             dateFormat: 'dd-M-yy',
             changeMonth: true,
             changeYear: true,
-            maxDate: 0
+            maxDate: 0,
+            yearRange: "-100:nn"
         });
 
         $('.control-label').addClass("pull-left");
@@ -915,7 +916,7 @@
     </fieldset>
     <p class="alert-danger"></p>
     <input type="hidden" id="stub_name" name="stub" value="problem"/>
-    <input type="hidden" id="job_name" name="workerFin" value="<%=workerFin%>"/>
+    <input type="hidden" id="job_name" name="workerFinNum" value="<%=workerFin%>"/>
     <input type="hidden" id="job_name" name="jobKey" value="<%=jobKey%>"/>
     <input type="hidden" id="job_name" name="probKey" value="<%=probKey%>"/>
     <div class="form-group pull-right">

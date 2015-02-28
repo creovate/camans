@@ -45,7 +45,7 @@ public class processEditStubs extends HttpServlet {
         boolean success = false;
         try {
             String complement = request.getParameter("stub");
-            String workerFinNum = request.getParameter("finNum");
+            String workerFinNum = request.getParameter("workerFinNum");
             String jobKeyStr = request.getParameter("jobKey");
             String probKeyStr = request.getParameter("probKey");
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
