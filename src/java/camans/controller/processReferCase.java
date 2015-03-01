@@ -83,8 +83,11 @@ public class processReferCase extends HttpServlet {
                     workerFinNum, "Referred", "Referred Case: " + auditChange);
             UserAuditLogDAO.addUserAuditLog(userAuditLog); 
             //End log to audit
-            
-            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum + "&selectedProb=" + probKey);
+            request.getSession().setAttribute("tabIndicator", "problem");
+            request.getSession().setAttribute("worker",workerFinNum);
+            request.getSession().setAttribute("selectedJob",jobKeyStr);
+            request.getSession().setAttribute("selectedProb",probKeyStr);
+            response.sendRedirect("viewWorker.jsp");
 
         } finally {
             out.close();

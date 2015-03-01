@@ -268,7 +268,7 @@
                                         <td><%=(refDescription == null) ? "-" : refDescription%></td>
                                     </tr>
                                 </table>
-                                <button class="btn btn-blue pull-right" onclick="location.href = 'viewWorker.jsp?worker=<%=workerFin%>'" type="button">View Case</button>
+                                <button class="btn btn-blue pull-right" onclick="location.href = 'viewWorker.jsp?worker=<%=workerFin%>&selectedProb=<%=probKey%>'" type="button">View Case</button>
                             </div>
                         </div>
                     </div>

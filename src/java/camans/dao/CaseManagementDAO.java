@@ -147,7 +147,7 @@ public class CaseManagementDAO {
         return problemList;
     }
 
-    public static void terminateLeadCaseWroker(int probKey) {
+    public static void terminateLeadCaseWorker(int probKey) {
         Problem problem_temp = ProblemDAO.retrieveProblemByProblemId(probKey);
         String workerFin = problem_temp.getWorkerFinNum();
         int jobKey = problem_temp.getJobKey();
@@ -185,20 +185,8 @@ public class CaseManagementDAO {
 
             //add lead case end date if the current lead case worker is referring back
             //set current lead case worker as null
-            for (int i = 0; i < leadCaseWorkerList.size(); i++) {
-                ProblemLeadCaseWorker leadCaseWorker = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(leadCaseWorkerList.get(i));
-                int lcwId = leadCaseWorker.getId();
-                String lcwName = leadCaseWorker.getLeadCaseWorker();
-                if (lcwName.equals(referredBy_username)) {
-                    java.sql.Date lcwStart = leadCaseWorker.getLeadStart();
-                    java.util.Date endDate = new java.util.Date();
-                    java.sql.Date lcwEnd = new java.sql.Date(endDate.getTime());
+            terminateLeadCaseWorker(probKey);
 
-                    leadCaseWorker = new ProblemLeadCaseWorker(lcwId, workerFin, jobKey, probKey, lcwName, lcwStart, lcwEnd);
-                    ProblemComplementsDAO.updateProblemLeadCaseWorker(leadCaseWorker);
-
-                }
-            }
 
             conn = ConnectionManager.getConnection();
             sql = "UPDATE tbl_problem SET Referred_by = ?, Referred_date = ?, Description = ?, Referred_to = null WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";

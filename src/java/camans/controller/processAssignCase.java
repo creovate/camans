@@ -60,7 +60,8 @@ public class processAssignCase extends HttpServlet {
             UserAuditLogDAO.addUserAuditLog(userAuditLog); 
             //End log to audit
             
-            response.sendRedirect("caseReferral.jsp?worker=" + workerFin + "&selectedProb=" + probKey);
+            
+            response.sendRedirect("caseReferral.jsp");
             
         } finally {            
             out.close();

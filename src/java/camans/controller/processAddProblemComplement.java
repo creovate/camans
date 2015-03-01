@@ -206,7 +206,7 @@ public class processAddProblemComplement extends HttpServlet {
                         ProblemLeadCaseWorker problemLeadCaseWrk = new ProblemLeadCaseWorker(workerFinNum,
                                 jobKey, problemKey, leadName, leadStart, leadEnd);
                         
-                        CaseManagementDAO.terminateLeadCaseWroker(problemKey);
+                        CaseManagementDAO.terminateLeadCaseWorker(problemKey);
                         
                         //add into db
                         ProblemComplementsDAO.addProblemLeadCaseWorker(problemLeadCaseWrk);
