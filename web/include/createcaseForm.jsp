@@ -121,8 +121,8 @@
             $('.no_change').blur();
 
         });
-        
-        
+
+
         $(".dateInput").datepicker({
             dateFormat: 'dd-M-yy',
             changeMonth: true,
@@ -133,7 +133,7 @@
 
         $('.control-label').addClass("pull-left");
         $('.form-control').addClass('input-sm');
-        
+
         $('#addCase').validate({
             ignore: ":hidden",
             rules: {
@@ -404,24 +404,24 @@
                 $("#hiddenWorkerFin").after('<input type="hidden" id="hiddenJobKey" name="jobKey" value="<%=jobKey%>"/>');
             }
         }
-            $('.cancel_btn').click(function() {
-        $('#pop_up_content').dialog("destroy");
-        //$(this).dialog("destroy");
-        $('#pop_up_content').empty();
+        $('.cancel_btn').click(function() {
+            $('#pop_up_content').dialog("destroy");
+            //$(this).dialog("destroy");
+            $('#pop_up_content').empty();
+        });
+
+        /**
+         * Add Job & Problem particulars validation
+         **/
+        $("#job_next_btn").click(function() {
+            $('#addCase').valid();
+        });
+
     });
 
-    /**
-     * Add Job & Problem particulars validation
-     **/
-    $("#job_next_btn").click(function() {
-        $('#addCase').valid();
-    });
-
-    });
 
 
-    
-    
+
     function swapDiv(div_id, curr_id, num) {
         var curr_div_id = "#" + curr_id;
         var val = 0;
@@ -452,8 +452,9 @@
             //$(".alert-danger").text(missing_inputStr);
         }
     }
-    
-        function edit(stub_name, title) {
+    ;
+
+    function edit(stub_name, title) {
         var fieldset_div = document.getElementsByTagName('fieldset');
         $(fieldset_div).prop('disabled', false);
         $("span.ui-dialog-title").text('Edit ' + title);
@@ -464,7 +465,8 @@
         if (<%= isAdmin%> == true) {
             $('#finNum').removeClass('no_change');
         }
-    };
+    }
+    ;
 
 
 </script>
@@ -1099,10 +1101,10 @@
 
     }
 
-        $('.confirm_cancel_btn').click(function() {
-            $('#delete-stub-dialog').dialog('destroy');
-        });
-        
+    $('.confirm_cancel_btn').click(function() {
+        $('#delete-stub-dialog').dialog('destroy');
+    });
+
     function deleteStub(stub) {
         $("#hidden-stub").val(stub);
         $('#delete-stub-dialog').dialog({
