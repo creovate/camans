@@ -404,11 +404,7 @@
                 $("#hiddenWorkerFin").after('<input type="hidden" id="hiddenJobKey" name="jobKey" value="<%=jobKey%>"/>');
             }
         }
-        $('.cancel_btn').click(function() {
-            $('#pop_up_content').dialog("destroy");
-            //$(this).dialog("destroy");
-            $('#pop_up_content').empty();
-        });
+        
 
         /**
          * Add Job & Problem particulars validation
@@ -457,8 +453,8 @@
     function edit(stub_name, title) {
         var fieldset_div = document.getElementsByTagName('fieldset');
         $(fieldset_div).prop('disabled', false);
-        $("span.ui-dialog-title").text('Edit ' + title);
-        $(".edit_btn").toggle();
+        $('#pop_up_content').dialog('option', 'title', "Edit " + title);
+        $(".edit_profile_btn").toggle();
         $(".save_btn").show();
         $('.delete_btn').hide();
         //$(".add_btn").toggle();
@@ -592,7 +588,7 @@
     <input type="hidden" id="stub_name" name="stub" value="worker"/>
     <input type='hidden' name='hiddenFin' id="hiddenFin" value='<%=workerFin%>'/>
     <div class="form-group pull-right">
-        <button type='button' onclick="edit('worker_stub', 'Worker Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
+        <button type='button' onclick="edit('worker_stub', 'Worker Profile');" class="btn btn-blue modal_btn edit_profile_btn">Edit</button>
         <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
         <%
             if (userRole.equals("Administrator")) {
@@ -600,7 +596,7 @@
         <button type='button' onclick="deleteStub('worker');" class="btn btn-danger modal_btn delete_btn">Delete</button>
         <%        }
         %>
-        <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
+        <button type='button' class='btn modal_btn edit_comp cancel_btn' onclick="$(this).ajaxStop(); ">Cancel</button>
     </div>
 </form>
 
@@ -736,7 +732,7 @@
     <input type="hidden" id="job_name" name="finNum" value="<%=workerFin%>"/>
     <input type="hidden" id="job_name" name="jobKey" value="<%=jobKey%>"/>
     <div class="form-group pull-right">
-        <button type='button' onclick="edit('job_stub', 'Job Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
+        <button type='button' onclick="edit('job_stub', 'Job Profile');" class="btn btn-blue modal_btn edit_profile_btn">Edit</button>
         <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
         <%
             if (userRole.equals("Administrator")) {
@@ -813,7 +809,7 @@
     <input type="hidden" id="job_name" name="jobKey" value="<%=jobKey%>"/>
     <input type="hidden" id="job_name" name="probKey" value="<%=probKey%>"/>
     <div class="form-group pull-right">
-        <button type='button' onclick="edit('problem_stub', 'problem Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
+        <button type='button' onclick="edit('problem_stub', 'Problem Profile');" class="btn btn-blue modal_btn edit_profile_btn">Edit</button>
         <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
         <%
             if (userRole.equals("Administrator")) {
@@ -1100,6 +1096,11 @@
         });
 
     }
+    $('.cancel_btn').click(function() {
+            $('#pop_up_content').dialog("destroy");
+            //$(this).dialog("destroy");
+            $('#pop_up_content').empty();
+        });
 
     $('.confirm_cancel_btn').click(function() {
         $('#delete-stub-dialog').dialog('destroy');
