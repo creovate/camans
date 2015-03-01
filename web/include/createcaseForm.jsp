@@ -109,21 +109,6 @@
 
 %>
 <script>
-    function edit(stub_name, title) {
-        var fieldset_div = document.getElementsByTagName('fieldset');
-        $(fieldset_div).prop('disabled', false);
-        $("span.ui-dialog-title").text('Edit ' + title);
-        $(".edit_btn").toggle();
-        $(".save_btn").show();
-        $('.delete_btn').hide();
-        //$(".add_btn").toggle();
-        if (<%= isAdmin%> == true) {
-            $('#finNum').removeClass('no_change');
-        }
-    }
-    ;
-
-
     //for not type-able inputs
     $(document).ready(function() {
         $('.dateInput').focus(function() {
@@ -136,6 +121,8 @@
             $('.no_change').blur();
 
         });
+        
+        
         $(".dateInput").datepicker({
             dateFormat: 'dd-M-yy',
             changeMonth: true,
@@ -145,6 +132,8 @@
         });
 
         $('.control-label').addClass("pull-left");
+        $('.form-control').addClass('input-sm');
+        
         $('#addCase').validate({
             ignore: ":hidden",
             rules: {
@@ -204,126 +193,9 @@
             }
         });
 
-    });
-
-    $('.cancel_btn').click(function() {
-        $('#pop_up_content').dialog("destroy");
-        $('#pop_up_content').empty();
-    });
-
-    /**
-     * Add Job & Problem particulars validation
-     **/
-    $("#job_next_btn").click(function() {
-        $('#addCase').valid();
-    });
-
-    /**
-     $(document).ready(function() {
-     $('#addCase')
-     .bootstrapValidator({
-     fields: {
-     //job Profile
-     jobPassType:{
-     validators:{
-     notEmpty:{
-     message: 'This field cannot be empty. Please choose one.'
-     }
-     }  
-     },
-     passMore: {
-     validators: {
-     stringLength: {
-     max: 50,
-     message: 'This field must be less than 50 characters.'
-     }
-     }
-     },
-     employerName: {
-     validators: {
-     stringLength: {
-     max: 50,
-     message: 'This field must be less than 50 characters.'
-     },
-     notEmpty: {
-     message: 'This field cannot be empty.'
-     }
-     }
-     },
-     jobSectorMore: {
-     validators: {
-     stringLength: {
-     max: 50,
-     message: 'This field must be less than 50 characters.'
-     }
-     }
-     },
-     occupation: {
-     validators: {
-     stringLength: {
-     max: 50,
-     message: 'This field must be less than 50 characters.'
-     }
-     }
-     },
-     jobStartDate: {
-     validators: {
-     stringLength: {
-     max: 50,
-     message: 'This field must be less than 50 characters.'
-     }
-     }
-     },
-     jobEndDate: {
-     validators: {
-     stringLength: {
-     max: 50,
-     message: 'This field must be less than 50 characters.'
-     }
-     }
-     },
-     jobRemark: {
-     validators: {
-     stringLength: {
-     max: 50,
-     message: 'This field must be less than 50 characters.'
-     }
-     }
-     },
-     //problem profile
-     problem: {
-     validators: {
-     notEmpty: {
-     message: 'This field cannot be empty.'
-     }
-     }
-     },
-     problemMore: {
-     validators: {
-     stringLength: {
-     max: 50,
-     message: 'This field must be less than 50 characters.'
-     }
-     }
-     },
-     problemRemark: {
-     validators: {
-     stringLength: {
-     max: 200,
-     message: 'This field must be less than 200 characters.'
-     }
-     }
-     }
-     },
-     submitButtons: "button[type='button']"
-     });
-     
-     });**/
-    /**
-     * Edit worker particulars validation
-     **/
-
-    $(document).ready(function() {
+        /**
+         * Edit worker particulars validation
+         **/
         //methods for jquery validator
         jQuery.validator.addMethod("FIN", function(value, element) {
             return this.optional(element) || /^[A-Z][0-9]{7}[A-Z]$/.test(value) || /^GEN[0-9]{6}$/.test(value);
@@ -332,7 +204,57 @@
             return this.optional(element) || (element.files[0].size <= 1048576);
         }, "Invalid File size. Please Check again.");
         //validation
+        $('#finNum').change(function() {
 
+            var rules = $("input[name='finNum']").rules();
+
+            var isAdded = false;
+            for (var i in rules) {
+                //alert(i);
+                //alert(i + ":" + rules[i]);
+                if (i === 'remote') {
+                    //alert(i + ":" + rules[i]);
+                    // alert("remote spotted");
+                    isAdded = true;
+
+                }
+            }
+            if ($('#finNum').val() !== $("#hiddenFin").val()) {
+                //alert('hello');
+
+                if (isAdded === false) {
+                    //alert('going to add');
+                    $('#finNum').rules('add', {
+                        remote: {
+                            url: "processValidate",
+                            type: "POST",
+                            data: {
+                                finNum: function() {
+                                    return $("#finNum").val();
+                                }
+                            }
+                        }
+                    });
+                    //alert("added");
+                    rules = $("input[name='finNum']").rules();
+                    for (var i in rules) {
+                        //alert(i);
+                        //alert("end of validation : " + i + ":" + rules[i]);
+
+                    }
+                }
+
+
+            } else {
+                if (isAdded === true) {
+                    //alert("going to remove");
+                    $('#finNum').rules('remove', 'remote');
+                    //alert("removed");
+                }
+            }
+
+
+        });
 
         $('#worker_stub').validate({
             //ignore: ":hidden",
@@ -340,7 +262,6 @@
                 finNum: {
                     required: true,
                     FIN: true
-
                 },
                 wkerName: {
                     maxlength: 50,
@@ -376,48 +297,9 @@
             }
         });
 
-
         /**
-         $('#worker_stub')
-         .bootstrapValidator({
-         fields: {
-         wkerName: {
-         validators: {
-         notEmpty: {
-         message: 'This field cannot be empty.'
-         },
-         stringLength: {
-         max: 50,
-         message: 'This field must be less than 50 characters.'
-         }
-         }
-         },
-         nationalityMore: {
-         validators: {
-         stringLength: {
-         max: 50,
-         message: 'This field must be less than 50 characters.'
-         }
-         }
-         },
-         createdFor: {
-         validators: {
-         stringLength: {
-         max: 20,
-         message: 'This field must be less than 20 characters.'
-         }
-         }
-         }
-         }
-         });
-         
+         * Edit Job particulars validation
          **/
-    });
-
-    /**
-     * Edit Job particulars validation
-     **/
-    $(document).ready(function() {
         $('#job_stub')
                 .bootstrapValidator({
             fields: {
@@ -482,30 +364,10 @@
                 }
             }
         });
-    });
-    $('#finNum').change(function() {
-        if ($('#finNum').val() !== $("#hiddenFin").val()) {
-            $('#finNum').rules('add', {
-                remote: {
-                    url: "processValidate",
-                    type: "POST",
-                    data: {
-                        finNum: function() {
-                            return $("#finNum").val();
-                        }
-                    }
-                }
-            });
 
-        } else {
-            $('#finNum').rules('remove', 'remote');
-        }
-    });
-
-    /**
-     * Edit Problem particulars validation
-     **/
-    $(document).ready(function() {
+        /**
+         * Edit Problem particulars validation
+         **/
         $('#problem_stub')
                 .bootstrapValidator({
             fields: {
@@ -528,8 +390,38 @@
 
             }
         });
+
+        //display
+        var action_val = "<%=action%>";
+        if (action_val === 'add') {
+            //alert(action_val);
+            var profile_val = "<%=profile%>";
+            if (profile_val === 'problem') {
+                //start from problem
+                $('#job_profile').prop('disabled', true);
+                $('#job_profile').hide();
+                $('#prob_profile').show();
+                $("#hiddenWorkerFin").after('<input type="hidden" id="hiddenJobKey" name="jobKey" value="<%=jobKey%>"/>');
+            }
+        }
+            $('.cancel_btn').click(function() {
+        $('#pop_up_content').dialog("destroy");
+        //$(this).dialog("destroy");
+        $('#pop_up_content').empty();
     });
 
+    /**
+     * Add Job & Problem particulars validation
+     **/
+    $("#job_next_btn").click(function() {
+        $('#addCase').valid();
+    });
+
+    });
+
+
+    
+    
     function swapDiv(div_id, curr_id, num) {
         var curr_div_id = "#" + curr_id;
         var val = 0;
@@ -560,21 +452,20 @@
             //$(".alert-danger").text(missing_inputStr);
         }
     }
-
-    $(document).ready(function() {
-        var action_val = "<%=action%>";
-        if (action_val === 'add') {
-            //alert(action_val);
-            var profile_val = "<%=profile%>";
-            if (profile_val === 'problem') {
-                //start from problem
-                $('#job_profile').prop('disabled', true);
-                $('#job_profile').hide();
-                $('#prob_profile').show();
-                $("#hiddenWorkerFin").after('<input type="hidden" id="hiddenJobKey" name="jobKey" value="<%=jobKey%>"/>');
-            }
+    
+        function edit(stub_name, title) {
+        var fieldset_div = document.getElementsByTagName('fieldset');
+        $(fieldset_div).prop('disabled', false);
+        $("span.ui-dialog-title").text('Edit ' + title);
+        $(".edit_btn").toggle();
+        $(".save_btn").show();
+        $('.delete_btn').hide();
+        //$(".add_btn").toggle();
+        if (<%= isAdmin%> == true) {
+            $('#finNum').removeClass('no_change');
         }
-    });
+    };
+
 
 </script>
 
@@ -656,7 +547,7 @@
                 <label for="worker_nationality" class="control-label">Nationality</label>
             </div>
             <div class='col-md-7'>
-                <select class="form-control" id="worker_nationality" name="nationality" onchange="displayOther(this.id);">
+                <select class="form-control" id="worker_nationality" name="nationality">
                     <%
                         for (String nationalityStr : nationalityList) {
                             if (nationality.equals(nationalityStr)) {
@@ -840,7 +731,7 @@
     </fieldset>
     <p class="alert-danger"></p>
     <input type="hidden" id="stub_name" name="stub" value="job"/>
-    <input type="hidden" id="job_name" name="workerFin" value="<%=workerFin%>"/>
+    <input type="hidden" id="job_name" name="finNum" value="<%=workerFin%>"/>
     <input type="hidden" id="job_name" name="jobKey" value="<%=jobKey%>"/>
     <div class="form-group pull-right">
         <button type='button' onclick="edit('job_stub', 'Job Stub');" class="btn btn-blue modal_btn edit_btn">Edit</button>
@@ -916,7 +807,7 @@
     </fieldset>
     <p class="alert-danger"></p>
     <input type="hidden" id="stub_name" name="stub" value="problem"/>
-    <input type="hidden" id="job_name" name="workerFinNum" value="<%=workerFin%>"/>
+    <input type="hidden" id="job_name" name="finNum" value="<%=workerFin%>"/>
     <input type="hidden" id="job_name" name="jobKey" value="<%=jobKey%>"/>
     <input type="hidden" id="job_name" name="probKey" value="<%=probKey%>"/>
     <div class="form-group pull-right">
@@ -1208,11 +1099,10 @@
 
     }
 
-    $(document).ready(function() {
         $('.confirm_cancel_btn').click(function() {
             $('#delete-stub-dialog').dialog('destroy');
         });
-    });
+        
     function deleteStub(stub) {
         $("#hidden-stub").val(stub);
         $('#delete-stub-dialog').dialog({
@@ -1225,9 +1115,6 @@
         });
     }
 
-    $(document).ready(function() {
-        $('.form-control').addClass('input-sm');
-    });
 
 
 </script>
