@@ -283,9 +283,8 @@ public class processDeleteComplement extends HttpServlet {
                 response.sendRedirect("viewWorker.jsp");
             } else if (name.equals("benefit")) {
                 tabIndicator = "benefit";
-                int problemKey = Integer.parseInt(request.getParameter("probKey"));
-                Problem problem = ProblemDAO.retrieveProblemByProblemId(problemKey);
-                int jobKey = problem.getJobKey();
+                int problemKey = Integer.parseInt(probKeyStr);
+                
                 
                 auditChange = BenefitDAO.retrieveBenefitById(id).toString2();
                 auditChange = auditChange.replace("{", " [");
@@ -302,8 +301,8 @@ public class processDeleteComplement extends HttpServlet {
 
                 request.getSession().setAttribute("tabIndicator", "benefit");
                 request.getSession().setAttribute("worker", workerFinNum);
-                request.getSession().setAttribute("selectedProb", problemKey + "");
-                request.getSession().setAttribute("selectedJob", jobKey + "");
+                request.getSession().setAttribute("selectedProb", probKeyStr);
+                request.getSession().setAttribute("selectedJob", jobKeyStr);
                 
                 response.sendRedirect("viewWorker.jsp");
             }
