@@ -45,7 +45,7 @@ public class processEditStubs extends HttpServlet {
         boolean success = false;
         try {
             String complement = request.getParameter("stub");
-            String workerFinNum = request.getParameter("workerFinNum");
+            String workerFinNum = request.getParameter("finNum");
             String jobKeyStr = request.getParameter("jobKey");
             String probKeyStr = request.getParameter("probKey");
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
@@ -168,7 +168,11 @@ public class processEditStubs extends HttpServlet {
                 UserAuditLogDAO.addUserAuditLog(userAuditLog); 
                 //end of audit log
             }
-            response.sendRedirect("viewWorker.jsp?worker="+workerFinNum);
+            //request.getSession().setAttribute("tabIndicator", "job");
+            request.getSession().setAttribute("worker",workerFinNum);
+            request.getSession().setAttribute("selectedProb",probKeyStr);
+            request.getSession().setAttribute("selectedJob", jobKeyStr);
+            response.sendRedirect("viewWorker.jsp");
         } finally {            
             out.close();
         }
