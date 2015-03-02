@@ -654,7 +654,7 @@
             </div>
             <div class='col-md-7'>
                 <select class="form-control" id="jSector" name="jobSector" onchange="displayOther(this.id);">
-                    <option vallue="" selected disabled>Select from List...</option>
+                    <option vallue="" selected>Select from List...</option>
                     <%
                         for (String jobSectorStr : jobSectorList) {
                             if (jSector.equals(jobSectorStr)) {
