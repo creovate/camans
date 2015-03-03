@@ -1,83 +1,74 @@
-<%@page import="camans.dao.*"%>
-<%@page import="camans.entity.*"%>
-<%@ include file="./protect.jsp"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
+<style>
+    #top-navbar {
+        background: #004b6b;
+        border: none;
+    }
+
+    #top-navbar ul li a{
+        color: white;
+    }
+
+    #top-navbar ul li a:hover, #top-navbar ul li a:focus{
+        background: transparent;
+        border: none;
+    }
+
+    #top-navbar ul li ul{
+        background: #006C9A;
+    }
+    #top-navbar ul li ul li a{
+        color: white;
+    }
+    #top-navbar ul li ul li a :hover, #top-navbar ul li ul li a :focus{
+        background: transparent;
+    }
+    #top-navbar ul li.dropdown.open{
+        background: transparent;
+        color: white;
+    }
+
+    .navbar-collapse{
+        color: white;
+    }
+
+    .navbar-brand{
+        padding-top: 5%;
+        padding-left: 7%;
+
+    }
     
-    User userLogin = (User) request.getSession().getAttribute("userLogin");
-    ArrayList<Worker> searchWorkers = (ArrayList<Worker>) request.getSession().getAttribute("searchWorkers");
+    .collapsed :hover, .collapsed :focus{
+        background: transparent;
+    }
+</style>
 
-%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-        <!--css-->
-        <link rel="stylesheet" href="css/bootstrap.css" media="screen" />
-        <link rel="stylesheet" href="css/dataTables.bootstrap.css"/>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-        <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
-        <link rel="stylesheet" href="css/jasny-bootstrap.css"/>
-        <link rel="stylesheet" href="css/custom.css" media="screen" /> 
-        <!-------------->
-        
-        <!--javascript-->
-        <script src="js/jquery-2.1.1.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-        <script src="js/jquery.steps.js"></script>
-        <script src="js/jquery.dataTables.js"></script>
-        <script src="js/dataTables.bootstrap.js"></script>
-        <script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
-        <script src="js/jasny-bootstrap.js"></script>  
-        <!------------->
-        
-        <!--tab icon-->
-        <link rel="shortcut icon" href="img/twc_logo.png">
-        
-        <!--page title-->
-        <title>CAMANS</title>
-            
-            
-        </style>
-    </head>
-    <body>
 
-    <div class="row">
+<nav class="navbar navbar-default navbar-fixed-top" id="top-navbar">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" style="color:white;" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </button>
+            <a class="navbar-brand" href="#" style="color:white;">CAMANS</a>
+        </div>
 
-    <nav class="navbar navbar-fixed-top" id="top-navbar" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <div class="col-md-1"></div>
-                <h4><a href="home.jsp" style="color:white; font-family: Roboto">CAMANS</a></h4>
-            </div>
-            
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-menu-hamburger" style="color:white;"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-
-                        <!-- add home page link -->
-                        <li><a href="userProfile.jsp">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                Profile
-                            </a>
-                        </li>
-
-                        <li class="divider"></li>
-                        <li><a href="logout.jsp">
-                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                                Log Out
-                            </a></li>
-                    </ul>
+                <li><a href="userProfile.jsp">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        Profile
+                    </a>
                 </li>
+
+                <li class="divider"></li>
+                <li><a href="logout.jsp">
+                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                        Log Out
+                    </a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
-    </nav>
-
-</div>
-
-    </body>
-</html>
- 
+    </div><!-- /.container-fluid -->
+</nav>
