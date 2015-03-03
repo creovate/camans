@@ -546,6 +546,7 @@
             </div>
             <div class='col-md-7'>
                 <select class="form-control" id="worker_nationality" name="nationality">
+                <option value="" selected>Select from the List...</option>
                     <%
                         for (String nationalityStr : nationalityList) {
                             if (nationality.equals(nationalityStr)) {
