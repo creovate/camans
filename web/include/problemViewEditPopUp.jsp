@@ -2659,7 +2659,6 @@
             <label for='complaintMode' class="control-label">Mode of lodging complaint:</label>
             <br/>
             <select class="form-control" id="complaintModeView" name="complaintMode" >
-                <option value="" selected>Select from list...</option>
                 <%
                     for (String complaintM : complaintMode) {
                         if (mode.equals(complaintM)) {
@@ -4381,11 +4380,7 @@
             <div class='form-group'>
                 <label for='remark' class="control-label">Mode of salary payment</label>
                 <br/>
-                <input class="form-control" type='text' name="remark" value="<%=(mode == null)? "": mode%>">
-            </div>
-            <div class='form-group' id='mode_other_div' >
-            <label for='modeMore' class="control-label">Explain if above is other</label><br/>
-            <textarea class="form-control" name="modeMore" rows="3"><%=(modeMore==null)?"":modeMore%></textarea>
+                <input class="form-control" type='text' name="remark" value="<%=mode%>">
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Estimated total value of claim (S$):</label>
@@ -4447,7 +4442,6 @@
             <label for='mode' class="control-label">Mode of salary payment</label>
             <br/>
             <select class="form-control" id="mode" name="mode" >
-                <option value="" selected>Select from list...</option>
                 <%
                     for (String provided : modeOfPayment) {
                         if (mode.equals(provided)) {
@@ -4475,7 +4469,7 @@
             <input class="form-control" type='text' name="totalLoss" value="<%=(totalValue == 0.0) ? "-" : df.format(totalValue)%>">
         </div>
         <div class='form-group'>
-            <label for='oneYearValue' class="control-label">Estimated 12 months' value of claim (S$):</label>
+            <label for='oneYearValue' class="control-label">Estimated 12 months' value of claim(S$):</label>
             <br/>
             <input class="form-control" type='text' name="oneYearLoss" value="<%=(oneYearValue == 0.0) ? "-" : df.format(oneYearValue)%>">
         </div>

@@ -40,7 +40,14 @@ public class processLogin extends HttpServlet {
         if (tempUser != null && tempUser.authenticate(password) && tempUser.getStatus().equals("Active")) {
             //store the student in session & display the home page
             request.getSession().setAttribute("userLogin", tempUser);
-            response.sendRedirect("home.jsp");
+            String userRole = tempUser.getRole();
+            //redirect based on the role of user
+            if(userRole.equals("Associate")){
+                response.sendRedirect("associate/home.jsp");
+            }else{
+                response.sendRedirect("home.jsp");    
+            }
+            
         } else {
             //return back to login page & display errorMsg
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
