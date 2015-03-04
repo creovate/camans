@@ -2122,7 +2122,7 @@
                 <label for='nDigitalContactType' class="control-label">Type of digital contact<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nDigitalContactType">
-                    <option value="" disabled selected>Select contact type...</option>
+                    <option value="" selected>Select contact type...</option>
                     <%
                         for (String contactType : digitalContactList) {
 
@@ -2381,7 +2381,7 @@
                 <label for='nMainLanguage' class="control-label">Worker's main language<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="mainLang" name="nMainLanguage">
-                    <option value="" disabled selected>Select language...</option>
+                    <option value="" selected>Select language...</option>
                     <%
                         for (String languageType : languageList) {
                     %>
@@ -2401,7 +2401,7 @@
                 <label for='nEnglishStandard' class="control-label">Spoken English standard<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nEnglishStandard">
-                    <option value="" disabled selected>Select English standard...</option>
+                    <option value="" selected>Select English standard...</option>
                     <%
                         for (String engStd : spokenEnglishList) {
                     %> 
@@ -2526,7 +2526,7 @@
                 <label for='npasstype' class="control-label">Pass type<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="passtype" name="npasstype">
-                    <option value="" disabled selected>Select from list...</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String workpassType : workpassTypes) {
                     %>
@@ -2762,7 +2762,7 @@
                 <label for='nlocation' class="control-label">Location of agent: </label>
                 <br/>
                 <select class="form-control" id="agentLocation" name="naglocation">
-                    <option value="" disabled selected>Select from list...</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String agentLocation : agentLocations) {
                     %>
@@ -2923,7 +2923,7 @@
                 <label for='nwpType' class="control-label">Type of workplace<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="workplaceType" name="nwpType" >
-                    <option value="" disabled selected>Select from list...</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String type : workplaceTypes) {
                     %>
@@ -2958,7 +2958,7 @@
                 <label for='ndirect' class="control-label">Who directed worker to this workplace?<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="direct" name="ndirect" >
-                    <option value="" disabled selected>Select from list...</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String workplacedirect : workplacedirects) {
                     %>
@@ -3028,7 +3028,7 @@
                 <label for='nhow' class="control-label">How did worker get into job defined in job profile?<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="workhistHow" name="nhow" >
-                    <option value="" disabled selected>Select from list...</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String type : workhist) {
                     %>
@@ -3114,7 +3114,7 @@
                 <label for='nisProvided' class="control-label">Accommodation provided by employer?<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="accomProvided" name="nisProvided"  >
-                    <option value="" disabled selected>Select from list...</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String accomProvided : accomProvideds) {
                     %>        
@@ -3136,7 +3136,7 @@
                 <br/>
 
                 <select class="form-control" id="accomType" name="ntype"  >
-                    <option value="" disabled selected>Select from list...</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String accomtype : accomTypes) {
                     %>
@@ -3226,7 +3226,7 @@
                 <label for='nworkpassType' class="control-label">Workpass specified in IPA<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="ipapassType" name="nworkpassType">
-                    <option value="" disabled selected>Select from list...</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String ipatype : ipatypes) {
                     %>
@@ -3435,7 +3435,7 @@
             <label for='complaintMode' class="control-label">Mode of lodging complaint:</label>
             <br/>
             <select class="form-control" id="complaintMode" name="ncomplaintMode" >
-                <option value="" disabled selected>Select from list...</option>
+                <option value="" selected>Select from list...</option>
                 <%
                     for (String complaintM : complaintMode) {
                 %>
@@ -3492,7 +3492,7 @@
             <label for='nttrStatus' class="control-label">Transfer, TJS or repatriation status<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ttrStatus" name="nttrStatus" >
-                <option value="" disabled selected>Select from list...</option>
+                <option value="" selected>Select from list...</option>
                 <%
                     for (String tempStatus : ttrList) {
                 %>
@@ -3563,7 +3563,7 @@
             <label for='nmilestoneCRReached' class="control-label">Milestone reached<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneCRReached">
-                <option value="" disabled selected>Select from list...</option>
+                <option value="" selected>Select from list...</option>
                 <%
                     for (String reached : crList) {
                 %>
@@ -3628,7 +3628,7 @@
             <label for='nmilestoneNCReached' class="control-label">Milestone reached<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneNCReached" >
-                <option value="" disabled selected>Select from list...</option>
+                <option value="" selected>Select from list...</option>
                 <%
                     for (String reached : ncList) {
                 %>
@@ -3768,7 +3768,7 @@
             <label for='' class="control-label">Current MC or light Duty status<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nmcStatus" name="nmcStatus">
-                <option value="" disabled selected>Select from list...</option>
+                <option value="" selected>Select from list...</option>
                 <%
                     for (String statusObj : statusList) {
                 %>
@@ -3832,7 +3832,7 @@
             <label for='' class="control-label">Current hospital<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nhospName" name="nhospName" >
-                <option value="" disabled selected>Select from list...</option>
+                <option value="" selected>Select from list...</option>
                 <%            for (String name : names) {
                 %>
                 <option value="<%=name%>"><%=name%></option>
@@ -3939,7 +3939,7 @@
             <label for='nwicaStatus' class="control-label">WICA status <span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="nwicaStatus" name="nwicaStatus" >
-                <option value="" disabled selected>Select from list...</option>
+                <option value="" selected>Select from list...</option>
                 <%
                     for (String tempStatus : wicaList) {
                 %>
@@ -4209,7 +4209,7 @@
             <label for='' class="control-label">Mode/Location of discussion, assistance or information-receipt<span style="color: red">*</span>:</label>
             <br/>
             <select class="form-control" id="discussionWhere" name="ndiscussionWhere" >
-                <option value="" disabled selected>Select from list...</option>
+                <option value="" selected>Select from list...</option>
                 <%
                     for (String location : locations) {
                 %>
@@ -4383,7 +4383,7 @@
                 <label for='nmode' class="control-label">Mode of salary payment</label>
                 <br/>
                 <select class="form-control" id="mode" name="nmode" >
-                    <option value="" disabled selected>Select from list...</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String pmode : modeOfPayment) {
                     %>
@@ -4446,7 +4446,7 @@
             <label for='lawyerFirm' class="control-label">Current law firm<span style="color: red">*</span>: </label>
             <br/>
             <select class="form-control" id="nlawyerFirm" name="nlawyerFirm" >
-                <option value="" disabled selected>Select from list...</option>
+                <option value="" selected>Select from list...</option>
                 <%
                     for (String lawFirmName : lawFirmNameList) {
                 %>
@@ -4498,7 +4498,7 @@
                 <label for='nauxiliaryCaseWorkerName' class="control-label">Auxiliary caseworker<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nauxiliaryCaseWorkerName">
-                    <option value="" disabled selected>Select from list...</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String auxiliaryCaseWorkerName : auxiliaryCaseworkerNameList) {
                     %>
@@ -4556,7 +4556,7 @@
                 <label for='nleadCaseWorkerName' class="control-label">Lead caseworker<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nleadCaseWorkerName">
-                    <option value="" disabled selected>Select from list...</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String leadCaseWorkerName : leadCaseWorkerNameList) {
                     %>
@@ -4614,7 +4614,7 @@
                 <label for='naggravissueType' class="control-label">Aggravating issue<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="aggravissueType" name="naggravissueType" >
-                    <option value="" disabled selected>Select from list...</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String aggravissueType : problemTypes) {
                     %>

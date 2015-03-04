@@ -25,6 +25,7 @@
 
     String selectedJob = (String) request.getSession().getAttribute("selectedJob");
     request.getSession().removeAttribute("selectedJob");
+    
     if(selectedJob == null || selectedJob.equals("")){
         selectedJob = request.getParameter("selectedJob");
     }
@@ -33,6 +34,7 @@
     if(selectedProb == null || selectedProb.equals("")){
         selectedProb = request.getParameter("selectedProb");
     }
+    
     ArrayList<Integer> jobIds = JobDAO.retrieveJobIdsOfWorker(worker);
     ArrayList<Integer> problemIds = new ArrayList<Integer>();
     if (selectedJob != null) {
@@ -3117,9 +3119,6 @@
                                                                                 ProblemSalaryRelatedHistory salaryHistory = ProblemComplementsDAO.retrieveProblemSalaryRelatedHistoryById(historyId);
 
                                                                                 String history = salaryHistory.getSalHistBasic();
-                                                                                if(history.length() > 60){
-                                                                                    history = history.substring(0,60);
-                                                                                }
                                                                                 String mode = salaryHistory.getSalMode();
                                                                                 double tClaim = salaryHistory.getSalLossTotal();
                                                                                 double claim = salaryHistory.getSalLoss1Year();

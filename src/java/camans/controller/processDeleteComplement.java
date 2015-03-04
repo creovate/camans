@@ -61,57 +61,57 @@ public class processDeleteComplement extends HttpServlet {
                     auditChange = WorkerComplementsDAO.retrieveWorkerNicknameById(id).toString2();
                     WorkerComplementsDAO.deleteNickname(id);
                     success = "Worker Nickname has been successfully deleted!";
-                    //2. passport
+                //2. passport
                 } else if (complement.equals("passport")) {
                     auditChange = WorkerComplementsDAO.retrieveWorkerPassportDetailsById(id).toString2();
                     WorkerComplementsDAO.deletePassportDetails(id);
                     success = "Worker Passport has been successfully deleted!";
-                    //3. sg phone
+                //3. sg phone
                 } else if (complement.equals("sgphone")) {
                     auditChange = WorkerComplementsDAO.retrieveWorkerSgPhNumById(id).toString2();
                     WorkerComplementsDAO.deleteWorkerSgPhNum(id);
                     success = "Worker Sg Phone has been successfully deleted!";
-                    //4. Home Country Phone   
+                //4. Home Country Phone   
                 } else if (complement.equals("homephone")) {
                     auditChange = WorkerComplementsDAO.retrieveWorkerHomeCountryPhNumById(id).toString2();
                     WorkerComplementsDAO.deleteHomeCountryPhNumber(id);
                     success = "Worker Home Phone has been successfully deleted!";
-                    //5. Singapore Address
+                //5. Singapore Address
                 } else if (complement.equals("sgadd")) {
                     auditChange = WorkerComplementsDAO.retrieveWorkerSgAddressById(id).toString2();
                     WorkerComplementsDAO.deleteWorkerSgAddress(id);
                     success = "Worker Sg address has been successfully deleted!";
-                    //6. Home Country Address
+                //6. Home Country Address
                 } else if (complement.equals("homeadd")) {
                     auditChange = WorkerComplementsDAO.retrieveWorkerHomeCountryAddressById(id).toString2();
                     WorkerComplementsDAO.deleteWorkerHomeCountryAddress(id);
                     success = "Worker home address has been successfully deleted!";
-                    //7. Digital Contact
+                //7. Digital Contact
                 } else if (complement.equals("digcontact")) {
                     auditChange = WorkerComplementsDAO.retrieveWorkerDigitalContactById(id).toString2();
                     WorkerComplementsDAO.deleteWorkerDigitalContact(id);
                     success = "Worker digital contact has been successfully deleted!";
-                    //8. Next of Kin
+                //8. Next of Kin
                 } else if (complement.equals("nok")) {
                     auditChange = WorkerComplementsDAO.retrieveWorkerNextOfKinById(id).toString2();
                     WorkerComplementsDAO.deleteWorkerNextOfKin(id);
                     success = "Worker next of kin has been successfully deleted!";
-                    //9. Family Member 
+                //9. Family Member 
                 } else if (complement.equals("familymember")) {
                     auditChange = WorkerComplementsDAO.retrieveWorkerFamilyMemberById(id).toString2();
                     WorkerComplementsDAO.deleteFamilyMember(id);
                     success = "Worker family member has been successfully deleted!";
-                    //10. Friend 
+                //10. Friend 
                 } else if (complement.equals("sgfri")) {
                     auditChange = WorkerComplementsDAO.retrieveWorkerFriendById(id).toString2();
                     WorkerComplementsDAO.deleteWorkerFriend(id);
                     success = "Worker sg friend has been successfully deleted!";
-                    //11. Language    
+                //11. Language    
                 } else if (complement.equals("language")) {
                     auditChange = WorkerComplementsDAO.retrieveWorkerLanguageById(id).toString2();
                     WorkerComplementsDAO.deleteWorkerLanguage(id);
                     success = "Worker language has been successfully deleted!";
-                    //12. Bank Account    
+                //12. Bank Account    
                 } else if (complement.equals("bankacc")) {
                     auditChange = WorkerComplementsDAO.retrieveBankAccountDetailsById(id).toString2();
                     WorkerComplementsDAO.deleteBankAccountDetails(id);
@@ -120,10 +120,11 @@ public class processDeleteComplement extends HttpServlet {
                 //log to audit
                 auditChange = auditChange.replace("{", " [");
                 auditChange = auditChange.replace("}", "]");
-                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), id + "",
-                        workerFinNum, "Deleted", "Worker Complement: " + auditChange);
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), id + "", 
+                        workerFinNum, "Deleted", "Worker Complement: " + auditChange );
 
-                UserAuditLogDAO.addUserAuditLog(userAuditLog);
+                UserAuditLogDAO.addUserAuditLog(userAuditLog); 
+                request.getSession().setAttribute("successWrkCompMsg", success);
                 request.getSession().setAttribute("successWrkCompMsg", success);
                 request.getSession().setAttribute("worker", workerFinNum);
                 request.getSession().setAttribute("selectedJob", jobKeyStr);
@@ -171,10 +172,10 @@ public class processDeleteComplement extends HttpServlet {
                 //log to audit
                 auditChange = auditChange.replace("{", " [");
                 auditChange = auditChange.replace("}", "]");
-                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), id + "",
-                        workerFinNum, "Deleted", "Job Complement: " + auditChange);
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), id + "", 
+                        workerFinNum, "Deleted", "Job Complement: " + auditChange );
 
-                UserAuditLogDAO.addUserAuditLog(userAuditLog);
+                UserAuditLogDAO.addUserAuditLog(userAuditLog); 
                 request.getSession().setAttribute("successJobCompMsg", success);
                 request.getSession().setAttribute("tabIndicator", "job");
                 request.getSession().setAttribute("worker", workerFinNum);
@@ -182,6 +183,7 @@ public class processDeleteComplement extends HttpServlet {
                 request.getSession().setAttribute("selectedProb", probKeyStr);
                 response.sendRedirect("viewWorker.jsp");
             } else if (name.equals("problem")) {
+                
                 int problemKey = Integer.parseInt(request.getParameter("probKey"));
                 if (complement.equals("aggravissue")) {
                     auditChange = ProblemComplementsDAO.retrieveProblemAggravatingIssueById(id).toString2();
@@ -268,14 +270,15 @@ public class processDeleteComplement extends HttpServlet {
                     ProblemComplementsDAO.deleteProblemTTR(id);
                     success = "TTR Details has been successfully deleted!";
                 }
-
+               
                 //log to audit
                 auditChange = auditChange.replace("{", " [");
                 auditChange = auditChange.replace("}", "]");
-                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), id + "",
-                        workerFinNum, "Deleted", "Problem Complement: " + auditChange);
-
-                UserAuditLogDAO.addUserAuditLog(userAuditLog);
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), id + "", 
+                        workerFinNum, "Deleted", "Problem Complement: " + auditChange );
+                
+                UserAuditLogDAO.addUserAuditLog(userAuditLog); 
+                request.getSession().setAttribute("successProbCompMsg", success);
                 request.getSession().setAttribute("successProbCompMsg", success);
                 request.getSession().setAttribute("tabIndicator", "problem");
                 request.getSession().setAttribute("worker", workerFinNum);
@@ -283,31 +286,29 @@ public class processDeleteComplement extends HttpServlet {
                 response.sendRedirect("viewWorker.jsp");
             } else if (name.equals("benefit")) {
                 tabIndicator = "benefit";
-                int problemKey = Integer.parseInt(probKeyStr);
-                
+                int problemKey = Integer.parseInt(request.getParameter("probKey"));
                 
                 auditChange = BenefitDAO.retrieveBenefitById(id).toString2();
                 auditChange = auditChange.replace("{", " [");
                 auditChange = auditChange.replace("}", "]");
-
+                
                 BenefitDAO.deleteBenefit(id);
                 success = "Benefit Details has been successfully deleted!";
                 //log to audit
-                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), id + "",
-                        workerFinNum, "Deleted", "Benefit: " + auditChange);
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), id + "", 
+                        workerFinNum, "Deleted", "Benefit: " + auditChange );
 
-                UserAuditLogDAO.addUserAuditLog(userAuditLog);
+                UserAuditLogDAO.addUserAuditLog(userAuditLog); 
                 request.getSession().setAttribute("successBenefitMsg", success);
-
                 request.getSession().setAttribute("tabIndicator", "benefit");
                 request.getSession().setAttribute("worker", workerFinNum);
                 request.getSession().setAttribute("selectedProb", probKeyStr);
-                request.getSession().setAttribute("selectedJob", jobKeyStr);
+                request.getSession().setAttribute("selectedJob", jobKeyStr);;
                 
                 response.sendRedirect("viewWorker.jsp");
             }
-
-        } finally {
+            
+        } finally {            
             out.close();
         }
     }
