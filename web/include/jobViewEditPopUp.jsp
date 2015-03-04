@@ -1377,7 +1377,7 @@
                 <label for='npasstype' class="control-label">Pass type<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="passtype" name="npasstype">
-                    <option value="" disabled selected>Select Pass type:</option>
+                    <option value="" selected>Select Pass type:</option>
                     <%
                         for (String workpassType : workpassTypes) {
                     %>
@@ -2090,7 +2090,7 @@
                 <label for='nlocation' class="control-label">Location of agent: </label>
                 <br/>
                 <select class="form-control" id="agentLocation" name="naglocation">
-                    <option value="" disabled selected>Select location:</option>
+                    <option value="" selected>Select location:</option>
                     <%
                         for (String agentLocation : agentLocations) {
                     %>
@@ -2191,7 +2191,7 @@
                 <label for='location' class="control-label">Location of agent: </label>
                 <br/>
                 <select class="form-control" id="agentLocationEdit" name="aglocation">
-                    <option value="" selected>Select Location:</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String agentLocation : agentLocations) {
                             if (location.equals(agentLocation)) {
@@ -2540,7 +2540,7 @@
                 <label for='nwpType' class="control-label">Type of workplace<span style="color: red">*</span>:</label>
                 <br/>
                 <select class="form-control" id="workplaceType" name="nwpType">
-                    <option value="" disabled selected>Select from list:</option>
+                    <option value="" selected>Select from list:</option>
                     <%
                         for (String type : workplaceTypes) {
                     %>
@@ -2575,7 +2575,7 @@
                 <label for='ndirect' class="control-label">Who directed worker to this workplace?<span style="color: red">*</span>: </label>
                 <br/>
                 <select class="form-control" id="direct" name="ndirect">
-                    <option value="" disabled selected>Select from list:</option>
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String workplacedirect : workplacedirects) {
                     %>
@@ -2829,7 +2829,7 @@
                 <label for='nhow' class="control-label">How did worker get into the job defined in Job Profile?<span style="color: red">*</span></label>
                 <br/>
                 <select class="form-control" id="workhistHow" name="nhow">
-                    <option value="" disabled selected>Select from list:</option>
+                    <option value="" selected>Select from list:</option>
                     <%
                         for (String type : workhist) {
                     %>
@@ -3126,7 +3126,7 @@
                 <br/>
 
                 <select class="form-control" id="accomType" name="ntype">
-                    <option value="" disabled selected>Select from list:</option>
+                    <option value="" selected>Select from list:</option>
                     <%
                         for (String accomtype : accomTypes) {
                     %>
@@ -3227,6 +3227,7 @@
                 <label for='type' class="control-label">Type of accommodation:</label>
                 <br/>
                 <select class="form-control" id="accomtypeView" name="type">
+                    <option value="" selected>Select from list...</option>
                     <%
                         for (String acoomtype : accomTypes) {
                             if (type.equals(acoomtype)) {

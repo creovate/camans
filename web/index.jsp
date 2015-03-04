@@ -332,7 +332,7 @@
                                 <%
                                     ArrayList<Worker> workersList = new ArrayList<Worker>();
                                     if (searchWorkers == null) {
-                                        workersList = WorkerDAO.retrieveWorkersByUser(userLogin.getUsername());
+                                        workersList = WorkerDAO.retrieveWorkersByUser(userLogin.getFullName());
                                     } else {
                                         workersList = searchWorkers;
                                     }
