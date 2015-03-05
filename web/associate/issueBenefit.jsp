@@ -154,7 +154,7 @@
             <%
                 }
             %>
-                    alert("farego");
+                    //alert("farego");
                 } else if (selected === "med") {
             <%
                 for (int i = 0; i < medDropdownList.size(); i++) {
@@ -293,7 +293,7 @@
             <div style="padding: 0 2%">
             <button type="button" class='btn btn-blue btn-sm' onclick="window.location = 'addNew.jsp?workerFin=<%=workerFin%>';"><span class="glyphicon glyphicon-plus"></span> Job</button>
             <button type="button" class='btn btn-blue btn-sm' onclick="window.location = 'addNew.jsp?workerFin=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>';"><span class="glyphicon glyphicon-plus"></span> Problem</button>
-            <button type="button" class='btn btn-blue btn-sm pull-right' onclick="window.location = 'caseSummary.jsp';">Case Summary</button>
+            <button type="button" class='btn btn-blue btn-sm pull-right' onclick="window.location = 'caseSummary.jsp?worker=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>&selectedProb=<%=latestProblem.getProbKey()%>';">Case Summary</button>
             </div>
         </div>
             </div>

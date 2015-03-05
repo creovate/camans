@@ -58,11 +58,13 @@ public class CaseManagementDAO {
 
             conn = ConnectionManager.getConnection();
 
-            sql = "SELECT Referred_by FROM tbl_problem WHERE Prob_key = ?";
+            sql = "SELECT Referred_by FROM tbl_problem WHERE Worker_FIN_number = ? AND Job_key =? AND Prob_key = ?";
 
             pstmt = conn.prepareStatement(sql);
 
-            pstmt.setInt(1, problem.getProbKey());
+            pstmt.setString(1, problem.getWorkerFinNum());
+            pstmt.setInt(2, problem.getJobKey());
+            pstmt.setInt(3, problem.getProbKey());
 
             rs = pstmt.executeQuery();
             boolean is_referred_case = true;
@@ -104,10 +106,12 @@ public class CaseManagementDAO {
                 pstmt.executeUpdate();
 
                 //2. update tbl_lead_case_worker
-                sql = "UPDATE tbl_lead_case_worker SET Lead_end = CURDATE( ) WHERE Prob_key =? AND Lead_end IS NULL";
+                sql = "UPDATE tbl_lead_case_worker SET Lead_end = CURDATE( ) WHERE Worker_FIN_number = ? AND Job_key = ? AND  Prob_key =? AND Lead_end IS NULL";
                 pstmt = conn.prepareStatement(sql);
 
-                pstmt.setInt(1, problem.getProbKey());
+                pstmt.setString(1, problem.getWorkerFinNum());
+                pstmt.setInt(2, problem.getJobKey());
+                pstmt.setInt(3, problem.getProbKey());
                 pstmt.executeUpdate();
 
             }
@@ -167,7 +171,7 @@ public class CaseManagementDAO {
                 leadCaseWorker = new ProblemLeadCaseWorker(lcw_id, workerFin, jobKey, probKey, lcwName, lcwStart, lcwEnd);
                 ProblemComplementsDAO.updateProblemLeadCaseWorker(leadCaseWorker);
             }
-        
+
         }
     }
 
