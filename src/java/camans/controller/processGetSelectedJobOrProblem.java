@@ -35,26 +35,36 @@ public class processGetSelectedJobOrProblem extends HttpServlet {
         try {
             String workerFin = request.getParameter("workerFin");
             String selectedType = request.getParameter("selectedType");
-
+            String associate = request.getParameter("associate");
             if (selectedType.equals("job")) {
+                
                 String jobId = request.getParameter("selectedJob");
-
+                
                 request.getSession().setAttribute("worker", workerFin);
-
+                
                 request.getSession().setAttribute("selectedJob", jobId);
-
-                request.getSession().setAttribute("tabIndicator", "job");
-                response.sendRedirect("viewWorker.jsp");
+                if (associate != null) {
+                    response.sendRedirect("associate/issueBenefit.jsp");
+                } else {
+                    request.getSession().setAttribute("tabIndicator", "job");
+                    response.sendRedirect("viewWorker.jsp");
+                }
                 //response.sendRedirect("viewWorker.jsp");
 
             } else if (selectedType.equals("problem")) {
                 String jobKeyStr = request.getParameter("jobKey");
                 String problemId = request.getParameter("selectedProblem");
-
-                request.getSession().setAttribute("tabIndicator", "problem");
+                
+                
                 request.getSession().setAttribute("worker", workerFin);
                 request.getSession().setAttribute("selectedProb", problemId);
-                response.sendRedirect("viewWorker.jsp");
+                
+                if (associate != null) {
+                    response.sendRedirect("associate/issueBenefit.jsp");
+                } else {
+                    request.getSession().setAttribute("tabIndicator", "problem");
+                    response.sendRedirect("viewWorker.jsp");
+                }
             }
         } finally {
             out.close();

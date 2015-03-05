@@ -952,7 +952,7 @@
         <div class="form-group col-sm-12 col-md-12">
             <label for="worker_pass_type_other_In" class="col-md-5 control-label">Problem Registration Date<span class="required_input">*</span>:</label>
             <div class=" col-md-7">
-                <input class="form-control dateInput" type='text' name="problemRegDate" value="<%=sdf.format(today)%>" autofocus/></div><br/><br/>
+                <input class="form-control dateInput" type='text' name="problemRegDate" value="<%=sdf.format(today)%>"/></div><br/><br/>
         </div>
         <div class="form-group col-sm-12 col-md-12">
             <label for="prob_type" class="col-md-5 control-label">Problem Type<span class="required_input">*</span></label>
@@ -1050,6 +1050,7 @@
         </div>
 
         <input type="hidden" id="hiddenWorkerFin" name="workerFinNum" value="<%=workerFin%>"/>
+        <input type="hidden" name="jobKey" value="<%=jobKeyStr%>"/>
         <br/><br/>
         <div class="form-group col-sm-12 col-md-12">
             <button type='button' class="btn cancel_btn" style="bottom: 0">Cancel</button>

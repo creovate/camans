@@ -50,13 +50,18 @@
             <button type="button" class="navbar-toggle collapsed" style="color:white;" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="glyphicon glyphicon-align-justify"></span>
             </button>
-            <a class="navbar-brand" href="#" style="color:white;">CAMANS</a>
+            <a class="navbar-brand" href="home.jsp" style="color:white;">CAMANS</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="home.jsp">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        Home
+                    </a>
+                </li>
                 <li><a href="userProfile.jsp">
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         Profile

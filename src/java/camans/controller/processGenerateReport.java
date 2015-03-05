@@ -4,6 +4,7 @@
  */
 package camans.controller;
 
+import camans.dao.BeanFactory;
 import camans.dao.ConnectionManager;
 //import camans.dao.ReportDAO;
 //import camans.entity.JasperDataSourceBuilder;
@@ -158,30 +159,24 @@ public class processGenerateReport extends HttpServlet {
                 response.setHeader("Content-Disposition", "attachment;filename=ClientsByNationalityAndGender.xlsx");
             } else if (reportType.equals("Clients by nationality and work pass") && start != null && end != null) {
                 //get the file path
-                filePath = getServletContext().getRealPath("/reports/NationalityGender.jasper");
+                filePath = getServletContext().getRealPath("/reports/testReport.jasper");
+                java.util.Collection beanCollection = BeanFactory.generateNationalityWorkpassBean();
+                
+                JasperPrint print  = JasperFillManager.fillReport(filePath, map,new JRBeanCollectionDataSource(beanCollection));
+//            JasperExportManager.exportReportToPdfFile(jasperPrint,"StudentInfo.pdf");
+//            JasperViewer.viewReport(jasperPrint);
 
-                //int[][] nationalityWorkpassArr = ReportDAO.retrieveNationalityWorkpass(start, end);
 
-                //Map[] masterData = new Map[1];
 
-                //masterData[0] = new HashMap();
-
-                //masterData[0].put("filterDataSource", nationalityWorkpassArr);
-
-                //JRBeanArrayDataSource beanData = new JRBeanArrayDataSource(nationalityWorkpassArr);
-
-                //JRDataSource beanData = new JRDataSource(nationalityWorkpassArr);
-
-//                JasperPrint print = JasperFillManager.fillReport(filePath, map, new JasperDataSourceBuilder(nationalityWorkpassArr));
 //
-//                JRXlsxExporter exporter = new JRXlsxExporter();
-//                exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
-//
-//                exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
-//                exporter.exportReport();
-//
-//                response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-//                response.setHeader("Content-Disposition", "attachment;filename=ClientsByNationalityAndGender.xlsx");
+                JRXlsxExporter exporter = new JRXlsxExporter();
+                exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+
+                exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
+                exporter.exportReport();
+
+                response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                response.setHeader("Content-Disposition", "attachment;filename=ClientsByNationalityAndGender.xlsx");
 
 
                 try {

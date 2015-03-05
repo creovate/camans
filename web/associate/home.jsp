@@ -25,7 +25,20 @@
 
         <!--page title-->
         <title>CAMANS</title>
-
+        <style>
+            #folderImg{
+                height: 20vw;
+                
+                margin-bottom: 4%;
+            }
+            
+            #mainMenu{
+                padding : 5% 5%;
+            }
+            .menu_icon{
+                padding: 2%;
+            }
+        </style>
 
 </head>
 <body id="home">
@@ -34,6 +47,7 @@
     <!-- End of Nav Bar-->
 
     <!-- Search Box -->
+    
     <div id="searchBox" class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
         <br/>
         <h4 style="color:#006c9a">Search Worker by FIN</h4>
@@ -51,12 +65,40 @@
 
     </div>
     <!-- End of Search Box -->
-
+<br/>
     <!-- Main Menu -->
     <div id="mainMenu" class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
+        <h4 style="color:#006c9a">Review</h4>
         <!-- First Row -->
-
+        <div class="col-xs-4 menu_icon text-center">
+            <a href="addNew.jsp?option=createCase"><img class="img-responsive center-block" src="../img/meal.png" id="folderImg"/></a>
+            <label style="font-size: small;">Meal Cards</label>
+        </div>
+        <div class="col-xs-4 menu_icon text-center">
+            <a href="addNew.jsp?option=createCase"><img class="img-responsive center-block" src="../img/farego.png" id="folderImg"/></a>
+            <label style="font-size: small;">FareGo</label>
+        </div>
+        <div class="col-xs-4 menu_icon text-center">
+            <a href="addNew.jsp?option=createCase"><img class="img-responsive center-block" src="../img/med.png" id="folderImg"/></a>
+            <label style="font-size: small;">Medical</label>
+        </div>
         <!-- Second Row -->
+        <div class="col-xs-4 menu_icon text-center">
+            <a href="addNew.jsp?option=createCase"><img class="img-responsive center-block" src="../img/roof.png" id="folderImg"/></a>
+            <label style="font-size: small;">Roof</label>
+        </div>
+        <div class="col-xs-4 menu_icon text-center">
+            <a href="addNew.jsp?option=createCase"><img class="img-responsive center-block" src="../img/r2r.png" id="folderImg"/></a>
+            <label style="font-size: small;">R2R</label>
+        </div>
+        <!-- TO DO :: ADD SEPERATOR -->
+        <div class="col-xs-12">
+            <h4 style="color:#006c9a">Create New Case</h4>
+        <div class="col-xs-4 menu_icon text-center">
+            <a href="addNew.jsp?option=createCase"><img class="img-responsive center-block" src="../img/add_folder.png" id="folderImg"/></a>
+            <label style="font-size: small;">Create Case</label>
+        </div>
+        </div>
     </div>
     <!-- End of Main Menu -->
 

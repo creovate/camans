@@ -34,7 +34,7 @@
     <body style="background:  white">
         <div class="main_div">
             <div class="row">
-                <div id="login_form" class="col-md-offset-4 col-md-4 text-center">
+                <div id="login_form" class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8 text-center">
                     <img src="img/twc_logo.png">
                     <br/>
                     <form method="post" action="authenticate.do" role="form">
@@ -44,7 +44,7 @@
                         </div>
                         <br/>
                         <div class="form-group">
-                            <input type="password" class="form-control" name="password" placeholder="Password" required></input>
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
                         </div>
                         <br/>
                         <button type="submit" class="btn btn-blue btn-lg btn-block">Log In</button>
