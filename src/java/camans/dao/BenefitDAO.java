@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  * @author soemyatmyat
  */
 public class BenefitDAO {
-    
+
 
     /*Benefit*/
     public static ArrayList<Integer> retrieveBenefitsIdsOfProblem(Problem problem, String benefitType) {
@@ -40,6 +40,42 @@ public class BenefitDAO {
             pstmt.setInt(2, problem.getJobKey());
             pstmt.setInt(3, problem.getProbKey());
             pstmt.setString(4, benefitType);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                ids.add(id);
+            }
+
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql);
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+
+        return ids;
+    }
+
+    public static ArrayList<Integer> retrieveBenefitsIdsOfCategory(Problem problem, String benefitCategory, java.util.Date startDateIn, java.util.Date endDateIn) {
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+
+        try {
+            conn = ConnectionManager.getConnection();
+            sql = "select Remark, Name, t1.* from tbl_dropdown inner join "
+                    + "(select * from tbl_benefit where Bene_date between ? and ?) as t1 "
+                    + "on Name = t1.Bene_type "
+                    + "where dropdownType = \"Bene_type\" "
+                    + "and remark = ?"
+                    + "order by displayRank";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, problem.getWorkerFinNum());
+            pstmt.setInt(2, problem.getJobKey());
+            pstmt.setInt(3, problem.getProbKey());
+            pstmt.setString(4, benefitCategory);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt(1);
@@ -85,8 +121,8 @@ public class BenefitDAO {
                 int jobKey = rs.getInt(10);
                 int probKey = rs.getInt(11);
                 benefit = new Benefit(id, workerFinNumber, jobKey, probKey,
-                        beneDate, beneGiver, beneType, beneTypeMore, beneSerial,benePurpose,
-                        beneRemark,beneValue);
+                        beneDate, beneGiver, beneType, beneTypeMore, beneSerial, benePurpose,
+                        beneRemark, beneValue);
             }
 
         } catch (SQLException ex) {
@@ -126,7 +162,7 @@ public class BenefitDAO {
         } finally {
             ConnectionManager.close(conn, pstmt);
         }
-    } 
+    }
 
     public static void updateBenefit(Benefit benefit) {
         Connection conn = null;
@@ -155,7 +191,7 @@ public class BenefitDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+
     public static void deleteBenefit(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -171,17 +207,17 @@ public class BenefitDAO {
             handleSQLException(ex, sql, "Benefit ID={" + id + "}");
         } finally {
             ConnectionManager.close(conn, pstmt, null);
-        } 
+        }
     }
-    
+
     public static void deleteAll() {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql = "";
-        
+
         try {
             conn = ConnectionManager.getConnection();
-            
+
             sql = "DELETE FROM tbl_benefit";
             pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -189,9 +225,9 @@ public class BenefitDAO {
             handleSQLException(ex, sql, "not able to delete data from Benefit Table. ");
         } finally {
             ConnectionManager.close(conn, pstmt, null);
-        } 
+        }
     }
-    
+
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
         String msg = "Unable to access data; SQL=" + sql + "\n";
         for (String parameter : parameters) {

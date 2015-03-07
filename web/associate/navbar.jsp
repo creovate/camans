@@ -69,7 +69,7 @@
                 </li>
 
                 <li class="divider"></li>
-                <li><a href="logout.jsp">
+                <li><a href="../logout.jsp">
                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                         Log Out
                     </a></li>

@@ -49,6 +49,8 @@ public class processAddProblemComplement extends HttpServlet {
             User _user = (User) request.getSession().getAttribute("userLogin");
             String idStr = request.getParameter("Id");
 
+            String isAssociate = request.getParameter("associate");
+            
             String auditChange = "";
             String action =  "";
             //=======================================//
@@ -575,15 +577,15 @@ public class processAddProblemComplement extends HttpServlet {
                             errorMsg += "Law Firm Name cannot be longer than 30 characters,";
                         }
 
-                        if (!lawFirmNameMore.equals("") && lawFirmNameMore.length() > 50) {
+                        if (lawFirmNameMore != null && !lawFirmNameMore.equals("") && lawFirmNameMore.length() > 50) {
                             errorMsg += "Explain if above is other cannot be longer than 50 characters,";
                         }
 
-                        if (!lawFirmLawyer.equals("") && lawFirmLawyer.length() > 200) {
+                        if (lawFirmLawyer != null && !lawFirmLawyer.equals("") && lawFirmLawyer.length() > 200) {
                             errorMsg += "Lawyer Name cannot be longer than 200 characters,";
                         }
 
-                        if (!lawFirmRem.equals("") && lawFirmRem.length() > 200) {
+                        if (lawFirmRem != null && !lawFirmRem.equals("") && lawFirmRem.length() > 200) {
                             errorMsg += "Remark cannot be longer than 200 characters,";
                         }
 
@@ -1528,15 +1530,15 @@ public class processAddProblemComplement extends HttpServlet {
                             errorMsg += "Hosptial Name cannot be longer than 30 characters,";
                         }
 
-                        if (!hospitalNameMore.equals("") && hospitalNameMore.length() > 50) {
+                        if (hospitalNameMore != null && !hospitalNameMore.equals("") && hospitalNameMore.length() > 50) {
                             errorMsg += "Explain if above is other cannot be longer than 50 characters,";
                         }
 
-                        if (!hospitalDoctor.equals("") && hospitalDoctor.length() > 200) {
+                        if (hospitalDoctor != null && !hospitalDoctor.equals("") && hospitalDoctor.length() > 200) {
                             errorMsg += "Doctor Name cannot be longer than 200 characters,";
                         }
 
-                        if (!hospitalRemark.equals("") && hospitalRemark.length() > 200) {
+                        if (hospitalRemark != null && !hospitalRemark.equals("") && hospitalRemark.length() > 200) {
                             errorMsg += "remark cannot be longer than 200 characters,";
                         }
 
@@ -2236,15 +2238,15 @@ public class processAddProblemComplement extends HttpServlet {
                         } 
                     }
 
-                    if (!ncmileStoneReach.equals("") && ncmileStoneReach.length() > 50) {
+                    if (ncmileStoneReach != null &&!ncmileStoneReach.equals("") && ncmileStoneReach.length() > 50) {
                         errorMsg += "Mile Stone reach cannot be longer than 50 characters,";
                     }
 
-                    if (!ncmileStoneReachMore.equals("") && ncmileStoneReachMore.length() > 200) {
+                    if (ncmileStoneReachMore != null && !ncmileStoneReachMore.equals("") && ncmileStoneReachMore.length() > 200) {
                         errorMsg += "Explain if above is other cannot be longer than 200 characters,";
                     }
 
-                    if (!ncmileStoneRemark.equals("") && ncmileStoneRemark.length() > 200) {
+                    if (ncmileStoneRemark != null && !ncmileStoneRemark.equals("") && ncmileStoneRemark.length() > 200) {
                         errorMsg += "remark cannot be longer than 200 characters,";
                     }
 
@@ -2475,15 +2477,15 @@ public class processAddProblemComplement extends HttpServlet {
 //                    }
 
 
-                    if (!ttrNewEmployer.equals("") && ttrNewEmployer.length() > 50) {
+                    if (ttrNewEmployer != null && !ttrNewEmployer.equals("") && ttrNewEmployer.length() > 50) {
                         errorMsg += "new employer name cannot be longer than 50 characters,";
                     }
 
-                    if (!ttrNewJob.equals("") && ttrNewJob.length() > 200) {
+                    if (ttrNewJob != null && !ttrNewJob.equals("") && ttrNewJob.length() > 200) {
                         errorMsg += "new job cannot be longer than 50 characters,";
                     }
 
-                    if (!ttrRemark.equals("") && ttrRemark.length() > 200) {
+                    if (ttrRemark != null && !ttrRemark.equals("") && ttrRemark.length() > 200) {
                         errorMsg += "remark cannot be longer than 200 characters,";
                     }
 
@@ -2547,7 +2549,12 @@ public class processAddProblemComplement extends HttpServlet {
             request.getSession().setAttribute("tabIndicator", "problem");
             request.getSession().setAttribute("worker",workerFinNum);
             request.getSession().setAttribute("selectedProb", problemKey + "");
-            response.sendRedirect("viewWorker.jsp");
+            
+            if (isAssociate != null) {
+                response.sendRedirect("associate/caseSummary.jsp");
+            } else {
+                response.sendRedirect("viewWorker.jsp");
+            }
         } catch (Exception ex) {
             out.println(ex);
         } finally {            

@@ -49,6 +49,7 @@ public class processAddJobComplement extends HttpServlet {
             //to keep track of selected problem
             String probKeyStr = request.getParameter("selectedProb");
             
+            String isAssociate = request.getParameter("associate");
             //=======================================//
             //   Server Side Validation Parameters
             //=======================================//
@@ -108,14 +109,14 @@ public class processAddJobComplement extends HttpServlet {
                 //proceed only after empty fields validation is passed
                 if (pass) { 
                     
-                    if (!passTypeMore.equals("") && passTypeMore.length() > 255){
+                    if (passTypeMore != null && !passTypeMore.equals("") && passTypeMore.length() > 255){
                         errorMsg += "Explain if above is other must not exceed 255 characters,";
                     }
                     
                     if (passNum.length() > 20) {
                         errorMsg += "Pass Number must not exceed 20 characters,";
                     }
-                    if (!apDateStr.equals("")) {
+                    if (apDateStr != null && !apDateStr.equals("")) {
                         try {
                             java.util.Date tmp = sdf.parse(apDateStr);
                             apDate = new java.sql.Date(tmp.getTime());
@@ -124,7 +125,7 @@ public class processAddJobComplement extends HttpServlet {
                         } 
                     }
                     
-                    if (!isDateStr.equals("")) {
+                    if (isDateStr != null && !isDateStr.equals("")) {
                         try {
                             java.util.Date tmp = sdf.parse(isDateStr);
                             isDate = new java.sql.Date(tmp.getTime());
@@ -133,7 +134,7 @@ public class processAddJobComplement extends HttpServlet {
                         } 
                     }
                     
-                    if (!exDateStr.equals("")) {
+                    if (exDateStr != null && !exDateStr.equals("")) {
                         try {
                             java.util.Date tmp = sdf.parse(exDateStr);
                             exDate = new java.sql.Date(tmp.getTime());
@@ -142,15 +143,15 @@ public class processAddJobComplement extends HttpServlet {
                         } 
                     }
                     
-                    if (!issuer.equals("") && issuer.length() > 20) {
+                    if (issuer != null && !issuer.equals("") && issuer.length() > 20) {
                         errorMsg += "pass issuer must not exceed 20 characters,";
                     }
                     
-                    if (!remark.equals("") && remark.length() > 200) {
+                    if (remark != null && !remark.equals("") && remark.length() > 200) {
                         errorMsg += "pass remark must not exceed 200 characters,";
                     }
                     
-                    if (!obsoleteDateStr.equals("")) {
+                    if (obsoleteDateStr != null && !obsoleteDateStr.equals("")) {
                         try {
                             java.util.Date tmp = sdf.parse(obsoleteDateStr);
                             obDate = new java.sql.Date(tmp.getTime());
@@ -1299,7 +1300,11 @@ public class processAddJobComplement extends HttpServlet {
             request.getSession().setAttribute("worker",workerFinNum);
             request.getSession().setAttribute("selectedProb",probKeyStr);
             request.getSession().setAttribute("selectedJob", jobKey + "");
-            response.sendRedirect("viewWorker.jsp");
+            if (isAssociate != null) {
+                response.sendRedirect("associate/caseSummary.jsp");
+            } else {
+                response.sendRedirect("viewWorker.jsp");
+            }
         } catch (Exception ex) {
             out.println(ex);
         } finally {

@@ -44,6 +44,8 @@ public class processReferCase extends HttpServlet {
             String referredDateStr = request.getParameter("refDate");
 
             String referredDescription = request.getParameter("refDesc");
+            
+            String isAssociate = request.getParameter("associate");
             int jobKey = 0;
             int probKey = 0;
             try {
@@ -87,7 +89,11 @@ public class processReferCase extends HttpServlet {
             request.getSession().setAttribute("worker",workerFinNum);
             request.getSession().setAttribute("selectedJob",jobKeyStr);
             request.getSession().setAttribute("selectedProb",probKeyStr);
+            if(isAssociate != null){
+                response.sendRedirect("associate/caseSummary.jsp");
+            }else{
             response.sendRedirect("viewWorker.jsp");
+            }
 
         } finally {
             out.close();

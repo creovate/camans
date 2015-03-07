@@ -140,6 +140,7 @@
             %>
 
                     $('#nbenetype').append("<option><%=ddlItem%></option>");
+                    
             <%
                 }
             %>
@@ -186,6 +187,7 @@
             %>
                     //alert("other");
                 }
+                $('#btnHistory').attr("onclick","window.location = 'benefection.jsp?worker=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>&selectedProb=<%=latestProblem.getProbKey() %>&beneCategory=" + selected + "&action=viewRecent';");
 
 
             }
@@ -324,8 +326,11 @@
                             <option>Roof</option>
                             <option>Others</option>
                         </select>
+                        <br/>
+                        <button type='button' class='btn btn-blue btn-sm pull-right' id='btnHistory' onclick="window.location = 'benefection.jsp?worker=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>&selectedProb=<%=latestProblem.getProbKey() %>&beneCategory=Meal Cards&action=viewRecent';">View History</button>
                     </div>
                 </div>
+                
                 <hr>
 
                 <div class='form-group'>

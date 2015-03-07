@@ -12,6 +12,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="camans.entity.User"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@ include file="../protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -24,7 +25,7 @@
     ArrayList<String> problemList = DropdownDAO.retrieveAllDropdownListOfProblems();
     ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListByType("Work_pass_type");
     ArrayList<String> jobSectorList = DropdownDAO.retrieveAllDropdownListOfJobSector();
-
+    ArrayList<String> workpassTypes = DropdownDAO.retrieveAllDropdownListByType("Pass_type");
 
     String workerFin = request.getParameter("workerFin");
     String jobKeyStr = request.getParameter("selectedJob");
@@ -54,11 +55,10 @@
         <title>CAMANS</title>
         <style>
             form{
-                margin-top: 5%;
                 margin-bottom: 5%;
             }
             h4, h5{
-                padding: 3%;
+                padding: 1%;
             }
         </style>
         <script>
@@ -105,7 +105,7 @@
         <%
             if (option != null) {
                 //this is create case
-        %>
+%>
         <!-- Create Case Form -->
         <div class="col-xs-12 col-md-12" >
             <form method="post" action="../createNewCase.do" class="form form-horizontal" 
@@ -217,7 +217,40 @@
                     <div class="col-xs-8 col-sm-7 col-md-6">
                         <input type="text" class="form-control" name="jobStartDate"/></div>
                 </div>
+                <br/>
+                <!-- job complement -->
+                <div class="form-group">
+                    <label for="npasstype" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Current pass type:</label>
+                    <div class="col-xs-8 col-sm-7 col-md-6"> 
+                        <select name="npasstype" class="form-control input-sm" required>
+                            <option value="">Select from list...</option>
+                            <%
+                                for (String workpassType : workpassTypes) {
+                            %>
+                            <option value="<%=workpassType%>"><%=workpassType%></option>
+                            <%
+                                }
+                            %>                   
+                        </select>
+                    </div><br/><br/>
+                </div>
 
+                <div class='form-group'>
+                    <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Current pass number:</label>
+
+                    <div class="col-xs-8 col-sm-7 col-md-6">
+                        <input class="form-control input-sm" type='text' name="npassno" />
+                    </div><br/><br/>
+                </div>
+                <div class='form-group'>
+                    <label for='nisdate' class="col-md-3 col-xs-4 col-sm-4 control-label">Current pass issued date:</label>
+                    <div class="col-xs-8 col-sm-7 col-md-6">
+                        <input class="form-control dateInput isdateToRemove col-xs-9 col-md-9 input-sm" type='text' name="nisdate" style="width:80%" >
+                        <div class="input-group-addon col-xs-1 col-md-1 removeBtn" title="Remove date" data-field="is" style="width:20%;">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </div>
+                    </div>
+                </div>
 
                 <!--problem profile-->
                 <hr>
@@ -248,6 +281,11 @@
                         </select>
                     </div>
                 </div>
+
+                <!-- problem complements -->
+
+
+
                 <input type="hidden" name="associate" value="associate"/>
                 <button  type='submit' class="btn btn-blue pull-right">Submit</button>
             </form> 
@@ -279,7 +317,7 @@
                 <div class="form-group">
                     <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >Worker's name</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                        <input type="text" class="form-control required" name="wkername" value='<%=selectedWorker.getName() %>' readonly="true"/>
+                        <input type="text" class="form-control required" name="wkername" value='<%=selectedWorker.getName()%>' readonly="true"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
@@ -348,15 +386,15 @@
                     <button  type='submit' class="btn btn-blue">Submit</button>
                     <button type='' class="btn cancel_btn" style="bottom: 0">Cancel</button>
                 </div>
-<br/><br/>
+                <br/><br/>
             </form> 
         </div>
         <%                } else {
             //else, it is adding new problem to selected job
-                int jobKey = Integer.parseInt(jobKeyStr);
-        Job selectedJob = JobDAO.retrieveJobByJobId(jobKey);
-        String employer = selectedJob.getEmployerName();
-%>
+            int jobKey = Integer.parseInt(jobKeyStr);
+            Job selectedJob = JobDAO.retrieveJobByJobId(jobKey);
+            String employer = selectedJob.getEmployerName();
+        %>
         <div class='row'>
             <form method="POST" id='addCase' class="form complement_detailed_form col-xs-12 col-sm-12 col-md-12" action="../createNewCase.do" style="font-size:small">
 
@@ -375,7 +413,7 @@
                 <div class="form-group">
                     <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >Worker's name</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                        <input type="text" class="form-control required" name="wkername" value='<%=selectedWorker.getName() %>' readonly="true"/>
+                        <input type="text" class="form-control required" name="wkername" value='<%=selectedWorker.getName()%>' readonly="true"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
@@ -418,7 +456,7 @@
                     <button  type='submit' class="btn btn-blue">Submit</button>
                     <button type='' class="btn cancel_btn" style="bottom: 0">Cancel</button>
                 </div>
-<br/><br/>
+                <br/><br/>
             </form> 
         </div>
         <%

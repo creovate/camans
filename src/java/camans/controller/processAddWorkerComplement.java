@@ -47,17 +47,18 @@ public class processAddWorkerComplement extends HttpServlet {
             String action = "";
             String auditChange = "";
             String idStr = request.getParameter("Id");
-            
+
             //to keep track of chosen job and problem
             String jobKeyStr = request.getParameter("selectedJob");
             String probKeyStr = request.getParameter("selectedProb");
-            
+
+            String isAssociate = request.getParameter("associate");
             //=======================================//
             //   Server Side Validation Parameters
             //=======================================//
             String errorMsg = ""; //to store error msg
             String success = "";//to store success msgf
-            
+
             //=======================================//
             //          Nick Name 
             //=======================================//            
@@ -92,11 +93,11 @@ public class processAddWorkerComplement extends HttpServlet {
 
                         //success display
                         success = "Worker Nickname has been succesfully added!";
-                    } else {     
+                    } else {
                         int id = Integer.parseInt(request.getParameter("Id"));
-                        WorkerNickname workerNickname = new WorkerNickname(workerFinNum,id, nickName);
+                        WorkerNickname workerNickname = new WorkerNickname(workerFinNum, id, nickName);
                         //update in the Database
-                        WorkerComplementsDAO.updateNickname(workerNickname); 
+                        WorkerComplementsDAO.updateNickname(workerNickname);
 
                         //log the audit
                         auditChange = workerNickname.toString2();
@@ -105,10 +106,10 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker Nickname has been successfully updated!";
                     }
                 } //no error
-                    
-            //=======================================//
-            //          Passport Details  
-            //=======================================// 
+
+                //=======================================//
+                //          Passport Details  
+                //=======================================// 
             } else if (complementName.equals("WorkerPassportDetails")) {
 
                 //get all the parameters for passport
@@ -118,7 +119,7 @@ public class processAddWorkerComplement extends HttpServlet {
                 String expiryDateStr = "";
                 java.sql.Date issueDate = null;
                 java.sql.Date expiryDate = null;
-                
+
                 if (idStr == null) {
                     passportCountry = request.getParameter("nPassportCountry");
                     passportNum = request.getParameter("nPassportNum");
@@ -130,8 +131,10 @@ public class processAddWorkerComplement extends HttpServlet {
                     issueDateStr = request.getParameter("passportIssueDate");
                     expiryDateStr = request.getParameter("passportExpiryDate");
                 }
-                
-                /** Server Validation **/
+
+                /**
+                 * Server Validation *
+                 */
                 boolean pass = true; //assume validation pass first;
 
                 if (passportNum.equals("")) {
@@ -144,7 +147,7 @@ public class processAddWorkerComplement extends HttpServlet {
                 }
 
                 //proceed only after empty fields validation is passed
-                if (pass) { 
+                if (pass) {
 
                     if (passportNum.length() > 20) {
                         errorMsg += "passport num cannot be longer than 20 characters,";
@@ -160,7 +163,7 @@ public class processAddWorkerComplement extends HttpServlet {
                             issueDate = new java.sql.Date(tmp.getTime());
                         } catch (ParseException ex) {
                             errorMsg += "Invalid Issue Date Format,";
-                        } 
+                        }
                     }
 
                     if (!expiryDateStr.equals("")) {
@@ -169,12 +172,12 @@ public class processAddWorkerComplement extends HttpServlet {
                             expiryDate = new java.sql.Date(tmp.getTime());
                         } catch (ParseException ex) {
                             errorMsg += "Invalid Expiry Date Format,";
-                        } 
+                        }
                     }
 
                 }   //pass 
                 /*Server Validation Ends*/
-                
+
                 if (errorMsg.equals("")) {
                     if (idStr == null) {
                         //create passport object
@@ -189,7 +192,7 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker Passport Details has been succesfully added!";
                     } else {
                         int id = Integer.parseInt(request.getParameter("Id"));
-                                                //create passport object
+                        //create passport object
                         WorkerPassportDetails workerPassportDetails = new WorkerPassportDetails(workerFinNum,
                                 id, passportNum, passportCountry, issueDate, expiryDate);
                         //update in the Database
@@ -201,16 +204,16 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker Passport Details has been succesfully updated!";
                     }
                 }
-            //=======================================//
-            //          Home Country Phone Number  
-            //=======================================//
+                //=======================================//
+                //          Home Country Phone Number  
+                //=======================================//
             } else if (complementName.equals("WorkerHomeCountryPhNum")) {
 
                 String phNum = "";
                 String phOwner = "";
                 String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                
+
                 //get all the parameters for HomeCountry
                 if (idStr == null) {
                     phNum = request.getParameter("nPhNum");
@@ -221,8 +224,10 @@ public class processAddWorkerComplement extends HttpServlet {
                     phOwner = request.getParameter("phOwner");
                     obseleteDateStr = request.getParameter("obseleteDate");
                 }
-                
-                /**Server Validation**/
+
+                /**
+                 * Server Validation*
+                 */
                 boolean pass = true; //assume validation pass first;
                 if (phNum.equals("")) {
                     errorMsg += "Phone Number is blank,";
@@ -230,8 +235,8 @@ public class processAddWorkerComplement extends HttpServlet {
                 }
 
                 //proceed only after empty fields validation is passed
-                if (pass) { 
-                    
+                if (pass) {
+
                     if (!phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                         errorMsg += "invalid phone number, ";
                     }
@@ -246,7 +251,7 @@ public class processAddWorkerComplement extends HttpServlet {
                             obseleteDate = new java.sql.Date(tmp.getTime());
                         } catch (ParseException ex) {
                             errorMsg += "Invalid Obselete Date Format,";
-                        } 
+                        }
                     }
                 }   //pass 
 
@@ -264,27 +269,27 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Home Country Phone Number has been succesfully added!";
                     } else {
                         int id = Integer.parseInt(request.getParameter("Id"));
-                        WorkerHomeCountryPhNum obj = new WorkerHomeCountryPhNum(workerFinNum, id, 
+                        WorkerHomeCountryPhNum obj = new WorkerHomeCountryPhNum(workerFinNum, id,
                                 phNum, phOwner, obseleteDate);
                         //update in the Database
                         WorkerComplementsDAO.updateWorkerHomeCountryPhNum(obj);
 
                         //log the audit
                         auditChange = obj.toString2();
-                        
+
                         //success Display
                         success = "Home Country Phone Number has been succesfully updated!";
                     }
                 }
-            //=======================================//
-            //          Singapore Phone Number  
-            //=======================================//
+                //=======================================//
+                //          Singapore Phone Number  
+                //=======================================//
             } else if (complementName.equals("WorkerSgPhNum")) {
                 //get all the parameters for HomeCountry
                 String phNum = "";
                 String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                
+
                 if (idStr == null) {
                     phNum = request.getParameter("nsgPhNum");
                     obseleteDateStr = request.getParameter("nObseleteDate");
@@ -293,7 +298,9 @@ public class processAddWorkerComplement extends HttpServlet {
                     obseleteDateStr = request.getParameter("obseleteDate");
                 }
 
-                /**Server Validation**/
+                /**
+                 * Server Validation*
+                 */
                 boolean pass = true; //assume validation pass first;
                 if (phNum.equals("")) {
                     errorMsg += "Phone Number is blank,";
@@ -301,22 +308,22 @@ public class processAddWorkerComplement extends HttpServlet {
                 }
 
                 //proceed only after empty fields validation is passed
-                if (pass) { 
-                    
+                if (pass) {
+
                     if (!phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                         errorMsg += "invalid phone number, ";
                     }
 
-                    if (!obseleteDateStr.equals("")) {
+                    if (obseleteDateStr != null && !obseleteDateStr.equals("")) {
                         try {
                             java.util.Date tmp = sdf.parse(obseleteDateStr);
                             obseleteDate = new java.sql.Date(tmp.getTime());
                         } catch (ParseException ex) {
                             errorMsg += "Invalid Obselete Date Format,";
-                        } 
+                        }
                     }
                 }   //pass 
-                
+
                 if (errorMsg.equals("")) {
                     if (idStr == null) {
                         WorkerSgPhNum obj = new WorkerSgPhNum(workerFinNum, phNum, obseleteDate);
@@ -328,7 +335,7 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker's Singapore Phone Number has been succesfully added!";
                     } else {
                         int id = Integer.parseInt(request.getParameter("Id"));
-                        WorkerSgPhNum obj = new WorkerSgPhNum(workerFinNum, id, phNum,obseleteDate);
+                        WorkerSgPhNum obj = new WorkerSgPhNum(workerFinNum, id, phNum, obseleteDate);
                         //update in the Database
                         WorkerComplementsDAO.updateWorkerSgPhNum(obj);
 
@@ -338,15 +345,15 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker's Singapore Phone Number has been succesfully updated!";
                     }
                 }
-            //=======================================//
-            //          Singapore Address  
-            //=======================================//
+                //=======================================//
+                //          Singapore Address  
+                //=======================================//
             } else if (complementName.equals("WorkerSgAddress")) {
                 //get all the parameters for HomeCountry
                 String address = "";
                 String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                
+
                 if (idStr == null) {
                     address = request.getParameter("nAddress");
                     obseleteDateStr = request.getParameter("nObseleteDate");
@@ -355,7 +362,9 @@ public class processAddWorkerComplement extends HttpServlet {
                     obseleteDateStr = request.getParameter("obseleteDate");
                 }
 
-                /**Server Validation**/
+                /**
+                 * Server Validation*
+                 */
                 boolean pass = true; //assume validation pass first;
                 if (address.equals("")) {
                     errorMsg += "Address is blank,";
@@ -363,9 +372,9 @@ public class processAddWorkerComplement extends HttpServlet {
                 }
 
                 //proceed only after empty fields validation is passed
-                if (pass) { 
+                if (pass) {
 
-                    if (address.length()>200) {
+                    if (address.length() > 200) {
                         errorMsg += "sg address must not exceed 200 characters, ";
                     }
 
@@ -375,7 +384,7 @@ public class processAddWorkerComplement extends HttpServlet {
                             obseleteDate = new java.sql.Date(tmp.getTime());
                         } catch (ParseException ex) {
                             errorMsg += "Invalid Obselete Date Format,";
-                        } 
+                        }
                     }
 
                 }   //pass 
@@ -391,7 +400,7 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker's Singapore Address has been succesfully added!";
                     } else {
                         int id = Integer.parseInt(request.getParameter("Id"));
-                        WorkerSgAddress obj = new WorkerSgAddress(workerFinNum, id, address,obseleteDate);
+                        WorkerSgAddress obj = new WorkerSgAddress(workerFinNum, id, address, obseleteDate);
                         //update in the Database
                         WorkerComplementsDAO.updateWorkerSgAddress(obj);
 
@@ -401,9 +410,9 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker's Singapore Address has been succesfully updated!";
                     }
                 }
-            //=======================================//
-            //          Home Country Address   
-            //=======================================//
+                //=======================================//
+                //          Home Country Address   
+                //=======================================//
             } else if (complementName.equals("WorkerHomeCountryAddress")) {
                 //get all the parameters for HomeCountry
                 String address = "";
@@ -417,7 +426,9 @@ public class processAddWorkerComplement extends HttpServlet {
                     obseleteDateStr = request.getParameter("obseleteDate");
                 }
 
-                /**Server Validation**/
+                /**
+                 * Server Validation*
+                 */
                 boolean pass = true; //assume validation pass first;
 
                 if (address.equals("")) {
@@ -426,9 +437,9 @@ public class processAddWorkerComplement extends HttpServlet {
                 }
 
                 //proceed only after empty fields validation is passed
-                if (pass) { 
+                if (pass) {
 
-                    if (address.length()> 300) {
+                    if (address.length() > 300) {
                         errorMsg += "home country address must not exceed 300 characters, ";
                     }
 
@@ -438,11 +449,11 @@ public class processAddWorkerComplement extends HttpServlet {
                             obseleteDate = new java.sql.Date(tmp.getTime());
                         } catch (ParseException ex) {
                             errorMsg += "Invalid Obselete Date Format,";
-                        } 
+                        }
                     }
 
                 }   //pass
-               
+
                 if (errorMsg.equals("")) {
                     if (idStr == null) {
                         //add into db
@@ -454,8 +465,8 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker's Home Country Address has been succesfully added!";
                     } else {
                         int id = Integer.parseInt(request.getParameter("Id"));
-                        WorkerHomeCountryAddress obj = new WorkerHomeCountryAddress(workerFinNum, 
-                                        id, address,obseleteDate);
+                        WorkerHomeCountryAddress obj = new WorkerHomeCountryAddress(workerFinNum,
+                                id, address, obseleteDate);
                         //update in the Database
                         WorkerComplementsDAO.updateWorkerHomeCountryAddress(obj);
 
@@ -465,9 +476,9 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker's Home Country Address has been succesfully updated!";
                     }
                 }
-            //=======================================//
-            //          Digital Contacts  
-            //=======================================//
+                //=======================================//
+                //          Digital Contacts  
+                //=======================================//
             } else if (complementName.equals("WorkerDigitalContact")) {
 
                 //get all the parameters 
@@ -478,28 +489,30 @@ public class processAddWorkerComplement extends HttpServlet {
                 String digitalRemark = "";
                 String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                
+
                 if (idStr == null) {
-                
+
                     digitalType = request.getParameter("nDigitalContactType");
                     digitalTypeOther = request.getParameter("nDigitalMore");
                     digitalDetail = request.getParameter("nDigitalDetails");
                     digitalOwner = request.getParameter("nDigitalOwner");
                     digitalRemark = request.getParameter("nRemark");
                     obseleteDateStr = request.getParameter("nObseleteDate");
-                
+
                 } else {
                     digitalType = request.getParameter("digitalContactType");
                     digitalTypeOther = request.getParameter("digitalMore");
                     digitalDetail = request.getParameter("digitalDetails");
                     digitalOwner = request.getParameter("digitalOwner");
                     digitalRemark = request.getParameter("remark");
-                    obseleteDateStr = request.getParameter("obseleteDate"); 
+                    obseleteDateStr = request.getParameter("obseleteDate");
                 }
-                
-                /**Server Validation**/
+
+                /**
+                 * Server Validation*
+                 */
                 boolean pass = true; //assume validation pass first;
-                
+
                 if (digitalType.equals("")) {
                     errorMsg += "Digital Type is blank,";
                     pass = false;
@@ -510,11 +523,11 @@ public class processAddWorkerComplement extends HttpServlet {
                 }
 
                 //proceed only after empty fields validation is passed
-                if (pass) { 
+                if (pass) {
 
                     ArrayList<String> list = DropdownDAO.retrieveAllDropdownListOfDigitalContactType();
                     boolean exit = false;
-                    for (String tmp: list) {
+                    for (String tmp : list) {
                         if (tmp.equalsIgnoreCase(digitalType)) {
                             exit = true;
                             break;
@@ -525,7 +538,7 @@ public class processAddWorkerComplement extends HttpServlet {
                         errorMsg += "Invalid Digital Type, ";
                     }
 
-                    if (!digitalTypeOther.equals("") && digitalTypeOther.length()>50) {
+                    if (!digitalTypeOther.equals("") && digitalTypeOther.length() > 50) {
                         errorMsg += "Explain if other must not exceed 50 characters, ";
                     }
 
@@ -547,12 +560,12 @@ public class processAddWorkerComplement extends HttpServlet {
                             obseleteDate = new java.sql.Date(tmp.getTime());
                         } catch (ParseException ex) {
                             errorMsg += "Invalid Obselete Date Format,";
-                        } 
+                        }
                     }
 
 
                 }   //pass 
-                
+
                 if (errorMsg.equals("")) {
                     if (idStr == null) {
                         //create object
@@ -566,9 +579,9 @@ public class processAddWorkerComplement extends HttpServlet {
                         //success display
                         success = "Worker's Digital Contact has been succesfully added!";
                     } else {
-                       int id = Integer.parseInt(request.getParameter("Id"));
+                        int id = Integer.parseInt(request.getParameter("Id"));
                         WorkerDigitalContact obj = new WorkerDigitalContact(workerFinNum, id, digitalType,
-                                digitalTypeOther, digitalDetail, digitalOwner, digitalRemark, obseleteDate);      
+                                digitalTypeOther, digitalDetail, digitalOwner, digitalRemark, obseleteDate);
 
                         //update in the Database
                         WorkerComplementsDAO.updateWorkerDigitalContact(obj);
@@ -578,10 +591,10 @@ public class processAddWorkerComplement extends HttpServlet {
                         //success display
                         success = "Worker's Digital Contact has been successfully updated!";
                     }
-                } 
-            //=======================================//
-            //          Next of Kin  
-            //=======================================//
+                }
+                //=======================================//
+                //          Next of Kin  
+                //=======================================//
             } else if (complementName.equals("WorkerNextOfKin")) {
 
                 //get all the parameters for next of kin
@@ -595,7 +608,7 @@ public class processAddWorkerComplement extends HttpServlet {
                 String remark = "";
                 String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                
+
                 if (idStr == null) {
                     name = request.getParameter("nName");
                     relation = request.getParameter("nRelation");
@@ -617,8 +630,10 @@ public class processAddWorkerComplement extends HttpServlet {
                     remark = request.getParameter("remark");
                     obseleteDateStr = request.getParameter("obseleteDate");
                 }
-                
-                /**Server Validation**/
+
+                /**
+                 * Server Validation*
+                 */
                 boolean pass = true; //assume validation pass first;
                 if (name.equals("")) {
                     errorMsg += "Next of Kin name is blank,";
@@ -626,20 +641,20 @@ public class processAddWorkerComplement extends HttpServlet {
                 }
 
                 //proceed only after empty fields validation is passed
-                if (pass) { 
+                if (pass) {
 
                     if (name.length() > 50) {
                         errorMsg += "Next of Kin name must not exceed 50 characters, ";
                     }
 
-                    if (!docReference.equals("") && docReference.length()>200) {
+                    if (!docReference.equals("") && docReference.length() > 200) {
                         errorMsg += "Doc Referece must not exceed 200 characters, ";
                     }
 
                     if (!relation.equals("") && relation.length() > 50) {
                         errorMsg += "Relation must not exceed 50 characters, ";
                     }
-                    
+
                     if (!phNum.equals("") && !phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                         errorMsg += "Phone number - invalid format, ";
                     }
@@ -666,10 +681,10 @@ public class processAddWorkerComplement extends HttpServlet {
                             obseleteDate = new java.sql.Date(tmp.getTime());
                         } catch (ParseException ex) {
                             errorMsg += "Invalid Obselete Date Format,";
-                        } 
+                        }
                     }
                 }   //pass 
-                
+
                 if (errorMsg.equals("")) {
                     if (idStr == null) {
                         //create object
@@ -685,7 +700,7 @@ public class processAddWorkerComplement extends HttpServlet {
                         int id = Integer.parseInt(request.getParameter("Id"));
                         //create object
                         WorkerNextOfKin obj = new WorkerNextOfKin(workerFinNum, id, name,
-                                relation, docReference ,phNum, digitalContact, address, 
+                                relation, docReference, phNum, digitalContact, address,
                                 proofDoc, remark, obseleteDate);
                         WorkerComplementsDAO.updateWorkerNextOfKin(obj);
                         //log the audit
@@ -694,9 +709,9 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker's Next of Kin has been successfully updated!";
                     }
                 }
-            //=======================================//
-            //          Family Members   
-            //=======================================//                
+                //=======================================//
+                //          Family Members   
+                //=======================================//                
             } else if (complementName.equals("WorkerFamilyMember")) {
 
                 //get all the parameters for next of kin
@@ -708,7 +723,7 @@ public class processAddWorkerComplement extends HttpServlet {
                 String remark = "";
                 String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                
+
                 if (idStr == null) {
                     name = request.getParameter("nName");
                     relation = request.getParameter("nRelation");
@@ -735,21 +750,21 @@ public class processAddWorkerComplement extends HttpServlet {
                 }
 
                 //proceed only after empty fields validation is passed
-                if (pass) { 
+                if (pass) {
 
                     if (name.length() > 50) {
                         errorMsg += "name must not exceed 50 characters, ";
                     }
 
-                    if (!relation.equals("") && relation.length()>50) {
+                    if (!relation.equals("") && relation.length() > 50) {
                         errorMsg += "Relation must not exceed 50 characters, ";
                     }
 
-                    if (address != null && 
-                            !address.equals("") && address.length() > 200) {
+                    if (address != null
+                            && !address.equals("") && address.length() > 200) {
                         errorMsg += "Address must not exceed 200 characters, ";
                     }
-                    
+
                     if (!phNum.equals("") && !phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                         errorMsg += "Phone Number - invalid format, ";
                     }
@@ -768,7 +783,7 @@ public class processAddWorkerComplement extends HttpServlet {
                             obseleteDate = new java.sql.Date(tmp.getTime());
                         } catch (ParseException ex) {
                             errorMsg += "Invalid Obselete Date Format,";
-                        } 
+                        }
                     }
                 } //pass    
                 if (errorMsg.equals("")) {
@@ -784,7 +799,7 @@ public class processAddWorkerComplement extends HttpServlet {
                     } else {
                         int id = Integer.parseInt(request.getParameter("Id"));
                         WorkerFamilyMember obj = new WorkerFamilyMember(workerFinNum, id, name,
-                                relation, address,phNum, digitalContact, remark, obseleteDate);                    
+                                relation, address, phNum, digitalContact, remark, obseleteDate);
                         //update in the Database
                         WorkerComplementsDAO.updateWorkerFamilyMember(obj);
 
@@ -793,10 +808,10 @@ public class processAddWorkerComplement extends HttpServlet {
                         //success
                         success = "Worker's Family Member has been successfully updated!";
                     }
-                } 
-            //=======================================//
-            //          Friends In Singapore 
-            //=======================================//               
+                }
+                //=======================================//
+                //          Friends In Singapore 
+                //=======================================//               
             } else if (complementName.equals("WorkerFriend")) {
 
                 //get all the parameters for next of kin
@@ -819,7 +834,7 @@ public class processAddWorkerComplement extends HttpServlet {
                     remark = request.getParameter("remark");
                     obseleteDateStr = request.getParameter("obseleteDate");
                 }
-                
+
                 boolean pass = true; //assume validation pass first;
                 if (name.equals("")) {
                     errorMsg += "name is blank,";
@@ -827,13 +842,13 @@ public class processAddWorkerComplement extends HttpServlet {
                 }
 
                 //proceed only after empty fields validation is passed
-                if (pass) { 
+                if (pass) {
 
                     if (name.length() > 50) {
                         errorMsg += "name must not exceed 50 characters, ";
                     }
 
-                    
+
                     if (!phNum.equals("") && !phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                         errorMsg += "Phone Number - invalid format, ";
                     }
@@ -852,7 +867,7 @@ public class processAddWorkerComplement extends HttpServlet {
                             obseleteDate = new java.sql.Date(tmp.getTime());
                         } catch (ParseException ex) {
                             errorMsg += "Invalid Obselete Date Format,";
-                        } 
+                        }
                     }
 
 
@@ -880,9 +895,9 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker's Friend record has been succesfully updated!";
                     }
                 }
-            //=======================================//
-            //          Language 
-            //=======================================//
+                //=======================================//
+                //          Language 
+                //=======================================//
             } else if (complementName.equals("WorkerLanguage")) {
 
                 //get all the parameters for next of kin
@@ -890,7 +905,7 @@ public class processAddWorkerComplement extends HttpServlet {
                 String languageMore = "";
                 String englishStandard = "";
                 String remark = "";
-                
+
                 if (idStr == null) {
                     mainLanguage = request.getParameter("nMainLanguage");
                     languageMore = request.getParameter("nLanguageMore");
@@ -902,7 +917,7 @@ public class processAddWorkerComplement extends HttpServlet {
                     englishStandard = request.getParameter("englishStandard");
                     remark = request.getParameter("remark");
                 }
-                
+
                 boolean pass = true; //assume validation pass first;
                 if (mainLanguage.equals("")) {
                     errorMsg += "Language is blank,";
@@ -910,7 +925,7 @@ public class processAddWorkerComplement extends HttpServlet {
                 }
 
                 //proceed only after empty fields validation is passed
-                if (pass) { 
+                if (pass) {
 
                     if (!languageMore.equals("") && languageMore.length() > 50) {
                         errorMsg += "Explain if other must not exceed 50 characters, ";
@@ -933,7 +948,7 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker's Language has been succesfully added!";
                     } else {
                         int id = Integer.parseInt(request.getParameter("Id"));
-                        WorkerLanguage obj = new WorkerLanguage(workerFinNum,id, mainLanguage,
+                        WorkerLanguage obj = new WorkerLanguage(workerFinNum, id, mainLanguage,
                                 languageMore, englishStandard, remark);
                         WorkerComplementsDAO.updateWorkerLanguage(obj);
 
@@ -943,9 +958,9 @@ public class processAddWorkerComplement extends HttpServlet {
                         success = "Worker's Language has been succesfully updated!";
                     }
                 }
-            //=======================================//
-            //          Bank Account Details  
-            //=======================================//
+                //=======================================//
+                //          Bank Account Details  
+                //=======================================//
             } else if (complementName.equals("WorkerBankAcct")) {
                 //get all the parameters for next of kin
                 String bankAcctName = "";
@@ -958,7 +973,7 @@ public class processAddWorkerComplement extends HttpServlet {
                 String remark = "";
                 String obseleteDateStr = "";
                 java.sql.Date obseleteDate = null;
-                
+
                 if (idStr == null) {
                     bankAcctName = request.getParameter("nBankAcctName");
                     bankAcctNum = request.getParameter("nBankAcctNum");
@@ -976,11 +991,11 @@ public class processAddWorkerComplement extends HttpServlet {
                     bankBranch = request.getParameter("bankBranch");
                     bankBranchAddress = request.getParameter("bankBranchAddress");
                     bankBranchCode = request.getParameter("bankBranchCode");
-                    bankSwift = request.getParameter("bankSwift"); 
+                    bankSwift = request.getParameter("bankSwift");
                     remark = request.getParameter("remark");
                     obseleteDateStr = request.getParameter("obseleteDate");
                 }
-                
+
                 //**Server Validaiton**//
                 boolean pass = true; //assume validation pass first;
 
@@ -1000,7 +1015,7 @@ public class processAddWorkerComplement extends HttpServlet {
                 }
 
                 //proceed only after empty fields validation is passed
-                if (pass) { 
+                if (pass) {
 
                     if (bankAcctName.length() > 50) {
                         errorMsg += "bank account name must not exceed 50 characters, ";
@@ -1040,12 +1055,12 @@ public class processAddWorkerComplement extends HttpServlet {
                             obseleteDate = new java.sql.Date(tmp.getTime());
                         } catch (ParseException ex) {
                             errorMsg += "Invalid Obselete Date Format,";
-                        } 
+                        }
                     }
 
                 }   //pass 
 
-                if (errorMsg.equals("")){
+                if (errorMsg.equals("")) {
                     if (idStr == null) {
                         //create object
                         WorkerBankAcct obj = new WorkerBankAcct(workerFinNum, bankAcctName,
@@ -1061,8 +1076,8 @@ public class processAddWorkerComplement extends HttpServlet {
                         int id = Integer.parseInt(request.getParameter("Id"));
                         //create object
                         WorkerBankAcct obj = new WorkerBankAcct(workerFinNum, id, bankAcctName,
-                                bankAcctNum, bankName,bankBranch, bankBranchAddress,
-                                bankBranchCode,bankSwift , remark,obseleteDate);                    
+                                bankAcctNum, bankName, bankBranch, bankBranchAddress,
+                                bankBranchCode, bankSwift, remark, obseleteDate);
                         WorkerComplementsDAO.updateWorkerBankAccountDetails(obj);
 
                         //log the audit
@@ -1072,7 +1087,7 @@ public class processAddWorkerComplement extends HttpServlet {
                     }
                 }
             }
-            
+
             if (errorMsg.equals("")) {
                 //log to audit
                 auditChange = auditChange.replace("{", " [");
@@ -1085,22 +1100,27 @@ public class processAddWorkerComplement extends HttpServlet {
                     action = "Edited";
                 }
 
-                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), workerFinNum, 
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), workerFinNum,
                         workerFinNum, action, "Worker Complement: " + auditChange);
 
-                UserAuditLogDAO.addUserAuditLog(userAuditLog);  
+                UserAuditLogDAO.addUserAuditLog(userAuditLog);
             }
             request.getSession().setAttribute("successWrkCompMsg", success);
             request.getSession().setAttribute("errorWrkCompMsg", errorMsg);
-            request.getSession().setAttribute("worker",workerFinNum);
-            request.getSession().setAttribute("selectedJob",jobKeyStr);
-            request.getSession().setAttribute("selectedProb",probKeyStr);
-            response.sendRedirect("viewWorker.jsp");
+            request.getSession().setAttribute("worker", workerFinNum);
+            request.getSession().setAttribute("selectedJob", jobKeyStr);
+            request.getSession().setAttribute("selectedProb", probKeyStr);
+
+            if (isAssociate != null) {
+                response.sendRedirect("associate/caseSummary.jsp");
+            } else {
+                response.sendRedirect("viewWorker.jsp");
+            }
         } catch (Exception e) {
             //error = "Worker Complement is not added. There is a parsing error.";
             //log to logfile
             out.println(e);
-            
+
         } finally {
             out.close();
         }

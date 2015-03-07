@@ -1844,13 +1844,6 @@
         }
     }
 
-    //year dropdown
-    $(document).ready(function() {
-        for (i = new Date().getFullYear(); i > 1900; i--)
-        {
-            $('#yearpicker').append($('<option />').val(i).html(i));
-        }
-    });
 
 
     $(document).ready(function() {
@@ -1881,7 +1874,7 @@
 <%
     if (complement.equals("nickname")) {
 %>
-<form method="POST" action="addWorkerComplement.do" id='nickname_pop_up' class="form complement_detailed_form worker_pop_up"  >
+<form method="POST" action="addWorkerComplement.do" id='nickname_pop_up' class="form complement_detailed_form worker_pop_up">
 
     <div class='add_comp'>
         <div class='form-group '>
