@@ -3,7 +3,7 @@
 <%@page import="camans.dao.*"%>
 <%@page import="camans.entity.*"%>
 <%@page import="java.util.ArrayList"%>
-<%@ include file="/protect.jsp"%>
+<%@ include file="../protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     Job latestJob = null;
@@ -226,7 +226,7 @@
         <%
             if (worker != null) {
                 //there will be only one worker with this fin number
-
+                
         %>
         <!-- Search Result & issue Benefits -->
 
@@ -246,10 +246,9 @@
                         <%
                             for (int i = jobIdList.size() - 1; i >= 0; i--) {
                                 int id = jobIdList.get(i);
-                                String idStr = id + "";
                                 Job job = JobDAO.retrieveJobByJobId(id);
                                 String employer = job.getEmployerName();
-                                if (selectedJob != null && selectedJob.equals(idStr)) {
+                                if (latestJob != null && latestJob.getJobKey() == id) {
                         %>
                         <option value='<%=id%>' selected><%=employer%></option>
                         <%
@@ -275,17 +274,23 @@
                         <%
 
                             for (int i = problemIdList.size() - 1; i >= 0; i--) {
+                                int probId = problemIdList.get(i);
                                 Problem problem = ProblemDAO.retrieveProblemByProblemId(problemIdList.get(i));
                                 String probType = problem.getProblem();
+                                if(latestProblem != null && latestProblem.getProbKey() == probId ){
+                                    %>
+                        <option value='<%=probId%>' selected><%=probType%></option>
+                        <%
+                                }else{
                         %>
-                        <option><%=probType%></option>
-                        <%                }
+                        <option value='<%=probId%>'><%=probType%></option>
+                        <%              }  }
                         %>
 
 
                     </select>
                     <input type='hidden' name="workerFin" value="<%=workerFin%>"/>
-                    <input type="hidden" name='selectedType' value='prob'/>
+                    <input type="hidden" name='selectedType' value='problem'/>
                     <input type='hidden' name='associate' value="associate"/>
                 </form>
             </div>
@@ -304,7 +309,7 @@
         <div class="col-md-12 col-xs-12 col-sm-12" id="issueBene">
             <div class="row" style="padding-top: 4%; padding-right: 4%;">
             <h4 class="col-xs-8" style="color:#006c9a">Issue Benefits</h4>
-            <button class="col-xs-3 btn btn-blue btn-sm pull-right" onclick="window.location = 'r2r.jsp?workerFin=<%=workerFin%>&selectedJob=<%=selectedJob%>&selectedProb=<%=latestProblem.getProbKey() %>';">R2R</button>
+            <button class="col-xs-3 btn btn-blue btn-sm pull-right" onclick="window.location = 'addComplements.jsp?workerFin=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>&selectedProb=<%=latestProblem.getProbKey() %>';">R2R</button>
             </div>
             <br/>
 

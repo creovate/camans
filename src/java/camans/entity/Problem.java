@@ -21,7 +21,7 @@ public class Problem {
     private String problemMore;
     private String problemRemark;
     private String referredBy;
-    private String referredTo;
+    private String currentLcw;
     private Date referredDate;
     private String referralDescription;
 
@@ -44,7 +44,7 @@ public class Problem {
         this.problemRemark = problemRemark;
     }
 
-    public Problem(String workerFinNum, int jobKey, int probKey, Date problemRegisteredDate, String problem, String problemMore, String problemRemark, String referredBy, String referredTo, Date referredDate, String referralDescription) {
+    public Problem(String workerFinNum, int jobKey, int probKey, Date problemRegisteredDate, String problem, String problemMore, String problemRemark, String referredBy, String currentLcw, Date referredDate, String referralDescription) {
         this.workerFinNum = workerFinNum;
         this.jobKey = jobKey;
         this.probKey = probKey;
@@ -53,12 +53,12 @@ public class Problem {
         this.problemMore = problemMore;
         this.problemRemark = problemRemark;
         this.referredBy = referredBy;
-        this.referredTo = referredTo;
+        this.currentLcw = currentLcw;
         this.referredDate = referredDate;
         this.referralDescription = referralDescription;
     }
 
-    public Problem(String workerFinNum, int jobKey, Date problemRegisteredDate, String problem, String problemMore, String problemRemark, String referredBy, String referredTo, Date referredDate, String referralDescription) {
+    public Problem(String workerFinNum, int jobKey, Date problemRegisteredDate, String problem, String problemMore, String problemRemark, String referredBy, String currentLcw, Date referredDate, String referralDescription) {
         this.workerFinNum = workerFinNum;
         this.jobKey = jobKey;
         this.problemRegisteredDate = problemRegisteredDate;
@@ -66,7 +66,7 @@ public class Problem {
         this.problemMore = problemMore;
         this.problemRemark = problemRemark;
         this.referredBy = referredBy;
-        this.referredTo = referredTo;
+        this.currentLcw = currentLcw;
         this.referredDate = referredDate;
         this.referralDescription = referralDescription;
     }
@@ -137,12 +137,12 @@ public class Problem {
         this.referredBy = referredBy;
     }
 
-    public String getReferredTo() {
-        return referredTo;
+    public String getcurrentLeadCaseWorker() {
+        return currentLcw;
     }
 
-    public void setReferredTo(String referredTo) {
-        this.referredTo = referredTo;
+    public void setcurrentLeadCaseWorker(String currentLcw) {
+        this.currentLcw = currentLcw;
     }
 
     public Date getReferredDate() {
@@ -167,7 +167,7 @@ public class Problem {
                 ", probKey=" + probKey + ", problemRegisteredDate=" + problemRegisteredDate + 
                 ", problem=" + problem + ", problemMore=" + problemMore + 
                 ", problemRemark=" + problemRemark + ", referredBy=" + referredBy + 
-                ", referredTo=" + referredTo + ", referredDate=" + referredDate + 
+                ", currentLcw=" + currentLcw + ", referredDate=" + referredDate + 
                 ", referralDescription=" + referralDescription + '}';
     }
     
@@ -175,7 +175,7 @@ public class Problem {
         return "Problem{" + "workerFinNum=" + workerFinNum + ", problemRegisteredDate=" + problemRegisteredDate + 
                 ", problem=" + problem + ", problemMore=" + problemMore + 
                 ", problemRemark=" + problemRemark + ", referredBy=" + referredBy + 
-                ", referredTo=" + referredTo + ", referredDate=" + referredDate + 
+                ", currentLcw=" + currentLcw + ", referredDate=" + referredDate + 
                 ", referralDescription=" + referralDescription + '}';
     }
     
