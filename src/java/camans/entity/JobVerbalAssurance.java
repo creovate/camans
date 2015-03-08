@@ -115,9 +115,9 @@ public class JobVerbalAssurance {
     }
     
     public String toString2() {
-        return "JobVerbalAssurance{" + "WorkerFinNum=" + workerFinNum + ", verbalName=" + verbalName + 
+        return "Verbal Assurance [verbalName=" + verbalName + 
                 ", VerbalRelationship=" + VerbalRelationship + ", when=" + when + ", where=" + where + 
-                ", content=" + content + '}';
+                ", content=" + content + ']';
     }
     
             

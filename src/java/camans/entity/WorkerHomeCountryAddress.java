@@ -71,7 +71,10 @@ public class WorkerHomeCountryAddress {
     }
     
      public String toString2() {
-        return "WorkerHomeCountryAddress{" + "workerFinNum=" + workerFinNum + ", address=" + address + ", obseleteDate=" + obseleteDate + '}';
+        if (obseleteDate == null) {
+           return "Home Country Address [address=" + address + ']'; 
+        }
+        return "Home Country Address [address=" + address + ", obseleteDate=" + obseleteDate + ']';
     }   
     
 }

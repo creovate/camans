@@ -70,7 +70,10 @@ public class WorkerSgAddress {
     }
  
     public String toString2() {
-        return "WorkerSgAddress{" + "workerFinNum=" + workerFinNum + ", address=" + address + ", obseleteDate=" + obseleteDate + '}';
+        if (obseleteDate == null) {
+            return "WorkerSgAddress [address=" + address + ']';
+        }
+        return "WorkerSgAddress [address=" + address + ", obseleteDate=" + obseleteDate + ']';
     }    
     
 }

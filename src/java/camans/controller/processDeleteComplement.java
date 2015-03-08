@@ -121,7 +121,8 @@ public class processDeleteComplement extends HttpServlet {
                 auditChange = auditChange.replace("{", " [");
                 auditChange = auditChange.replace("}", "]");
                 UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), id + "", 
-                        workerFinNum, "Deleted", "Worker Complement: " + auditChange );
+                        workerFinNum, "Deleted", auditChange + " has been deleted from worker "
+                        + workerFinNum + ".");
 
                 UserAuditLogDAO.addUserAuditLog(userAuditLog); 
                 request.getSession().setAttribute("successWrkCompMsg", success);
@@ -173,7 +174,8 @@ public class processDeleteComplement extends HttpServlet {
                 auditChange = auditChange.replace("{", " [");
                 auditChange = auditChange.replace("}", "]");
                 UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), id + "", 
-                        workerFinNum, "Deleted", "Job Complement: " + auditChange );
+                        workerFinNum, "Deleted", auditChange + " has been deleted from worker " +
+                        workerFinNum + ".");
 
                 UserAuditLogDAO.addUserAuditLog(userAuditLog); 
                 request.getSession().setAttribute("successJobCompMsg", success);
@@ -275,7 +277,8 @@ public class processDeleteComplement extends HttpServlet {
                 auditChange = auditChange.replace("{", " [");
                 auditChange = auditChange.replace("}", "]");
                 UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), id + "", 
-                        workerFinNum, "Deleted", "Problem Complement: " + auditChange );
+                        workerFinNum, "Deleted", auditChange + " has been deleted from worker "
+                        + workerFinNum + ".");
                 
                 UserAuditLogDAO.addUserAuditLog(userAuditLog); 
                 request.getSession().setAttribute("successProbCompMsg", success);

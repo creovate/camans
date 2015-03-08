@@ -197,14 +197,13 @@ public class ProblemInjury {
     }
 
     public String toString2() {
-        return "ProblemInjury{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", injuryDate=" + injuryDate + 
+        return "Injury [ injuryDate=" + injuryDate + 
                 ", injuryTime=" + injuryTime + ", injuryLocation=" + injuryLocation + 
                 ", injuryDeath=" + injuryDeath + ", injuryBodyPart=" + injuryBodyPart + 
                 ", injuryHow=" + injuryHow + ", injuryAmbulance=" + injuryAmbulance + 
                 ", initialTreatment=" + initialTreatment + 
                 ", initialTreatmentMore=" + initialTreatmentMore + 
-                ", injuryWorkRelated=" + injuryWorkRelated + ", injuryRemarks=" + injuryRemarks + '}';
+                ", injuryWorkRelated=" + injuryWorkRelated + ", injuryRemarks=" + injuryRemarks + ']';
     }
     
     

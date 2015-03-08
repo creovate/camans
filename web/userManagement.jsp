@@ -56,12 +56,14 @@
         <jsp:include page="include/navbartop.jsp"/>
         <div class="row-offcanvas row-offcanvas-left">
             <jsp:include page="include/navbarside.jsp"/>
-
+            <br/><br/>
             <div class="col-md-offset-2 col-md-10">
-
+                <div id ="pageloading"><img id="loading-image" src="images/loading.gif"/></div>
+                <!-- Page Header 
                 <div class="page-header">
                 <center><h2 >User Management</h2></center>    
                 </div>
+                <!-- End of Page Header -->
                 <!-- Add New User Button -->
                 <button type="button" class="btn btn-blue pull-right" data-toggle="modal" data-target="#newUser_pop_up">
                     <span class="glyphicon glyphicon-plus"></span> Add A New User
@@ -575,6 +577,11 @@
             </div>                    
         </div>
         <script>
+            //page loadin gif
+            $(window).load(function() {
+                $('#pageloading').hide();
+            });
+            
             //session timeout
             $(document).ready(function () {
                 $.sessionTimeout({

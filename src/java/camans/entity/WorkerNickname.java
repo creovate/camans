@@ -58,7 +58,7 @@ public class WorkerNickname {
     }
     
     public String toString2() {
-        return "WorkerNickname{" + "workerFinNum=" + workerFinNum + ", nickname=" + nickname + '}';
+        return "Nickname [nickname=" + nickname + ']';
     }    
     
     

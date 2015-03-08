@@ -105,9 +105,8 @@ public class ProblemOtherProblems {
     }
     
     public String toString2() {
-        return "ProblemOtherProblems{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", otherProblemDesc=" + otherProblemDesc + ", otherProblemLoss=" + otherProblemLoss + 
-                ", otherProblemRemark=" + otherProblemRemark + '}';
+        return "Other Problem [otherProblemDesc=" + otherProblemDesc + ", otherProblemLoss=" + otherProblemLoss + 
+                ", otherProblemRemark=" + otherProblemRemark + ']';
     }    
     
 }

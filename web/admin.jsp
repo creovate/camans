@@ -3,6 +3,7 @@
     Created on : Jan 7, 2015, 4:22:18 PM
     Author     : soemyatmyat
 --%>
+<%@page import="camans.dao.ProblemDAO"%>
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="camans.dao.DropdownDAO"%>
@@ -12,6 +13,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
+    int maxYear = ProblemDAO.getMaxYear();
+    ArrayList<String> nationalityArr = DropdownDAO.retrieveAllDropdownListOfNationalities();
+    ArrayList<String> jobSectorArr = DropdownDAO.retrieveAllDropdownListOfJobSector();
 %>
 <html>
     <head>
@@ -43,8 +47,8 @@
                 <!-- end of page header -->
                 <br/>
                 <div class="row">
+                    <div id ="pageloading"><img id="loading-image" src="images/loading.gif"/></div>
                     <div class="col-md-6">
-                        <div id ="pageloading"><img id="loading-image" src="images/loading.gif"/></div>
                         <div id="chartContainer" style="width:100%;height: 300px"></div><br/>
                         <div id="barChart" style="width:100%;height: 300px"></div>
                     </div>
@@ -60,11 +64,12 @@
 
 
         <script>
-
+            //page loading gif
+            
             $(window).load(function() {
                 $('#pageloading').hide();
             });
-            
+              
             var firstdata;
             function myCallback(result) {
                 firstdata = result;
@@ -95,29 +100,21 @@
                     async:   false
                 })
             }
-
-            var selectedYear = "2017",
+            
+            var selectedYear = <%=maxYear%>,
             selectedNationalityIdx = 0,
-            selectedNationality = "Bangladesh",
-            selectedJobSector = "Construction";
+            selectedNationality = "<%=nationalityArr.get(0)%>",
+            selectedJobSector = "<%=jobSectorArr.get(0)%>";
             $("#chartContainer").dxChart({
                 dataSource: firstdata,
                 commonSeriesSettings: {
                     argumentField: 'year'
                 },
+                
                 series: [
-                    { valueField: "Bangladesh", name: "Bangladesh" },
-                    { valueField: "Cambodia", name: "Cambodia" },
-                    { valueField: "China", name: "China" },
-                    { valueField: "India", name: "India" },
-                    { valueField: "Indonesia", name: "Indonesia" },
-                    { valueField: "Malaysia", name: "Malaysia" },
-                    { valueField: "Myanmar", name: "Myanmar" },
-                    { valueField: "Philippines", name: "Philippines" },
-                    { valueField: "Sri Lanka", name: "Sri Lanka" },
-                    { valueField: "Thailand", name: "Thailand" },
-                    { valueField: "Vietnam", name: "Vietnam" },
-                    { valueField: "Other", name: "Other" },     
+                    <%for (int i = 0; i< nationalityArr.size(); i++){%>
+                        { valueField:"<%= nationalityArr.get(i)%>", name: "<%= nationalityArr.get(i)%>"},
+                    <%}%>    
                 ],
                 argumentAxis: {
                     grid: {
@@ -228,7 +225,7 @@
                 series: {
                     argumentField: "Nationality",
                     valueField: selectedJobSector,
-                    name: "Medals",
+                    name: "Job Sectors",
                     type: "bar",
                     color: '#333'
                 }
@@ -278,7 +275,13 @@
 
             function getJobSectorByNationality(year, nationalityIdx) {
                 var item = seconddata[year][nationalityIdx];
+                //alert(item.toString());
                 return [
+                    /*
+                    <%for (int i = 0; i< jobSectorArr.size(); i++){%>
+                        { jobsector: "<%= jobSectorArr.get(i)%>", count: item.Cleaning},
+                    <%}%>*/  
+                    
                     {'jobsector': 'Cleaning', 'count': item.Cleaning},
                     {'jobsector': 'Construction', 'count': item.Construction},
                     {'jobsector': 'Domestic', 'count': item.Domestic},
@@ -289,6 +292,7 @@
                     {'jobsector': 'Services', 'count': item.Services},
                     {'jobsector': 'Nil', 'count': item.Nil},
                     {'jobsector': 'Other', 'count': item.Other}
+                    
                 ];
             }
 

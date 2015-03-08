@@ -370,37 +370,37 @@
 
         <fieldset disabled>
             <div class='form-group'>
-                <label for='isDate' class="control-label">Issued Date: </label>
+                <label for='isDate' class="control-label">Issued Date</label>
                 <br/>
                 <input class="form-control" type='text' name="isDate" value="<%=(issueDate == null) ? "" : issueDate%>">
             </div>
             <div class='form-group'>
-                <label for='givenby' class="control-label">Given By: </label>
+                <label for='givenby' class="control-label">Given By</label>
                 <br/>
                 <input class="form-control" type='text' name="givenby" value="<%=(benefitGiver == null) ? "" : benefitGiver%>">
             </div>
             <div class='form-group'>
-                <label for='benetype' class="control-label">Benefit Type: </label>
+                <label for='benetype' class="control-label">Benefit Type</label>
                 <br/>
                 <input class="form-control" type='text' name="benetype" value="<%=(benefitType == null) ? "" : benefitType%>">
             </div>
             <div class='form-group'>
-                <label for='sernum' class="control-label">Serial Number: </label>
+                <label for='sernum' class="control-label">Serial Number</label>
                 <br/>
                 <input class="form-control" type='text' name="sernum" value="<%=(benefitSerial == null) ? "" : benefitSerial%>">
             </div>
             <div class='form-group'>
-                <label for='purpose' class="control-label">Purpose/Reason: </label>
+                <label for='purpose' class="control-label">Purpose/Reason</label>
                 <br/>
                 <input class="form-control" type='text' name="purpose" value="<%=(benefitPurpose == null) ? "" : benefitPurpose%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remarks/Conditions or Time Frame attached to benefit: </label>
+                <label for='remark' class="control-label">Remarks/Conditions or Time Frame attached to benefit</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=(benefitRemark == null) ? "" : benefitRemark%></textarea>
             </div>
             <div class='form-group'>
-                <label for='value' class="control-label">Value of Benefit/Refund (S$): </label>
+                <label for='value' class="control-label">Value of Benefit/Refund (S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="value" value="<%=(benefitValue == 0.0) ? "" : df.format(benefitValue)%>">
             </div>
@@ -419,17 +419,17 @@
 
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nisDate' class="control-label">Issued Date<span style="color: red">*</span>: </label>
+                <label for='nisDate' class="control-label"><span style="color: red">*</span> Issued Date</label>
                 <br/>
                 <input class="form form-control date dateInput" type='text' id="nisDate" name="nisDate" value='<%=sdf.format(today)%>' required>
             </div>
             <div class='form-group'>
-                <label for='ngivenby' class="control-label" >Given By<span style="color: red">*</span>:</label>
+                <label for='ngivenby' class="control-label" ><span style="color: red">*</span> Given By</label>
                 <br/>
                 <input class="form-control" type='text' name="ngivenby"/>
             </div>
             <div class='form-group'>
-                <label for='nbenetype' class="control-label">Benefit Type: </label>
+                <label for='nbenetype' class="control-label">Benefit Type</label>
                 <br/>
                 <select class="form-control" id="ipapassType" name="nbenetype">
                 <option value="">Select from list: </option>
@@ -450,22 +450,22 @@
             </div>
                 
             <div class='form-group'>
-                <label for='nsernum' class="control-label">Serial Number: </label>
+                <label for='nsernum' class="control-label">Serial Number</label>
                 <br/>
                 <input class="form-control" type='text' name="nsernum">
             </div>
             <div class='form-group'>
-                <label for='npurpose' class="control-label">Purpose/Reason: </label>
+                <label for='npurpose' class="control-label">Purpose/Reason</label>
                 <br/>
                 <input class="form-control" type='text' name="npurpose">
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks/Conditions or Time Frame attached to benefit: </label>
+                <label for='nremark' class="control-label">Remarks/Conditions or Time Frame attached to benefit</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nvalue' class="control-label">Value of Benefit/Refund (S$): </label>
+                <label for='nvalue' class="control-label">Value of Benefit/Refund (S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="nvalue">
             </div>
@@ -484,18 +484,18 @@
 
     <div class='edit_comp'>
         <div class='form-group'>
-            <label for='isDate' class="control-label">Issued Date<span style="color: red">*</span>: </label>
+            <label for='isDate' class="control-label"><span style="color: red">*</span> Issued Date</label>
             <br/>
             <input class="form form-control input-append date dateInput" 
                    type='text' id="isDate" name="isDate" value="<%=(issueDate == null) ? "" : issueDate%>" required>
         </div>
         <div class='form-group'>
-            <label for='givenby' class="control-label" >Given By<span style="color: red">*</span>: </label>
+            <label for='givenby' class="control-label" ><span style="color: red">*</span> Given By</label>
             <br/>
             <input class="form-control" type='text' name="givenby" value="<%=(benefitGiver == null)?"": benefitGiver%>"/>
         </div>
         <div class='form-group'>
-            <label for='benetype' class="control-label">Benefit Type: </label>
+            <label for='benetype' class="control-label">Benefit Type</label>
             <br/>
             <select class="form-control" id="ipapassType" name="benetype">
                 <%
@@ -514,22 +514,22 @@
             </select>
         </div>
         <div class='form-group'>
-            <label for='sernum' class="control-label">Serial Number: </label>
+            <label for='sernum' class="control-label">Serial Number</label>
             <br/>
             <input class="form-control" type='text' name="sernum" value="<%=(benefitSerial == null) ? "" : benefitSerial%>">
         </div>
         <div class='form-group'>
-            <label for='purpose' class="control-label">Purpose/Reason: </label>
+            <label for='purpose' class="control-label">Purpose/Reason</label>
             <br/>
             <input class="form-control" type='text' name="purpose" value="<%=(benefitPurpose == null) ? "" : benefitPurpose%>">
         </div>
         <div class='form-group'>
-            <label for='remark' class="control-label">Remarks/Conditions or Time Frame attached to benefit: </label>
+            <label for='remark' class="control-label">Remarks/Conditions or Time Frame attached to benefit</label>
             <br/>
             <textarea class="form-control" name="remark" rows="3"><%=(benefitRemark == null) ? "" : benefitRemark%></textarea>
         </div>
         <div class='form-group'>
-            <label for='value' class="control-label">Value of Benefit/Refund (S$): </label>
+            <label for='value' class="control-label">Value of Benefit/Refund (S$)</label>
             <br/>
             <input class="form-control" type='text' name="value" value="<%=(benefitValue == 0) ? "" : df.format(benefitValue)%>">
         </div>
@@ -554,17 +554,17 @@
 
     <div class='form-group '>
         <div class='form-group'>
-            <label for='nisDate' class="control-label">Issued Date<span style="color: red">*</span>: </label>
+            <label for='nisDate' class="control-label"><span style="color: red">*</span> Issued Date</label>
             <br/>
             <input class="form-control dateInput" type='text' name="nisDate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='ngivenby' class="control-label" >Given By<span style="color: red">*</span>: </label>
+            <label for='ngivenby' class="control-label" ><span style="color: red">*</span> Given By</label>
             <br/>
             <input class="form-control" type='text' name="ngivenby"/>
         </div>
         <div class='form-group'>
-            <label for='nbenetype' class="control-label">Benefit Type<span style="color: red">*</span>: </label>
+            <label for='nbenetype' class="control-label"><span style="color: red">*</span> Benefit Type</label>
             <br/>
             <select class="form-control" id="ipapassType" name="nbenetype">
                 <option value="">Select from list: </option>
@@ -587,22 +587,22 @@
 
 
         <div class='form-group'>
-            <label for='nsernum' class="control-label">Serial Number: </label>
+            <label for='nsernum' class="control-label">Serial Number</label>
             <br/>
             <input class="form-control" type='text' name="nsernum">
         </div>
         <div class='form-group'>
-            <label for='npurpose' class="control-label">Purpose/Reason: </label>
+            <label for='npurpose' class="control-label">Purpose/Reason</label>
             <br/>
             <input class="form-control" type='text' name="npurpose">
         </div>
         <div class='form-group'>
-            <label for='nremark' class="control-label">Remarks/Conditions or Time Frame attached to benefit: </label>
+            <label for='nremark' class="control-label">Remarks/Conditions or Time Frame attached to benefit</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='nvalue' class="control-label">Value of Benefit/Refund (S$): </label>
+            <label for='nvalue' class="control-label">Value of Benefit/Refund (S$)</label>
             <br/>
             <input class="form-control" type='text' name="nvalue">
         </div>

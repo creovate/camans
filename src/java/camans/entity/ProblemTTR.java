@@ -158,10 +158,9 @@ public class ProblemTTR {
     }
 	
     public String toString2() {
-        return "ProblemTTR{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", TTRUpdate=" + TTRUpdate + ", TTRStatus=" + TTRStatus + 
+        return "TTR [TTRUpdate=" + TTRUpdate + ", TTRStatus=" + TTRStatus + 
                 ", TTRStatusMore=" + TTRStatusMore + ", departureDate=" + departureDate + 
-                ", newEmployerName=" + newEmployerName + ", newJob=" + newJob + ", TTRRem=" + TTRRem + '}';
+                ", newEmployerName=" + newEmployerName + ", newJob=" + newJob + ", TTRRem=" + TTRRem + ']';
     }
     
 }

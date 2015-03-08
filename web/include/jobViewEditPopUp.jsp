@@ -863,6 +863,14 @@
                         //gonna change it to year dropdown
                     }
                 },
+                arrivalDate: {
+                    validators: {
+                        stringLength: {
+                            max: 50,
+                            message: 'This field must not exceed 50 characters.'
+                        }
+                    }
+                },
                 prevJob: {
                     validators: {
                         stringLength: {
@@ -1308,55 +1316,55 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='passtype' class="control-label">Pass type:</label>
+                    <label for='passtype' class="control-label">Pass type</label>
                     <br/>
                     <input class="form-control" type='text' name="passtype" value="<%=passtype%>">
                 </div>
 
                 <div class="form-group" id="passtype_other_div">
-                    <label for="passtypeMore" class="control-label">Explain if above is 'Other':</label><br/>
+                    <label for="passtypeMore" class="control-label">Explain if above is 'Other'</label><br/>
                     <input class="form-control" type='text' name="npasstypeMore" 
                            value="<%=(passtypeMore == null) ? "" : passtypeMore%>">
                 </div>
                 <div class='form-group'>
-                    <label for='passno' class="control-label">Pass number:</label>
+                    <label for='passno' class="control-label">Pass number</label>
                     <br/>
                     <input class="form-control" type='text' name="passno" value="<%=passnum%>">
                 </div>
                 <div class='form-group'>
-                    <label for='apdate' class="control-label">Pass application date:</label>
+                    <label for='apdate' class="control-label">Pass application date</label>
                     <br/>
                     <input class="form-control" type='text' name="apdate" 
                            value="<%=(pass.getPassApplicationDate() == null) ? ""
                                    : sdf.format(pass.getPassApplicationDate())%>">
                 </div>
                 <div class='form-group'>
-                    <label for='isdate' class="control-label">Pass issue date: </label>
+                    <label for='isdate' class="control-label">Pass issue date</label>
                     <br/>
                     <input class="form-control" type='text' name="isdate" 
                            value="<%=(pass.getIssueDate() == null) ? ""
                                    : sdf.format(pass.getIssueDate())%>">
                 </div>
                 <div class='form-group'>
-                    <label for='exdate' class="control-label">Pass expiry date: </label>
+                    <label for='exdate' class="control-label">Pass expiry date</label>
                     <br/>
                     <input class="form-control" type='text' name="exdate" 
                            value="<%=(pass.getExpiryDate() == null) ? ""
                                    : sdf.format(pass.getExpiryDate())%>">
                 </div>
                 <div class='form-group'>
-                    <label for='issuer' class="control-label">Pass issuing agency:</label>
+                    <label for='issuer' class="control-label">Pass issuing agency</label>
                     <br/>
                     <input class="form-control" type='text' name="issuer" value="<%=issuer%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks about pass: </label>
+                    <label for='remark' class="control-label">Remarks about pass</label>
 
                     <br/>
                     <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='obsoleteDate' class="control-label">Date discovered to be obsolete: </label>
+                    <label for='obsoleteDate' class="control-label">Date discovered to be obsolete</label>
                     <br/>
                     <input class="form-control" type='text' name="obsoleteDate" 
                            value="<%=(pass.getObsoleteDate() == null) ? ""
@@ -1371,76 +1379,9 @@
             </div>
         </div>
 
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='npasstype' class="control-label">Pass type<span style="color: red">*</span>:</label>
-                <br/>
-                <select class="form-control" id="passtype" name="npasstype">
-                    <option value="" selected>Select Pass type:</option>
-                    <%
-                        for (String workpassType : workpassTypes) {
-                    %>
-                    <option vlue="<%=workpassType%>"><%=workpassType%></option>
-                    <%
-
-                        }
-                    %>  
-                </select>
-            </div>
-
-            <div class="form-group" id="passtype_other_div">
-                <label for="passtypeMore" class="control-label">Explain if above is 'Other':</label><br/>
-                <input class="form-control" type='text' name="npasstypeMore">
-            </div>    
-            <div class='form-group'>
-                <label for='npassno' class="control-label">Pass number<span style="color: red">*</span>:</label>
-                <br/>
-                <input class="form-control" type='text' name="npassno" >
-            </div>
-            <div class='form-group'>
-                <label for='napdate' class="control-label">Pass application date:</label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="napdate" >
-            </div>
-            <div class='form-group'>
-                <label for='nisdate' class="control-label">Pass issue date: </label>
-                <br/>
-                <input class="form-control dateInput startDate" type='text' name="nisdate" >
-            </div>
-            <div class='form-group'>
-                <label for='nexdate' class="control-label">Pass expiry date: </label>
-                <br/>
-                <input class="form-control dateInput endDate" type='text' name="nexdate" >
-            </div>
-            <div class='form-group'>
-                <label for='nissuer' class="control-label">Pass issuing agency:</label>
-                <br/>
-                <input class="form-control" type='text' name="nissuer" >
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about pass: </label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3"  ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nobsoleteDate' class="control-label">Date discovered to be obsolete: </label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="nobsoleteDate" >
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="JobPassDetails"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='passtype' class="control-label">Pass type<span style="color: red">*</span>:</label>
+                <label for='passtype' class="control-label"><span style="color: red">*</span> Pass type</label>
                 <br/>
                 <select class="form-control" id="passtypeEdit" name="passtype">
                     <%
@@ -1464,28 +1405,28 @@
 
             </div>
             <div class="form-group" id="passtype_other_div">
-                <label for="passtypeMore" class="control-label">Explain if above is 'Other':</label><br/>
+                <label for="passtypeMore" class="control-label">Explain if above is 'Other'</label><br/>
                 <input class="form-control" type='text' name="passtypeMore" 
                        value="<%=(passtypeMore == null) ? "" : passtypeMore%>">    
             </div>     
             <div class='form-group'>
-                <label for='passno' class="control-label">Pass number<span style="color: red">*</span>:</label>
+                <label for='passno' class="control-label"><span style="color: red">*</span> Pass number</label>
                 <br/>
                 <input class="form-control" type='text' name="passno" value="<%=passnum%>">
                 
             </div>
             <div class='form-group'>
-                <label for='apdate' class="control-label">Pass application date:</label>
+                <label for='apdate' class="control-label">Pass application date</label>
                 <br/>
                        <input class="form-control dateInput apdateToRemove col-md-9" type='text' name="apdate" style="width:90%" value="<%=(pass.getPassApplicationDate() == null) ? ""
                         : sdf.format(pass.getPassApplicationDate())%>">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="ap" style="width:10%;">
                     <span class="glyphicon glyphicon-remove"></span>
                 </div>
-<br/><br/>
+                <br/><br/>
             </div>
             <div class='form-group'>
-                <label for='isdate' class="control-label">Pass issue date: </label>
+                <label for='isdate' class="control-label">Pass issue date</label>
                 <br/>
                        <input class="form-control startDate isdateToRemove col-md-9" type='text' name="isdate" style="width:90%" value="<%=(pass.getIssueDate() == null) ? ""
                         : sdf.format(pass.getIssueDate())%>">
@@ -1495,7 +1436,7 @@
                 <br/><br/>
             </div>
             <div class='form-group'>
-                <label for='exdate' class="control-label">Pass expiry date: </label>
+                <label for='exdate' class="control-label">Pass expiry date</label>
                 <br/>
                        <input class="form-control endDate exdateToRemove col-md-9" type='text' name="exdate" style="width:90%"  value="<%=(pass.getExpiryDate() == null) ? ""
                         : sdf.format(pass.getExpiryDate())%>">
@@ -1505,17 +1446,17 @@
                 <br/><br/>
             </div>
             <div class='form-group'>
-                <label for='issuer' class="control-label">Pass issuing agency:</label>
+                <label for='issuer' class="control-label">Pass issuing agency</label>
                 <br/>
                 <input class="form-control" type='text' name="issuer" value="<%=issuer%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remarks about pass: </label>
+                <label for='remark' class="control-label">Remarks about pass</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
             </div>
             <div class='form-group'>
-                <label for='obsoleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='obsoleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="obsoleteDate" 
                        value="<%=(pass.getObsoleteDate() == null) ? ""
@@ -1565,32 +1506,32 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Official name of employer:</label>
+                    <label for='name' class="control-label">Official name of employer</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=name%>">
                 </div>
                 <div class='form-group'>
-                    <label for='empid' class="control-label">ID of employer:</label>
+                    <label for='empid' class="control-label">ID of employer</label>
                     <br/>
                     <input class="form-control" type='text' name="empid" value="<%=empid%>">
                 </div>
                 <div class='form-group'>
-                    <label for='contact' class="control-label">Employer address:</label>
+                    <label for='contact' class="control-label">Employer address</label>
                     <br/>
                     <textarea class="form-control" name="address" rows="3" ><%=address%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='contact' class="control-label">Employer phone, email contacts:</label>
+                    <label for='contact' class="control-label">Employer phone, email contacts</label>
                     <br/>
                     <textarea class="form-control" name="ncontact" rows="3" ><%=(contact == null) ? "" : contact%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='person' class="control-label">Key persons in employer:</label>
+                    <label for='person' class="control-label">Key persons in employer</label>
                     <br/>
                     <textarea class="form-control" name="nperson" rows="3" ><%=(person == null) ? "" : person%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks about employer: </label>
+                    <label for='remark' class="control-label">Remarks about employer</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
                 </div>
@@ -1603,77 +1544,34 @@
             </div>
         </div>
 
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nname' class="control-label">Official name of employer<span style="color: red">*</span>:</label>
-                <br/>
-                <input class="form-control" type='text' name="nname" required>
-            </div>
-            <div class='form-group'>
-                <label for='nempid' class="control-label">ID of employer:</label>
-                <br/>
-                <input class="form-control" type='text' name="nempid">
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Employer address: </label>
-                <br/>
-                <textarea class="form-control" name="naddress" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='ncontact' class="control-label">Employer phone, email contacts:</label>
-                <br/>
-                <textarea class="form-control" name="ncontact" rows="3" ><%=(contact == null) ? "" : contact%></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nperson' class="control-label">Key persons in employer:</label>
-                <br/>
-                <textarea class="form-control" name="nperson" rows="3" ><%=(person == null) ? "" : person%></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about employer: </label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3" ></textarea>
-            </div>
-
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="EmployerDetails"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='name' class="control-label">Official name of employer<span style="color: red">*</span>:</label>
+                <label for='name' class="control-label"><span style="color: red">*</span> Official name of employer</label>
                 <br/>
                 <input class="form-control" type='text' name="name" value="<%=name%>" required>
             </div>
             <div class='form-group'>
-                <label for='empid' class="control-label">ID of employer:</label>
+                <label for='empid' class="control-label">ID of employer</label>
                 <br/>
                 <input class="form-control" type='text' name="empid" value="<%=empid%>">
             </div>
             <div class='form-group'>
-                <label for='address' class="control-label">Employer address: </label>
+                <label for='address' class="control-label">Employer address</label>
                 <br/>
                 <textarea class="form-control" name="address" rows="3" ><%=(address == null) ? "" : address%></textarea>
             </div>
             <div class='form-group'>
-                <label for='contact' class="control-label">Employer phone, email contacts:</label>
+                <label for='contact' class="control-label">Employer phone, email contacts</label>
                 <br/>
                 <textarea class="form-control" name="contact" rows="3" ><%=(contact == null) ? "" : contact%></textarea>
             </div>
             <div class='form-group'>
-                <label for='person' class="control-label">Key persons in employer:</label>
+                <label for='person' class="control-label">Key persons in employer</label>
                 <br/>
                 <textarea class="form-control" name="person" rows="3" ><%=(person == null) ? "" : person%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remarks about employer: </label>
+                <label for='remark' class="control-label">Remarks about employer</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
             </div>
@@ -1728,63 +1626,63 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Contract date:</label>
+                    <label for='name' class="control-label">Contract date</label>
                     <br/>
                     <input class="form-control " type='text' name="name" 
                            value="<%=(date == null) ? "" : sdf.format(date)%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Where contract signed: </label>
+                    <label for='remark' class="control-label">Where contract signed</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=location%>">
                 </div>
                 <div class='form-group'>
-                    <label for='contact' class="control-label">Contract language:</label>
+                    <label for='contact' class="control-label">Contract language</label>
                     <br/>
                     <input class="form-control" type='text' name="contact" value="<%=language%>">
                 </div>
                 <div class='form-group'>
-                    <label for='person' class="control-label">Name of opposite contracting party:</label>
+                    <label for='person' class="control-label">Name of opposite contracting party</label>
                     <br/>
                     <input class="form-control" type='text' name="person" value="<%=opname%>">
                 </div>
                 <div class='form-group'>
-                    <label for='empid' class="control-label">Relationship of opposite contracting party to job:</label>
+                    <label for='empid' class="control-label">Relationship of opposite contracting party to job</label>
                     <br/>
                     <textarea class="form-control" name="noprelation" rows="3" ><%=(oprelation == null) ? "" : oprelation%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Occupation stated in contract: </label>
+                    <label for='remark' class="control-label">Occupation stated in contract</label>
                     <br/>
                     <textarea class="form-control" name="noccupation" rows="3" ><%=(occupation == null) ? "" : occupation%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Basic salary: </label>
+                    <label for='remark' class="control-label">Basic salary</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=salary%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Allowance details: </label>
+                    <label for='remark' class="control-label">Allowance details</label>
                     <br/>
                     <textarea class="form-control"name="remark" rows="3"><%=allowance%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Deductions details: </label>
+                    <label for='remark' class="control-label">Deductions details</label>
                     <br/>
                     <textarea class="form-control"name="remark" rows="3"><%=deduction%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Length of contract: </label>
+                    <label for='remark' class="control-label">Length of contract</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=duration%>">
                 </div>
                 <div class='form-group'>
-                    <label for='duresss' class="control-label">Describe if signed under duress or misrepresentation: </label>
+                    <label for='duresss' class="control-label">Describe if signed under duress or misrepresentation</label>
                     <br/>
                     <textarea class="form-control"name="duresss" rows="3"><%=duress%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks about contract: </label>
+                    <label for='remark' class="control-label">Remarks about contract</label>
                     <br/>
                     <textarea class="form-control"name="duresss" rows="3"><%=remark%></textarea>
                 </div>
@@ -1797,137 +1695,65 @@
             </div>
         </div>
 
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='ncontdate' class="control-label">Contract date<span style="color: red">*</span>:</label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="ncontdate">
-            </div>
-            <div class='form-group'>
-                <label for='nlocation' class="control-label">Where contract Signed: </label>
-                <br/>
-                <input class="form-control" type='text' name="nlocation">
-            </div>
-            <div class='form-group'>
-                <label for='nlanguage' class="control-label">Contract Language:</label>
-                <br/>
-                <input class="form-control" type='text' name="nlanguage">
-            </div>
-            <div class='form-group'>
-                <label for='nopname' class="control-label">Name of opposite contracting party<span style="color: red">*</span>:</label>
-                <br/>
-                <input class="form-control" type='text' name="nopname">
-            </div>
-            <div class='form-group'>
-                <label for='empid' class="control-label">Relationship of opposite contracting party to job:</label>
-                <br/>
-                <textarea class="form-control" name="noprelation" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='remark' class="control-label">Occupation stated in contract: </label>
-                <br/>
-                <textarea class="form-control" name="noccupation" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nsalary' class="control-label">Basic salary: </label>
-                <br/>
-                <input class="form-control" type='text' name="nsalary">
-            </div>
-            <div class='form-group'>
-                <label for='nallowance' class="control-label">Allowance details: </label>
-                <br/>
-                <textarea class="form-control" name="nallowance" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='ndeduction' class="control-label">Deductions details: </label>
-                <br/>
-                <textarea class="form-control" name="ndeduction" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nduration' class="control-label">Length of contract: </label>
-                <br/>
-                <input class="form-control" type='text' name="nduration">
-            </div>
-            <div class='form-group'>
-                <label for='nduress' class="control-label">Describe if signed under duress or misrepresentation: </label>
-                <br/>
-                <textarea class="form-control" name="nduress" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about contract: </label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3" ></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="ContractDetails"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='contdate' class="control-label">Contract date<span style="color: red">*</span>:</label>
+                <label for='contdate' class="control-label"><span style="color: red">*</span> Contract date</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="contdate" 
                        value="<%=(date == null) ? "" : sdf.format(date)%>">
             </div>
             <div class='form-group'>
-                <label for='location' class="control-label">Where contract signed:</label>
+                <label for='location' class="control-label">Where contract signed</label>
                 <br/>
                 <input class="form-control" type='text' name="location" value="<%=location%>">
             </div>
             <div class='form-group'>
-                <label for='language' class="control-label">Contract language:</label>
+                <label for='language' class="control-label">Contract language</label>
                 <br/>
                 <input class="form-control" type='text' name="language" value="<%=language%>">
             </div>
             <div class='form-group'>
-                <label for='opname' class="control-label">Name of opposite contracting party<span style="color: red">*</span>:</label>
+                <label for='opname' class="control-label"><span style="color: red">*</span> Name of opposite contracting party</label>
                 <br/>
                 <input class="form-control" type='text' name="opname" value="<%=opname%>">
             </div>
             <div class='form-group'>
-                <label for='oprelation' class="control-label">Relationship of opposite contracting party to job:</label>
+                <label for='oprelation' class="control-label">Relationship of opposite contracting party to job</label>
                 <br/>
                 <textarea class="form-control" name="oprelation" rows="3" ><%=(oprelation == null) ? "" : oprelation%></textarea>
             </div>
             <div class='form-group'>
-                <label for='occupation' class="control-label">Occupation stated in contract: </label>
+                <label for='occupation' class="control-label">Occupation stated in contract</label>
                 <br/>
                 <textarea class="form-control" name="occupation" rows="3" ><%=(occupation == null) ? "" : occupation%></textarea>
             </div>
             <div class='form-group'>
-                <label for='salary' class="control-label">Basic salary: </label>
+                <label for='salary' class="control-label">Basic salary</label>
                 <br/>
                 <input class="form-control" type='text' name="salary" value="<%=salary%>">
             </div>
             <div class='form-group'>
-                <label for='allowance' class="control-label">Allowance details: </label>
+                <label for='allowance' class="control-label">Allowance details</label>
                 <br/>
                 <textarea class="form-control"name="allowance" rows="3"><%=allowance%></textarea>
             </div>
             <div class='form-group'>
-                <label for='deduction' class="control-label">Deductions details: </label>
+                <label for='deduction' class="control-label">Deductions details</label>
                 <br/>
                 <textarea class="form-control"name="deduction" rows="3"><%=deduction%></textarea>
             </div>
             <div class='form-group'>
-                <label for='duration' class="control-label">Length of contract: </label>
+                <label for='duration' class="control-label">Length of contract</label>
                 <br/>
                 <input class="form-control" type='text' name="duration" value="<%=duration%>">
             </div>
             <div class='form-group'>
-                <label for='duress' class="control-label">Describe if signed under duress or misrepresentation: </label>
+                <label for='duress' class="control-label">Describe if signed under duress or misrepresentation</label>
                 <br/>
                 <textarea class="form-control"name="duress" rows="3"><%=duress%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remarks about contract: </label>
+                <label for='remark' class="control-label">Remarks about contract</label>
                 <br/>
                 <textarea class="form-control"name="remark" rows="3"><%=remark%></textarea>
             </div>
@@ -1986,47 +1812,47 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Agent company name:</label>
+                    <label for='name' class="control-label">Agent company name</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=company%>">
                 </div>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Agent key person name:</label>
+                    <label for='name' class="control-label">Agent key person name</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=(person == null) ? "" : person%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Location of agent: </label>
+                    <label for='remark' class="control-label">Location of agent</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=(location == null) ? "" : location%>">
                 </div>
                 <div class="form-group" id="location_other_div">
-                    <label for="locationMore" class="control-label">Explain if above is 'Other':</label><br/>
+                    <label for="locationMore" class="control-label">Explain if above is 'Other'</label><br/>
                     <input class="form-control" type='text' name="naglocationMore" 
                            value="<%=(locationMore == null) ? "" : locationMore%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Agent address: </label>
+                    <label for='remark' class="control-label">Agent address</label>
                     <br/>
                     <textarea class="form-control" name="naddress" rows="3" ><%=(address == null) ? "" : address%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Agent phone/email contact: </label>
+                    <label for='remark' class="control-label">Agent phone/email contact</label>
                     <br/>
                     <textarea class="form-control" name="ncontact" rows="3" ><%=(contact == null) ? "" : contact%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='empid' class="control-label">Amount paid to this agent(S$):</label>
+                    <label for='empid' class="control-label">Amount paid to this agent(S$)</label>
                     <br/>
                     <input class="form-control" type='text' name="empid" value="<%=(amtPaid == 0.0) ? "" : df.format(amtPaid)%>">
                 </div>
                 <div class='form-group'>
-                    <label for='person' class="control-label">Amount Owed to This agent at the start of work(S$):</label>
+                    <label for='person' class="control-label">Amount Owed to This agent at the start of work(S$)</label>
                     <br/>
                     <input class="form-control" type='text' name="person" value="<%=(amtOwed == 0.0) ? "" : df.format(amtOwed)%>">
                 </div>
                 <div class='form-group'>
-                    <label for='contact' class="control-label">Any suspicion fee was shared with others?:</label>
+                    <label for='contact' class="control-label">Any suspicion fee was shared with others?</label>
                     <br/>
                     <textarea class="form-control" name="nfeeshared" rows="3" ><%=(feeshared == null) ? "" : feeshared%></textarea>
                 </div>
@@ -2036,32 +1862,32 @@
                     <input class="form-control" type='text' name="remark" value="<%=feeTraining%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Did fee include airfare?: </label>
+                    <label for='remark' class="control-label">Did fee include airfare?</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=feeAirFare%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">When agent fee paid: </label>
+                    <label for='remark' class="control-label">When agent fee paid</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=feeWhen%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Where agent fee paid: </label>
+                    <label for='remark' class="control-label">Where agent fee paid</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=feeWhere%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Repayment plan if fee owed: </label>
+                    <label for='remark' class="control-label">Repayment plan if fee owed</label>
                     <br/>
                     <textarea class="form-control" name="nfeerepay" rows="3" ><%=(feeRepay == null) ? "" : feeRepay%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Employer that this agent placed worker to: </label>
+                    <label for='remark' class="control-label">Employer that this agent placed worker to</label>
                     <br/>
                     <textarea class="form-control" name="nemp" rows="3" ><%=(emp == null) ? "" : emp%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Agent remarks: </label>
+                    <label for='remark' class="control-label">Agent remarks</label>
                     <br/>
                     <textarea class="form-control"name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
                 </div>
@@ -2074,121 +1900,19 @@
             </div>
         </div>
 
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='ncompany' class="control-label">Agent company name<span style="color: red">*</span>:</label>
-                <br/>
-                <input class="form-control" type='text' name="ncompany" required>
-            </div>
-            <div class='form-group'>
-                <label for='nperson' class="control-label">Agent key person name:</label>
-                <br/>
-                <input class="form-control" type='text' name="nagperson">
-            </div>
-            <div class='form-group'>
-                <label for='nlocation' class="control-label">Location of agent: </label>
-                <br/>
-                <select class="form-control" id="agentLocation" name="naglocation">
-                    <option value="" selected>Select location:</option>
-                    <%
-                        for (String agentLocation : agentLocations) {
-                    %>
-                    <option value="<%=agentLocation%>"><%=agentLocation%></option>
-                    <%
-
-                        }
-                    %>  
-                </select>
-            </div>
-            <div class='form-group' id="agentLocation_other_div" >
-                <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
-                <br/>
-                <input class="form-control" type='text' name="naglocationMore">
-            </div>
-            <div class='form-group'>
-                <label for='naddress' class="control-label">Agent address: </label>
-                <br/>
-                <textarea class="form-control" name="naddress" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='ncontact' class="control-label">Agent phone/email contact: </label>
-                <br/>
-                <textarea class="form-control" name="ncontact" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='namtpaid' class="control-label">Amount paid to this agent(S$):</label>
-                <br/>
-                <input class="form-control" type='text' name="namtpaid">
-            </div>
-            <div class='form-group'>
-                <label for='namtowed' class="control-label">Amount Owed to this agent at the start of work(S$):</label>
-                <br/>
-                <input class="form-control" type='text' name="namtowed">
-            </div>
-            <div class='form-group'>
-                <label for='nfeeshared' class="control-label">Any suspicion fee was shared with others?:</label>
-                <br/>
-                <textarea class="form-control" name="nfeeshared" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nfeetraining' class="control-label" >Did fee includes training expenses? (Explain in details) </label>
-                <br/>
-                <input class="form-control" type='text' name="nfeetraining">
-            </div>
-            <div class='form-group'>
-                <label for='nfeeairfare' class="control-label">Did fee include airfare?: </label>
-                <br/>
-                <input class="form-control" type='text' name="nfeeairfare">
-            </div>
-            <div class='form-group'>
-                <label for='nfeewhen' class="control-label">When agent fee paid: </label>
-                <br/>
-                <input class="form-control" type='text' name="nfeewhen">
-            </div>
-            <div class='form-group'>
-                <label for='nfeewhere' class="control-label">Where agent fee paid: </label>
-                <br/>
-                <input class="form-control" type='text' name="nfeewhere">
-            </div>
-            <div class='form-group'>
-                <label for='nfeerepay' class="control-label">Repayment plan if fee owed: </label>
-                <br/>
-                <textarea class="form-control" name="nfeerepay" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nemp' class="control-label">Employer that this agent placed worker to: </label>
-                <br/>
-                <textarea class="form-control" name="nemp" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Agent remarks: </label>
-                <br/>
-                <textarea class="form-control" name="nagremark" rows="3" ></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="Agent"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='company' class="control-label">Agent company name<span style="color: red">*</span>:</label>
+                <label for='company' class="control-label"><span style="color: red">*</span> Agent company name</label>
                 <br/>
                 <input class="form-control" type='text' name="company" value="<%=company%>" required>
             </div>
             <div class='form-group'>
-                <label for='person' class="control-label">Agent key person name:</label>
+                <label for='person' class="control-label">Agent key person name</label>
                 <br/>
                 <input class="form-control" type='text' name="agperson" value="<%=person%>">
             </div>
             <div class='form-group'>
-                <label for='location' class="control-label">Location of agent: </label>
+                <label for='location' class="control-label">Location of agent</label>
                 <br/>
                 <select class="form-control" id="agentLocationEdit" name="aglocation">
                     <option value="" selected>Select from list...</option>
@@ -2211,32 +1935,32 @@
                 </select>
             </div>
             <div class="form-group" id="agentLocationEdit_other_div">
-                <label for="locationMore" class="control-label">Explain if above is 'Other':</label><br/>
+                <label for="locationMore" class="control-label">Explain if above is 'Other'</label><br/>
                 <input class="form-control" type='text' name="aglocationMore" 
                        value="<%=(locationMore == null) ? "" : locationMore%>">
             </div>     
             <div class='form-group'>
-                <label for='address' class="control-label">Agent address: </label>
+                <label for='address' class="control-label">Agent address</label>
                 <br/>
                 <textarea class="form-control" name="address" rows="3" ><%=(address == null) ? "" : address%></textarea>
             </div>
             <div class='form-group'>
-                <label for='contact' class="control-label">Agent phone/email contact: </label>
+                <label for='contact' class="control-label">Agent phone/email contact</label>
                 <br/>
                 <textarea class="form-control" name="contact" rows="3" ><%=(contact == null) ? "" : contact%></textarea>
             </div>
             <div class='form-group'>
-                <label for='amtpaid' class="control-label">Amount paid to this agent(S$):</label>
+                <label for='amtpaid' class="control-label">Amount paid to this agent(S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="amtpaid" value="<%=(amtPaid == 0.0) ? "" : df.format(amtPaid)%>">
             </div>
             <div class='form-group'>
-                <label for='amtowed' class="control-label">Amount owed to this agent at the start of work(S$):</label>
+                <label for='amtowed' class="control-label">Amount owed to this agent at the start of work(S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="amtowed" value="<%=(amtOwed == 0.0) ? "" : df.format(amtOwed)%>">
             </div>
             <div class='form-group'>
-                <label for='feeshared' class="control-label">Any suspicion fee was shared With others?:</label>
+                <label for='feeshared' class="control-label">Any suspicion fee was shared With others?</label>
                 <br/>
                 <textarea class="form-control" name="feeshared" rows="3" ><%=(feeshared == null) ? "" : feeshared%></textarea>
             </div>
@@ -2246,32 +1970,32 @@
                 <input class="form-control" type='text' name="feetraining" value="<%=feeTraining%>">
             </div>
             <div class='form-group'>
-                <label for='feeairfare' class="control-label">Did fee include airfare?: </label>
+                <label for='feeairfare' class="control-label">Did fee include airfare?</label>
                 <br/>
                 <input class="form-control" type='text' name="feeairfare" value="<%=feeAirFare%>">
             </div>
             <div class='form-group'>
-                <label for='feewhen' class="control-label">When agent fee paid: </label>
+                <label for='feewhen' class="control-label">When agent fee paid</label>
                 <br/>
                 <input class="form-control" type='text' name="feewhen" value="<%=feeWhen%>">
             </div>
             <div class='form-group'>
-                <label for='feewhere' class="control-label">Where agent fee paid: </label>
+                <label for='feewhere' class="control-label">Where agent fee paid</label>
                 <br/>
                 <input class="form-control" type='text' name="feewhere" value="<%=feeWhere%>">
             </div>
             <div class='form-group'>
-                <label for='feerepay' class="control-label">Repayment plan if fee owed: </label>
+                <label for='feerepay' class="control-label">Repayment plan if fee owed</label>
                 <br/>
                 <textarea class="form-control" name="feerepay" rows="3" ><%=(feeRepay == null) ? "" : feeRepay%></textarea>
             </div>
             <div class='form-group'>
-                <label for='emp' class="control-label">Employer that this agent placed worker to: </label>
+                <label for='emp' class="control-label">Employer that this agent placed worker to</label>
                 <br/>
                 <textarea class="form-control" name="emp" rows="3" ><%=(emp == null) ? "" : emp%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Agent Remarks: </label>
+                <label for='remark' class="control-label">Agent Remarks</label>
                 <br/>
                 <textarea class="form-control" name="agremark" rows="3"><%=remark%></textarea>
             </div>
@@ -2317,27 +2041,27 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Name of giver of verbal assurances:</label>
+                    <label for='name' class="control-label">Name of giver of verbal assurances</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=name%>">
                 </div>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Relationship of giver to worker or agent or employer:</label>
+                    <label for='name' class="control-label">Relationship of giver to worker or agent or employer</label>
                     <br/>
                     <textarea class="form-control" name="nrelation" rows="3"><%=(relationship == null) ? "" : relationship%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">When was verbal assurance given?: </label>
+                    <label for='remark' class="control-label">When was verbal assurance given?</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=when%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Where was verbal assurance given?: </label>
+                    <label for='remark' class="control-label">Where was verbal assurance given?</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=where%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Content of verbal assurance: </label>
+                    <label for='remark' class="control-label">Content of verbal assurance</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=(content == null) ? "" : content%></textarea>
                 </div>
@@ -2350,66 +2074,29 @@
             </div>
         </div>
 
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nname' class="control-label">Name of giver of verbal assurances<span style="color: red">*</span>:</label>
-                <br/>
-                <input class="form-control" type='text' name="nname" required>
-            </div>
-            <div class='form-group'>
-                <label for='nrelationship' class="control-label">Relationship of giver to worker or agent or employer:</label>
-                <br/>
-                <textarea class="form-control" name="nrelation" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nvaWhen' class="control-label">When was verbal assurance given?: </label>
-                <br/>
-                <input class="form-control" type='text' name="nvaWhen">
-            </div>
-            <div class='form-group'>
-                <label for='nvaWhere' class="control-label">Where was verbal assurance given?: </label>
-                <br/>
-                <input class="form-control" type='text' name="nvaWhere">
-            </div>
-            <div class='form-group'>
-                <label for='nvaContent' class="control-label">Content of verbal assurance: </label>
-                <br/>
-                <textarea class="form-control" name="nvaContent" rows="3" ></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="VerbalAssurance"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='name' class="control-label">Name of giver of verbal assurances<span style="color: red">*</span>:</label>
+                <label for='name' class="control-label"><span style="color: red">*</span> Name of giver of verbal assurances</label>
                 <br/>
                 <input class="form-control" type='text' name="name" value="<%=name%>" required>
             </div>
             <div class='form-group'>
-                <label for='relationship' class="control-label">Relationship of giver to worker or agent or employer:</label>
+                <label for='relationship' class="control-label">Relationship of giver to worker or agent or employer</label>
                 <br/>
                 <textarea class="form-control" name="relation" rows="3" ><%=(relationship == null) ? "" : relationship%></textarea>
             </div>
             <div class='form-group'>
-                <label for='vaWhen' class="control-label">When was verbal assurance given?: </label>
+                <label for='vaWhen' class="control-label">When was verbal assurance given?</label>
                 <br/>
                 <input class="form-control" type='text' name="vaWhen" value="<%=when%>">
             </div>
             <div class='form-group'>
-                <label for='vaWhere' class="control-label">Where was verbal assurance given?: </label>
+                <label for='vaWhere' class="control-label">Where was verbal assurance given?</label>
                 <br/>
                 <input class="form-control" type='text' name="vaWhere" value="<%=where%>">
             </div>
             <div class='form-group'>
-                <label for='vaContent' class="control-label">Content of verbal assurance: </label>
+                <label for='vaContent' class="control-label">Content of verbal assurance</label>
                 <br/>
                 <textarea class="form-control" name="vaContent" rows="3" ><%=content%></textarea>
             </div>
@@ -2466,62 +2153,62 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Type of workplace:</label>
+                    <label for='name' class="control-label">Type of workplace</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=wpType%>">
                 </div>
                 <div class='form-group' id="wrokplaceType_other_div" >
-                    <label for='nwpTypeMore' class="control-label">Explain if above is 'Other': </label>
+                    <label for='nwpTypeMore' class="control-label">Explain if above is 'Other'</label>
                     <br/>
                     <textarea class="form-control" name="nwpTypeMore" rows="3" ><%=(wpTypeMore == null) ? "" : wpTypeMore%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
+                    <label for='name' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=whose%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Key persons controlling workplace & contact details: </label>
+                    <label for='remark' class="control-label">Key persons controlling workplace & contact details</label>
                     <br/>
                     <textarea class="form-control" name="npersonDetails" ><%=(personDetails == null) ? "" : personDetails%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Relationship of workplace to employer: </label>
+                    <label for='remark' class="control-label">Relationship of workplace to employer</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=relationship%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Who directed worker to this workplace?: </label>
+                    <label for='remark' class="control-label">Who directed worker to this workplace?</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=direct%>">
                 </div>
                 <div class='form-group' id="direct_other_div" >
-                    <label for='ndirectMore' class="control-label">Explain if above is 'Other': </label>
+                    <label for='ndirectMore' class="control-label">Explain if above is 'Other'</label>
                     <br/>
                     <textarea class="form-control" name="ndirectMore" rows="3" ><%=(directMore == null) ? "" : directMore%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">When start at workplace?: </label>
+                    <label for='remark' class="control-label">When start at workplace?</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=start%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">When cease working at workplace?: </label>
+                    <label for='remark' class="control-label">When cease working at workplace?</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=end%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Work conditions at the workplace: </label>
+                    <label for='remark' class="control-label">Work conditions at the workplace</label>
                     <br/>
                     <textarea class="form-control" name="condition" rows="3"><%=(condition == null) ? "" : condition%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Safety issues at workplace: </label>
+                    <label for='remark' class="control-label">Safety issues at workplace</label>
                     <br/>
                     <textarea class="form-control" name="nsafety" rows="3" ><%=(safety == null) ? "" : safety%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks about workplace: </label>
+                    <label for='remark' class="control-label">Remarks about workplace</label>
                     <br/>
                     <textarea class="form-control" name="nremark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
                 </div>
@@ -2534,102 +2221,9 @@
             </div>
         </div>
 
-        <div class='add_comp'>
-            <div class='form-group'>
-                <!--this thing will become dropdown-->
-                <label for='nwpType' class="control-label">Type of workplace<span style="color: red">*</span>:</label>
-                <br/>
-                <select class="form-control" id="workplaceType" name="nwpType">
-                    <option value="" selected>Select from list:</option>
-                    <%
-                        for (String type : workplaceTypes) {
-                    %>
-                    <option value="<%=type%>"><%=type%></option>
-                    <%
-
-                        }
-                    %>  
-                </select>
-            </div>
-            <div class='form-group' id="wrokplaceType_other_div" >
-                <label for='nwpTypeMore' class="control-label">Explain if above is 'Other': </label>
-                <br/>
-                <textarea class="form-control" name="nwpTypeMore" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nwhose' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
-                <br/>
-                <input class="form-control" type='text' name="nwhose" >
-            </div>
-            <div class='form-group'>
-                <label for='npersonDetails' class="control-label">Key persons Controlling workplace & contact details: </label>
-                <br/>
-                <textarea class="form-control" name="npersonDetails" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nrelationship' class="control-label">Relationship of workplace to employer: </label>
-                <br/>
-                <input class="form-control" type='text' name="nrelation" >
-            </div>
-            <div class='form-group'>
-                <label for='ndirect' class="control-label">Who directed worker to this workplace?<span style="color: red">*</span>: </label>
-                <br/>
-                <select class="form-control" id="direct" name="ndirect">
-                    <option value="" selected>Select from list...</option>
-                    <%
-                        for (String workplacedirect : workplacedirects) {
-                    %>
-                    <option value="<%=workplacedirect%>"><%=workplacedirect%></option>
-                    <%
-
-                        }
-                    %>  
-                </select>
-
-            </div>
-            <div class='form-group' id="direct_other_div" >
-                <label for='ndirectMore' class="control-label">Explain if above is 'Other': </label>
-                <br/>
-                <textarea class="form-control" name="ndirectMore" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nstart' class="control-label">When Start at workplace?: </label>
-                <br/>
-                <input class="form-control" type='text' name="nstart" >
-            </div>
-            <div class='form-group'>
-                <label for='nend' class="control-label">When cease working at workplace?: </label>
-                <br/>
-                <input class="form-control" type='text' name="nend" >
-            </div>
-            <div class='form-group'>
-                <label for='ncondition' class="control-label">Work Conditions at the workplace: </label>
-                <br/>
-                <textarea class="form-control" name="ncondition" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nsafety' class="control-label">Safety Issues At workplace: </label>
-                <br/>
-                <textarea class="form-control" name="nsafety" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about workplace: </label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3" ></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="WorkPlace"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='wpType' class="control-label">Type of workplace<span style="color: red">*</span>:</label>
+                <label for='wpType' class="control-label"><span style="color: red">*</span> Type of workplace</label>
                 <br/>
                 <select class="form-control" id="wpTypeEdit" name="wpType">
                     <%
@@ -2651,27 +2245,27 @@
                 </select>
             </div>
             <div class='form-group' id="wpTypeEdit_other_div" >
-                <label for='wpTypeMore' class="control-label">Explain if above is 'Other': </label>
+                <label for='wpTypeMore' class="control-label">Explain if above is 'Other'</label>
                 <br/>
                 <textarea class="form-control" name="wpTypeMore" rows="3" ><%=(wpTypeMore == null) ? "" : wpTypeMore%></textarea>
             </div>
             <div class='form-group'>
-                <label for='whose' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
+                <label for='whose' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?</label>
                 <br/>
                 <input class="form-control" type='text' name="whose" value="<%=whose%>">
             </div>
             <div class='form-group'>
-                <label for='personDetails' class="control-label">Key persons controlling workplace & contact details: </label>
+                <label for='personDetails' class="control-label">Key persons controlling workplace & contact details</label>
                 <br/>
                 <textarea class="form-control" name="personDetails" ><%=(personDetails == null) ? "" : personDetails%></textarea>
             </div>
             <div class='form-group'>
-                <label for='relation' class="control-label">Relationship of workplace to employer: </label>
+                <label for='relation' class="control-label">Relationship of workplace to employer</label>
                 <br/>
                 <input class="form-control" type='text' name="relation" value="<%=relationship%>">
             </div>
             <div class='form-group'>
-                <label for='direct' class="control-label">Who directed worker to this workplace?<span style="color: red">*</span>: </label>
+                <label for='direct' class="control-label"><span style="color: red">*</span> Who directed worker to this workplace?</label>
                 <br/>
                 <select class="form-control" id="directEdit" name="direct">
                     <%
@@ -2693,32 +2287,32 @@
                 </select>
             </div>
             <div class='form-group' id="directEdit_other_div" >
-                <label for='directMore' class="control-label">Explain if above is 'Other': </label>
+                <label for='directMore' class="control-label">Explain if above is 'Other'</label>
                 <br/>
                 <textarea class="form-control" name="directMore" rows="3" ><%=(directMore == null) ? "" : directMore%></textarea>
             </div>
             <div class='form-group'>
-                <label for='start' class="control-label">When start at workplace?: </label>
+                <label for='start' class="control-label">When start at workplace?</label>
                 <br/>
                 <input class="form-control" type='text' name="start" value="<%=start%>">
             </div>
             <div class='form-group'>
-                <label for='end' class="control-label">When cease working at workplace?: </label>
+                <label for='end' class="control-label">When cease working at workplace?</label>
                 <br/>
                 <input class="form-control" type='text' name="end" value="<%=end%>">
             </div>
             <div class='form-group'>
-                <label for='condition' class="control-label">Work conditions at the workplace: </label>
+                <label for='condition' class="control-label">Work conditions at the workplace</label>
                 <br/>
                 <textarea class="form-control" name="condition" rows="3" ><%=(condition == null) ? "" : condition%></textarea>
             </div>
             <div class='form-group'>
-                <label for='safety' class="control-label">Safety issues at workplace: </label>
+                <label for='safety' class="control-label">Safety issues at workplace</label>
                 <br/>
                 <textarea class="form-control" name="safety" rows="3" ><%=(safety == null) ? "" : safety%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remarks about workplace: </label>
+                <label for='remark' class="control-label">Remarks about workplace</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
             </div>
@@ -2755,7 +2349,7 @@
 
         <%
             String how = history.getWorkHistHow();
-            java.util.Date arrivalDate = history.getWorkHistDate();
+            String arrivalDate = history.getWorkHistDate();
             String isFirstJob = history.getWorkHistFirst();
             String arrivalYear = null;
             if (isFirstJob.equals("No")) {
@@ -2776,17 +2370,17 @@
                     <input class="form-control" type='text' name="name" value="<%=how%>">
                 </div>
                 <div class='form-group' id="howEdit_other_div" >
-                    <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
+                    <label for='nhowMore' class="control-label">Explain if above is 'Other'</label>
                     <br/>
                     <textarea class="form-control" name="howMore" ><%=(history.getWorkHistHowMore() == null) ? "" : history.getWorkHistHowMore()%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Date arrived Singapore for this job:</label>
+                    <label for='name' class="control-label">When worker arrived Singapore for this job?</label>
                     <br/>
-                    <input class="form-control" type='text' name="name" value="<%=(arrivalDate == null) ? "" : sdf.format(arrivalDate)%>">
+                    <input class="form-control" type='text' name="name" value="<%=(arrivalDate==null)?"":arrivalDate%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Is this first job in Singapore? </label>
+                    <label for='remark' class="control-label">Is this first job in Singapsore? </label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=isFirstJob%>">
                 </div>
@@ -2810,7 +2404,7 @@
                     <textarea class="form-control" name="remark" rows="3"><%=prevProb%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks about work history: </label>
+                    <label for='remark' class="control-label">Remarks about work history</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=remark%></textarea>
                 </div>
@@ -2823,79 +2417,9 @@
             </div>
         </div>
 
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nhow' class="control-label">How did worker get into the job defined in Job Profile?<span style="color: red">*</span></label>
-                <br/>
-                <select class="form-control" id="workhistHow" name="nhow">
-                    <option value="" selected>Select from list:</option>
-                    <%
-                        for (String type : workhist) {
-                    %>
-                    <option value="<%=type%>"><%=type%></option>
-                    <%
-
-                        }
-                    %>  
-                </select>
-            </div>
-            <div class='form-group' id="workhistHow_other_div" >
-                <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
-                <br/>
-                <textarea class="form-control" name="nhowMore" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='narrivalDate' class="control-label">Date arrived Singapore for this job:</label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="narrivalDate" >
-            </div>
-            <div class='form-group'>
-                <label for='nisFirstJob' class="control-label">Is this first job in Singapore? </label>
-                <br/>
-                <select class="form-control" id="digitalContactType" name="nisFirstJob" >
-
-                    <option selected>No</option>
-
-                    <option>Yes</option>
-
-                </select>
-
-            </div>
-            <div class='form-group'>
-                <label for='narrivalYear' class="control-label">If not, year in which worker arrived in Singapore for first job</label>
-                <br/>
-                <input class="form-control" type='text' name="narrivalYear">
-            </div>
-
-            <div class='form-group'>
-                <label for='nprevJob' class="control-label">Describe previous jobs and home breaks </label>
-                <br/>
-                <textarea class="form-control" name="nprevJob" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nprevProb' class="control-label">Describe problems in previous jobs</label>
-                <br/>
-                <textarea class="form-control" name="nprevProb" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about Work History: </label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3" ></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="WorkHistory"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='how' class="control-label">How did worker get into the job defined in job Profile?<span style="color: red">*</span></label>
+                <label for='how' class="control-label"><span style="color: red">*</span> How did worker get into the job defined in job Profile?</label>
                 <br/>
                 <select class="form-control" id="howEdit" name="how">
                     <%
@@ -2917,19 +2441,16 @@
                 </select>
             </div>
             <div class='form-group' id="howEdit_other_div" >
-                <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
+                <label for='nhowMore' class="control-label">Explain if above is 'Other'</label>
                 <br/>
                 <textarea class="form-control" name="howMore" ><%=(history.getWorkHistHowMore() == null) ? "" : history.getWorkHistHowMore()%></textarea>
             </div>
             <div class='form-group'>
-                <label for='arrivalDate' class="control-label">Date arrived Singapore for this job:</label>
+                <label for='arrivalDate' class="control-label">When worker arrived Singapore for this job?</label>
                 <br/>
-                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="arrivalDate" style="width:90%" value="<%=(arrivalDate == null) ? "" : sdf.format(arrivalDate)%>">
-                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </div>
+                <input class="form-control" type='text' name="arrivalDate" value="<%=(arrivalDate==null)?"":arrivalDate%>">
             </div>
-                <br/><br/>
+            
             <div class='form-group'>
                 <label for='isFirstJob' class="control-label">Is this first job in Singapore? </label>
                 <br/>
@@ -2968,7 +2489,7 @@
                 <textarea class="form-control" name="prevProb" rows="3" ><%=prevProb%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remarks about work history: </label>
+                <label for='remark' class="control-label">Remarks about work history</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
             </div>
@@ -3029,28 +2550,28 @@
                     <input class="form-control" type='text' name="name" value="<%=isProvided%>">
                 </div>
                 <div class='form-group' id="accomProvided_other_div" >
-                    <label for='location' class="control-label">Explain if above is 'Other': </label>
+                    <label for='location' class="control-label">Explain if above is 'Other'</label>
                     <br/>
                     <textarea class="form-control" name="nisProvidedMore" rows="3" ><%=(isProvidedMore == null) ? "" : isProvidedMore%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Type of accommodation:</label>
+                    <label for='name' class="control-label">Type of accommodation</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=type%>">
                 </div>
                 <div class='form-group' id="accomProvided_other_div" >
-                    <label for='location' class="control-label">Explain if above is 'Other': </label>
+                    <label for='location' class="control-label">Explain if above is 'Other'</label>
                     <br/>
                     <textarea class="form-control" name="nTypeMore" rows="3" ><%=(typeMore == null) ? "" : typeMore%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Location of accommodation: </label>
+                    <label for='remark' class="control-label">Location of accommodation</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=location%></textarea>
                 </div>
 
                 <div class='form-group'>
-                    <label for='ncondition' class="control-label">Conditions at living quarters:</label>
+                    <label for='ncondition' class="control-label">Conditions at living quarters</label>
                     <br/>
                     <textarea class="form-control" name="ncondition" rows="3" ><%=condition%></textarea>
                 </div>
@@ -3071,17 +2592,17 @@
                     <textarea class="form-control" name="remark" rows="3"><%=(meal == null) ? "" : meal%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">When start staying here?:</label>
+                    <label for='remark' class="control-label">When start staying here?</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=from%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">When stop staying here?:</label>
+                    <label for='remark' class="control-label">When stop staying here?</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=to%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks about accommodation: </label>
+                    <label for='remark' class="control-label">Remarks about accommodation</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
                 </div>
@@ -3094,110 +2615,9 @@
             </div>
         </div>
 
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nisProvided' class="control-label">Accommodation provided by employer?<span style="color: red">*</span></label>
-                <br/>
-                <select class="form-control" id="accomProvided" name="nisProvided"  >
-                    <%
-                        for (String accomProvided : accomProvideds) {
-                            if (accomProvided.equals("Provided")) {
-                    %>
-                    <option selected><%=accomProvided%></option>
-                    <%
-                    } else {
-                    %>
-                    <option><%=accomProvided%></option>
-                    <%
-                            }
-                        }
-                    %>  
-                </select>
-            </div>
-
-            <div class='form-group' id="accomProvided_other_div" >
-                <label for='location' class="control-label">Explain if above is 'Other': </label>
-                <br/>
-                <textarea class="form-control" name="nisProvidedMore" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='ntype' class="control-label">Type of Accommodation:</label>
-                <br/>
-
-                <select class="form-control" id="accomType" name="ntype">
-                    <option value="" selected>Select from list:</option>
-                    <%
-                        for (String accomtype : accomTypes) {
-                    %>
-                    <option value="<%=accomtype%>"><%=accomtype%></option>
-                    <%
-
-                        }
-                    %>  
-                </select>
-            </div>
-            <div class='form-group' id="accomtype_other_div" >
-                <label for='location' class="control-label">Explain if above is 'Other': </label>
-                <br/>
-                <textarea class="form-control" name="ntypeMore" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nlocation' class="control-label">Location of Accommodation: </label>
-                <br/>
-                <textarea class="form-control" name="nlocation" rows="3" ></textarea>
-            </div>
-
-            <div class='form-group'>
-                <label for='ncondition' class="control-label">Conditions at living quarters:</label>
-                <br/>
-                <textarea class="form-control" name="ncondition" rows="3" ></textarea>
-            </div>
-
-            <div class='form-group'>
-                <label for='naccCharged' class="control-label">Cost charged by employer per month S$</label>
-                <br/>
-                <input class="form-control" type='text' name="naccCharged">
-            </div>
-            <div class='form-group'>
-                <label for='naccPaid' class="control-label">Cost paid by self per month S$</label>
-                <br/>
-
-                <input class="form-control" type='text' name="naccPaid">
-            </div>
-            <div class='form-group'>
-                <label for='nmeal' class="control-label">Meal arrangements</label>
-                <br/>
-                <textarea class="form-control" name="nmeal" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nfrom' class="control-label">When Start Staying Here?:</label>
-                <br/>
-                <input class="form-control" type='text' name="nfrom">
-            </div>
-            <div class='form-group'>
-                <label for='nto' class="control-label">When Stop Staying Here?</label>
-                <br/>
-                <input class="form-control" type='text' name="nto">
-            </div>
-            <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about Accommodation: </label>
-                <br/>
-                <textarea class="form-control" name="nremark" rows="3" ></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="Accommodation"/>
-            <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='isProvided' class="control-label">Accommodation provided by employer?<span style="color: red">*</span></label>
+                <label for='isProvided' class="control-label"><span style="color: red">*</span> Accommodation provided by employer?</label>
                 <br/>
                 <select class="form-control" id="accomProvidedView" name="isProvided">
                     <%
@@ -3219,12 +2639,12 @@
                 </select>
             </div>
             <div class='form-group' id="accomProvidedView_other_div" >
-                <label for='location' class="control-label">Explain if above is 'Other': </label>
+                <label for='location' class="control-label">Explain if above is 'Other'</label>
                 <br/>
                 <textarea class="form-control" name="isProvidedMore" rows="3" ><%=(isProvidedMore == null) ? "" : isProvidedMore%></textarea>
             </div>
             <div class='form-group'>
-                <label for='type' class="control-label">Type of accommodation:</label>
+                <label for='type' class="control-label">Type of accommodation</label>
                 <br/>
                 <select class="form-control" id="accomtypeView" name="type">
                     <option value="" selected>Select from list...</option>
@@ -3247,18 +2667,18 @@
                 </select>
             </div>
             <div class='form-group' id="accomtypeView_other_div" >
-                <label for='location' class="control-label">Explain if above is 'Other': </label>
+                <label for='location' class="control-label">Explain if above is 'Other'</label>
                 <br/>
                 <textarea class="form-control" name="typeMore" rows="3" ><%=(typeMore == null) ? "" : typeMore%></textarea>
             </div>
             <div class='form-group'>
-                <label for='location' class="control-label">Location of accommodation: </label>
+                <label for='location' class="control-label">Location of accommodation</label>
                 <br/>
                 <textarea class="form-control" name="locationAccom" rows="3" ><%=(location == null) ? "" : location%></textarea>
             </div>
 
             <div class='form-group'>
-                <label for='condition' class="control-label">Conditions at living quarters:</label>
+                <label for='condition' class="control-label">Conditions at living quarters</label>
                 <br/>
                 <textarea class="form-control" name="condition" rows="3" ><%=(condition == null) ? "" : condition%></textarea>
             </div>
@@ -3278,7 +2698,7 @@
                 <textarea class="form-control" name="meal" rows="3" ><%=(meal == null) ? "" : meal%></textarea>
             </div>
             <div class='form-group'>
-                <label for='from' class="control-label">When start staying here?:</label>
+                <label for='from' class="control-label">When start staying here?</label>
                 <br/>
                 <input class="form-control" type='text' name="from" value="<%=from%>">
             </div>
@@ -3288,7 +2708,7 @@
                 <input class="form-control" type='text' name="to" value="<%=to%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remarks about accommodation: </label>
+                <label for='remark' class="control-label">Remarks about accommodation</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
             </div>
@@ -3356,17 +2776,17 @@
                            value="<%=(typeMore == null) ? "" : typeMore%>">
                 </div>
                 <div class='form-group'>
-                    <label for='name' class="control-label">IPA application date:</label>
+                    <label for='name' class="control-label">IPA application date</label>
                     <br/>
                     <input class="form-control" type='text' name="nappDate" value="<%=(ipadate == null) ? "" : sdf.format(ipadate)%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">IPA employer name: </label>
+                    <label for='remark' class="control-label">IPA employer name</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=empName%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">IPA agent name:</label>
+                    <label for='remark' class="control-label">IPA agent name</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=agentName%>">
                 </div>
@@ -3386,27 +2806,27 @@
                     <input class="form-control" type='text' name="remark" value="<%=(periods == 0) ? "" : df.format(periods)%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">IPA basic monthly salary (S$):</label>
+                    <label for='remark' class="control-label">IPA basic monthly salary (S$)</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=(basicSalary == 0) ? "" : df.format(basicSalary)%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">IPA total allowance(S$):</label>
+                    <label for='remark' class="control-label">IPA total allowance(S$)</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=(totalAllowance == 0) ? "" : df.format(totalAllowance)%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">IPA allowance details:</label>
+                    <label for='remark' class="control-label">IPA allowance details</label>
                     <br/>
                     <textarea class="form-control" name="nallowanceDetails" rows="3" ><%=(allowanceDetails == null) ? "" : allowanceDetails%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">IPA total Deduction(S$):</label>
+                    <label for='remark' class="control-label">IPA total Deduction(S$)</label>
                     <br/>
                     <input class="form-control" type='text' name="remark" value="<%=(deduction == 0) ? "" : df.format(deduction)%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">IPA Deduction details:</label>
+                    <label for='remark' class="control-label">IPA Deduction details</label>
                     <br/>
                     <textarea class="form-control" name="ndeductionDetails" rows="3" ><%=(deductionDetails == null) ? "" : deductionDetails%></textarea>
                 </div>
@@ -3416,7 +2836,7 @@
                     <input class="form-control" type='text' name="remark" value="<%=isHousingProvided%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Remarks about IPA: </label>
+                    <label for='remark' class="control-label">Remarks about IPA</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
                 </div>
@@ -3431,7 +2851,7 @@
 
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='workpassType' class="control-label">Workpass specified in IPA<span style="color: red">*</span></label>
+                <label for='workpassType' class="control-label"><span style="color: red">*</span> Workpass specified in IPA</label>
                 <br/>
                 <select class="form-control" id="ipapassTypeView" name="workpassType">
                     <%
@@ -3461,7 +2881,7 @@
             </div>
 
             <div class='form-group'>
-                <label for='appDate' class="control-label">IPA application date:</label>
+                <label for='appDate' class="control-label">IPA application date</label>
                 <br/>
                 <input class="form-control dateInput dateToRemove col-md-9" type='text' name="appDate" style="width:90%" value="<%=(ipadate == null) ? "" : sdf.format(ipadate)%>">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
@@ -3470,24 +2890,24 @@
 <br/><br/>
             </div>
             <div class='form-group'>
-                <label for='empName' class="control-label">IPA employer name: </label>
+                <label for='empName' class="control-label">IPA employer name</label>
                 <br/>
                 <input class="form-control" type='text' name="empName" value="<%=empName%>">
             </div>
 
             <div class='form-group'>
-                <label for='agentName' class="control-label">IPA agent name:</label>
+                <label for='agentName' class="control-label">IPA agent name</label>
                 <br/>
                 <input class="form-control" type='text' name="agentName" value="<%=agentName%>">
             </div>
 
             <div class='form-group'>
-                <label for='industry' class="control-label">IPA Industry:</label>
+                <label for='industry' class="control-label">IPA Industry</label>
                 <br/>
                 <input class="form-control" type='text' name="industry" value="<%=industry%>">
             </div>
             <div class='form-group'>
-                <label for='ipaoccupation' class="control-label">IPA Occupation:</label>
+                <label for='ipaoccupation' class="control-label">IPA Occupation</label>
                 <br/>
                 <input class="form-control" type='text' name="ipaoccupation" value="<%=occupation%>">
             </div>
@@ -3497,27 +2917,27 @@
                 <input class="form-control" type='text' name="periods" value="<%=(periods == 0) ? "" : df.format(periods)%>">
             </div>
             <div class='form-group'>
-                <label for='basicSalary' class="control-label">IPA basic monthly salary (S$):</label>
+                <label for='basicSalary' class="control-label">IPA basic monthly salary (S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="basicSalary" value="<%=(basicSalary == 0) ? "" : df.format(basicSalary)%>">
             </div>
             <div class='form-group'>
-                <label for='totalAllowance' class="control-label">IPA total allowance(S$):</label>
+                <label for='totalAllowance' class="control-label">IPA total allowance(S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="totalAllowance" value="<%=(totalAllowance == 0) ? "" : df.format(totalAllowance)%>">
             </div>
             <div class='form-group'>
-                <label for='allowanceDetails' class="control-label">IPA allowance details:</label>
+                <label for='allowanceDetails' class="control-label">IPA allowance details</label>
                 <br/>
                 <textarea class="form-control" name="nallowanceDetails" rows="3" ><%=(allowanceDetails == null) ? "" : allowanceDetails%></textarea>
             </div>
             <div class='form-group'>
-                <label for='deduction' class="control-label">IPA total deduction(S$):</label>
+                <label for='deduction' class="control-label">IPA total deduction(S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="totalDeduction" value="<%=(deduction == 0) ? "" : df.format(deduction)%>">
             </div>
             <div class='form-group'>
-                <label for='deductionDetails' class="control-label">IPA deduction details:</label>
+                <label for='deductionDetails' class="control-label">IPA deduction details</label>
                 <br/>
                 <textarea class="form-control" name="ndeductionDetails" rows="3" ><%=(deductionDetails == null) ? "" : deductionDetails%></textarea>
             </div>
@@ -3543,7 +2963,7 @@
 
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remarks about IPA: </label>
+                <label for='remark' class="control-label">Remarks about IPA</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
             </div>

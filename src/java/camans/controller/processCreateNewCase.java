@@ -44,10 +44,12 @@ public class processCreateNewCase extends HttpServlet {
 
             boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
 
-            //get associate or not
-            String isAssociate = request.getParameter("associate");
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
             java.util.Date date = new java.util.Date();
+            
+            //get associate or not
+            String isAssociate = request.getParameter("associate");
+            
             //get FIN & job Key
 
             String finNumber = request.getParameter("workerFinNum");
@@ -297,19 +299,19 @@ public class processCreateNewCase extends HttpServlet {
                     pass = false;
                     err += "Invalid Employer Name,";
                 }
-                if (occupation != null && occupation != null && occupation.length() > 50) {
+                if (occupation != null && occupation.length() > 50) {
                     pass = false;
                     err += "Invalid occupation Format,";
                 }
-                if (jobStartDateStr != null && jobStartDateStr != null && jobStartDateStr.length() > 50) {
+                if (jobStartDateStr != null && jobStartDateStr.length() > 50) {
                     pass = false;
                     err += "Job Start Date cannot be more than 50 characters, ";
                 }
-                if (jobEndDateStr != null && jobEndDateStr != null && jobEndDateStr.length() > 50) {
+                if (jobEndDateStr != null && jobEndDateStr.length() > 50) {
                     pass = false;
                     err += "Job End Date cannot be more than 50 characters, ";
                 }
-                if (jobRemark != null && jobRemark != null && jobRemark.length() > 200) {
+                if (jobRemark != null && jobRemark.length() > 200) {
                     pass = false;
                     err += "Job Remark cannot be more than 200 characters, ";
                 }
@@ -328,12 +330,12 @@ public class processCreateNewCase extends HttpServlet {
                 problemRegDate = registeredDate;
             }
 
-            if (problemMore != null && problemMore != null && problemMore.length() > 50) {
+            if (problemMore != null && problemMore.length() > 50) {
                 pass = false;
                 err += "Explain if above is other cannot be more than 50 charcters, ";
             }
 
-            if (problemRemark != null && problemRemark != null && problemRemark.length() > 200) {
+            if (problemRemark != null && problemRemark.length() > 200) {
                 pass = false;
                 err += "Problem Remark cannot be more than 200 characters, ";
             }
@@ -389,7 +391,8 @@ public class processCreateNewCase extends HttpServlet {
                 //     Audit Log
                 //===============================================//
                 User _user = (User) request.getSession().getAttribute("userLogin");
-                String auditChange = job.toString() + "," + problem.toString();
+                String auditChange = "[Employer Name: " + employerName + ", Problem Type: " 
+                        + problemName + "] has been added for Worker " + finNum + "."; 
                 UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), finNum,
                         finNum, "Added", "New Case: " + auditChange);
 
@@ -435,7 +438,7 @@ public class processCreateNewCase extends HttpServlet {
                     request.getSession().setAttribute("tabIndicator", "problem");
                     request.getSession().setAttribute("selectedJob", jobKeyStr);
                     request.getSession().setAttribute("worker", worker.getFinNumber());
-                } else {
+                }else{
                     //go back to job tab
                     request.getSession().setAttribute("tabIndicator", "job");
                     request.getSession().setAttribute("selectedJob", jobKeyStr);

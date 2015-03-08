@@ -227,11 +227,10 @@ public class ProblemR2R {
     }
 	
     public String toString2() {
-        return "ProblemR2R{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", R2RDate=" + R2RDate + ", R2RTime=" + R2RTime + 
+        return "R2R [R2RDate=" + R2RDate + ", R2RTime=" + R2RTime + 
                 ", R2RHosp=" + R2RHosp + ", R2RDept=" + R2RDept + ", R2R1=" + R2R1 + ", R2R2=" + R2R2 + 
                 ", R2RPurpose=" + R2RPurpose + ", R2RPreApptNotes=" + R2RPreApptNotes + 
                 ", R2RPostApptNotes=" + R2RPostApptNotes + ", R2RFeedback=" + R2RFeedback + 
-                ", R2RMedCost=" + R2RMedCost + ", R2ROutlay=" + R2ROutlay + '}';
+                ", R2RMedCost=" + R2RMedCost + ", R2ROutlay=" + R2ROutlay + ']';
     }    
 }

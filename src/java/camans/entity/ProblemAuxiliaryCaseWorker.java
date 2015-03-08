@@ -101,8 +101,10 @@ public class ProblemAuxiliaryCaseWorker {
     }
 
     public String toString2() {
-        return "ProblemAuxiliaryCaseWorker{" + "WorkerFinNumber=" + workerFinNumber +
-                ", auxName=" + auxName + ", auxStart=" + auxStart + ", auxEnd=" + auxEnd + '}';
+        if (auxStart == null || auxEnd == null) {
+            return "Auxiliary Caseworker [auxName=" + auxName + ']';
+        }
+        return "Auxiliary Caseworker [auxName=" + auxName + ", auxStart=" + auxStart + ", auxEnd=" + auxEnd + ']';
     }    
     
 }

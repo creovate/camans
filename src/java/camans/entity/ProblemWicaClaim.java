@@ -139,11 +139,10 @@ public class ProblemWicaClaim {
     }
 
     public String toString2() {
-        return "ProblemWicaClaim{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", wicaClaimDate=" + wicaClaimDate + 
+        return "Wica Claim[wicaClaimDate=" + wicaClaimDate + 
                 ", wicaReferenceNumber=" + wicaReferenceNumber + ", wicaInsurer=" + wicaInsurer + 
                 ", wicaPolicyNumber=" + wicaPolicyNumber + ", wicaClaimReason=" + wicaClaimReason + 
-                ", wicaClaimRemark=" + wicaClaimRemark + '}';
+                ", wicaClaimRemark=" + wicaClaimRemark + ']';
     }    
     
 }

@@ -335,6 +335,7 @@ public class JobDAO {
 
                 // if there is an error, the line number of the error and its relevant message is added into the errorList
                 if (!errorMsg.equals("")) {
+                    
                     csvWriter = new CSVWriter(new FileWriter(jobErrFile, true));
                     if (errCount == 0) {
                         String[] newHeader = new String[13];
@@ -369,7 +370,7 @@ public class JobDAO {
             //fileNotFoundExceptin
         }
         if (errCount != 0) {
-            return "worker.csv:" + errCount;
+            return "job.csv:" + errCount;
         }
         return null;
     }

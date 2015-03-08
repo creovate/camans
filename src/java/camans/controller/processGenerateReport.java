@@ -4,7 +4,7 @@
  */
 package camans.controller;
 
-import camans.dao.BeanFactory;
+//import camans.dao.BeanFactory;
 import camans.dao.ConnectionManager;
 //import camans.dao.ReportDAO;
 //import camans.entity.JasperDataSourceBuilder;
@@ -160,9 +160,9 @@ public class processGenerateReport extends HttpServlet {
             } else if (reportType.equals("Clients by nationality and work pass") && start != null && end != null) {
                 //get the file path
                 filePath = getServletContext().getRealPath("/reports/testReport.jasper");
-                java.util.Collection beanCollection = BeanFactory.generateNationalityWorkpassBean();
+                //java.util.Collection beanCollection = BeanFactory.generateNationalityWorkpassBean();
                 
-                JasperPrint print  = JasperFillManager.fillReport(filePath, map,new JRBeanCollectionDataSource(beanCollection));
+                //JasperPrint print  = JasperFillManager.fillReport(filePath, map,new JRBeanCollectionDataSource(beanCollection));
 //            JasperExportManager.exportReportToPdfFile(jasperPrint,"StudentInfo.pdf");
 //            JasperViewer.viewReport(jasperPrint);
 
@@ -170,7 +170,7 @@ public class processGenerateReport extends HttpServlet {
 
 //
                 JRXlsxExporter exporter = new JRXlsxExporter();
-                exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+                //exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
 
                 exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
                 exporter.exportReport();

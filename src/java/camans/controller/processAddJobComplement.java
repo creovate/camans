@@ -48,8 +48,8 @@ public class processAddJobComplement extends HttpServlet {
             
             //to keep track of selected problem
             String probKeyStr = request.getParameter("selectedProb");
-            
             String isAssociate = request.getParameter("associate");
+            
             //=======================================//
             //   Server Side Validation Parameters
             //=======================================//
@@ -344,12 +344,12 @@ public class processAddJobComplement extends HttpServlet {
                     } 
 
 
-                    if (!contractWhere.equals("") && contractWhere.length() > 200) {
-                        errorMsg += "Contract Location must not exceed 200 characters,";
+                    if (!contractWhere.equals("") && contractWhere.length() > 50) {
+                        errorMsg += "Contract Location must not exceed 50 characters,";
                     }
 
-                    if (!language.equals("") && language.length() > 50) {
-                        errorMsg += "Language must not exceed 50 characters,";
+                    if (!language.equals("") && language.length() > 20) {
+                        errorMsg += "Language must not exceed 20 characters,";
                     }
 
                     if (!contractOpName.equals("") && contractOpName.length() > 50) {
@@ -786,7 +786,6 @@ public class processAddJobComplement extends HttpServlet {
                 
                 if (errorMsg.equals("")) {
                     if (idStr == null) {
-                        //Create new workplace  , int , String workplaceType, String workplaceTypeMore, String workplaceWhose, String workpladePersons, String workplaceEmployerRelationship, String workplaceDirect, String workplaceDirectMore, String workplaceStart, String workplaceEnd, String workplaceCondition, String workplaceSafety, String workplaceRemarks)
                         JobWorkplace jobWorkplace = new JobWorkplace(workerFinNum, jobKey, workplaceType, 
                                 workplaceTypeMore, workplaceWhose, workplacePerson, workplaceRelationship, 
                                 workplaceDirect, workplaceDirectMore, workplaceStart, workplaceEnd, workplaceCondition, 
@@ -863,15 +862,9 @@ public class processAddJobComplement extends HttpServlet {
                         errorMsg += "Explain if above is other must not exceed 200 characters,";
                     }
 
-                    if (!strHistDate.equals("")) {
-                        try {
-                            java.util.Date tmp = sdf.parse(strHistDate);
-                            histDate = new java.sql.Date(tmp.getTime());
-                        } catch (ParseException ex) {
-                            errorMsg += "Invalid Work History Date Format,";
-                        } 
+                    if (!strHistDate.equals("") && strHistDate.length() > 50) {
+                        errorMsg += "When worker arrived Singapore for this job must not exceed 50 characters,";
                     }
-
 
                     if (!workHistYearArrive.equals("")) {
                         try {
@@ -899,7 +892,7 @@ public class processAddJobComplement extends HttpServlet {
                     if (idStr == null) {
                         //create new JobWorkHistory
                         JobWorkHistory hist = new JobWorkHistory(workerFinNum, jobKey, workHistHow, workHistHowMore, 
-                                histDate, workHistFirst, workHistYearArrive, workHistPreviousJob, workHistPreviousProb, 
+                                strHistDate, workHistFirst, workHistYearArrive, workHistPreviousJob, workHistPreviousProb, 
                                 workHistRemark);
                         JobComplementsDAO.addJobWorkHistory(hist);
                         //log the audit
@@ -910,7 +903,7 @@ public class processAddJobComplement extends HttpServlet {
                          int id = Integer.parseInt(request.getParameter("Id"));
                         //create new JobWorkHistory
                         JobWorkHistory hist = new JobWorkHistory(id, workerFinNum, jobKey, workHistHow, 
-                                workHistHowMore, histDate, workHistFirst, workHistYearArrive, 
+                                workHistHowMore, strHistDate, workHistFirst, workHistYearArrive, 
                                 workHistPreviousJob, workHistPreviousProb, workHistRemark);
 
 
@@ -986,8 +979,8 @@ public class processAddJobComplement extends HttpServlet {
                     }
 
 
-                    if (accTypeMore != null && !accTypeMore.equals("") && accTypeMore.length() > 300) {
-                        errorMsg += "Explain if above is other must not exceed 300 characters,";
+                    if (accTypeMore != null && !accTypeMore.equals("") && accTypeMore.length() > 200) {
+                        errorMsg += "Explain if above is other must not exceed 200 characters,";
                     }
 
                     if (accLocation != null && !accLocation.equals("") && accLocation.length() > 200) {
@@ -1279,10 +1272,7 @@ public class processAddJobComplement extends HttpServlet {
             }
             if (errorMsg.equals("")) {
                 //log to audit
-                auditChange = auditChange.replace("{", " [");
-                auditChange = auditChange.replace("}", "]");
-
-
+                
                 if (idStr == null) {
                     action = "Added";
                 } else {
@@ -1290,7 +1280,8 @@ public class processAddJobComplement extends HttpServlet {
                 }
                 //log to audit
                 UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), jobKey + "", 
-                        workerFinNum, action, "Job Complement: " + auditChange);
+                        workerFinNum, action, auditChange + " has been " + action.toLowerCase() + 
+                        "ed to worker " + workerFinNum + ".");
 
                 UserAuditLogDAO.addUserAuditLog(userAuditLog);  
             }

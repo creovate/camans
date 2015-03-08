@@ -152,10 +152,9 @@ public class ProblemCaseMilestoneCR {
     }
 	 
     public String toString2() {
-        return "ProblemCaseMilestoneCR{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", MilesCRDate=" + MilesCRDate + ", MilesCRReached=" + MilesCRReached + 
+        return "CaseMilestone-Criminal [MilesCRDate=" + MilesCRDate + ", MilesCRReached=" + MilesCRReached + 
                 ", MilesCRReachedMore=" + MilesCRReachedMore + ", MilesCRCharges=" + MilesCRCharges + 
-                ", MilesCRSentence=" + MilesCRSentence + ", MilesNCRem=" + MilesNCRem + '}';
+                ", MilesCRSentence=" + MilesCRSentence + ", MilesNCRem=" + MilesNCRem + ']';
     }    
     
     

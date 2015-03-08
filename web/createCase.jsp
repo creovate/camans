@@ -135,6 +135,9 @@
                         jobRemark: {
                             maxlength: 200
                         },
+                        problemRegDate: {
+                            required: true
+                        },
                         problem:{
                             required: true
                         },
@@ -177,7 +180,7 @@
             });
             function swapDiv(div_id, curr_id, num) {
                 if (num === 1 && $('#createworker_form').valid() === false) {
-                    //alert('The form is invalid. Please check again');
+                    alert('The form is invalid. Please check again');
                 } else {
 
                     var curr_div_id = "#" + curr_id;
@@ -261,7 +264,7 @@
                             <div class="form-group">
                                 <label for="registration_date_In" class=" col-md-3 control-label">Registration Date <span class="required_input">*</span> </label>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control dateInput" name="registeredDate" value="<%=sdf.format(today)%>"  />
+                                    <input type="text" class="form-control input-append date dateInput" name="registeredDate" value="<%=sdf.format(today)%>"  />
                                 </div>
                             </div>
 

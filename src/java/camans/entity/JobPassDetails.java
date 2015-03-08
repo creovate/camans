@@ -164,10 +164,24 @@ public class JobPassDetails {
     }
 
     public String toString2() {
-        return "JobPassDetails{" + "WorkerFinNum=" + workerFinNum + ", passType=" + passType + 
+        if (obsoleteDate == null) {
+            return "Pass Details [passType=" + passType + 
                 ", passTypeMore=" + passTypeMore + ", passNum=" + passNum + ", passApplicationDate=" + 
                 passApplicationDate + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + 
-                ", issuer=" + issuer + ", remarks=" + remarks + ", obsoleteDate=" + obsoleteDate + '}';
+                ", issuer=" + issuer + ", remarks=" + remarks + ']';
+        }
+        
+        if (issueDate == null || expiryDate == null) {
+            return "Pass Details [passType=" + passType + 
+                ", passTypeMore=" + passTypeMore + ", passNum=" + passNum + ", passApplicationDate=" + 
+                passApplicationDate + 
+                ", issuer=" + issuer + ", remarks=" + remarks + ']';
+        }
+        
+        return "Pass Details [passType=" + passType + 
+                ", passTypeMore=" + passTypeMore + ", passNum=" + passNum + ", passApplicationDate=" + 
+                passApplicationDate + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + 
+                ", issuer=" + issuer + ", remarks=" + remarks + ", obsoleteDate=" + obsoleteDate + ']';
     }
     
     

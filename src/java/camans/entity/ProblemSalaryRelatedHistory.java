@@ -201,12 +201,11 @@ public class ProblemSalaryRelatedHistory {
     }
     
     public String toString2() {
-        return "ProblemSalaryRelatedHistory{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", salHistBasic=" + salHistBasic + 
+        return "Salary Related History [salHistBasic=" + salHistBasic + 
                 ", salHistOt=" + salHistOt + ", salHistAllowances=" + salHistAllowances + 
                 ", salHistDeductions=" + salHistDeductions + ", salHistKickbacks=" + salHistKickbacks + 
                 ", salHistOther=" + salHistOther + ", salMode=" + salMode + 
                 ", salModeMore=" + salModeMore + ", salLossTotal=" + salLossTotal + 
-                ", salLoss1Year=" + salLoss1Year + ", salHisRemarks=" + salHisRemarks + '}';
+                ", salLoss1Year=" + salLoss1Year + ", salHisRemarks=" + salHisRemarks + ']';
     }    
 }

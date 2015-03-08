@@ -121,9 +121,8 @@ public class ProblemAggravatingIssue {
     }
     
     public String toString2() {
-        return "ProblemAggravatingIssue{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", AggravatingIssue=" + AggravatingIssue + 
+        return "Aggravating Issue [AggravatingIssue=" + AggravatingIssue + 
                 ", AggravatingIssueMore=" + AggravatingIssueMore + ", AggravatingLoss=" + AggravatingLoss + 
-                ", AggravatingRemark=" + AggravatingRemark + '}';
+                ", AggravatingRemark=" + AggravatingRemark + ']';
     }
 }

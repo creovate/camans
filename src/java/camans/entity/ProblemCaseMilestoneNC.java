@@ -123,10 +123,9 @@ public class ProblemCaseMilestoneNC {
     }
     
     public String toString2() {
-        return "ProblemCaseMilestoneNC{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", MilesNCDate=" + MilesNCDate + 
+        return "Case Milestone Non-Criminal [MilesNCDate=" + MilesNCDate + 
                 ", MilesNCReached=" + MilesNCReached + ", MilesNCReachedMore=" + MilesNCReachedMore + 
-                ", MilesNCRem=" + MilesNCRem + '}';
+                ", MilesNCRem=" + MilesNCRem + ']';
     }	 
 
     

@@ -233,14 +233,14 @@ public class JobIPADetails {
     }
     
     public String toString2() {
-        return "JobIPADetails{" + "WorkerFinNum=" + workerFinNum + ", ipaPassType=" + ipaPassType + 
+        return "IPA Details [ipaPassType=" + ipaPassType + 
                 ", ipaPassTypeMore=" + ipaPassTypeMore + ", ipaApplicationDate=" + ipaApplicationDate + 
                 ", ipaEmployerName=" + ipaEmployerName + ", ipaAgentName=" + ipaAgentName + 
                 ", industry=" + industry + ", occuupation=" + occuupation + 
                 ", periodYears=" + periodYears + ", basicSalary=" + basicSalary + 
                 ", ipaAllowances=" + ipaAllowances + ", ipaAllowancesDetails=" + ipaAllowancesDetails + 
                 ", ipaDeduction=" + ipaDeduction + ", ipaDeductionDetails=" + ipaDeductionDetails + 
-                ", housingProvided=" + housingProvided + ", ipaRemarks=" + ipaRemarks + '}';
+                ", housingProvided=" + housingProvided + ", ipaRemarks=" + ipaRemarks + ']';
     }    
     
 }

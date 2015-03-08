@@ -7,6 +7,8 @@ package camans.controller;
 import camans.dao.JobDAO;
 import camans.dao.ProblemDAO;
 import camans.dao.WorkerDAO;
+import camans.entity.User;
+import camans.entity.UserAuditLog;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ public class processDeleteStub extends HttpServlet {
             String workerFin = request.getParameter("workerFinNum");
             String jobKeyStr = request.getParameter("jobKey");
             String probKeyStr = request.getParameter("probKey");
+            User _user = (User) request.getSession().getAttribute("userLogin");
             int jobKey = -1;
             int probKey = -1;
             String stub = request.getParameter("stub");
@@ -47,6 +50,9 @@ public class processDeleteStub extends HttpServlet {
                 //delete whole case
                 WorkerDAO.deleteWorker(workerFin);
                 
+                //log to audit
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), workerFin + "", 
+                        workerFin, "Deleted", "Worker " + workerFin + " has been deleted." );
             }else if (stub.equals("job")){
                 
                 if(jobKeyStr != null && !jobKeyStr.equals("")){
@@ -58,6 +64,8 @@ public class processDeleteStub extends HttpServlet {
                 if(jobList.size() > 0){
                     url = "viewWorker.jsp?worker="+ workerFin;
                 }
+                
+                
             }else if(stub.equals("problem")){
                 
                 if(probKeyStr != null && !probKeyStr.equals("")){
@@ -70,6 +78,7 @@ public class processDeleteStub extends HttpServlet {
                 if(probList.size() > 0){
                     url = "viewWorker.jsp?worker=" + workerFin;
                 }
+
             }
             
             response.sendRedirect(url);

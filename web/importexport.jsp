@@ -38,13 +38,14 @@
             <jsp:include page="include/navbarside.jsp"/>
             <div class="col-md-offset-2 col-md-10">
 
-                <!-- Page Header -->
+                <!-- Page Header
                 <div class="page-header">
                 <center><h2>Import/Export Dashboard</h2>   
                 </div>
                 <!-- end of page header -->
 
                 <div class="row">
+                    <div id ="pageloading"><img id="loading-image" src="images/loading.gif"/></div>
                     <!-- bootstrap -->
                     <div class="col-md-6">
                         <h3 style="color:#2980b9">Data Import</h3><br>
@@ -59,7 +60,7 @@
                             Select file to upload: <input type="file" name="zip" accept="application/zip"/><br/>                                   
                             To upload, please select a ZIP file then click on Load Data.<br/><br/>                    
                             <button class="btn btn-primary" type="submit">Load Data</button>
-                            <% if (errList != null) {%>
+                            <% if (errList != null || successList != null) {%>
                             <!-- Show View Results Button to trigger modal if response is not null -->
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
                                 View Results
@@ -165,18 +166,19 @@
                             <tr><th style="text-align:center;">File Name</th>
                             <th style="text-align:center;">Records Loaded</th>
                             <th style="text-align:center;">Errors Count</th></tr>
-<%                          if (successList != null && !successList.isEmpty()) {
-                                for (String fileName: successList.keySet()) {
-                                    int recordsLoaded = successList.get(fileName);
-                                    int errCount = 0;
-                                    if (errList != null & !errList.isEmpty() & errList.containsKey(fileName)) {
-                                        errCount = errList.get(fileName);
+<%                          if (errList != null && !errList.isEmpty()) {
+                                for (String fileName: errList.keySet()) {
+                                    
+                                    int errCount = errList.get(fileName);
+                                    int recordsLoaded = 0;
+                                    if (successList != null & !successList.isEmpty() & successList.containsKey(fileName)) {
+                                        recordsLoaded = successList.get(fileName);
                                     }
 %>
                                     <tr><td style="text-align:center;"><%=fileName%></td>
                                     <td style="text-align:center;"><%=recordsLoaded%></td>
                                     <td style="text-align:center;color:red"><%=errCount%></td></tr>
-<%                            }
+<%                            }   
                             }    
 %>                            
                         </table>
@@ -198,6 +200,13 @@
         </script>
         <% } %>
         <script>
+            
+            //page loading gif
+            
+            $(window).load(function() {
+                $('#pageloading').hide();
+            });
+              
             
             function Check(chk) {
                 if (document.exportform.checkbutton.value=="Check All") {

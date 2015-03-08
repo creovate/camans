@@ -106,9 +106,8 @@ public class ProblemLeadCaseWorker {
     }
     
     public String toString2() {
-        return "ProblemLeadCaseWorker{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", leadCaseWorker=" + leadCaseWorker + ", leadStart=" + leadStart + 
-                ", leadEnd=" + leadEnd + '}';
+        return "Lead Case-worker [leadCaseWorker=" + leadCaseWorker + ", leadStart=" + leadStart + 
+                ", leadEnd=" + leadEnd + ']';
     }
 
    

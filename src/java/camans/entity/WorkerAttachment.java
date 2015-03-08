@@ -80,8 +80,7 @@ public class WorkerAttachment {
     }
     
     public String toString2() {
-        return "WorkerAttachment{" + "workerFinNum=" + workerFinNum +
-                ", documentName=" + documentName + '}';
+        return "Attachment [documentName=" + documentName + ']';
     }
     
 }

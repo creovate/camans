@@ -368,7 +368,7 @@ public class ProblemDAO {
             //filenotfoundexception
         }
         if (errCount != 0) {
-            return "worker.csv:" + errCount;
+            return "problem.csv:" + errCount;
         }
         return null;
     }

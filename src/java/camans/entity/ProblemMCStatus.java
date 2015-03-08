@@ -147,10 +147,9 @@ public class ProblemMCStatus {
     }
 	
     public String toString2() {
-        return "ProblemMCStatus{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", MCUpdate=" + MCUpdate + ", MCStatus=" + MCStatus + 
+        return "MC Status [MCUpdate=" + MCUpdate + ", MCStatus=" + MCStatus + 
                 ", MCStatusMore=" + MCStatusMore + ", MCExpDate=" + MCExpDate + 
-                ", MCDaysCumul=" + MCDaysCumul + ", MCRem=" + MCRem + '}';
+                ", MCDaysCumul=" + MCDaysCumul + ", MCRem=" + MCRem + ']';
     }    
     
 }

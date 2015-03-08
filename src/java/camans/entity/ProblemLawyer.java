@@ -147,9 +147,9 @@ public class ProblemLawyer {
     }
 	
     public String toString2() {
-        return "ProblemLawyer{" + "WorkerFinNumber=" + workerFinNumber + ", LawyerUpdate=" + LawyerUpdate + 
+        return "Lawyer [LawyerUpdate=" + LawyerUpdate + 
                 ", LawyerFirm=" + LawyerFirm + ", LawyerFirmMore=" + LawyerFirmMore + 
-                ", LawyerName=" + LawyerName + ", LawyerRemarks=" + LawyerRemarks + '}';
+                ", LawyerName=" + LawyerName + ", LawyerRemarks=" + LawyerRemarks + ']';
     }	 
 	
     

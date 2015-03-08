@@ -183,11 +183,10 @@ public class Benefit {
     }
     
     public String toString2() {
-        return "Benefit{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", issueDate=" + issueDate + ", benefitGiver=" + benefitGiver + 
+        return "Benefit [issueDate=" + issueDate + ", benefitGiver=" + benefitGiver + 
                 ", benefitType=" + benefitType + ", benefitTypeMore=" + benefitTypeMore + 
                 ", benefitSerial=" + benefitSerial + ", benefitPurpose=" + benefitPurpose + 
-                ", benefitRemark=" + benefitRemark + ", benefitValue=" + benefitValue + '}';
+                ", benefitRemark=" + benefitRemark + ", benefitValue=" + benefitValue + ']';
     }    
     
     

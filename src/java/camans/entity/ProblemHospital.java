@@ -135,10 +135,9 @@ public class ProblemHospital {
     }
     
     public String toString2() {
-        return "ProblemHospital{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", hospitalUpdate=" + hospitalUpdate + ", hospitalName=" + hospitalName + 
+        return "Hospital [ hospitalUpdate=" + hospitalUpdate + ", hospitalName=" + hospitalName + 
                 ", hospitalNameMore=" + hospitalNameMore + ", hospitalDoctor=" + hospitalDoctor + 
-                ", hospitalRemark=" + hospitalRemark + '}';
+                ", hospitalRemark=" + hospitalRemark + ']';
     }    
     
 }

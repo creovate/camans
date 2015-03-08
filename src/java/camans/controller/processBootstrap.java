@@ -189,6 +189,8 @@ public class processBootstrap extends HttpServlet {
                     int errCount = Integer.parseInt(errCountMsg.substring(errCountMsg.indexOf(":")+1));
                     if (errCount != 0) {
                         errCountList.put(errFileName, errCount);
+                    } else {
+                        errCountList.put(errFileName, 0);
                     }
                 }
                 
@@ -198,6 +200,8 @@ public class processBootstrap extends HttpServlet {
                     int errCount = Integer.parseInt(errCountMsg.substring(errCountMsg.indexOf(":")+1));
                     if (errCount != 0) {
                         errCountList.put(errFileName, errCount);
+                    } else {
+                        errCountList.put(errFileName, 0);
                     }
                 }
                 
@@ -207,6 +211,8 @@ public class processBootstrap extends HttpServlet {
                     int errCount = Integer.parseInt(errCountMsg.substring(errCountMsg.indexOf(":")+1));
                     if (errCount != 0) {
                         errCountList.put(errFileName, errCount);
+                    } else {
+                        errCountList.put(errFileName, 0);
                     }
                 }
 
@@ -454,6 +460,7 @@ public class processBootstrap extends HttpServlet {
                             }
                         }
                     }
+                    
                 }
                 for (String finNum: WorkerDAO.workerList.keySet()) {
                     Worker worker = WorkerDAO.workerList.get(finNum);
@@ -494,6 +501,8 @@ public class processBootstrap extends HttpServlet {
                         successList.put(filename, succCount);
                         if (errCount != 0) {
                             errCountList.put(filename, errCount);
+                        } else {
+                            errCountList.put(filename, 0);
                         }
                     }
                 }

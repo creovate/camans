@@ -197,14 +197,14 @@ public class JobWorkplace {
     }
     
     public String toString2() {
-        return "JobWorkplace{" + "@orkerFinNum=" + workerFinNum + ", workplaceType=" + workplaceType + 
+        return "Workplace [workplaceType=" + workplaceType + 
                 ", workplaceTypeMore=" + workplaceTypeMore + ", workplaceWhose=" + workplaceWhose + 
                 ", workpladePersons=" + workpladePersons + 
                 ", workplaceEmployerRelationship=" + workplaceEmployerRelationship + 
                 ", workplaceDirect=" + workplaceDirect + ", workplaceDirectMore=" + workplaceDirectMore + 
                 ", workplaceStart=" + workplaceStart + ", workplaceEnd=" + workplaceEnd + 
                 ", workplaceCondition=" + workplaceCondition + ", workplaceSafety=" + workplaceSafety + 
-                ", workplaceRemarks=" + workplaceRemarks + '}';
+                ", workplaceRemarks=" + workplaceRemarks + ']';
     }
     
 }

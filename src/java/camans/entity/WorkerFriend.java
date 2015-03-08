@@ -102,7 +102,12 @@ public class WorkerFriend {
     }
  
     public String toString2() {
-        return "WorkerFriend{" + "workerFinNum=" + workerFinNum + ", name=" + name + ", phone=" + phone + ", relation=" + relation + ", remark=" + remark + ", obseleteDate=" + obseleteDate + '}';
+        if (obseleteDate == null) {
+            return "WorkerFriend [name=" + name + ", phone=" + phone + ", relation=" + relation + 
+                ", remark=" + remark + ']';
+        }
+        return "WorkerFriend [name=" + name + ", phone=" + phone + ", relation=" + relation + 
+                ", remark=" + remark + ", obseleteDate=" + obseleteDate + ']';
     }    
     
 }

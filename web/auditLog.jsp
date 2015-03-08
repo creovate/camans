@@ -40,7 +40,7 @@
         <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <!-- DataTables JS, Added by soemyatmyat -->
         <script src="js/jquery.dataTables.js"></script>
-        <script src="js/dataTables.bootstrap.js"></script>            
+        <script src="js/dataTables.bootstrap.js"></script>   
         <!--bootstrap session timeout, added by soemyatmyat-->
         <script src="js/bootstrap-session-timeout.min.js"></script>  
         
@@ -53,40 +53,36 @@
     <body id="auditLog" style='background:white'>
         <jsp:include page="include/navbartop.jsp"/>
         <div class="row-offcanvas row-offcanvas-left">
-            <jsp:include page="include/navbarside.jsp"/> 
+            <jsp:include page="include/navbarside.jsp"/> <br/><br/>
             <div class="col-md-offset-2 col-md-10">
                 
-                <div id ="pageloading"><img id="loading-image" src="images/loading.gif"/></div>
-                <div class="page-header">
+                
+                <!--<div class="page-header">
                     <center><h2>Audit Logs</h2></center>    
-                </div>
-                <div class="panel panel-default">
+                </div>-->
+                <div id ="pageloading"><img id="loading-image" src="images/loading.gif"/></div>
+                <!--<div class="panel panel-default">
                     <p bgcolor="#3579BC" class="color-header text-center">Search By</p>
-                    <div class="panel-body">
-                        <form id="searchForm" method="post" action="searchAuditLog.do">
+                    <div class="panel-body">-->
+                        <form class="form-inline" id="searchForm" method="post" action="searchAuditLog.do">
                             <div class="row">
-                                <div class="form-group col-sm-3">
+                                <div class="form-group col-sm-8">
                                     <label>Start Date</label>
                                     <input type="text" id="reg_StartDate_In" name="startDate" 
                                            class="form-control startDate" data-date-format="dd-mm-yyyy" 
-                                           value="<%=(startDateIn==null) ? "":startDateIn%>" required>
-                                </div>
-                                <div class="form-group col-sm-3">
+                                           value="<%=(startDateIn==null) ? "":startDateIn%>" required>&nbsp;&nbsp;
                                     <label>End Date</label>
                                     <input type="text" id="reg_EndDate_In" name="endDate" 
                                            class="form-control endDate" data-date-format="dd-mm-yyyy" 
-                                           value="<%=(endDateIn==null) ? "":endDateIn%>" required>
-                                </div>
-                                <br/>
-                                <div class="form-group col-sm-3">
+                                           value="<%=(endDateIn==null) ? "":endDateIn%>" required>&nbsp;&nbsp;
                                     <button type="submit" class="btn btn-blue" id="btnSearch">Search</button>
                                     <button type="button" class="btn btn-info" style="border-radius: 2px" id="btnReset" 
                                                         type="reset" onClick="window.location.href=window.location.href">Reset</button>
                                 </div>
                             </div>
                         </form>    
-                    </div>
-                </div>
+                    <!--</div>
+                </div>-->
                 <!-- Audit Log Table -->
     <%
                     ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -181,6 +177,9 @@
             
             $(document).ready(function() {
                 $('#auditLogs-table').dataTable( {
+                    //columDefs: [
+                    //    {type: 'date-dd-MMM-yyyy'}
+                    //]
                     aaSorting: [[0,'desc']]
                 } );
             } );

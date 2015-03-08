@@ -45,9 +45,9 @@ public class processAddBenefit extends HttpServlet {
             int problemKey = Integer.parseInt(request.getParameter("probKey"));
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
             String idStr = request.getParameter("Id");
-
+            
             String isAssociate = request.getParameter("associate");
-
+            
             //=======================================//
             //   Server Side Validation Parameters
             //=======================================//
@@ -89,7 +89,7 @@ public class processAddBenefit extends HttpServlet {
                 benePurpose = request.getParameter("purpose");
                 beneRem = request.getParameter("remark");
                 beneValueStr = request.getParameter("value");
-            }
+            }    
             //End of Data Collection
 
             //Server side validation
@@ -97,7 +97,7 @@ public class processAddBenefit extends HttpServlet {
             if (beneDateStr == null || beneDateStr.equals("")) {
                 pass = false;
                 errorMsg = "Benefit Issue Date cannot be empty.";
-            } else {
+            } else {        
                 try {
                     java.util.Date tmp = sdf.parse(beneDateStr);
                     beneDate = new java.sql.Date(tmp.getTime());
@@ -110,7 +110,7 @@ public class processAddBenefit extends HttpServlet {
                 pass = false;
                 errorMsg += "Benefit Type cannot be empty.";
             }
-
+            
             if (beneGiver == null || beneGiver.equals("")) {
                 pass = false;
                 errorMsg += "Benefit Giver cannot be empty.";
@@ -143,29 +143,29 @@ public class processAddBenefit extends HttpServlet {
                     }
                 }
             }//pass
-
+                
             if (errorMsg.equals("")) {
                 if (idStr == null) {
-                    //create object
-                    Benefit benefit = new Benefit(workerFinNum, jobKey, problemKey, beneDate, beneGiver,
-                            beneType, beneTypeMore, beneSerial, benePurpose, beneRem, beneValue);
-                    //add  to db  
-                    BenefitDAO.addBenefit(benefit);
+                //create object
+                Benefit benefit = new Benefit(workerFinNum, jobKey, problemKey, beneDate, beneGiver,
+                        beneType, beneTypeMore, beneSerial, benePurpose, beneRem, beneValue);
+                //add  to db  
+                BenefitDAO.addBenefit(benefit);
 
-                    //log to audit
-                    auditChange = benefit.toString2();
-                    auditChange = auditChange.replace("{", " [");
-                    auditChange = auditChange.replace("}", "]");
-                    UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "",
-                            workerFinNum, "Added", "Benefit: " + auditChange);
+                //log to audit
+                auditChange = benefit.toString2();
+                auditChange = auditChange.replace("{", " [");
+                auditChange = auditChange.replace("}", "]");
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
+                        workerFinNum, "Added", "Benefit: " + auditChange);
 
-                    UserAuditLogDAO.addUserAuditLog(userAuditLog);
+                UserAuditLogDAO.addUserAuditLog(userAuditLog);
 
-                    //sucesss
-                    success = benefit.getBenefitType() + " has been created succesfully.";
+                //sucesss
+                success = benefit.getBenefitType() + " has been created succesfully.";
                 } else {
                     int id = Integer.parseInt(request.getParameter("Id"));
-                    //create object
+                   //create object
                     Benefit benefit = new Benefit(id, workerFinNum, jobKey, problemKey, beneDate, beneGiver,
                             beneType, beneTypeMore, beneSerial, benePurpose, beneRem, beneValue);
                     //update to db
@@ -176,28 +176,29 @@ public class processAddBenefit extends HttpServlet {
                     auditChange = benefit.toString2();
                     auditChange = auditChange.replace("{", " [");
                     auditChange = auditChange.replace("}", "]");
-                    UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "",
-                            workerFinNum, "Added", "Benefit: " + auditChange);
+                    UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
+                            workerFinNum, action, auditChange + " has been " + action + 
+                            " to worker " + workerFinNum + ".");
 
-                    UserAuditLogDAO.addUserAuditLog(userAuditLog);
+                    UserAuditLogDAO.addUserAuditLog(userAuditLog);  
                     //sucesss
                     success = benefit.getBenefitType() + " has been updated succesfully.";
-                }
+                }    
             } // no error
-
+            
             request.getSession().setAttribute("successBenefitMsg", success);
             request.getSession().setAttribute("errorBenefitMsg", errorMsg);
             request.getSession().setAttribute("tabIndicator", "benefit");
-            request.getSession().setAttribute("worker", workerFinNum);
+            request.getSession().setAttribute("worker",workerFinNum);
             request.getSession().setAttribute("selectedProb", problemKey + "");
             request.getSession().setAttribute("selectedBenefit", idStr);
             if (isAssociate != null) {
-                    response.sendRedirect("associate/issueBenefit.jsp");
-                } else {
+                response.sendRedirect("associate/issueBenefit.jsp");
+            } else {
                 response.sendRedirect("viewWorker.jsp");
             }
 
-        } finally {
+        } finally {            
             out.close();
         }
     }

@@ -82,7 +82,7 @@ public class processReferCase extends HttpServlet {
             //referredBy is the same as userLogin
             User _user = (User) request.getSession().getAttribute("userLogin");
             UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), probKey + "", 
-                    workerFinNum, "Referred", "Referred Case: " + auditChange);
+                    workerFinNum, "Referred", auditChange + " has been referred.");
             UserAuditLogDAO.addUserAuditLog(userAuditLog); 
             //End log to audit
             request.getSession().setAttribute("tabIndicator", "problem");

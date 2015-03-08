@@ -732,7 +732,7 @@
         <fieldset disabled>
 
             <div class='form-group'>
-                <label for='nickName' class="control-label">Nickname: </label>
+                <label for='nickName' class="control-label">Nickname</label>
                 <br/>
                 <input class="form-control" type='text' name="nickName" value="<%=nickname%>">
             </div>
@@ -747,7 +747,7 @@
     <div class='edit_comp'>
 
         <div class='form-group'>
-            <label for='nickName' class="control-label"><span style="color: red">*</span>Nickname: </label>
+            <label for='nickName' class="control-label"><span style="color: red">*</span> Nickname</label>
             <input class="form-control" value='<%= nickname%>' type='text' name="nickName" required>
         </div>
 
@@ -766,7 +766,7 @@
 
     <div class='add_comp'>
         <div class='form-group '>
-            <label for='nickName' class="control-label"><span style="color: red">*</span>Nickname: </label>
+            <label for='nickName' class="control-label"><span style="color: red">*</span> Nickname</label>
             <br/>
             <input class="form-control" type='text' name="nNickName" required>
         </div>
@@ -807,24 +807,24 @@
 
         <fieldset disabled>
             <div class='form-group'>
-                <label for='passportNo' class="control-label">Passport No: </label>
+                <label for='passportNo' class="control-label">Passport No</label>
                 <br/>
                 <input class="form-control" type='text' name="passportNo" value="<%=passportNo%>">
             </div>
             <div class='form-group'>
-                <label for='passportCountry' class="control-label">Passport Country: </label>
+                <label for='passportCountry' class="control-label">Passport Country</label>
                 <br/>
                 <input class="form-control" type='text' name="passportCountry" value="<%=passportCountry%>">
             </div>
             <div class='form-group'>
-                <label for='passportIsDate' class="control-label">Passport Issue Date: </label>
+                <label for='passportIsDate' class="control-label">Passport Issue Date</label>
                 <br/>
                 <input class="form-control input-append date dateInput" type='text' 
                        name="passportIsDate" value="<%=(passportdetails.getPassportIssueDate() == null) ? ""
                                : sdf.format(passportdetails.getPassportIssueDate())%>">
             </div>
             <div class='form-group'>
-                <label for='passportExpDate' class="control-label">Passport Expiry Date: </label>
+                <label for='passportExpDate' class="control-label">Passport Expiry Date</label>
                 <br/>
                 <input class="form-control" type='text' 
                        name="passportExpDate" value="<%=(passportdetails.getPassportExpirtyDate() == null) ? ""
@@ -841,68 +841,37 @@
         </div>
     </div>
 
-    <div class='add_comp'>
-        <div class='form-group '>
-            <div class='form-group'>
-                <label for='nPassportNum' class="control-label">Passport No<span style="color: red">*</span>: </label>
-                <br/>
-                <input class="form-control" type='text' name="nPassportNum" required>
-            </div>
-            <div class='form-group'>
-                <label for='nPassportCountry' class="control-label">Passport Country<span style="color: red">*</span>: </label>
-                <br/>
-                <input class="form-control" type='text' name="nPassportCountry" required>
-            </div>
-            <div class='form-group'>
-                <label for='nPassportIssueDate' class="control-label">Passport Issue Date: </label>
-                <br/>
-                <input class="form-control dateInput startDate" type='text' name="nPassportIssueDate" >
-            </div>
-            <div class='form-group'>
-                <label for='nPassportExpiryDate' class="control-label">Passport Expiry Date: </label>
-                <br/>
-                <input class="form-control dateInput endDate" type='text' name="nPassportExpiryDate" >
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="WorkerPassportDetails"/>
-        </div>
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
 
 
     <div class='edit_comp'>
         <div class='form-group'>
-            <label for='passportNum' class="control-label"><span style="color: red">*</span>Passport number: </label>
+            <label for='passportNum' class="control-label"><span style="color: red">*</span> Passport number</label>
             <br/>
             <input class="form-control" type='text' name="passportNum" value="<%=passportNo%>" required>
         </div>
         <div class='form-group'>
-            <label for='passportCountry' class="control-label">Passport country<span style="color: red">*</span>: </label>
+            <label for='passportCountry' class="control-label"><span style="color: red">*</span> Passport country</label>
             <br/>
             <input class="form-control" type='text' name="passportCountry" value="<%=passportCountry%>" required>
         </div>
         <div class='form-group'>
-            <label for='passportIssueDate' class="control-label">Passport issue date: </label>
+            <label for='passportIssueDate' class="control-label">Passport issue date</label>
             <br/>
             <input class="form-control col-md-9 startDate startdateToRemove" type='text' name="passportIssueDate"style="width: 90%;" value="<%=(passportdetails.getPassportIssueDate() == null) ? ""
                            : sdf.format(passportdetails.getPassportIssueDate())%>"/>
             <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="start" style="width:10%;">
                 <span class="glyphicon glyphicon-remove"></span>
             </div>
-
+            <br/><br/>
         </div>
         <div class='form-group'>
-            <label for='passportExpiryDate' class="control-label">Passport expiry date: </label>
+            <label for='passportExpiryDate' class="control-label">Passport expiry date</label>
             <br/>
                    <input class="form-control endDate enddateToRemove col-md-9" type='text' name="passportExpiryDate" style="width:90%" value="<%=(passportdetails.getPassportExpirtyDate() == null) ? ""
                     : sdf.format(passportdetails.getPassportExpirtyDate())%>">
             <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="end" style="width:10%;">
                 <span class="glyphicon glyphicon-remove"></span>
             </div>
-
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
@@ -937,12 +906,12 @@
     <div class="view_comp">
         <fieldset disabled>
             <div class='form-group'>
-                <label for='phNum' class="control-label">SG phone number: </label>
+                <label for='phNum' class="control-label">SG phone number</label>
                 <br/>
                 <input class="form-control" type='text' name="phNum" value="<%=phnum%>">
             </div>
             <div class='form-group'>
-                <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='obseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control" type='text' name="obseleteDate" 
                        value="<%=(sgPhNum.getObseleteDate() == null) ? ""
@@ -958,40 +927,15 @@
         </div>
     </div>
 
-    <div class='add_comp'>
-        <div class='form-group '>
-            <div class='form-group'>
-                <label for='nPhNum' class="control-label">SG phone number<span style="color: red">*</span>: </label>
-                <br/>
-                <input class="form-control" type='text' name="nPhNum" required>
-            </div>
-
-            <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate" >
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="selectedJob" value="<%=jobKey%>"/>
-            <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
-            <input type="hidden" name="complementName" value="WorkerSgPhNum"/>
-        </div>
-
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
-
     <div class='edit_comp'>
         <div class='form-group'>
-            <label for='phNum' class="control-label">SG phone number<span style="color: red">*</span>: </label>
+            <label for='phNum' class="control-label"><span style="color: red">*</span> SG phone number</label>
             <br/>
             <input class="form-control" type='text' name="sgPhNum" value="<%=phnum%>" required>
         </div>
 
         <div class='form-group'>
-            <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
+            <label for='obseleteDate' class="control-label">Date discovered to be obsolete</label>
             <br/>
             <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(sgPhNum.getObseleteDate() == null) ? ""
                            : sdf.format(sgPhNum.getObseleteDate())%>">
@@ -1038,17 +982,17 @@
     <div class="view_comp">
         <fieldset disabled>
             <div class='form-group'>
-                <label for='phNum' class="control-label">Home country telephone number: </label>
+                <label for='phNum' class="control-label">Home country telephone number</label>
                 <br/>
                 <input class="form-control" type='text' name="phNum" value="<%=phnum%>" >
             </div>
             <div class='form-group'>
-                <label for='phOwner' class="control-label">Owner of this number: </label>
+                <label for='phOwner' class="control-label">Owner of this number</label>
                 <br/>
                 <input class="form-control" type='text' name="phOwner" value="<%=phOwner%>">
             </div>
             <div class='form-group'>
-                <label for='homephobdate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='homephobdate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control " type='text' name="homephobdate" 
                        value="<%=(homeCountryPhNum.getObseleteDate() == null) ? ""
@@ -1065,47 +1009,19 @@
         </div>
     </div>
 
-    <div class='add_comp'>
-        <div class='form-group '>
-            <div class='form-group'>
-                <label for='nPhNum' class="control-label">Home Country Telephone number<span style="color: red">*</span>: </label>
-                <br/>
-                <input class="form-control" type='text' name="nPhNum" required>
-            </div>
-            <div class='form-group'>
-                <label for='nPhOwner' class="control-label">Owner of this number: </label>
-                <br/>
-                <input class="form-control" type='text' name="nPhOwner" >
-            </div>
-            <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate" >
-            </div>
-
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="WorkerHomeCountryPhNum"/>
-        </div>
-
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
-
     <div class='edit_comp'>
         <div class='form-group'>
-            <label for='phNum' class="control-label">Home country telephone number<span style="color: red">*</span>: </label>
+            <label for='phNum' class="control-label"><span style="color: red">*</span> Home country telephone number</label>
             <br/>
             <input class="form-control" type='text' name="phNum" value="<%=phnum%>" required>
         </div>
         <div class='form-group'>
-            <label for='phOwner' class="control-label">Owner of this number: </label>
+            <label for='phOwner' class="control-label">Owner of this number</label>
             <br/>
             <input class="form-control" type='text' name="phOwner" value="<%=phOwner%>">
         </div>
         <div class='form-group'>
-            <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
+            <label for='obseleteDate' class="control-label">Date discovered to be obsolete</label>
             <br/>
             <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(homeCountryPhNum.getObseleteDate() == null) ? ""
                            : sdf.format(homeCountryPhNum.getObseleteDate())%>">
@@ -1145,12 +1061,12 @@
     <div class="view_comp">
         <fieldset disabled>
             <div class='form-group'>
-                <label for='address' class="control-label">Worker address in Singapore:</label>
+                <label for='address' class="control-label">Worker address in Singapore</label>
                 <br/>
                 <textarea class="form-control"name="address" rows="3" ><%=address%></textarea>
             </div>
             <div class='form-group'>
-                <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='obseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
 
                 <input class="form-control" type='text' name="obseleteDate" 
@@ -1167,37 +1083,14 @@
         </div>
     </div>
 
-    <div class='add_comp'>
-        <div class='form-group '>
-            <div class='form-group'>
-                <label for='nAddress' class="control-label">Worker address in Singapore<span style="color: red">*</span>:</label>
-                <br/>
-                <textarea class="form-control" name="nAddress" rows="3"  required></textarea>
-            </div>
-
-            <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate" >
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="WorkerSgAddress"/>
-        </div>
-
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
-
     <div class='edit_comp'>
         <div class='form-group'>
-            <label for='address' class="control-label">Worker address in Singapore<span style="color: red">*</span>: </label>
+            <label for='address' class="control-label"><span style="color: red">*</span> Worker address in Singapore</label>
             <br/>
             <textarea class="form-control"name="address" rows="3"  required><%=address%></textarea>
         </div>
         <div class='form-group'>
-            <label for='obseleteDate' class="control-label">Date discovered to be obsolete:</label>
+            <label for='obseleteDate' class="control-label">Date discovered to be obsolete</label>
             <br/>
                    <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(sgAddress.getObseleteDate() == null) ? ""
                            : sdf.format(sgAddress.getObseleteDate())%>">
@@ -1236,13 +1129,13 @@
     <div class="view_comp">
         <fieldset disabled>
             <div class='form-group'>
-                <label for='address' class="control-label">Worker address in Home Country:</label>
+                <label for='address' class="control-label">Worker address in Home Country</label>
                 <br/>
                 <textarea class="form-control"name="address" rows="3"  required><%=address%></textarea>
 
             </div>
             <div class='form-group'>
-                <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='obseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control" type='text' name="obseleteDate" value="<%=(homeCountryAddress.getObseleteDate() == null) ? "" : sdf.format(homeCountryAddress.getObseleteDate())%>">
             </div>
@@ -1255,37 +1148,14 @@
         </div>
     </div>
 
-    <div class='add_comp'>
-        <div class='form-group '>
-            <div class='form-group'>
-                <label for='nAddress' class="control-label">Worker address in Home Country<span style="color: red">*</span>:</label>
-                <br/>
-                <textarea class="form-control" name="nAddress" rows="3"   required></textarea>
-
-            </div>
-            <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate" >
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="WorkerHomeCountryAddress"/>
-        </div>
-
-        <div class="form-group btn_group">
-            <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-            <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-        </div>
-    </div>
-
     <div class='edit_comp'>
         <div class='form-group'>
-            <label for='address' class="control-label">Worker address in Home Country<span style="color: red">*</span>: </label>
+            <label for='address' class="control-label"><span style="color: red">*</span> Worker address in Home Country</label>
             <br/>
             <textarea class="form-control"name="address" rows="3" required><%=address%></textarea>
         </div>
         <div class='form-group'>
-            <label for='obseleteDate' class="control-label">Date discovered to be obsolete:</label>
+            <label for='obseleteDate' class="control-label">Date discovered to be obsolete</label>
             <br/>
                    <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(homeCountryAddress.getObseleteDate() == null) ? ""
                            : sdf.format(homeCountryAddress.getObseleteDate())%>">
@@ -1338,31 +1208,31 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='digitalContactType' class="control-label">Type of digital contact: </label>
+                    <label for='digitalContactType' class="control-label">Type of digital contact</label>
                     <br/>
                     <input class="form-control" type='text' name="digitalContactType" value="<%=digiType%>">
                 </div>
                 <div class="form-group" id="digitalContactType_other_div">
-                    <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
+                    <label for="nDigitalMore" class="control-label">Explain if above is 'Other'</label><br/>
                     <input class="form-control" type='text' name="nDigitalMore" value="<%=(digiMore == null) ? "" : digiMore%>">
                 </div>
                 <div class='form-group'>
-                    <label for='digiAdd' class="control-label">Email/QQ Address or other details: </label>
+                    <label for='digiAdd' class="control-label">Email/QQ Address or other details</label>
                     <br/>
                     <input class="form-control" type='text' name="digiAdd" value="<%=digiAdd%>">
                 </div>
                 <div class='form-group'>
-                    <label for='digiOwner' class="control-label">Owner of electronic contact: </label>
+                    <label for='digiOwner' class="control-label">Owner of electronic contact</label>
                     <br/>
                     <input class="form-control" type='text' name="digiOwner" value="<%=digiOwner%>">
                 </div>
                 <div class='form-group'>
-                    <label for='digiRemark' class="control-label">Remark about digital contact: </label>
+                    <label for='digiRemark' class="control-label">Remark about digital contact</label>
                     <br/>
                     <textarea class="form-control"name="digiRemark" rows="3" ><%=digiRemark%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='digiObDate' class="control-label">Date discovered to be obsolete: </label>
+                    <label for='digiObDate' class="control-label">Date discovered to be obsolete</label>
                     <br/>
 
                     <input class="form-control" type='text' name="digiObDate" value="<%=(digitalContact.getObseleteDate() == null) ? "" : sdf.format(digitalContact.getObseleteDate())%>">
@@ -1376,62 +1246,9 @@
             </div>
         </div>
 
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nDigitalContactType' class="control-label">Type of digital contact<span style="color: red">*</span>: </label>
-                <br/>
-                <select class="form-control" id="digitalContactType" name="nDigitalContactType">
-                    <option value="" disabled selected>Select Contact Type:</option>
-                    <%
-                        for (String contactType : digitalContactList) {
-                    %>
-                    <option value="<%=contactType%>"><%=contactType%></option>
-                    <%
-
-                        }
-                    %>  
-
-                </select>
-            </div>
-
-            <div class="form-group" id="digitalContactType_other_div">
-                <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
-                <input class="form-control" type='text' name="nDigitalMore">
-            </div>
-
-            <div class='form-group'>
-                <label for='nDigitalDetails' class="control-label">Email/QQ Address or other details<span style="color: red">*</span>: </label>
-                <br/>
-                <input class="form-control" type='text' name="nDigitalDetails" required>
-            </div>
-            <div class='form-group'>
-                <label for='nDigitalOwner' class="control-label">Owner of Electronic Contact: </label>
-                <br/>
-                <input class="form-control" type='text' name="nDigitalOwner">
-            </div>
-            <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about Digital Contact: </label>
-                <br/>
-                <textarea class="form-control" name="nRemark" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate">
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="WorkerDigitalContact"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='digitalContactType' class="control-label">Type of digital contact<span style="color: red">*</span>: </label>
+                <label for='digitalContactType' class="control-label"><span style="color: red">*</span> Type of digital contact</label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="digitalContactType" required>
                     <%
@@ -1454,28 +1271,28 @@
             </div>
 
             <div class="form-group" id="digitalContactType_other_div">
-                <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
+                <label for="nDigitalMore" class="control-label">Explain if above is 'Other'</label><br/>
                 <input class="form-control" type='text' name="digitalMore" value="<%=(digiMore == null) ? "" : digiMore%>">
             </div>
 
             <div class='form-group'>
-                <label for='digitalDetails' class="control-label">Email/QQ address or other details<span style="color: red">*</span>: </label>
+                <label for='digitalDetails' class="control-label"><span style="color: red">*</span> Email/QQ address or other details</label>
                 <br/>
                 <input class="form-control" type='text' name="digitalDetails" value="<%=digiAdd%>" >
             </div>
             <div class='form-group'>
-                <label for='digitalOwner' class="control-label">Owner of electronic contact: </label>
+                <label for='digitalOwner' class="control-label">Owner of electronic contact</label>
                 <br/>
                 <input class="form-control" type='text' name="digitalOwner" value="<%=digiOwner%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark about digital contact: </label>
+                <label for='remark' class="control-label">Remark about digital contact</label>
 
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" ><%=digiRemark%></textarea>
             </div>
             <div class='form-group'>
-                <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='obseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                        <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(digitalContact.getObseleteDate() == null) ? ""
                         : sdf.format(digitalContact.getObseleteDate())%>">
@@ -1502,8 +1319,7 @@
 <!------->
 <%
     }
-    if (nokId
-            != null) {
+    if (nokId!= null) {
         int id = Integer.parseInt(nokId);
         WorkerNextOfKin nextOfKin = WorkerComplementsDAO.retrieveWorkerNextOfKinById(id);
 
@@ -1530,37 +1346,37 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='name' class="control-label">Name of next of kin: </label>
+                    <label for='name' class="control-label">Name of next of kin</label>
                     <br/>
                     <input class="form-control" type='text' name="name" value="<%=nokName%>">
                 </div>
                 <div class='form-group'>
-                    <label for='relation' class="control-label">Relationship of next of kin to worker: </label>
+                    <label for='relation' class="control-label">Relationship of next of kin to worker</label>
                     <br/>
                     <input class="form-control" type='text' name="relation" value="<%=nokRelationship%>">
                 </div>
                 <div class='form-group'>
-                    <label for='nokIdDoc' class="control-label">Identity docs/references of next of kin: </label>
+                    <label for='nokIdDoc' class="control-label">Identity docs/references of next of kin</label>
                     <br/>
                     <textarea class="form-control" name="nokIdDoc" rows="3" ><%=(nokIdDoc == null) ? "" : nokIdDoc%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='nokContactNo' class="control-label">Phone number  of next of kin: </label>
+                    <label for='nokContactNo' class="control-label">Phone number  of next of kin</label>
                     <br/>
                     <input class="form-control" type='text' name="nokContactNo" value="<%=(nokPhone == null) ? "" : nokPhone%>">
                 </div>
                 <div class='form-group'>
-                    <label for='nokOtherContact' class="control-label">Other contact details of next of kin: </label>
+                    <label for='nokOtherContact' class="control-label">Other contact details of next of kin</label>
                     <br/>
                     <textarea class="form-control" name="nokOtherContact" rows="3" ><%=(nokDigital == null) ? "" : nokDigital%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='nokAddress' class="control-label">Address of next of kin: </label>
+                    <label for='nokAddress' class="control-label">Address of next of kin</label>
                     <br/>
                     <textarea class="form-control" name="nokAddress" rows="3" ><%=(nokAddress == null) ? "" : nokAddress%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='nokProof' class="control-label">What docs attesting next of kin?: </label>
+                    <label for='nokProof' class="control-label">What docs attesting next of kin?</label>
                     <br/>
                     <textarea class="form-control" name="nokProof" rows="3" ><%=(nokProof == null) ? "" : nokProof%></textarea>
                 </div>
@@ -1570,7 +1386,7 @@
                     <textarea class="form-control" name="nRemark" rows="3" ><%=nokRemark%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='nokObDate' class="control-label">Date discovered to be obsolete: </label>
+                    <label for='nokObDate' class="control-label">Date discovered to be obsolete</label>
                     <br/>
                     <input class="form-control" type='text' name="nokObDate" 
                            value="<%=(nextOfKin.getObseleteDate() == null) ? ""
@@ -1585,93 +1401,39 @@
             </div>
         </div>
 
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nName' class="control-label">Name of next of kin<span style="color: red">*</span>: </label>
-                <br/>
-                <input class="form-control" type='text' name="nName" required>
-            </div>
-            <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship of next of kin to worker: </label>
-                <br/>
-                <input class="form-control" type='text' name="nRelation">
-            </div>
-            <div class='form-group'>
-                <label for='nDocReference' class="control-label">Identity docs/references of next of kin: </label>
-                <br/>
-                <textarea class="form-control" name="nDocReference" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nPhNum' class="control-label">Phone number of next of kin: </label>
-                <br/>
-                <input class="form-control" type="text" name="nNOKPhNum">
-            </div>
-            <div class='form-group'>
-                <label for='nDigitalContact' class="control-label">Other Contact Details of next of kin: </label>
-                <br/>
-                <textarea class="form-control" name="nDigitalContact" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nAddress' class="control-label">Address of next of kin: </label>
-                <br/>
-                <textarea class="form-control" name="nNOKAddress" rows="3"  ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nProofDoc' class="control-label">What Docs Attesting next of kin?: </label>
-                <br/>
-                <textarea class="form-control" name="nProofDoc" rows="3"  ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about next of kin:  </label>
-                <br/>
-                <textarea class="form-control" name="nRemark" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate">
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="WorkerNextOfKin"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='name' class="control-label">Name of next of kin<span style="color: red">*</span>: </label>
+                <label for='name' class="control-label"><span style="color: red">*</span> Name of next of kin</label>
                 <br/>
                 <input class="form-control" type='text' name="name" value="<%=nokName%>" required>
             </div>
             <div class='form-group'>
-                <label for='relation' class="control-label">Relationship of next of kin to worker: </label>
+                <label for='relation' class="control-label">Relationship of next of kin to worker</label>
                 <br/>
                 <input class="form-control" type='text' name="relation" value="<%=nokRelationship%>">
             </div>
             <div class='form-group'>
-                <label for='docReference' class="control-label">Identity docs/references of next of kin: </label>
+                <label for='docReference' class="control-label">Identity docs/references of next of kin</label>
                 <br/>
                 <textarea class="form-control" name="docReference" rows="3" ><%=(nokIdDoc == null) ? "" : nokIdDoc%></textarea>
             </div>
             <div class='form-group'>
-                <label for='phNum' class="control-label">Phone number of next of kin: </label>
+                <label for='phNum' class="control-label">Phone number of next of kin</label>
                 <br/>
                 <input class="form-control" type="text" name="nokphNum" value="<%=(nokPhone == null) ? "" : nokPhone%>">
             </div>
             <div class='form-group'>
-                <label for='digitalContact' class="control-label">Other contact details of next of kin: </label>
+                <label for='digitalContact' class="control-label">Other contact details of next of kin</label>
                 <br/>
                 <textarea class="form-control" name="digitalContact" rows="3"><%=(nokDigital == null) ? "" : nokDigital%></textarea>
             </div>
             <div class='form-group'>
-                <label for='address' class="control-label">Address of next of kin: </label>
+                <label for='address' class="control-label">Address of next of kin</label>
                 <br/>
                 <textarea class="form-control" name="nokaddress" rows="3" ><%=(nokAddress == null) ? "" : nokAddress%></textarea>
             </div>
             <div class='form-group'>
-                <label for='proofDoc' class="control-label">What docs attesting next of kin?: </label>
+                <label for='proofDoc' class="control-label">What docs attesting next of kin?</label>
                 <br/>
                 <textarea class="form-control" name="proofDoc" rows="3" ><%=(nokProof == null) ? "" : nokProof%></textarea>            
             </div>
@@ -1681,7 +1443,7 @@
                 <textarea class="form-control" name="remark" rows="3" ><%=nokRemark%></textarea>
             </div>
             <div class='form-group'>
-                <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='obseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                        <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(nextOfKin.getObseleteDate() == null) ? ""
                         : sdf.format(nextOfKin.getObseleteDate())%>">
@@ -1735,39 +1497,39 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='fname' class="control-label">Name of family member: </label>
+                    <label for='fname' class="control-label">Name of family member</label>
                     <br/>
                     <input class="form-control" type='text' name="fname" value="<%=name%>">
                 </div>
                 <div class='form-group'>
-                    <label for='frelation' class="control-label">Relationship of family member to worker: </label>
+                    <label for='frelation' class="control-label">Relationship of family member to worker</label>
                     <br/>
                     <input class="form-control" type='text' name="frelation" value="<%=relationship%>">
                 </div>
                 <div class='form-group'>
-                    <label for='faddress' class="control-label">Is the family member in Singapore?: </label>
+                    <label for='faddress' class="control-label">Is the family member in Singapore?</label>
                     <br/>
                     <input class="form-control" type='text' name="faddress" value="<%=(address == null) ? "" : address%>">
                 </div>
                 <div class='form-group'>
-                    <label for='fcontactNo' class="control-label">Phone number of family member: </label>
+                    <label for='fcontactNo' class="control-label">Phone number of family member</label>
                     <br/>
                     <input class="form-control" type='text' name="fcontactNo" value="<%=contactNum%>">
                 </div>
                 <div class='form-group'>
-                    <label for='fdigital' class="control-label">Other contact details of family member: </label>
+                    <label for='fdigital' class="control-label">Other contact details of family member</label>
                     <br/>
                     <textarea class="form-control" name="digitalContact" rows="3" ><%=(contactAdd == null) ? "" : contactAdd%></textarea>
                 </div>
 
                 <div class='form-group'>
-                    <label for='fremark' class="control-label">Remark about family member: </label>
+                    <label for='fremark' class="control-label">Remark about family member</label>
                     <br/>
 
                     <textarea class="form-control" name="fremark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='nokObDate' class="control-label">Date discovered to be obsolete: </label>
+                    <label for='nokObDate' class="control-label">Date discovered to be obsolete</label>
                     <br/>
                     <input class="form-control" type='text' name="nokObDate" 
                            value="<%=(familyMember.getObseleteDate() == null) ? ""
@@ -1782,86 +1544,39 @@
             </div>
         </div>
 
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nName' class="control-label">Name of family member<span style="color: red">*</span>: </label>
-                <br/>
-                <input class="form-control" type='text' name="nName" required>
-            </div>
-            <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship of family member to worker: </label>
-                <br/>
-                <input class="form-control" type='text' name="nRelation">
-            </div>
-            <div class='form-group'>
-                <label for='nAddress' class="control-label">Is the family member in Singapore?: </label>
-                <br/>
-                <input class="form-control" type='text' name="nFamilyAddress">
-            </div>
-            <div class='form-group'>
-                <label for='nPhNum' class="control-label">Phone number of family member: </label>
-                <br/>
-                <input class="form-control" type="text" name="nFamilyPhNum">
-            </div>
-            <div class='form-group'>
-                <label for='nDigitalContact' class="control-label">Other Contact Details of family member: </label>
-                <br/>
-                <textarea class="form-control" name="nDigitalContact" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about family member: </label>
-
-                <br/>
-                <textarea class="form-control" name="nRemark" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate">
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="WorkerFamilyMember"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='name' class="control-label">Name of family member<span style="color: red">*</span>: </label>
+                <label for='name' class="control-label"><span style="color: red">*</span> Name of family member</label>
                 <br/>
                 <input class="form-control" type='text' name="name" value="<%=name%>" required>
             </div>
             <div class='form-group'>
-                <label for='relation' class="control-label">Relationship of family member to worker: </label>
+                <label for='relation' class="control-label">Relationship of family member to worker</label>
                 <br/>
                 <input class="form-control" type='text' name="relation" value="<%=relationship%>">
             </div>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Is the family member in Singapore?: </label>
+                <label for='nAddress' class="control-label">Is the family member in Singapore?</label>
                 <br/>
                 <input class="form-control" type='text' name="familyAddress" value="<%=(address == null) ? "" : address%>">
             </div>
             <div class='form-group'>
-                <label for='phNum' class="control-label">Phone number of family member: </label>
+                <label for='phNum' class="control-label">Phone number of family member</label>
                 <br/>
                 <input class="form-control" type="text" name="familyphNum" value="<%=contactNum%>">
             </div>
             <div class='form-group'>
-                <label for='digitalContact' class="control-label">Other contact details of family member: </label>
+                <label for='digitalContact' class="control-label">Other contact details of family member</label>
                 <br/>
                 <textarea class="form-control" name="digitalContact" rows="3" ><%=(contactAdd == null) ? "" : contactAdd%></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark about family member: </label>
+                <label for='remark' class="control-label">Remark about family member</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
             </div>
             <div class='form-group'>
-                <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='obseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(familyMember.getObseleteDate() == null) ? ""
                         : sdf.format(familyMember.getObseleteDate())%>">
@@ -1912,27 +1627,27 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='fname' class="control-label">Name of friend in Singapore: </label>
+                    <label for='fname' class="control-label">Name of friend in Singapore</label>
                     <br/>
                     <input class="form-control" type='text' name="fname" value="<%=name%>">
                 </div>
                 <div class='form-group'>
-                    <label for='fcontactNo' class="control-label">Phone number of friend:</label>
+                    <label for='fcontactNo' class="control-label">Phone number of friend</label>
                     <br/>
                     <input class="form-control" type='text' name="fcontactNo" value="<%=contactNum%>">
                 </div>
                 <div class='form-group'>
-                    <label for='frelation' class="control-label">Relationship to worker: </label>
+                    <label for='frelation' class="control-label">Relationship to worker</label>
                     <br/>
                     <input class="form-control" type='text' name="frelation" value="<%=relationship%>">
                 </div>
                 <div class='form-group'>
-                    <label for='fremark' class="control-label">Remark about friend: </label>
+                    <label for='fremark' class="control-label">Remark about friend</label>
                     <br/>
                     <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='nokObDate' class="control-label">Date discovered to be obsolete: </label>
+                    <label for='nokObDate' class="control-label">Date discovered to be obsolete</label>
                     <br/>
                     <input class="form-control" type='text' name="ObDate" 
                            value="<%=(friend.getObseleteDate() == null) ? ""
@@ -1947,66 +1662,30 @@
             </div>
         </div>
 
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nName' class="control-label">Name of friend in Singapore<span style="color: red">*</span>: </label>
-                <br/>
-                <input class="form-control" type='text' name="nName" required>
-            </div>
-            <div class='form-group'>
-                <label for='nPhNum' class="control-label">Phone number of friend:</label>
-                <br/>
-                <input class="form-control" type="text" name="nFriendPhNum">
-            </div>
-            <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship to worker: </label>
-                <br/>
-                <input class="form-control" type='text' name="nRelation">
-            </div>
-            <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about friend: </label>
-                <br/>
-                <textarea class="form-control" name="nRemark" rows="3" maxleng="200"></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate">
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="WorkerFriend"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='name' class="control-label">Name of friend in Singapore<span style="color: red">*</span>: </label>
+                <label for='name' class="control-label"><span style="color: red">*</span> Name of friend in Singapore</label>
                 <br/>
                 <input class="form-control" type='text' name="name" value="<%=name%>" required>
             </div>
             <div class='form-group'>
-                <label for='phNum' class="control-label">Phone number of friend: </label>
+                <label for='phNum' class="control-label">Phone number of friend</label>
                 <br/>
                 <input class="form-control" type="text" name="friendPhNum" value="<%=contactNum%>">
             </div>
             <div class='form-group'>
-                <label for='relation' class="control-label">Relationship to worker: </label>
+                <label for='relation' class="control-label">Relationship to worker</label>
                 <br/>
                 <input class="form-control" type='text' name="relation" value="<%=relationship%>">
             </div>
 
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark about friend: </label>
+                <label for='remark' class="control-label">Remark about friend</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
             </div>
             <div class='form-group'>
-                <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='obseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(friend.getObseleteDate() == null) ? ""
                         : sdf.format(friend.getObseleteDate())%>">
@@ -2053,23 +1732,23 @@
         <div class="view_comp">
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='mainLanguage' class="control-label">Worker's main language: </label>
+                    <label for='mainLanguage' class="control-label">Worker's main language</label>
                     <br/>
                     <input class="form-control" type='text' name="mainLanguage" value="<%=mainLan%>">
                 </div>
                 <div class="form-group" id="languageType_other_div" >
-                    <label for="languageMore" class="control-label">Explain if above is 'Other':</label>
+                    <label for="languageMore" class="control-label">Explain if above is 'Other'</label>
                     <br/>
                     <input class="form-control" type='text' name="nLanguageMore" 
                            value="<%=(workerLanguage.getMainLangaugeMore() == null) ? "" : workerLanguage.getMainLangaugeMore()%>">
                 </div>
                 <div class='form-group'>
-                    <label for='englishStandard' class="control-label">Spoken English standard: </label>
+                    <label for='englishStandard' class="control-label">Spoken English standard</label>
                     <br/>
                     <input class="form-control" type='text' value="<%=workerLanguage.getSpokenLanguageStandard()%>">
                 </div>
                 <div class='form-group'>
-                    <label for='fremark' class="control-label">Remark about language: </label>
+                    <label for='fremark' class="control-label">Remark about language</label>
                     <br/>
                     <textarea class="form-control" name="fremark" rows="3"><%=(remark == null) ? "" : remark%></textarea>
                 </div>
@@ -2082,57 +1761,9 @@
             </div>
         </div>
 
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nMainLanguage' class="control-label">Worker's main language<span style="color: red">*</span>: </label>
-                <br/>
-                <select class="form-control" id="digitalContactType" name="nMainLanguage">
-                    <option value="" disabled selected>Select Language:</option>
-                    <%
-                        for (String languageType : languageList) {
-                    %>
-                    <option value="<%=languageType%>"><%=languageType%></option>
-                    <%
-
-                        }
-                    %>  
-                </select>
-            </div>
-            <div class="form-group" id="languageType_other_div" >
-                <label for="nLanguageMore" class="control-label">Explain if above is 'Other'</label><br/>
-                <input class="form-control" type='text' name="nLanguageMore">
-            </div>
-            <div class='form-group'>
-                <label for='nEnglishStandard' class="control-label">Spoken English standard<span style="color: red">*</span>: </label>
-                <br/>
-                <select class="form-control" id="digitalContactType" name="nEnglishStandard">
-                    <option value="" disabled selected>Select spoken English standard:</option>
-                    <%
-                        for (String engStd : spokenEnglishList) {
-                    %> 
-                    <option value="<%=engStd%>"><%=engStd%></option>
-                    <%
-
-
-                        }
-                    %>  
-                </select>
-            </div>
-            <div class='form-group'>
-                <label for='fremark' class="control-label">Remark about language: </label>
-                <br/>
-                <textarea class="form-control" name="nRemark" rows="3" ></textarea>
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="WorkerLanguage"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='mainLanguage' class="control-label">Worker's main language<span style="color: red">*</span>: </label>
+                <label for='mainLanguage' class="control-label"><span style="color: red">*</span> Worker's main language</label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="mainLanguage">
                     <%
@@ -2154,13 +1785,13 @@
                 </select>
             </div>
             <div class="form-group" id="languageType_other_div" >
-                <label for="languageMore" class="control-label">Explain if above is 'Other':</label>
+                <label for="languageMore" class="control-label">Explain if above is 'Other'</label>
                 <br/>
                 <input class="form-control" type='text' name="languageMore" 
                        value="<%=(workerLanguage.getMainLangaugeMore() == null) ? "" : workerLanguage.getMainLangaugeMore()%>">
             </div>
             <div class='form-group'>
-                <label for='englishStandard' class="control-label">Spoken English standard<span style="color: red">*</span>: </label>
+                <label for='englishStandard' class="control-label"><span style="color: red">*</span> Spoken English standard</label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="englishStandard">
                     <%
@@ -2182,7 +1813,7 @@
                 </select>
             </div>
             <div class='form-group'>
-                <label for='fremark' class="control-label">Remark about language: </label>
+                <label for='fremark' class="control-label">Remark about language</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
             </div>
@@ -2235,48 +1866,48 @@
 
             <fieldset disabled>
                 <div class='form-group'>
-                    <label for='accname' class="control-label">Bank account name: </label>
+                    <label for='accname' class="control-label">Bank account name</label>
                     <br/>
                     <input class="form-control" type='text' name="accname" value="<%=bankaccName%>">
                 </div>
                 <div class='form-group'>
-                    <label for='accno' class="control-label">Bank account number: </label>
+                    <label for='accno' class="control-label">Bank account number</label>
                     <br/>
                     <input class="form-control" type='text' name="accno" value="<%=bankaccNum%>">
                 </div>
                 <div class='form-group'>
-                    <label for='bkname' class="control-label">Bank name: </label>
+                    <label for='bkname' class="control-label">Bank name</label>
                     <br/>
                     <input class="form-control" type='text' name="bkname" value="<%=bankName%>">
                 </div>
                 <div class='form-group'>
-                    <label for='bkbrch' class="control-label">Bank branch name: </label>
+                    <label for='bkbrch' class="control-label">Bank branch name</label>
                     <br/>
                     <input class="form-control" type='text' name="bkbrch" value="<%=bankBranch%>">
                 </div>
                 <div class='form-group'>
-                    <label for='bhcode' class="control-label">Bank branch code: </label>
+                    <label for='bhcode' class="control-label">Bank branch code</label>
                     <br/>
                     <input class="form-control" type='text' name="bhcode" value="<%=branchCode%>">
                 </div>
                 <div class='form-group'>
-                    <label for='bhad' class="control-label">Bank branch address: </label>
+                    <label for='bhad' class="control-label">Bank branch address</label>
                     <br/>
                     <textarea class="form-control" name="bhad" rows="3"><%=branchAdd%></textarea>
                 </div>
                 <div class='form-group'>
-                    <label for='bs' class="control-label">Bank swift code: </label>
+                    <label for='bs' class="control-label">Bank swift code</label>
                     <br/>
                     <input class="form-control" type='text' name="bs" value="<%=swift%>">
                 </div>
                 <div class='form-group'>
-                    <label for='bremark' class="control-label">Remark about bank account: </label>
+                    <label for='bremark' class="control-label">Remark about bank account</label>
                     <br/>
                     <textarea class="form-control" name="bremark" rows="3"><%=remark%></textarea>
                         <!--input class="form-control" type='text' name="bremark" value="<%=remark%>"-->
                 </div>
                 <div class='form-group'>
-                    <label for='bkObDate' class="control-label">Date discovered to be obsolete: </label>
+                    <label for='bkObDate' class="control-label">Date discovered to be obsolete</label>
                     <br/>
                     <input class="form-control dateInput" type='text' name="bkObDate" 
                            value="<%=(workerBankAcc.getObseleteDate() == null) ? ""
@@ -2291,105 +1922,49 @@
             </div>
         </div>
 
-
-        <div class='add_comp'>
-            <div class='form-group'>
-                <label for='nBankAcctName' class="control-label">Bank account Name<span style="color: red">*</span>: </label>
-                <br/>
-                <input class="form-control" type='text' name="nBankAcctName" required>
-            </div>
-            <div class='form-group'>
-                <label for='nBankAcctNum' class="control-label">Bank account number<span style="color: red">*</span>: </label>
-                <br/>
-                <input class="form-control" type='text' name="nBankAcctNum" required>
-            </div>
-            <div class='form-group'>
-                <label for='nBankName' class="control-label">Bank Name<span style="color: red">*</span>: </label>
-                <br/>
-                <input class="form-control" type='text' name="nBankName" required>
-            </div>
-            <div class='form-group'>
-                <label for='nBankBranch' class="control-label">Bank branch Name: </label>
-                <br/>
-                <input class="form-control" type="text" name="nBankBranch">
-            </div>
-            <div class='form-group'>
-                <label for='nBankBranchCode' class="control-label">Bank branch Code: </label>
-                <br/>
-                <input class="form-control" type='text' name="nBankBranchCode" >
-            </div>
-            <div class='form-group'>
-                <label for='nBankBranchAddress' class="control-label">Bank branch Address: </label>
-                <br/>
-                <textarea class="form-control" name="nBankBranchAddress" rows="3" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nBankSwift' class="control-label">Bank Swift Code: </label>
-                <br/>
-                <input class="form-control" type='text' name="nBankSwift">
-            </div>
-            <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about Bank account: </label>
-                <br/>
-                <textarea class="form-control" name="nRemark" ></textarea>
-            </div>
-            <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
-                <br/>
-                <input class="form-control dateInput" type='text' name="nObseleteDate">
-            </div>
-            <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
-            <input type="hidden" name="complementName" value="WorkerBankAcct"/>
-            <div class="form-group btn_group">
-                <button type='submit' class="btn btn-blue modal_btn add_comp">Save</button>
-                <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
-            </div>
-        </div>
-
-
         <div class='edit_comp'>
             <div class='form-group'>
-                <label for='bankAcctName' class="control-label">Bank account name<span style="color: red">*</span>: </label>
+                <label for='bankAcctName' class="control-label"><span style="color: red">*</span> Bank account name</label>
                 <br/>
                 <input class="form-control" type='text' name="bankAcctName" value="<%=bankaccName%>" required>
             </div>
             <div class='form-group'>
-                <label for='bankAcctNum' class="control-label">Bank account number<span style="color: red">*</span>: </label>
+                <label for='bankAcctNum' class="control-label"><span style="color: red">*</span> Bank account number</label>
                 <br/>
                 <input class="form-control" type='text' name="bankAcctNum" value="<%=bankaccNum%>" required>
             </div>
             <div class='form-group'>
-                <label for='bankName' class="control-label">Bank name<span style="color: red">*</span>: </label>
+                <label for='bankName' class="control-label"><span style="color: red">*</span> Bank name</label>
                 <br/>
                 <input class="form-control" type='text' name="bankName" value="<%=bankName%>" required>
             </div>
             <div class='form-group'>
-                <label for='bankBranch' class="control-label">Bank branch name: </label>
+                <label for='bankBranch' class="control-label">Bank branch name</label>
                 <br/>
                 <input class="form-control" type='text' name="bankBranch" value="<%=bankBranch%>">
             </div>
             <div class='form-group'>
-                <label for='bankBranchCode' class="control-label">Bank branch code: </label>
+                <label for='bankBranchCode' class="control-label">Bank branch code</label>
                 <br/>
                 <input class="form-control" type='text' name="bankBranchCode" value="<%=branchCode%>">
             </div>
             <div class='form-group'>
-                <label for='bankBranchAddress' class="control-label">Bank branch address: </label>
+                <label for='bankBranchAddress' class="control-label">Bank branch address</label>
                 <br/>
                 <textarea class="form-control" name="bankBranchAddress" rows="3" ><%=branchAdd%></textarea>
             </div>
             <div class='form-group'>
-                <label for='bankSwift' class="control-label">Bank swift code: </label>
+                <label for='bankSwift' class="control-label">Bank swift code</label>
                 <br/>
                 <input class="form-control" type='text' name="bankSwift" value="<%=swift%>">
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remark about bank account: </label>
+                <label for='remark' class="control-label">Remark about bank account</label>
                 <br/>
                 <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
             </div>
             <div class='form-group'>
-                <label for='obseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='obseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput dateToRemove col-md-9" type='text' name="obseleteDate" style="width:90%" value="<%=(workerBankAcc.getObseleteDate() == null) ? ""
                         : sdf.format(workerBankAcc.getObseleteDate())%>">
@@ -2402,7 +1977,7 @@
             <input type="hidden" name="selectedProb" value="<%=probKey%>"/>
             <input type="hidden" name="complementName" value="WorkerBankAcct"/>
             <input type="hidden" name="Id" value="<%=id%>"/>
-<br/><br/>
+            <br/><br/>
             <div class="form-group btn_group">
                 <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
                 <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>

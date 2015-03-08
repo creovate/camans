@@ -14,7 +14,7 @@
     String referredByNRIC = request.getParameter("user");
     java.util.Date today = new java.util.Date();
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-
+    
     Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);
     int jobKey = Integer.parseInt(jobKeyStr);
     int probKey = Integer.parseInt(probKeyStr);
@@ -51,15 +51,15 @@
 
     User referredByUser = UserDAO.retrieveUserByNRIC(referredByNRIC);
     String referredByName = referredByUser.getFullName();
-
-
+    
+    
 %>
 <script>
     $('.cancel_btn').click(function() {
         $('#pop_up_content').dialog("destroy");
         $('#pop_up_content').empty();
     });
-
+    
     $(function() {
         $(".date_input").datepicker({
             dateFormat: 'dd-M-yy',
@@ -68,7 +68,7 @@
         });
 
     });
-
+    
     //for date inputs
     $(document).ready(function() {
         $('.date_input').focus(function() {
@@ -78,42 +78,52 @@
         $('.no_change').focus(function() {
             $('.no_change').blur();
         });
+
     });
 </script>
 <form method="POST" action="referCase.do"  id='caseReferral_form' class="form" >
-
+    <table class="table table-condensed pull-left">
     <div class='form-group'>
-        <label for='refDate' id="refDate_lbl" class="control-label">Referred Date<span style="color: red">*</span>:</label>
-        <br/>
-        <input class="form-control no_change" type='text' name="refDate" value="<%=sdf.format(today)%>">
+        <tr>
+            <td class="tbl_lbl"><label for='refDate' id="refDate_lbl" class="control-label">Referred Date</label></td><td><%=sdf.format(today)%></td>
+        </tr>
+        <input class="form-control no_change" type='hidden' name="refDate" value="<%=sdf.format(today)%>">
     </div>
     <div class='form-group'>
-        <label for='workerName' id="workerName_lbl" class="control-label">Name of Worker<span style="color: red">*</span>: </label>
-        <br/>
-        <input class="form-control no_change" type='text' name="workerName" value="<%=workerName%>">
+        <tr>
+            <td class="tbl_lbl"><label for='workerName' id="workerName_lbl" class="control-label">Name of Worker</label></td><td><%=workerName%></td>
+        </tr>
+        <input class="form-control no_change" type='hidden' name="workerName" value="<%=workerName%>">
     </div>
     <div class='form-group'>
-        <label for='workerName' id="workerFin_lbl" class="control-label">Worker FIN Number<span style="color: red">*</span>: </label>
-        <br/>
-        <input class="form-control no_change" type='text' name="workerFin" value="<%=workerFin%>">
+        <tr>
+            <td class="tbl_lbl"><label for='workerName' id="workerFin_lbl" class="control-label">Worker FIN Number</label></td><td><%=workerFin%></td>
+        </tr>
+        <input class="form-control no_change" type='hidden' name="workerFin" value="<%=workerFin%>">
     </div>
     <div class='form-group'>
-        <label for='phNum' class="control-label" id="phNum_lbl">Worker Phone Number: </label>
-        <br/>
-        <input class="form-control no_change" type='text' name="phNum" value="<%=sgPhone%>">
+        <tr>
+            <td class="tbl_lbl"><label for='phNum' class="control-label" id="phNum_lbl">Worker Phone Number</label></td><td><%=sgPhone%></td>
+        </tr>
+        <input class="form-control no_change" type='hidden' name="phNum" value="<%=sgPhone%>">
     </div>
     <div class='form-group'>
-        <label for='empName' id="empName_lbl" class="control-label">Employer Name: </label>
-        <br/>
-        <input class="form-control no_change" type='text' name="empName" value="<%=empName%>">
+        <tr>
+            <td class="tbl_lbl"><label for='empName' id="empName_lbl" class="control-label">Employer Name</label></td><td><%=empName%></td>
+        </tr>
+        <input class="form-control no_change" type='hidden' name="empName" value="<%=empName%>">
     </div>
     <div class='form-group'>
-        <label for='probType' id="probType_lbl" class="control-label">Problem: </label>
-        <br/>
-        <input class="form-control no_change" type='text' name="probType" value="<%=problemType%>">
+        <tr>
+            <td class="tbl_lbl"><label for='probType' id="probType_lbl" class="control-label">Problem Type</label></td><td><%=problemType%></td>
+        </tr>
+        <input class="form-control no_change" type='hidden' name="probType" value="<%=problemType%>">
+        
     </div>
+    </table>
     <div class='form-group'>
-        <label for='refDesc' class="control-label">Description: </label>
+        <br/>
+        <label for='refDesc' class="control-label"><span style="color:red">*</span>Description: </label>
         <br/>
         <textarea class='form-control' row='3' name="refDesc"></textarea>
     </div>

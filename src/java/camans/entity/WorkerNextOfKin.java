@@ -151,7 +151,14 @@ public class WorkerNextOfKin {
     }    
 
     public String toString2() {
-        return "WorkerNextOfKin{" + "workerFinNum=" + workerFinNum + ", name=" + name + ", relation=" + relation + ", document=" + document + ", phoneNumber=" + phoneNumber + ", digital=" + digital + ", address=" + address + ", proof=" + proof + ", remark=" + remark + ", obseleteDate=" + obseleteDate + '}';
+        if (obseleteDate == null) {
+            return "WorkerNextOfKin [name=" + name + ", relation=" + relation + ", document=" + document + 
+                ", phoneNumber=" + phoneNumber + ", digital=" + digital + ", address=" + address + 
+                ", proof=" + proof + ", remark=" + remark + ']';
+        }
+        return "WorkerNextOfKin [name=" + name + ", relation=" + relation + ", document=" + document + 
+                ", phoneNumber=" + phoneNumber + ", digital=" + digital + ", address=" + address + 
+                ", proof=" + proof + ", remark=" + remark + ", obseleteDate=" + obseleteDate + ']';
     }  
     
 }
