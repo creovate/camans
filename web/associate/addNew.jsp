@@ -40,12 +40,14 @@
         <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.css">
         <link rel="stylesheet" href="../css/jquery-ui.structure.css">
         <link rel="stylesheet" href="../css/jquery-ui.theme.css">
+        <link rel="stylesheet" href="../css/bootstrapValidator.min.css"/>
         <!-------------->
 
         <!--javascript-->
         <script src="../js/jquery-2.1.1.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/jquery-ui-1.9.2.custom.js"></script>
+        <script type="text/javascript" src="../js/bootstrapValidator.min.js"></script>   
         <!------------->
 
         <!--tab icon-->
@@ -92,8 +94,167 @@
                         }
                     });
                 });
+
+
+                //methods for jquery validator
+                jQuery.validator.addMethod("FIN", function(value, element) {
+                    return this.optional(element) || /^[A-Z][0-9]{7}[A-Z]$/.test(value) || /^GEN[0-9]{6}$/.test(value);
+                }, "Invalid FIN number format. Please check again.");
+                jQuery.validator.addMethod("FileSize", function(value, element) {
+                    return this.optional(element) || (element.files[0].size <= 1048576);
+                }, "Invalid File size. Please Check again.");
+                $('#createworker_form').validate({
+                    //ignore: ":hidden",
+                    rules: {
+                        finNum: {
+                            required: true,
+                            FIN: true,
+                            remote: {
+                                url: "processValidate",
+                                type: "POST",
+                                data: {
+                                    finNum: function() {
+                                        return $("#finNum").val();
+                                    }
+                                }
+                            }
+                        },
+                        workerName: {
+                            maxlength: 50,
+                            required: true
+                        },
+                        nationalityMore: {
+                            maxlength: 50
+                        },
+                        createdFor: {
+                            maxlength: 20
+                        },
+                        employerName: {
+                            maxlength: 50,
+                            required: true
+                        },
+                        workpassMore: {
+                            maxlength: 50
+                        },
+                        jobSectorMore: {
+                            maxlength: 50
+                        },
+                        occupation: {
+                            maxlength: 50
+                        },
+                        jobStartDate: {
+                            maxlength: 50
+                        },
+                        jobEndDate: {
+                            maxlength: 50
+                        },
+                        jobRemark: {
+                            maxlength: 200
+                        },
+                        problem: {
+                            required: true
+                        },
+                        problemMore: {
+                            maxlength: 50
+                        },
+                        problemRemark: {
+                            maxlength: 200
+                        },
+                        facePic: {
+                            accept: "image/png,image/jpeg,image/jpg,image/bmp",
+                            extension: "png,jpeg,jpg,bmp",
+                            FileSize: true
+                        }
+                    },
+                    messages: {
+                        facePic: "Please choose an image file with a size less than 1M only.",
+                        finNum: {
+                            remote: "FIN Number already exists. Please check again"
+                        }
+
+                    },
+                    highlight: function(element) {
+                        $(element).closest('.form-group').addClass('has-error');
+                    },
+                    unhighlight: function(element) {
+                        $(element).closest('.form-group').removeClass('has-error');
+                    },
+                    errorElement: 'span',
+                    errorClass: 'help-block',
+                    errorPlacement: function(error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    }
+                });
+
+                $('#addCase').validate({
+                    ignore: ":hidden",
+                    rules: {
+                        jobPassType: {
+                            required: true
+                        },
+                        passMore: {
+                            maxlength: 50
+                        },
+                        workpassMore: {
+                            maxlength: 50
+                        },
+                        employerName: {
+                            maxlength: 50,
+                            required: true
+                        },
+                        jobSectorMore: {
+                            maxlength: 50
+                        },
+                        occupation: {
+                            maxlength: 50
+                        },
+                        jobStartDate: {
+                            maxlength: 50
+                        },
+                        jobEndDate: {
+                            maxlength: 50
+                        },
+                        jobRemark: {
+                            maxlength: 200
+                        },
+                        //problem profile
+                        problem: {
+                            required: true
+                        },
+                        problemMore: {
+                            maxlength: 50
+                        },
+                        problemRemark: {
+                            maxlength: 200
+                        }
+                    },
+                    highlight: function(element) {
+                        $(element).closest('.form-group').addClass('has-error');
+                    },
+                    unhighlight: function(element) {
+                        $(element).closest('.form-group').removeClass('has-error');
+                    },
+                    errorElement: 'span',
+                    errorClass: 'help-block',
+                    errorPlacement: function(error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    }
+                });
             });
 
+
+
+            function goBack() {
+                window.history.back();
+            }
 
         </script>
     </head>
@@ -107,7 +268,7 @@
                 //this is create case
 %>
         <!-- Create Case Form -->
-        <div class="col-xs-12 col-md-12" >
+        <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" >
             <form method="post" action="../createNewCase.do" class="form form-horizontal" 
                   id="createworker_form" role="form">
 
@@ -287,7 +448,11 @@
 
 
                 <input type="hidden" name="associate" value="associate"/>
-                <button  type='submit' class="btn btn-blue pull-right">Submit</button>
+                <div class="pull-right">
+                    <button  type='submit' class="btn btn-blue">Submit</button>
+                    <button type='' class="btn cancel_btn" style="bottom: 0" onclick="goBack();">Cancel</button>
+                </div>
+                <br/>
             </form> 
         </div>
 
@@ -302,7 +467,7 @@
                 //if the selectedJob is null, it is adding new job
 
         %>
-        <div class='row'>
+        <div class='col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8'>
             <form method="POST" id='addCase' class="form complement_detailed_form col-xs-12 col-sm-12 col-md-12" action="../createNewCase.do" style="font-size:small">
 
                 <%
@@ -384,7 +549,7 @@
                 <br/><br/>
                 <div class="pull-right">
                     <button  type='submit' class="btn btn-blue">Submit</button>
-                    <button type='' class="btn cancel_btn" style="bottom: 0">Cancel</button>
+                    <button type='' class="btn cancel_btn" style="bottom: 0" onclick="goBack();">Cancel</button>
                 </div>
                 <br/><br/>
             </form> 
@@ -395,7 +560,7 @@
             Job selectedJob = JobDAO.retrieveJobByJobId(jobKey);
             String employer = selectedJob.getEmployerName();
         %>
-        <div class='row'>
+        <div class='col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8'>
             <form method="POST" id='addCase' class="form complement_detailed_form col-xs-12 col-sm-12 col-md-12" action="../createNewCase.do" style="font-size:small">
 
                 <%
@@ -454,7 +619,7 @@
                 <br/><br/>
                 <div class="pull-right">
                     <button  type='submit' class="btn btn-blue">Submit</button>
-                    <button type='' class="btn cancel_btn" style="bottom: 0">Cancel</button>
+                    <button type='' class="btn cancel_btn" style="bottom: 0" onclick="goBack();">Cancel</button>
                 </div>
                 <br/><br/>
             </form> 

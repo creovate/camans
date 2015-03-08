@@ -2665,6 +2665,37 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem R2R*/
+    public static ArrayList<Integer> retrieveProblemR2rIdsBetDates(java.util.Date start, java.util.Date end){
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+
+        try {
+            java.sql.Date startDate = new java.sql.Date(start.getTime());
+            java.sql.Date endDate = new java.sql.Date(end.getTime());
+            
+            conn = ConnectionManager.getConnection();
+            sql = "SELECT ID FROM tbl_r2r WHERE R2R_date BETWEEN ? AND ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setDate(1, startDate);
+            pstmt.setDate(2, endDate);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                ids.add(id);
+            }
+
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql);
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+
+        return ids;
+    }
     public static ArrayList<Integer> retrieveProblemR2RIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 

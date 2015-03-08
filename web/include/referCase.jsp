@@ -14,7 +14,7 @@
     String referredByNRIC = request.getParameter("user");
     java.util.Date today = new java.util.Date();
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-    
+
     Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);
     int jobKey = Integer.parseInt(jobKeyStr);
     int probKey = Integer.parseInt(probKeyStr);
@@ -51,15 +51,15 @@
 
     User referredByUser = UserDAO.retrieveUserByNRIC(referredByNRIC);
     String referredByName = referredByUser.getFullName();
-    
-    
+
+
 %>
 <script>
     $('.cancel_btn').click(function() {
         $('#pop_up_content').dialog("destroy");
         $('#pop_up_content').empty();
     });
-    
+
     $(function() {
         $(".date_input").datepicker({
             dateFormat: 'dd-M-yy',
@@ -68,22 +68,16 @@
         });
 
     });
-    
+
     //for date inputs
     $(document).ready(function() {
         $('.date_input').focus(function() {
             $('.date_input').blur();
 
         });
-
-    });
-    
-    //for date inputs
-    $(document).ready(function() {
         $('.no_change').focus(function() {
             $('.no_change').blur();
         });
-
     });
 </script>
 <form method="POST" action="referCase.do"  id='caseReferral_form' class="form" >

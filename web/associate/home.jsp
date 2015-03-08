@@ -16,12 +16,14 @@
         <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.css">
         <link rel="stylesheet" href="../css/jquery-ui.structure.css">
         <link rel="stylesheet" href="../css/jquery-ui.theme.css">
+        <link rel="stylesheet" href="../css/bootstrapValidator.min.css"/>
         <!-------------->
 
         <!--javascript-->
         <script src="../js/jquery-2.1.1.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/jquery-ui-1.9.2.custom.js"></script>
+        <script type="text/javascript" src="../js/bootstrapValidator.min.js"></script>   
         <!------------->
 
         <!--tab icon-->

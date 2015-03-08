@@ -78,12 +78,14 @@
         <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.css">
         <link rel="stylesheet" href="../css/jquery-ui.structure.css">
         <link rel="stylesheet" href="../css/jquery-ui.theme.css">
+        <link rel="stylesheet" href="../css/bootstrapValidator.min.css"/>
         <!-------------->
 
         <!--javascript-->
         <script src="../js/jquery-2.1.1.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/jquery-ui-1.9.2.custom.js"></script>
+        <script type="text/javascript" src="../js/bootstrapValidator.min.js"></script>   
         <!------------->
 
         <!--tab icon-->
@@ -117,7 +119,134 @@
                     $('.no_change').blur();
                 });
 
+                $('.complement_detailed_form')
+                        .bootstrapValidator({
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        givenby: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Given by cannot be empty.'
+                                },
+                                stringLength: {
+                                    max: 20,
+                                    message: 'This field must not exceed 20 characters.'
+                                }
+                            }
+                        },
+                        isDate: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'The Date given cannot be empty.'
+                                }
+                            }
+                        },
+                        benetype: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'This field cannot be empty.'
+                                }
+                            }
+                        },
+                        sernum: {
+                            validators: {
+                                stringLength: {
+                                    max: 30,
+                                    message: 'This field must not exceed 30 characters.'
+                                }
+                            }
+                        },
+                        remark: {
+                            validators: {
+                                stringLength: {
+                                    max: 500,
+                                    message: 'This field must not exceed 500 characters.'
+                                }
+                            }
+                        },
+                        purpose: {
+                            validators: {
+                                stringLength: {
+                                    max: 200,
+                                    message: 'This field must not exceed 200 characters.'
+                                }
+                            }
+                        },
+                        value: {
+                            validators: {
+                                regexp: {
+                                    regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
+                                    message: 'This value must have maximum 2 decimal place.'
+                                }
+                            }
+                        },
+                        ngivenby: {
+                            validators: {
+                                stringLength: {
+                                    max: 20,
+                                    message: 'This field must not exceed 20 characters.'
+                                },
+                                notEmpty: {
+                                    message: 'Given by cannot be empty.'
+                                }
+
+                            }
+                        },
+                        nisDate: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Date given cannot be empty.'
+                                }
+                            }
+                        },
+                        nbenetype: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'This field cannot be empty.'
+                                }
+                            }
+                        },
+                        nsernum: {
+                            validators: {
+                                stringLength: {
+                                    max: 30,
+                                    message: 'This field must not exceed 30 characters.'
+                                }
+                            }
+                        },
+                        npurpose: {
+                            validators: {
+                                stringLength: {
+                                    max: 200,
+                                    message: 'This field must not exceed 200 characters.'
+                                }
+                            }
+                        },
+                        nremark: {
+                            validators: {
+                                stringLength: {
+                                    max: 500,
+                                    message: 'This field must not exceed 500 characters.'
+                                }
+                            }
+                        },
+                        nvalue: {
+                            validators: {
+                                regexp: {
+                                    regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
+                                    message: 'This value must have maximum 2 decimal place.'
+                                }
+                            }
+                        }
+                    }
+                });
             });
+
+
             function goBack() {
                 window.history.back();
             }
@@ -238,8 +367,8 @@
                         <%=r2r1%></td>
                 </tr>
                 <%
-                                }
-                            } else {
+                    }
+                } else {
                 %>
                 <label style="color:grey; padding: 2%;">There is no record of <%=categoryTitle%> benefit in selected period.</label>
                 <%
