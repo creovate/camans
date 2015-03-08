@@ -55,13 +55,14 @@
         <jsp:include page="include/navbartop.jsp"/>
         <div class="row-offcanvas row-offcanvas-left">
             <jsp:include page="include/navbarside.jsp"/>
-
+            <br/><br/>
             <div class="col-md-offset-2 col-md-10">
-                <!--Page Header-->
+                <!--Page Header
                 <div class="page-header">
                     <center><h2>Configure Dropdown Settings</h2></center>    
                 </div>
                 <!-- End of Page Header -->
+                <div id ="pageloading"><img id="loading-image" src="images/loading.gif"/></div>
                 <%
                     String type = dropdownname;
                     ArrayList<String> list = null;
@@ -164,7 +165,7 @@
                 </div> <!--col-md-6-->
                  <div class="col-xs-4 text-left pull-right">
                      
-                 <h5>Please Choose the drop-down type.</h5><br/>
+                 <h5>Please Choose the drop-down type.</h5>
                  <span class="glyphicon glyphicon-play" style="color:cadetblue"></span>
                  <%
                  if (type.equals("Accommodation_type")) { 
@@ -409,6 +410,11 @@
             </div> <!--content-->
         </div>
         <script>
+            
+            //page loadin gif
+            $(window).load(function() {
+                $('#pageloading').hide();
+            });
             
             function showPanel() {
                 document.getElementById('panelbox').style.display = "block";

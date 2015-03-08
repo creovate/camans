@@ -149,11 +149,10 @@ public class ProblemIllness {
     }
 
     public String toString2() {
-        return "ProblemIllness{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", illnessStart=" + illnessStart + 
+        return "Illness [illnessStart=" + illnessStart + 
                 ", illnessDiagWhen=" + illnessDiagWhen + ", illnessDiagWho=" + illnessDiagWho + 
                 ", illnessNature=" + illnessNature + ", illnessWorkRelated=" + illnessWorkRelated + 
-                ", illnessWhy=" + illnessWhy + ", illnessRemark=" + illnessRemark + '}';
+                ", illnessWhy=" + illnessWhy + ", illnessRemark=" + illnessRemark + ']';
     }    
     
 }

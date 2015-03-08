@@ -92,7 +92,11 @@ public class WorkerPassportDetails {
     }
     
     public String toString2() {
-        return "WorkerPassportDetails{" + "workerFinNum=" + workerFinNum + ", passportNumber=" + passportNumber + ", passportCountry=" + passportCountry + ", passportIssueDate=" + passportIssueDate + ", passportExpirtyDate=" + passportExpirtyDate + '}';
+        if (passportIssueDate == null || passportExpirtyDate == null) {
+            return "WorkerPassportDetails [passportNumber=" + passportNumber + ", passportCountry=" + passportCountry + ']';
+        }
+        
+        return "WorkerPassportDetails [passportNumber=" + passportNumber + ", passportCountry=" + passportCountry + ", passportIssueDate=" + passportIssueDate + ", passportExpirtyDate=" + passportExpirtyDate + ']';
     }    
     
 }

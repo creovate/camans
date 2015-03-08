@@ -19,14 +19,14 @@ public class JobWorkHistory {
     private int jobKey;
     private String workHistHow;
     private String workHistHowMore;
-    private Date workHistDate;
+    private String workHistDate;
     private String workHistFirst;
     private String workHistYearArrive;
     private String workHistPrevious;
     private String workHistPrevProblems;
     private String workHistRemarks;
 
-    public JobWorkHistory(int id, String workerFinNum, int jobKey, String workHistHow, String workHistHowMore, Date workHistDate, String workHistFirst, String workHistYearArrive, String workHistPrevious, String workHistPrevProblems, String workHistRemarks) {
+    public JobWorkHistory(int id, String workerFinNum, int jobKey, String workHistHow, String workHistHowMore, String workHistDate, String workHistFirst, String workHistYearArrive, String workHistPrevious, String workHistPrevProblems, String workHistRemarks) {
         this.id = id;
         this.workerFinNum = workerFinNum;
         this.jobKey = jobKey;
@@ -40,7 +40,7 @@ public class JobWorkHistory {
         this.workHistRemarks = workHistRemarks;
     }
 
-    public JobWorkHistory(String workerFinNum, int jobKey, String workHistHow, String workHistHowMore, Date workHistDate, String workHistFirst, String workHistYearArrive, String workHistPrevious, String workHistPrevProblems, String workHistRemarks) {
+    public JobWorkHistory(String workerFinNum, int jobKey, String workHistHow, String workHistHowMore, String workHistDate, String workHistFirst, String workHistYearArrive, String workHistPrevious, String workHistPrevProblems, String workHistRemarks) {
         this.workerFinNum = workerFinNum;
         this.jobKey = jobKey;
         this.workHistHow = workHistHow;
@@ -93,11 +93,11 @@ public class JobWorkHistory {
         this.workHistHowMore = workHistHowMore;
     }
 
-    public Date getWorkHistDate() {
+    public String getWorkHistDate() {
         return workHistDate;
     }
 
-    public void setWorkHistDate(Date workHistDate) {
+    public void setWorkHistDate(String workHistDate) {
         this.workHistDate = workHistDate;
     }
 
@@ -152,12 +152,11 @@ public class JobWorkHistory {
     }
     
     public String toString2() {
-        return "JobWorkHistory{" + "WorkerFinNum=" + workerFinNum + 
-                ", workHistHow=" + workHistHow + ", workHistHowMore=" + 
+        return "Work History [workHistHow=" + workHistHow + ", workHistHowMore=" + 
                 workHistHowMore + ", workHistDate=" + workHistDate + ", workHistFirst=" + 
                 workHistFirst + ", workHistYearArrive=" + workHistYearArrive + ", workHistPrevious=" + 
                 workHistPrevious + ", workHistPrevProblems=" + workHistPrevProblems + ", workHistRemarks=" + 
-                workHistRemarks + '}';
+                workHistRemarks + ']';
     }    
     
     

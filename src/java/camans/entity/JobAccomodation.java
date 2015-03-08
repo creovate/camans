@@ -195,12 +195,12 @@ public class JobAccomodation {
     }
     
     public String toString2() {
-        return "JobAccomodation{" + "WorkerFinNum=" + workerFinNum + ", accProvided=" + accProvided + 
+        return "JobAccomodation [accProvided=" + accProvided + 
                 ", accProvidedMore=" + accProvidedMore + ", accType=" + accType + 
                 ", accTypeMore=" + accTypeMore + ", accLocation=" + accLocation + 
                 ", accCondition=" + accCondition + ", accCharged=" + accCharged + 
                 ", accSelfPaid=" + accSelfPaid + ", accMeals=" + accMeals + ", accStart=" + accStart + 
-                ", accEnd=" + accEnd + ", accRemarks=" + accRemarks + '}';
+                ", accEnd=" + accEnd + ", accRemarks=" + accRemarks + ']';
     }    
     
     

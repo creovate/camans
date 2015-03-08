@@ -849,6 +849,14 @@
                         }
                     }
                 },
+                narrivalDate: {
+                    validators: {
+                        stringLength: {
+                            max: 50,
+                            message: 'This field must not exceed 50 characters.'
+                        }
+                    }
+                },
                 nprevJob: {
                     validators: {
                         stringLength: {
@@ -1192,6 +1200,9 @@
                 //wica claim & non wica claim
                 nrefNumber: {
                     validators: {
+                        notEmpty: {
+                            message: 'Reference number cannot be empty.'
+                        },
                         stringLength: {
                             max: 30,
                             message: 'Reference number must not exceed 30 characters.'
@@ -1844,8 +1855,6 @@
         }
     }
 
-
-
     $(document).ready(function() {
         $('.cancel_btn').addClass('pull-right');
         $('.form-control').addClass('input-sm');
@@ -1874,11 +1883,11 @@
 <%
     if (complement.equals("nickname")) {
 %>
-<form method="POST" action="addWorkerComplement.do" id='nickname_pop_up' class="form complement_detailed_form worker_pop_up">
+<form method="POST" action="addWorkerComplement.do" id='nickname_pop_up' class="form complement_detailed_form worker_pop_up"  >
 
     <div class='add_comp'>
         <div class='form-group '>
-            <label for='nickName' class="control-label">Nickname<span style="color: red">*</span>: </label>
+            <label for='nickName' class="control-label"><span style="color: red">*</span> Nickname</label>
             <br/>
             <input class="form-control" type='text' name="nNickName" required>
         </div>
@@ -1904,26 +1913,26 @@
     <div class='add_comp'>
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nPassportNum' class="control-label">Passport number<span style="color: red">*</span>: </label>
+                <label for='nPassportNum' class="control-label"><span style="color: red">*</span> Passport number</label>
                 <br/>
                 <input class="form-control" type='text' name="nPassportNum" required>
             </div>
             <div class='form-group'>
-                <label for='nPassportCountry' class="control-label">Passport country<span style="color: red">*</span>: </label>
+                <label for='nPassportCountry' class="control-label"><span style="color: red">*</span> Passport country</label>
                 <br/>
                 <input class="form-control" type='text' name="nPassportCountry" required>
             </div>
             <div class='form-group'>
-                <label for='nPassportIssueDate' class="control-label">Passport issue date: </label>
+                <label for='nPassportIssueDate' class="control-label">Passport issue date</label>
                 <br/>
                 <input class="form-control col-md-9 startDate startdateToRemove" type='text' name="nPassportIssueDate" style="width: 90%;"/>
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="start" style="width:10%;">
                     <span class="glyphicon glyphicon-remove"></span>
                 </div>
-
+                <br/><br/>
             </div>
             <div class='form-group'>
-                <label for='nPassportExpiryDate' class="control-label">Passport expiry date: </label>
+                <label for='nPassportExpiryDate' class="control-label">Passport expiry date</label>
                 <br/>
                 <input class="form-control endDate enddateToRemove col-md-9" type='text' name="nPassportExpiryDate" style="width:90%">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="end" style="width:10%;">
@@ -1955,13 +1964,13 @@
     <div class='add_comp'>
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">SG phone number<span style="color: red">*</span>: </label>
+                <label for='nPhNum' class="control-label"><span style="color: red">*</span> SG phone number</label>
                 <br/>
                 <input class="form-control" type='text' name="nsgPhNum" required>
             </div>
 
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
@@ -1993,17 +2002,17 @@
     <div class='add_comp'>
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Home country telephone number<span style="color: red">*</span>: </label>
+                <label for='nPhNum' class="control-label"><span style="color: red">*</span> Home country telephone number</label>
                 <br/>
                 <input class="form-control" type='text' name="nPhNum" required>
             </div>
             <div class='form-group'>
-                <label for='nPhOwner' class="control-label">Owner of this number: </label>
+                <label for='nPhOwner' class="control-label">Owner of this number</label>
                 <br/>
                 <input class="form-control" type='text' name="nPhOwner" >
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
@@ -2035,13 +2044,13 @@
     <div class='add_comp'>
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Worker address in Singapore<span style="color: red">*</span>:</label>
+                <label for='nAddress' class="control-label"><span style="color: red">*</span> Worker address in Singapore</label>
                 <br/>
                 <textarea class="form-control" name="nAddress" rows="3"  required></textarea>
             </div>
 
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
@@ -2074,12 +2083,12 @@
     <div class='add_comp'>
         <div class='form-group '>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Worker address in home country<span style="color: red">*</span>:</label>
+                <label for='nAddress' class="control-label"><span style="color: red">*</span> Worker address in home country</label>
                 <br/>
                 <textarea class="form-control" name="nAddress" rows="3"   required></textarea>
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
@@ -2112,7 +2121,7 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nDigitalContactType' class="control-label">Type of digital contact<span style="color: red">*</span>: </label>
+                <label for='nDigitalContactType' class="control-label"><span style="color: red">*</span> Type of digital contact</label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nDigitalContactType">
                     <option value="" selected>Select contact type...</option>
@@ -2129,26 +2138,26 @@
             </div>
 
             <div class="form-group" id="digitalContactType_other_div">
-                <label for="nDigitalMore" class="control-label">Explain if above is 'Other':</label><br/>
+                <label for="nDigitalMore" class="control-label">Explain if above is 'Other'</label><br/>
                 <textarea class="form-control" name="nDigitalMore" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nDigitalDetails' class="control-label">Email/QQ address or other details<span style="color: red">*</span>: </label>
+                <label for='nDigitalDetails' class="control-label"><span style="color: red">*</span> Email/QQ address or other details</label>
                 <br/>
                 <input class="form-control" type='text' name="nDigitalDetails">
             </div>
             <div class='form-group'>
-                <label for='nDigitalOwner' class="control-label">Owner of electronic contact: </label>
+                <label for='nDigitalOwner' class="control-label">Owner of electronic contact</label>
                 <br/>
                 <input class="form-control" type='text' name="nDigitalOwner">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about digital contact: </label>
+                <label for='nRemark' class="control-label">Remark about digital contact</label>
                 <br/>
                 <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
@@ -2180,37 +2189,37 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nName' class="control-label">Name of next of kin<span style="color: red">*</span>: </label>
+                <label for='nName' class="control-label"><span style="color: red">*</span> Name of next of kin</label>
                 <br/>
                 <input class="form-control" type='text' name="nName" required>
             </div>
             <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship of next of kin to worker: </label>
+                <label for='nRelation' class="control-label">Relationship of next of kin to worker</label>
                 <br/>
                 <input class="form-control" type='text' name="nRelation">
             </div>
             <div class='form-group'>
-                <label for='nDocReference' class="control-label">Identity docs/references of next of kin: </label>
+                <label for='nDocReference' class="control-label">Identity docs/references of next of kin</label>
                 <br/>
                 <textarea class="form-control" name="nDocReference" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Phone number of next of kin: </label>
+                <label for='nPhNum' class="control-label">Phone number of next of kin</label>
                 <br/>
                 <input class="form-control" type="text" name="nNOKPhNum">
             </div>
             <div class='form-group'>
-                <label for='nDigitalContact' class="control-label">Other contact details of next of kin: </label>
+                <label for='nDigitalContact' class="control-label">Other contact details of next of kin</label>
                 <br/>
                 <textarea class="form-control" name="nDigitalContact" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Address of next of kin: </label>
+                <label for='nAddress' class="control-label">Address of next of kin</label>
                 <br/>
                 <textarea class="form-control" name="nNOKAddress" rows="3"  ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nProofDoc' class="control-label">What docs attesting next of kin?: </label>
+                <label for='nProofDoc' class="control-label">What docs attesting next of kin?</label>
                 <br/>
                 <textarea class="form-control" name="nProofDoc" rows="3"  ></textarea>
             </div>
@@ -2220,7 +2229,7 @@
                 <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
@@ -2252,38 +2261,38 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nName' class="control-label">Name of family member<span style="color: red">*</span>: </label>
+                <label for='nName' class="control-label"><span style="color: red">*</span> Name of family member</label>
                 <br/>
                 <input class="form-control" type='text' name="nName" required>
             </div>
             <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship of family member to worker: </label>
+                <label for='nRelation' class="control-label">Relationship of family member to worker</label>
                 <br/>
                 <input class="form-control" type='text' name="nRelation">
             </div>
             <div class='form-group'>
-                <label for='nAddress' class="control-label">Is the family member in Singapore?: </label>
+                <label for='nAddress' class="control-label">Is the family member in Singapore?</label>
                 <br/>
                 <input class="form-control" type='text' name="nFamilyAddress">
             </div>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Phone number of family member: </label>
+                <label for='nPhNum' class="control-label">Phone number of family member</label>
                 <br/>
                 <input class="form-control" type="text" name="nFamilyPhNum">
             </div>
             <div class='form-group'>
-                <label for='nDigitalContact' class="control-label">Other contact details of family member: </label>
+                <label for='nDigitalContact' class="control-label">Other contact details of family member</label>
                 <br/>
                 <textarea class="form-control" name="nDigitalContact" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about family member: </label>
+                <label for='nRemark' class="control-label">Remark about family member</label>
 
                 <br/>
                 <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
@@ -2315,27 +2324,27 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nName' class="control-label">Name of friend in Singapore<span style="color: red">*</span>: </label>
+                <label for='nName' class="control-label"><span style="color: red">*</span> Name of friend in Singapore</label>
                 <br/>
                 <input class="form-control" type='text' name="nName" required>
             </div>
             <div class='form-group'>
-                <label for='nPhNum' class="control-label">Phone number of friend:</label>
+                <label for='nPhNum' class="control-label">Phone number of friend</label>
                 <br/>
                 <input class="form-control" type="text" name="nFriendPhNum">
             </div>
             <div class='form-group'>
-                <label for='nRelation' class="control-label">Relationship to worker: </label>
+                <label for='nRelation' class="control-label">Relationship to worker</label>
                 <br/>
                 <input class="form-control" type='text' name="nRelation">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about friend: </label>
+                <label for='nRemark' class="control-label">Remark about friend</label>
                 <br/>
                 <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
@@ -2371,7 +2380,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nMainLanguage' class="control-label">Worker's main language<span style="color: red">*</span>: </label>
+                <label for='nMainLanguage' class="control-label"><span style="color: red">*</span> Worker's main language</label>
                 <br/>
                 <select class="form-control" id="mainLang" name="nMainLanguage">
                     <option value="" selected>Select language...</option>
@@ -2391,7 +2400,7 @@
                 <textarea class="form-control" name="nLanguageMore" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nEnglishStandard' class="control-label">Spoken English standard<span style="color: red">*</span>: </label>
+                <label for='nEnglishStandard' class="control-label"><span style="color: red">*</span> Spoken English standard</label>
                 <br/>
                 <select class="form-control" id="digitalContactType" name="nEnglishStandard">
                     <option value="" selected>Select English standard...</option>
@@ -2407,7 +2416,7 @@
                 </select>
             </div>
             <div class='form-group'>
-                <label for='fremark' class="control-label">Remark about language: </label>
+                <label for='fremark' class="control-label">Remark about language</label>
                 <br/>
                 <textarea class="form-control" name="nRemark" rows="3" ></textarea>
             </div>
@@ -2438,47 +2447,47 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nBankAcctName' class="control-label">Bank account name<span style="color: red">*</span>: </label>
+                <label for='nBankAcctName' class="control-label"><span style="color: red">*</span> Bank account name</label>
                 <br/>
                 <input class="form-control" type='text' name="nBankAcctName" required>
             </div>
             <div class='form-group'>
-                <label for='nBankAcctNum' class="control-label">Bank account number<span style="color: red">*</span>: </label>
+                <label for='nBankAcctNum' class="control-label"><span style="color: red">*</span> Bank account number</label>
                 <br/>
                 <input class="form-control" type='text' name="nBankAcctNum" required>
             </div>
             <div class='form-group'>
-                <label for='nBankName' class="control-label">Bank name<span style="color: red">*</span>: </label>
+                <label for='nBankName' class="control-label"><span style="color: red">*</span> Bank name</label>
                 <br/>
                 <input class="form-control" type='text' name="nBankName" required>
             </div>
             <div class='form-group'>
-                <label for='nBankBranch' class="control-label">Bank branch name: </label>
+                <label for='nBankBranch' class="control-label">Bank branch name</label>
                 <br/>
                 <input class="form-control" type="text" name="nBankBranch">
             </div>
             <div class='form-group'>
-                <label for='nBankBranchCode' class="control-label">Bank branch code: </label>
+                <label for='nBankBranchCode' class="control-label">Bank branch code</label>
                 <br/>
                 <input class="form-control" type='text' name="nBankBranchCode" >
             </div>
             <div class='form-group'>
-                <label for='nBankBranchAddress' class="control-label">Bank branch address: </label>
+                <label for='nBankBranchAddress' class="control-label">Bank branch address</label>
                 <br/>
                 <textarea class="form-control" name="nBankBranchAddress" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nBankSwift' class="control-label">Bank swift code: </label>
+                <label for='nBankSwift' class="control-label">Bank swift code</label>
                 <br/>
                 <input class="form-control" type='text' name="nBankSwift">
             </div>
             <div class='form-group'>
-                <label for='nRemark' class="control-label">Remark about bank account: </label>
+                <label for='nRemark' class="control-label">Remark about bank account</label>
                 <br/>
                 <textarea class="form-control" name="nRemark" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='nObseleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput dateToRemove col-md-9" type='text' name="nObseleteDate" style="width:90%">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
@@ -2516,7 +2525,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='npasstype' class="control-label">Pass type<span style="color: red">*</span>:</label>
+                <label for='npasstype' class="control-label"><span style="color: red">*</span> Pass type</label>
                 <br/>
                 <select class="form-control" id="passtype" name="npasstype">
                     <option value="" selected>Select from list...</option>
@@ -2532,51 +2541,54 @@
             </div>
 
             <div class="form-group" id="passtype_other_div">
-                <label for="passtypeMore" class="control-label">Explain if above is 'Other':</label><br/>
+                <label for="passtypeMore" class="control-label">Explain if above is 'Other'</label><br/>
                 <textarea class="form-control" name="npasstypeMore" rows="3"></textarea>
             </div>
 
             <div class='form-group'>
-                <label for='npassno' class="control-label">Pass number<span style="color: red">*</span>:</label>
+                <label for='npassno' class="control-label"><span style="color: red">*</span> Pass number</label>
                 <br/>
                 <input class="form-control" type='text' name="npassno" >
             </div>
             <div class='form-group'>
-                <label for='napdate' class="control-label">Pass application date:</label>
+                <label for='napdate' class="control-label">Pass application date</label>
                 <br/>
                 <input class="form-control dateInput apdateToRemove col-md-9" type='text' name="napdate" style="width:90%" >
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="ap" style="width:10%;">
                     <span class="glyphicon glyphicon-remove"></span>
                 </div>
+                <br/><br/>
             </div>
             <div class='form-group'>
-                <label for='nisdate' class="control-label">Pass issued date: </label>
+                <label for='nisdate' class="control-label">Pass issued date</label>
                 <br/>
                 <input class="form-control startDate isdateToRemove col-md-9" type='text' name="nisdate" style="width:90%" >
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="is" style="width:10%;">
                     <span class="glyphicon glyphicon-remove"></span>
                 </div>
+                <br/><br/>
             </div>
             <div class='form-group'>
-                <label for='nexdate' class="control-label">Pass expiry date: </label>
+                <label for='nexdate' class="control-label">Pass expiry date</label>
                 <br/>
                 <input class="form-control endDate exdateToRemove col-md-9" type='text' name="nexdate" style="width:90%" >
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="ex" style="width:10%;">
                     <span class="glyphicon glyphicon-remove"></span>
                 </div>
+                <br/><br/>
             </div>
             <div class='form-group'>
-                <label for='nissuer' class="control-label">Pass issuing agency:</label>
+                <label for='nissuer' class="control-label">Pass issuing agency</label>
                 <br/>
                 <input class="form-control" type='text' name="nissuer" >
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about pass: </label>
+                <label for='nremark' class="control-label">Remarks about pass</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"  ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nobsoleteDate' class="control-label">Date discovered to be obsolete: </label>
+                <label for='nobsoleteDate' class="control-label">Date discovered to be obsolete</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="nobsoleteDate" >
             </div>
@@ -2603,32 +2615,32 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nname' class="control-label">Official name of employer<span style="color: red">*</span>:</label>
+                <label for='nname' class="control-label"><span style="color: red">*</span> Official name of employer</label>
                 <br/>
                 <input class="form-control" type='text' name="nname" required>
             </div>
             <div class='form-group'>
-                <label for='nempid' class="control-label">ID of employer:</label>
+                <label for='nempid' class="control-label">ID of employer</label>
                 <br/>
                 <input class="form-control" type='text' name="nempid">
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Employer address: </label>
+                <label for='nremark' class="control-label">Employer address</label>
                 <br/>
                 <textarea class="form-control" name="naddress" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='ncontact' class="control-label">Employer Phone, Email contacts:</label>
+                <label for='ncontact' class="control-label">Employer Phone, Email contacts</label>
                 <br/>
                 <textarea class="form-control" name="ncontact" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nperson' class="control-label">Key persons in employer:</label>
+                <label for='nperson' class="control-label">Key persons in employer</label>
                 <br/>
                 <textarea class="form-control" name="nperson" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about employer: </label>
+                <label for='nremark' class="control-label">Remarks about employer</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -2656,62 +2668,62 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ncontdate' class="control-label">Contract date<span style="color: red">*</span>:</label>
+                <label for='ncontdate' class="control-label"><span style="color: red">*</span> Contract date</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ncontdate" value="<%= sdf.format(today)%>">
             </div>
             <div class='form-group'>
-                <label for='nlocation' class="control-label">Where contract signed: </label>
+                <label for='nlocation' class="control-label">Where contract signed</label>
                 <br/>
                 <input class="form-control" type='text' name="nlocation">
             </div>
             <div class='form-group'>
-                <label for='nlanguage' class="control-label">Contract language:</label>
+                <label for='nlanguage' class="control-label">Contract language</label>
                 <br/>
                 <input class="form-control" type='text' name="nlanguage">
             </div>
             <div class='form-group'>
-                <label for='nopname' class="control-label">Name of opposite contracting party<span style="color: red">*</span>:</label>
+                <label for='nopname' class="control-label"><span style="color: red">*</span> Name of opposite contracting party</label>
                 <br/>
                 <input class="form-control" type='text' name="nopname">
             </div>
             <div class='form-group'>
-                <label for='noprelation' class="control-label">Relationship of opposite contracting party to job: </label>
+                <label for='noprelation' class="control-label">Relationship of opposite contracting party to job</label>
                 <br/>
                 <textarea class="form-control" name="noprelation" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='noccupation' class="control-label">Occupation stated in contract: </label>
+                <label for='noccupation' class="control-label">Occupation stated in contract</label>
                 <br/>
                 <textarea class="form-control" name="noccupation" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nsalary' class="control-label">Basic salary: </label>
+                <label for='nsalary' class="control-label">Basic salary</label>
                 <br/>
                 <input class="form-control" type='text' name="nsalary">
             </div>
             <div class='form-group'>
-                <label for='nallowance' class="control-label">Allowance details: </label>
+                <label for='nallowance' class="control-label">Allowance details</label>
                 <br/>
                 <textarea class="form-control" name="nallowance" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='ndeduction' class="control-label">Deductions details: </label>
+                <label for='ndeduction' class="control-label">Deductions details</label>
                 <br/>
                 <textarea class="form-control" name="ndeduction" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nduration' class="control-label">Length of contract: </label>
+                <label for='nduration' class="control-label">Length of contract</label>
                 <br/>
                 <input class="form-control" type='text' name="nduration">
             </div>
             <div class='form-group'>
-                <label for='nduress' class="control-label">Describe if signed under duress or misrepresentation: </label>
+                <label for='nduress' class="control-label">Describe if signed under duress or misrepresentation</label>
                 <br/>
                 <textarea class="form-control" name="nduress" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about contract: </label>
+                <label for='nremark' class="control-label">Remarks about contract</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
@@ -2742,17 +2754,17 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ncompany' class="control-label">Agent company name<span style="color: red">*</span>:</label>
+                <label for='ncompany' class="control-label"><span style="color: red">*</span> Agent company name</label>
                 <br/>
                 <input class="form-control" type='text' name="ncompany" required>
             </div>
             <div class='form-group'>
-                <label for='nperson' class="control-label">Agent key person name:</label>
+                <label for='nperson' class="control-label">Agent key person name</label>
                 <br/>
                 <input class="form-control" type='text' name="nagperson">
             </div>
             <div class='form-group'>
-                <label for='nlocation' class="control-label">Location of agent: </label>
+                <label for='nlocation' class="control-label">Location of agent</label>
                 <br/>
                 <select class="form-control" id="agentLocation" name="naglocation">
                     <option value="" selected>Select from list...</option>
@@ -2767,32 +2779,32 @@
                 </select>
             </div>
             <div class='form-group' id="agentLocation_other_div" >
-                <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
+                <label for='nhowMore' class="control-label">Explain if above is 'Other'</label>
                 <br/>
                 <textarea class="form-control" name="naglocationMore" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='naddress' class="control-label">Agent address: </label>
+                <label for='naddress' class="control-label">Agent address</label>
                 <br/>
                 <textarea class="form-control" name="naddress" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='ncontact' class="control-label">Agent phone/email contact: </label>
+                <label for='ncontact' class="control-label">Agent phone/email contact</label>
                 <br/>
                 <textarea class="form-control" name="ncontact" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='namtpaid' class="control-label">Amount paid to this agent(S$):</label>
+                <label for='namtpaid' class="control-label">Amount paid to this agent(S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="namtpaid">
             </div>
             <div class='form-group'>
-                <label for='namtowed' class="control-label">Amount Owed to this agent at the start of work(S$):</label>
+                <label for='namtowed' class="control-label">Amount Owed to this agent at the start of work(S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="namtowed">
             </div>
             <div class='form-group'>
-                <label for='nfeeshared' class="control-label">Any suspicion fee was shared with others?:</label>
+                <label for='nfeeshared' class="control-label">Any suspicion fee was shared with others?</label>
                 <br/>
                 <textarea class="form-control" name="nfeeshared" rows="3" ></textarea>
             </div>
@@ -2802,32 +2814,32 @@
                 <input class="form-control" type='text' name="nfeetraining">
             </div>
             <div class='form-group'>
-                <label for='nfeeairfare' class="control-label">Did fee include airfare?: </label>
+                <label for='nfeeairfare' class="control-label">Did fee include airfare?</label>
                 <br/>
                 <input class="form-control" type='text' name="nfeeairfare">
             </div>
             <div class='form-group'>
-                <label for='nfeewhen' class="control-label">When agent fee paid: </label>
+                <label for='nfeewhen' class="control-label">When agent fee paid</label>
                 <br/>
                 <input class="form-control" type='text' name="nfeewhen">
             </div>
             <div class='form-group'>
-                <label for='nfeewhere' class="control-label">Where agent fee paid: </label>
+                <label for='nfeewhere' class="control-label">Where agent fee paid</label>
                 <br/>
                 <input class="form-control" type='text' name="nfeewhere">
             </div>
             <div class='form-group'>
-                <label for='nfeerepay' class="control-label">Repayment Plan if fee owed: </label>
+                <label for='nfeerepay' class="control-label">Repayment Plan if fee owed</label>
                 <br/>
                 <textarea class="form-control" name="nfeerepay" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nemp' class="control-label">Employer that this agent placed worker to: </label>
+                <label for='nemp' class="control-label">Employer that this agent placed worker to</label>
                 <br/>
                 <textarea class="form-control" name="nemp" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Agent remarks: </label>
+                <label for='nremark' class="control-label">Agent remarks</label>
                 <br/>
                 <textarea class="form-control" name="nagremark" rows="3" ></textarea>
             </div>
@@ -2859,27 +2871,27 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nname' class="control-label">Name of giver of verbal assurance<span style="color: red">*</span>:</label>
+                <label for='nname' class="control-label"><span style="color: red">*</span> Name of giver of verbal assurance</label>
                 <br/>
                 <input class="form-control" type='text' name="nname" required>
             </div>
             <div class='form-group'>
-                <label for='nrelationship' class="control-label">Relationship of giver to worker or agent or employer:</label>
+                <label for='nrelationship' class="control-label">Relationship of giver to worker or agent or employer</label>
                 <br/>
                 <textarea class="form-control" name="nrelation" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nvaWhen' class="control-label">When was verbal assurance given?: </label>
+                <label for='nvaWhen' class="control-label">When was verbal assurance given?</label>
                 <br/>
                 <input class="form-control" type='text' name="nvaWhen">
             </div>
             <div class='form-group'>
-                <label for='nvaWhere' class="control-label">Where was verbal assurance given?: </label>
+                <label for='nvaWhere' class="control-label">Where was verbal assurance given?</label>
                 <br/>
                 <input class="form-control" type='text' name="nvaWhere">
             </div>
             <div class='form-group'>
-                <label for='nvaContent' class="control-label">Content of verbal assurance: </label>
+                <label for='nvaContent' class="control-label">Content of verbal assurance</label>
                 <br/>
                 <textarea class="form-control" name="nvaContent" rows="3" ></textarea>
             </div>
@@ -2913,7 +2925,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nwpType' class="control-label">Type of workplace<span style="color: red">*</span>:</label>
+                <label for='nwpType' class="control-label"><span style="color: red">*</span> Type of workplace</label>
                 <br/>
                 <select class="form-control" id="workplaceType" name="nwpType" >
                     <option value="" selected>Select from list...</option>
@@ -2928,27 +2940,27 @@
                 </select>
             </div>
             <div class='form-group' id="wrokplaceType_other_div" >
-                <label for='nwpTypeMore' class="control-label">Explain if above is 'Other': </label>
+                <label for='nwpTypeMore' class="control-label">Explain if above is 'Other'</label>
                 <br/>
                 <textarea class="form-control" name="nwpTypeMore" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nwhose' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?:</label>
+                <label for='nwhose' class="control-label">Is workplace controlled by employer stated on workpass? If not, who?</label>
                 <br/>
                 <input class="form-control" type='text' name="nwhose" >
             </div>
             <div class='form-group'>
-                <label for='npersonDetails' class="control-label">Key persons controlling workplace & contact Details: </label>
+                <label for='npersonDetails' class="control-label">Key persons controlling workplace & contact Details</label>
                 <br/>
                 <textarea class="form-control" name="npersonDetails"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nrelationship' class="control-label">Relationship of workplace to employer: </label>
+                <label for='nrelationship' class="control-label">Relationship of workplace to employer</label>
                 <br/>
                 <input class="form-control" type='text' name="nrelation" >
             </div>
             <div class='form-group'>
-                <label for='ndirect' class="control-label">Who directed worker to this workplace?<span style="color: red">*</span>: </label>
+                <label for='ndirect' class="control-label"><span style="color: red">*</span> Who directed worker to this workplace?</label>
                 <br/>
                 <select class="form-control" id="direct" name="ndirect" >
                     <option value="" selected>Select from list...</option>
@@ -2964,32 +2976,32 @@
 
             </div>
             <div class='form-group' id="direct_other_div" >
-                <label for='ndirectMore' class="control-label">Explain if above is 'Other': </label>
+                <label for='ndirectMore' class="control-label">Explain if above is 'Other'</label>
                 <br/>
                 <textarea class="form-control" name="ndirectMore" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nstart' class="control-label">When start at workplace?: </label>
+                <label for='nstart' class="control-label">When start at workplace?</label>
                 <br/>
                 <input class="form-control" type='text' name="nstart" >
             </div>
             <div class='form-group'>
-                <label for='nend' class="control-label">When cease working at workplace?: </label>
+                <label for='nend' class="control-label">When cease working at workplace?</label>
                 <br/>
                 <input class="form-control" type='text' name="nend" >
             </div>
             <div class='form-group'>
-                <label for='ncondition' class="control-label">Work conditions at the workplace: </label>
+                <label for='ncondition' class="control-label">Work conditions at the workplace</label>
                 <br/>
                 <textarea class="form-control" name="ncondition" rows="3""></textarea>
             </div>
             <div class='form-group'>
-                <label for='nsafety' class="control-label">Safety issues at workplace: </label>
+                <label for='nsafety' class="control-label">Safety issues at workplace</label>
                 <br/>
                 <textarea class="form-control" name="nsafety" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about workplace: </label>
+                <label for='nremark' class="control-label">Remarks about workplace</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
@@ -3018,7 +3030,7 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nhow' class="control-label">How did worker get into job defined in job profile?<span style="color: red">*</span>:</label>
+                <label for='nhow' class="control-label"><span style="color: red">*</span> How did worker get into job defined in job profile?</label>
                 <br/>
                 <select class="form-control" id="workhistHow" name="nhow" >
                     <option value="" selected>Select from list...</option>
@@ -3033,17 +3045,14 @@
                 </select>
             </div>
             <div class='form-group' id="workhistHow_other_div" >
-                <label for='nhowMore' class="control-label">Explain if above is 'Other': </label>
+                <label for='nhowMore' class="control-label">Explain if above is 'Other'</label>
                 <br/>
                 <textarea class="form-control" name="nhowMore" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='narrivalDate' class="control-label">Date arrived Singapore for this job:</label>
+                <label for='narrivalDate' class="control-label">When worker arrived Singapore for this job?</label>
                 <br/>
-                <input class="form-control dateInput dateToRemove col-md-9" type='text' name="narrivalDate" style="width:90%">
-                <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="" style="width:10%;">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </div>
+                <input class="form-control" type='text' name="narrivalDate" >
             </div>
             <div class='form-group'>
                 <label for='nisFirstJob' class="control-label">Is this first job in Singapore? </label>
@@ -3073,7 +3082,7 @@
                 <textarea class="form-control" name="nprevProb" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about work history: </label>
+                <label for='nremark' class="control-label">Remarks about work history</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
@@ -3104,7 +3113,7 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nisProvided' class="control-label">Accommodation provided by employer?<span style="color: red">*</span>:</label>
+                <label for='nisProvided' class="control-label"><span style="color: red">*</span> Accommodation provided by employer?</label>
                 <br/>
                 <select class="form-control" id="accomProvided" name="nisProvided"  >
                     <option value="" selected>Select from list...</option>
@@ -3120,12 +3129,12 @@
             </div>
 
             <div class='form-group' id="accomProvided_other_div" >
-                <label for='location' class="control-label">Explain if above is 'Other': </label>
+                <label for='location' class="control-label">Explain if above is 'Other'</label>
                 <br/>
                 <textarea class="form-control" name="nisProvidedMore" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='ntype' class="control-label">Type of accommodation:</label>
+                <label for='ntype' class="control-label">Type of accommodation</label>
                 <br/>
 
                 <select class="form-control" id="accomType" name="ntype"  >
@@ -3141,40 +3150,40 @@
                 </select>
             </div>
             <div class='form-group' id="accomtype_other_div" >
-                <label for='location' class="control-label">Explain if above is 'Other': </label>
+                <label for='location' class="control-label">Explain if above is 'Other'</label>
                 <br/>
                 <textarea class="form-control" name="ntypeMore" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nlocation' class="control-label">Location of accommodation: </label>
+                <label for='nlocation' class="control-label">Location of accommodation</label>
                 <br/>
                 <textarea class="form-control" name="nlocationAccom" rows="3" ></textarea>
             </div>
 
             <div class='form-group'>
-                <label for='ncondition' class="control-label">Conditions at living quarters:</label>
+                <label for='ncondition' class="control-label">Conditions at living quarters</label>
                 <br/>
                 <textarea class="form-control" name="ncondition" rows="3" ></textarea>
             </div>
 
             <div class='form-group'>
-                <label for='naccCharged' class="control-label">Cost charged by employer per month S$:</label>
+                <label for='naccCharged' class="control-label">Cost charged by employer per month S$</label>
                 <br/>
                 <input class="form-control" type='text' name="naccCharged">
             </div>
             <div class='form-group'>
-                <label for='naccPaid' class="control-label">Cost paid by self per month S$:</label>
+                <label for='naccPaid' class="control-label">Cost paid by self per month S$</label>
                 <br/>
 
                 <input class="form-control" type='text' name="naccPaid">
             </div>
             <div class='form-group'>
-                <label for='nmeal' class="control-label">Meal arrangements:</label>
+                <label for='nmeal' class="control-label">Meal arrangements</label>
                 <br/>
                 <textarea class="form-control" name="nmeal" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='nfrom' class="control-label">When start staying here?:</label>
+                <label for='nfrom' class="control-label">When start staying here?</label>
                 <br/>
                 <input class="form-control" type='text' name="nfrom">
             </div>
@@ -3184,7 +3193,7 @@
                 <input class="form-control" type='text' name="nto">
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about accommodation: </label>
+                <label for='nremark' class="control-label">Remarks about accommodation</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
@@ -3216,7 +3225,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nworkpassType' class="control-label">Workpass specified in IPA<span style="color: red">*</span>:</label>
+                <label for='nworkpassType' class="control-label"><span style="color: red">*</span> Workpass specified in IPA</label>
                 <br/>
                 <select class="form-control" id="ipapassType" name="nworkpassType">
                     <option value="" selected>Select from list...</option>
@@ -3233,12 +3242,12 @@
             </div>
 
             <div class='form-group' id='ipapassType_other_div' >
-                <label for='nworkpassTypeMore' class="control-label">Explain if above is 'other':</label>
+                <label for='nworkpassTypeMore' class="control-label">Explain if above is 'other'</label>
                 <br/>
                 <textarea class="form-control" name="nworkpassTypeMore" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nappDate' class="control-label">IPA application date:</label>
+                <label for='nappDate' class="control-label">IPA application date</label>
                 <br/>
                 <input class="form-control dateInput apdateToRemove col-md-9" type='text' name="nappDate" style="width:90%" >
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="ap" style="width:10%;">
@@ -3247,13 +3256,13 @@
 <br/><br/>
             </div>
             <div class='form-group'>
-                <label for='nempName' class="control-label">IPA employer name: </label>
+                <label for='nempName' class="control-label">IPA employer name</label>
                 <br/>
                 <input class="form-control" type='text' name="nempName">
             </div>
 
             <div class='form-group'>
-                <label for='nagentName' class="control-label">IPA agent name:</label>
+                <label for='nagentName' class="control-label">IPA agent name</label>
                 <br/>
                 <input class="form-control" type='text' name="nagentName">
             </div>
@@ -3274,27 +3283,27 @@
                 <input class="form-control" type='text' name="nperiods">
             </div>
             <div class='form-group'>
-                <label for='nbasicSalary' class="control-label">IPA basic monthly salary (S$):</label>
+                <label for='nbasicSalary' class="control-label">IPA basic monthly salary (S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="nbasicSalary">
             </div>
             <div class='form-group'>
-                <label for='ntotalAllowance' class="control-label">IPA total allowance(S$):</label>
+                <label for='ntotalAllowance' class="control-label">IPA total allowance(S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="ntotalAllowance">
             </div>
             <div class='form-group'>
-                <label for='nallowanceDetails' class="control-label">IPA allowance details:</label>
+                <label for='nallowanceDetails' class="control-label">IPA allowance details</label>
                 <br/>
                 <textarea class="form-control" name="nallowanceDetails" rows="3" ></textarea>
             </div>
             <div class='form-group'>
-                <label for='ndeduction' class="control-label">IPA total deduction(S$):</label>
+                <label for='ndeduction' class="control-label">IPA total deduction(S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="ntotalDeduction">
             </div>
             <div class='form-group'>
-                <label for='ndeductionDetails' class="control-label">IPA deduction details:</label>
+                <label for='ndeductionDetails' class="control-label">IPA deduction details</label>
                 <br/>
                 <textarea class="form-control" name="ndeductionDetails" rows="3" ></textarea>
             </div>
@@ -3307,7 +3316,7 @@
                 </select>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about IPA: </label>
+                <label for='nremark' class="control-label">Remarks about IPA</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3" ></textarea>
             </div>
@@ -3339,32 +3348,32 @@
 <form method="POST" id='policareport_pop_up' action="addProblemComplement.do" class="form complement_detailed_form problem_pop_up"  >
     <div class='add_comp'>
         <div class='form-group '>
-            <label for='date' class="control-label">Date police report made<span style="color: red">*</span>: </label>
+            <label for='date' class="control-label"><span style="color: red">*</span> Date police report made</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" value="<%= sdf.format(today)%>">
         </div>
         <div class='form-group '>
-            <label for='date' class="control-label">Police Station where report lodged: </label>
+            <label for='date' class="control-label">Police Station where report lodged</label>
             <br/>
             <input class="form-control" type='text' name="npoliceReportStation" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Accompanying TWC2 person: </label>
+            <label for='' class="control-label">Accompanying TWC2 person</label>
             <br/>
             <input class="form-control" type='text' name="npoliceReportPerson">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Police report ref number:</label>
+            <label for='' class="control-label">Police report ref number</label>
             <br/>
             <input class="form-control" type='text' name="npoliceReportRefNumber" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Details of police report: </label>
+            <label for='' class="control-label">Details of police report</label>
             <br/>
             <textarea class="form-control" name="npoliceReportDetails" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remarks about police report: </label>
+            <label for='' class="control-label">Remarks about police report</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -3392,17 +3401,17 @@
       class="form complement_detailed_form problem_pop_up"  >
     <div class='add_comp'>
         <div class='form-group '>
-            <label for='date' class="control-label">Date other complaint lodged<span style="color: red">*</span>: </label>
+            <label for='date' class="control-label"><span style="color: red">*</span> Date other complaint lodged</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>" >
         </div>
         <div class='form-group '>
-            <label for='date' class="control-label">Agency/authority to whom complaint addressed<span style="color: red">*</span>: </label>
+            <label for='date' class="control-label"><span style="color: red">*</span> Agency/authority to whom complaint addressed</label>
             <br/>
             <input class="form-control" type='text' name="ncomplaintAgency" >
         </div>
         <div class='form-group'>
-            <label for='complaintWho' class="control-label">This complaint is lodged by<span style="color: red">*</span>:</label>
+            <label for='complaintWho' class="control-label"><span style="color: red">*</span> This complaint is lodged by</label>
             <br/>
             <select class="form-control" id="complaintWho" name="ncomplaintWho">
                 <%
@@ -3420,12 +3429,12 @@
         </div>
 
         <div class='form-group' id="complaintWho_other_div" >
-            <label for='location' class="control-label">If TWC2 or third party, name of person lodging complaint: </label>
+            <label for='location' class="control-label">If TWC2 or third party, name of person lodging complaint</label>
             <br/>
             <input class="form-control" type='text' name="ncomplaintWhoMore">
         </div>
         <div class='form-group'>
-            <label for='complaintMode' class="control-label">Mode of lodging complaint:</label>
+            <label for='complaintMode' class="control-label">Mode of lodging complaint</label>
             <br/>
             <select class="form-control" id="complaintMode" name="ncomplaintMode" >
                 <option value="" selected>Select from list...</option>
@@ -3440,17 +3449,17 @@
             </select>
         </div>
         <div class='form-group' id="complaintMode_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other': </label>
+            <label for='location' class="control-label">Explain if above is 'Other'</label>
             <br/>
             <textarea class="form-control" name="ncomplaintModeMore" rows="3"></textarea>
         </div>
         <div class='form-group '>
-            <label for='date' class="control-label">Details of complaint lodged: </label>
+            <label for='date' class="control-label">Details of complaint lodged</label>
             <br/>
             <textarea class="form-control" name="ncomplaintDetails" rows="3"></textarea>
         </div>
         <div class='form-group '>
-            <label for='date' class="control-label">Remarks about this complaint: </label>
+            <label for='date' class="control-label">Remarks about this complaint</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -3477,12 +3486,12 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='ttrUpdate' class="control-label">Date of update<span style="color: red">*</span>: </label>
+            <label for='ttrUpdate' class="control-label"><span style="color: red">*</span> Date of update</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='nttrStatus' class="control-label">Transfer, TJS or repatriation status<span style="color: red">*</span>:</label>
+            <label for='nttrStatus' class="control-label"><span style="color: red">*</span> Transfer, TJS or repatriation status</label>
             <br/>
             <select class="form-control" id="ttrStatus" name="nttrStatus" >
                 <option value="" selected>Select from list...</option>
@@ -3497,27 +3506,27 @@
             </select>
         </div>
         <div class='form-group' id="ttrStatus_other_div" >
-            <label for='nttrStatusMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='nttrStatusMore' class="control-label">Explain if above is 'Other'</label>
             <br/>
             <textarea class="form-control" name="nttrStatusMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='ttrDepartureDate' class="control-label">Date of departure from Singapore: </label>
+            <label for='ttrDepartureDate' class="control-label">Date of departure from Singapore</label>
             <br/>
             <input class="form-control" type='text' name="nttrDepartureDate">
         </div>
         <div class='form-group'>
-            <label for='ttrEmployerName' class="control-label">Name of TJS or new employer: </label>
+            <label for='ttrEmployerName' class="control-label">Name of TJS or new employer</label>
             <br/>
             <input class="form-control" type='text' name="nttrEmployerName">
         </div>
         <div class='form-group'>
-            <label for='ttrJob' class="control-label">Description of TJS or new job : </label>
+            <label for='ttrJob' class="control-label">Description of TJS or new job </label>
             <br/>
             <textarea class="form-control" name="nttrJob" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='nremark' class="control-label">Remarks about transfer, TJS or repatriation: </label>
+            <label for='nremark' class="control-label">Remarks about transfer, TJS or repatriation</label>
             <br/>
             <textarea class="form-control" name="nttrremark" rows="3"></textarea>
         </div>
@@ -3548,12 +3557,12 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='nmilestoneCRDate' class="control-label">Date milestone reached<span style="color: red">*</span>: </label>
+            <label for='nmilestoneCRDate' class="control-label"><span style="color: red">*</span> Date milestone reached</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='nmilestoneCRReached' class="control-label">Milestone reached<span style="color: red">*</span>:</label>
+            <label for='nmilestoneCRReached' class="control-label"><span style="color: red">*</span> Milestone reached</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneCRReached">
                 <option value="" selected>Select from list...</option>
@@ -3569,22 +3578,22 @@
         </div>
 
         <div class='form-group' id="ncReached_other_div" >
-            <label for='nmilestoneCRReachedMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='nmilestoneCRReachedMore' class="control-label">Explain if above is 'Other'</label>
             <br/>
             <textarea class="form-control" name="nmilestoneCRReachedMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='milestoneCRCharges' class="control-label">Details of charges: </label>
+            <label for='milestoneCRCharges' class="control-label">Details of charges</label>
             <br/>
             <textarea class="form-control" name="nmilestoneCRCharges" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='milestoneCRSentence' class="control-label">Details of sentence: </label>
+            <label for='milestoneCRSentence' class="control-label">Details of sentence</label>
             <br/>
             <textarea class="form-control" name="nmilestoneCRSentence" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='remark' class="control-label">Remarks re milestone reached: </label>
+            <label for='remark' class="control-label">Remarks re milestone reached</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -3613,12 +3622,12 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='milestoneNCDate' class="control-label">Date milestone reached<span style="color: red">*</span>: </label>
+            <label for='milestoneNCDate' class="control-label"><span style="color: red">*</span> Date milestone reached</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='nmilestoneNCReached' class="control-label">Milestone reached<span style="color: red">*</span>:</label>
+            <label for='nmilestoneNCReached' class="control-label"><span style="color: red">*</span> Milestone reached</label>
             <br/>
             <select class="form-control" id="ncReached" name="nmilestoneNCReached" >
                 <option value="" selected>Select from list...</option>
@@ -3634,12 +3643,12 @@
         </div>
 
         <div class='form-group' id="ncReached_other_div" >
-            <label for='nmilestoneNCReachedMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='nmilestoneNCReachedMore' class="control-label">Explain if above is 'Other'</label>
             <br/>
             <textarea class="form-control" name="nmilestoneNCReachedMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='milestoneNCRem' class="control-label">Remarks about milestone reached: </label>
+            <label for='milestoneNCRem' class="control-label">Remarks about milestone reached</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -3669,62 +3678,62 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='r2rDate' class="control-label">Date of appointment<span style="color: red">*</span>: </label>
+            <label for='r2rDate' class="control-label"><span style="color: red">*</span> Date of appointment</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='r2rTime' class="control-label">Time of appointment: </label>
+            <label for='r2rTime' class="control-label">Time of appointment</label>
             <br/>
             <input class="form-control" type='text' name="nr2rTime">
         </div>
         <div class='form-group'>
-            <label for='r2rHosp' class="control-label">Hospital for appointment<span style="color: red">*</span>: </label>
+            <label for='r2rHosp' class="control-label"><span style="color: red">*</span>Hospital for appointment</label>
             <br/>
             <input class="form-control" type='text' name="nr2rHosp">
         </div>
         <div class='form-group'>
-            <label for='r2rDept' class="control-label">Department/doctor for appointment: </label>
+            <label for='r2rDept' class="control-label">Department/doctor for appointment</label>
             <br/>
             <input class="form-control" type='text' name="nr2rDept">
         </div>
         <div class='form-group'>
-            <label for='r2r1' class="control-label">R2R first volunteer: </label>
+            <label for='r2r1' class="control-label">R2R first volunteer</label>
             <br/>
             <input class="form-control" type='text' name="nr2r1">
         </div>
         <div class='form-group'>
-            <label for='r2r2' class="control-label">R2R second volunteer: </label>
+            <label for='r2r2' class="control-label">R2R second volunteer</label>
             <br/>
             <input class="form-control" type='text' name="nr2r2">
         </div>
         <div class='form-group'>
-            <label for='r2rPurpose' class="control-label">Purpose of appointment: </label>
+            <label for='r2rPurpose' class="control-label">Purpose of appointment</label>
             <br/>
             <input class="form-control" type='text' name="nr2rPurpose">
         </div>
         <div class='form-group'>
-            <label for='r2rPreApptNotes' class="control-label">Pre-appointment notes: </label>
+            <label for='r2rPreApptNotes' class="control-label">Pre-appointment notes</label>
             <br/>
             <textarea class="form-control" name="nr2rPreApptNotes" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='r2rPostApptNotes' class="control-label">Post-appointment notes: </label>
+            <label for='r2rPostApptNotes' class="control-label">Post-appointment notes</label>
             <br/>
             <textarea class="form-control" name="nr2rPostApptNotes" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='r2rFeedback' class="control-label">Feedback: </label>
+            <label for='r2rFeedback' class="control-label">Feedback</label>
             <br/>
             <textarea class="form-control" name="nr2rFeedback" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='r2rMed' class="control-label">Medical cost of this appt(S$): </label>
+            <label for='r2rMed' class="control-label">Medical cost of this appt(S$)</label>
             <br/>
             <input class="form-control" type='text' name="nr2rMed">
         </div>
         <div class='form-group'>
-            <label for='r2rOut' class="control-label">How much paid by volunteer: </label>
+            <label for='r2rOut' class="control-label">How much paid by volunteer</label>
             <br/>
             <input class="form-control" type='text' name="nr2rOut">
         </div>
@@ -3753,12 +3762,12 @@
     <!--add-->
     <div class='add_comp'>
         <div class='form-group'>
-            <label for='' class="control-label">Date of update<span style="color: red">*</span>: </label>
+            <label for='' class="control-label"><span style="color: red">*</span> Date of update</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Current MC or light Duty status<span style="color: red">*</span>:</label>
+            <label for='' class="control-label"><span style="color: red">*</span> Current MC or light Duty status</label>
             <br/>
             <select class="form-control" id="nmcStatus" name="nmcStatus">
                 <option value="" selected>Select from list...</option>
@@ -3773,21 +3782,21 @@
             </select>
         </div>
         <div class='form-group'>
-            <label for='location' class="control-label">Explain if above is 'Other': </label>
+            <label for='location' class="control-label">Explain if above is 'Other'</label>
             <br/>
             <textarea class="form-control" name="nmcStatusMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Latest known MC expiry date: </label>
+            <label for='' class="control-label">Latest known MC expiry date</label>
             <br/>
             <input class="form-control dateInput" type='text' name="nexpDate">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Cumulative MC days so far:</label>
+            <label for='' class="control-label">Cumulative MC days so far</label>
             <input class="form-control" type='text' name="nexpCum">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Remarks about MC status: </label>
+            <label for='' class="control-label">Remarks about MC status</label>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
@@ -3817,12 +3826,12 @@
     <!--add-->
     <div class='add_comp'>
         <div class='form-group'>
-            <label for='' class="control-label">Date of update<span style="color: red">*</span>: </label>
+            <label for='' class="control-label"><span style="color: red">*</span> Date of update</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Current hospital<span style="color: red">*</span>:</label>
+            <label for='' class="control-label"><span style="color: red">*</span> Current hospital</label>
             <br/>
             <select class="form-control" id="nhospName" name="nhospName" >
                 <option value="" selected>Select from list...</option>
@@ -3836,17 +3845,17 @@
             </select>
         </div>
         <div class='form-group' id="nhospName_other_div" >
-            <label for='nhospNameMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='nhospNameMore' class="control-label">Explain if above is 'Other'</label>
             <br/>
             <textarea class="form-control" name="nhospNameMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='nhospDoctor' class="control-label">Department/doctor within hospital if known: </label>
+            <label for='nhospDoctor' class="control-label">Department/doctor within hospital if known</label>
             <br/>
             <input class="form-control" type='text' name="nhospDoctor">
         </div>
         <div class='form-group'>
-            <label for='nremark' class="control-label">Remarks about hospital: </label>
+            <label for='nremark' class="control-label">Remarks about hospital</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -3872,7 +3881,7 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date MOM notified<span style="color: red">*</span>:</label>
+                <label for='ndate' class="control-label"><span style="color: red">*</span> Date MOM notified</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
             </div>
@@ -3897,7 +3906,7 @@
                 <textarea class="form-control" name="nbasis" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='remark' class="control-label">Remarks about medical claim:</label>
+                <label for='remark' class="control-label">Remarks about medical claim</label>
                 <br/>
                 <textarea class="form-control" name="nNWicaremark" rows="3"></textarea>
             </div>
@@ -3924,12 +3933,12 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='nwicaUpdate' class="control-label">Date of update<span style="color: red">*</span>: </label>
+            <label for='nwicaUpdate' class="control-label"><span style="color: red">*</span> Date of update</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='nwicaStatus' class="control-label">WICA status <span style="color: red">*</span>:</label>
+            <label for='nwicaStatus' class="control-label"><span style="color: red">*</span> WICA status </label>
             <br/>
             <select class="form-control" id="nwicaStatus" name="nwicaStatus" >
                 <option value="" selected>Select from list...</option>
@@ -3945,22 +3954,22 @@
         </div>
 
         <div class='form-group' id="wicaStatus_other_div" >
-            <label for='nwicaStatusMore' class="control-label">Explain if above is 'Other': </label>
+            <label for='nwicaStatusMore' class="control-label">Explain if above is 'Other'</label>
             <br/>
             <textarea class="form-control" name="nwicaStatusMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='nwicaPoints' class="control-label">WICA points: </label>
+            <label for='nwicaPoints' class="control-label">WICA points</label>
             <br/>
             <input class="form-control" type='text' name="nwicaPoints">
         </div>
         <div class='form-group'>
-            <label for='nwicaDollars' class="control-label">WICA S$ compensation: </label>
+            <label for='nwicaDollars' class="control-label">WICA S$ compensation</label>
             <br/>
             <input class="form-control" type='text' name="nwicaDollars">
         </div>
         <div class='form-group'>
-            <label for='nwicaRemarks' class="control-label">Remarks about WICA status : </label>
+            <label for='nwicaRemarks' class="control-label">Remarks about WICA status </label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -3988,32 +3997,32 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span>:</label>
+                <label for='ndate' class="control-label">Date claim lodged at MOM</label>
                 <br/>
-                <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
+                <input class="form-control dateInput" type='text' name="ndateWica">
             </div>
             <div class='form-group'>
-                <label for='nrefNumber' class="control-label">WICA ref number:</label>
+                <label for='nrefNumber' class="control-label"><span style="color: red">*</span> WICA reference number</label>
                 <br/>
                 <input class="form-control" type='text' name="nrefNumber">
             </div>
             <div class='form-group'>
-                <label for='ninsurer' class="control-label">WICA insurance company:</label>
+                <label for='ninsurer' class="control-label">WICA insurance company</label>
                 <br/>
                 <input class="form-control" type='text' name="ninsurer">
             </div>
             <div class='form-group'>
-                <label for='npolicyNumber' class="control-label">WICA insurance policy number:</label>
+                <label for='npolicyNumber' class="control-label">WICA insurance policy number</label>
                 <br/>
                 <input class="form-control" type='text' name="npolicyNumber">
             </div>
             <div class='form-group'>
-                <label for='nreason' class="control-label">State whether initially lodged by lawyer, worker or TWC2:</label>
+                <label for='nreason' class="control-label">State whether initially lodged by lawyer, worker or TWC2</label>
                 <br/>
                 <textarea class="form-control" name="nreason" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about WICA claim:</label>
+                <label for='nremark' class="control-label">Remarks about WICA claim</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -4042,17 +4051,17 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nstartTime' class="control-label">When illness began<span style="color: red">*</span>:</label>
+                <label for='nstartTime' class="control-label"><span style="color: red">*</span> When illness began</label>
                 <br/>
                 <input class="form-control" type='text' name="nstartTime">
             </div>
             <div class='form-group'>
-                <label for='ndiagnoseTime' class="control-label">When illness diagnosed:</label>
+                <label for='ndiagnoseTime' class="control-label">When illness diagnosed</label>
                 <br/>
                 <input class="form-control" type='text' name="ndiagnoseTime">
             </div>
             <div class='form-group'>
-                <label for='ndiagnosePerson' class="control-label">Who (doctor/hospital name) diagnosed:</label>
+                <label for='ndiagnosePerson' class="control-label">Who (doctor/hospital name) diagnosed</label>
                 <br/>
                 <input class="form-control" type='text' name="ndiagnosePerson">
             </div>
@@ -4076,7 +4085,7 @@
                 <textarea class="form-control" name="nworkRelatedYes" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about illness history:</label>
+                <label for='nremark' class="control-label">Remarks about illness history</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -4106,12 +4115,12 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date of injury<span style="color: red">*</span>:</label>
+                <label for='ndate' class="control-label"><span style="color: red">*</span> Date of injury</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ndate" value="<%=sdf.format(today)%>">
             </div>
             <div class='form-group'>
-                <label for='ntime' class="control-label">Approx time of injury: </label>
+                <label for='ntime' class="control-label">Approx time of injury</label>
                 <br/>
                 <input class="form-control" type='text' name="ntime">
             </div>
@@ -4162,7 +4171,7 @@
                 </select>
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about injury history:</label>
+                <label for='nremark' class="control-label">Remarks about injury history</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -4189,17 +4198,17 @@
 <form method="POST" action="addProblemComplement.do"  id='casediscussion_pop_up' class="form complement_detailed_form problem_pop_up"  >
     <div class='add_comp'>
         <div class='form-group'>
-            <label for='' class="control-label">Date of discussion, assistance or information-receipt<span style="color: red">*</span>: </label>
+            <label for='' class="control-label"><span style="color: red">*</span> Date of discussion, assistance or information-receipt</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate"  value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Approx time of event: </label>
+            <label for='' class="control-label">Approx time of event</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTime" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Mode/Location of discussion, assistance or information-receipt<span style="color: red">*</span>:</label>
+            <label for='' class="control-label"><span style="color: red">*</span> Mode/Location of discussion, assistance or information-receipt</label>
             <br/>
             <select class="form-control" id="discussionWhere" name="ndiscussionWhere" >
                 <option value="" selected>Select from list...</option>
@@ -4214,12 +4223,12 @@
             </select>
         </div>
         <div class='form-group' id="discussionWhere_other_div" >
-            <label for='location' class="control-label">Explain if above is 'Other': </label>
+            <label for='location' class="control-label">Explain if above is 'Other'</label>
             <br/>
             <textarea class="form-control" name="ndiscussionWhereMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Was worker participating:</label>
+            <label for='' class="control-label">Was worker participating</label>
             <br/>
             <select class="form-control" id="isworkerpresent" name="ndiscussionWorkerPresent">
                 <option selected>Yes</option>
@@ -4227,52 +4236,52 @@
             </select>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">TWC2 person consulted, assisting or informed<span style="color: red">*</span>: </label>
+            <label for='' class="control-label"><span style="color: red">*</span> TWC2 person consulted, assisting or informed</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTWC2P1" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Names of other TWC2 persons present:</label>
+            <label for='' class="control-label">Names of other TWC2 persons present</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTWC2P2" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Names of other persons present:</label>
+            <label for='' class="control-label">Names of other persons present</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionOtherPerson" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Name of translator(s) present:</label>
+            <label for='' class="control-label">Name of translator(s) present</label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTranslator" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Topic of discussion/information received<span style="color: red">*</span>:  </label>
+            <label for='' class="control-label"><span style="color: red">*</span> Topic of discussion/information received  </label>
             <br/>
             <input class="form-control" type='text' name="ndiscussionTopic" >
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Gist of discussion or new information received:</label>
+            <label for='' class="control-label">Gist of discussion or new information received</label>
             <br/>
             <textarea class="form-control" name="ndiscussionGist" rows="4"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Immediate assistance or referral provided:</label>
+            <label for='' class="control-label">Immediate assistance or referral provided</label>
             <br/>
             <textarea class="form-control" name="ndiscussionAssist" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Updated calculation of claim value: </label>
+            <label for='' class="control-label">Updated calculation of claim value</label>
             <br/>
             <textarea class="form-control" name="ndiscussionCal" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Action to follow: </label>
+            <label for='' class="control-label">Action to follow</label>
             <br/>
             <textarea class="form-control" name="ndiscussionAction" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='' class="control-label">Internal remarks about discussion:</label>
+            <label for='' class="control-label">Internal remarks about discussion</label>
             <br/>
             <textarea class="form-control" name="ninternalRemarks" rows="3"></textarea>
         </div>
@@ -4302,7 +4311,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='ndate' class="control-label">Date claim lodged at MOM<span style="color: red">*</span>:</label>
+                <label for='ndate' class="control-label"><span style="color: red">*</span> Date claim lodged at MOM</label>
                 <br/>
                 <input class="form-control dateInput" type='text' name="ndate" value='<%=sdf.format(today)%>'>
             </div>
@@ -4343,32 +4352,32 @@
     <div class='form-group'>
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nbasic' class="control-label">Describe complaint about basic salary incorrect or not paid<span style="color: red">*</span>:</label>
+                <label for='nbasic' class="control-label"><span style="color: red">*</span> Describe complaint about basic salary incorrect or not paid</label>
                 <br/>
                 <textarea class="form-control" name="nbasicSal" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='novertime' class="control-label">Describe complaint about overtime incorrect or not paid: </label>
+                <label for='novertime' class="control-label">Describe complaint about overtime incorrect or not paid</label>
                 <br/>
                 <textarea class="form-control" name="novertime" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nallowance' class="control-label">Describe complaint about allowance incorrect or not paid:</label>
+                <label for='nallowance' class="control-label">Describe complaint about allowance incorrect or not paid</label>
                 <br/>
                 <textarea class="form-control" name="nallowance" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='ndeduction' class="control-label">Describe complaint about deductions:</label>
+                <label for='ndeduction' class="control-label">Describe complaint about deductions</label>
                 <br/>
                 <textarea class="form-control" name="ndeduction" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nkickbacks' class="control-label">Describe complaint about kickbacks:</label>
+                <label for='nkickbacks' class="control-label">Describe complaint about kickbacks</label>
                 <br/>
                 <textarea class="form-control" name="nkickbacks" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='nother' class="control-label">Other related details:</label>
+                <label for='nother' class="control-label">Other related details</label>
                 <br/>
                 <textarea class="form-control" name="notherSal" rows="3"></textarea>
             </div>
@@ -4393,17 +4402,17 @@
                 <textarea class="form-control" name="nmodeMore" rows="3"></textarea>
             </div>
             <div class='form-group'>
-                <label for='ntotalLoss' class="control-label">Estimated total value of claim (S$):</label>
+                <label for='ntotalLoss' class="control-label">Estimated total value of claim (S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="ntotalLoss">
             </div>
             <div class='form-group'>
-                <label for='noneYearLoss' class="control-label">Estimated 12 months' value of claim(S$):</label>
+                <label for='noneYearLoss' class="control-label">Estimated 12 months' value of claim(S$)</label>
                 <br/>
                 <input class="form-control" type='text' name="noneYearLoss">
             </div>
             <div class='form-group'>
-                <label for='nremark' class="control-label">Remarks about salary & related history: </label>
+                <label for='nremark' class="control-label">Remarks about salary & related history</label>
                 <br/>
                 <textarea class="form-control" name="nremark" rows="3"></textarea>
             </div>
@@ -4431,12 +4440,12 @@
     <div class='add_comp'>
 
         <div class='form-group'>
-            <label for='lawyerUpdate' class="control-label">Date of update<span style="color: red">*</span>: </label>
+            <label for='lawyerUpdate' class="control-label"><span style="color: red">*</span> Date of update</label>
             <br/>
             <input class="form-control dateInput" type='text' name="ndate"  value="<%=sdf.format(today)%>">
         </div>
         <div class='form-group'>
-            <label for='lawyerFirm' class="control-label">Current law firm<span style="color: red">*</span>: </label>
+            <label for='lawyerFirm' class="control-label"><span style="color: red">*</span> Current law firm</label>
             <br/>
             <select class="form-control" id="nlawyerFirm" name="nlawyerFirm" >
                 <option value="" selected>Select from list...</option>
@@ -4450,17 +4459,17 @@
             </select>
         </div>
         <div class='form-group' id="nlawyerFirm_other_div" >
-            <label for='lawyerHave' class="control-label">Explain if above is 'other': </label>
+            <label for='lawyerHave' class="control-label">Explain if above is 'other'</label>
             <br/>
             <textarea class="form-control" name="nlawyerFirmMore" rows="3"></textarea>
         </div>
         <div class='form-group'>
-            <label for='lawyerHave' class="control-label">Name of lawyer or assistant: </label>
+            <label for='lawyerHave' class="control-label">Name of lawyer or assistant</label>
             <br/>
             <input class="form-control" type='text' name="nlawyerName">
         </div>
         <div class='form-group'>
-            <label for='lawyerRemark' class="control-label">Remarks re lawyer law firm status: </label>
+            <label for='lawyerRemark' class="control-label">Remarks re lawyer law firm status</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>
@@ -4488,7 +4497,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nauxiliaryCaseWorkerName' class="control-label">Auxiliary caseworker<span style="color: red">*</span>:</label>
+                <label for='nauxiliaryCaseWorkerName' class="control-label"><span style="color: red">*</span> Auxiliary caseworker</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nauxiliaryCaseWorkerName">
                     <option value="" selected>Select from list...</option>
@@ -4504,7 +4513,7 @@
 
             </div>
             <div class='form-group'>
-                <label for='nstartDate' class="control-label">Start date:</label>
+                <label for='nstartDate' class="control-label">Start date</label>
                 <br/>
                 <input class="form-control col-md-9 startDate startdateToRemove" type='text' name="nstartDate" value="<%=sdf.format(today)%>" style="width: 90%;"/>
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="start" style="width:10%;">
@@ -4512,7 +4521,7 @@
                 </div>
             </div>
             <div class='form-group'>
-                <label for='nendDate' class="control-label">End date:</label>
+                <label for='nendDate' class="control-label">End date</label>
                 <br/>
                 <input class="form-control endDate enddateToRemove col-md-9" type='text' name="nendDate" style="width:90%">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="end" style="width:10%;">
@@ -4546,7 +4555,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='nleadCaseWorkerName' class="control-label">Lead caseworker<span style="color: red">*</span>:</label>
+                <label for='nleadCaseWorkerName' class="control-label"><span style="color: red">*</span> Lead caseworker</label>
                 <br/>
                 <select class="form-control" id="leadCaseWorker" name="nleadCaseWorkerName">
                     <option value="" selected>Select from list...</option>
@@ -4562,14 +4571,14 @@
 
             </div>
             <div class='form-group'>
-                <label for='nstartDate' class="control-label">Start date:</label>
+                <label for='nstartDate' class="control-label">Start date</label>
                 <br/>
                 <input class="form-control" type='text' name="nstartDate" value="<%=sdf.format(today)%>"/>
 
 
             </div>
             <div class='form-group'>
-                <label for='nendDate' class="control-label">End date: </label>
+                <label for='nendDate' class="control-label">End date</label>
                 <br/>
                 <input class="form-control endDate enddateToRemove col-md-9" type='text' name="nendDate" style="width:90%">
                 <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="end" style="width:10%;">
@@ -4604,7 +4613,7 @@
 
         <div class='add_comp'>
             <div class='form-group'>
-                <label for='naggravissueType' class="control-label">Aggravating issue<span style="color: red">*</span>:</label>
+                <label for='naggravissueType' class="control-label"><span style="color: red">*</span> Aggravating issue</label>
                 <br/>
                 <select class="form-control" id="aggravissueType" name="naggravissueType" >
                     <option value="" selected>Select from list...</option>
@@ -4657,7 +4666,7 @@
     <div class='form-group'>
 
         <div class='form-group'>
-            <label for='nother' class="control-label">Details of problem if it's not salary/injury/illness<span style="color: red">*</span>:</label>
+            <label for='nother' class="control-label"><span style="color: red">*</span> Details of problem if it's not salary/injury/illness</label>
             <br/>
             <textarea class="form-control" name="nother" rows="3"></textarea>
         </div>
@@ -4668,7 +4677,7 @@
             <input class="form-control" type='text' name="nloss">
         </div>
         <div class='form-group'>
-            <label for='nremark' class="control-label">Remarks about history of other problems:</label>
+            <label for='nremark' class="control-label">Remarks about history of other problems</label>
             <br/>
             <textarea class="form-control" name="nremark" rows="3"></textarea>
         </div>

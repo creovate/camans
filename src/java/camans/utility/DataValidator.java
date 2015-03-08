@@ -73,7 +73,7 @@ public class DataValidator {
                         }
 
                         if (nickname.length() > 50) {
-                            errorMsg += "worker nickname cannot be longer than 50 characters,";
+                            errorMsg += "worker nickname must not exceed 50 characters,";
                         }
 
                     }    
@@ -142,11 +142,11 @@ public class DataValidator {
                         }
 
                         if (passportNum.length() > 20) {
-                            errorMsg += "passport num cannot be longer than 20 characters,";
+                            errorMsg += "passport num must not exceed 20 characters,";
                         }
 
                         if (passportcountry.length() > 30) {
-                            errorMsg += "passport country cannot be longer than 30 characters,";
+                            errorMsg += "passport country must not exceed 30 characters,";
                         }
 
                         if (!issueDateStr.equals("")) {
@@ -231,7 +231,7 @@ public class DataValidator {
                         }
 
                         if (!owner.equals("") && owner.length() > 20) {
-                            errorMsg += "Owner name cannot be longer than 20 characters,";
+                            errorMsg += "Owner name must not exceed 20 characters,";
                         }
 
                         if (!obseleteDateStr.equals("")) {
@@ -374,8 +374,8 @@ public class DataValidator {
                             errorMsg += "FinNumber does not exist, ";
                         }
 
-                        if (homeCountryAddress.length()>200) {
-                            errorMsg += "home country address cannot be more than 200 characters, ";
+                        if (homeCountryAddress.length()>300) {
+                            errorMsg += "home country address must not exceed 300 characters, ";
                         }
 
                         if (!obseleteDateStr.equals("")) {
@@ -447,7 +447,7 @@ public class DataValidator {
                         }
 
                         if (sgAddress.length()>200) {
-                            errorMsg += "sg address cannot be more than 200 characters, ";
+                            errorMsg += "sg address must not exceed 200 characters, ";
                         }
 
                         if (!obseleteDateStr.equals("")) {
@@ -541,19 +541,19 @@ public class DataValidator {
                         }
 
                         if (!digitalTypeOther.equals("") && digitalTypeOther.length()>50) {
-                            errorMsg += header[2]  + " cannot be more than 50 characters, ";
+                            errorMsg += header[2]  + " must not exceed 50 characters, ";
                         }
 
                         if (digitalDetail.length() > 50) {
-                            errorMsg += header[3]  + " cannot be more than 50 characters, ";
+                            errorMsg += header[3]  + " must not exceed 50 characters, ";
                         }
 
                         if (!digitalOwner.equals("") && digitalOwner.length() > 50) {
-                            errorMsg += header[4]  + " cannot be more than 50 characters, ";
+                            errorMsg += header[4]  + " must not exceed 50 characters, ";
                         }
 
                         if (!digitalRemark.equals("") && digitalRemark.length() > 200) {
-                            errorMsg += header[5]  + " cannot be more than 200 characters, ";
+                            errorMsg += header[5]  + " must not exceed 200 characters, ";
                         }
 
                         if (!obseleteDateStr.equals("")) {
@@ -634,15 +634,15 @@ public class DataValidator {
                         }
 
                         if (kinName.length() > 50) {
-                            errorMsg += header[1] + " cannot be more than 50 characters, ";
+                            errorMsg += header[1] + " must not exceed 50 characters, ";
                         }
 
                         if (!kinDoc.equals("") && kinDoc.length()>200) {
-                            errorMsg += header[3]  + " cannot be more than 200 characters, ";
+                            errorMsg += header[3]  + " must not exceed 200 characters, ";
                         }
 
                         if (!kinRel.equals("") && kinRel.length() > 50) {
-                            errorMsg += header[2]  + " cannot be more than 50 characters, ";
+                            errorMsg += header[2]  + " must not exceed 50 characters, ";
                         }
 
                         
@@ -651,19 +651,19 @@ public class DataValidator {
                         }
 
                         if (!kinDigital.equals("") && kinDigital.length() > 200) {
-                            errorMsg += header[5]  + " cannot be more than 200 characters, ";
+                            errorMsg += header[5]  + " must not exceed 200 characters, ";
                         }
 
                         if (!kinAddr.equals("") && kinAddr.length() > 200) {
-                            errorMsg += header[6]  + " cannot be more than 200 characters, ";
+                            errorMsg += header[6]  + " must not exceed 200 characters, ";
                         }
 
                         if (!kinProof.equals("") && kinProof.length() > 200) {
-                            errorMsg += header[7]  + " cannot be more than 200 characters, ";
+                            errorMsg += header[7]  + " must not exceed 200 characters, ";
                         }
 
                         if (!kinRemark.equals("") && kinRemark.length() > 200) {
-                            errorMsg += header[8]  + " cannot be more than 200 characters, ";
+                            errorMsg += header[8]  + " must not exceed 200 characters, ";
                         }
 
                         if (!obseleteDateStr.equals("")) {
@@ -743,15 +743,15 @@ public class DataValidator {
                         }
 
                         if (famMemName.length() > 50) {
-                            errorMsg += header[1] + " cannot be more than 50 characters, ";
+                            errorMsg += header[1] + " must not exceed 50 characters, ";
                         }
 
                         if (!famMemRel.equals("") && famMemRel.length()>50) {
-                            errorMsg += header[2]  + " cannot be more than 50 characters, ";
+                            errorMsg += header[2]  + " must not exceed 50 characters, ";
                         }
 
-                        if (!famMemWhere.equals("") && famMemWhere.length() > 200) {
-                            errorMsg += header[3]  + " cannot be more than 200 characters, ";
+                        if (!famMemWhere.equals("") && famMemWhere.length() > 20) {
+                            errorMsg += header[3]  + " must not exceed 20 characters, ";
                         }
                         
                         
@@ -760,11 +760,11 @@ public class DataValidator {
                         }
 
                         if (!famMemDigital.equals("") && famMemDigital.length() > 200) {
-                            errorMsg += header[5]  + " cannot be more than 200 characters, ";
+                            errorMsg += header[5]  + " must not exceed 200 characters, ";
                         }
 
                         if (!famMemRem.equals("") && famMemRem.length() > 200) {
-                            errorMsg += header[6]  + " cannot be more than 200 characters, ";
+                            errorMsg += header[6]  + " must not exceed 200 characters, ";
                         }
 
                         if (!obseleteDateStr.equals("")) {
@@ -806,7 +806,7 @@ public class DataValidator {
                         succCount++;
                     }    
                 }
-            } else if (fileShortName.equals("friend.csv")) {
+            } else if (fileShortName.equals("sgfriend.csv")) {
                 // Loops through each line of the csv with an array of String
                 while ((fields = csvReader.readNext()) != null) {
 
@@ -842,7 +842,7 @@ public class DataValidator {
                         }
 
                         if (frdName.length() > 50) {
-                            errorMsg += header[1] + " cannot be more than 50 characters, ";
+                            errorMsg += header[1] + " must not exceed 50 characters, ";
                         }
 
                         if (!frdPh.equals("") && !frdPh.matches("^[\\d\\(\\-\\s\\)+]+$")) {
@@ -850,11 +850,11 @@ public class DataValidator {
                         }
 
                         if (!frdRel.equals("") && frdRel.length() > 50) {
-                            errorMsg += header[3]  + " cannot be more than 50 characters, ";
+                            errorMsg += header[3]  + " must not exceed 50 characters, ";
                         }
 
                         if (!frdRemark.equals("") && frdRemark.length() > 200) {
-                            errorMsg += header[4]  + " cannot be more than 200 characters, ";
+                            errorMsg += header[4]  + " must not exceed 200 characters, ";
                         }
 
                         if (!obseleteDateStr.equals("")) {
@@ -940,7 +940,7 @@ public class DataValidator {
                         }
 
                         if (!langTypeOther.equals("") && langTypeOther.length() > 50) {
-                            errorMsg += header[2]  + " cannot be more than 50 characters, ";
+                            errorMsg += header[2]  + " must not exceed 50 characters, ";
                         }
 
                         if (!spokenEnglish.equals("")) {
@@ -958,7 +958,7 @@ public class DataValidator {
 
 
                         if (!langRemark.equals("") && langRemark.length() > 200) {
-                            errorMsg += header[4]  + " cannot be more than 200 characters, ";
+                            errorMsg += header[4]  + " must not exceed 200 characters, ";
                         }
 
 
@@ -1041,35 +1041,35 @@ public class DataValidator {
                         }
 
                         if (bankAcctName.length() > 50) {
-                            errorMsg += header[1]  + " cannot be more than 50 characters, ";
+                            errorMsg += header[1]  + " must not exceed 50 characters, ";
                         }
 
                         if (bankAcctNum.length() > 50) {
-                            errorMsg += header[2]  + " cannot be more than 50 characters, ";
+                            errorMsg += header[2]  + " must not exceed 50 characters, ";
                         }
 
                         if (bankName.length() > 50) {
-                            errorMsg += header[3]  + " cannot be more than 50 characters, ";
+                            errorMsg += header[3]  + " must not exceed 50 characters, ";
                         }
 
                         if (!branchName.equals("") && branchName.length() > 50) {
-                            errorMsg += header[4]  + " cannot be more than 50 characters, ";
+                            errorMsg += header[4]  + " must not exceed 50 characters, ";
                         }
 
                         if (!branchAddress.equals("") && branchAddress.length() > 300) {
-                            errorMsg += header[5]  + " cannot be more than 300 characters, ";
+                            errorMsg += header[5]  + " must not exceed 300 characters, ";
                         }
 
                         if (!branchCode.equals("") && branchCode.length() > 50) {
-                            errorMsg += header[6]  + " cannot be more than 50 characters, ";
+                            errorMsg += header[6]  + " must not exceed 50 characters, ";
                         }
 
                         if (!swiftCode.equals("") && swiftCode.length() > 50) {
-                            errorMsg += header[7]  + " cannot be more than 50 characters, ";
+                            errorMsg += header[7]  + " must not exceed 50 characters, ";
                         }
 
                         if (!remark.equals("") && remark.length() > 200) {
-                            errorMsg += header[8]  + " cannot be more than 200 characters, ";
+                            errorMsg += header[8]  + " must not exceed 200 characters, ";
                         }
 
                         if (!obseleteDateStr.equals("")) {
@@ -1191,12 +1191,12 @@ public class DataValidator {
                         errorMsg += "invalid Pass Type, ";
                     }
                     
-                    if (!passTypeMore.equals("") && passTypeMore.length() > 255){
-                        errorMsg += header[3] + " cannot be more than 255 characters,";
+                    if (!passTypeMore.equals("") && passTypeMore.length() > 50){
+                        errorMsg += header[3] + " must not exceed 50 characters,";
                     }
                     
                     if (passNbr.length() > 20) {
-                        errorMsg += header[4] + " cannot be more than 20 characters,";
+                        errorMsg += header[4] + " must not exceed 20 characters,";
                     }
                     if (!passApplicDateStr.equals("")) {
                         try {
@@ -1226,11 +1226,11 @@ public class DataValidator {
                     }
                     
                     if (!passIssuer.equals("") && passIssuer.length() > 20) {
-                        errorMsg += "pass issuer cannot be longer than 20 characters,";
+                        errorMsg += "pass issuer must not exceed 20 characters,";
                     }
                     
                     if (!passRemark.equals("") && passRemark.length() > 200) {
-                        errorMsg += "pass remark cannot be longer than 200 characters,";
+                        errorMsg += "pass remark must not exceed 200 characters,";
                     }
                     
                     if (!obseleteDateStr.equals("")) {
@@ -1305,7 +1305,7 @@ public class DataValidator {
                      */
                     boolean pass = true; //assume validation pass first;
                     if (finNum.equals("")) {
-                        errorMsg += header[1] + " is blank,";
+                        errorMsg += header[0] + " is blank,";
                         pass = false;
                     }
 
@@ -1356,7 +1356,7 @@ public class DataValidator {
                         }
 
                         if (!ipaPassTypeMore.equals("") && ipaPassTypeMore.length() > 50){
-                            errorMsg += header[3] + " cannot be more than 50 characters,";
+                            errorMsg += header[3] + " must not exceed 50 characters,";
                         }
 
                         if (!ipaApplicDateStr.equals("")) {
@@ -1369,19 +1369,19 @@ public class DataValidator {
                         }
 
                         if (!ipaEmployer.equals("") && ipaEmployer.length() > 50) {
-                            errorMsg += header[5] + " cannot be longer than 50 characters,";
+                            errorMsg += header[5] + " must not exceed 50 characters,";
                         }
 
                         if (!ipaAgent.equals("") && ipaAgent.length() > 50) {
-                            errorMsg += header[6] + " cannot be longer than 50 characters,";
+                            errorMsg += header[6] + " must not exceed 50 characters,";
                         }
 
-                        if (!ipaIndustry .equals("") && ipaIndustry.length() > 50) {
-                            errorMsg += header[7] + " cannot be longer than 50 characters,";
+                        if (!ipaIndustry .equals("") && ipaIndustry.length() > 20) {
+                            errorMsg += header[7] + " must not exceed 20 characters,";
                         }
 
                         if (!ipaOccupation .equals("") && ipaOccupation.length() > 30) {
-                            errorMsg += header[8] + " cannot be longer than 30 characters,";
+                            errorMsg += header[8] + " must not exceed 30 characters,";
                         }
                         
                         if (!ipaPeriodStr.equals("") && !ipaPeriodStr.matches("^\\d+(\\.\\d{1,2})?$")) {
@@ -1422,7 +1422,7 @@ public class DataValidator {
                         }
 
                         if (!ipaAllowDetails.equals("") && ipaAllowDetails.length() > 200) {
-                            errorMsg += header[12] + " cannot be longer than 200 characters,";
+                            errorMsg += header[12] + " must not exceed 200 characters,";
                         }
 
                         if (!ipaDeductionStr.equals("") && !ipaDeductionStr.matches("^\\d+(\\.\\d{1,2})?$")) {
@@ -1438,7 +1438,7 @@ public class DataValidator {
                         }
 
                         if (!ipaDeductionDetails.equals("") && ipaDeductionDetails.length() > 200) {
-                            errorMsg += header[14] + " cannot be longer than 200 characters,";
+                            errorMsg += header[14] + " must not exceed 200 characters,";
                         } 
 
                         if (!ipaHousing.equals("")) {
@@ -1450,7 +1450,7 @@ public class DataValidator {
                         } 
 
                         if (!ipaRemark.equals("") && ipaRemark.length() > 200) {
-                            errorMsg += header[16] + " cannot be longer than 200 characters,";
+                            errorMsg += header[16] + " must not exceed 200 characters,";
                         } 
 
                     }   //pass 
@@ -1539,23 +1539,23 @@ public class DataValidator {
                         }
 
                         if (verbalName.length() > 50){
-                            errorMsg += header[2] + " cannot be more than 50 characters,";
+                            errorMsg += header[2] + " must not exceed 50 characters,";
                         }
 
                         if (!verbalRel.equals("") && verbalRel.length() > 200) {
-                            errorMsg += header[3] + " cannot be longer than 200 characters,";
+                            errorMsg += header[3] + " must not exceed 200 characters,";
                         }
 
                         if (!verbalWhen.equals("") && verbalWhen.length() > 50) {
-                            errorMsg += header[4] + " cannot be longer than 50 characters,";
+                            errorMsg += header[4] + " must not exceed 50 characters,";
                         }
 
                         if (!verbalWhere.equals("") && verbalWhere.length() > 50) {
-                            errorMsg += header[5] + " cannot be longer than 50 characters,";
+                            errorMsg += header[5] + " must not exceed 50 characters,";
                         }
 
                         if (!verbalContent.equals("") && verbalContent.length() > 1000) {
-                            errorMsg += header[6] + " cannot be longer than 1000 characters,";
+                            errorMsg += header[6] + " must not exceed 1000 characters,";
                         }
 
                     }   //pass 
@@ -1658,48 +1658,48 @@ public class DataValidator {
                         } 
 
 
-                        if (!contractWhere.equals("") && contractWhere.length() > 200) {
-                            errorMsg += header[3] + " cannot be longer than 200 characters,";
+                        if (!contractWhere.equals("") && contractWhere.length() > 50) {
+                            errorMsg += header[3] + " must not exceed 50 characters,";
                         }
 
-                        if (!contractLang.equals("") && contractLang.length() > 50) {
-                            errorMsg += header[4] + " cannot be longer than 50 characters,";
+                        if (!contractLang.equals("") && contractLang.length() > 20) {
+                            errorMsg += header[4] + " must not exceed 20 characters,";
                         }
 
                         if (!contractOppName.equals("") && contractOppName.length() > 50) {
-                            errorMsg += header[5] + " cannot be longer than 50 characters,";
+                            errorMsg += header[5] + " must not exceed 50 characters,";
                         }
 
                         if (!contractOppRel.equals("") && contractOppRel.length() > 200) {
-                            errorMsg += header[6] + " cannot be longer than 200 characters,";
+                            errorMsg += header[6] + " must not exceed 200 characters,";
                         }
 
                         if (!contractOccup.equals("") && contractOccup.length() > 200) {
-                            errorMsg += header[7] + " cannot be longer than 200 characters,";
+                            errorMsg += header[7] + " must not exceed 200 characters,";
                         }
 
                         if (!contractBasic.equals("") && contractBasic.length() > 50) {
-                            errorMsg += header[8] + " cannot be longer than 50 characters,";
+                            errorMsg += header[8] + " must not exceed 50 characters,";
                         }
 
                         if (!contractAllow.equals("") && contractAllow.length() > 500) {
-                            errorMsg += header[9] + " cannot be longer than 500 characters,";
+                            errorMsg += header[9] + " must not exceed 500 characters,";
                         }
 
                         if (!contractDeduct.equals("") && contractDeduct.length() > 500) {
-                            errorMsg += header[10] + " cannot be longer than 500 characters,";
+                            errorMsg += header[10] + " must not exceed 500 characters,";
                         }
 
                         if (!contractDuration.equals("") && contractDuration.length() > 20) {
-                            errorMsg += header[11] + " cannot be longer than 20 characters,";
+                            errorMsg += header[11] + " must not exceed 20 characters,";
                         }
 
                         if (!contractDuress.equals("") && contractDuress.length() > 500) {
-                            errorMsg += header[12] + " cannot be longer than 500 characters,";
+                            errorMsg += header[12] + " must not exceed 500 characters,";
                         }
 
                         if (!contractRemark.equals("") && contractRemark.length() > 200) {
-                            errorMsg += header[13] + " cannot be longer than 200 characters,";
+                            errorMsg += header[13] + " must not exceed 200 characters,";
                         }
 
                     }   //pass 
@@ -1763,7 +1763,7 @@ public class DataValidator {
                  */
                 boolean pass = true; //assume validation pass first;
                 if (finNum.equals("")) {
-                    errorMsg += header[1] + " is blank,";
+                    errorMsg += header[0] + " is blank,";
                     pass = false;
                 }
                 
@@ -1801,11 +1801,11 @@ public class DataValidator {
                     }
                     
                     if (agentCompany.length() > 50) {
-                        errorMsg += header[2] + " cannot be longer than 50 characters,";
+                        errorMsg += header[2] + " must not exceed 50 characters,";
                     }
                          
                     if (!agentPers.equals("") && agentPers.length() > 50) {
-                        errorMsg += header[3] + " cannot be longer than 50 characters,";
+                        errorMsg += header[3] + " must not exceed 50 characters,";
                     }
                     
                     if (!agentLocation.equals("")) {
@@ -1824,15 +1824,15 @@ public class DataValidator {
                     }
                     
                     if (!agentLocationMore.equals("") && agentLocationMore.length() > 50) {
-                        errorMsg += header[5] + " cannot be longer than 50 characters,";
+                        errorMsg += header[5] + " must not exceed 50 characters,";
                     }
                     
                     if (!agentAddr.equals("") && agentAddr.length() > 300) {
-                        errorMsg += header[6] + " cannot be longer than 300 characters,";
+                        errorMsg += header[6] + " must not exceed 300 characters,";
                     }
                     
                     if (!agentContact.equals("") && agentContact.length() > 200) {
-                        errorMsg += header[7] + " cannot be longer than 200 characters,";
+                        errorMsg += header[7] + " must not exceed 200 characters,";
                     }
                     
                     if (!agentAmtPaidStr.equals("") && !agentAmtPaidStr.matches("^\\d+(\\.\\d{1,2})?$")) {
@@ -1860,35 +1860,35 @@ public class DataValidator {
                     }
                     
                     if (!agentFeeShared.equals("") && agentFeeShared.length() > 200) {
-                        errorMsg += header[10] + " cannot be longer than 200 characters,";
+                        errorMsg += header[10] + " must not exceed 200 characters,";
                     }
                     
                     if (!agentFeeTraining.equals("") && agentFeeTraining.length() > 50) {
-                        errorMsg += header[11] + " cannot be longer than 50 characters,";
+                        errorMsg += header[11] + " must not exceed 50 characters,";
                     }
                     
                     if (!agentFeeAirFare.equals("") && agentFeeAirFare.length() > 50) {
-                        errorMsg += header[12] + " cannot be longer than 50 characters,";
+                        errorMsg += header[12] + " must not exceed 50 characters,";
                     }
                     
                     if (!agentFeeWhen.equals("") && agentFeeWhen.length() > 50) {
-                        errorMsg += header[13] + " cannot be longer than 50 characters,";
+                        errorMsg += header[13] + " must not exceed 50 characters,";
                     }
                     
                     if (!agentFeeWhere.equals("") && agentFeeWhere.length() > 50) {
-                        errorMsg += header[14] + " cannot be longer than 50 characters,";
+                        errorMsg += header[14] + " must not exceed 50 characters,";
                     }
                     
                     if (!agentFeeRepay.equals("") && agentFeeRepay.length() > 200) {
-                        errorMsg += header[15] + " cannot be longer than 200 characters,";
+                        errorMsg += header[15] + " must not exceed 200 characters,";
                     }
                     
                     if (!agentEmployer.equals("") && agentEmployer.length() > 200) {
-                        errorMsg += header[16] + " cannot be longer than 200 characters,";
+                        errorMsg += header[16] + " must not exceed 200 characters,";
                     }
                     
                     if (!agentRemark.equals("") && agentRemark.length() > 1000) {
-                        errorMsg += header[17] + " cannot be longer than 1000 characters,";
+                        errorMsg += header[17] + " must not exceed 1000 characters,";
                     }
                     
                 }   //pass 
@@ -1980,27 +1980,27 @@ public class DataValidator {
                         }
 
                         if (employerName.length() > 50) {
-                            errorMsg += header[2] + " cannot be longer than 50 characters,";
+                            errorMsg += header[2] + " must not exceed 50 characters,";
                         }
 
                         if (!employerid.equals("") && employerid.length() > 50) {
-                            errorMsg += header[3] + " cannot be longer than 50 characters,";
+                            errorMsg += header[3] + " must not exceed 50 characters,";
                         }
 
                         if (!employerAddr.equals("") && employerAddr.length() > 200) {
-                            errorMsg += header[4] + " cannot be longer than 200 characters,";
+                            errorMsg += header[4] + " must not exceed 200 characters,";
                         }
 
                         if (!employerContact.equals("") && employerContact.length() > 200) {
-                            errorMsg += header[5] + " cannot be longer than 200 characters,";
+                            errorMsg += header[5] + " must not exceed 200 characters,";
                         }
 
                         if (!employerPers.equals("") && employerPers.length() > 200) {
-                            errorMsg += header[6] + " cannot be longer than 200 characters,";
+                            errorMsg += header[6] + " must not exceed 200 characters,";
                         }
 
                         if (!employerRemark.equals("") && employerRemark.length() > 200) {
-                            errorMsg += header[7] + " cannot be longer than 200 characters,";
+                            errorMsg += header[7] + " must not exceed 200 characters,";
                         }
 
 
@@ -2115,20 +2115,20 @@ public class DataValidator {
                         }
 
                         if (!workplaceTypeMore.equals("") && workplaceTypeMore.length() > 200) {
-                            errorMsg += header[3] + " cannot be longer than 200 characters,";
+                            errorMsg += header[3] + " must not exceed 200 characters,";
                         }
 
                         if (!workplaceWhose.equals("") && workplaceWhose.length() > 50) {
-                            errorMsg += header[4] + " cannot be longer than 50 characters,";
+                            errorMsg += header[4] + " must not exceed 50 characters,";
                         }
 
 
                         if (!workplacePers.equals("") && workplacePers.length() > 200) {
-                            errorMsg += header[5] + " cannot be longer than 200 characters,";
+                            errorMsg += header[5] + " must not exceed 200 characters,";
                         }
 
                         if (!workplaceEmpRel.equals("") && workplaceEmpRel.length() > 50) {
-                            errorMsg += header[6] + " cannot be longer than 50 characters,";
+                            errorMsg += header[6] + " must not exceed 50 characters,";
                         }
 
                         list = DropdownDAO.retrieveAllDropdownListOfWorkplaceDirectType();
@@ -2145,27 +2145,27 @@ public class DataValidator {
                         }
 
                         if (!workplaceDirectMore.equals("") && workplaceDirectMore.length() > 200) {
-                            errorMsg += header[8] + " cannot be longer than 200 characters,";
+                            errorMsg += header[8] + " must not exceed 200 characters,";
                         }
 
                         if (!workplaceStart.equals("") && workplaceStart.length() > 50) {
-                            errorMsg += header[9] + " cannot be longer than 50 characters,";
+                            errorMsg += header[9] + " must not exceed 50 characters,";
                         }
 
                         if (!workplaceEnd.equals("") && workplaceEnd.length() > 50) {
-                            errorMsg += header[10] + " cannot be longer than 50 characters,";
+                            errorMsg += header[10] + " must not exceed 50 characters,";
                         }
 
                         if (!workplaceCond.equals("") && workplaceCond.length() > 500) {
-                            errorMsg += header[11] + " cannot be longer than 500 characters,";
+                            errorMsg += header[11] + " must not exceed 500 characters,";
                         }
 
                         if (!workplaceSafety.equals("") && workplaceSafety.length() > 200) {
-                            errorMsg += header[12] + " cannot be longer than 50 characters,";
+                            errorMsg += header[12] + " must not exceed 50 characters,";
                         }
 
                         if (!workplaceRemark.equals("") && workplaceRemark.length() > 200) {
-                            errorMsg += header[13] + " cannot be longer than 50 characters,";
+                            errorMsg += header[13] + " must not exceed 50 characters,";
                         }
 
 
@@ -2261,20 +2261,15 @@ public class DataValidator {
                         }
 
                         if (workHistoryHow.length() > 50) {
-                            errorMsg += header[2] + " cannot be longer than 50 characters,";
+                            errorMsg += header[2] + " must not exceed 50 characters,";
                         }
 
                         if (!workHistHowMore.equals("") && workHistHowMore.length() > 200) {
-                            errorMsg += header[3] + " cannot be longer than 200 characters,";
+                            errorMsg += header[3] + " must not exceed 200 characters,";
                         }
-
-                        if (!workHistDateStr.equals("")) {
-                            try {
-                                java.util.Date tmp = sdf.parse(workHistDateStr);
-                                workHistDate = new java.sql.Date(tmp.getTime());
-                            } catch (ParseException ex) {
-                                errorMsg += "Invalid Work History Date Format,";
-                            } 
+                        
+                        if (!workHistDateStr.equals("") && workHistDateStr.length() > 50) {
+                            errorMsg += header[4] + " must not exceed 50 characters,";
                         }
 
                         if (!workHistFirst.equals("")) {
@@ -2294,15 +2289,15 @@ public class DataValidator {
                         }
 
                         if (!workHistPrevious.equals("") && workHistPrevious.length() > 1000) {
-                            errorMsg += header[7] + " cannot be longer than 1000 characters,";
+                            errorMsg += header[7] + " must not exceed 1000 characters,";
                         }
 
                         if (!workHistProblems.equals("") && workHistProblems.length() > 1000) {
-                            errorMsg += header[8] + " cannot be longer than 1000 characters,";
+                            errorMsg += header[8] + " must not exceed 1000 characters,";
                         }
 
                         if (!workHistRemark.equals("") && workHistRemark.length() > 200) {
-                            errorMsg += header[9] + " cannot be longer than 200 characters,";
+                            errorMsg += header[9] + " must not exceed 200 characters,";
                         }
 
                     }   //pass 
@@ -2328,7 +2323,7 @@ public class DataValidator {
                     else {
                         errorMsg = ""; // reset errorMsg variable
                         JobWorkHistory jobWorkHistory = new JobWorkHistory(finNum, jobKey, workHistoryHow, 
-                                workHistHowMore, workHistDate, workHistFirst, workHistYrArrive,
+                                workHistHowMore, workHistDateStr, workHistFirst, workHistYrArrive,
                                 workHistPrevious,workHistProblems,workHistRemark);
                         JobComplementsDAO.addJobWorkHistory(jobWorkHistory);
                         succCount++;
@@ -2412,14 +2407,14 @@ public class DataValidator {
                         }
 
                         if (!accomProvidedMore.equals("") && accomProvidedMore.length() > 200) {
-                            errorMsg += header[3] + " cannot be longer than 200 characters,";
+                            errorMsg += header[3] + " must not exceed 200 characters,";
                         }
 
                         if (!accomType.equals("")) {
                             list = DropdownDAO.retrieveAllDropdownListOfAccomType();
                             exit = false;
                             for (String tmp: list) {
-                                if (tmp.equalsIgnoreCase(accomProvided)) {
+                                if (tmp.equalsIgnoreCase(accomType)) {
                                     exit = true;
                                     break;
                                 }
@@ -2430,16 +2425,16 @@ public class DataValidator {
                             }    
                         }
 
-                        if (!accomTypeMore.equals("") && accomTypeMore.length() > 300) {
-                            errorMsg += header[5] + " cannot be longer than 300 characters,";
+                        if (!accomTypeMore.equals("") && accomTypeMore.length() > 200) {
+                            errorMsg += header[5] + " must not exceed 200 characters,";
                         }
 
                         if (!accomLocation.equals("") && accomLocation.length() > 200) {
-                            errorMsg += header[6] + " cannot be longer than 200 characters,";
+                            errorMsg += header[6] + " must not exceed 200 characters,";
                         }
 
                         if (!accomConditions.equals("") && accomConditions.length() > 500) {
-                            errorMsg += header[7] + " cannot be longer than 500 characters,";
+                            errorMsg += header[7] + " must not exceed 500 characters,";
                         }
                         
                         if (!accomChargedStr.equals("") && !accomChargedStr.matches("^\\d+(\\.\\d{1,2})?$")) {
@@ -2467,19 +2462,19 @@ public class DataValidator {
                         }
 
                         if (!accomMeals.equals("") && accomMeals.length() > 200) {
-                            errorMsg += header[10] + " cannot be longer than 200 characters,";
+                            errorMsg += header[10] + " must not exceed 200 characters,";
                         }
 
                         if (!accomStart.equals("") && accomStart.length() > 50) {
-                            errorMsg += header[11] + " cannot be longer than 50 characters,";
+                            errorMsg += header[11] + " must not exceed 50 characters,";
                         }
 
                         if (!accomEnd.equals("") && accomEnd.length() > 50) {
-                            errorMsg += header[12] + " cannot be longer than 50 characters,";
+                            errorMsg += header[12] + " must not exceed 50 characters,";
                         }
 
                         if (!accomRemark.equals("") && accomRemark.length() > 200) {
-                            errorMsg += header[13] + " cannot be longer than 200 characters,";
+                            errorMsg += header[13] + " must not exceed 200 characters,";
                         }
 
 
@@ -2604,7 +2599,7 @@ public class DataValidator {
                         }
 
                         if (!aggraIssueMore.equals("") && aggraIssueMore.length() > 50){
-                            errorMsg += header[4] + " cannot be more than 50 characters,";
+                            errorMsg += header[4] + " must not exceed 50 characters,";
                         }
                         
                         if (!aggraLossStr.equals("")) {
@@ -2620,7 +2615,7 @@ public class DataValidator {
                         } 
 
                         if (!aggraRemark.equals("") && aggraRemark.length() > 200) {
-                            errorMsg += header[6] + " cannot be longer than 200 characters,";
+                            errorMsg += header[6] + " must not exceed 200 characters,";
                         }
 
                     }   //pass 
@@ -2788,7 +2783,7 @@ public class DataValidator {
                         succCount++;
                     }    
                 }
-            } else if (fileShortName.equals("auxiliaryworker.csv")) {
+            } else if (fileShortName.equals("auxiliarycaseworker.csv")) {
                 //loop through each line of the csv with an array of String
                 while ((fields=csvReader.readNext()) != null) {
                     
@@ -3026,27 +3021,27 @@ public class DataValidator {
                         }
 
                         if (!salHistOT.equals("") && salHistOT.length() > 500){
-                            errorMsg += header[4] + " cannot be more than 500 characters,";
+                            errorMsg += header[4] + " must not exceed 500 characters,";
                         }
 
                         if (!salHistAllowances.equals("") && salHistAllowances.length() > 500){
-                            errorMsg += header[5] + " cannot be more than 500 characters,";
+                            errorMsg += header[5] + " must not exceed 500 characters,";
                         }
 
                         if (!salHistDeductions.equals("") && salHistDeductions.length() > 500){
-                            errorMsg += header[6] + " cannot be more than 500 characters,";
+                            errorMsg += header[6] + " must not exceed 500 characters,";
                         }
 
                         if (!salHistKickbacks.equals("") && salHistKickbacks.length() > 500){
-                            errorMsg += header[7] + " cannot be more than 500 characters,";
+                            errorMsg += header[7] + " must not exceed 500 characters,";
                         }
 
                         if (!salHistOther.equals("") && salHistOther.length() > 500){
-                            errorMsg += header[8] + " cannot be more than 500 characters,";
+                            errorMsg += header[8] + " must not exceed 500 characters,";
                         }
 
                         if (!salModeMore.equals("") && salModeMore.length() > 50){
-                            errorMsg += header[10] + " cannot be more than 50 characters,";
+                            errorMsg += header[10] + " must not exceed 50 characters,";
                         }
                         
                         if (!salLossTotalStr.equals("")) {
@@ -3074,7 +3069,7 @@ public class DataValidator {
                         }
 
                         if (!salHistRem.equals("") && salHistRem.length() > 200){
-                            errorMsg += header[13] + " cannot be more than 200 characters,";
+                            errorMsg += header[13] + " must not exceed 200 characters,";
                         }
                     } //pass
 
@@ -3196,11 +3191,11 @@ public class DataValidator {
                         }
 
                         if (!injTime.equals("") && injTime.length() > 20){
-                            errorMsg += header[4] + " cannot be more than 20 characters,";
+                            errorMsg += header[4] + " must not exceed 20 characters,";
                         }
 
                         if (!injLocation.equals("") && injLocation.length() > 200){
-                            errorMsg += header[5] + " cannot be more than 200 characters,";
+                            errorMsg += header[5] + " must not exceed 200 characters,";
                         }
 
                         if (!injDeath.equals("")) {
@@ -3212,11 +3207,11 @@ public class DataValidator {
                         }
 
                         if (!injBodypart.equals("") && injBodypart.length() > 500){
-                            errorMsg += header[7] + " cannot be more than 500 characters,";
+                            errorMsg += header[7] + " must not exceed 500 characters,";
                         }
 
                         if (!injHow.equals("") && injHow.length() > 1000){
-                            errorMsg += header[8] + " cannot be more than 1000 characters,";
+                            errorMsg += header[8] + " must not exceed 1000 characters,";
                         }
 
                         if (!injAmbulance.equals("")) {
@@ -3229,7 +3224,7 @@ public class DataValidator {
                         }
 
                         if (!injInitialTreatment.equals("") && injInitialTreatment.length() > 200){
-                            errorMsg += header[10] + " cannot be more than 200 characters,";
+                            errorMsg += header[10] + " must not exceed 200 characters,";
                         }
 
                         if (!injWorkRelated.equals("")) {
@@ -3242,7 +3237,7 @@ public class DataValidator {
                         }
 
                         if (!injRem.equals("") && injRem.length() > 200){
-                            errorMsg += header[12] + " cannot be more than 200 characters,";
+                            errorMsg += header[12] + " must not exceed 200 characters,";
                         }
                     } //pass
 
@@ -3356,19 +3351,19 @@ public class DataValidator {
                         }
 
                         if (!illnessStartWhen.equals("") && illnessStartWhen.length() > 50){
-                            errorMsg += header[3] + " cannot be more than 50 characters,";
+                            errorMsg += header[3] + " must not exceed 50 characters,";
                         }
 
                         if (!illnessDiagWhen.equals("") && illnessDiagWhen.length() > 50){
-                            errorMsg += header[4] + " cannot be more than 50 characters,";
+                            errorMsg += header[4] + " must not exceed 50 characters,";
                         }
 
                         if (!illnessDiagWho.equals("") && illnessDiagWho.length() > 200){
-                            errorMsg += header[5] + " cannot be more than 200 characters,";
+                            errorMsg += header[5] + " must not exceed 200 characters,";
                         }
 
                         if (!illnessNature.equals("") && illnessNature.length() > 200){
-                            errorMsg += header[6] + " cannot be more than 200 characters,";
+                            errorMsg += header[6] + " must not exceed 200 characters,";
                         }
 
                         if (!illnessWorkRelated.equals("")) {
@@ -3381,11 +3376,11 @@ public class DataValidator {
                         }
 
                         if (!illnessWhy.equals("") && illnessWhy.length() > 500){
-                            errorMsg += header[8] + " cannot be more than 500 characters,";
+                            errorMsg += header[8] + " must not exceed 500 characters,";
                         }
 
                         if (!illnessRem.equals("") && illnessRem.length() > 200){
-                            errorMsg += header[8] + " cannot be more than 200 characters,";
+                            errorMsg += header[8] + " must not exceed 200 characters,";
                         }
                     } //pass
 
@@ -3495,7 +3490,7 @@ public class DataValidator {
                         }
 
                         if (!othProblemDesc.equals("") && othProblemDesc.length() > 1000){
-                            errorMsg += header[3] + " cannot be more than 1000 characters,";
+                            errorMsg += header[3] + " must not exceed 1000 characters,";
                         }
 
                         if (!othProblemLossStr.equals("")) {
@@ -3507,7 +3502,7 @@ public class DataValidator {
                         }
 
                         if (!othProblemRem.equals("") && othProblemRem.length() > 200) {
-                            errorMsg += header[5] + " cannot be longer than 200 characters,";
+                            errorMsg += header[5] + " must not exceed 200 characters,";
                         }
 
                     }   //pass 
@@ -3640,7 +3635,7 @@ public class DataValidator {
                         }
 
                         if (!salClaimBasis.equals("") && salClaimBasis.length() > 1000) {
-                            errorMsg += header[5] + " cannot be longer than 1000 characters,";
+                            errorMsg += header[5] + " must not exceed 1000 characters,";
                         }
                     }   //pass 
 
@@ -3779,13 +3774,8 @@ public class DataValidator {
                             errorMsg += "invalid Wica Status, ";
                         }
 
-
-                        if (!status.equals("") && status.length() > 30) {
-                            errorMsg += header[5] + " cannot be longer than 30 characters,";
-                        }
-
-                        if (!statusMore.equals("") && statusMore.length() > 50) {
-                            errorMsg += header[6] + " cannot be longer than 50 characters,";
+                        if (!statusMore.equals("") && statusMore.length() > 200) {
+                            errorMsg += header[5] + " must not exceed 200 characters,";
                         }
                         
                         if (!pointsStr.equals("")) {
@@ -3814,7 +3804,7 @@ public class DataValidator {
 
 
                         if (!rem.equals("") && rem.length() > 200) {
-                            errorMsg += header[9] + " cannot be longer than 200 characters,";
+                            errorMsg += header[9] + " must not exceed 200 characters,";
                         }
 
 
@@ -3885,8 +3875,8 @@ public class DataValidator {
                         pass = false;
                     }
 
-                    if (wicaClaimDateStr.equals("")) {
-                        errorMsg += header[3] + " is blank,";
+                    if (wicaRefNbr.equals("")) {
+                        errorMsg += header[4] + " is blank,";
                         pass = false;
                     }
 
@@ -3939,23 +3929,23 @@ public class DataValidator {
                         }
 
                         if (!wicaRefNbr.equals("") && wicaRefNbr.length() > 30) {
-                            errorMsg += header[4] + " cannot be longer than 30 characters,";
+                            errorMsg += header[4] + " must not exceed 30 characters,";
                         }
 
                         if (!wicaInsurer.equals("") && wicaInsurer.length() > 50) {
-                            errorMsg += header[5] + " cannot be longer than 50 characters,";
+                            errorMsg += header[5] + " must not exceed 50 characters,";
                         }
 
                         if (!wicaPolicyNbr.equals("") && wicaPolicyNbr.length() > 50) {
-                            errorMsg += header[6] + " cannot be longer than 50 characters,";
+                            errorMsg += header[6] + " must not exceed 50 characters,";
                         }
 
                         if (!wicaWhoLodged.equals("") && wicaWhoLodged.length() > 200) {
-                            errorMsg += header[7] + " cannot be longer than 200 characters,";
+                            errorMsg += header[7] + " must not exceed 200 characters,";
                         }
 
                         if (!wicaClaimRem.equals("") && wicaClaimRem.length() > 200) {
-                            errorMsg += header[8] + " cannot be longer than 200 characters,";
+                            errorMsg += header[8] + " must not exceed 200 characters,";
                         }
                     }   //pass 
 
@@ -4091,19 +4081,19 @@ public class DataValidator {
                         }
 
                         if (!medClaimInsurer.equals("") && medClaimInsurer.length() > 50) {
-                            errorMsg += header[5] + " cannot be longer than 50 characters,";
+                            errorMsg += header[5] + " must not exceed 50 characters,";
                         }
 
                         if (!medClaimPolicyNbr.equals("") && medClaimPolicyNbr.length() > 30) {
-                            errorMsg += header[6] + " cannot be longer than 30 characters,";
+                            errorMsg += header[6] + " must not exceed 30 characters,";
                         }
 
                         if (!medClaimBasis.equals("") && medClaimBasis.length() > 1000) {
-                            errorMsg += header[7] + " cannot be longer than 1000 characters,";
+                            errorMsg += header[7] + " must not exceed 1000 characters,";
                         }
 
                         if (!medClaimRem.equals("") && medClaimRem.length() > 1000) {
-                            errorMsg += header[8] + " cannot be longer than 1000 characters,";
+                            errorMsg += header[8] + " must not exceed 1000 characters,";
                         }
                     }   //pass 
 
@@ -4226,23 +4216,23 @@ public class DataValidator {
                         }
 
                         if (!policeReptStation.equals("") && policeReptStation.length() > 50) {
-                            errorMsg += header[4] + " cannot be longer than 50 characters,";
+                            errorMsg += header[4] + " must not exceed 50 characters,";
                         }
 
                         if (!policeRptPers.equals("") && policeRptPers.length() > 200) {
-                            errorMsg += header[5] + " cannot be longer than 200 characters,";
+                            errorMsg += header[5] + " must not exceed 200 characters,";
                         }
 
                         if (!policeRptNbr.equals("") && policeRptNbr.length() > 30) {
-                            errorMsg += header[6] + " cannot be longer than 30 characters,";
+                            errorMsg += header[6] + " must not exceed 30 characters,";
                         }
 
                         if (!policeRptDetails.equals("") && policeRptDetails.length() > 1000) {
-                            errorMsg += header[7] + " cannot be longer than 1000 characters,";
+                            errorMsg += header[7] + " must not exceed 1000 characters,";
                         }
 
                         if (!policeRptRem.equals("") && policeRptRem.length() > 200) {
-                            errorMsg += header[8] + " cannot be longer than 200 characters,";
+                            errorMsg += header[8] + " must not exceed 200 characters,";
                         }
                     }   //pass 
 
@@ -4377,31 +4367,31 @@ public class DataValidator {
                         }
 
                         if (!agency.equals("") && agency.length() > 50) {
-                            errorMsg += header[5] + " cannot be longer than 50 characters,";
+                            errorMsg += header[5] + " must not exceed 50 characters,";
                         }
 
                         if (!who.equals("") && who.length() > 12) {
-                            errorMsg += header[6] + " cannot be longer than 12 characters,";
+                            errorMsg += header[6] + " must not exceed 12 characters,";
                         }
 
                         if (!whoMore.equals("") && whoMore.length() > 50) {
-                            errorMsg += header[7] + " cannot be longer than 50 characters,";
+                            errorMsg += header[7] + " must not exceed 50 characters,";
                         }
 
                         if (!mode.equals("") && mode.length() > 30) {
-                            errorMsg += header[8] + " cannot be longer than 30 characters,";
+                            errorMsg += header[8] + " must not exceed 30 characters,";
                         }
 
                         if (!modeMore.equals("") && modeMore.length() > 200) {
-                            errorMsg += header[9] + " cannot be longer than 200 characters,";
+                            errorMsg += header[9] + " must not exceed 200 characters,";
                         }
 
                          if (!details.equals("") && details.length() > 1000) {
-                            errorMsg += header[10] + " cannot be longer than 1000 characters,";
+                            errorMsg += header[10] + " must not exceed 1000 characters,";
                         }
 
                          if (!rem.equals("") && rem.length() > 200) {
-                            errorMsg += header[11] + " cannot be longer than 200 characters,";
+                            errorMsg += header[11] + " must not exceed 200 characters,";
                         }
 
                     } //pass
@@ -4558,15 +4548,15 @@ public class DataValidator {
                         }
 
                         if (!caseDissTime.equals("") && caseDissTime.length() > 20) {
-                            errorMsg += header[5] + " cannot be longer than 20 characters,";
+                            errorMsg += header[5] + " must not exceed 20 characters,";
                         }
 
                         if (!caseDissWhere.equals("") && caseDissWhere.length() > 30) {
-                            errorMsg += header[6] + " cannot be longer than 30 characters,";
+                            errorMsg += header[6] + " must not exceed 30 characters,";
                         }
 
                         if (!caseDissWhereMore.equals("") && caseDissWhereMore.length() > 50) {
-                            errorMsg += header[7] + " cannot be longer than 50 characters,";
+                            errorMsg += header[7] + " must not exceed 50 characters,";
                         }
 
                         if (!caseDissWorkerPresent.equals("")) {
@@ -4578,43 +4568,43 @@ public class DataValidator {
                         }
 
                         if (!caseDissTWC1.equals("") && caseDissTWC1.length() > 200) {
-                            errorMsg += header[9] + " cannot be longer than 200 characters,";
+                            errorMsg += header[9] + " must not exceed 200 characters,";
                         }
 
                          if (!caseDissTWC2.equals("") && caseDissTWC2.length() > 200) {
-                            errorMsg += header[10] + " cannot be longer than 200 characters,";
+                            errorMsg += header[10] + " must not exceed 200 characters,";
                         }
 
                          if (!caseDissOtherPerson.equals("") && caseDissOtherPerson.length() > 200) {
-                            errorMsg += header[11] + " cannot be longer than 200 characters,";
+                            errorMsg += header[11] + " must not exceed 200 characters,";
                         }
 
                         if (!caseDissTrasnslator.equals("") && caseDissTrasnslator.length() > 50) {
-                            errorMsg += header[12] + " cannot be longer than 50 characters,";
+                            errorMsg += header[12] + " must not exceed 50 characters,";
                         }
 
                         if (!caseDissTopic.equals("") && caseDissTopic.length() > 200) {
-                            errorMsg += header[13] + " cannot be longer than 200 characters,";
+                            errorMsg += header[13] + " must not exceed 200 characters,";
                         }
 
                         if (!caseDissGist.equals("") && caseDissGist.length() > 1000) {
-                            errorMsg += header[14] + " cannot be longer than 1000 characters,";
+                            errorMsg += header[14] + " must not exceed 1000 characters,";
                         }
 
                         if (!caseDissAssist.equals("") && caseDissAssist.length() > 1000) {
-                            errorMsg += header[15] + " cannot be longer than 1000 characters,";
+                            errorMsg += header[15] + " must not exceed 1000 characters,";
                         }
 
                         if (!caseDissCalculate.equals("") && caseDissCalculate.length() > 1000) {
-                            errorMsg += header[16] + " cannot be longer than 1000 characters,";
+                            errorMsg += header[16] + " must not exceed 1000 characters,";
                         }
 
                         if (!caseDissAction.equals("") && caseDissAction.length() > 500) {
-                            errorMsg += header[17] + " cannot be longer than 500 characters,";
+                            errorMsg += header[17] + " must not exceed 500 characters,";
                         }
 
                         if (!caseDissRem.equals("") && caseDissRem.length() > 500) {
-                            errorMsg += header[18] + " cannot be longer than 500 characters,";
+                            errorMsg += header[18] + " must not exceed 500 characters,";
                         }
 
                     } //pass
@@ -4758,15 +4748,15 @@ public class DataValidator {
                         }
 
                         if (!hospNameMore.equals("") && hospNameMore.length() > 50) {
-                            errorMsg += header[6] + " cannot be longer than 50 characters,";
+                            errorMsg += header[6] + " must not exceed 50 characters,";
                         }
 
                         if (!doctor.equals("") && doctor.length() > 200) {
-                            errorMsg += header[7] + " cannot be longer than 200 characters,";
+                            errorMsg += header[7] + " must not exceed 200 characters,";
                         }
 
                         if (!rem.equals("") && rem.length() > 200) {
-                            errorMsg += header[8] + " cannot be longer than 200 characters,";
+                            errorMsg += header[8] + " must not exceed 200 characters,";
                         }
 
 
@@ -4905,15 +4895,15 @@ public class DataValidator {
                         }
 
                         if (!mcStatus.equals("") && mcStatus.length() > 20) {
-                            errorMsg += header[5] + " cannot be longer than 20 characters,";
+                            errorMsg += header[5] + " must not exceed 20 characters,";
                         }
 
                         if (!mcStatusMore.equals("") && mcStatusMore.length() > 50) {
-                            errorMsg += header[6] + " cannot be longer than 50 characters,";
+                            errorMsg += header[6] + " must not exceed 50 characters,";
                         }
 
                         if (!mcRem.equals("") && mcRem.length() > 200) {
-                            errorMsg += header[8] + " cannot be longer than 200 characters,";
+                            errorMsg += header[8] + " must not exceed 200 characters,";
                         }
 
                         if (!mcDaysCumStr.equals("")) {
@@ -5079,39 +5069,39 @@ public class DataValidator {
                         }
 
                         if (!r2rTime.equals("") && r2rTime.length() > 20) {
-                            errorMsg += header[5] + " cannot be longer than 20 characters,";
+                            errorMsg += header[5] + " must not exceed 20 characters,";
                         }
 
                         if (!r2rHosp.equals("") && r2rHosp.length() > 20) {
-                            errorMsg += header[6] + " cannot be longer than 20 characters,";
+                            errorMsg += header[6] + " must not exceed 20 characters,";
                         }
 
                         if (!r2rDept.equals("") && r2rDept.length() > 50) {
-                            errorMsg += header[7] + " cannot be longer than 50 characters,";
+                            errorMsg += header[7] + " must not exceed 50 characters,";
                         }
 
                         if (!r2r1.equals("") && r2r1.length() > 20) {
-                            errorMsg += header[8] + " cannot be longer than 20 characters,";
+                            errorMsg += header[8] + " must not exceed 20 characters,";
                         }
 
                         if (!r2r2.equals("") && r2r2.length() > 20) {
-                            errorMsg += header[9] + " cannot be longer than 20 characters,";
+                            errorMsg += header[9] + " must not exceed 20 characters,";
                         }
 
                          if (!purpose.equals("") && purpose.length() > 50) {
-                            errorMsg += header[10] + " cannot be longer than 50 characters,";
+                            errorMsg += header[10] + " must not exceed 50 characters,";
                         }
 
                          if (!preApptNotes.equals("") && preApptNotes.length() > 200) {
-                            errorMsg += header[11] + " cannot be longer than 200 characters,";
+                            errorMsg += header[11] + " must not exceed 200 characters,";
                         }
 
                         if (!postApptNotes.equals("") && postApptNotes.length() > 200) {
-                            errorMsg += header[12] + " cannot be longer than 200 characters,";
+                            errorMsg += header[12] + " must not exceed 200 characters,";
                         }
 
                         if (!feedback.equals("") && feedback.length() > 200) {
-                            errorMsg += header[13] + " cannot be longer than 200 characters,";
+                            errorMsg += header[13] + " must not exceed 200 characters,";
                         }
 
 
@@ -5252,19 +5242,19 @@ public class DataValidator {
 
 
                         if (!firmName.equals("") && firmName.length() > 30) {
-                            errorMsg += header[5] + " cannot be longer than 30 characters,";
+                            errorMsg += header[5] + " must not exceed 30 characters,";
                         }
 
                         if (!firmNameMore.equals("") && firmNameMore.length() > 50) {
-                            errorMsg += header[6] + " cannot be longer than 50 characters,";
+                            errorMsg += header[6] + " must not exceed 50 characters,";
                         }
 
                         if (!lawyerName.equals("") && lawyerName.length() > 200) {
-                            errorMsg += header[7] + " cannot be longer than 200 characters,";
+                            errorMsg += header[7] + " must not exceed 200 characters,";
                         }
 
                         if (!rem.equals("") && rem.length() > 200) {
-                            errorMsg += header[8] + " cannot be longer than 200 characters,";
+                            errorMsg += header[8] + " must not exceed 200 characters,";
                         }
 
 
@@ -5405,15 +5395,15 @@ public class DataValidator {
 
 
                         if (!reached.equals("") && reached.length() > 50) {
-                            errorMsg += header[5] + " cannot be longer than 50 characters,";
+                            errorMsg += header[5] + " must not exceed 50 characters,";
                         }
 
                         if (!reachedMore.equals("") && reachedMore.length() > 200) {
-                            errorMsg += header[6] + " cannot be longer than 200 characters,";
+                            errorMsg += header[6] + " must not exceed 200 characters,";
                         }
 
                         if (!rem.equals("") && rem.length() > 200) {
-                            errorMsg += header[7] + " cannot be longer than 200 characters,";
+                            errorMsg += header[7] + " must not exceed 200 characters,";
                         }
 
 
@@ -5557,23 +5547,23 @@ public class DataValidator {
 
 
                         if (!reached.equals("") && reached.length() > 50) {
-                            errorMsg += header[5] + " cannot be longer than 50 characters,";
+                            errorMsg += header[5] + " must not exceed 50 characters,";
                         }
 
                         if (!reachedMore.equals("") && reachedMore.length() > 200) {
-                            errorMsg += header[6] + " cannot be longer than 200 characters,";
+                            errorMsg += header[6] + " must not exceed 200 characters,";
                         }
 
                         if (!charges.equals("") && charges.length() > 200) {
-                            errorMsg += header[7] + " cannot be longer than 200 characters,";
+                            errorMsg += header[7] + " must not exceed 200 characters,";
                         }
 
                         if (!sentence.equals("") && sentence.length() > 200) {
-                            errorMsg += header[8] + " cannot be longer than 200 characters,";
+                            errorMsg += header[8] + " must not exceed 200 characters,";
                         }
 
                         if (!rem.equals("") && rem.length() > 200) {
-                            errorMsg += header[9] + " cannot be longer than 200 characters,";
+                            errorMsg += header[9] + " must not exceed 200 characters,";
                         }
 
 
@@ -5717,28 +5707,28 @@ public class DataValidator {
 
 
                         if (!status.equals("") && status.length() > 50) {
-                            errorMsg += header[5] + " cannot be longer than 50 characters,";
+                            errorMsg += header[5] + " must not exceed 50 characters,";
                         }
 
                         if (!statusMore.equals("") && statusMore.length() > 200) {
-                            errorMsg += header[6] + " cannot be longer than 200 characters,";
+                            errorMsg += header[6] + " must not exceed 200 characters,";
                         }
 
                         if (!departureDateStr.equals("") && departureDateStr.length() > 50) {
-                            errorMsg += header[7] + " cannot be longer than 50 characters,";
+                            errorMsg += header[7] + " must not exceed 50 characters,";
                         }
 
 
                         if (!nameNew.equals("") && nameNew.length() > 50) {
-                            errorMsg += header[8] + " cannot be longer than 50 characters,";
+                            errorMsg += header[8] + " must not exceed 50 characters,";
                         }
 
                         if (!newJob.equals("") && newJob.length() > 200) {
-                            errorMsg += header[9] + " cannot be longer than 50 characters,";
+                            errorMsg += header[9] + " must not exceed 50 characters,";
                         }
 
                         if (!rem.equals("") && rem.length() > 200) {
-                            errorMsg += header[10] + " cannot be longer than 200 characters,";
+                            errorMsg += header[10] + " must not exceed 200 characters,";
                         }
 
 
@@ -5889,18 +5879,18 @@ public class DataValidator {
 
 
                         if (beneGiver != null && beneGiver.length() > 20) {
-                            errorMsg += "Benefit Giver cannot be more than 20 characters.";
+                            errorMsg += "Benefit Giver must not exceed 20 characters.";
                         }
                         if (beneSerial != null && beneSerial.length() > 30) {
-                            errorMsg += "Benefit Serial cannot be more than 30 characters.";
+                            errorMsg += "Benefit Serial must not exceed 30 characters.";
                         }
 
                         if (benePurpose != null && benePurpose.length() > 200) {
-                            errorMsg += "Benefit Purpose cannot be more than 200 characerers.";
+                            errorMsg += "Benefit Purpose must not exceed 200 characerers.";
                         }
 
                         if (beneRem != null && beneRem.length() > 500) {
-                            errorMsg += "Benefit Remark cannot be more than 500 characters.";
+                            errorMsg += "Benefit Remark must not exceed 500 characters.";
                         }
 
                         if (!beneValueStr.equals("")) {

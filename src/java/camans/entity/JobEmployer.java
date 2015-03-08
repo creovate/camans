@@ -129,10 +129,9 @@ public class JobEmployer {
     }
     
     public String toString2() {
-        return "JobEmployer{" + "WorkerFinNum=" + workerFinNum + 
-                ", employerOfficialName=" + employerOfficialName + ", employerID=" + employerID + 
+        return "Employer [employerOfficialName=" + employerOfficialName + ", employerID=" + employerID + 
                 ", employerAddress=" + employerAddress + ", employerContacts=" + employerContacts + 
-                ", employerPersons=" + employerPersons + ", employerRemarks=" + employerRemarks + '}';
+                ", employerPersons=" + employerPersons + ", employerRemarks=" + employerRemarks + ']';
     }   
     
     

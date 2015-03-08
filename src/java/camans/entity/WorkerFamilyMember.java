@@ -124,7 +124,13 @@ public class WorkerFamilyMember {
     }
 
     public String toString2() {
-        return "WorkerFamilyMember{" + "workerFinNum=" + workerFinNum + ", name=" + name + ", relation=" + relation + ", address=" + address + ", phoneNumber=" + phoneNumber + ", digital=" + digital + ", remark=" + remark + ", obseleteDate=" + obseleteDate + '}';
+        if (obseleteDate == null) {
+           return "WorkerFamilyMember [name=" + name + ", relation=" + relation + ", address=" + address 
+                + ", phoneNumber=" + phoneNumber + ", digital=" + digital + ", remark=" + remark + ']'; 
+        }
+        return "WorkerFamilyMember [name=" + name + ", relation=" + relation + ", address=" + address 
+                + ", phoneNumber=" + phoneNumber + ", digital=" + digital + ", remark=" + remark + 
+                ", obseleteDate=" + obseleteDate + ']';
     }
     
 }

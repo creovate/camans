@@ -219,7 +219,7 @@ public class JobEmploymentContract {
     }
     
     public String toString2() {
-        return "JobEmploymentContract{" + "WorkerFinNum=" + workerFinNum + ", shortName=" + shortName + 
+        return "Employment Contract [ shortName=" + shortName + 
                 ", contractDate=" + contractDate + ", contractWhere=" + contractWhere + 
                 ", contractlanguage=" + contractlanguage + ", contractOppName=" + contractOppName + 
                 ", contractOppRelationship=" + contractOppRelationship + 
@@ -228,7 +228,7 @@ public class JobEmploymentContract {
                 ", contractAllowances=" + contractAllowances + 
                 ", contractDeductDetails=" + contractDeductDetails + 
                 ", contractDuration=" + contractDuration + 
-                ", contractDuress=" + contractDuress + ", contractRemarks=" + contractRemarks + '}';
+                ", contractDuress=" + contractDuress + ", contractRemarks=" + contractRemarks + ']';
     }    
       
     

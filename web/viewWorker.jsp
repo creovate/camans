@@ -109,7 +109,7 @@
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 
     String userRole = userLogin.getRole();
-
+    
     DecimalFormat df = new DecimalFormat("#,###,##0.00");
 %>
 
@@ -2328,7 +2328,7 @@
                                                             JobWorkHistory history = JobComplementsDAO.retrieveJobWorkHistoryById(historyIdsList.get(i));
 
                                                             String historyHow = history.getWorkHistHow();
-                                                            java.util.Date historyArrDate = history.getWorkHistDate();
+                                                            String historyArrDate = history.getWorkHistDate();
                                                             String historyFirstJob = history.getWorkHistFirst();
                                                             String historyArrYear = history.getWorkHistYearArrive();
                                                             if (i < historyIdsList.size() - 1) {
@@ -2357,7 +2357,7 @@
                                                     %>
                                                     <tr>
                                                         <td><%=historyHow%></td>
-                                                        <td><%=(historyArrDate == null) ? "-" : sdf.format(historyArrDate)%></td>                                       
+                                                        <td><%=(historyArrDate == null) ? "" : historyArrDate%></td>                                       
                                                         <td><%=historyFirstJob%></td>
                                                         <td><%=historyArrYear%></td>
 

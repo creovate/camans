@@ -56,7 +56,7 @@ public class processAssignCase extends HttpServlet {
             //log to audit
             String auditChange = leadCaseWorker.toString2();
             UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), probKey + "", 
-                    workerFin, "Added", "Case Taken: " + auditChange);
+                    workerFin, "Added", auditChange + " has been added to worker " + workerFin);
             UserAuditLogDAO.addUserAuditLog(userAuditLog); 
             //End log to audit
             

@@ -166,7 +166,7 @@ public class processFile extends HttpServlet {
                 }
                 //log to audit
                 UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), workerFinNum + "", 
-                        workerFinNum, "Added", "Attachment: " + auditChange);
+                        workerFinNum, "Added", auditChange + " has been " + action + "ed for worker " + workerFinNum + ".");
 
                 UserAuditLogDAO.addUserAuditLog(userAuditLog);  
                 request.getSession().setAttribute("successAttachMsg", success);

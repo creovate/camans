@@ -144,12 +144,11 @@ public class ProblemPoliceReport {
     }
 
     public String toString2() {
-        return "ProblemPoliceReport{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", policeReportDate=" + policeReportDate + 
+        return "Police Report [policeReportDate=" + policeReportDate + 
                 ", policeReportStation=" + policeReportStation + 
                 ", policeReportPerson=" + policeReportPerson + 
                 ", policeReportReferenceNumber=" + policeReportReferenceNumber + 
                 ", policeReportDetails=" + policeReportDetails + 
-                ", policeReportRemark=" + policeReportRemark + '}';
+                ", policeReportRemark=" + policeReportRemark + ']';
     }    
 }

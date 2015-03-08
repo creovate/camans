@@ -2696,6 +2696,7 @@ public class ProblemComplementsDAO {
 
         return ids;
     }
+    
     public static ArrayList<Integer> retrieveProblemR2RIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 

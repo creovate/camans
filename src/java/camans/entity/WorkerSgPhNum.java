@@ -69,7 +69,10 @@ public class WorkerSgPhNum {
     }
     
     public String toString2() {
-        return "WorkerSgPhNum{" + "workerFinNum=" + workerFinNum + ", phNumber=" + phNumber + ", obseleteDate=" + obseleteDate + '}';
+        if (obseleteDate == null) {
+            return "Singapore PhNum [phNumber=" + phNumber + "]";
+        }
+        return "Singapore PhNum [phNumber=" + phNumber + ", obseleteDate=" + obseleteDate + ']';
     }    
     
 }

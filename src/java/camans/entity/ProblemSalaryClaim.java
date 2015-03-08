@@ -106,9 +106,8 @@ public class ProblemSalaryClaim {
     }
 
     public String toString2() {
-        return "ProblemSalaryClaim{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", salaryClaimDate=" + salaryClaimDate + ", salaryClaimLoss=" + salaryClaimLoss + 
-                ", salaryClaimBasis=" + salaryClaimBasis + '}';
+        return "Salary Claim [salaryClaimDate=" + salaryClaimDate + ", salaryClaimLoss=" + salaryClaimLoss + 
+                ", salaryClaimBasis=" + salaryClaimBasis + ']';
     }
     
 }

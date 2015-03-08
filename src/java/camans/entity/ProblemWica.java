@@ -144,11 +144,10 @@ public class ProblemWica {
     }
 
     public String toString2() {
-        return "ProblemWica{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", wicaMonthlyUpdate=" + wicaMonthlyUpdate + ", wicaMonthlyStatus=" + wicaMonthlyStatus + 
+        return "WICA [wicaMonthlyUpdate=" + wicaMonthlyUpdate + ", wicaMonthlyStatus=" + wicaMonthlyStatus + 
                 ", wicaMonthlyStatusMore=" + wicaMonthlyStatusMore + 
                 ", wicaMonthlyPoints=" + wicaMonthlyPoints + ", wicaMonthlyDollars=" + wicaMonthlyDollars + 
-                ", wicaMonthlyRemarks=" + wicaMonthlyRemarks + '}';
+                ", wicaMonthlyRemarks=" + wicaMonthlyRemarks + ']';
     }    
     
 }

@@ -1355,7 +1355,7 @@ public class JobComplementsDAO {
             while (rs.next()) {
                 String Work_hist_how = rs.getString(1);
                 String Work_hist_how_more = rs.getString(2);
-                Date Work_hist_date = rs.getDate(3);
+                String Work_hist_date = rs.getString(3);
                 String Work_hist_first = rs.getString(4);
                 String Work_hist_year_arrive = rs.getString(5);
                 String Work_hist_previous = rs.getString(6);
@@ -1393,7 +1393,7 @@ public class JobComplementsDAO {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, jobWorkHistory.getWorkHistHow());
             pstmt.setString(2, jobWorkHistory.getWorkHistHowMore());
-            pstmt.setDate(3, jobWorkHistory.getWorkHistDate());
+            pstmt.setString(3, jobWorkHistory.getWorkHistDate());
             pstmt.setString(4, jobWorkHistory.getWorkHistFirst());
             pstmt.setString(5, jobWorkHistory.getWorkHistYearArrive());
             pstmt.setString(6, jobWorkHistory.getWorkHistPrevious());
@@ -1424,7 +1424,7 @@ public class JobComplementsDAO {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, jobWorkHistory.getWorkHistHow());
             pstmt.setString(2, jobWorkHistory.getWorkHistHowMore());
-            pstmt.setDate(3, jobWorkHistory.getWorkHistDate());
+            pstmt.setString(3, jobWorkHistory.getWorkHistDate());
             pstmt.setString(4, jobWorkHistory.getWorkHistFirst());
             pstmt.setString(5, jobWorkHistory.getWorkHistYearArrive());
             pstmt.setString(6, jobWorkHistory.getWorkHistPrevious());

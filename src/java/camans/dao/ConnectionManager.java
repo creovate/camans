@@ -25,13 +25,14 @@ public class ConnectionManager {
     if (host != null) {
       // this is production environment
       // obtain database connection properties from environment variables
+      /*
       String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
       String dbName = System.getenv("OPENSHIFT_APP_NAME");
       dbUser = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
       dbPassword = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
       
       dbURL = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
-
+      */
     } else {
       // this is development environment
       // obtain database connection properties from properties file

@@ -90,6 +90,6 @@ public class WorkerLanguage {
     }
     
     public String toString2() {
-        return "WorkerLanguage{" + "workerFinNum=" + workerFinNum + ", mainLanguage=" + mainLanguage + ", mainLangaugeMore=" + mainLangaugeMore + ", spokenLanguageStandard=" + spokenLanguageStandard + ", remark=" + remark + '}';
+        return "WorkerLanguage [mainLanguage=" + mainLanguage + ", mainLangaugeMore=" + mainLangaugeMore + ", spokenLanguageStandard=" + spokenLanguageStandard + ", remark=" + remark + ']';
     }    
 }

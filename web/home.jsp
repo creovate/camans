@@ -465,7 +465,10 @@
             </div>
         </div>                        
         <script>
-
+            //page loading gif
+            $(window).load(function() {
+                $('#pageloading').hide();
+            });
             //startdate & enddate 
             $(function() {
                 $(".startDate").datepicker({

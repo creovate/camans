@@ -250,8 +250,7 @@ public class ProblemCaseDiscussion {
     }
     
     public String toString2() {
-        return "ProblemCaseDiscussion{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", caseDiscussionDate=" + caseDiscussionDate + 
+        return "Case Discussion [caseDiscussionDate=" + caseDiscussionDate + 
                 ", caseDiscussionTime=" + caseDiscussionTime + 
                 ", caseDiscussionWhere=" + caseDiscussionWhere + 
                 ", caseDiscussionWhereMore=" + caseDiscussionWhereMore + 
@@ -265,6 +264,6 @@ public class ProblemCaseDiscussion {
                 ", caseDiscussionAssist=" + caseDiscussionAssist + 
                 ", caseDiscussionCalculate=" + caseDiscussionCalculate + 
                 ", caseDiscussionAction=" + caseDiscussionAction + 
-                ", caseDiscussionRemark=" + caseDiscussionRemark + '}';
+                ", caseDiscussionRemark=" + caseDiscussionRemark + ']';
     }    
 }

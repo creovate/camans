@@ -80,6 +80,9 @@ public class WorkerHomeCountryPhNum {
     }
     
     public String toString2() {
-        return "WorkerHomeCountryPhNum{" + "workerFinNum=" + workerFinNum + ", phNumber=" + phNumber + ", phOwner=" + phOwner + ", obseleteDate=" + obseleteDate + '}';
+        if (obseleteDate == null) {
+            return "Home Country PhNum [phNumber=" + phNumber + ", phOwner=" + phOwner + "]";
+        }
+        return "WorkerHomeCountryPhNum [phNumber=" + phNumber + ", phOwner=" + phOwner + ", obseleteDate=" + obseleteDate + ']';
     }    
 }

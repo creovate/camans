@@ -46,7 +46,7 @@
         <script src="js/bootstrap-session-timeout.min.js"></script> 
 
         <link rel="shortcut icon" href="img/twc_logo.png">
-        <title>Camans</title>
+        <title>CAMANS</title>
         <style>
             
         </style>
@@ -218,7 +218,7 @@
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#recent<%=i%>" aria-expanded="true" aria-controls="recent<%=i%>">
-                                Case Referred By : <%=(referredByFullName == null) ? "-" : referredByFullName%> <p class="pull-right">Referred Date : <%= (referredDate == null) ? "-" : referredDate%></p>
+                                Case Referred By : <%=(referredByFullName == null) ? "-" : referredByFullName%> <p class="pull-right"><span class="glyphicon glyphicon-calendar"></span>&nbsp;Referred Date : <%= (referredDate == null) ? "-" : referredDate%></p>
                             </a>
                         </h4>
                     </div>
@@ -285,6 +285,7 @@
                 </div>
             </div>
         <script>
+            
             $(document).ready(function () {
                 $.sessionTimeout({
                     message: 'Your session will be expired in five minutes.',
