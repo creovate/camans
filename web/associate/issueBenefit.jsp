@@ -65,6 +65,7 @@
             latestProblem = ProblemDAO.retrieveProblemByProblemId(problemIdList.get(problemIdList.size() - 1));
         } else {
             latestJob = JobDAO.retrieveJobByJobId(jobIdList.get(jobIdList.size() - 1));
+            selectedJob = latestJob.getJobKey() + "";
             problemIdList = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, latestJob);
         }
     }
@@ -73,11 +74,15 @@
         int selectedProbId = Integer.parseInt(selectedProb);
         latestProblem = ProblemDAO.retrieveProblemByProblemId(selectedProbId);
         int selectedJobId = latestProblem.getJobKey();
+        selectedJob = selectedJobId + "";
         latestJob = JobDAO.retrieveJobByJobId(selectedJobId);
         problemIdList = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, latestJob);
     } else if (problemIdList != null && problemIdList.size() > 0) {
-
+        
         latestProblem = ProblemDAO.retrieveProblemByProblemId(problemIdList.get(problemIdList.size() - 1));
+        int probKey = latestProblem.getProbKey();
+        selectedProb = probKey + "";
+        selectedJob = latestProblem.getJobKey() + "";
     }
 
     //prepare for benefit dropdowns
@@ -98,11 +103,15 @@
         <!--css-->
         <link rel="stylesheet" href="../css/bootstrap.css" media="screen" />
         <link rel="stylesheet" href="../css/custom.css" media="screen" /> 
+        <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.css">
+        <link rel="stylesheet" href="../css/jquery-ui.structure.css">
+        <link rel="stylesheet" href="../css/jquery-ui.theme.css">
         <!-------------->
 
         <!--javascript-->
         <script src="../js/jquery-2.1.1.js"></script>
         <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/jquery-ui-1.9.2.custom.js"></script>
         <!------------->
 
         <!--tab icon-->
@@ -115,24 +124,41 @@
                 color: #006c9a;
             }
 
+            #searchBox{
+                margin-bottom: 2%;
+            }
             #searcResult{
                 background-color: #ededed;
-                padding-top: 5%;
-                padding-bottom: 5%;
+
+                padding-left: 0;
+                padding-right: 0;
             }
-            
+
             #folderImg{
                 width: 20vw;
             }
+            input{
+                width: 100%;
+            }
+            input.form-control{
+                width: 100%;
+            }
+
+            #issueBene{
+                border-left: 1px solid #CCC;
+                border-right: 1px solid #CCC;
+            }
         </style>
         <script>
-
+            function goBack() {
+                window.history.back();
+            }
 
             function toggleBenefitDDL() {
                 var selected = $('#benefitCategory').val();
 
                 $('#nbenetype').empty();
-                if (selected === "Meal Cards") {
+                if (selected === "Food") {
 
             <%
                 for (int i = 0; i < foodDropdownList.size(); i++) {
@@ -140,12 +166,12 @@
             %>
 
                     $('#nbenetype').append("<option><%=ddlItem%></option>");
-                    
+
             <%
                 }
             %>
 
-                } else if (selected === "FareGo") {
+                } else if (selected === "Transport") {
             <%
                 for (int i = 0; i < faregoDropdownList.size(); i++) {
                     String ddlItem = faregoDropdownList.get(i);
@@ -156,7 +182,7 @@
                 }
             %>
                     //alert("farego");
-                } else if (selected === "med") {
+                } else if (selected === "Medical & Karunya") {
             <%
                 for (int i = 0; i < medDropdownList.size(); i++) {
                     String ddlItem = medDropdownList.get(i);
@@ -176,7 +202,7 @@
                 }
             %>
                     //alert("roof");
-                } else if (selected === "Others") {
+                } else if (selected === "Other") {
             <%
                 for (int i = 0; i < otherDropdownList.size(); i++) {
                     String ddlItem = otherDropdownList.get(i);
@@ -185,9 +211,8 @@
             <%
                 }
             %>
-                    //alert("other");
                 }
-                $('#btnHistory').attr("onclick","window.location = 'benefection.jsp?worker=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>&selectedProb=<%=latestProblem.getProbKey() %>&beneCategory=" + selected + "&action=viewRecent';");
+                $('#btnHistory').attr("onclick", "window.location = 'benefection.jsp?worker=<%=workerFin%>&selectedJob=<%= selectedJob %>&selectedProb=<%=selectedProb %>&beneCategory=" + selected + "&action=viewRecent';");
 
 
             }
@@ -197,46 +222,46 @@
         <!-- Nav Bar -->
         <jsp:include page="navbar.jsp"/>
         <!-- End of Nav Bar-->
-
+<!-- Back Button -->
+            
+        <!-- End of Back Button -->
         <!-- Search Box -->
-        <div id="searchBox" class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
-            <br/>
+        <div id="searchBox" class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
             <h4 style="color:#006c9a">Search Worker by FIN</h4>
 
             <!-- Search Worker form-->
             <form class="form-inline" method="POST" action="../searchWorker.do">
-                <div class="form-group col-xs-9">
+                <div class="form-group col-xs-9 col-sm-8 col-md-8">
                     <%
                         if (fin != null) {
                     %>
-                    <input type="text" class="form-control" id="finNum" name="fin" value="<%=fin%>" placeholder="FIN Number" required>
+                    <input type="text" class="form-control" name="fin"  id="finNum" value="<%=fin%>" placeholder="FIN Number" required style='width:100%;'>
                     <%
                     } else {
                     %>
-                    <input type="text" class="form-control" id="finNum" name="fin" placeholder="FIN Number" required>
+                    <input type="text" class="form-control" id="finNum" name="fin" placeholder="FIN Number" required style='width:100%;'>
                     <%                    }
                     %>
 
                 </div>
                 <input type="hidden" name="associate" value="associate"/>
-                <button type="submit" class="btn btn-blue col-xs-3">Search</button>
+                <button type="submit" class="btn btn-blue col-xs-3 col-sm-3 col-md-3">Search</button>
             </form>
-
         </div>
         <!-- End of Search Box -->
 
         <%
             if (worker != null) {
                 //there will be only one worker with this fin number
-                
+
         %>
         <!-- Search Result & issue Benefits -->
 
         <!-- Search Result -->
         <br/>
         <!--div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-12" id="searcResult"-->
-        <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12" id="searcResult">
+        <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-3 col-sm-6" id="searcResult">
+            <br/>
             <label class="col-xs-5">Worker Name</label><p class="col-xs-6"><%=workerName%></p><br/>
             <label class="col-xs-5">FIN Number</label><p class="col-xs-6"><%=workerFin%></p><br/>
 
@@ -265,10 +290,10 @@
                     <input type="hidden" name='selectedType' value='job'/>
                     <input type='hidden' name='associate' value="associate"/>
                 </form>
-                    
+
             </div>
-                    
-                    <br/><br/><br/><br/>
+
+            <br/><br/><br/><br/>
             <label class="col-xs-4">Problem</label>
             <div class="col-xs-8">
                 <form method="POST" action="../changeToSelected">
@@ -279,14 +304,15 @@
                                 int probId = problemIdList.get(i);
                                 Problem problem = ProblemDAO.retrieveProblemByProblemId(problemIdList.get(i));
                                 String probType = problem.getProblem();
-                                if(latestProblem != null && latestProblem.getProbKey() == probId ){
-                                    %>
+                                if (latestProblem != null && latestProblem.getProbKey() == probId) {
+                        %>
                         <option value='<%=probId%>' selected><%=probType%></option>
                         <%
-                                }else{
+                        } else {
                         %>
                         <option value='<%=probId%>'><%=probType%></option>
-                        <%              }  }
+                        <%              }
+                            }
                         %>
 
 
@@ -298,58 +324,59 @@
             </div>
             <br/><br/><br/>
             <div style="padding: 0 2%">
-            <button type="button" class='btn btn-blue btn-sm' onclick="window.location = 'addNew.jsp?workerFin=<%=workerFin%>';"><span class="glyphicon glyphicon-plus"></span> Job</button>
-            <button type="button" class='btn btn-blue btn-sm' onclick="window.location = 'addNew.jsp?workerFin=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>';"><span class="glyphicon glyphicon-plus"></span> Problem</button>
-            <button type="button" class='btn btn-blue btn-sm pull-right' onclick="window.location = 'caseSummary.jsp?worker=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>&selectedProb=<%=latestProblem.getProbKey()%>';">Case Summary</button>
+                <button type="button" class='btn btn-blue btn-sm' onclick="window.location = 'addNew.jsp?workerFin=<%=workerFin%>';"><span class="glyphicon glyphicon-plus"></span> Job</button>
+                <button type="button" class='btn btn-blue btn-sm' onclick="window.location = 'addNew.jsp?workerFin=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>';"><span class="glyphicon glyphicon-plus"></span> Problem</button>
+                <button type="button" class='btn btn-blue btn-sm pull-right' onclick="window.location = 'caseSummary.jsp?worker=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>&selectedProb=<%=latestProblem.getProbKey()%>';">Case Summary</button>
             </div>
+            <br/>
         </div>
-            </div>
         <!-- End of Search Result -->
 
 
         <!-- Issue Benefits -->
-        <div class="col-md-12 col-xs-12 col-sm-12" id="issueBene">
-            <div class="row" style="padding-top: 4%; padding-right: 4%;">
-            <h4 class="col-xs-8" style="color:#006c9a">Issue Benefits</h4>
-            <button class="col-xs-3 btn btn-blue btn-sm pull-right" onclick="window.location = 'addComplements.jsp?workerFin=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>&selectedProb=<%=latestProblem.getProbKey() %>';">R2R</button>
-            </div>
+        <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-3 col-sm-6" id="issueBene">
             <br/>
+            <div class="row" style="padding-right: 5%;">
+                <h4 class="col-xs-8" style="color:#006c9a">Issue Benefits</h4>
+                <button class="col-xs-3 col-sm-3 col-md-3 btn btn-blue btn-sm pull-right" onclick="window.location = 'addComplements.jsp?workerFin=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>&selectedProb=<%=latestProblem.getProbKey()%>&complement=r2r&action=add';">R2R</button>
+            </div>
 
             <form method="POST" id='add_benefit_pop_up' class="form form-horizontal" action="../addBenefit.do"  style="height:100%">
-                <div class='form-group' style="padding-top: 4%; padding-bottom: 4%">
+                <br/>
+                <div class='form-group'>
                     <label for='nbenetype' class="control-label col-xs-4 col-sm-4">Benefits: </label>
                     <div class="col-xs-8 col-sm-4">
                         <select class="form-control input-sm" id="benefitCategory" name="benefitCategory" onchange="toggleBenefitDDL();">
-                            <option>Meal Cards</option>
-                            <option>FareGo</option>
-                            <option value="med">Medical & Karunya</option>
-                            <option>Roof</option>
-                            <option>Others</option>
+                            <option value="Food">Meal Cards</option>
+                            <option value="Transport">FareGo</option>
+                            <option value="Medical & Karunya">Medical & Karunya</option>
+                            <option value="Roof">Roof</option>
+                            <option value="Other">Others</option>
                         </select>
                         <br/>
-                        <button type='button' class='btn btn-blue btn-sm pull-right' id='btnHistory' onclick="window.location = 'benefection.jsp?worker=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>&selectedProb=<%=latestProblem.getProbKey() %>&beneCategory=Meal Cards&action=viewRecent';">View History</button>
                     </div>
+                    <button type='button' style='margin-right: 5%;' class='btn btn-blue btn-sm pull-right ' id='btnHistory' onclick="window.location = 'benefection.jsp?worker=<%=workerFin%>&selectedJob=<%=latestJob.getJobKey()%>&selectedProb=<%=latestProblem.getProbKey()%>&beneCategory=Food&action=viewRecent';">View History</button>
+
                 </div>
-                
-                <hr>
+
+                <br/>
 
                 <div class='form-group'>
-                    <label for='nisDate' class="control-label col-xs-4 col-sm-4">Issued Date<span style="color: red">*</span>: </label>
+                    <label for='nisDate' class="control-label col-xs-4 col-sm-4"><span style="color: red">*</span>Issued Date: </label>
                     <div class="col-xs-8 col-sm-4">
                         <input class="form-control dateInput input-sm" type='text' name="nisDate" value="<%=sdf.format(today)%>">
                     </div>
                 </div>
                 <div class='form-group'>
-                    <label for='ngivenby' class="control-label col-xs-4 col-sm-4" >Given By<span style="color: red">*</span>: </label>
+                    <label for='ngivenby' class="control-label col-xs-4 col-sm-4" ><span style="color: red">*</span>Given By: </label>
                     <div class="col-xs-8 col-sm-4">
                         <input class="form-control input-sm" type='text' name="ngivenby"/>
                     </div>
                 </div>
                 <div class='form-group'>
-                    <label for='nbenetype' class="control-label col-xs-4 col-sm-4">Benefit Type<span style="color: red">*</span>: </label>
+                    <label for='nbenetype' class="control-label col-xs-4 col-sm-4"><span style="color: red">*</span>Benefit Type:</label>
                     <div class="col-xs-8 col-sm-4">
                         <select class="form-control input-sm" id="nbenetype" name="nbenetype">
-                            <option value="">Select from list: </option>
                             <%
                                 for (String dropdownItem : dropdownList) {
                                     if (dropdownItem.equals("Meal card")) {
@@ -393,7 +420,7 @@
 
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue modal_btn">Save</button>
-                    <button type='button' class='btn modal_btn cancel_btn'>Cancel</button>
+                    <button type='button' onclick="window.location = 'home.jsp'" class='btn modal_btn cancel_btn'>Cancel</button>
                 </div>
 
             </form>
@@ -406,14 +433,14 @@
         %>
         <!-- Not Found Message & Directory -->
         <div class='row'>
-            <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10" id="searcResult">
+            <div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
                 <p style="color:red">Sorry! The worker does not exist in the system.
                 </p>
                 <p><b>Do you want to create new case?</b></p><br/>
 
                 <!--To do : option buttons to create worker-->
                 <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-12">
-                    <a href="addNew.jsp?workerFin=<%=fin%>&option=createCase"><img class="img-responsive center-block" src="../img/add_folder.png" id="folderImg"/></a>
+                    <a href="addNew.jsp?workerFin=<%=fin%>&option=createCase"><img class="img-responsive center-block" src="../img/folder.png" id="folderImg"/></a>
                 </div>
             </div>
         </div>

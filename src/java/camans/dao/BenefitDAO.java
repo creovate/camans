@@ -55,7 +55,7 @@ public class BenefitDAO {
         return ids;
     }
 
-    public static ArrayList<Integer> retrieveBenefitsIdsOfCategory(Problem problem, String benefitCategory, java.util.Date startDateIn, java.util.Date endDateIn) {
+    public static ArrayList<Integer> retrieveBenefitsIdsOfCategory(Problem problem, String benefitCategory) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
         Connection conn = null;
@@ -65,17 +65,44 @@ public class BenefitDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "select Remark, Name, t1.* from tbl_dropdown inner join "
-                    + "(select * from tbl_benefit where Bene_date between ? and ?) as t1 "
-                    + "on Name = t1.Bene_type "
-                    + "where dropdownType = \"Bene_type\" "
-                    + "and remark = ?"
-                    + "order by displayRank";
+            sql = "select t1.ID from tbl_dropdown inner join (select * from tbl_benefit where Worker_FIN_number = ? and Job_key = ? and Prob_key = ?) as t1 on Name = t1.Bene_type where dropdownType = 'Bene_type' and remark = ? ";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, problem.getWorkerFinNum());
             pstmt.setInt(2, problem.getJobKey());
             pstmt.setInt(3, problem.getProbKey());
             pstmt.setString(4, benefitCategory);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                ids.add(id);
+            }
+
+        } catch (SQLException ex) {
+            handleSQLException(ex, sql);
+        } finally {
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+
+        return ids;
+    }
+    
+    public static ArrayList<Integer> retrieveBenefitsIdsOfCategory(String benefitCategory, java.util.Date startDateIn, java.util.Date endDateIn) {
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "";
+
+        try {
+            java.sql.Date startDate = new java.sql.Date(startDateIn.getTime());
+            java.sql.Date endDate = new java.sql.Date(endDateIn.getTime());
+            conn = ConnectionManager.getConnection();
+            sql = "select t1.ID from tbl_dropdown inner join (select * from tbl_benefit where Bene_date between ? and ?) as t1 on Name = t1.Bene_type where dropdownType = 'Bene_type' and remark = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setDate(1,startDate);
+            pstmt.setDate(2, endDate);
+            pstmt.setString(3, benefitCategory);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt(1);

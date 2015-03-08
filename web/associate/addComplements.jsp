@@ -83,6 +83,7 @@
             select.form-control.input-sm{
                 width:100%;
             }
+            
         </style>
         <script>
             $(document).ready(function() {
@@ -102,6 +103,9 @@
                     $('.no_change').blur();
                 });
             });
+            function goBack() {
+                window.history.back();
+            }
         </script>
     </head>
     <body>
@@ -150,7 +154,7 @@
 
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn'>Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp cancel_btn' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -220,7 +224,7 @@
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm'>Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -285,7 +289,7 @@
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm'>Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -350,7 +354,7 @@
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm'>Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -435,7 +439,7 @@
                 <input type="hidden" name="complementName" value="wica"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm'>Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -501,7 +505,7 @@
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm'>Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -573,7 +577,7 @@
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm'>Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -594,37 +598,37 @@
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
                     <label for='refDate' id="refDate_lbl" class="col-xs-4 col-sm-5 col-md-5 control-label">Referred Date:</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                    <input class="form-control input-sm" type='text' name="refDate" value="<%=sdf.format(today)%>" readonly='true'>
+                        <input class="form-control input-sm" type='text' name="refDate" value="<%=sdf.format(today)%>" readonly='true'>
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
                     <label for='workerName' id="workerName_lbl" class="col-xs-4 col-sm-5 col-md-5 control-label">Name of Worker: </label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                    <input class="form-control input-sm no_change" type='text' name="workerName" value="<%=workerName%>" readonly='true'>
+                        <input class="form-control input-sm no_change" type='text' name="workerName" value="<%=workerName%>" readonly='true'>
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
                     <label for='workerName' id="workerFin_lbl" class="col-xs-4 col-sm-5 col-md-5 control-label">Worker FIN Number: </label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                    <input class="form-control input-sm no_change" type='text' name="workerFin" value="<%=workerFin%>" readonly='true'>
+                        <input class="form-control input-sm no_change" type='text' name="workerFin" value="<%=workerFin%>" readonly='true'>
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
                     <label for='phNum' class="col-xs-4 col-sm-5 col-md-5 control-label" id="phNum_lbl">Worker Phone Number: </label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                    <input class="form-control input-sm no_change" type='text' name="phNum" value="<%=phNum%>" readonly='true'>
+                        <input class="form-control input-sm no_change" type='text' name="phNum" value="<%=phNum%>" readonly='true'>
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
                     <label for='empName' id="empName_lbl" class="col-xs-4 col-sm-5 col-md-5 control-label">Employer Name: </label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                    <input class="form-control input-sm no_change" type='text' name="empName" value="<%=employer%>" readonly='true'>
+                        <input class="form-control input-sm no_change" type='text' name="empName" value="<%=employer%>" readonly='true'>
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
                     <label for='probType' id="probType_lbl" class="col-xs-4 col-sm-5 col-md-5 control-label">Problem: </label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                    <input class="form-control input-sm no_change" type='text' name="probType" value="<%=problem%>" readonly='true'>
+                        <input class="form-control input-sm no_change" type='text' name="probType" value="<%=problem%>" readonly='true'>
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
@@ -634,12 +638,97 @@
                 </div>
                 <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
                 <input type="hidden" name="probkey" value="<%=probKey%>"/>
-                <input type="hidden" name="referredBy" value="<%=userLogin.getNricNumber() %>"/>
+                <input type="hidden" name="referredBy" value="<%=userLogin.getNricNumber()%>"/>
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue modal_btn ">Refer</button>
-                    <button type='button' class='btn modal_btn cancel_btn'>Cancel</button>
+                    <button type='button' class='btn modal_btn cancel_btn' onclick="goBack();">Cancel</button>
 
+                </div>
+            </form>
+            <%
+            } else if (complement.equals("r2r")) {
+            %>
+            <form method="POST" action="../addProblemComplement.do" class="form form-inline col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" id='sgPhone'>
+                <h4>Add R2R appointment</h4>
+                <button type="button" class='btn btn-blue pull-right btn-sm' onclick="window.location='r2r.jsp?worker=<%=workerFin%>&selectedJob=<%=jobKeyStr %>&selectedProb=<%=probKeyStr%>&action=viewHistory';">View R2R History</button><br/><br/><br/>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >Worker's name:</label>
+                    <div class="col-xs-8 col-sm-7 col-md-7">
+                        <input type="text" class="form-control required input-sm" name="wkername" value='<%=workerName%>' readonly="true"/>
+                    </div><br/><br/>
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >FIN:</label>
+                    <div class="col-xs-8 col-sm-7 col-md-7">
+                        <input type="text" class="form-control required input-sm" name="wkerFin" value="<%=workerFin%>" readonly="true"/>
+                    </div><br/><br/>
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                    <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >Employer:</label>
+                    <div class="col-xs-8 col-sm-7 col-md-7">
+                        <input type="text" class="form-control required input-sm" name="employer" value="<%=employer%>" readonly="true"/>
+                    </div><br/><br/><br/>
+                </div>
+                    
+                <!-- details about complement -->
+                <div class='form-group col-md-12 col-sm-12 col-xs-12'>
+                    <label for='r2rDate' class="col-xs-4 col-sm-5 col-md-5 control-label">Date of appointment<span style="color: red">*</span>: </label>
+                    <div class="col-xs-8 col-sm-7 col-md-7">
+                    <input class="form-control dateInput input-sm" type='text' name="ndate" value="<%=sdf.format(today)%>">
+                    </div><br/><br/>
+                </div>
+                <div class='form-group col-md-12 col-sm-12 col-xs-12'>
+                    <label for='r2rTime' class="col-xs-4 col-sm-5 col-md-5 control-label">Time of appointment: </label>
+                    <div class="col-xs-8 col-sm-7 col-md-7">
+                    <input class="form-control input-sm" type='text' name="nr2rTime">
+                    </div><br/><br/>
+                </div>
+                <div class='form-group col-md-12 col-sm-12 col-xs-12'>
+                    <label for='r2rHosp' class="col-xs-4 col-sm-5 col-md-5 control-label">Hospital for appointment<span style="color: red">*</span>: </label>
+                    <div class="col-xs-8 col-sm-7 col-md-7">
+                    <input class="form-control input-sm" type='text' name="nr2rHosp">
+                    </div><br/><br/>
+                </div>
+                <div class='form-group col-md-12 col-sm-12 col-xs-12'>
+                    <label for='r2rDept' class="col-xs-4 col-sm-5 col-md-5 control-label">Department/doctor for appointment: </label>
+                    <div class="col-xs-8 col-sm-7 col-md-7">
+                    <input class="form-control input-sm" type='text' name="nr2rDept">
+                    </div><br/><br/>
+                </div>
+                <div class='form-group col-md-12 col-sm-12 col-xs-12'>
+                    <label for='r2r1' class="col-xs-4 col-sm-5 col-md-5 control-label">R2R first volunteer: </label>
+                    <div class="col-xs-8 col-sm-7 col-md-7">
+                    <input class="form-control input-sm" type='text' name="nr2r1">
+                    </div><br/><br/>
+                </div>
+                <div class='form-group col-md-12 col-sm-12 col-xs-12'>
+                    <label for='r2r2' class="col-xs-4 col-sm-5 col-md-5 control-label">R2R second volunteer: </label>
+                    <div class="col-xs-8 col-sm-7 col-md-7">
+                    <input class="form-control input-sm" type='text' name="nr2r2">
+                    </div><br/><br/>
+                </div>
+                <div class='form-group col-md-12 col-sm-12 col-xs-12'>
+                    <label for='r2rPurpose' class="col-xs-4 col-sm-5 col-md-5 control-label">Purpose of appointment: </label>
+                    <div class="col-xs-8 col-sm-7 col-md-7">
+                    <input class="form-control input-sm" type='text' name="nr2rPurpose">
+                    </div><br/><br/>
+                </div>
+                <div class='form-group col-md-12 col-sm-12 col-xs-12'>
+                    <label for='r2rPreApptNotes' class="col-xs-4 col-sm-5 col-md-5 control-label">Pre-appointment notes: </label>
+                    <div class="col-xs-8 col-sm-7 col-md-7">
+                    <textarea class="form-control" name="nr2rPreApptNotes" rows="3" style='width:100%'></textarea>
+                    </div><br/><br/>
+                </div>
+
+                <input type="hidden" name="workerFinNum" value="<%=workerFin%>"/>
+                <input type="hidden" name="jobkey" value="<%=jobKey%>"/>
+                <input type="hidden" name="probKey" value="<%=probKey%>"/>
+                <input type="hidden" name="complementName" value="r2r"/>
+                <input type="hidden" name="associate" value="associate"/>
+                <div class="form-group btn_group pull-right">
+                    <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
+                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%

@@ -2765,7 +2765,7 @@
             <div class='form-group' id="discussionWhere_other_div" >
                 <label for='location' class="control-label">Explain if above is 'Other':</label>
                 <br/>
-                <textarea class="form-control" name="discussionWhereOther" rows="3"><%=(dWhereMore == null) ? "-" : dWhereMore%></textarea>
+                <textarea class="form-control" name="discussionWhereOther" rows="3"><%=(dWhereMore == null) ? "" : dWhereMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='discussionWorkerPresent' class="control-label">Was worker participating?:</label>
@@ -2869,7 +2869,7 @@
         <div class='form-group' id="discussionWhere_other_div" >
             <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <textarea class="form-control" name="discussionWhereMore" rows="3"><%=(dWhereMore == null) ? "-" : dWhereMore%></textarea>
+            <textarea class="form-control" name="discussionWhereMore" rows="3"><%=(dWhereMore == null) ? "" : dWhereMore%></textarea>
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Was worker participating?:</label>
@@ -2890,11 +2890,11 @@
         </div>
         <div class='form-group'>
             <label for='' class="control-label">TWC2 person consulted, assisting or informed<span style="color: red">*</span>:</label>
-            <input class="form-control" value='<%=(twcP1 == null) ? "-" : twcP1%>' type='text' name="discussionTWC2P1" >
+            <input class="form-control" value='<%=(twcP1 == null) ? "" : twcP1%>' type='text' name="discussionTWC2P1" >
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Names of other TWC2 persons present:</label>
-            <input class="form-control" value='<%=(twcP2 == null) ? "-" : twcP2%>' type='text' name="discussionTWC2P2" >
+            <input class="form-control" value='<%=(twcP2 == null) ? "" : twcP2%>' type='text' name="discussionTWC2P2" >
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Names of other persons present:</label>
@@ -2982,7 +2982,7 @@
             <div class='form-group' id="hospName_other_div" >
                 <label for='location' class="control-label">Explain if above is 'Other':</label>
                 <br/>
-                <textarea class="form-control" name="hospNameMore" rows="3"><%=(hospNameMore == null) ? "-" : hospNameMore%></textarea>
+                <textarea class="form-control" name="hospNameMore" rows="3"><%=(hospNameMore == null) ? "" : hospNameMore%></textarea>
             </div>
             <div class='form-group'>
                 <label for='hospitalDoctor' class="control-label">Department/doctor name:</label>
@@ -3037,7 +3037,7 @@
         <div class='form-group' id="hospName_other_div" >
             <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <textarea class="form-control" name="hospNameMore" rows="3"><%=(hospNameMore == null) ? "-" : hospNameMore%></textarea>
+            <textarea class="form-control" name="hospNameMore" rows="3"><%=(hospNameMore == null) ? "" : hospNameMore%></textarea>
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Department/Doctor:</label>
@@ -3160,7 +3160,7 @@
         <div class='form-group' id="status_other_div" >
             <label for='location' class="control-label">Explain if above is 'Other':</label>
             <br/>
-            <textarea class="form-control" name="mcStatusMore" rows="3"><%= (statusMore == null) ? "-" : statusMore%></textarea>
+            <textarea class="form-control" name="mcStatusMore" rows="3"><%= (statusMore == null) ? "" : statusMore%></textarea>
         </div>
         <div class='form-group'>
             <label for='' class="control-label">Latest known MC expiry date:</label>
@@ -3275,12 +3275,12 @@
             <div class='form-group'>
                 <label for='r2rMed' class="control-label">Medical cost of this appt(S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="r2rMed" value="<%=(med == 0.0) ? "-" : df.format(med)%>">
+                <input class="form-control" type='text' name="r2rMed" value="<%=(med == 0.0) ? "" : df.format(med)%>">
             </div>
             <div class='form-group'>
                 <label for='r2rOut' class="control-label">How much paid by volunteer(S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="r2rOut" value="<%=(outlay == 0.0) ? "-" : df.format(outlay)%>">
+                <input class="form-control" type='text' name="r2rOut" value="<%=(outlay == 0.0) ? "" : df.format(outlay)%>">
             </div>
         </fieldset>
 
@@ -3348,12 +3348,12 @@
         <div class='form-group'>
             <label for='r2rMed' class="control-label">Medical cost of this appt(S$):</label>
             <br/>
-            <input class="form-control" type='text' name="r2rMed" value="<%=(med == 0.0) ? "-" : df.format(med)%>">
+            <input class="form-control" type='text' name="r2rMed" value="<%=(med == 0.0) ? "" : df.format(med)%>">
         </div>
         <div class='form-group'>
             <label for='r2rOut' class="control-label">How much paid by volunteer(S$):</label>
             <br/>
-            <input class="form-control" type='text' name="r2rOut" value="<%=(outlay == 0.0) ? "-" : df.format(outlay)%>">
+            <input class="form-control" type='text' name="r2rOut" value="<%=(outlay == 0.0) ? "" : df.format(outlay)%>">
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="r2r"/>
@@ -3413,17 +3413,17 @@
             <div class='form-group'>
                 <label for='wicaPoints' class="control-label">WICA Points:</label>
                 <br/>
-                <input class="form-control" type='text' name="wicaPoints" value="<%=(wPoints == 0.0) ? "-" : df.format(wPoints)%>">
+                <input class="form-control" type='text' name="wicaPoints" value="<%=(wPoints == 0.0) ? "" : df.format(wPoints)%>">
             </div>
             <div class='form-group'>
                 <label for='wicaDollars' class="control-label"> WICA S$ compensation:</label>
                 <br/>
-                <input class="form-control" type='text' name="wicaDollars" value="<%=(wDollars == 0.0) ? "-" : df.format(wDollars)%>">
+                <input class="form-control" type='text' name="wicaDollars" value="<%=(wDollars == 0.0) ? "" : df.format(wDollars)%>">
             </div>
             <div class='form-group'>
                 <label for='wicaRemarks' class="control-label">Remarks about WICA status :</label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3"><%=(wRemarks == null) ? "-" : wRemarks%></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=(wRemarks == null) ? "" : wRemarks%></textarea>
             </div>
 
         </fieldset>
@@ -3474,17 +3474,17 @@
         <div class='form-group'>
             <label for='wicaPoints' class="control-label">WICA points:</label>
             <br/>
-            <input class="form-control" type='text' name="wicaPoints" value="<%=(wPoints == 0.0) ? "-" : df.format(wPoints)%>">
+            <input class="form-control" type='text' name="wicaPoints" value="<%=(wPoints == 0.0) ? "" : df.format(wPoints)%>">
         </div>
         <div class='form-group'>
             <label for='wicaDollars' class="control-label">WICA S$ compensation:</label>
             <br/>
-            <input class="form-control" type='text' name="wicaDollars" value="<%=(wDollars == 0.0) ? "-" : df.format(wDollars)%>">
+            <input class="form-control" type='text' name="wicaDollars" value="<%=(wDollars == 0.0) ? "" : df.format(wDollars)%>">
         </div>
         <div class='form-group'>
             <label for='wicaRemarks' class="control-label">Remarks about WICA status:</label>
             <br/>
-            <textarea class="form-control" name="remark" rows="3"><%= (wRemarks == null) ? "-" : wRemarks%></textarea>
+            <textarea class="form-control" name="remark" rows="3"><%= (wRemarks == null) ? "" : wRemarks%></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="wica"/>
@@ -4027,7 +4027,7 @@
             String remark = issue.getAggravatingRemark();
 
             if (remark == null) {
-                remark = "-";
+                remark = "";
             }
         %>
 
@@ -4390,12 +4390,12 @@
             <div class='form-group'>
                 <label for='remark' class="control-label">Estimated total value of claim (S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="remark" value="<%=(totalValue == 0.0) ? "-" : df.format(totalValue)%>">
+                <input class="form-control" type='text' name="remark" value="<%=(totalValue == 0.0) ? "" : df.format(totalValue)%>">
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Estimated 12 months' value of claim (S$):</label>
                 <br/>
-                <input class="form-control" type='text' name="remark" value="<%=(oneYearValue == 0.0) ? "-" : df.format(oneYearValue)%>">
+                <input class="form-control" type='text' name="remark" value="<%=(oneYearValue == 0.0) ? "" : df.format(oneYearValue)%>">
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about salary & related history:</label>
@@ -4472,12 +4472,12 @@
         <div class='form-group'>
             <label for='totalValue' class="control-label">Estimated total value of claim (S$):</label>
             <br/>
-            <input class="form-control" type='text' name="totalLoss" value="<%=(totalValue == 0.0) ? "-" : df.format(totalValue)%>">
+            <input class="form-control" type='text' name="totalLoss" value="<%=(totalValue == 0.0) ? "" : df.format(totalValue)%>">
         </div>
         <div class='form-group'>
             <label for='oneYearValue' class="control-label">Estimated 12 months' value of claim (S$):</label>
             <br/>
-            <input class="form-control" type='text' name="oneYearLoss" value="<%=(oneYearValue == 0.0) ? "-" : df.format(oneYearValue)%>">
+            <input class="form-control" type='text' name="oneYearLoss" value="<%=(oneYearValue == 0.0) ? "" : df.format(oneYearValue)%>">
         </div>
         <div class='form-group'>
             <label for='remark' class="control-label">Remarks about salary & related history:</label>

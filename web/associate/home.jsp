@@ -13,11 +13,15 @@
         <!--css-->
         <link rel="stylesheet" href="../css/bootstrap.css" media="screen" />
         <link rel="stylesheet" href="../css/custom.css" media="screen" /> 
+        <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.css">
+        <link rel="stylesheet" href="../css/jquery-ui.structure.css">
+        <link rel="stylesheet" href="../css/jquery-ui.theme.css">
         <!-------------->
 
         <!--javascript-->
         <script src="../js/jquery-2.1.1.js"></script>
         <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/jquery-ui-1.9.2.custom.js"></script>
         <!------------->
 
         <!--tab icon-->
@@ -27,16 +31,22 @@
         <title>CAMANS</title>
         <style>
             #folderImg{
-                height: 20vw;
-                
+                max-height: 20vw;
                 margin-bottom: 4%;
             }
             
-            #mainMenu{
-                padding : 5% 5%;
-            }
             .menu_icon{
-                padding: 2%;
+                padding: 1%;
+            }
+            
+            #searchBox{
+                margin-bottom: 2%;
+            }
+            input{
+                width: 100%;
+            }
+            input.form-control{
+                width: 100%;
             }
         </style>
 
@@ -48,14 +58,13 @@
 
     <!-- Search Box -->
     
-    <div id="searchBox" class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
-        <br/>
+    <div id="searchBox" class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
         <h4 style="color:#006c9a">Search Worker by FIN</h4>
 
         <!-- Search Worker form-->
         <form class="form-inline" method="POST" action="../searchWorker.do">
-            <div class="form-group col-xs-9">
-                <input type="text" class="form-control" id="finNum" name="fin" placeholder="FIN Number" required>
+            <div class="form-group col-xs-9 col-sm-8 col-md-8">
+                <input type="text" class="form-control" id="finNum" name="fin" placeholder="FIN Number" required style='width:100%;'>
             </div>
             <input type="hidden" name="associate" value="associate"/>
                 <button type="submit" class="btn btn-blue col-xs-3">Search</button>
@@ -65,40 +74,44 @@
 
     </div>
     <!-- End of Search Box -->
-<br/>
+
     <!-- Main Menu -->
-    <div id="mainMenu" class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
-        <h4 style="color:#006c9a">Review</h4>
+    <div id="mainMenu" class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+        <h4 style="color:#006c9a">Review Benefits</h4>
         <!-- First Row -->
-        <div class="col-xs-4 menu_icon text-center">
-            <a href="addNew.jsp?option=createCase"><img class="img-responsive center-block" src="../img/meal.png" id="folderImg"/></a>
+        <div class='row'>
+        <div class="col-xs-4 col-md-3 menu_icon text-center">
+            <a href="benefection.jsp?beneCategory=Food&action=History"><img class="img-responsive center-block" src="../img/meal.png" id="folderImg"/></a>
             <label style="font-size: small;">Meal Cards</label>
         </div>
-        <div class="col-xs-4 menu_icon text-center">
-            <a href="addNew.jsp?option=createCase"><img class="img-responsive center-block" src="../img/farego.png" id="folderImg"/></a>
+        <div class="col-xs-4 col-md-offset-1 col-md-3 menu_icon text-center">
+            <a href="benefection.jsp?beneCategory=Transport&action=History"><img class="img-responsive center-block" src="../img/farego.png" id="folderImg"/></a>
             <label style="font-size: small;">FareGo</label>
         </div>
-        <div class="col-xs-4 menu_icon text-center">
-            <a href="addNew.jsp?option=createCase"><img class="img-responsive center-block" src="../img/med.png" id="folderImg"/></a>
+        <div class="col-xs-4 col-md-offset-1 col-md-3 menu_icon text-center">
+            <a href="benefection.jsp?beneCategory=Medical&action=History"><img class="img-responsive center-block" src="../img/med.png" id="folderImg"/></a>
             <label style="font-size: small;">Medical</label>
         </div>
+        </div>
         <!-- Second Row -->
-        <div class="col-xs-4 menu_icon text-center">
-            <a href="addNew.jsp?option=createCase"><img class="img-responsive center-block" src="../img/roof.png" id="folderImg"/></a>
+        <div class="row">
+        <div class="col-xs-4 col-md-3 menu_icon text-center">
+            <a href="benefection.jsp?beneCategory=Roof&action=viewHistory"><img class="img-responsive center-block" src="../img/shelter.png" id="folderImg"/></a>
             <label style="font-size: small;">Roof</label>
         </div>
-        <div class="col-xs-4 menu_icon text-center">
-            <a href="addNew.jsp?option=createCase"><img class="img-responsive center-block" src="../img/r2r.png" id="folderImg"/></a>
+        <div class="col-xs-4 col-md-offset-1 col-md-4 menu_icon text-center">
+            <a href="benefection.jsp?beneCategory=r2r&action=viewHistory"><img class="img-responsive center-block" src="../img/r2r.png" id="folderImg"/></a>
             <label style="font-size: small;">R2R</label>
         </div>
+        </div>
         <!-- TO DO :: ADD SEPERATOR -->
-        <div class="col-xs-12">
             <h4 style="color:#006c9a">Create New Case</h4>
-        <div class="col-xs-4 menu_icon text-center">
-            <a href="addNew.jsp?option=createCase"><img class="img-responsive center-block" src="../img/add_folder.png" id="folderImg"/></a>
+            <div class="row">
+        <div class="col-xs-4 col-md-4 menu_icon text-center">
+            <a href="addNew.jsp?option=createCase"><img class="img-responsive center-block" src="../img/folder.png" id="folderImg"/></a>
             <label style="font-size: small;">Create Case</label>
         </div>
-        </div>
+            </div>
     </div>
     <!-- End of Main Menu -->
 
