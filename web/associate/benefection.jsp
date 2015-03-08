@@ -119,7 +119,7 @@
                     $('.no_change').blur();
                 });
 
-                $('.complement_detailed_form')
+                $('.benefiectionForm')
                         .bootstrapValidator({
                     feedbackIcons: {
                         valid: 'glyphicon glyphicon-ok',

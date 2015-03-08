@@ -25,16 +25,16 @@
 
     String selectedJob = (String) request.getSession().getAttribute("selectedJob");
     request.getSession().removeAttribute("selectedJob");
-    
-    if(selectedJob == null || selectedJob.equals("")){
+
+    if (selectedJob == null || selectedJob.equals("")) {
         selectedJob = request.getParameter("selectedJob");
     }
     String selectedProb = (String) request.getSession().getAttribute("selectedProb");
     request.getSession().removeAttribute("selectedProb");
-    if(selectedProb == null || selectedProb.equals("")){
+    if (selectedProb == null || selectedProb.equals("")) {
         selectedProb = request.getParameter("selectedProb");
     }
-    
+
     ArrayList<Integer> jobIds = JobDAO.retrieveJobIdsOfWorker(worker);
     ArrayList<Integer> problemIds = new ArrayList<Integer>();
     if (selectedJob != null) {
@@ -189,6 +189,8 @@
                 $('.moreObjs').hide();
 
                 $('.alert').fadeOut(9999);
+
+                
             });
 
 
@@ -4264,8 +4266,8 @@
                                                                                 java.util.Date date = policeReport.getPoliceReportDate();
                                                                                 String station = policeReport.getPoliceReportStation();
                                                                                 String accompany = policeReport.getPoliceReportPerson();
-                                                                                if(accompany.length() > 60){
-                                                                                    accompany = accompany.substring(0,60) + "...";
+                                                                                if (accompany.length() > 60) {
+                                                                                    accompany = accompany.substring(0, 60) + "...";
                                                                                 }
                                                                                 String reference = policeReport.getPoliceReportReferenceNumber();
                                                                                 if (i < policeReportIds.size() - 1) {
@@ -4832,7 +4834,7 @@
                                                                     <% }%>   
                                                                 </td>
                                                             </tr>
-                                                            <% } else { %>
+                                                            <% } else {%>
                                                             <tr class="foodbene">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
@@ -4856,18 +4858,17 @@
                                                                     <% }%>   
                                                                 </td>
                                                             </tr>
-                                                          <% } //else 
-                                                         } //for %>  
+                                                            <% } //else 
+                                                              } //for %>  
                                                         </table>
-                                                            <% 
-                                                                if (mealIds.size() > 1) {
-                                                            %>
-                                                                    <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_foodbene_seemore" onclick="seemore('.other_foodbene');">See More</a>
-                                                                    <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_foodbene_seemore" onclick="seemore('.other_foodbene');">View Less</a>
-                                                            <%
-                                                                   } //if seemore
-                                                          }//if
+                                                        <%
+                                                            if (mealIds.size() > 1) {
                                                         %>
+                                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_foodbene_seemore" onclick="seemore('.other_foodbene');">See More</a>
+                                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_foodbene_seemore" onclick="seemore('.other_foodbene');">View Less</a>
+                                                        <%                                                                    } //if seemore
+                                                                }//if
+%>
                                                     </div>
                                                 </div>
                                             </div>
@@ -4935,7 +4936,7 @@
                                                                         <% }%>     
                                                                 </td>
                                                             </tr>
-                                                            <% } else { %>
+                                                            <% } else {%>
                                                             <tr class="transpoBene">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
@@ -4958,16 +4959,15 @@
                                                                         <% }%>     
                                                                 </td>
                                                             </tr>
-                                                       <%   } //else 
-                                                         } //for %> 
+                                                            <%   } //else 
+                                                           } //for %> 
                                                         </table>
-                                                           <% 
-                                                                if (transportIds.size() > 1) {
-                                                            %>
-                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_transpoBene_seemore" onclick="seemore('.other_transpoBene');">See More</a>
-                                                                    <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_transpoBene_seemore" onclick="seemore('.other_transpoBene');">View Less</a>
-                                                       <%
-                                                                   } //if seemore
+                                                        <%
+                                                            if (transportIds.size() > 1) {
+                                                        %>
+                                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_transpoBene_seemore" onclick="seemore('.other_transpoBene');">See More</a>
+                                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_transpoBene_seemore" onclick="seemore('.other_transpoBene');">View Less</a>
+                                                        <%                                                               } //if seemore
                                                             }
                                                         %>
                                                     </div>
@@ -5012,7 +5012,7 @@
                                                                 for (int i = medicalIds.size() - 1; i >= 0; i--) {
                                                                     int id = medicalIds.get(i);
                                                                     Benefit benefit = BenefitDAO.retrieveBenefitById(id);
-                                                                     if (i < medicalIds.size() - 1) {
+                                                                    if (i < medicalIds.size() - 1) {
                                                             %>
                                                             <tr class="other_mediBene moreObjs">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
@@ -5038,7 +5038,7 @@
 
                                                                 </td>
                                                             </tr>
-                                                             <% } else { %>
+                                                            <% } else {%>
                                                             <tr class="mediBene">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
@@ -5064,17 +5064,16 @@
                                                                 </td>
                                                             </tr>
                                                             <%
-                                                                } //else
-                                                             } //for        
-                                                            %>                                                    
+                                                                    } //else
+                                                                } //for        
+%>                                                    
                                                         </table>
-                                                         <% 
-                                                                if (medicalIds.size() > 1) {
-                                                            %>
-                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_mediBene_seemore" onclick="seemore('.other_mediBene');">See More </a>
-                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_mediBene_seemore" onclick="seemore('.other_mediBene');">View Less</a>
                                                         <%
-                                                                 }
+                                                            if (medicalIds.size() > 1) {
+                                                        %>
+                                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_mediBene_seemore" onclick="seemore('.other_mediBene');">See More </a>
+                                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_mediBene_seemore" onclick="seemore('.other_mediBene');">View Less</a>
+                                                        <%                                                                }
                                                             }
                                                         %>
                                                     </div>
@@ -5120,7 +5119,7 @@
                                                                 for (int i = roofIds.size() - 1; i >= 0; i--) {
                                                                     int id = roofIds.get(i);
                                                                     Benefit benefit = BenefitDAO.retrieveBenefitById(id);
-                                                                     if (i < roofIds.size() - 1) {
+                                                                    if (i < roofIds.size() - 1) {
                                                             %>
                                                             <tr class="other_roofBene moreObjs">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
@@ -5143,7 +5142,7 @@
                                                                     <% }%>    
                                                                 </td>
                                                             </tr>
-                                                            <% } else { %>
+                                                            <% } else {%>
                                                             <tr class="roofBene">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
@@ -5166,17 +5165,16 @@
                                                                 </td>
                                                             </tr>
                                                             <%
-                                                                } //else
-                                                             } //for        
-                                                            %>          
+                                                                    } //else
+                                                                } //for        
+%>          
                                                         </table>
-                                                        <% 
-                                                                if (roofIds.size() > 1) {
-                                                            %>
-                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_roofBene_seemore" onclick="seemore('.other_roofBene');">See More</a>
-                                                                    <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_roofBene_seemore" onclick="seemore('.other_roofBene');">View Less</a>
-                                                            <%
-                                                                   } //if seemore
+                                                        <%
+                                                            if (roofIds.size() > 1) {
+                                                        %>
+                                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_roofBene_seemore" onclick="seemore('.other_roofBene');">See More</a>
+                                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_roofBene_seemore" onclick="seemore('.other_roofBene');">View Less</a>
+                                                        <%                                                                    } //if seemore
                                                             }
                                                         %>
                                                     </div>
@@ -5246,8 +5244,8 @@
                                                                     <% }%>   
                                                                 </td>
                                                             </tr>
-                                                             <% } else { %>
-                                                             <tr class="Bene">
+                                                            <% } else {%>
+                                                            <tr class="Bene">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
                                                                 <td><%=benefit.getBenefitGiver()%></td>
                                                                 <td><%=benefit.getBenefitType()%></td>
@@ -5269,17 +5267,16 @@
                                                                 </td>
                                                             </tr>
                                                             <%
-                                                                } //else
-                                                             } //for        
-                                                            %>
+                                                                    } //else
+                                                                } //for        
+%>
                                                         </table>
-                                                         <% 
-                                                                if (otherIds.size() > 1) {
-                                                            %>
-                                                            <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_Bene_seemore" onclick="seemore('.other_Bene');">See More</a>
-                                                            <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_Bene_seemore" onclick="seemore('.other_Bene');">View Less</a>
-                                                            <%
-                                                                   } //if seemore
+                                                        <%
+                                                            if (otherIds.size() > 1) {
+                                                        %>
+                                                        <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_Bene_seemore" onclick="seemore('.other_Bene');">See More</a>
+                                                        <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_Bene_seemore" onclick="seemore('.other_Bene');">View Less</a>
+                                                        <%                                                                    } //if seemore
                                                             }
                                                         %>
                                                     </div>
@@ -5786,7 +5783,7 @@
                 $('#editAttachForm').bootstrapValidator('resetForm', true);
             });
 
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $.sessionTimeout({
                     message: 'Your session will be expired in five minutes.',
                     keepAliveUrl: 'keep-alive.html',

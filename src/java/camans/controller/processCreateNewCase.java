@@ -98,13 +98,7 @@ public class processCreateNewCase extends HttpServlet {
             String problemName = request.getParameter("problem");
             String problemMore = request.getParameter("problemMore");
             String problemRemark = request.getParameter("problemRemark");
-            // to confirm these 
-            String injuryDate = request.getParameter("injuryDate");
-            String injuryBodyPart = request.getParameter("injuryBodyPart");
-            String currentHosptial = request.getParameter("currentHosptial");
-            String hospitalMore = request.getParameter("hospitalMore");
-            String lawfirmName = request.getParameter("lawfirmName");
-            // end of to confirm these
+
             Problem problem = null;
 
             //=======================================//
@@ -415,6 +409,155 @@ public class processCreateNewCase extends HttpServlet {
                 request.getSession().setAttribute("successWrkCompMsg", successMsg);
                 request.getSession().setAttribute("worker", worker.getFinNumber());
                 if (isAssociate != null) {
+                    ArrayList<Integer> problemIds = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, job);
+                    problem = ProblemDAO.retrieveProblemByProblemId(problemIds.get(problemIds.size()-1));
+                    //phone number
+                    String phNum = request.getParameter("sgPh");
+
+                    //validate and update phNum
+                    if (phNum != null && !phNum.equals("")) {
+                        if (!phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
+                            err += "invalid phone number, ";
+                        }
+
+                        if (err == null) {
+                            WorkerSgPhNum obj = new WorkerSgPhNum(worker.getFinNumber(), phNum, null);
+                            //add into db
+                            WorkerComplementsDAO.addWorkerSgPhNum(obj);
+
+                            //success display
+                            success = "Worker's Singapore Phone Number has been succesfully added!";
+                        }
+                    }
+
+                    //current pass
+                    String currPassType = request.getParameter("npasstype");
+                    String currPassNo = request.getParameter("npassno");
+                    String isDateStr = request.getParameter("nisdate");
+                    java.sql.Date isDate = null;
+
+                    if (currPassType.equals("")) {
+                        err += "Pass Type is blank,";
+                        pass = false;
+                    }
+                    if (currPassNo.equals("")) {
+                        err += "Pass Number is blank,";
+                        pass = false;
+                    }
+                    if (pass) {
+
+                        if (currPassNo.length() > 20) {
+                            err += "Pass Number must not exceed 20 characters,";
+                        }
+
+                        if (isDateStr != null && !isDateStr.equals("")) {
+                            try {
+                                java.util.Date tmp = sdf.parse(isDateStr);
+                                isDate = new java.sql.Date(tmp.getTime());
+                            } catch (ParseException ex) {
+                                err += "Invalid Pass Issue Date Format,";
+                            }
+                        }
+
+                    }
+                    if (err == null) {
+                        //create new pass details
+                        JobPassDetails passdetails = new JobPassDetails(worker.getFinNumber(), job.getJobKey(), currPassType,
+                                "", currPassNo, null, isDate, null, "", "", null);
+
+                        //add into db
+                        JobComplementsDAO.addJobPassDetails(passdetails);
+
+                        //successdisplay
+                        success = "Worker Current Pass Details has been successfully added!";
+
+
+                    }
+
+                    //problem complements
+                    //injury details
+                    String injuryDateStr = request.getParameter("injuryDate");
+                    String injuryBodyPart = request.getParameter("bodyPart");
+                    java.sql.Date injuryDate = null;
+
+                    if (injuryDateStr != null && injuryBodyPart != null) {
+                        if (!injuryDateStr.equals("")) {
+                            try {
+                                java.util.Date tmp = sdf.parse(injuryDateStr);
+                                injuryDate = new java.sql.Date(tmp.getTime());
+                            } catch (ParseException ex) {
+                                err += "Invalid injury Date Format,";
+                            }
+                        }
+
+                        if (!injuryBodyPart.equals("") && injuryBodyPart.length() > 500) {
+                            err += "Injury Body Part cannot be more than 500 characters,";
+                        }
+                    }
+
+                    if (err == null) {
+                        //create object
+                        ProblemInjury injury = new ProblemInjury(worker.getFinNumber(), problem.getJobKey(),
+                                problem.getProbKey(), injuryDate, "", "", "", injuryBodyPart, "", "", "", "", "", "");
+
+                        //add to db
+                        ProblemComplementsDAO.addProblemInjury(injury);
+
+                        //success display
+                        success = "Injury History has been successfully added!";
+                    }
+
+                    //hospital
+                    String hospitalName = request.getParameter("nhospName");
+                    String hospitalNameMore = request.getParameter("nhospNameMore");
+
+                    if (hospitalName != null && hospitalNameMore != null) {
+                        if (!hospitalName.equals("") && hospitalName.length() > 30) {
+                            err += "Hosptial Name cannot be longer than 30 characters,";
+                        }
+
+                        if (hospitalNameMore != null && !hospitalNameMore.equals("") && hospitalNameMore.length() > 50) {
+                            err += "Explain if above is other cannot be longer than 50 characters,";
+                        }
+                    } //pass
+
+                    if (err == null) {
+
+                        //create object
+                        ProblemHospital hospital = new ProblemHospital(worker.getFinNumber(), problem.getJobKey(), problem.getProbKey(), worker.getRegistrationDate(), hospitalName, hospitalNameMore, "", "");
+
+                        //add into db
+                        ProblemComplementsDAO.addProblemHospital(hospital);
+
+                        //success display
+                        success = "Hospital Providing Treatment has been successfully added!";
+                    }
+
+                    //law firm
+                    String lawFirmName = request.getParameter("nlawyerFirm");
+                    String lawFirmNameMore = request.getParameter("nlawyerFirmMore");
+                    if (lawFirmName != null && lawFirmNameMore != null) {
+                        if (!lawFirmName.equals("") && lawFirmName.length() > 30) {
+                            err += "Law Firm Name cannot be longer than 30 characters,";
+                        }
+
+                        if (lawFirmNameMore != null && !lawFirmNameMore.equals("") && lawFirmNameMore.length() > 50) {
+                            err += "Explain if above is other cannot be longer than 50 characters,";
+                        }
+
+                        if (err == null) {
+                            //create object
+                            ProblemLawyer problemLawyer = new ProblemLawyer(worker.getFinNumber(), problem.getJobKey(), problem.getProbKey(), worker.getRegistrationDate(), lawFirmName, lawFirmNameMore, "", "");
+
+                            //add to db
+                            ProblemComplementsDAO.addProblemLawyer(problemLawyer);
+                            //success display
+                            success = "Lawyer has been successfully added!";
+
+
+                        }
+                    }
+
                     request.getSession().setAttribute("workerFin", worker.getFinNumber());
                     response.sendRedirect("associate/issueBenefit.jsp");
                 } else {
@@ -430,7 +573,7 @@ public class processCreateNewCase extends HttpServlet {
                 String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + ") has been successfully created.";
                 request.getSession().setAttribute("successWrkCompMsg", successMsg);
 
-                if (finNumber != null && jobKeyStr != null) {
+                if (jobKeyStr != null) {
                     //go back to prob tab
                     request.getSession().setAttribute("tabIndicator", "problem");
                     request.getSession().setAttribute("selectedJob", jobKeyStr);
@@ -443,6 +586,7 @@ public class processCreateNewCase extends HttpServlet {
                 }
                 //request.getSession().setAttribute("worker", worker);
                 if (isAssociate != null) {
+
                     request.getSession().setAttribute("workerFin", worker.getFinNumber());
                     response.sendRedirect("associate/issueBenefit.jsp");
                 } else {

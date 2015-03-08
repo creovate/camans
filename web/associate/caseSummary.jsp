@@ -25,7 +25,7 @@
     if (workerFin == null || workerFin.equals("")) {
         workerFin = request.getParameter("worker");
     }
-    
+
     String jobKeyStr = (String) request.getSession().getAttribute("selectedJob");
     request.getSession().removeAttribute("selectedJob");
     if (jobKeyStr == null || jobKeyStr.equals("")) {
@@ -37,13 +37,13 @@
     if (probKeyStr == null || probKeyStr.equals("")) {
         probKeyStr = request.getParameter("selectedProb");
     }
-    
+
     if (probKeyStr != null) {
         int selectedProbId = Integer.parseInt(probKeyStr);
         Problem tempProblem = ProblemDAO.retrieveProblemByProblemId(selectedProbId);
         jobKeyStr = tempProblem.getJobKey() + "";
     }
-    
+
     int jobKey = Integer.parseInt(jobKeyStr);
     int probKey = Integer.parseInt(probKeyStr);
 
@@ -172,7 +172,7 @@
 
         ArrayList<Integer> wicaList = ProblemComplementsDAO.retrieveWicaIdsOfProblem(selectedProblem);
         if (wicaList != null && wicaList.size() > 0) {
-            int wicaId = wicaList.get(wicaList.size()-1);
+            int wicaId = wicaList.get(wicaList.size() - 1);
             ProblemWica wica = ProblemComplementsDAO.retrieveProblemWicaById(wicaId);
             wicaDate = wica.getWicaMonthlyUpdate();
             wicaStatus = wica.getWicaMonthlyStatus();
@@ -246,6 +246,9 @@
             function goBack() {
                 window.history.back();
             }
+            $(document).ready(function() {
+                
+            })
         </script>
     </head>
     <body>
@@ -362,7 +365,7 @@
                 <tr>
                     <td class="lbl">Lead caseworker:</td>
                     <td class="value"><%=(lcw == null) ? "" : lcw%>
-                        <button class='btn btn-blue btn-sm pull-right' onclick="window.location='addComplements.jsp?workerFin=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>&complement=refer';">Refer</button>
+                        <button class='btn btn-blue btn-sm pull-right' onclick="window.location = 'addComplements.jsp?workerFin=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>&complement=refer';">Refer</button>
                     </td>
                 </tr>
                 <tr>

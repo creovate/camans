@@ -94,8 +94,38 @@
                 margin-bottom: 0 !important;
             }
             
-            
         </style>
+        <script>
+            $(document).ready(function(){
+                var isMobile = {
+                    Android: function() {
+                        return navigator.userAgent.match(/Android/i);
+                    },
+                    BlackBerry: function() {
+                        return navigator.userAgent.match(/BlackBerry/i);
+                    },
+                    iOS: function() {
+                        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+                    },
+                    Opera: function() {
+                        return navigator.userAgent.match(/Opera Mini/i);
+                    },
+                    Windows: function() {
+                        return navigator.userAgent.match(/IEMobile/i);
+                    },
+                    any: function() {
+                        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+                    }};
+
+                if (isMobile.any()) {
+                    //this is mobile
+                    window.location = "associate/home.jsp";
+                } else {
+                    //this is desktop
+                    //window.location = "../home.jsp";
+                }
+            })
+        </script>
     </head>
     <body id="home">
         <jsp:include page="include/navbartop.jsp"/>
