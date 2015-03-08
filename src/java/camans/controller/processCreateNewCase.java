@@ -46,7 +46,7 @@ public class processCreateNewCase extends HttpServlet {
 
             //get associate or not
             String isAssociate = request.getParameter("associate");
-            
+
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
             java.util.Date date = new java.util.Date();
             //get FIN & job Key
@@ -384,8 +384,8 @@ public class processCreateNewCase extends HttpServlet {
                 //     Audit Log
                 //===============================================//
                 User _user = (User) request.getSession().getAttribute("userLogin");
-                String auditChange = "[Employer Name: " + employerName + ", Problem Type: " 
-                        + problemName + "] has been added for Worker " + finNum + "."; 
+                String auditChange = "[Employer Name: " + employerName + ", Problem Type: "
+                        + problemName + "] has been added for Worker " + finNum + ".";
                 UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), finNum,
                         finNum, "Added", "New Case: " + auditChange);
 
@@ -412,7 +412,7 @@ public class processCreateNewCase extends HttpServlet {
                 request.getSession().setAttribute("worker", worker.getFinNumber());
                 if (isAssociate != null) {
                     ArrayList<Integer> problemIds = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, job);
-                    problem = ProblemDAO.retrieveProblemByProblemId(problemIds.get(problemIds.size()-1));
+                    problem = ProblemDAO.retrieveProblemByProblemId(problemIds.get(problemIds.size() - 1));
                     //phone number
                     String phNum = request.getParameter("sgPh");
 
@@ -490,24 +490,26 @@ public class processCreateNewCase extends HttpServlet {
                             } catch (ParseException ex) {
                                 err += "Invalid injury Date Format,";
                             }
+                            if (!injuryBodyPart.equals("") && injuryBodyPart.length() > 500) {
+                                err += "Injury Body Part cannot be more than 500 characters,";
+                            }
+                            if (err == null) {
+                                //create object
+                                ProblemInjury injury = new ProblemInjury(worker.getFinNumber(), problem.getJobKey(),
+                                        problem.getProbKey(), injuryDate, "", "", "", injuryBodyPart, "", "", "", "", "", "");
+
+                                //add to db
+                                ProblemComplementsDAO.addProblemInjury(injury);
+
+                                //success display
+                                success = "Injury History has been successfully added!";
+                            }
                         }
 
-                        if (!injuryBodyPart.equals("") && injuryBodyPart.length() > 500) {
-                            err += "Injury Body Part cannot be more than 500 characters,";
-                        }
+
                     }
 
-                    if (err == null) {
-                        //create object
-                        ProblemInjury injury = new ProblemInjury(worker.getFinNumber(), problem.getJobKey(),
-                                problem.getProbKey(), injuryDate, "", "", "", injuryBodyPart, "", "", "", "", "", "");
 
-                        //add to db
-                        ProblemComplementsDAO.addProblemInjury(injury);
-
-                        //success display
-                        success = "Injury History has been successfully added!";
-                    }
 
                     //hospital
                     String hospitalName = request.getParameter("nhospName");
@@ -521,19 +523,20 @@ public class processCreateNewCase extends HttpServlet {
                         if (hospitalNameMore != null && !hospitalNameMore.equals("") && hospitalNameMore.length() > 50) {
                             err += "Explain if above is other cannot be longer than 50 characters,";
                         }
+                        if (err == null) {
+
+                            //create object
+                            ProblemHospital hospital = new ProblemHospital(worker.getFinNumber(), problem.getJobKey(), problem.getProbKey(), worker.getRegistrationDate(), hospitalName, hospitalNameMore, "", "");
+
+                            //add into db
+                            ProblemComplementsDAO.addProblemHospital(hospital);
+
+                            //success display
+                            success = "Hospital Providing Treatment has been successfully added!";
+                        }
                     } //pass
 
-                    if (err == null) {
 
-                        //create object
-                        ProblemHospital hospital = new ProblemHospital(worker.getFinNumber(), problem.getJobKey(), problem.getProbKey(), worker.getRegistrationDate(), hospitalName, hospitalNameMore, "", "");
-
-                        //add into db
-                        ProblemComplementsDAO.addProblemHospital(hospital);
-
-                        //success display
-                        success = "Hospital Providing Treatment has been successfully added!";
-                    }
 
                     //law firm
                     String lawFirmName = request.getParameter("nlawyerFirm");
