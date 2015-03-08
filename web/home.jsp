@@ -94,7 +94,9 @@
                 margin-bottom: 0 !important;
             }
             
+            
         </style>
+        
         <script>
             $(document).ready(function(){
                 var isMobile = {

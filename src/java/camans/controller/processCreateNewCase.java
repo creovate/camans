@@ -44,12 +44,11 @@ public class processCreateNewCase extends HttpServlet {
 
             boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-            java.util.Date date = new java.util.Date();
-            
             //get associate or not
             String isAssociate = request.getParameter("associate");
             
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+            java.util.Date date = new java.util.Date();
             //get FIN & job Key
 
             String finNumber = request.getParameter("workerFinNum");
@@ -581,7 +580,7 @@ public class processCreateNewCase extends HttpServlet {
                     request.getSession().setAttribute("tabIndicator", "problem");
                     request.getSession().setAttribute("selectedJob", jobKeyStr);
                     request.getSession().setAttribute("worker", worker.getFinNumber());
-                }else{
+                } else {
                     //go back to job tab
                     request.getSession().setAttribute("tabIndicator", "job");
                     request.getSession().setAttribute("selectedJob", jobKeyStr);
