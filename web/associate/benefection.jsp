@@ -316,6 +316,7 @@
         } else {
         %>
         <label style="color:grey; padding: 2%;">There is no record of <%=categoryTitle%> benefit for this case yet.</label>
+        <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack()">Cancel</button>
         <%                }
         } else {
         %>
