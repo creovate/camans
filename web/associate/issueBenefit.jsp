@@ -94,6 +94,12 @@
     ArrayList<String> otherDropdownList = DropdownDAO.retreiveAllDropdownListOfBenefits("Other");
 
     ArrayList<String> dropdownList = foodDropdownList;
+    
+    String successMsg = (String) request.getSession().getAttribute("successMsg");
+    request.getSession().removeAttribute("successMsg");
+
+    String errorMsg = (String) request.getSession().getAttribute("errorMsg");
+    request.getSession().removeAttribute("errorMsg");
 %>
 <!DOCTYPE html>
 <html>
@@ -113,6 +119,7 @@
         <script src="../js/jquery-2.1.1.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/jquery-ui-1.9.2.custom.js"></script>
+        <script src="../js/jquery.validate.js"></script>
         <script type="text/javascript" src="../js/bootstrapValidator.min.js"></script>   
         <!------------->
 
@@ -162,8 +169,7 @@
                 $('#nbenetype').empty();
                 if (selected === "Food") {
 
-            <%
-                for (int i = 0; i < foodDropdownList.size(); i++) {
+            <%             for (int i = 0; i < foodDropdownList.size(); i++) {
                     String ddlItem = foodDropdownList.get(i);
             %>
 
@@ -174,8 +180,7 @@
             %>
 
                 } else if (selected === "Transport") {
-            <%
-                for (int i = 0; i < faregoDropdownList.size(); i++) {
+            <%          for (int i = 0; i < faregoDropdownList.size(); i++) {
                     String ddlItem = faregoDropdownList.get(i);
             %>
 
@@ -195,8 +200,7 @@
             %>
                     //alert("med");
                 } else if (selected === "Roof") {
-            <%
-                for (int i = 0; i < roofDropdownList.size(); i++) {
+            <%               for (int i = 0; i < roofDropdownList.size(); i++) {
                     String ddlItem = roofDropdownList.get(i);
             %>
                     $('#nbenetype').append("<option><%=ddlItem%></option>");
@@ -219,74 +223,105 @@
 
             }
 
-            $('#add_benefit')
-                    .bootstrapValidator({
-                feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-                },
-                fields: {
-                    ngivenby: {
-                        validators: {
-                            stringLength: {
-                                max: 20,
-                                message: 'This field must not exceed 20 characters.'
-                            },
-                            notEmpty: {
-                                message: 'Given by cannot be empty.'
-                            }
+            $(document).ready(function() {
+//methods for jquery validator
+                jQuery.validator.addMethod("FIN", function(value, element) {
+                    return this.optional(element) || /^[A-Z][0-9]{7}[A-Z]$/.test(value) || /^GEN[0-9]{6}$/.test(value);
+                }, "Invalid FIN number format. Please check again.");
+                $('#searchForm').validate({
+                    //ignore: ":hidden",
+                    rules: {
+                        fin: {
+                            required: true,
+                            FIN: true
+                        }
+                    },
+                    highlight: function(element) {
+                        $(element).closest('.form-group').addClass('has-error');
+                    },
+                    unhighlight: function(element) {
+                        $(element).closest('.form-group').removeClass('has-error');
+                    },
+                    errorElement: 'span',
+                    errorClass: 'help-block',
+                    errorPlacement: function(error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    }
+                });
+                $('#add_benefit')
+                        .bootstrapValidator({
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        ngivenby: {
+                            validators: {
+                                stringLength: {
+                                    max: 20,
+                                    message: 'This field must not exceed 20 characters.'
+                                },
+                                notEmpty: {
+                                    message: 'Given by cannot be empty.'
+                                }
 
-                        }
-                    },
-                    nisDate: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Date given cannot be empty.'
                             }
-                        }
-                    },
-                    nbenetype: {
-                        validators: {
-                            notEmpty: {
-                                message: 'This field cannot be empty.'
+                        },
+                        nisDate: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Date given cannot be empty.'
+                                }
                             }
-                        }
-                    },
-                    nsernum: {
-                        validators: {
-                            stringLength: {
-                                max: 30,
-                                message: 'This field must not exceed 30 characters.'
+                        },
+                        nbenetype: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'This field cannot be empty.'
+                                }
                             }
-                        }
-                    },
-                    npurpose: {
-                        validators: {
-                            stringLength: {
-                                max: 200,
-                                message: 'This field must not exceed 200 characters.'
+                        },
+                        nsernum: {
+                            validators: {
+                                stringLength: {
+                                    max: 30,
+                                    message: 'This field must not exceed 30 characters.'
+                                }
                             }
-                        }
-                    },
-                    nremark: {
-                        validators: {
-                            stringLength: {
-                                max: 500,
-                                message: 'This field must not exceed 500 characters.'
+                        },
+                        npurpose: {
+                            validators: {
+                                stringLength: {
+                                    max: 200,
+                                    message: 'This field must not exceed 200 characters.'
+                                }
                             }
-                        }
-                    },
-                    nvalue: {
-                        validators: {
-                            regexp: {
-                                regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
-                                message: 'This value must have maximum 2 decimal place.'
+                        },
+                        nremark: {
+                            validators: {
+                                stringLength: {
+                                    max: 500,
+                                    message: 'This field must not exceed 500 characters.'
+                                }
+                            }
+                        },
+                        nvalue: {
+                            validators: {
+                                regexp: {
+                                    regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
+                                    message: 'This value must have maximum 2 decimal place.'
+                                }
                             }
                         }
                     }
-                }
+                });
             });
+
         </script>
     </head>
     <body>
@@ -301,7 +336,7 @@
             <h4 style="color:#006c9a">Search Worker by FIN</h4>
 
             <!-- Search Worker form-->
-            <form class="form-inline" method="POST" action="../searchWorker.do">
+            <form class="form-inline" id="searchForm" method="POST" action="../searchWorker.do">
                 <div class="form-group col-xs-9 col-sm-8 col-md-8">
                     <%
                         if (fin != null) {

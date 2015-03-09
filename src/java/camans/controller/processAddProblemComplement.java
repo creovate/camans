@@ -1773,7 +1773,7 @@ public class processAddProblemComplement extends HttpServlet {
                             } 
                         }
 
-                        if (!r2rMedCostStr.equals("")) {
+                        if (r2rMedCostStr != null && !r2rMedCostStr.equals("")) {
                             r2rMedCostStr = r2rMedCostStr.replace(",", "");
                             if (!r2rMedCostStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += "Medical Cost must have maximum 2 decimal places,";
@@ -1786,7 +1786,7 @@ public class processAddProblemComplement extends HttpServlet {
                             }
                         }    
 
-                        if (!r2rOutlayStr.equals("")) {
+                        if (r2rOutlayStr != null && !r2rOutlayStr.equals("")) {
                             r2rOutlayStr = r2rOutlayStr.replace(",", "");
                             if (!r2rOutlayStr.matches("^\\d+(\\.\\d{1,2})?$")) {
                                 errorMsg += "Outlay Cost must have maximum 2 decimal places,";
@@ -1799,39 +1799,39 @@ public class processAddProblemComplement extends HttpServlet {
                             }    
                         }
 
-                        if (!r2rTime.equals("") && r2rTime.length() > 20) {
+                        if (r2rTime != null && !r2rTime.equals("") && r2rTime.length() > 20) {
                             errorMsg += "Time cannot be longer than 20 characters,";
                         }
 
-                        if (!r2rHosp.equals("") && r2rHosp.length() > 20) {
+                        if (r2rHosp != null && !r2rHosp.equals("") && r2rHosp.length() > 20) {
                             errorMsg += "Hospital cannot be longer than 20 characters,";
                         }
 
-                        if (!r2rDept.equals("") && r2rDept.length() > 50) {
+                        if (r2rDept != null && !r2rDept.equals("") && r2rDept.length() > 50) {
                             errorMsg += "Department cannot be longer than 50 characters,";
                         }
 
-                        if (!r2r1.equals("") && r2r1.length() > 20) {
+                        if (r2r1 != null && !r2r1.equals("") && r2r1.length() > 20) {
                             errorMsg += "R2R person cannot be longer than 20 characters,";
                         }
 
-                        if (!r2r2.equals("") && r2r2.length() > 20) {
+                        if (r2r2 != null && !r2r2.equals("") && r2r2.length() > 20) {
                             errorMsg += "R2R person cannot be longer than 20 characters,";
                         }
 
-                         if (!r2rPurpose.equals("") && r2rPurpose.length() > 50) {
+                         if (r2rPurpose != null && !r2rPurpose.equals("") && r2rPurpose.length() > 50) {
                             errorMsg += "Purpose cannot be longer than 50 characters,";
                         }
 
-                         if (!r2rPreApptNotes.equals("") && r2rPreApptNotes.length() > 200) {
+                         if (r2rPreApptNotes != null && !r2rPreApptNotes.equals("") && r2rPreApptNotes.length() > 200) {
                             errorMsg += "Pre appointment note cannot be longer than 200 characters,";
                         }
 
-                        if (!r2rPostApptNotes.equals("") && r2rPostApptNotes.length() > 200) {
+                        if (r2rPostApptNotes != null && !r2rPostApptNotes.equals("") && r2rPostApptNotes.length() > 200) {
                             errorMsg += "post appointment note cannot be longer than 200 characters,";
                         }
 
-                        if (!r2rFeedback.equals("") && r2rFeedback.length() > 200) {
+                        if (r2rFeedback != null && !r2rFeedback.equals("") && r2rFeedback.length() > 200) {
                             errorMsg += "feedback cannot be longer than 200 characters,";
                         }
 

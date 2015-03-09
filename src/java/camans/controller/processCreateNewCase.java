@@ -397,6 +397,11 @@ public class processCreateNewCase extends HttpServlet {
 
             } else { //validation fail
                 request.getSession().setAttribute("errorMsg", err);
+                
+                if(isAssociate != null){
+                    request.getSession().setAttribute("option", "createCase");
+                    response.sendRedirect("associate/addNew.jsp");
+                }
                 response.sendRedirect("createCase.jsp");
             }
 

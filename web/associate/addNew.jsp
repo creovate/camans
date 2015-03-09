@@ -32,6 +32,10 @@
     String workerFin = request.getParameter("workerFin");
     String jobKeyStr = request.getParameter("selectedJob");
     String option = request.getParameter("option");
+    if (option == null) {
+        option = (String) request.getSession().getAttribute("option");
+        request.getSession().removeAttribute("option");
+    }
 %>
 <html>
     <head>
@@ -43,14 +47,14 @@
         <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.css">
         <link rel="stylesheet" href="../css/jquery-ui.structure.css">
         <link rel="stylesheet" href="../css/jquery-ui.theme.css">
-        <link rel="stylesheet" href="../css/bootstrapValidator.min.css"/>
         <!-------------->
 
         <!--javascript-->
         <script src="../js/jquery-2.1.1.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/jquery-ui-1.9.2.custom.js"></script>
-        <script type="text/javascript" src="../js/bootstrapValidator.min.js"></script>   
+        <script src="../js/jquery-ui.js"></script>
+        <script src="../js/jquery.validate.js"></script>
+
         <!------------->
 
         <!--tab icon-->
@@ -105,7 +109,10 @@
                 }, "Invalid FIN number format. Please check again.");
                 jQuery.validator.addMethod("FileSize", function(value, element) {
                     return this.optional(element) || (element.files[0].size <= 1048576);
-                }, "Invalid File size. Please Check again.");
+                }, "Invalid File size. Please check again.");
+                jQuery.validator.addMethod("phNum", function(value, element) {
+                    return this.optional(element) || /^[\d|\-|(|)|+|\s]+$/.test(value);
+                }, "Invalid Phone number format. Please check again.");
                 $('#createworker_form').validate({
                     //ignore: ":hidden",
                     rules: {
@@ -126,11 +133,18 @@
                             maxlength: 50,
                             required: true
                         },
+                        nationality: {
+                            required: true
+                        },
                         nationalityMore: {
                             maxlength: 50
                         },
                         createdFor: {
                             maxlength: 20
+                        },
+                        sgPh: {
+                            maxlength: 12,
+                            phNum: true
                         },
                         employerName: {
                             maxlength: 50,
@@ -139,20 +153,12 @@
                         workpassMore: {
                             maxlength: 50
                         },
-                        jobSectorMore: {
-                            maxlength: 50
-                        },
-                        occupation: {
-                            maxlength: 50
-                        },
                         jobStartDate: {
                             maxlength: 50
                         },
-                        jobEndDate: {
-                            maxlength: 50
-                        },
-                        jobRemark: {
-                            maxlength: 200
+                        npassno: {
+                            maxlength: 20,
+                            required: true
                         },
                         problem: {
                             required: true
@@ -160,8 +166,14 @@
                         problemMore: {
                             maxlength: 50
                         },
-                        problemRemark: {
-                            maxlength: 200
+                        bodyPart: {
+                            maxlength: 500
+                        },
+                        nhospNameMore: {
+                            maxlength: 50
+                        },
+                        nlawyerFirmMore: {
+                            maxlength: 50
                         },
                         facePic: {
                             accept: "image/png,image/jpeg,image/jpg,image/bmp",
@@ -209,20 +221,12 @@
                             maxlength: 50,
                             required: true
                         },
-                        jobSectorMore: {
-                            maxlength: 50
-                        },
-                        occupation: {
-                            maxlength: 50
-                        },
                         jobStartDate: {
                             maxlength: 50
                         },
-                        jobEndDate: {
-                            maxlength: 50
-                        },
-                        jobRemark: {
-                            maxlength: 200
+                        npassno: {
+                            maxlength: 20,
+                            required: true
                         },
                         //problem profile
                         problem: {
@@ -231,8 +235,19 @@
                         problemMore: {
                             maxlength: 50
                         },
-                        problemRemark: {
-                            maxlength: 200
+                        bodyPart: {
+                            maxlength: 500
+                        },
+                        nhospNameMore: {
+                            maxlength: 50
+                        },
+                        nlawyerFirmMore: {
+                            maxlength: 50
+                        },
+                        facePic: {
+                            accept: "image/png,image/jpeg,image/jpg,image/bmp",
+                            extension: "png,jpeg,jpg,bmp",
+                            FileSize: true
                         }
                     },
                     highlight: function(element) {
@@ -269,7 +284,7 @@
         <%
             if (option != null) {
                 //this is create case
-        %>
+%>
         <!-- Create Case Form -->
         <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" >
             <form method="post" action="../createNewCase.do" class="form form-horizontal" 
@@ -281,54 +296,46 @@
                 <br/>
 
                 <div class="form-group">
-                    <label for="registration_date_In" class="col-xs-4 col-md-3 control-label"><span class="required_input">*</span>Registration Date:</label>
+                    <label for="registration_date_In" class="col-xs-4 col-md-3 control-label"><span class="required_input">*</span>Registration date:</label>
                     <div class="col-md-4 col-sm-7 col-xs-8">
                         <input type="text" class="form-control dateInput input-sm" name="registeredDate" value="<%=sdf.format(today)%>"  />
                     </div>
                 </div>
-
-
                 <div class="form-group">
-                    <label for="created_by_In" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Created By</label>
+                    <label for="created_by_In" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Created by:</label>
                     <div class="col-sm-7 col-md-6 col-xs-8">
-                        <input type="text" class="form-control no_change" name="createdBy" value="<%=userLogin.getUsername()%>" />
+                        <input type="text" class="form-control no_change input-sm" name="createdBy" value="<%=userLogin.getUsername()%>" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="worker_name" class="col-xs-4 col-md-3 col-sm-4 control-label "><span class="required_input">*</span>Worker's name:</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <input type="text" class="form-control required" name="workerName"/>
+                        <input type="text" class="form-control required input-sm" name="workerName"/>
                     </div>
                 </div>
-
-
                 <div class="form-group">
                     <label for="worker_fin" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>FIN:</label>
                     <div id="fin" class=" col-md-4 col-xs-8 col-sm-7">
-                        <input type="text" id="finNum"  class="form-control required" name="finNum"/>
+                        <input type="text" id="finNum"  class="form-control required input-sm" name="finNum"/>
                     </div>
 
                     <div id="finButton" class="col-md-4 col-xs-offset-6 col-xs-4 col-sm-offset-9 col-sm-2" style="margin-top: 5%">
                         <button type="button" id="generateTWC2Fin" class="btn btn-blue input-sm">Generate FIN</button>
                     </div>
                 </div>
-
-
                 <div class="form-group">
                     <label for="worker_gender" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Gender:</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <select class="form-control" name="gender">
+                        <select class="form-control input-sm" name="gender">
                             <option>Male</option>
                             <option>Female</option>
                         </select>
                     </div>
                 </div>
-
-
                 <div class="form-group">
                     <label for="worker_nationality" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Nationality:</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <select class="form-control" id="worker_nationality" name="nationality" />
+                        <select class="form-control input-sm" id="worker_nationality" name="nationality" />
                         <option value="">Select Nationality:</option>
                         <%
                             for (String nationalityStr : nationalityList) {
@@ -340,11 +347,10 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <label for="worker_dob" class=" col-md-3 col-xs-4 col-sm-4 control-label">Date of Birth:</label>
+                    <label for="worker_dob" class=" col-md-3 col-xs-4 col-sm-4 control-label">Date of birth:</label>
                     <div class="col-xs-8 col-sm-7 col-md-4">
-                        <input class="form-control input-append date dateInput" type="text" class="dateInput"  name="dob"/>
+                        <input class="form-control input-append date dateInput input-sm" type="text" class="dateInput"  name="dob"/>
                     </div>
                 </div>
 
@@ -352,7 +358,7 @@
                 <div class="form-group">
                     <label for="worker_dob" class=" col-md-3 col-xs-4 col-sm-4 control-label">Phone:</label>
                     <div class="col-xs-8 col-sm-7 col-md-4">
-                        <input class="form-control" type="text" class="form-control"  name="sgPh"/>
+                        <input class="form-control input-sm" type="text" class="form-control"  name="sgPh"/>
                     </div>
                 </div>
 
@@ -364,14 +370,12 @@
                 <div class="form-group">
                     <label for="emp_name" class="col-md-3 col-xs-4 col-sm-4 control-label" ><span class="required_input">*</span>Employer:</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <input type="text" class="form-control required" id="employerName" name="employerName"/></div>
+                        <input type="text" class="form-control required input-sm" id="employerName" name="employerName"/></div>
                 </div>
-
-
                 <div class="form-group">
                     <label for="job_pass_type" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Workpass type:</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <select name="workpassType" class="form-control" id="job_pass_type" required>
+                        <select name="workpassType" class="form-control input-sm" id="job_pass_type" required>
                             <option value="">Select Work Pass Type:</option>
                             <%
                                 for (String passTypeStr : passTypeList) {
@@ -384,9 +388,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="job_start_date" class="col-md-3 col-xs-4 col-sm-4 control-label" >When started this job?</label>
+                    <label for="job_start_date" class="col-md-3 col-xs-4 col-sm-4 control-label" >When started this job?:</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <input type="text" class="form-control" name="jobStartDate"/></div>
+                        <input type="text" class="form-control input-sm" name="jobStartDate"/></div>
                 </div>
                 <br/>
 
@@ -406,7 +410,6 @@
                         </select>
                     </div><br/><br/>
                 </div>
-
                 <div class='form-group'>
                     <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Current pass number:</label>
 
@@ -430,18 +433,17 @@
                 <br/>
 
                 <div class='form-group'>
-                    <label for='isdate' class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Problem Reg Date: </label>
+                    <label for='isdate' class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Problem reg date:</label>
 
                     <div class='col-xs-8 col-sm-7 col-md-6'>
-                        <input class="form-control dateInput" type='text' name="problemRegDate" value="<%=sdf.format(today)%>">
+                        <input class="form-control dateInput input-sm" type='text' name="problemRegDate" value="<%=sdf.format(today)%>">
                     </div>
                     <br/>
                 </div>
-
                 <div class="form-group">
                     <label for="prob_type" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Problem:</label>
                     <div class="col-xs-8 col-sm-7  col-md-6"> 
-                        <select name="problem" id="prob_type" class="form-control">
+                        <select name="problem" id="prob_type" class="form-control input-sm" required="true">
                             <option value="">Select Problem..</option>
                             <%
                                 for (String problemStr : problemList) {
@@ -459,7 +461,7 @@
                     <label for='isdate' class="col-md-3 col-xs-4 col-sm-4 control-label">Date of injury:</label>
 
                     <div class='col-xs-8 col-sm-7 col-md-6'>
-                        <input class="form-control dateInput" type='text' name="injuryDate">
+                        <input class="form-control dateInput input-sm" type='text' name="injuryDate">
                     </div>
                     <br/>
                 </div>
@@ -467,7 +469,7 @@
                     <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label">Body part(s) injured:</label>
 
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <input class="form-control input-sm" type='text' name="bodyPart" />
+                        <input class="form-control input-sm input-sm" type='text' name="bodyPart" />
                     </div><br/><br/>
                 </div>
 
@@ -489,7 +491,7 @@
                 <div class='form-group'>
                     <label for='nhospNameMore' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'Other':</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <textarea class="form-control" name="nhospNameMore" rows="3" style='width:100%;'></textarea>
+                        <textarea class="form-control input-sm" name="nhospNameMore" rows="3" style='width:100%;'></textarea>
                     </div><br/><br/>
                 </div>
 
@@ -511,10 +513,24 @@
                 <div class='form-group'>
                     <label for='lawyerHave' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'other': </label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <textarea class="form-control" name="nlawyerFirmMore" rows="3" style='width:100%;'></textarea>
+                        <textarea class="form-control input-sm" name="nlawyerFirmMore" rows="3" style='width:100%;'></textarea>
                     </div><br/><br/>
                 </div>
 
+                <!--- Face Picture -->
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                        <img data-src="holder.js/100%x100%" alt="...">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                    <div>
+                        <span class="btn btn-default btn-file">
+                            <span class="fileinput-new">Select image</span>
+                            <span class="fileinput-exists">Change</span><input type="file" name="facePic" accept="image/*">
+                        </span>
+                        <a href="#" class="btn btn-blue btn btn-blue-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                    </div>
+                </div>
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="pull-right">
                     <button  type='submit' class="btn btn-blue">Submit</button>
@@ -551,26 +567,26 @@
                 <div class="form-group">
                     <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >Worker's name</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                        <input type="text" class="form-control required" name="wkername" value='<%=selectedWorker.getName()%>' readonly="true"/>
+                        <input type="text" class="form-control required input-sm" name="wkername" value='<%=selectedWorker.getName()%>' readonly="true"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
                     <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >FIN</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                        <input type="text" class="form-control required" name="wkerFin" value="<%=workerFin%>" readonly="true"/>
+                        <input type="text" class="form-control required input-sm" name="wkerFin" value="<%=workerFin%>" readonly="true"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >Employer<span class="required_input">*</span> </label>
+                    <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" ><span class="required_input">*</span>Employer:</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                        <input type="text" class="form-control required" name="employerName"/>
+                        <input type="text" class="form-control required input-sm" name="employerName"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="job_pass_type" class="col-xs-4 col-sm-5 col-md-5 control-label">Workpass type<span class="required_input">*</span></label>
+                    <label for="job_pass_type" class="col-xs-4 col-sm-5 col-md-5 control-label"><span class="required_input">*</span>Workpass type</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                        <select name="workpassType" class="form-control" id="job_pass_type" required>
-                            <option value=''>Select from list..</option>
+                        <select name="workpassType" class="form-control input-sm" id="job_pass_type" required>
+                            <option value='' selected="">Select from list..</option>
                             <%
                                 for (String passTypeStr : passTypeList) {
                             %>
@@ -581,18 +597,17 @@
                         </select>
                     </div><br/><br/>
                 </div>
-
                 <div class="form-group">
                     <label for="job_start_date" class="col-xs-4 col-sm-5 col-md-5 control-label" >When start this job?</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                        <input type="text" class="form-control" name="jobStartDate"/></div><br/><br/>
+                        <input type="text" class="form-control input-sm" name="jobStartDate"/></div><br/><br/>
                 </div>
 
                 <!-- job complement -->
                 <div class="form-group">
-                    <label for="npasstype" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Current pass type:</label>
+                    <label for="npasstype" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Current pass type</label>
                     <div class="col-xs-8 col-sm-7 col-md-6"> 
-                        <select name="npasstype" class="form-control input-sm" required>
+                        <select name="npasstype" class="form-control input-sm">
                             <option value="" selected>Select from list...</option>
                             <%
                                 for (String workpassType : workpassTypes) {
@@ -604,16 +619,15 @@
                         </select>
                     </div><br/><br/>
                 </div>
-
                 <div class='form-group'>
-                    <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Current pass number:</label>
+                    <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Current pass number</label>
 
                     <div class="col-xs-8 col-sm-7 col-md-6">
                         <input class="form-control input-sm" type='text' name="npassno" />
                     </div><br/><br/>
                 </div>
                 <div class='form-group'>
-                    <label for='nisdate' class="col-md-3 col-xs-4 col-sm-4 control-label">Current pass issued date:</label>
+                    <label for='nisdate' class="col-md-3 col-xs-4 col-sm-4 control-label">Current pass issued date</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
                         <input class="form-control dateInput isdateToRemove col-xs-9 col-md-9 input-sm" type='text' name="nisdate" style="width:80%" >
                         <div class="input-group-addon col-xs-1 col-md-1 removeBtn" title="Remove date" data-field="is" style="width:20%;">
@@ -628,14 +642,14 @@
 
                 <!--problem profile-->
                 <div class="form-group">
-                    <label for="worker_pass_type_other_In" class="col-xs-4 col-sm-5 col-md-5 control-label">Problem reg date<span class="required_input">*</span>:</label>
+                    <label for="worker_pass_type_other_In" class="col-xs-4 col-sm-5 col-md-5 control-label"><span class="required_input">*</span>Problem reg date</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                        <input class="form-control dateInput" type='text' name="problemRegDate" value="<%=sdf.format(today)%>"/></div><br/><br/>
+                        <input class="form-control dateInput input-sm" type='text' name="problemRegDate" value="<%=sdf.format(today)%>"/></div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="prob_type" class="col-xs-4 col-sm-5 col-md-5 control-label">Problem<span class="required_input">*</span></label>
+                    <label for="prob_type" class="col-xs-4 col-sm-5 col-md-5 control-label"><span class="required_input">*</span>Problem</label>
                     <div class="col-xs-8 col-sm-7 col-md-7"> 
-                        <select name="problem" id="prob_type" class="form-control" required>
+                        <select name="problem" id="prob_type" class="form-control input-sm" required>
                             <option value="">Select from the list...</option>
                             <%
                                 for (String problemStr : problemList) {
@@ -650,15 +664,15 @@
 
                 <!-- problem complements -->
                 <div class='form-group'>
-                    <label for='isdate' class="col-md-3 col-xs-4 col-sm-4 control-label">Date of injury:</label>
+                    <label for='isdate' class="col-md-3 col-xs-4 col-sm-4 control-label">Date of injury</label>
 
                     <div class='col-xs-8 col-sm-7 col-md-6'>
-                        <input class="form-control dateInput" type='text' name="injuryDate">
+                        <input class="form-control dateInput input-sm" type='text' name="injuryDate">
                     </div>
                     <br/>
                 </div>
                 <div class='form-group'>
-                    <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label">Body part(s) injured:</label>
+                    <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label">Body part(s) injured</label>
 
                     <div class="col-xs-8 col-sm-7 col-md-6">
                         <input class="form-control input-sm" type='text' name="bodyPart" />
@@ -666,7 +680,7 @@
                 </div>
 
                 <div class='form-group'>
-                    <label for='' class="col-md-3 col-xs-4 col-sm-4 control-label">Current hospital:</label>
+                    <label for='' class="col-md-3 col-xs-4 col-sm-4 control-label">Current hospital</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
                         <select class="form-control input-sm" id="nhospName" name="nhospName" >
                             <option value="" selected>Select from list...</option>
@@ -681,14 +695,14 @@
                     </div><br/><br/>
                 </div>
                 <div class='form-group'>
-                    <label for='nhospNameMore' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'Other':</label>
+                    <label for='nhospNameMore' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'Other'</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <textarea class="form-control" name="nhospNameMore" rows="3" style='width:100%;'></textarea>
+                        <textarea class="form-control input-sm" name="nhospNameMore" rows="3" style='width:100%;'></textarea>
                     </div><br/><br/>
                 </div>
 
                 <div class='form-group'>
-                    <label for='lawyerFirm' class="col-md-3 col-xs-4 col-sm-4 control-label">Current law firm: </label>
+                    <label for='lawyerFirm' class="col-md-3 col-xs-4 col-sm-4 control-label">Current law firm</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
                         <select class="form-control input-sm" name="nlawyerFirm" >
                             <option value="" selected>Select from list...</option>
@@ -703,17 +717,17 @@
                     </div><br/><br/>
                 </div>
                 <div class='form-group'>
-                    <label for='lawyerHave' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'other': </label>
+                    <label for='lawyerHave' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'other'</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <textarea class="form-control" name="nlawyerFirmMore" rows="3" style='width:100%;'></textarea>
+                        <textarea class="form-control input-sm" name="nlawyerFirmMore" rows="3" style='width:100%;'></textarea>
                     </div><br/><br/>
                 </div>
                 <input type="hidden" id="hiddenWorkerFin" name="workerFinNum" value="<%=workerFin%>"/>
                 <input type="hidden" name="associate" value="associate"/>
                 <br/><br/>
                 <div class="pull-right">
-                    <button  type='submit' class="btn btn-blue">Submit</button>
-                    <button type='' class="btn cancel_btn" style="bottom: 0" onclick="goBack();">Cancel</button>
+                    <button  type='submit' class="btn btn-blue input-sm">Submit</button>
+                    <button type='' class="btn cancel_btn input-sm" style="bottom: 0" onclick="goBack();">Cancel</button>
                 </div>
                 <br/><br/>
             </form> 
@@ -743,31 +757,31 @@
                 <div class="form-group">
                     <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >Worker's name</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                        <input type="text" class="form-control required" name="wkername" value='<%=selectedWorker.getName()%>' readonly="true"/>
+                        <input type="text" class="form-control required input-sm" name="wkername" value='<%=selectedWorker.getName()%>' readonly="true"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
                     <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >FIN</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                        <input type="text" class="form-control required" name="wkerFin" value="<%=workerFin%>" readonly="true"/>
+                        <input type="text" class="form-control required input-sm" name="wkerFin" value="<%=workerFin%>" readonly="true"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
                     <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >Employer</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                        <input type="text" class="form-control required" name="employer" value="<%=employer%>" readonly="true"/>
+                        <input type="text" class="form-control required input-sm" name="employer" value="<%=employer%>" readonly="true"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="worker_pass_type_other_In" class="col-xs-4 col-sm-5 col-md-5 control-label">Problem reg date<span class="required_input">*</span>:</label>
+                    <label for="worker_pass_type_other_In" class="col-xs-4 col-sm-5 col-md-5 control-label"><span class="required_input">*</span>Problem reg date</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                        <input class="form-control dateInput" type='text' name="problemRegDate" value="<%=sdf.format(today)%>"/></div><br/><br/>
+                        <input class="form-control dateInput input-sm" type='text' name="problemRegDate" value="<%=sdf.format(today)%>"/></div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="prob_type" class="col-xs-4 col-sm-5 col-md-5 control-label">Problem<span class="required_input">*</span></label>
+                    <label for="prob_type" class="col-xs-4 col-sm-5 col-md-5 control-label"><span class="required_input">*</span>Problem</label>
                     <div class="col-xs-8 col-sm-7 col-md-7"> 
-                        <select name="problem" id="prob_type" class="form-control" required>
-                            <option value="">Select from the list...</option>
+                        <select name="problem" id="prob_type" class="form-control input-sm" required>
+                            <option value="" selected="true">Select from the list...</option>
                             <%
                                 for (String problemStr : problemList) {
                             %>
@@ -778,17 +792,18 @@
                         </select>
                     </div><br/>
                 </div>
+
                 <!-- problem complements -->
                 <div class='form-group'>
-                    <label for='isdate' class="col-md-3 col-xs-4 col-sm-4 control-label">Date of injury:</label>
+                    <label for='isdate' class="col-md-3 col-xs-4 col-sm-4 control-label">Date of injury</label>
 
                     <div class='col-xs-8 col-sm-7 col-md-6'>
-                        <input class="form-control dateInput" type='text' name="injuryDate">
+                        <input class="form-control dateInput input-sm" type='text' name="injuryDate">
                     </div>
                     <br/>
                 </div>
                 <div class='form-group'>
-                    <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label">Body part(s) injured:</label>
+                    <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label">Body part(s) injured</label>
 
                     <div class="col-xs-8 col-sm-7 col-md-6">
                         <input class="form-control input-sm" type='text' name="bodyPart" />
@@ -796,7 +811,7 @@
                 </div>
 
                 <div class='form-group'>
-                    <label for='' class="col-md-3 col-xs-4 col-sm-4 control-label">Current hospital:</label>
+                    <label for='' class="col-md-3 col-xs-4 col-sm-4 control-label">Current hospital</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
                         <select class="form-control input-sm" id="nhospName" name="nhospName" >
                             <option value="" selected>Select from list...</option>
@@ -811,14 +826,14 @@
                     </div><br/><br/>
                 </div>
                 <div class='form-group'>
-                    <label for='nhospNameMore' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'Other':</label>
+                    <label for='nhospNameMore' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'Other'</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <textarea class="form-control" name="nhospNameMore" rows="3" style='width:100%;'></textarea>
+                        <textarea class="form-control input-sm" name="nhospNameMore" rows="3" style='width:100%;'></textarea>
                     </div><br/><br/>
                 </div>
 
                 <div class='form-group'>
-                    <label for='lawyerFirm' class="col-md-3 col-xs-4 col-sm-4 control-label">Current law firm: </label>
+                    <label for='lawyerFirm' class="col-md-3 col-xs-4 col-sm-4 control-label">Current law firm</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
                         <select class="form-control input-sm" name="nlawyerFirm" >
                             <option value="" selected>Select from list...</option>
@@ -833,9 +848,9 @@
                     </div><br/><br/>
                 </div>
                 <div class='form-group'>
-                    <label for='lawyerHave' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'other': </label>
+                    <label for='lawyerHave' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'other'</label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <textarea class="form-control" name="nlawyerFirmMore" rows="3" style='width:100%;'></textarea>
+                        <textarea class="form-control input-sm" name="nlawyerFirmMore" rows="3" style='width:100%;'></textarea>
                     </div><br/><br/>
                 </div>
                 <input type="hidden" id="hiddenWorkerFin" name="workerFinNum" value="<%=workerFin%>"/>

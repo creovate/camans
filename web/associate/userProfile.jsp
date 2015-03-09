@@ -496,7 +496,7 @@
                                                  <div class="modal-footer">
                                                      <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
                                                      <input type="hidden" name="action" value="resetPwd"/> 
-                                                     <input type="hidden" name="page" value="userProfile.jsp"/>
+                                                     <input type="hidden" name="page" value="associate/userProfile.jsp"/>
                                                      <button type="submit" class="btn btn-primary">Change Password</button>
                                                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                                      <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
