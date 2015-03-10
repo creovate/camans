@@ -94,12 +94,31 @@
     ArrayList<String> otherDropdownList = DropdownDAO.retreiveAllDropdownListOfBenefits("Other");
 
     ArrayList<String> dropdownList = foodDropdownList;
-    
-    String successMsg = (String) request.getSession().getAttribute("successMsg");
-    request.getSession().removeAttribute("successMsg");
 
-    String errorMsg = (String) request.getSession().getAttribute("errorMsg");
-    request.getSession().removeAttribute("errorMsg");
+    String successMsg = (String) request.getSession().getAttribute("successBenefitMsg");
+    request.getSession().removeAttribute("successBenefitMsg");
+    //create case
+    if(successMsg == null || successMsg.equals("")){
+        successMsg = (String) request.getSession().getAttribute("successCaseMsg");
+        request.getSession().removeAttribute("successCaseMsg");
+    }
+    //r2r
+    if(successMsg == null || successMsg.equals("")){
+        successMsg = (String) request.getSession().getAttribute("successProbCompMsg");
+        request.getSession().removeAttribute("successProbCompMsg");
+    }
+    
+    String errorMsg = (String) request.getSession().getAttribute("errorBenefitMsg");
+    request.getSession().removeAttribute("errorBenefitMsg");
+    if(errorMsg == null || errorMsg.equals("")){
+        errorMsg = (String) request.getSession().getAttribute("errorMsg");
+        request.getSession().removeAttribute("errorMsg");
+    }
+    //r2r
+    if(errorMsg == null || errorMsg.equals("")){
+        errorMsg = (String) request.getSession().getAttribute("errorProbCompMsg");
+        request.getSession().removeAttribute("errorProbCompMsg");
+    }
 %>
 <!DOCTYPE html>
 <html>
@@ -156,6 +175,12 @@
             #issueBene{
                 border-left: 1px solid #CCC;
                 border-right: 1px solid #CCC;
+            }
+            
+            .alert{
+                position: absolute;
+                z-index: 999;
+                top: 18vh;
             }
         </style>
         <script>
@@ -224,6 +249,7 @@
             }
 
             $(document).ready(function() {
+                $('.alert').fadeOut(9999);
 //methods for jquery validator
                 jQuery.validator.addMethod("FIN", function(value, element) {
                     return this.optional(element) || /^[A-Z][0-9]{7}[A-Z]$/.test(value) || /^GEN[0-9]{6}$/.test(value);
@@ -254,11 +280,6 @@
                 });
                 $('#add_benefit')
                         .bootstrapValidator({
-                    feedbackIcons: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
                     fields: {
                         ngivenby: {
                             validators: {
@@ -328,9 +349,27 @@
         <!-- Nav Bar -->
         <jsp:include page="navbar.jsp"/>
         <!-- End of Nav Bar-->
-        <!-- Back Button -->
 
-        <!-- End of Back Button -->
+        <% if (successMsg != null) {
+                if (!successMsg.equals("")) {%>
+
+        <div class="alert alert-info col-xs-offset-1 col-xs-10" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=successMsg%>
+        </div>
+
+        <% }
+            }
+            if (errorMsg != null) {
+                if (!errorMsg.equals("")) {%>
+
+        <div class="alert alert-danger" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=errorMsg%>
+        </div>
+
+        <% }
+            }%>
         <!-- Search Box -->
         <div id="searchBox" class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
             <h4 style="color:#006c9a">Search Worker by FIN</h4>

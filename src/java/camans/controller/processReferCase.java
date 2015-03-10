@@ -89,6 +89,17 @@ public class processReferCase extends HttpServlet {
             request.getSession().setAttribute("worker",workerFinNum);
             request.getSession().setAttribute("selectedJob",jobKeyStr);
             request.getSession().setAttribute("selectedProb",probKeyStr);
+            String successMsg = "";
+            String errMsg = "";
+            if(problem != null){
+                successMsg = problem.getProblem() + " case of worker (" + worker.getName() + ") has been referred successfully." ;
+                request.getSession().setAttribute("successMsg", successMsg);
+            }else{
+                errMsg = "Sorry! Something went wrong while processing. Please try again.";
+                request.getSession().setAttribute("errorMsg", errMsg);
+            }
+            
+            
             if(isAssociate != null){
                 response.sendRedirect("associate/caseSummary.jsp");
             }else{

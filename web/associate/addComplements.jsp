@@ -42,6 +42,12 @@
     if (selectedProb != null) {
         problem = selectedProb.getProblem();
     }
+
+    String successMsg = (String) request.getSession().getAttribute("successMsg");
+    request.getSession().removeAttribute("successMsg");
+
+    String errorMsg = (String) request.getSession().getAttribute("errorMsg");
+    request.getSession().removeAttribute("errorMsg");
 %>
 <html>
     <head>
@@ -86,10 +92,15 @@
             select.form-control.input-sm{
                 width:100%;
             }
-
+            .alert{
+                position: absolute;
+                z-index: 999;
+                top: 18vh;
+            }
         </style>
         <script>
             $(document).ready(function() {
+                $('.alert').fadeOut(9999);
                 //initializing data picker
                 $(".dateInput").datepicker({
                     dateFormat: 'dd-M-yy',
@@ -108,11 +119,6 @@
                 //worker complement validation
                 $('#workerComplement')
                         .bootstrapValidator({
-                    feedbackIcons: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
                     fields: {
                         //sgPhone & homePhone
                         nsgPhNum: {
@@ -135,11 +141,6 @@
 
                 $('#jobComplement')
                         .bootstrapValidator({
-                    feedbackIcons: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
                     fields: {
                         //pass details
                         npasstype: {
@@ -189,11 +190,6 @@
 
                 $('#problemComplements')
                         .bootstrapValidator({
-                    feedbackIcons: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
                     fields: {
                         //hospital
                         nhospName: {
@@ -322,6 +318,97 @@
                                     message: 'Remarks must not exceed 500 characters.'
                                 }
                             }
+                        },
+                        nr2rTime: {
+                            validators: {
+                                stringLength: {
+                                    max: 20,
+                                    message: 'This field must be less than 20 characters.'
+                                }
+                            }
+                        },
+                        nr2rHosp: {
+                            validators: {
+                                stringLength: {
+                                    max: 20,
+                                    message: 'This field must be less than 20 characters.'
+                                },
+                                notEmpty: {
+                                    message: 'This field cannot be empty.'
+                                }
+                            }
+                        },
+                        nr2rDept: {
+                            validators: {
+                                stringLength: {
+                                    max: 50,
+                                    message: 'This field must be less than 50 characters.'
+                                }
+                            }
+                        },
+                        nr2r1: {
+                            validators: {
+                                stringLength: {
+                                    max: 20,
+                                    message: 'This field must be less than 20 characters.'
+                                }
+                            }
+                        },
+                        nr2r2: {
+                            validators: {
+                                stringLength: {
+                                    max: 20,
+                                    message: 'This field must be less than 20 characters.'
+                                }
+                            }
+                        },
+                        nr2rPurpose: {
+                            validators: {
+                                stringLength: {
+                                    max: 50,
+                                    message: 'This field must be less than 50 characters.'
+                                }
+                            }
+                        },
+                        nr2rPreApptNotes: {
+                            validators: {
+                                stringLength: {
+                                    max: 200,
+                                    message: 'This field must be less than 200 characters.'
+                                }
+                            }
+                        },
+                        nr2rPostApptNotes: {
+                            validators: {
+                                stringLength: {
+                                    max: 200,
+                                    message: 'This field must be less than 200 characters.'
+                                }
+                            }
+                        },
+                        nr2rFeedback: {
+                            validators: {
+                                stringLength: {
+                                    max: 200,
+                                    message: 'This field must be less than 200 characters.'
+                                }
+                            }
+                        },
+                        nr2rMed: {
+                            validators: {
+                                regexp: {
+                                    regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
+                                    message: 'This value must have maximum 2 decimal place.'
+                                }
+                            }
+                        },
+                        nr2rOut: {
+                            validators: {
+                                regexp: {
+                                    regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
+                                    message: 'This value must have maximum 2 decimal place.'
+                                }
+                            }
                         }
                     }
                 });
@@ -335,6 +422,28 @@
         <!-- Nav Bar -->
         <jsp:include page="navbar.jsp"/>
         <!-- End of Nav Bar-->
+
+        <% if (successMsg != null) {
+                if (!successMsg.equals("")) {%>
+
+        <div class="alert alert-info col-xs-offset-1 col-xs-10" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=successMsg%>
+        </div>
+
+        <% }
+            }
+            if (errorMsg != null) {
+                if (!errorMsg.equals("")) {%>
+
+        <div class="alert alert-danger" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=errorMsg%>
+        </div>
+
+        <% }
+            }%>
+
         <div class="row">
             <%
                 if (complement != null) {
@@ -872,7 +981,7 @@
             <%
             } else if (complement.equals("r2r")) {
             %>
-            <form method="POST" action="../addProblemComplement.do" class="form form-inline col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" id='sgPhone'>
+            <form method="POST" action="../addProblemComplement.do" class="form form-inline col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" id='problemComplements'>
                 <h4>Add R2R appointment</h4>
                 <button type="button" class='btn btn-blue pull-right btn-sm' onclick="window.location = 'r2r.jsp?worker=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>&action=viewHistory';">View R2R History</button><br/><br/><br/>
                 <div class="form-group col-md-12 col-sm-12 col-xs-12">

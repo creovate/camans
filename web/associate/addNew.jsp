@@ -36,6 +36,12 @@
         option = (String) request.getSession().getAttribute("option");
         request.getSession().removeAttribute("option");
     }
+
+    String successMsg = (String) request.getSession().getAttribute("successMsg");
+    request.getSession().removeAttribute("successMsg");
+
+    String errorMsg = (String) request.getSession().getAttribute("errorMsg");
+    request.getSession().removeAttribute("errorMsg");
 %>
 <html>
     <head>
@@ -69,9 +75,15 @@
             h4, h5{
                 padding: 1%;
             }
+            .alert{
+                position: absolute;
+                z-index: 999;
+                top: 18vh;
+            }
         </style>
         <script>
             $(document).ready(function() {
+                $('.alert').fadeOut(9999);
                 //initializing data picker
                 $(".dateInput").datepicker({
                     dateFormat: 'dd-M-yy',
@@ -281,10 +293,30 @@
         <jsp:include page="navbar.jsp"/>
         <!-- End of Nav Bar-->
 
+        <% if (successMsg != null) {
+                if (!successMsg.equals("")) {%>
+
+        <div class="alert alert-info col-xs-offset-1 col-xs-10" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=successMsg%>
+        </div>
+
+        <% }
+            }
+            if (errorMsg != null) {
+                if (!errorMsg.equals("")) {%>
+
+        <div class="alert alert-danger" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=errorMsg%>
+        </div>
+
+        <% }
+            }%>
         <%
             if (option != null) {
                 //this is create case
-%>
+        %>
         <!-- Create Case Form -->
         <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" >
             <form method="post" action="../createNewCase.do" class="form form-horizontal" 
@@ -309,7 +341,7 @@
                 </div>
                 <div class="form-group">
                     <label for="worker_name" class="col-xs-4 col-md-3 col-sm-4 control-label "><span class="required_input">*</span>Worker's name:</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input type="text" class="form-control required input-sm" name="workerName"/>
                     </div>
                 </div>
@@ -325,7 +357,7 @@
                 </div>
                 <div class="form-group">
                     <label for="worker_gender" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Gender:</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <select class="form-control input-sm" name="gender">
                             <option>Male</option>
                             <option>Female</option>
@@ -334,7 +366,7 @@
                 </div>
                 <div class="form-group">
                     <label for="worker_nationality" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Nationality:</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <select class="form-control input-sm" id="worker_nationality" name="nationality" />
                         <option value="">Select Nationality:</option>
                         <%
@@ -369,12 +401,12 @@
 
                 <div class="form-group">
                     <label for="emp_name" class="col-md-3 col-xs-4 col-sm-4 control-label" ><span class="required_input">*</span>Employer:</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input type="text" class="form-control required input-sm" id="employerName" name="employerName"/></div>
                 </div>
                 <div class="form-group">
                     <label for="job_pass_type" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Workpass type:</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <select name="workpassType" class="form-control input-sm" id="job_pass_type" required>
                             <option value="">Select Work Pass Type:</option>
                             <%
@@ -389,7 +421,7 @@
                 </div>
                 <div class="form-group">
                     <label for="job_start_date" class="col-md-3 col-xs-4 col-sm-4 control-label" >When started this job?:</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input type="text" class="form-control input-sm" name="jobStartDate"/></div>
                 </div>
                 <br/>
@@ -397,7 +429,7 @@
                 <!-- job complement -->
                 <div class="form-group">
                     <label for="npasstype" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Current pass type:</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6"> 
+                    <div class="col-xs-8 col-sm-7 col-md-7"> 
                         <select name="npasstype" class="form-control input-sm" required>
                             <option value="" selected>Select from list...</option>
                             <%
@@ -413,13 +445,13 @@
                 <div class='form-group'>
                     <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Current pass number:</label>
 
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-sm" type='text' name="npassno" />
                     </div><br/><br/>
                 </div>
                 <div class='form-group'>
                     <label for='nisdate' class="col-md-3 col-xs-4 col-sm-4 control-label">Current pass issued date:</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control dateInput isdateToRemove col-xs-9 col-md-9 input-sm" type='text' name="nisdate" style="width:80%" >
                         <div class="input-group-addon col-xs-1 col-md-1 removeBtn" title="Remove date" data-field="is" style="width:20%;">
                             <span class="glyphicon glyphicon-remove"></span>
@@ -435,7 +467,7 @@
                 <div class='form-group'>
                     <label for='isdate' class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Problem reg date:</label>
 
-                    <div class='col-xs-8 col-sm-7 col-md-6'>
+                    <div class='col-xs-8 col-sm-7 col-md-7'>
                         <input class="form-control dateInput input-sm" type='text' name="problemRegDate" value="<%=sdf.format(today)%>">
                     </div>
                     <br/>
@@ -460,7 +492,7 @@
                 <div class='form-group'>
                     <label for='isdate' class="col-md-3 col-xs-4 col-sm-4 control-label">Date of injury:</label>
 
-                    <div class='col-xs-8 col-sm-7 col-md-6'>
+                    <div class='col-xs-8 col-sm-7 col-md-7'>
                         <input class="form-control dateInput input-sm" type='text' name="injuryDate">
                     </div>
                     <br/>
@@ -468,14 +500,14 @@
                 <div class='form-group'>
                     <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label">Body part(s) injured:</label>
 
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-sm input-sm" type='text' name="bodyPart" />
                     </div><br/><br/>
                 </div>
 
                 <div class='form-group'>
                     <label for='' class="col-md-3 col-xs-4 col-sm-4 control-label">Current hospital:</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <select class="form-control input-sm" id="nhospName" name="nhospName" >
                             <option value="" selected>Select from list...</option>
                             <%            for (String name : names) {
@@ -490,14 +522,14 @@
                 </div>
                 <div class='form-group'>
                     <label for='nhospNameMore' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'Other':</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <textarea class="form-control input-sm" name="nhospNameMore" rows="3" style='width:100%;'></textarea>
                     </div><br/><br/>
                 </div>
 
                 <div class='form-group'>
                     <label for='lawyerFirm' class="col-md-3 col-xs-4 col-sm-4 control-label">Current law firm: </label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <select class="form-control input-sm" name="nlawyerFirm" >
                             <option value="" selected>Select from list...</option>
                             <%
@@ -512,7 +544,7 @@
                 </div>
                 <div class='form-group'>
                     <label for='lawyerHave' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'other': </label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <textarea class="form-control input-sm" name="nlawyerFirmMore" rows="3" style='width:100%;'></textarea>
                     </div><br/><br/>
                 </div>
@@ -565,25 +597,25 @@
                 <h4 style="color:#006c9a">Add Employer/Job Profile</h4>
                 <br/>
                 <div class="form-group">
-                    <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >Worker's name</label>
+                    <label for="emp_name" class="col-md-3 col-xs-4 col-sm-4 control-label" >Worker's name</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input type="text" class="form-control required input-sm" name="wkername" value='<%=selectedWorker.getName()%>' readonly="true"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >FIN</label>
+                    <label for="emp_name" class="col-md-3 col-xs-4 col-sm-4 control-label" >FIN</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input type="text" class="form-control required input-sm" name="wkerFin" value="<%=workerFin%>" readonly="true"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" ><span class="required_input">*</span>Employer:</label>
+                    <label for="emp_name" class="col-md-3 col-xs-4 col-sm-4 control-label" ><span class="required_input">*</span>Employer:</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input type="text" class="form-control required input-sm" name="employerName"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="job_pass_type" class="col-xs-4 col-sm-5 col-md-5 control-label"><span class="required_input">*</span>Workpass type</label>
+                    <label for="job_pass_type" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Workpass type</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <select name="workpassType" class="form-control input-sm" id="job_pass_type" required>
                             <option value='' selected="">Select from list..</option>
@@ -598,7 +630,7 @@
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="job_start_date" class="col-xs-4 col-sm-5 col-md-5 control-label" >When start this job?</label>
+                    <label for="job_start_date" class="col-md-3 col-xs-4 col-sm-4 control-label" >When start this job?</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input type="text" class="form-control input-sm" name="jobStartDate"/></div><br/><br/>
                 </div>
@@ -606,7 +638,7 @@
                 <!-- job complement -->
                 <div class="form-group">
                     <label for="npasstype" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Current pass type</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6"> 
+                    <div class="col-xs-8 col-sm-7 col-md-7"> 
                         <select name="npasstype" class="form-control input-sm">
                             <option value="" selected>Select from list...</option>
                             <%
@@ -622,13 +654,13 @@
                 <div class='form-group'>
                     <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Current pass number</label>
 
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-sm" type='text' name="npassno" />
                     </div><br/><br/>
                 </div>
                 <div class='form-group'>
                     <label for='nisdate' class="col-md-3 col-xs-4 col-sm-4 control-label">Current pass issued date</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control dateInput isdateToRemove col-xs-9 col-md-9 input-sm" type='text' name="nisdate" style="width:80%" >
                         <div class="input-group-addon col-xs-1 col-md-1 removeBtn" title="Remove date" data-field="is" style="width:20%;">
                             <span class="glyphicon glyphicon-remove"></span>
@@ -642,12 +674,12 @@
 
                 <!--problem profile-->
                 <div class="form-group">
-                    <label for="worker_pass_type_other_In" class="col-xs-4 col-sm-5 col-md-5 control-label"><span class="required_input">*</span>Problem reg date</label>
+                    <label for="worker_pass_type_other_In" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Problem reg date</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control dateInput input-sm" type='text' name="problemRegDate" value="<%=sdf.format(today)%>"/></div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="prob_type" class="col-xs-4 col-sm-5 col-md-5 control-label"><span class="required_input">*</span>Problem</label>
+                    <label for="prob_type" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Problem</label>
                     <div class="col-xs-8 col-sm-7 col-md-7"> 
                         <select name="problem" id="prob_type" class="form-control input-sm" required>
                             <option value="">Select from the list...</option>
@@ -666,7 +698,7 @@
                 <div class='form-group'>
                     <label for='isdate' class="col-md-3 col-xs-4 col-sm-4 control-label">Date of injury</label>
 
-                    <div class='col-xs-8 col-sm-7 col-md-6'>
+                    <div class='col-xs-8 col-sm-7 col-md-7'>
                         <input class="form-control dateInput input-sm" type='text' name="injuryDate">
                     </div>
                     <br/>
@@ -674,14 +706,14 @@
                 <div class='form-group'>
                     <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label">Body part(s) injured</label>
 
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-sm" type='text' name="bodyPart" />
                     </div><br/><br/>
                 </div>
 
                 <div class='form-group'>
                     <label for='' class="col-md-3 col-xs-4 col-sm-4 control-label">Current hospital</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <select class="form-control input-sm" id="nhospName" name="nhospName" >
                             <option value="" selected>Select from list...</option>
                             <%            for (String name : names) {
@@ -696,14 +728,14 @@
                 </div>
                 <div class='form-group'>
                     <label for='nhospNameMore' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'Other'</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <textarea class="form-control input-sm" name="nhospNameMore" rows="3" style='width:100%;'></textarea>
                     </div><br/><br/>
                 </div>
 
                 <div class='form-group'>
                     <label for='lawyerFirm' class="col-md-3 col-xs-4 col-sm-4 control-label">Current law firm</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <select class="form-control input-sm" name="nlawyerFirm" >
                             <option value="" selected>Select from list...</option>
                             <%
@@ -718,7 +750,7 @@
                 </div>
                 <div class='form-group'>
                     <label for='lawyerHave' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'other'</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <textarea class="form-control input-sm" name="nlawyerFirmMore" rows="3" style='width:100%;'></textarea>
                     </div><br/><br/>
                 </div>
@@ -755,30 +787,30 @@
                 <!--problem profile-->
                 <br/>
                 <div class="form-group">
-                    <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >Worker's name</label>
+                    <label for="emp_name" class="col-md-3 col-xs-4 col-sm-4 control-label" >Worker's name</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input type="text" class="form-control required input-sm" name="wkername" value='<%=selectedWorker.getName()%>' readonly="true"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >FIN</label>
+                    <label for="emp_name" class="col-md-3 col-xs-4 col-sm-4 control-label" >FIN</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input type="text" class="form-control required input-sm" name="wkerFin" value="<%=workerFin%>" readonly="true"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="emp_name" class="col-xs-4 col-sm-5 col-md-5 control-label" >Employer</label>
+                    <label for="emp_name" class="col-md-3 col-xs-4 col-sm-4 control-label" >Employer</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input type="text" class="form-control required input-sm" name="employer" value="<%=employer%>" readonly="true"/>
                     </div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="worker_pass_type_other_In" class="col-xs-4 col-sm-5 col-md-5 control-label"><span class="required_input">*</span>Problem reg date</label>
+                    <label for="worker_pass_type_other_In" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Problem reg date</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control dateInput input-sm" type='text' name="problemRegDate" value="<%=sdf.format(today)%>"/></div><br/><br/>
                 </div>
                 <div class="form-group">
-                    <label for="prob_type" class="col-xs-4 col-sm-5 col-md-5 control-label"><span class="required_input">*</span>Problem</label>
+                    <label for="prob_type" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Problem</label>
                     <div class="col-xs-8 col-sm-7 col-md-7"> 
                         <select name="problem" id="prob_type" class="form-control input-sm" required>
                             <option value="" selected="true">Select from the list...</option>
@@ -797,7 +829,7 @@
                 <div class='form-group'>
                     <label for='isdate' class="col-md-3 col-xs-4 col-sm-4 control-label">Date of injury</label>
 
-                    <div class='col-xs-8 col-sm-7 col-md-6'>
+                    <div class='col-xs-8 col-sm-7 col-md-7'>
                         <input class="form-control dateInput input-sm" type='text' name="injuryDate">
                     </div>
                     <br/>
@@ -805,14 +837,14 @@
                 <div class='form-group'>
                     <label for='npassno' class="col-md-3 col-xs-4 col-sm-4 control-label">Body part(s) injured</label>
 
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-sm" type='text' name="bodyPart" />
                     </div><br/><br/>
                 </div>
 
                 <div class='form-group'>
                     <label for='' class="col-md-3 col-xs-4 col-sm-4 control-label">Current hospital</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <select class="form-control input-sm" id="nhospName" name="nhospName" >
                             <option value="" selected>Select from list...</option>
                             <%            for (String name : names) {
@@ -827,14 +859,14 @@
                 </div>
                 <div class='form-group'>
                     <label for='nhospNameMore' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'Other'</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <textarea class="form-control input-sm" name="nhospNameMore" rows="3" style='width:100%;'></textarea>
                     </div><br/><br/>
                 </div>
 
                 <div class='form-group'>
                     <label for='lawyerFirm' class="col-md-3 col-xs-4 col-sm-4 control-label">Current law firm</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <select class="form-control input-sm" name="nlawyerFirm" >
                             <option value="" selected>Select from list...</option>
                             <%
@@ -849,7 +881,7 @@
                 </div>
                 <div class='form-group'>
                     <label for='lawyerHave' class="col-md-3 col-xs-4 col-sm-4 control-label">Explain if above is 'other'</label>
-                    <div class="col-xs-8 col-sm-7 col-md-6">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <textarea class="form-control input-sm" name="nlawyerFirmMore" rows="3" style='width:100%;'></textarea>
                     </div><br/><br/>
                 </div>

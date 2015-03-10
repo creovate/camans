@@ -6,6 +6,13 @@
 <%@ include file="../protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    String successMsg = (String) request.getSession().getAttribute("successMsg");
+    request.getSession().removeAttribute("successMsg");
+
+    String errorMsg = (String) request.getSession().getAttribute("errorMsg");
+    request.getSession().removeAttribute("errorMsg");
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -49,9 +56,15 @@
             input.form-control{
                 width: 100%;
             }
+            .alert{
+                position: absolute;
+                z-index: 999;
+                top: 18vh;
+            }
         </style>
         <script>
             $(document).ready(function() {
+                $('.alert').fadeOut(9999);
                 //methods for jquery validator
                 jQuery.validator.addMethod("FIN", function(value, element) {
                     return this.optional(element) || /^[A-Z][0-9]{7}[A-Z]$/.test(value) || /^GEN[0-9]{6}$/.test(value);
@@ -89,6 +102,26 @@
         <jsp:include page="navbar.jsp"/>
         <!-- End of Nav Bar-->
 
+        <% if (successMsg != null) {
+        if (!successMsg.equals("")) {%>
+
+        <div class="alert alert-info col-xs-offset-1 col-xs-10" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=successMsg%>
+        </div>
+
+        <% }
+            }
+            if (errorMsg != null) {
+                if (!errorMsg.equals("")) {%>
+
+        <div class="alert alert-danger" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=errorMsg%>
+        </div>
+
+        <% }
+            }%>
         <!-- Search Box -->
 
         <div id="searchBox" class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">

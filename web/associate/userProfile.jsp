@@ -68,6 +68,11 @@
                 padding: 1%;
                 color:#006c9a;
             }
+            .alert{
+                position: absolute;
+                z-index: 999;
+                top: 18vh;
+            }
         </style>
         <script>
             //passing data for edit form
@@ -107,6 +112,9 @@
 
             //edit form validation check
             $(document).ready(function() {
+                
+                $('.alert').fadeOut(9999);
+                
                 $('#editUserForm')
                         .bootstrapValidator({
                     feedbackIcons: {

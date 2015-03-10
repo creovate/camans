@@ -584,20 +584,23 @@ public class processCreateNewCase extends HttpServlet {
                 request.getSession().setAttribute("status", success);
 
                 String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + ") has been successfully created.";
-                request.getSession().setAttribute("successWrkCompMsg", successMsg);
+                
 
                 if (jobKeyStr != null) {
                     //go back to prob tab
+                    successMsg = "A new problem has been successfully created for worker " + worker.getName() + "(" + worker.getFinNumber() + ").";
                     request.getSession().setAttribute("tabIndicator", "problem");
                     request.getSession().setAttribute("selectedJob", jobKeyStr);
                     request.getSession().setAttribute("worker", worker.getFinNumber());
                 } else {
                     //go back to job tab
+                    successMsg = "A new job has been successfully created for worker " + worker.getName() + "(" + worker.getFinNumber() + ").";
                     request.getSession().setAttribute("tabIndicator", "job");
                     request.getSession().setAttribute("selectedJob", jobKeyStr);
                     request.getSession().setAttribute("worker", worker.getFinNumber());
                 }
                 //request.getSession().setAttribute("worker", worker);
+                request.getSession().setAttribute("successWrkCompMsg", successMsg);
                 if (isAssociate != null) {
 
                     request.getSession().setAttribute("workerFin", worker.getFinNumber());

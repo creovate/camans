@@ -68,6 +68,12 @@
             categoryTitle = "R2R";
         }
     }
+
+    String successMsg = (String) request.getSession().getAttribute("successMsg");
+    request.getSession().removeAttribute("successMsg");
+
+    String errorMsg = (String) request.getSession().getAttribute("errorMsg");
+    request.getSession().removeAttribute("errorMsg");
 %>
 <html>
     <head>
@@ -102,9 +108,15 @@
             label{
                 color: #006c9a;
             }
+            .alert{
+                position: absolute;
+                z-index: 999;
+                top: 18vh;
+            }
         </style>
         <script>
             $(document).ready(function() {
+                $('.alert').fadeOut(9999);
                 //initializing data picker
                 $(".dateInput").datepicker({
                     dateFormat: 'dd-M-yy',
@@ -257,6 +269,28 @@
         <!-- Nav Bar -->
         <jsp:include page="navbar.jsp"/>
         <!-- End of Nav Bar-->
+
+        <% if (successMsg != null) {
+                if (!successMsg.equals("")) {%>
+
+        <div class="alert alert-info col-xs-offset-1 col-xs-10" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=successMsg%>
+        </div>
+
+        <% }
+            }
+            if (errorMsg != null) {
+                if (!errorMsg.equals("")) {%>
+
+        <div class="alert alert-danger" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=errorMsg%>
+        </div>
+
+        <% }
+            }%>
+
         <%
             if (action != null && action.equals("viewRecent")) {
                 Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);
@@ -316,7 +350,7 @@
         } else {
         %>
         <label style="color:grey; padding: 2%;">There is no record of <%=categoryTitle%> benefit for this case yet.</label>
-        <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack()">Cancel</button>
+        <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack()">Back</button>
         <%                }
         } else {
         %>

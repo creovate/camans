@@ -201,6 +201,46 @@
             ttrDeptDate = ttr.getDepartureDate();
         }
     }
+
+    //worker complement
+    String successMsg = (String) request.getSession().getAttribute("successWrkCompMsg");
+    request.getSession().removeAttribute("successWrkCompMsg");
+
+    String errorMsg = (String) request.getSession().getAttribute("errorWrkCompMsg");
+    request.getSession().removeAttribute("errorWrkCompMsg");
+    
+    //job complement
+    if(successMsg == null || successMsg.equals("")){
+        successMsg = (String) request.getSession().getAttribute("successJobCompMsg");
+        request.getSession().removeAttribute("successJobCompMsg");
+    }
+    
+    if(errorMsg == null || errorMsg.equals("")){
+        errorMsg = (String) request.getSession().getAttribute("errorJobCompMsg");
+        request.getSession().removeAttribute("errorJobCompMsg");
+    }
+    
+    //problem complement
+    if(successMsg == null || successMsg.equals("")){
+        successMsg = (String) request.getSession().getAttribute("successProbCompMsg");
+        request.getSession().removeAttribute("successProbCompMsg");
+    }
+    
+    if(errorMsg == null || errorMsg.equals("")){
+        errorMsg = (String) request.getSession().getAttribute("errorProbCompMsg");
+        request.getSession().removeAttribute("errorProbCompMsg");
+    }
+    
+    //problem complement
+    if(successMsg == null || successMsg.equals("")){
+        successMsg = (String) request.getSession().getAttribute("successMsg");
+        request.getSession().removeAttribute("successMsg");
+    }
+    
+    if(errorMsg == null || errorMsg.equals("")){
+        errorMsg = (String) request.getSession().getAttribute("errorMsg");
+        request.getSession().removeAttribute("errorMsg");
+    }
 %>
 <html>
     <head>
@@ -242,13 +282,18 @@
                 color:black; 
                 text-decoration:none; 
             }
+            .alert{
+                position: absolute;
+                z-index: 999;
+                top: 18vh;
+            }
         </style>
         <script>
             function goBack() {
                 window.history.back();
             }
             $(document).ready(function() {
-                
+                $('.alert').fadeOut(9999);
             })
         </script>
     </head>
@@ -256,6 +301,27 @@
         <!-- Nav Bar -->
         <jsp:include page="navbar.jsp"/>
         <!-- End of Nav Bar-->
+
+        <% if (successMsg != null) {
+                if (!successMsg.equals("")) {%>
+
+        <div class="alert alert-info col-xs-offset-1 col-xs-10" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=successMsg%>
+        </div>
+
+        <% }
+            }
+            if (errorMsg != null) {
+                if (!errorMsg.equals("")) {%>
+
+        <div class="alert alert-danger" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=errorMsg%>
+        </div>
+
+        <% }
+            }%>
         <br/>
         <!-- Case Summary -->
         <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">

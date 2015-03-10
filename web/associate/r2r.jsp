@@ -52,6 +52,12 @@
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
     DecimalFormat df = new DecimalFormat("#,###,##0.00");
+
+    String successMsg = (String) request.getSession().getAttribute("successProbCompMsg");
+    request.getSession().removeAttribute("successProbCompMsg");
+
+    String errorMsg = (String) request.getSession().getAttribute("errorProbCompMsg");
+    request.getSession().removeAttribute("errorProbCompMsg");
 %>
 <html>
     <head>
@@ -78,8 +84,16 @@
 
         <!--page title-->
         <title>CAMANS</title>
+        <style>
+            .alert{
+                position: absolute;
+                z-index: 999;
+                top: 18vh;
+            }
+        </style>
         <script>
             $(document).ready(function() {
+                $('.alert').fadeOut(9999);
                 //initializing data picker
                 $(".dateInput").datepicker({
                     dateFormat: 'dd-M-yy',
@@ -95,6 +109,96 @@
                     $('.no_change').blur();
                 });
 
+                $('#problemComplements')
+                        .bootstrapValidator({
+                    fields: {
+                        //r2r
+                        r2rTime: {
+                            validators: {
+                                stringLength: {
+                                    max: 20,
+                                    message: 'This field must be less than 20 characters.'
+                                }
+                            }
+                        },
+                        r2rHosp: {
+                            validators: {
+                                stringLength: {
+                                    max: 20,
+                                    message: 'This field must be less than 20 characters.'
+                                },
+                                notEmpty: {
+                                    message: 'This field cannot be empty.'
+                                }
+                            }
+                        },
+                        r2rDept: {
+                            validators: {
+                                stringLength: {
+                                    max: 50,
+                                    message: 'This field must be less than 50 characters.'
+                                }
+                            }
+                        },
+                        r2r1: {
+                            validators: {
+                                stringLength: {
+                                    max: 20,
+                                    message: 'This field must be less than 20 characters.'
+                                }
+                            }
+                        },
+                        r2r2: {
+                            validators: {
+                                stringLength: {
+                                    max: 20,
+                                    message: 'This field must be less than 20 characters.'
+                                }
+                            }
+                        },
+                        r2rPurpose: {
+                            validators: {
+                                stringLength: {
+                                    max: 50,
+                                    message: 'This field must be less than 50 characters.'
+                                }
+                            }
+                        },
+                        r2rPreApptNotes: {
+                            validators: {
+                                stringLength: {
+                                    max: 200,
+                                    message: 'This field must be less than 200 characters.'
+                                }
+                            }
+                        },
+                        r2rPostApptNotes: {
+                            validators: {
+                                stringLength: {
+                                    max: 200,
+                                    message: 'This field must be less than 200 characters.'
+                                }
+                            }
+                        },
+                        r2rFeedback: {
+                            validators: {
+                                stringLength: {
+                                    max: 200,
+                                    message: 'This field must be less than 200 characters.'
+                                }
+                            }
+                        },
+                        r2rMed: {
+                            validators: {
+                                regexp: {
+                                    regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
+                                    message: 'This value must have maximum 2 decimal place.'
+                                }
+                            }
+                        }
+                    }
+                });
+
             });
             function goBack() {
                 window.history.back();
@@ -106,8 +210,29 @@
         <jsp:include page="navbar.jsp"/>
         <!-- End of Nav Bar-->
 
-        <%
-            if (action != null && action.equals("viewHistory")) {
+
+        <% if (successMsg != null) {
+                if (!successMsg.equals("")) {%>
+
+        <div class="alert alert-info col-xs-offset-1 col-xs-10" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=successMsg%>
+        </div>
+
+        <% }
+            }
+            if (errorMsg != null) {
+                if (!errorMsg.equals("")) {%>
+
+        <div class="alert alert-danger" role="alert">
+            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
+            <%=errorMsg%>
+        </div>
+
+        <% }
+            }%>
+
+        <%        if (action != null && action.equals("viewHistory")) {
                 Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);
                 String workerName = worker.getName();
 
@@ -197,7 +322,7 @@
                 <label class="col-xs-5">Problem</label><p class="col-xs-6"><%=probType%></p><br/><br/><br/><br/>
 
                 <h5>Edit existing record</h5>
-                <form method="POST" action="../addProblemComplement.do" class="col-xs-12 col-md-12 col-sm-12 form form-horizontal" >
+                <form method="POST" action="../addProblemComplement.do" class="col-xs-12 col-md-12 col-sm-12 form form-horizontal" id="problemComplements">
                     <div class='form-group'>
                         <label for='r2rDate' class="control-label col-xs-4 col-sm-4 col-md-4"><span style="color: red">*</span>Date of appt:</label>
                         <div class="col-xs-8 col-sm-7 col-md-6">
