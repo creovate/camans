@@ -338,7 +338,7 @@
                                                  </h3>
                                              </div> <!--modal-header-->
 
-                                             <form id="editUserForm" method="post" action="processUser.do" class="form-horizontal" 
+                                             <form id="editUserForm" method="post" action="../processUser.do" class="form-horizontal" 
                                                    enctype="multipart/form-data">
                                                  <div class="modal-body">
                                                      <div class="form-group">
@@ -429,7 +429,7 @@
 
                                                  <div class="modal-footer">
                                                      <input type="hidden" name="action" value="edit"/>  
-                                                     <input type="hidden" name="page" value="userProfile.jsp"/>
+                                                     <input type="hidden" name="page" value="associate/userProfile.jsp"/>
                                                      <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
                                                      <button type="submit" class="btn btn-primary">Save</button>
                                                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -456,7 +456,7 @@
                                                      Change Password
                                                  </h3>
                                              </div> <!--modal-header-->
-                                             <form id="changePwd" method="post" action="processUser.do" class="form-horizontal">
+                                             <form id="changePwd" method="post" action="../processUser.do" class="form-horizontal">
                                                  <div class="modal-body">
 
                                                      <div class="form-group">
