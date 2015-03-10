@@ -208,36 +208,36 @@
 
     String errorMsg = (String) request.getSession().getAttribute("errorWrkCompMsg");
     request.getSession().removeAttribute("errorWrkCompMsg");
-    
+
     //job complement
-    if(successMsg == null || successMsg.equals("")){
+    if (successMsg == null || successMsg.equals("")) {
         successMsg = (String) request.getSession().getAttribute("successJobCompMsg");
         request.getSession().removeAttribute("successJobCompMsg");
     }
-    
-    if(errorMsg == null || errorMsg.equals("")){
+
+    if (errorMsg == null || errorMsg.equals("")) {
         errorMsg = (String) request.getSession().getAttribute("errorJobCompMsg");
         request.getSession().removeAttribute("errorJobCompMsg");
     }
-    
+
     //problem complement
-    if(successMsg == null || successMsg.equals("")){
+    if (successMsg == null || successMsg.equals("")) {
         successMsg = (String) request.getSession().getAttribute("successProbCompMsg");
         request.getSession().removeAttribute("successProbCompMsg");
     }
-    
-    if(errorMsg == null || errorMsg.equals("")){
+
+    if (errorMsg == null || errorMsg.equals("")) {
         errorMsg = (String) request.getSession().getAttribute("errorProbCompMsg");
         request.getSession().removeAttribute("errorProbCompMsg");
     }
-    
+
     //problem complement
-    if(successMsg == null || successMsg.equals("")){
+    if (successMsg == null || successMsg.equals("")) {
         successMsg = (String) request.getSession().getAttribute("successMsg");
         request.getSession().removeAttribute("successMsg");
     }
-    
-    if(errorMsg == null || errorMsg.equals("")){
+
+    if (errorMsg == null || errorMsg.equals("")) {
         errorMsg = (String) request.getSession().getAttribute("errorMsg");
         request.getSession().removeAttribute("errorMsg");
     }
@@ -498,6 +498,8 @@
                     <td class="value"><%=ttrDeptDate%></td>
                 </tr>
             </table>
+            <button type='button' class='btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack()">Back</button>
+            <br/>
         </div>
     </body>
 </html>
