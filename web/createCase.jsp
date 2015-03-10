@@ -272,7 +272,7 @@
                             <div class="form-group">
                                 <label for="created_by_In" class="col-md-3 control-label">Created By</label>
                                 <div class=" col-md-6">
-                                    <input type="text" class="form-control no_change" name="createdBy" value="<%=userLogin.getUsername()%>" />
+                                    <input type="text" class="form-control no_change" name="createdBy" value="<%=userLogin.getUsername()%>" readOnly="readOnly" />
                                 </div>
                             </div>
 

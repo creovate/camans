@@ -215,12 +215,7 @@
                     <div class="form-group">
                         <label class="col-sm-3" for="InputRole">Role</label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="InputRole" name="nRole">
-                                <option selected>Associate</option>
-                                <option>Specialist</option>
-                                <option>Manager</option>
-                                <option>Administrator</option>
-                            </select>
+                            <input type="text" class="form-control" id="InputRole" name="nRole" readOnly="readOnly">
                         </div>    
                     </div>  
 
@@ -510,7 +505,8 @@
                         } 
                     }
                 })
-            });             
+            });        
+
         </script>                    
     </body>     
 </html>

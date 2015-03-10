@@ -90,6 +90,10 @@ public class processCreateNewCase extends HttpServlet {
             String tjs = request.getParameter("tjs");
             String jobRemark = request.getParameter("jobRemark");
             Job job = null;
+            //to resolve the case for create case of associate
+            if (occupation == null) {
+                occupation = "";
+            }
 
             //==========================================//
             //     Problem Info Data Collection
@@ -106,8 +110,8 @@ public class processCreateNewCase extends HttpServlet {
             //   Server Side Validation Parameters
             //=======================================//
             boolean pass = true; //Assume validaiton pass first
-            String err = null; //to store error msg
-            String success = null;//to store success msg
+            String err = ""; //to store error msg
+            String success = "";//to store success msg
 
             //check that we have a file upload request
             if (isMultiPart) {
@@ -397,8 +401,7 @@ public class processCreateNewCase extends HttpServlet {
 
             } else { //validation fail
                 request.getSession().setAttribute("errorMsg", err);
-                
-                if(isAssociate != null){
+				if(isAssociate != null){
                     request.getSession().setAttribute("option", "createCase");
                     response.sendRedirect("associate/addNew.jsp");
                 }
@@ -467,7 +470,7 @@ public class processCreateNewCase extends HttpServlet {
                         }
 
                     }
-                    if (err == null) {
+                    if (err.equals("")) {
                         //create new pass details
                         JobPassDetails passdetails = new JobPassDetails(worker.getFinNumber(), job.getJobKey(), currPassType,
                                 "", currPassNo, null, isDate, null, "", "", null);
@@ -498,7 +501,7 @@ public class processCreateNewCase extends HttpServlet {
                             if (!injuryBodyPart.equals("") && injuryBodyPart.length() > 500) {
                                 err += "Injury Body Part cannot be more than 500 characters,";
                             }
-                            if (err == null) {
+                            if (err.equals("")) {
                                 //create object
                                 ProblemInjury injury = new ProblemInjury(worker.getFinNumber(), problem.getJobKey(),
                                         problem.getProbKey(), injuryDate, "", "", "", injuryBodyPart, "", "", "", "", "", "");
@@ -528,7 +531,7 @@ public class processCreateNewCase extends HttpServlet {
                         if (hospitalNameMore != null && !hospitalNameMore.equals("") && hospitalNameMore.length() > 50) {
                             err += "Explain if above is other cannot be longer than 50 characters,";
                         }
-                        if (err == null) {
+                        if (err.equals("")) {
 
                             //create object
                             ProblemHospital hospital = new ProblemHospital(worker.getFinNumber(), problem.getJobKey(), problem.getProbKey(), worker.getRegistrationDate(), hospitalName, hospitalNameMore, "", "");
@@ -555,7 +558,7 @@ public class processCreateNewCase extends HttpServlet {
                             err += "Explain if above is other cannot be longer than 50 characters,";
                         }
 
-                        if (err == null) {
+                        if (err.equals("")) {
                             //create object
                             ProblemLawyer problemLawyer = new ProblemLawyer(worker.getFinNumber(), problem.getJobKey(), problem.getProbKey(), worker.getRegistrationDate(), lawFirmName, lawFirmNameMore, "", "");
 

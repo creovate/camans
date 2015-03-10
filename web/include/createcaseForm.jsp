@@ -488,7 +488,7 @@
                 <label for='isdate' class="control-label ">Created By: </label>
             </div>
             <div class='col-md-7'>
-                <input class="form-control no_change" type='text' name="createdBy" value="<%=createdBy%>">
+                <input class="form-control no_change" type='text' name="createdBy" value="<%=createdBy%>" readOnly="readOnly">
             </div>
             <br/>
         </div><br/>
