@@ -106,7 +106,6 @@
                     dateFormat: 'dd-M-yy',
                     changeMonth: true,
                     changeYear: true,
-                    maxDate: 0,
                     yearRange: "-100:nn"
                 });
                 //disabling manual input
@@ -252,6 +251,22 @@
                                 stringLength: {
                                     max: 200,
                                     message: 'This field must not exceed 200 characters.'
+                                }
+                            }
+                        },
+                        nwicaPoints: {
+                            validators: {
+                                regexp: {
+                                    regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
+                                    message: 'This value must have maximum 2 decimal place.'
+                                }
+                            }
+                        },
+                        nwicaDollars: {
+                            validators: {
+                                regexp: {
+                                    regexp: /^(\d+)?(,\d+)*(\.[0-9]{1,2})?$/,
+                                    message: 'This value must have maximum 2 decimal place.'
                                 }
                             }
                         },
@@ -409,6 +424,14 @@
                                     message: 'This value must have maximum 2 decimal place.'
                                 }
                             }
+                        },
+                        nremark: {
+                            validators: {
+                                stringLength: {
+                                    max: 200,
+                                    message: 'Remarks must not exceed 200 characters.'
+                                }
+                            }
                         }
                     }
                 });
@@ -436,7 +459,7 @@
             if (errorMsg != null) {
                 if (!errorMsg.equals("")) {%>
 
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger col-xs-offset-1 col-xs-10" role="alert">
             <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
             <%=errorMsg%>
         </div>
@@ -1005,49 +1028,49 @@
 
                 <!-- details about complement -->
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
-                    <label for='r2rDate' class="col-xs-4 col-sm-5 col-md-5 control-label">Date of appointment<span style="color: red">*</span>: </label>
+                    <label for='r2rDate' class="col-xs-4 col-sm-5 col-md-5 control-label"><span style="color: red">*</span>Date of appt: </label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control dateInput input-sm" type='text' name="ndate" value="<%=sdf.format(today)%>">
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
-                    <label for='r2rTime' class="col-xs-4 col-sm-5 col-md-5 control-label">Time of appointment: </label>
+                    <label for='r2rTime' class="col-xs-4 col-sm-5 col-md-5 control-label">Time of appt: </label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-sm" type='text' name="nr2rTime">
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
-                    <label for='r2rHosp' class="col-xs-4 col-sm-5 col-md-5 control-label">Hospital for appointment<span style="color: red">*</span>: </label>
+                    <label for='r2rHosp' class="col-xs-4 col-sm-5 col-md-5 control-label"><span style="color: red">*</span>Hospital of appt: </label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-sm" type='text' name="nr2rHosp">
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
-                    <label for='r2rDept' class="col-xs-4 col-sm-5 col-md-5 control-label">Department/doctor for appointment: </label>
+                    <label for='r2rDept' class="col-xs-4 col-sm-5 col-md-5 control-label">Department/doctor:</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-sm" type='text' name="nr2rDept">
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
-                    <label for='r2r1' class="col-xs-4 col-sm-5 col-md-5 control-label">R2R first volunteer: </label>
+                    <label for='r2r1' class="col-xs-4 col-sm-5 col-md-5 control-label">First volunteer:</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-sm" type='text' name="nr2r1">
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
-                    <label for='r2r2' class="col-xs-4 col-sm-5 col-md-5 control-label">R2R second volunteer: </label>
+                    <label for='r2r2' class="col-xs-4 col-sm-5 col-md-5 control-label">Second volunteer:</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-sm" type='text' name="nr2r2">
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
-                    <label for='r2rPurpose' class="col-xs-4 col-sm-5 col-md-5 control-label">Purpose of appointment: </label>
+                    <label for='r2rPurpose' class="col-xs-4 col-sm-5 col-md-5 control-label">Purpose of appt:</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-sm" type='text' name="nr2rPurpose">
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
-                    <label for='r2rPreApptNotes' class="col-xs-4 col-sm-5 col-md-5 control-label">Pre-appointment notes: </label>
+                    <label for='r2rPreApptNotes' class="col-xs-4 col-sm-5 col-md-5 control-label">Pre-appt notes:</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <textarea class="form-control" name="nr2rPreApptNotes" rows="3" style='width:100%'></textarea>
                     </div><br/><br/>

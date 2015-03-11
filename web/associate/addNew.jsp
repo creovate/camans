@@ -53,6 +53,7 @@
         <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.css">
         <link rel="stylesheet" href="../css/jquery-ui.structure.css">
         <link rel="stylesheet" href="../css/jquery-ui.theme.css">
+        <link rel="stylesheet" href="../css/jasny-bootstrap.css"/>
         <!-------------->
 
         <!--javascript-->
@@ -60,6 +61,8 @@
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/jquery-ui.js"></script>
         <script src="../js/jquery.validate.js"></script>
+        <script src="../js/additional-methods.js"></script>
+        <script src="../js/jasny-bootstrap.js"></script>  
 
         <!------------->
 
@@ -188,9 +191,9 @@
                             maxlength: 50
                         },
                         facePic: {
-                            accept: "image/png,image/jpeg,image/jpg,image/bmp",
-                            extension: "png,jpeg,jpg,bmp",
-                            FileSize: true
+                            FileSize: true,
+                            accept: "image/*",
+                            extension: "png,jpeg,jpg,bmp"
                         }
                     },
                     messages: {
@@ -306,7 +309,7 @@
             if (errorMsg != null) {
                 if (!errorMsg.equals("")) {%>
 
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger col-xs-offset-1 col-xs-10" role="alert">
             <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
             <%=errorMsg%>
         </div>
@@ -316,11 +319,11 @@
         <%
             if (option != null) {
                 //this is create case
-        %>
+%>
         <!-- Create Case Form -->
         <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" >
             <form method="post" action="../createNewCase.do" class="form form-horizontal" 
-                  id="createworker_form" role="form">
+                  id="createworker_form" role="form" enctype="multipart/form-data">
 
                 <!--worker profile-->
                 <h4 style="color:#006c9a">Case Creation Form</h4>
@@ -342,7 +345,7 @@
                 <div class="form-group">
                     <label for="worker_name" class="col-xs-4 col-md-3 col-sm-4 control-label "><span class="required_input">*</span>Worker's name:</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
-                        <input type="text" class="form-control required input-sm" name="workerName"/>
+                        <input type="text" class="form-control required input-sm" name="workerName" required/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -526,7 +529,7 @@
                         <textarea class="form-control input-sm" name="nhospNameMore" rows="3" style='width:100%;'></textarea>
                     </div><br/><br/>
                 </div>
-
+                <input type="hidden" name="associate" value="associate"/>
                 <div class='form-group'>
                     <label for='lawyerFirm' class="col-md-3 col-xs-4 col-sm-4 control-label">Current law firm: </label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
@@ -558,12 +561,12 @@
                     <div>
                         <span class="btn btn-default btn-file">
                             <span class="fileinput-new">Select image</span>
-                            <span class="fileinput-exists">Change</span><input type="file" name="facePic" accept="image/*">
+                            <span class="fileinput-exists">Change</span><input type="file" name="facePic" accept='image/*'>
                         </span>
                         <a href="#" class="btn btn-blue btn btn-blue-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                     </div>
                 </div>
-                <input type="hidden" name="associate" value="associate"/>
+
                 <div class="pull-right">
                     <button  type='submit' class="btn btn-blue">Submit</button>
                     <button type='' class="btn cancel_btn" style="bottom: 0" onclick="goBack();">Cancel</button>
@@ -639,7 +642,7 @@
                 <div class="form-group">
                     <label for="npasstype" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Current pass type</label>
                     <div class="col-xs-8 col-sm-7 col-md-7"> 
-                        <select name="npasstype" class="form-control input-sm">
+                        <select name="npasstype" class="form-control input-sm" required>
                             <option value="" selected>Select from list...</option>
                             <%
                                 for (String workpassType : workpassTypes) {

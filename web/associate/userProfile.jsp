@@ -21,6 +21,7 @@
     String userEmail = userLogin.getEmailAddress();
     String userPh = userLogin.getPhoneNumber();
     String userPhoto = userLogin.getPhotoPath();
+    userPhoto = "../" + userPhoto;
     String userPwd = userLogin.getPassword();
 
     String successMsg = (String) request.getSession().getAttribute("successMsg");
@@ -46,6 +47,7 @@
         <link rel="stylesheet" href="../css/jquery-ui.structure.css">
         <link rel="stylesheet" href="../css/jquery-ui.theme.css">
         <link rel="stylesheet" href="../css/bootstrapValidator.min.css"/>
+        <link rel="stylesheet" href="../css/jasny-bootstrap.css"/>
         <!-------------->
 
         <!--javascript-->
@@ -53,6 +55,8 @@
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/jquery-ui-1.9.2.custom.js"></script>
         <script type="text/javascript" src="../js/bootstrapValidator.min.js"></script>   
+        <script src="../js/additional-method.js"></script>
+        <script src="../js/jasny-bootstrap.js"></script>  
         <!------------->
 
         <!--tab icon-->
@@ -154,6 +158,10 @@
                         },
                         nPhNum: {
                             validators: {
+                                stringLength: {
+                                    max: 12,
+                                    message: 'Phone number must be less than 50 characters long.'
+                                },
                                 regexp: {
                                     regexp: /^[\d|\-|(|)|+|\s]+$/,
                                     message: 'Phone No can contain space, - , () , + and digits only.'
@@ -188,7 +196,7 @@
                                 },
                                 remote: {
                                     message: 'Wrong Password!',
-                                    url: 'processUser.do',
+                                    url: '../processUser.do',
                                     data: function(validator) {
                                         return {
                                             nOldPwd: validator.getFieldElements('nOldPwd:').val()
@@ -246,7 +254,7 @@
             <!-- success & error display -->
             <% if (successMsg != null) {%>
 
-            <div class="alert alert-info" role="alert">
+            <div class="alert alert-info col-xs-offset-1 col-xs-10" role="alert">
                 <a href="#" class="close" data-dismiss="alert">&times;</a>
                 <%=successMsg%>
             </div>
@@ -254,7 +262,7 @@
             <% }%>
             <% if (errorMsg != null) {%>
 
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger col-xs-offset-1 col-xs-10" role="alert">
                 <a href="#" class="close" data-dismiss="alert">&times;</a>
                 <%=errorMsg%>
             </div>
@@ -426,17 +434,20 @@
                                                                  </span>
                                                                  <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                                              </div>
-                                                         </div>  
+                                                         </div> 
+                                                         <input type="hidden" name="associate" value="associate"/>
                                                      </div>
                                                  </div> <!--modal body -->
 
                                                  <div class="modal-footer">
                                                      <input type="hidden" name="action" value="edit"/>  
+                                                     
                                                      <input type="hidden" name="page" value="associate/userProfile.jsp"/>
                                                      <!-- Do NOT use name="submit" or id="submit" for the Submit button -->
                                                      <button type="submit" class="btn btn-primary">Save</button>
                                                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                                  </div>
+                                                 
                                              </form>
 
                                          </div> <!--modal content -->

@@ -283,7 +283,7 @@
             if (errorMsg != null) {
                 if (!errorMsg.equals("")) {%>
 
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger col-xs-offset-1 col-xs-10" role="alert">
             <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
             <%=errorMsg%>
         </div>
@@ -361,19 +361,19 @@
                 <div class='form-group'>
                     <label for='nisDate' class="control-label col-xs-4 col-sm-4 col-md-4"><span style="color: red">*</span>Start Date: </label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <input class="form-control dateInput input-sm" type='text' id='start' name="startDate" value="<%=(startDateIn == null) ? "" : startDateIn%>" required='true'>
+                        <input class="form-control dateInput input-sm" type='text' id='start' name="startDate" value="<%=(startDateIn == null) ? "" : startDateIn%>" required>
                     </div>
                 </div>
                 <div class='form-group'>
                     <label for='nisDate' class="control-label col-xs-4 col-sm-4 col-md-4"><span style="color: red">*</span>End Date: </label>
                     <div class="col-xs-8 col-sm-7 col-md-6">
-                        <input class="form-control dateInput input-sm" type='text' id='end' name="endDate" value="<%=(endDateIn == null) ? "" : endDateIn%>" required='true'>
+                        <input class="form-control dateInput input-sm" type='text' id='end' name="endDate" value="<%=(endDateIn == null) ? "" : endDateIn%>" required>
                     </div>
                 </div>
                 <input type='hidden' name="category" value="<%=category%>"/>
                 <div class="form-group pull-right">
                     <button type="submit" class="btn btn-blue btn-sm">List</button>
-                    <button type="button" class="btn btn-sm" onclick="goBack();">Cancel</button>
+                    <button type="button" class="btn btn-sm" onclick="window.location='home.jsp';">Cancel</button>
                 </div>
             </form>
             <hr>

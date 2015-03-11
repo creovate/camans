@@ -224,7 +224,7 @@
             if (errorMsg != null) {
                 if (!errorMsg.equals("")) {%>
 
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger col-xs-offset-1 col-xs-10" role="alert">
             <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
             <%=errorMsg%>
         </div>
@@ -245,8 +245,6 @@
                 Problem problem = ProblemDAO.retrieveProblemByProblemId(probKey);
                 String probType = problem.getProblem();
                 ArrayList<Integer> r2rIdList = ProblemComplementsDAO.retrieveProblemR2RIdsOfProblem(problem);
-
-                if (r2rIdList != null && r2rIdList.size() > 0) {
         %>
         <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" style="padding: 0;">
             <br/>
@@ -254,6 +252,9 @@
             <label class="col-xs-5">FIN Number</label><p class="col-xs-6"><%=workerFin%></p><br/>
             <label class="col-xs-5">Employer</label><p class="col-xs-6"><%=employer%></p><br/>
             <label class="col-xs-5">Problem</label><p class="col-xs-6"><%=probType%></p><br/><br/><br/><br/>
+            <%
+                if (r2rIdList != null && r2rIdList.size() > 0) {
+            %>
             <h5>List of 5 most recent R2R appointments</h5>
             <table class="table table-responsive table-striped">
                 <%
@@ -283,6 +284,7 @@
         } else {
         %>
         <label style="color:grey; padding: 2%;">There is no R2R record for this case yet.</label>
+        <button type='button' class='btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack()">Back</button>
         <%                            }
         } else if (action != null && action.equals("viewEdit")) {
             Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);

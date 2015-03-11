@@ -71,10 +71,10 @@ public class processCreateNewCase extends HttpServlet {
             String photoPath = null;
             String photoName = null;
             Worker worker = null;
-            //String passCurrent = null;
-            //String passMore = null;
-            //String passNumber = null;
-            //String passIssueDate = null;
+
+            //worker complements
+
+            String phNum = null;
 
             //==========================================//
             //     Job Info Data Collection
@@ -95,6 +95,11 @@ public class processCreateNewCase extends HttpServlet {
                 occupation = "";
             }
 
+            //job complements
+            String currPassType = null;
+            String currPassNo = null;
+            String isDateStr = null;
+
             //==========================================//
             //     Problem Info Data Collection
             //==========================================//
@@ -105,6 +110,15 @@ public class processCreateNewCase extends HttpServlet {
             String problemRemark = request.getParameter("problemRemark");
 
             Problem problem = null;
+            //problem complements for associate
+            String injuryDateStr = null;
+            String injuryBodyPart = null;
+
+            String hospitalName = null;
+            String hospitalNameMore = null;
+
+            String lawFirmName = null;
+            String lawFirmNameMore = null;
 
             //=======================================//
             //   Server Side Validation Parameters
@@ -182,7 +196,31 @@ public class processCreateNewCase extends HttpServlet {
                             problemMore = value;
                         } else if ("problemRemark".equalsIgnoreCase(fieldName)) {
                             problemRemark = value;
+                        } else if ("associate".equalsIgnoreCase(fieldName)) {
+                            isAssociate = value;
+                        } else if ("sgPh".equalsIgnoreCase(fieldName)) {
+                            phNum = value;
+                        } else if ("npasstype".equalsIgnoreCase(fieldName)) {
+                            currPassType = value;
+                        } else if ("npassno".equalsIgnoreCase(fieldName)) {
+                            currPassNo = value;
+                        } else if ("nisdate".equalsIgnoreCase(fieldName)) {
+                            isDateStr = value;
+                        } else if ("injuryDate".equalsIgnoreCase(fieldName)) {
+                            injuryDateStr = value;
+                        } else if ("bodyPart".equalsIgnoreCase(fieldName)) {
+                            injuryBodyPart = value;
+                        } else if ("nhospName".equalsIgnoreCase(fieldName)) {
+                            hospitalName = value;
+                        } else if ("nhospNameMore".equalsIgnoreCase(fieldName)) {
+                            hospitalNameMore = value;
+                        } else if ("nlawyerFirm".equalsIgnoreCase(fieldName)) {
+                            lawFirmName = value;
+                        } else if ("nlawyerFirmMore".equalsIgnoreCase(fieldName)) {
+                            lawFirmNameMore = value;
                         }
+
+
                     } else { //image upload
                         if (!item.getName().equals("")) { //only if there is file
                             String extension = item.getName().substring(item.getName().lastIndexOf(".") + 1);
@@ -401,7 +439,7 @@ public class processCreateNewCase extends HttpServlet {
 
             } else { //validation fail
                 request.getSession().setAttribute("errorMsg", err);
-				if(isAssociate != null){
+                if (isAssociate != null) {
                     request.getSession().setAttribute("option", "createCase");
                     response.sendRedirect("associate/addNew.jsp");
                 }
@@ -416,13 +454,13 @@ public class processCreateNewCase extends HttpServlet {
                 request.getSession().setAttribute("status", success);
 
                 String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + ") has been successfully created.";
-                request.getSession().setAttribute("successWrkCompMsg", successMsg);
+                //request.getSession().setAttribute("successWrkCompMsg", successMsg);
                 request.getSession().setAttribute("worker", worker.getFinNumber());
                 if (isAssociate != null) {
                     ArrayList<Integer> problemIds = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, job);
                     problem = ProblemDAO.retrieveProblemByProblemId(problemIds.get(problemIds.size() - 1));
                     //phone number
-                    String phNum = request.getParameter("sgPh");
+                    phNum = request.getParameter("sgPh");
 
                     //validate and update phNum
                     if (phNum != null && !phNum.equals("")) {
@@ -441,9 +479,9 @@ public class processCreateNewCase extends HttpServlet {
                     }
 
                     //current pass
-                    String currPassType = request.getParameter("npasstype");
-                    String currPassNo = request.getParameter("npassno");
-                    String isDateStr = request.getParameter("nisdate");
+//                    String currPassType = request.getParameter("npasstype");
+//                    String currPassNo = request.getParameter("npassno");
+//                    String isDateStr = request.getParameter("nisdate");
                     java.sql.Date isDate = null;
 
                     if (currPassType.equals("")) {
@@ -486,8 +524,8 @@ public class processCreateNewCase extends HttpServlet {
 
                     //problem complements
                     //injury details
-                    String injuryDateStr = request.getParameter("injuryDate");
-                    String injuryBodyPart = request.getParameter("bodyPart");
+//                    String injuryDateStr = request.getParameter("injuryDate");
+//                    String injuryBodyPart = request.getParameter("bodyPart");
                     java.sql.Date injuryDate = null;
 
                     if (injuryDateStr != null && injuryBodyPart != null) {
@@ -520,8 +558,8 @@ public class processCreateNewCase extends HttpServlet {
 
 
                     //hospital
-                    String hospitalName = request.getParameter("nhospName");
-                    String hospitalNameMore = request.getParameter("nhospNameMore");
+//                    String hospitalName = request.getParameter("nhospName");
+//                    String hospitalNameMore = request.getParameter("nhospNameMore");
 
                     if (hospitalName != null && hospitalNameMore != null) {
                         if (!hospitalName.equals("") && hospitalName.length() > 30) {
@@ -547,8 +585,8 @@ public class processCreateNewCase extends HttpServlet {
 
 
                     //law firm
-                    String lawFirmName = request.getParameter("nlawyerFirm");
-                    String lawFirmNameMore = request.getParameter("nlawyerFirmMore");
+//                    String lawFirmName = request.getParameter("nlawyerFirm");
+//                    String lawFirmNameMore = request.getParameter("nlawyerFirmMore");
                     if (lawFirmName != null && lawFirmNameMore != null) {
                         if (!lawFirmName.equals("") && lawFirmName.length() > 30) {
                             err += "Law Firm Name cannot be longer than 30 characters,";
@@ -584,7 +622,7 @@ public class processCreateNewCase extends HttpServlet {
                 request.getSession().setAttribute("status", success);
 
                 String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + ") has been successfully created.";
-                
+
 
                 if (jobKeyStr != null) {
                     //go back to prob tab

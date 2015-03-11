@@ -98,24 +98,24 @@
     String successMsg = (String) request.getSession().getAttribute("successBenefitMsg");
     request.getSession().removeAttribute("successBenefitMsg");
     //create case
-    if(successMsg == null || successMsg.equals("")){
+    if (successMsg == null || successMsg.equals("")) {
         successMsg = (String) request.getSession().getAttribute("successCaseMsg");
         request.getSession().removeAttribute("successCaseMsg");
     }
     //r2r
-    if(successMsg == null || successMsg.equals("")){
+    if (successMsg == null || successMsg.equals("")) {
         successMsg = (String) request.getSession().getAttribute("successProbCompMsg");
         request.getSession().removeAttribute("successProbCompMsg");
     }
-    
+
     String errorMsg = (String) request.getSession().getAttribute("errorBenefitMsg");
     request.getSession().removeAttribute("errorBenefitMsg");
-    if(errorMsg == null || errorMsg.equals("")){
+    if (errorMsg == null || errorMsg.equals("")) {
         errorMsg = (String) request.getSession().getAttribute("errorMsg");
         request.getSession().removeAttribute("errorMsg");
     }
     //r2r
-    if(errorMsg == null || errorMsg.equals("")){
+    if (errorMsg == null || errorMsg.equals("")) {
         errorMsg = (String) request.getSession().getAttribute("errorProbCompMsg");
         request.getSession().removeAttribute("errorProbCompMsg");
     }
@@ -176,7 +176,7 @@
                 border-left: 1px solid #CCC;
                 border-right: 1px solid #CCC;
             }
-            
+
             .alert{
                 position: absolute;
                 z-index: 999;
@@ -249,6 +249,75 @@
             }
 
             $(document).ready(function() {
+                $(".dateInput").datepicker({
+                    dateFormat: 'dd-M-yy',
+                    changeMonth: true,
+                    changeYear: true,
+                    maxDate: 0,
+                    yearRange: "-100:nn"
+                });
+                //disabling manual input
+                $('.dateInput').focus(function() {
+                    $('.dateInput').blur();
+                });
+                
+                var selected = $('#benefitCategory').val();
+
+                $('#nbenetype').empty();
+                if (selected === "Food") {
+
+            <%             for (int i = 0; i < foodDropdownList.size(); i++) {
+                    String ddlItem = foodDropdownList.get(i);
+            %>
+
+                    $('#nbenetype').append("<option><%=ddlItem%></option>");
+
+            <%
+                }
+            %>
+
+                } else if (selected === "Transport") {
+            <%          for (int i = 0; i < faregoDropdownList.size(); i++) {
+                    String ddlItem = faregoDropdownList.get(i);
+            %>
+
+                    $('#nbenetype').append("<option><%=ddlItem%></option>");
+            <%
+                }
+            %>
+                    //alert("farego");
+                } else if (selected === "Medical & Karunya") {
+            <%
+                for (int i = 0; i < medDropdownList.size(); i++) {
+                    String ddlItem = medDropdownList.get(i);
+            %>
+                    $('#nbenetype').append("<option><%=ddlItem%></option>");
+            <%
+                }
+            %>
+                    //alert("med");
+                } else if (selected === "Roof") {
+            <%               for (int i = 0; i < roofDropdownList.size(); i++) {
+                    String ddlItem = roofDropdownList.get(i);
+            %>
+                    $('#nbenetype').append("<option><%=ddlItem%></option>");
+            <%
+                }
+            %>
+                    //alert("roof");
+                } else if (selected === "Other") {
+            <%
+                for (int i = 0; i < otherDropdownList.size(); i++) {
+                    String ddlItem = otherDropdownList.get(i);
+            %>
+                    $('#nbenetype').append("<option><%=ddlItem%></option>");
+            <%
+                }
+            %>
+                }
+                $('#btnHistory').attr("onclick", "window.location = 'benefection.jsp?worker=<%=workerFin%>&selectedJob=<%= selectedJob%>&selectedProb=<%=selectedProb%>&beneCategory=" + selected + "&action=viewRecent';");
+
+
                 $('.alert').fadeOut(9999);
 //methods for jquery validator
                 jQuery.validator.addMethod("FIN", function(value, element) {
@@ -363,7 +432,7 @@
             if (errorMsg != null) {
                 if (!errorMsg.equals("")) {%>
 
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger col-xs-offset-1 col-xs-10" role="alert">
             <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
             <%=errorMsg%>
         </div>
@@ -407,12 +476,12 @@
         <!--div class="col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-12" id="searcResult"-->
         <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-3 col-sm-6" id="searcResult">
             <br/>
-            <label class="col-xs-5">Worker Name</label><p class="col-xs-6"><%=workerName%></p><br/>
-            <label class="col-xs-5">FIN Number</label><p class="col-xs-6"><%=workerFin%></p><br/>
+            <label class="col-xs-5">Worker Name</label><p class="col-xs-7"><%=workerName%></p><br/>
+            <label class="col-xs-5">FIN Number</label><p class="col-xs-7"><%=workerFin%></p><br/>
 
             <!-- TO DO :: RELATED TWO DROPDOWNS SO THAT THE PROBLEM LIST REFER TO THE JOB SELECTED -->
-            <label class="col-xs-4">Employer</label>
-            <div class="col-xs-8">
+            <label class="col-xs-5">Employer</label>
+            <div class="col-xs-7">
                 <form method="POST" action="../changeToSelected">
                     <select class="col-xs-6 col-md-6 form-control input-sm" id="jobList" name='selectedJob' onchange="this.form.submit();">
                         <%
@@ -439,8 +508,8 @@
             </div>
 
             <br/><br/><br/><br/>
-            <label class="col-xs-4">Problem</label>
-            <div class="col-xs-8">
+            <label class="col-xs-5">Problem</label>
+            <div class="col-xs-7">
                 <form method="POST" action="../changeToSelected">
                     <select class="col-xs-6 col-md-6 form-control input-sm" id="probList" name="selectedProblem" onchange="this.form.submit();">
                         <%
