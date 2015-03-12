@@ -498,7 +498,7 @@
                     <td class="value"><%=ttrDeptDate%></td>
                 </tr>
             </table>
-            <button type='button' class='btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack()">Back</button>
+            <button type='button' class='btn input-sm pull-right' style="margin-right: 5%;" onclick="window.location = 'issueBenefit.jsp?worker=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>';">Back</button>
             <br/>
         </div>
     </body>

@@ -33,6 +33,9 @@
 
     String workerFinNum = (String) request.getSession().getAttribute("worker");
     request.getSession().removeAttribute("worker");
+    if(workerFinNum == null || workerFinNum.equals("")){
+        workerFinNum = request.getParameter("worker");
+    }
     if (workerFinNum != null && !workerFinNum.equals("")) {
         worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFinNum);
     }

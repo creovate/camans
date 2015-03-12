@@ -53,7 +53,7 @@ public class processBenefitRetrieve extends HttpServlet {
                     request.getSession().setAttribute("startDate", startDateStr);
                     request.getSession().setAttribute("endDate", endDateStr);
                     request.getSession().setAttribute("r2rIds", benefitIds);
-                    request.getSession().setAttribute("category", "r2r");
+                    request.getSession().setAttribute("category", category);
                     request.getSession().setAttribute("action", "review");
 
                     response.sendRedirect("associate/benefection.jsp");

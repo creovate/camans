@@ -20,14 +20,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.css" media="screen" />
         <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen" />
-        <link rel="stylesheet" href="css/slider.css" media="screen" />
-        <link rel="stylesheet" href="css/bootstrap-select.min.css" media="screen" />
-        <link rel="stylesheet" href="css/sticky-footer-navbar.css" media="screen" /> 
         <link rel="stylesheet" href="css/custom.css" media="screen" /> 
         <script src="js/jquery-2.1.1.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootstrap-slider.js"></script>
-        <script src="js/bootstrap-select.min.js"></script>
 
         <link rel="shortcut icon" href="img/twc_logo.png">
         <title>CAMANS</title>
