@@ -59,6 +59,7 @@
     String nationality = "";
     java.util.Date dob = null;
     String phNum = "";
+    String photoPath = "";
 
     if (selectedWorker != null) {
         regDate = selectedWorker.getRegistrationDate();
@@ -67,7 +68,7 @@
         gender = selectedWorker.getGender();
         nationality = selectedWorker.getNationality();
         dob = selectedWorker.getDateOfBirth();
-
+        photoPath = selectedWorker.getPhotoPath();
         ArrayList<Integer> sgPhList = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(selectedWorker);
         if (sgPhList != null && sgPhList.size() > 0) {
             WorkerSgPhNum sgPh = WorkerComplementsDAO.retrieveWorkerSgPhNumById(sgPhList.get(sgPhList.size() - 1));
@@ -231,7 +232,7 @@
         request.getSession().removeAttribute("errorProbCompMsg");
     }
 
-    
+
     if (successMsg == null || successMsg.equals("")) {
         successMsg = (String) request.getSession().getAttribute("successMsg");
         request.getSession().removeAttribute("successMsg");
@@ -293,8 +294,19 @@
                 window.history.back();
             }
             $(document).ready(function() {
-                $('.alert').fadeOut(9999);
+                $('#facePicModal').on('show.bs.modal', function(event) {
+                    var button = $(event.relatedTarget); // Button that triggered the modal
+                    var photoPath = button.data('photopath'); // Extract info from data-* attributes
+                    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                    var modal = $(this)
+                    modal.find('.modal-title').text('New message to ' + photoPath);
+                    modal.find('.modal-body img').val(photoPath);
+                    $('#facePicDisplay').attr('src', photoPath);
+                })
             })
+
+
         </script>
     </head>
     <body>
@@ -324,9 +336,19 @@
             }%>
         <br/>
         <!-- Case Summary -->
-        <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
-            <h4 style="color:#006c9a">Case Summary</h4>
+        <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" style="padding-bottom:2%;">
+            <h4 class="col-xs-8" style="color:#006c9a">Case Summary</h4>
+            <%
+                if (photoPath != null && !photoPath.equals("")) {
+                    photoPath = "../" + photoPath;
+            %>
+            <button class="btn btn-blue col-xs-4 input-sm" type="button" data-toggle="modal" data-target="#facePicModal" data-photopath="<%=photoPath%>">View Photo</button>
+            <%
+                }
+            %>
+
             <table class="table table-borderless col-md-12 col-xs-12">
+                <tr><td colspan = "2" class="lbl"><h5>Worker Profile</h5></td></tr>
                 <tr>
                     <td class="lbl">Registration date:</td>
                     <td class="value"><%=(regDate == null) ? "" : sdf.format(regDate)%></td>
@@ -362,7 +384,7 @@
                         <a href="addComplements.jsp?workerFin=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>&complement=sgPhone&action=add" title='Add phone number'><span class='glyphicon glyphicon-plus pull-right'></span></a>
                     </td>
                 </tr>
-                <tr><td></td><td></td></tr>
+                <tr><td colspan = "2" class="lbl"><h5>Job Profile</h5></td></tr>
                 <tr>
                     <td class="lbl">Employer:</td>
                     <td class="value"><%=employer%></td>
@@ -390,7 +412,7 @@
                     <td class="lbl">Current pass issue date:</td>
                     <td class="value"><%=(currentPassIsDate == null) ? "" : sdf.format(currentPassIsDate)%></td>
                 </tr>
-                <tr><td></td><td></td></tr>
+                <tr><tr><td colspan = "2" class="lbl"><h5>Problem Profile</h5></td></tr></tr>
                 <tr>
                     <td class="lbl">Problem reg date:</td>
                     <td class="value"><%=(probRegDate == null) ? "" : sdf.format(probRegDate)%></td>
@@ -431,8 +453,21 @@
                 <tr><td></td><td></td></tr>
                 <tr>
                     <td class="lbl">Lead caseworker:</td>
-                    <td class="value"><%=(lcw == null) ? "" : lcw%>
+                    <td class="value">
+                        <%
+                            if (lcw != null) {
+                        %>
+                        <%=lcw%>
+                        <%
+                        } else {
+                        %>
                         <button class='btn btn-blue btn-sm pull-right' onclick="window.location = 'addComplements.jsp?workerFin=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>&complement=refer';">Refer</button>
+
+                        <%
+                            }
+                        %>
+
+
                     </td>
                 </tr>
                 <tr>
@@ -499,7 +534,21 @@
                 </tr>
             </table>
             <button type='button' class='btn input-sm pull-right' style="margin-right: 5%;" onclick="window.location = 'issueBenefit.jsp?worker=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>';">Back</button>
-            <br/>
+            <div class="modal fade" id="facePicModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <img name="facePic" id="facePicDisplay" class="img-responsive"/>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
     </body>
 </html>

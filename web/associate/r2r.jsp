@@ -93,7 +93,6 @@
         </style>
         <script>
             $(document).ready(function() {
-                $('.alert').fadeOut(9999);
                 //initializing data picker
                 $(".dateInput").datepicker({
                     dateFormat: 'dd-M-yy',
@@ -270,6 +269,7 @@
                 <tr style="cursor: pointer" onclick="window.location = 'r2r.jsp?worker=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>&action=viewEdit&id=<%=r2r.getId()%>';">
                     <td><%=sdf.format(r2rDate)%></td>
                     <td><%=r2r1%></td>
+                    <td><span class='glyphicon glyphicon-edit'></span></td>
                 </tr>
                 <%
                         if (counter == 5) {
@@ -279,12 +279,13 @@
 
                 %>
             </table>
+            <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="window.location = 'addComplements.jsp?worker=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>&complement=r2r&action=add';">Back</button>
         </div>
         <%
         } else {
         %>
         <label style="color:grey; padding: 2%;">There is no R2R record for this case yet.</label>
-        <button type='button' class='btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack()">Back</button>
+        <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="window.location = 'addComplements.jsp?worker=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>&complement=r2r&action=add';">Back</button>
         <%                            }
         } else if (action != null && action.equals("viewEdit")) {
             Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);

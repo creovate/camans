@@ -42,6 +42,7 @@ public class processSearchWorker extends HttpServlet {
             String isAssociate = request.getParameter("associate");
             if (isAssociate != null) {
                 String fin = request.getParameter("fin");
+                fin = fin.toUpperCase();
                 String sql = "";
                 if (!fin.equals("")) {
                     sql = "SELECT FIN_number FROM tbl_worker WHERE FIN_number = '" + fin + "'";

@@ -460,15 +460,17 @@ public class processCreateNewCase extends HttpServlet {
                     ArrayList<Integer> problemIds = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, job);
                     problem = ProblemDAO.retrieveProblemByProblemId(problemIds.get(problemIds.size() - 1));
                     //phone number
-                    phNum = request.getParameter("sgPh");
 
+                    if (phNum == null) {
+                        phNum = request.getParameter("sgPh");
+                    }
                     //validate and update phNum
                     if (phNum != null && !phNum.equals("")) {
                         if (!phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
                             err += "invalid phone number, ";
                         }
 
-                        if (err == null) {
+                        if (err.equals("")) {
                             WorkerSgPhNum obj = new WorkerSgPhNum(worker.getFinNumber(), phNum, null);
                             //add into db
                             WorkerComplementsDAO.addWorkerSgPhNum(obj);
@@ -479,6 +481,11 @@ public class processCreateNewCase extends HttpServlet {
                     }
 
                     //current pass
+                    if (currPassType == null && currPassNo == null && isDateStr == null) {
+                        currPassType = request.getParameter("npasstype");
+                        currPassNo = request.getParameter("npassno");
+                        isDateStr = request.getParameter("nisdate");
+                    }
 //                    String currPassType = request.getParameter("npasstype");
 //                    String currPassNo = request.getParameter("npassno");
 //                    String isDateStr = request.getParameter("nisdate");
@@ -506,24 +513,28 @@ public class processCreateNewCase extends HttpServlet {
                                 err += "Invalid Pass Issue Date Format,";
                             }
                         }
+                        if (err.equals("")) {
+                            //create new pass details
+                            JobPassDetails passdetails = new JobPassDetails(worker.getFinNumber(), job.getJobKey(), currPassType,
+                                    "", currPassNo, null, isDate, null, "", "", null);
 
+                            //add into db
+                            JobComplementsDAO.addJobPassDetails(passdetails);
+
+                            //successdisplay
+                            success = "Worker Current Pass Details has been successfully added!";
+
+
+                        }
                     }
-                    if (err.equals("")) {
-                        //create new pass details
-                        JobPassDetails passdetails = new JobPassDetails(worker.getFinNumber(), job.getJobKey(), currPassType,
-                                "", currPassNo, null, isDate, null, "", "", null);
 
-                        //add into db
-                        JobComplementsDAO.addJobPassDetails(passdetails);
-
-                        //successdisplay
-                        success = "Worker Current Pass Details has been successfully added!";
-
-
-                    }
 
                     //problem complements
                     //injury details
+                    if (injuryDateStr == null && injuryBodyPart == null) {
+                        injuryDateStr = request.getParameter("injuryDate");
+                        injuryBodyPart = request.getParameter("bodyPart");
+                    }
 //                    String injuryDateStr = request.getParameter("injuryDate");
 //                    String injuryBodyPart = request.getParameter("bodyPart");
                     java.sql.Date injuryDate = null;
@@ -536,20 +547,26 @@ public class processCreateNewCase extends HttpServlet {
                             } catch (ParseException ex) {
                                 err += "Invalid injury Date Format,";
                             }
-                            if (!injuryBodyPart.equals("") && injuryBodyPart.length() > 500) {
-                                err += "Injury Body Part cannot be more than 500 characters,";
-                            }
-                            if (err.equals("")) {
-                                //create object
-                                ProblemInjury injury = new ProblemInjury(worker.getFinNumber(), problem.getJobKey(),
-                                        problem.getProbKey(), injuryDate, "", "", "", injuryBodyPart, "", "", "", "", "", "");
 
-                                //add to db
-                                ProblemComplementsDAO.addProblemInjury(injury);
-
-                                //success display
-                                success = "Injury History has been successfully added!";
+                        } else {
+                            java.util.Date tmp = new java.util.Date();
+                            injuryDate = new java.sql.Date(tmp.getTime());
+                        }
+                        if (!injuryBodyPart.equals("") && injuryBodyPart.length() > 500) {
+                            err += "Injury Body Part cannot be more than 500 characters,";
+                        }
+                        if (err.equals("")) {
+                            //create object
+                            if (injuryDateStr.equals("")) {
                             }
+                            ProblemInjury injury = new ProblemInjury(worker.getFinNumber(), problem.getJobKey(),
+                                    problem.getProbKey(), injuryDate, "", "", "", injuryBodyPart, "", "", "", "", "", "");
+
+                            //add to db
+                            ProblemComplementsDAO.addProblemInjury(injury);
+
+                            //success display
+                            success = "Injury History has been successfully added!";
                         }
 
 
@@ -558,6 +575,10 @@ public class processCreateNewCase extends HttpServlet {
 
 
                     //hospital
+                    if (hospitalName == null && hospitalNameMore == null) {
+                        hospitalName = request.getParameter("nhospName");
+                        hospitalNameMore = request.getParameter("nhospNameMore");
+                    }
 //                    String hospitalName = request.getParameter("nhospName");
 //                    String hospitalNameMore = request.getParameter("nhospNameMore");
 
@@ -585,6 +606,10 @@ public class processCreateNewCase extends HttpServlet {
 
 
                     //law firm
+                    if (lawFirmName == null && lawFirmNameMore == null) {
+                        lawFirmName = request.getParameter("nlawyerFirm");
+                        lawFirmNameMore = request.getParameter("nlawyerFirmMore");
+                    }
 //                    String lawFirmName = request.getParameter("nlawyerFirm");
 //                    String lawFirmNameMore = request.getParameter("nlawyerFirmMore");
                     if (lawFirmName != null && lawFirmNameMore != null) {
@@ -592,7 +617,7 @@ public class processCreateNewCase extends HttpServlet {
                             err += "Law Firm Name cannot be longer than 30 characters,";
                         }
 
-                        if (lawFirmNameMore != null && !lawFirmNameMore.equals("") && lawFirmNameMore.length() > 50) {
+                        if (!lawFirmNameMore.equals("") && lawFirmNameMore.length() > 50) {
                             err += "Explain if above is other cannot be longer than 50 characters,";
                         }
 

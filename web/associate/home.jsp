@@ -64,10 +64,9 @@
         </style>
         <script>
             $(document).ready(function() {
-                $('.alert').fadeOut(9999);
                 //methods for jquery validator
                 jQuery.validator.addMethod("FIN", function(value, element) {
-                    return this.optional(element) || /^[A-Z][0-9]{7}[A-Z]$/.test(value) || /^GEN[0-9]{6}$/.test(value);
+                    return this.optional(element) || /^[A-z][0-9]{7}[A-z]$/.test(value) || /^(GEN|gen)[0-9]{6}$/.test(value);
                 }, "Invalid FIN number format. Please check again.");
                 $('#searchForm').validate({
                     //ignore: ":hidden",

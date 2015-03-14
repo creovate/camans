@@ -761,7 +761,7 @@ public class DropdownDAO {
         try {
             conn = ConnectionManager.getConnection();
             sql = "SELECT Name FROM tbl_dropdown where dropdownType = ? and "
-                    + "Remark = ? order by Name ASC;";
+                    + "Remark = ? order by displayRank ASC;";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "Bene_Type");
             pstmt.setString(2, benefitType);

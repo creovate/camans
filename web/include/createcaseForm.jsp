@@ -456,7 +456,7 @@
         $('#pop_up_content').dialog('option', 'title', "Edit " + title);
         $(".edit_profile_btn").toggle();
         $(".save_btn").show();
-        $('.delete_btn').hide();
+        $('.delete_case_btn').hide();
         //$(".add_btn").toggle();
         if (<%= isAdmin%> == true) {
             $('#finNum').removeClass('no_change');
@@ -594,7 +594,7 @@
         <%
             if (userRole.equals("Administrator")) {
         %>
-        <button type='button' onclick="deleteStub('worker');" class="btn btn-danger modal_btn delete_btn">Delete</button>
+        <button type='button' onclick="deleteStub('worker');" class="btn btn-danger modal_btn delete_case_btn">Delete</button>
         <%        }
         %>
         <button type='button' class='btn modal_btn edit_comp cancel_btn' onclick="$(this).ajaxStop(); ">Cancel</button>
@@ -658,7 +658,7 @@
                     <option vallue="" selected>Select from List...</option>
                     <%
                         for (String jobSectorStr : jobSectorList) {
-                            if (jSector.equals(jobSectorStr)) {
+                            if (jSector != null && jSector.equals(jobSectorStr)) {
                     %>
                     <option selected><%=jobSectorStr%></option>
                     <%
@@ -706,7 +706,7 @@
                 <label for='isdate' class="control-label">Job End Date: </label>
             </div>
             <div class='col-md-7'>
-                <input class="form-control" type='text' name="jobEndDate" value="<%=endWhen%>">
+                <input class="form-control" type='text' name="jobEndDate" value="<%=(endWhen == null) ? "" : endWhen%>">
             </div>
             <br/>
         </div><br/>
@@ -715,7 +715,7 @@
                 <label for='isdate' class="control-label">Is This a TJS job?: </label>
             </div>
             <div class='col-md-7'>
-                <input class="form-control" type='text' name="isTjs" value="<%=isTjs%>">
+                <input class="form-control" type='text' name="isTjs" value="<%=(isTjs == null) ? "": isTjs%>">
             </div>
             <br/>
         </div><br/>
@@ -739,7 +739,7 @@
         <%
             if (userRole.equals("Administrator")) {
         %>
-        <button type='button' onclick="deleteStub('job');" class="btn btn-danger modal_btn delete_btn">Delete</button>
+        <button type='button' onclick="deleteStub('job');" class="btn btn-danger modal_btn delete_case_btn">Delete</button>
         <%        }
         %>
         <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
@@ -816,7 +816,7 @@
         <%
             if (userRole.equals("Administrator")) {
         %>
-        <button type='button' onclick="deleteStub('problem');" class="btn btn-danger modal_btn delete_btn">Delete</button>
+        <button type='button' onclick="deleteStub('problem');" class="btn btn-danger modal_btn delete_case_btn">Delete</button>
         <%        }
         %>
         <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>

@@ -86,7 +86,12 @@
         </style>
         <script>
             $(document).ready(function() {
-                $('.alert').fadeOut(9999);
+
+                $(".removeBtn").click(function() {
+                    var field = $(this).data('field');
+                    $("." + field + "dateToRemove").val("");
+                });
+
                 //initializing data picker
                 $(".dateInput").datepicker({
                     dateFormat: 'dd-M-yy',
@@ -102,21 +107,6 @@
                 $('.no_change').focus(function() {
                     $('.no_change').blur();
                 });
-
-                $('#generateTWC2Fin').click(function() {
-                    $.ajax({
-                        type: "post",
-                        url: "../generateTWC2Fin.do",
-                        success: function(msg)
-                        {
-
-                            var elem = document.getElementById("finNum");
-                            elem.value = msg;
-                            $('#createworker_form').formValidation('revalidateField', 'finNum');
-                        }
-                    });
-                });
-
 
                 //methods for jquery validator
                 jQuery.validator.addMethod("FIN", function(value, element) {
@@ -319,7 +309,7 @@
         <%
             if (option != null) {
                 //this is create case
-%>
+        %>
         <!-- Create Case Form -->
         <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" >
             <form method="post" action="../createNewCase.do" class="form form-horizontal" 
@@ -332,13 +322,13 @@
 
                 <div class="form-group">
                     <label for="registration_date_In" class="col-xs-4 col-md-3 control-label"><span class="required_input">*</span>Registration date:</label>
-                    <div class="col-md-4 col-sm-7 col-xs-8">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input type="text" class="form-control dateInput input-sm" name="registeredDate" value="<%=sdf.format(today)%>"  />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="created_by_In" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Created by:</label>
-                    <div class="col-sm-7 col-md-6 col-xs-8">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input type="text" class="form-control no_change input-sm" name="createdBy" value="<%=userLogin.getUsername()%>" />
                     </div>
                 </div>
@@ -350,13 +340,11 @@
                 </div>
                 <div class="form-group">
                     <label for="worker_fin" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>FIN:</label>
-                    <div id="fin" class=" col-md-4 col-xs-8 col-sm-7">
+                    <div id="fin" class="col-xs-8 col-sm-7 col-md-7">
                         <input type="text" id="finNum"  class="form-control required input-sm" name="finNum"/>
                     </div>
 
-                    <div id="finButton" class="col-md-4 col-xs-offset-6 col-xs-4 col-sm-offset-9 col-sm-2" style="margin-top: 5%">
-                        <button type="button" id="generateTWC2Fin" class="btn btn-blue input-sm">Generate FIN</button>
-                    </div>
+
                 </div>
                 <div class="form-group">
                     <label for="worker_gender" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Gender:</label>
@@ -384,7 +372,7 @@
                 </div>
                 <div class="form-group">
                     <label for="worker_dob" class=" col-md-3 col-xs-4 col-sm-4 control-label">Date of birth:</label>
-                    <div class="col-xs-8 col-sm-7 col-md-4">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-append date dateInput input-sm" type="text" class="dateInput"  name="dob"/>
                     </div>
                 </div>
@@ -392,7 +380,7 @@
                 <!--worker complement-->
                 <div class="form-group">
                     <label for="worker_dob" class=" col-md-3 col-xs-4 col-sm-4 control-label">Phone:</label>
-                    <div class="col-xs-8 col-sm-7 col-md-4">
+                    <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-sm" type="text" class="form-control"  name="sgPh"/>
                     </div>
                 </div>
@@ -477,7 +465,7 @@
                 </div>
                 <div class="form-group">
                     <label for="prob_type" class="col-md-3 col-xs-4 col-sm-4 control-label"><span class="required_input">*</span>Problem:</label>
-                    <div class="col-xs-8 col-sm-7  col-md-6"> 
+                    <div class="col-xs-8 col-sm-7 col-md-7"> 
                         <select name="problem" id="prob_type" class="form-control input-sm" required="true">
                             <option value="">Select Problem..</option>
                             <%
@@ -553,11 +541,11 @@
                 </div>
 
                 <!--- Face Picture -->
-                <div class="fileinput fileinput-new" data-provides="fileinput">
-                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                <div class="col-md-offset-3 col-md-9 col-sm-offset-4 col-sm-8 col-xs-offset-4 col-xs-8 fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail" style="width: 180px; height: 135px;">
                         <img data-src="holder.js/100%x100%" alt="...">
                     </div>
-                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 180px; max-height: 135px;"></div>
                     <div>
                         <span class="btn btn-default btn-file">
                             <span class="fileinput-new">Select image</span>
