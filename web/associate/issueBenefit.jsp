@@ -123,6 +123,17 @@
         errorMsg = (String) request.getSession().getAttribute("errorProbCompMsg");
         request.getSession().removeAttribute("errorProbCompMsg");
     }
+
+
+    if (successMsg == null || successMsg.equals("")) {
+        successMsg = (String) request.getSession().getAttribute("successMsg");
+        request.getSession().removeAttribute("successMsg");
+    }
+
+    if (errorMsg == null || errorMsg.equals("")) {
+        errorMsg = (String) request.getSession().getAttribute("errorMsg");
+        request.getSession().removeAttribute("errorMsg");
+    }
 %>
 <!DOCTYPE html>
 <html>
@@ -257,7 +268,6 @@
                     dateFormat: 'dd-M-yy',
                     changeMonth: true,
                     changeYear: true,
-                    maxDate: 0,
                     yearRange: "-100:nn"
                 });
                 //disabling manual input

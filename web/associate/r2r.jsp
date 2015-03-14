@@ -258,7 +258,7 @@
             <table class="table table-responsive table-striped">
                 <%
                     int counter = 0;
-                    for (int i = r2rIdList.size() - 1; i >= 0; i--) {
+                    for (int i = 0; i < r2rIdList.size();i++) {
                         counter++;
                         int id = r2rIdList.get(i);
                         ProblemR2R r2r = ProblemComplementsDAO.retrieveProblemR2RById(id);

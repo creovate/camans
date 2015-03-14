@@ -97,7 +97,6 @@
                     dateFormat: 'dd-M-yy',
                     changeMonth: true,
                     changeYear: true,
-                    maxDate: 0,
                     yearRange: "-100:nn"
                 });
                 //disabling manual input
@@ -576,7 +575,7 @@
         %>
         <!-- Add New Job -->
         <div class='col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8'>
-            <form method="POST" id='addCase' class="form form-horizontal" action="../createNewCase.do" style="font-size:small">
+            <form method="POST" id='addCase' class="form form-horizontal" action="../createNewCase.do" style="font-size:small"  >
 
                 <%
                     java.util.Date date = new java.util.Date();
@@ -763,7 +762,7 @@
         %>
         <!-- Add new problem -->
         <div class='col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8'>
-            <form method="POST" id='addCase' class="form form-horizontal" action="../createNewCase.do" style="font-size:small">
+            <form method="POST" id='addCase' class="form form-horizontal" action="../createNewCase.do" style="font-size:small"  >
 
                 <%
                     java.util.Date date = new java.util.Date();

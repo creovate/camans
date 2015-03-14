@@ -320,7 +320,7 @@
             <table class="table table-responsive table-striped">
                 <%
                     int counter = 0;
-                    for (int i = benefitIds.size() - 1; i >= 0; i--) {
+                    for (int i = 0; i < benefitIds.size(); i++) {
                         counter++;
                         int id = benefitIds.get(i);
                         Benefit benefit = BenefitDAO.retrieveBenefitById(id);

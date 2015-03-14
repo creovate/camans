@@ -437,25 +437,9 @@ public class processCreateNewCase extends HttpServlet {
                 //     End of Audit Log
                 //===============================================//
 
-            } else { //validation fail
-                request.getSession().setAttribute("errorMsg", err);
-                if (isAssociate != null) {
-                    request.getSession().setAttribute("option", "createCase");
-                    response.sendRedirect("associate/addNew.jsp");
+                if (isAssociate == null) {
+                    isAssociate = request.getParameter("associate");
                 }
-                response.sendRedirect("createCase.jsp");
-            }
-
-            if (finNumber == null) {
-                //Redirect Back to CreateNewCase Successful Page
-                success = "success";
-
-                request.getSession().setAttribute("worker", worker);
-                request.getSession().setAttribute("status", success);
-
-                String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + ") has been successfully created.";
-                //request.getSession().setAttribute("successWrkCompMsg", successMsg);
-                request.getSession().setAttribute("worker", worker.getFinNumber());
                 if (isAssociate != null) {
                     ArrayList<Integer> problemIds = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, job);
                     problem = ProblemDAO.retrieveProblemByProblemId(problemIds.get(problemIds.size() - 1));
@@ -490,44 +474,44 @@ public class processCreateNewCase extends HttpServlet {
 //                    String currPassNo = request.getParameter("npassno");
 //                    String isDateStr = request.getParameter("nisdate");
                     java.sql.Date isDate = null;
-
-                    if (currPassType.equals("")) {
-                        err += "Pass Type is blank,";
-                        pass = false;
-                    }
-                    if (currPassNo.equals("")) {
-                        err += "Pass Number is blank,";
-                        pass = false;
-                    }
-                    if (pass) {
-
-                        if (currPassNo.length() > 20) {
-                            err += "Pass Number must not exceed 20 characters,";
+                    if (currPassType != null && currPassNo != null && isDateStr != null) {
+                        if (currPassType.equals("")) {
+                            err += "Pass Type is blank,";
+                            pass = false;
                         }
+                        if (currPassNo.equals("")) {
+                            err += "Pass Number is blank,";
+                            pass = false;
+                        }
+                        if (pass) {
 
-                        if (isDateStr != null && !isDateStr.equals("")) {
-                            try {
-                                java.util.Date tmp = sdf.parse(isDateStr);
-                                isDate = new java.sql.Date(tmp.getTime());
-                            } catch (ParseException ex) {
-                                err += "Invalid Pass Issue Date Format,";
+                            if (currPassNo.length() > 20) {
+                                err += "Pass Number must not exceed 20 characters,";
+                            }
+
+                            if (isDateStr != null && !isDateStr.equals("")) {
+                                try {
+                                    java.util.Date tmp = sdf.parse(isDateStr);
+                                    isDate = new java.sql.Date(tmp.getTime());
+                                } catch (ParseException ex) {
+                                    err += "Invalid Pass Issue Date Format,";
+                                }
+                            }
+                            if (err.equals("")) {
+                                //create new pass details
+                                JobPassDetails passdetails = new JobPassDetails(worker.getFinNumber(), job.getJobKey(), currPassType,
+                                        "", currPassNo, null, isDate, null, "", "", null);
+
+                                //add into db
+                                JobComplementsDAO.addJobPassDetails(passdetails);
+
+                                //successdisplay
+                                success = "Worker Current Pass Details has been successfully added!";
+
+
                             }
                         }
-                        if (err.equals("")) {
-                            //create new pass details
-                            JobPassDetails passdetails = new JobPassDetails(worker.getFinNumber(), job.getJobKey(), currPassType,
-                                    "", currPassNo, null, isDate, null, "", "", null);
-
-                            //add into db
-                            JobComplementsDAO.addJobPassDetails(passdetails);
-
-                            //successdisplay
-                            success = "Worker Current Pass Details has been successfully added!";
-
-
-                        }
                     }
-
 
                     //problem complements
                     //injury details
@@ -639,6 +623,26 @@ public class processCreateNewCase extends HttpServlet {
                 } else {
                     response.sendRedirect("viewWorker.jsp");
                 }
+
+            } else { //validation fail
+                request.getSession().setAttribute("errorMsg", err);
+                if (isAssociate != null) {
+                    request.getSession().setAttribute("option", "createCase");
+                    response.sendRedirect("associate/addNew.jsp");
+                }
+                response.sendRedirect("createCase.jsp");
+            }
+
+            if (finNumber == null) {
+                //Redirect Back to CreateNewCase Successful Page
+                success = "success";
+
+                request.getSession().setAttribute("worker", worker);
+                request.getSession().setAttribute("status", success);
+
+                String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + ") has been successfully created.";
+                //request.getSession().setAttribute("successWrkCompMsg", successMsg);
+                request.getSession().setAttribute("worker", worker.getFinNumber());
             } else {
                 //Redirect Back to CreateNewCase Successful Page
                 success = "success";
@@ -647,6 +651,7 @@ public class processCreateNewCase extends HttpServlet {
                 request.getSession().setAttribute("status", success);
 
                 String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + ") has been successfully created.";
+
 
 
                 if (jobKeyStr != null) {
@@ -663,7 +668,7 @@ public class processCreateNewCase extends HttpServlet {
                     request.getSession().setAttribute("worker", worker.getFinNumber());
                 }
                 //request.getSession().setAttribute("worker", worker);
-                request.getSession().setAttribute("successWrkCompMsg", successMsg);
+                request.getSession().setAttribute("successMsg", successMsg);
                 if (isAssociate != null) {
 
                     request.getSession().setAttribute("workerFin", worker.getFinNumber());

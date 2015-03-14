@@ -72,6 +72,7 @@
     String endWhen = job.getJobEndDate();
     String isTjs = job.getJobTJS();
     String jRemark = job.getJobRemark();
+    ArrayList<Integer> jobIdList = JobDAO.retrieveJobIdsOfWorker(worker);
 
     //get problem data
     int probKey = Integer.parseInt(probKeyStr);
@@ -81,6 +82,8 @@
     String problemType = problem.getProblem();
     String pTypeMore = problem.getProblemMore();
     String pRemark = problem.getProblemRemark();
+    
+    ArrayList<Integer> problemIdList = ProblemDAO.retrieveProblemsIdsOfWorkerAndJob(worker, job);
 
     //get Dropdown data
     ArrayList<String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
@@ -111,6 +114,10 @@
 <script>
     //for not type-able inputs
     $(document).ready(function() {
+
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         $('.dateInput').focus(function() {
 
             $('.dateInput').blur();
@@ -404,7 +411,7 @@
                 $("#hiddenWorkerFin").after('<input type="hidden" id="hiddenJobKey" name="jobKey" value="<%=jobKey%>"/>');
             }
         }
-        
+
 
         /**
          * Add Job & Problem particulars validation
@@ -546,7 +553,7 @@
             </div>
             <div class='col-md-7'>
                 <select class="form-control" id="worker_nationality" name="nationality">
-                <option value="" selected>Select from the List...</option>
+                    <option value="" selected>Select from the List...</option>
                     <%
                         for (String nationalityStr : nationalityList) {
                             if (nationality.equals(nationalityStr)) {
@@ -597,7 +604,7 @@
         <button type='button' onclick="deleteStub('worker');" class="btn btn-danger modal_btn delete_case_btn">Delete</button>
         <%        }
         %>
-        <button type='button' class='btn modal_btn edit_comp cancel_btn' onclick="$(this).ajaxStop(); ">Cancel</button>
+        <button type='button' class='btn modal_btn edit_comp cancel_btn' onclick="$(this).ajaxStop();">Cancel</button>
     </div>
 </form>
 
@@ -715,7 +722,7 @@
                 <label for='isdate' class="control-label">Is This a TJS job?: </label>
             </div>
             <div class='col-md-7'>
-                <input class="form-control" type='text' name="isTjs" value="<%=(isTjs == null) ? "": isTjs%>">
+                <input class="form-control" type='text' name="isTjs" value="<%=(isTjs == null) ? "" : isTjs%>">
             </div>
             <br/>
         </div><br/>
@@ -724,7 +731,7 @@
                 <label for='isdate' class="control-label">Remark about this Job: </label>
             </div>
             <div class='col-md-7'>
-                <textarea class="form-control" name="jobRemark" rows="3" ><%=jRemark%></textarea>
+                <textarea class="form-control" name="jobRemark" rows="3" ><%=(jRemark == null) ? "" : jRemark%></textarea>
             </div>
             <br/>
         </div><br/>
@@ -738,9 +745,16 @@
         <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
         <%
             if (userRole.equals("Administrator")) {
-        %>
+                if(jobIdList.size() > 1){
+                %>
         <button type='button' onclick="deleteStub('job');" class="btn btn-danger modal_btn delete_case_btn">Delete</button>
-        <%        }
+        <%     
+                }else{
+                    %>
+        <button type='button' data-toggle="tooltip" data-placement="bottom" title="This job cannot be deleted. There must be at least one job and problem for each worker" class="btn btn-disabled modal_btn delete_case_btn" disabled>Delete</button>
+        <% 
+                }
+               }
         %>
         <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
         <button style="display:none" type='button' class="btn btn-blue modal_btn add_btn" onclick="add('job');">Add</button>
@@ -815,9 +829,16 @@
         <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
         <%
             if (userRole.equals("Administrator")) {
-        %>
+                if(problemIdList.size() > 1){
+                    %>
         <button type='button' onclick="deleteStub('problem');" class="btn btn-danger modal_btn delete_case_btn">Delete</button>
-        <%        }
+        <%
+                }else{
+                    %>
+        <button type='button' data-toggle="tooltip" data-placement="bottom" title="This problem cannot be deleted. There must be at least one job and problem for each worker"  class="btn btn-disabled modal_btn delete_case_btn" readonly>Delete</button>
+        <%
+                }
+                }
         %>
         <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
         <button style="display:none"  type='button' class="btn btn-blue modal_btn add_btn" onclick="add('problem');">Add</button>
@@ -1100,10 +1121,10 @@
 
     }
     $('.cancel_btn').click(function() {
-            $('#pop_up_content').dialog("destroy");
-            //$(this).dialog("destroy");
-            $('#pop_up_content').empty();
-        });
+        $('#pop_up_content').dialog("destroy");
+        //$(this).dialog("destroy");
+        $('#pop_up_content').empty();
+    });
 
     $('.confirm_cancel_btn').click(function() {
         $('#delete-stub-dialog').dialog('destroy');

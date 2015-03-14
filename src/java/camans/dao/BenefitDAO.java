@@ -34,7 +34,7 @@ public class BenefitDAO {
         try {
             conn = ConnectionManager.getConnection();
             sql = "SELECT ID FROM tbl_benefit where Worker_FIN_number = ? AND Job_key =? "
-                    + "AND Prob_key=? AND Bene_type=?";
+                    + "AND Prob_key=? AND Bene_type=? order by Bene_date desc";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, problem.getWorkerFinNum());
             pstmt.setInt(2, problem.getJobKey());
@@ -65,7 +65,7 @@ public class BenefitDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            sql = "select t1.ID from tbl_dropdown inner join (select * from tbl_benefit where Worker_FIN_number = ? and Job_key = ? and Prob_key = ?) as t1 on Name = t1.Bene_type where dropdownType = 'Bene_type' and remark = ? ";
+            sql = "select t1.ID from tbl_dropdown inner join (select * from tbl_benefit where Worker_FIN_number = ? and Job_key = ? and Prob_key = ?) as t1 on Name = t1.Bene_type where dropdownType = 'Bene_type' and remark = ? order by Bene_date desc";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, problem.getWorkerFinNum());
             pstmt.setInt(2, problem.getJobKey());
@@ -98,7 +98,7 @@ public class BenefitDAO {
             java.sql.Date startDate = new java.sql.Date(startDateIn.getTime());
             java.sql.Date endDate = new java.sql.Date(endDateIn.getTime());
             conn = ConnectionManager.getConnection();
-            sql = "select t1.ID from tbl_dropdown inner join (select * from tbl_benefit where Bene_date between ? and ?) as t1 on Name = t1.Bene_type where dropdownType = 'Bene_type' and remark = ?";
+            sql = "select t1.ID from tbl_dropdown inner join (select * from tbl_benefit where Bene_date between ? and ?) as t1 on Name = t1.Bene_type where dropdownType = 'Bene_type' and remark = ? order by Bene_date desc";
             pstmt = conn.prepareStatement(sql);
             pstmt.setDate(1,startDate);
             pstmt.setDate(2, endDate);

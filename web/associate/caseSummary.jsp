@@ -233,15 +233,6 @@
     }
 
 
-    if (successMsg == null || successMsg.equals("")) {
-        successMsg = (String) request.getSession().getAttribute("successMsg");
-        request.getSession().removeAttribute("successMsg");
-    }
-
-    if (errorMsg == null || errorMsg.equals("")) {
-        errorMsg = (String) request.getSession().getAttribute("errorMsg");
-        request.getSession().removeAttribute("errorMsg");
-    }
 %>
 <html>
     <head>

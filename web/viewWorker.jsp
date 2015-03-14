@@ -1155,7 +1155,7 @@
                                                     </tr>
 
                                                     <%
-                                                        for (int i = 0; i < familyMmbrIds.size(); i++) {
+                                                        for (int i = familyMmbrIds.size() - 1; i >= 0; i--) {
                                                             WorkerFamilyMember familyMember = WorkerComplementsDAO.retrieveWorkerFamilyMemberById(familyMmbrIds.get(i));
 
                                                             String name = familyMember.getName();
@@ -1346,7 +1346,7 @@
                                                     </tr>
 
                                                     <%
-                                                        for (int i = 0; i < languagueIds.size(); i++) {
+                                                        for (int i = languagueIds.size()-1; i >= 0 ; i--) {
                                                             WorkerLanguage language = WorkerComplementsDAO.retrieveWorkerLanguageById(languagueIds.get(i));
                                                             String mlanguage = language.getMainLanguage();
                                                             String engStd = language.getSpokenLanguageStandard();
@@ -3119,6 +3119,9 @@
                                                                                 ProblemSalaryRelatedHistory salaryHistory = ProblemComplementsDAO.retrieveProblemSalaryRelatedHistoryById(historyId);
 
                                                                                 String history = salaryHistory.getSalHistBasic();
+                                                                                if(history.length() > 60){
+                                                                                    history = history.substring(0, 60);
+                                                                                }
                                                                                 String mode = salaryHistory.getSalMode();
                                                                                 double tClaim = salaryHistory.getSalLossTotal();
                                                                                 double claim = salaryHistory.getSalLoss1Year();

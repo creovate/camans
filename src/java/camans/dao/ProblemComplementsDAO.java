@@ -2678,7 +2678,7 @@ public class ProblemComplementsDAO {
             java.sql.Date endDate = new java.sql.Date(end.getTime());
             
             conn = ConnectionManager.getConnection();
-            sql = "SELECT ID FROM tbl_R2R WHERE R2R_date BETWEEN ? AND ?";
+            sql = "SELECT ID FROM tbl_R2R WHERE R2R_date BETWEEN ? AND ? ORDER BY R2R_date DESC";
             pstmt = conn.prepareStatement(sql);
             pstmt.setDate(1, startDate);
             pstmt.setDate(2, endDate);
