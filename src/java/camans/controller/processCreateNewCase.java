@@ -437,6 +437,10 @@ public class processCreateNewCase extends HttpServlet {
                 //     End of Audit Log
                 //===============================================//
 
+                
+                //===============================================//
+                //     Assoicate Complements
+                //===============================================//
                 if (isAssociate == null) {
                     isAssociate = request.getParameter("associate");
                 }
@@ -617,13 +621,12 @@ public class processCreateNewCase extends HttpServlet {
 
                         }
                     }
-
+                    //===============================================//
+                    //     End of Associate complements
+                    //===============================================//
                     request.getSession().setAttribute("workerFin", worker.getFinNumber());
                     response.sendRedirect("associate/issueBenefit.jsp");
-                } else {
-                    response.sendRedirect("viewWorker.jsp");
                 }
-
             } else { //validation fail
                 request.getSession().setAttribute("errorMsg", err);
                 if (isAssociate != null) {
@@ -640,35 +643,37 @@ public class processCreateNewCase extends HttpServlet {
                 request.getSession().setAttribute("worker", worker);
                 request.getSession().setAttribute("status", success);
 
-                String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + ") has been successfully created.";
-                //request.getSession().setAttribute("successWrkCompMsg", successMsg);
+                String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + 
+                        ") has been successfully created.";
+                request.getSession().setAttribute("successWrkCompMsg", successMsg);
                 request.getSession().setAttribute("worker", worker.getFinNumber());
+                response.sendRedirect("viewWorker.jsp");
             } else {
-                //Redirect Back to CreateNewCase Successful Page
+                //Redirect Back to already existing worker page
                 success = "success";
 
                 request.getSession().setAttribute("worker", worker);
                 request.getSession().setAttribute("status", success);
 
-                String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + ") has been successfully created.";
-
-
+                String successMsg = "";
 
                 if (jobKeyStr != null) {
                     //go back to prob tab
-                    successMsg = "A new problem has been successfully created for worker " + worker.getName() + "(" + worker.getFinNumber() + ").";
+                    successMsg = "A new problem has been successfully created for worker " 
+                            + worker.getName() + "(" + worker.getFinNumber() + ").";
                     request.getSession().setAttribute("tabIndicator", "problem");
                     request.getSession().setAttribute("selectedJob", jobKeyStr);
                     request.getSession().setAttribute("worker", worker.getFinNumber());
                 } else {
                     //go back to job tab
-                    successMsg = "A new job has been successfully created for worker " + worker.getName() + "(" + worker.getFinNumber() + ").";
+                    successMsg = "A new job has been successfully created for worker " 
+                            + worker.getName() + "(" + worker.getFinNumber() + ").";
                     request.getSession().setAttribute("tabIndicator", "job");
                     request.getSession().setAttribute("selectedJob", jobKeyStr);
                     request.getSession().setAttribute("worker", worker.getFinNumber());
                 }
                 //request.getSession().setAttribute("worker", worker);
-                request.getSession().setAttribute("successMsg", successMsg);
+                request.getSession().setAttribute("successWrkCompMsg", successMsg);
                 if (isAssociate != null) {
 
                     request.getSession().setAttribute("workerFin", worker.getFinNumber());

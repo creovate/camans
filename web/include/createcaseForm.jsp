@@ -744,20 +744,21 @@
         <button type='button' onclick="edit('job_stub', 'Job Profile');" class="btn btn-blue modal_btn edit_profile_btn">Edit</button>
         <button style="display:none" type='submit' class="btn btn-blue modal_btn save_btn">Save</button>
         <%
-            if (userRole.equals("Administrator")) {
-                if(jobIdList.size() > 1){
-                %>
-        <button type='button' onclick="deleteStub('job');" class="btn btn-danger modal_btn delete_case_btn">Delete</button>
-        <%     
-                }else{
-                    %>
-        <button type='button' data-toggle="tooltip" data-placement="bottom" title="This job cannot be deleted. There must be at least one job and problem for each worker" class="btn btn-disabled modal_btn delete_case_btn" disabled>Delete</button>
+        if (userRole.equals("Administrator")) {
+            if(jobIdList.size() > 1) {
+        %>
+                <button type='button' onclick="deleteStub('job');" class="btn btn-danger modal_btn delete_case_btn">Delete</button>
+        <%  } else { %>
+                <button type='button' data-toggle="tooltip" data-placement="bottom" 
+                        title="This job cannot be deleted. There must be at least one job and problem for each worker" 
+                        class="btn btn-disabled modal_btn delete_case_btn" disabled>Delete</button>
         <% 
-                }
-               }
+            }
+           }
         %>
         <button type='button' class='btn edit_comp cancel_btn'>Cancel</button>
-        <button style="display:none" type='button' class="btn btn-blue modal_btn add_btn" onclick="add('job');">Add</button>
+        <button style="display:none" type='button' class="btn btn-blue modal_btn add_btn" 
+                onclick="add('job');">Add</button>
     </div>
 </form>
 
@@ -830,15 +831,15 @@
         <%
             if (userRole.equals("Administrator")) {
                 if(problemIdList.size() > 1){
-                    %>
-        <button type='button' onclick="deleteStub('problem');" class="btn btn-danger modal_btn delete_case_btn">Delete</button>
-        <%
-                }else{
-                    %>
-        <button type='button' data-toggle="tooltip" data-placement="bottom" title="This problem cannot be deleted. There must be at least one job and problem for each worker"  class="btn btn-disabled modal_btn delete_case_btn" readonly>Delete</button>
+        %>
+                    <button type='button' onclick="deleteStub('problem');" class="btn btn-danger modal_btn delete_case_btn">Delete</button>
+        <%      } else { %>
+                    <button type='button' data-toggle="tooltip" data-placement="bottom" 
+                            title="This problem cannot be deleted. There must be at least one job and problem for each worker"  
+                            class="btn btn-disabled modal_btn delete_case_btn" readonly>Delete</button>
         <%
                 }
-                }
+            }
         %>
         <button type='button' class='btn modal_btn edit_comp cancel_btn'>Cancel</button>
         <button style="display:none"  type='button' class="btn btn-blue modal_btn add_btn" onclick="add('problem');">Add</button>
@@ -1027,8 +1028,6 @@
 
     <%
         java.util.Date date = new java.util.Date();
-
-
     %>
 
     <!--problem profile-->
