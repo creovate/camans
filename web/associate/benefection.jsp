@@ -116,7 +116,6 @@
         </style>
         <script>
             $(document).ready(function() {
-                $('.alert').fadeOut(9999);
                 //initializing data picker
                 $(".dateInput").datepicker({
                     dateFormat: 'dd-M-yy',
@@ -321,7 +320,7 @@
             <table class="table table-responsive table-striped">
                 <%
                     int counter = 0;
-                    for (int i = benefitIds.size() - 1; i >= 0; i--) {
+                    for (int i = 0; i < benefitIds.size(); i++) {
                         counter++;
                         int id = benefitIds.get(i);
                         Benefit benefit = BenefitDAO.retrieveBenefitById(id);
@@ -345,12 +344,13 @@
                 %>
 
             </table>
+                <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack();">Back</button>
         </div>
         <%
         } else {
         %>
         <label style="color:grey; padding: 2%;">There is no record of <%=categoryTitle%> benefit for this case yet.</label>
-        <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack()">Back</button>
+        <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick='goBack();'>Back</button>
         <%                }
         } else {
         %>
@@ -401,6 +401,7 @@
                     <td><%=tempName%><br/>
                         <%=tempFin%><br/>
                         <%=r2r1%></td>
+                    <td><span class='glyphicon glyphicon-edit'></span></td>
                 </tr>
                 <%
                     }

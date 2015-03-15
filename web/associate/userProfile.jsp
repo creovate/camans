@@ -117,8 +117,6 @@
             //edit form validation check
             $(document).ready(function() {
                 
-                $('.alert').fadeOut(9999);
-                
                 $('#editUserForm')
                         .bootstrapValidator({
                     feedbackIcons: {

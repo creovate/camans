@@ -100,7 +100,10 @@
         </style>
         <script>
             $(document).ready(function() {
-                $('.alert').fadeOut(9999);
+                $(".removeBtn").click(function() {
+                    var field = $(this).data('field');
+                    $("." + field + "dateToRemove").val("");
+                });
                 //initializing data picker
                 $(".dateInput").datepicker({
                     dateFormat: 'dd-M-yy',

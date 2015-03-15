@@ -33,8 +33,9 @@
 
     String workerFinNum = (String) request.getSession().getAttribute("worker");
     request.getSession().removeAttribute("worker");
-    if(workerFinNum == null || workerFinNum.equals("")){
+    if (workerFinNum == null || workerFinNum.equals("")) {
         workerFinNum = request.getParameter("worker");
+        fin = workerFinNum;
     }
     if (workerFinNum != null && !workerFinNum.equals("")) {
         worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFinNum);
@@ -121,6 +122,17 @@
     if (errorMsg == null || errorMsg.equals("")) {
         errorMsg = (String) request.getSession().getAttribute("errorProbCompMsg");
         request.getSession().removeAttribute("errorProbCompMsg");
+    }
+
+
+    if (successMsg == null || successMsg.equals("")) {
+        successMsg = (String) request.getSession().getAttribute("successMsg");
+        request.getSession().removeAttribute("successMsg");
+    }
+
+    if (errorMsg == null || errorMsg.equals("")) {
+        errorMsg = (String) request.getSession().getAttribute("errorMsg");
+        request.getSession().removeAttribute("errorMsg");
     }
 %>
 <!DOCTYPE html>
@@ -256,14 +268,13 @@
                     dateFormat: 'dd-M-yy',
                     changeMonth: true,
                     changeYear: true,
-                    maxDate: 0,
                     yearRange: "-100:nn"
                 });
                 //disabling manual input
                 $('.dateInput').focus(function() {
                     $('.dateInput').blur();
                 });
-                
+
                 var selected = $('#benefitCategory').val();
 
                 $('#nbenetype').empty();
@@ -320,11 +331,13 @@
                 }
                 $('#btnHistory').attr("onclick", "window.location = 'benefection.jsp?worker=<%=workerFin%>&selectedJob=<%= selectedJob%>&selectedProb=<%=selectedProb%>&beneCategory=" + selected + "&action=viewRecent';");
 
-
-                $('.alert').fadeOut(9999);
+                $(".removeBtn").click(function() {
+                    var field = $(this).data('field');
+                    $("." + field + "dateToRemove").val("");
+                });
 //methods for jquery validator
                 jQuery.validator.addMethod("FIN", function(value, element) {
-                    return this.optional(element) || /^[A-Z][0-9]{7}[A-Z]$/.test(value) || /^GEN[0-9]{6}$/.test(value);
+                    return this.optional(element) || /^[A-z][0-9]{7}[A-z]$/.test(value) || /^(GEN|gen)[0-9]{6}$/.test(value);
                 }, "Invalid FIN number format. Please check again.");
                 $('#searchForm').validate({
                     //ignore: ":hidden",
@@ -561,14 +574,14 @@
             <form method="POST" id='add_benefit' class="form form-horizontal" action="../addBenefit.do"  style="height:100%">
                 <br/>
                 <div class='form-group'>
-                    <label for='nbenetype' class="control-label col-xs-4 col-sm-4">Benefits: </label>
+                    <label for='nbenetype' class="control-label col-xs-4 col-sm-4">Benefit Group: </label>
                     <div class="col-xs-8 col-sm-4">
                         <select class="form-control input-sm" id="benefitCategory" name="benefitCategory" onchange="toggleBenefitDDL();">
-                            <option value="Food">Meal Cards</option>
-                            <option value="Transport">FareGo</option>
-                            <option value="Medical & Karunya">Medical & Karunya</option>
-                            <option value="Roof">Roof</option>
-                            <option value="Other">Others</option>
+                            <option value="Food">Food</option>
+                            <option value="Medical & Karunya">Medical</option>
+                            <option value="Roof">Shelter</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Other">Other</option>
                         </select>
                         <br/>
                     </div>
@@ -596,15 +609,9 @@
                         <select class="form-control input-sm" id="nbenetype" name="nbenetype">
                             <%
                                 for (String dropdownItem : dropdownList) {
-                                    if (dropdownItem.equals("Meal card")) {
                             %>
-                            <option value ="<%=dropdownItem%>" selected><%= dropdownItem%></option>
+                            <option  value ="<%=dropdownItem%>"><%=dropdownItem%></option>
                             <%
-                            } else {
-                            %>
-                            <option value="<%=dropdownItem%>"><%=dropdownItem%></option>
-                            <%
-                                    }
 
                                 }
                             %>  
