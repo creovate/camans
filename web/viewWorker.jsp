@@ -2719,7 +2719,7 @@
 
                                                                             <td class="tbl-20-col"><a style="color: black" data-target="#leadcaseworker_pop_up"  data-class="problem"  
                                                                                                       data-value='leadcaseworker' data-leadcaseworker='<%=icwid%>' href="" 
-                                                                                                      data-toggle="modal" data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                                                      data-toggle="modal" data-action="viewedit"  data-title="View Lead Caseworker"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
                                                                                 <% if (userLogin.getRole().equals("Administrator")) {%>
@@ -2739,7 +2739,7 @@
                                                                             <td><%=name%></td>
                                                                             <td><%=(start == null) ? "-" : sdf.format(start)%></td>
                                                                             <td><%=(end == null) ? "-" : sdf.format(end)%></td>
-                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#leadcaseworker_pop_up"  data-class="problem"  
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#leadcaseworker_pop_up" data-title="View Lead Caseworker"  data-class="problem"  
                                                                                                       data-value='leadcaseworker' data-leadcaseworker='<%=icwid%>' href="" data-toggle="modal" 
                                                                                                       data-action="viewedit"  class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span></a>

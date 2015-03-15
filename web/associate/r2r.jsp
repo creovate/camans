@@ -279,13 +279,13 @@
 
                 %>
             </table>
-            <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="window.location = 'addComplements.jsp?worker=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>&complement=r2r&action=add';">Back</button>
+            <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack();">Back</button>
         </div>
         <%
         } else {
         %>
         <label style="color:grey; padding: 2%;">There is no R2R record for this case yet.</label>
-        <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="window.location = 'addComplements.jsp?worker=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>&complement=r2r&action=add';">Back</button>
+        <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack();">Back</button>
         <%                            }
         } else if (action != null && action.equals("viewEdit")) {
             Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);

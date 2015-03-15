@@ -5,7 +5,11 @@
 package camans.controller;
 
 //import camans.dao.BeanFactory;
+import java.io.FileWriter;
+import au.com.bytecode.opencsv.CSVWriter;
 import camans.dao.ConnectionManager;
+import camans.dao.ReportDAO;
+import camans.utility.DataExport;
 //import camans.dao.ReportDAO;
 //import camans.entity.JasperDataSourceBuilder;
 import java.io.ByteArrayOutputStream;
@@ -42,6 +46,7 @@ import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 
 /**
  *
@@ -105,7 +110,7 @@ public class processGenerateReport extends HttpServlet {
 
                 //generate report
 
-                JasperPrint print = JasperFillManager.fillReport(filePath, map,conn);
+                JasperPrint print = JasperFillManager.fillReport(filePath, map, conn);
 
 //                JasperViewer.viewReport(print);
 
@@ -131,7 +136,7 @@ public class processGenerateReport extends HttpServlet {
                 filePath = getServletContext().getRealPath("/reports/BenefitSummaryReport.jasper");
 
                 //generate report
-                JasperPrint print = JasperFillManager.fillReport(filePath, map,conn);
+                JasperPrint print = JasperFillManager.fillReport(filePath, map, conn);
 
                 JRXlsxExporter exporter = new JRXlsxExporter();
                 exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
@@ -147,7 +152,7 @@ public class processGenerateReport extends HttpServlet {
                 filePath = getServletContext().getRealPath("/reports/NationalityGender.jasper");
 
                 //generate report
-                JasperPrint print = JasperFillManager.fillReport(filePath, map,conn);
+                JasperPrint print = JasperFillManager.fillReport(filePath, map, conn);
 
                 JRXlsxExporter exporter = new JRXlsxExporter();
                 exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
@@ -158,52 +163,33 @@ public class processGenerateReport extends HttpServlet {
                 response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
                 response.setHeader("Content-Disposition", "attachment;filename=ClientsByNationalityAndGender.xlsx");
             } else if (reportType.equals("Clients by nationality and work pass") && start != null && end != null) {
-                //get the file path
-                filePath = getServletContext().getRealPath("/reports/testReport.jasper");
-                //java.util.Collection beanCollection = BeanFactory.generateNationalityWorkpassBean();
-                
-                //JasperPrint print  = JasperFillManager.fillReport(filePath, map,new JRBeanCollectionDataSource(beanCollection));
-//            JasperExportManager.exportReportToPdfFile(jasperPrint,"StudentInfo.pdf");
-//            JasperViewer.viewReport(jasperPrint);
+
+                //Zip file Name
+                String fileName = "nationalityWorkpass.csv";
+                //folder to store the out data
+                String folderName = "dataOut";
+                //retrieve filePath of the app build folder
+                filePath = getServletContext().getRealPath("/");
+                // Creating folder to store the zip file
+                File file = new File(filePath + File.separator + folderName);
+                if (!file.exists()) {
+                    file.mkdir();
+                } //data file
+                // get the file Path
+                filePath = file.getAbsolutePath() + File.separator;
+                // preparing for force download
+                response.setContentType("text/csv");
+                response.setHeader("Content-Disposition", "attachment; fileName=" + fileName);
 
 
 
-//
-                JRXlsxExporter exporter = new JRXlsxExporter();
-                //exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+                //==========================================//
+                //    Exporting data in db to csv file
+                //==========================================//
+                //loop through and export data to data folder
 
-                exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
-                exporter.exportReport();
+                ReportDAO.generateCSVFile(filePath + fileName, start, end);
 
-                response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-                response.setHeader("Content-Disposition", "attachment;filename=ClientsByNationalityAndGender.xlsx");
-
-
-                try {
-                    FileWriter writer = new FileWriter("report.csv");
-
-                    writer.append("DisplayName");
-                    writer.append(',');
-                    writer.append("Age");
-                    writer.append('\n');
-
-                    writer.append("MKYONG");
-                    writer.append(',');
-                    writer.append("26");
-                    writer.append('\n');
-
-                    writer.append("YOUR NAME");
-                    writer.append(',');
-                    writer.append("29");
-                    writer.append('\n');
-
-                    //generate whatever data you want
-
-                    writer.flush();
-                    writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
             } else if (reportType.equals("Clients by problem and work pass")) {
             } else if (reportType.equals("Clients by problem and nationality")) {

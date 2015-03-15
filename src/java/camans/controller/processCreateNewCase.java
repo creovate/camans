@@ -437,7 +437,7 @@ public class processCreateNewCase extends HttpServlet {
                 //     End of Audit Log
                 //===============================================//
 
-                
+
                 //===============================================//
                 //     Assoicate Complements
                 //===============================================//
@@ -536,9 +536,6 @@ public class processCreateNewCase extends HttpServlet {
                                 err += "Invalid injury Date Format,";
                             }
 
-                        } else {
-                            java.util.Date tmp = new java.util.Date();
-                            injuryDate = new java.sql.Date(tmp.getTime());
                         }
                         if (!injuryBodyPart.equals("") && injuryBodyPart.length() > 500) {
                             err += "Injury Body Part cannot be more than 500 characters,";
@@ -546,15 +543,18 @@ public class processCreateNewCase extends HttpServlet {
                         if (err.equals("")) {
                             //create object
                             if (injuryDateStr.equals("")) {
+                                java.util.Date tmp = new java.util.Date();
+                                injuryDate = new java.sql.Date(tmp.getTime());
                             }
-                            ProblemInjury injury = new ProblemInjury(worker.getFinNumber(), problem.getJobKey(),
-                                    problem.getProbKey(), injuryDate, "", "", "", injuryBodyPart, "", "", "", "", "", "");
+                            if (!injuryBodyPart.equals("") && injuryDate != null) {
+                                ProblemInjury injury = new ProblemInjury(worker.getFinNumber(), problem.getJobKey(),
+                                        problem.getProbKey(), injuryDate, "", "", "", injuryBodyPart, "", "", "", "", "", "");
+                                //add to db
+                                ProblemComplementsDAO.addProblemInjury(injury);
 
-                            //add to db
-                            ProblemComplementsDAO.addProblemInjury(injury);
-
-                            //success display
-                            success = "Injury History has been successfully added!";
+                                //success display
+                                success = "Injury History has been successfully added!";
+                            }
                         }
 
 
@@ -643,8 +643,8 @@ public class processCreateNewCase extends HttpServlet {
                 request.getSession().setAttribute("worker", worker);
                 request.getSession().setAttribute("status", success);
 
-                String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber() + 
-                        ") has been successfully created.";
+                String successMsg = "Worker " + worker.getName() + "(" + worker.getFinNumber()
+                        + ") has been successfully created.";
                 request.getSession().setAttribute("successWrkCompMsg", successMsg);
                 request.getSession().setAttribute("worker", worker.getFinNumber());
                 response.sendRedirect("viewWorker.jsp");
@@ -659,14 +659,14 @@ public class processCreateNewCase extends HttpServlet {
 
                 if (jobKeyStr != null) {
                     //go back to prob tab
-                    successMsg = "A new problem has been successfully created for worker " 
+                    successMsg = "A new problem has been successfully created for worker "
                             + worker.getName() + "(" + worker.getFinNumber() + ").";
                     request.getSession().setAttribute("tabIndicator", "problem");
                     request.getSession().setAttribute("selectedJob", jobKeyStr);
                     request.getSession().setAttribute("worker", worker.getFinNumber());
                 } else {
                     //go back to job tab
-                    successMsg = "A new job has been successfully created for worker " 
+                    successMsg = "A new job has been successfully created for worker "
                             + worker.getName() + "(" + worker.getFinNumber() + ").";
                     request.getSession().setAttribute("tabIndicator", "job");
                     request.getSession().setAttribute("selectedJob", jobKeyStr);

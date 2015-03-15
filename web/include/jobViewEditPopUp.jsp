@@ -1355,13 +1355,13 @@
                 <div class='form-group'>
                     <label for='issuer' class="control-label">Pass issuing agency</label>
                     <br/>
-                    <input class="form-control" type='text' name="issuer" value="<%=issuer%>">
+                    <input class="form-control" type='text' name="issuer" value="<%=(issuer == null) ? "" : issuer%>">
                 </div>
                 <div class='form-group'>
                     <label for='remark' class="control-label">Remarks about pass</label>
 
                     <br/>
-                    <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
+                    <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
                 </div>
                 <div class='form-group'>
                     <label for='obsoleteDate' class="control-label">Date discovered to be obsolete</label>
@@ -1448,12 +1448,12 @@
             <div class='form-group'>
                 <label for='issuer' class="control-label">Pass issuing agency</label>
                 <br/>
-                <input class="form-control" type='text' name="issuer" value="<%=issuer%>">
+                <input class="form-control" type='text' name="issuer" value="<%=(issuer == null) ? "" : issuer%>">
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about pass</label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3" ><%=remark%></textarea>
+                <textarea class="form-control" name="remark" rows="3" ><%=(remark == null) ? "" : remark%></textarea>
             </div>
             <div class='form-group'>
                 <label for='obsoleteDate' class="control-label">Date discovered to be obsolete</label>

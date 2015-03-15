@@ -596,6 +596,11 @@ public class processAddProblemComplement extends HttpServlet {
 
                 if (errorMsg.equals("")) {
                     if (idStr==null) {
+                        //for associate
+                        if(lawFirmLawyer == null && lawFirmRem == null){
+                            lawFirmLawyer = "";
+                            lawFirmRem = "";
+                        }
                         //create object
                         ProblemLawyer problemLawyer = new ProblemLawyer(workerFinNum, jobKey, problemKey,
                                 lawFirmDate,lawFirmName, lawFirmNameMore,lawFirmLawyer, lawFirmRem);
@@ -1550,6 +1555,12 @@ public class processAddProblemComplement extends HttpServlet {
 
                 if (errorMsg.equals("")) {
                     if (idStr==null) {
+                        
+                        //for associate
+                        if(hospitalDoctor == null && hospitalRemark == null){
+                            hospitalDoctor = "";
+                            hospitalRemark = "";
+                        }
 
                         //create object
                         ProblemHospital hospital = new ProblemHospital(workerFinNum, jobKey, problemKey,

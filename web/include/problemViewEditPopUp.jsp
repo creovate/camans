@@ -3264,12 +3264,12 @@
             <div class='form-group'>
                 <label for='r2rPostApptNotes' class="control-label">Post-appointment notes</label>
                 <br/>
-                <textarea class="form-control" name="r2rPostApptNotes" rows="3"><%=post%></textarea>
+                <textarea class="form-control" name="r2rPostApptNotes" rows="3"><%=(post == null) ? "" : post%></textarea>
             </div>
             <div class='form-group'>
                 <label for='r2rFeedback' class="control-label">Feedback</label>
                 <br/>
-                <textarea class="form-control" name="r2rFeedback" rows="3"><%=feedback%></textarea>
+                <textarea class="form-control" name="r2rFeedback" rows="3"><%=(feedback == null) ? "" : feedback%></textarea>
             </div>
             <div class='form-group'>
                 <label for='r2rMed' class="control-label">Medical cost of this appt(S$)</label>
@@ -3337,12 +3337,12 @@
         <div class='form-group'>
             <label for='r2rPostApptNotes' class="control-label">Post-appointment notes</label>
             <br/>
-            <textarea class="form-control" name="r2rPostApptNotes" rows="3"><%=post%></textarea>
+            <textarea class="form-control" name="r2rPostApptNotes" rows="3"><%=(post == null) ? "" : post%></textarea>
         </div>
         <div class='form-group'>
             <label for='r2rFeedback' class="control-label">Feedback</label>
             <br/>
-            <textarea class="form-control" name="r2rFeedback" rows="3"><%=feedback%></textarea>
+            <textarea class="form-control" name="r2rFeedback" rows="3"><%=(feedback == null) ? "" : feedback%></textarea>
         </div>
         <div class='form-group'>
             <label for='r2rMed' class="control-label">Medical cost of this appt(S$)</label>
@@ -3660,7 +3660,7 @@
             <div class='form-group'>
                 <label for='milestoneNCRem' class="control-label">Remarks re milestone reached</label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3"><%=ncRem%></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=(ncRem==null) ? "": ncRem%></textarea>
             </div>
         </fieldset>
         <div class="form-group btn_group pull-right">
@@ -3709,7 +3709,7 @@
         <div class='form-group'>
             <label for='milestoneNCRem' class="control-label">Remarks re milestone reached</label>
             <br/>
-            <textarea class="form-control" name="remark" rows="3"><%=ncRem%></textarea>
+            <textarea class="form-control" name="remark" rows="3"><%=(ncRem== null ) ? "" : ncRem%></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="ncmilestone"/>
@@ -3911,17 +3911,17 @@
             <div class='form-group'>
                 <label for='ttrEmployerName' class="control-label">Name of TJS or new employer</label>
                 <br/>
-                <input class="form-control" type='text' name="ttrEmployerName" value="<%=employerName%>">
+                <input class="form-control" type='text' name="ttrEmployerName" value="<%=(employerName == null) ? "" : employerName%>">
             </div>
             <div class='form-group'>
                 <label for='ttrJob' class="control-label">Description of TJS or new job </label>
                 <br/>
-                <textarea class="form-control" name="ttrJob" rows="3"><%=job%></textarea>
+                <textarea class="form-control" name="ttrJob" rows="3"><%=(job == null) ? "" : job %></textarea>
             </div>
             <div class='form-group'>
                 <label for='remark' class="control-label">Remarks about transfer, TJS or repatriation</label>
                 <br/>
-                <textarea class="form-control" name="ttrremark" rows="3"><%=ttrRem%></textarea>
+                <textarea class="form-control" name="ttrremark" rows="3"><%=(ttrRem == null) ? "" : ttrRem%></textarea>
             </div>
         </fieldset>
         <div class="form-group btn_group pull-right">
@@ -3977,17 +3977,17 @@
         <div class='form-group'>
             <label for='ttrEmployerName' class="control-label">Name of TJS or new employer</label>
             <br/>
-            <input class="form-control" type='text' name="ttrEmployerName" value="<%=employerName%>">
+            <input class="form-control" type='text' name="ttrEmployerName" value="<%=(employerName == null) ? "" : employerName%>">
         </div>
         <div class='form-group'>
             <label for='ttrJob' class="control-label">Description of TJS or new job </label>
             <br/>
-            <textarea class="form-control" name="ttrJob" rows="3"><%=job%></textarea>
+            <textarea class="form-control" name="ttrJob" rows="3"><%=(job == null) ? "" : job%></textarea>
         </div>
         <div class='form-group'>
             <label for='remark' class="control-label">Remarks about transfer, TJS or repatriation</label>
             <br/>
-            <textarea class="form-control" name="ttrremark" rows="3"><%=ttrRem%></textarea>
+            <textarea class="form-control" name="ttrremark" rows="3"><%=(ttrRem == null) ? "" : ttrRem%></textarea>
         </div>
         <input type="hidden" name="workerFinNum" value="<%=worker_fin%>"/>
         <input type="hidden" name="complementName" value="ttr"/>
@@ -4157,7 +4157,7 @@
             </fieldset>
 
             <div class="form-group btn_group pull-right">
-                <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#leadcaseworker_pop_up", "problem", "Add A New Lead Caseworker");'>Edit</button>
+                <button type='button' class="btn btn-blue modal_btn" onclick='editComplement("#leadcaseworker_pop_up", "problem", "Edit Lead Caseworker");'>Edit</button>
                 <!--<button type='button' class='btn btn-blue modal_btn' onclick='add("#leadcaseworker_pop_up", "problem");'>Add</button>-->                  
                 <button type='button' class="btn cancel_btn">Cancel</button>
             </div>

@@ -4,6 +4,10 @@
  */
 package camans.dao;
 
+import au.com.bytecode.opencsv.CSVWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +23,8 @@ import java.util.logging.Logger;
  */
 public class ReportDAO {
 
-    public static int[][] retrieveNationalityWorkpass(java.util.Date start, java.util.Date end) {
+    public static String[][] retrieveNationalityWorkpass(java.util.Date start, java.util.Date end) {
+        String[][] returnDataArr = null;
         int[][] nationalityWorkpassArr = null;
         ArrayList<ArrayList<String>> nationalityWorkpassList = new ArrayList<ArrayList<String>>();
 
@@ -60,6 +65,7 @@ public class ReportDAO {
 
             //create 2d array
             nationalityWorkpassArr = new int[nationalityList.size()][workPassList.size()];
+            returnDataArr = new String[nationalityList.size() + 1][workPassList.size() + 1];
 
             //get the queried list
             sql = "select nationality, Workpass_type from tbl_worker "
@@ -93,13 +99,13 @@ public class ReportDAO {
                 if (queriedNationality.length() > 0 && queriedWorkpass.length() > 0) {
                     nationalityLoop:
                     for (int j = 0; j < nationalityList.size(); j++) {
-                        
+
                         String nationality = nationalityList.get(j);
-                        
+
                         //check whether the nationality is matched
                         //loop workpass only if the nationality matches
                         if (nationality.equals(queriedNationality)) {
-                            
+
                             //loop workpass
                             for (int k = 0; k < workPassList.size(); k++) {
                                 String workpass = workPassList.get(k);
@@ -116,13 +122,53 @@ public class ReportDAO {
                 }
             }
             //System.out.println(nationalityWorkpassArr);
-            
+            //adding headers
+            for (int i = 1; i <= workPassList.size(); i++) {
+                returnDataArr[0][i] = workPassList.get(i - 1);
+            }
+            returnDataArr[0][0] = "";
+            if (nationalityWorkpassArr != null) {
+                for (int i = 1; i <= nationalityList.size(); i++) {
+                    String nationality = nationalityList.get(i - 1);
+                    returnDataArr[i][0] = nationality;
+                    for (int j = 1; j <= workPassList.size(); j++) {
+                        int data = nationalityWorkpassArr[i-1][j-1];
+
+                        returnDataArr[i][j] = data + "";
+
+
+                    }
+
+                }
+            }
+
         } catch (SQLException ex) {
             handleSQLException(ex, sql);
         } finally {
             ConnectionManager.close(conn, pstmt, rs);
         }
-        return nationalityWorkpassArr;
+        return returnDataArr;
+    }
+
+    public static void generateCSVFile(String outputFile, java.util.Date startDate, java.util.Date endDate) {
+        // before we open the file check to see if it already exists
+        boolean alreadyExists = new File(outputFile).exists();
+
+        try {
+            // use FileWriter constructor that specifies open for appending
+            CSVWriter writer = new CSVWriter(new FileWriter(outputFile,false));
+
+            // get data
+            String[][] data = retrieveNationalityWorkpass(startDate, endDate);
+            for (int i = 0; i < data.length; i++) {
+                String[] dataRow = data[i];
+                writer.writeNext(dataRow);
+            }
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
