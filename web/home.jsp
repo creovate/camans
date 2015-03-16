@@ -11,6 +11,13 @@
 <%@ include file="protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    User userLogin = (User) request.getSession().getAttribute("userLogin");
+    String role = userLogin.getRole();
+    boolean isAssociate = false;
+    if(role.equalsIgnoreCase("Associate")){
+        isAssociate = true;
+    }
+    
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
     ArrayList<String> nationalityList = DropdownDAO.retrieveAllDropdownListOfNationalities();
     ArrayList<String> passTypeList = DropdownDAO.retrieveAllDropdownListOfWorkpassType();
@@ -20,7 +27,7 @@
     ArrayList<Worker> searchWorkers = (ArrayList<Worker>) request.getSession().getAttribute("searchWorkers");
     request.getSession().removeAttribute("searchWorkers");
     
-    User userLogin = (User) request.getSession().getAttribute("userLogin");
+    
     String finIn = (String) request.getSession().getAttribute("fin");
     String workerNameIn = (String) request.getSession().getAttribute("workerIn");
     String genderIn = (String) request.getSession().getAttribute("gender");
@@ -56,6 +63,8 @@
     request.getSession().removeAttribute("end");
     request.getSession().removeAttribute("leadCase");
     request.getSession().removeAttribute("auxCase");
+    
+    
     
 %>
 <!DOCTYPE html>
@@ -99,6 +108,9 @@
         
         <script>
             $(document).ready(function(){
+                if(<%=isAssociate%>){
+                    window.location = "associate/home.jsp";
+    }
                 var isMobile = {
                     Android: function() {
                         return navigator.userAgent.match(/Android/i);

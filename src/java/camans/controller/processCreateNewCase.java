@@ -578,7 +578,7 @@ public class processCreateNewCase extends HttpServlet {
                         if (hospitalNameMore != null && !hospitalNameMore.equals("") && hospitalNameMore.length() > 50) {
                             err += "Explain if above is other cannot be longer than 50 characters,";
                         }
-                        if (err.equals("")) {
+                        if (err.equals("") && (!hospitalName.equals("") || !hospitalNameMore.equals(""))) {
 
                             //create object
                             ProblemHospital hospital = new ProblemHospital(worker.getFinNumber(), problem.getJobKey(), problem.getProbKey(), worker.getRegistrationDate(), hospitalName, hospitalNameMore, "", "");
@@ -609,7 +609,7 @@ public class processCreateNewCase extends HttpServlet {
                             err += "Explain if above is other cannot be longer than 50 characters,";
                         }
 
-                        if (err.equals("")) {
+                        if (err.equals("") && (!lawFirmName.equals("") || !lawFirmNameMore.equals(""))) {
                             //create object
                             ProblemLawyer problemLawyer = new ProblemLawyer(worker.getFinNumber(), problem.getJobKey(), problem.getProbKey(), worker.getRegistrationDate(), lawFirmName, lawFirmNameMore, "", "");
 
