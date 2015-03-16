@@ -166,7 +166,7 @@ public class processFile extends HttpServlet {
                 }
                 //log to audit
                 UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), workerFinNum + "", 
-                        workerFinNum, "Added", auditChange + " has been " + action + "ed for worker " + workerFinNum + ".");
+                        workerFinNum, "Added", auditChange + " has been added for worker " + workerFinNum + ".");
 
                 UserAuditLogDAO.addUserAuditLog(userAuditLog);  
                 request.getSession().setAttribute("successAttachMsg", success);
@@ -203,8 +203,9 @@ public class processFile extends HttpServlet {
                             request.getSession().setAttribute("successAttachMsg", success);
                             //log to audit
                             auditChange = workerAttachment.toString2();
+                            
                             UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), workerFinNum + "", 
-                            workerFinNum, "Deleted", "Attachment: " + auditChange);
+                        workerFinNum, "Added", auditChange + " has been deleted from worker " + workerFinNum + ".");
                             UserAuditLogDAO.addUserAuditLog(userAuditLog);
                             
                             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
@@ -260,9 +261,10 @@ public class processFile extends HttpServlet {
                             }
                             //log to audit
                             auditChange = workerAttachment.toString2();
+                            
                             UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), workerFinNum + "", 
-                            workerFinNum, "Modified", "Attachment: " + auditChange);
-
+                        workerFinNum, "Modified", auditChange + " has been renamed for worker " + workerFinNum + ".");
+                            
                             UserAuditLogDAO.addUserAuditLog(userAuditLog);
                             response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
                         } else { //file rename processing error

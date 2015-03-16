@@ -2333,7 +2333,7 @@
                                                     %>
                                                     <tr class="other_workhistory moreObjs">
                                                         <td><%=historyHow%></td>
-                                                        <td><%=(historyArrDate == null) ? "-" : sdf.format(historyArrDate)%></td>                        
+                                                        <td><%=(historyArrDate == null) ? "-" : historyArrDate%></td>                        
                                                         <td><%=historyFirstJob%></td>
                                                         <td><%=historyArrYear%></td>
 
@@ -2355,7 +2355,7 @@
                                                     %>
                                                     <tr>
                                                         <td><%=historyHow%></td>
-                                                        <td><%=(historyArrDate == null) ? "" : historyArrDate%></td>                                       
+                                                        <td><%=(historyArrDate == null) ? "-" : historyArrDate%></td>                                       
                                                         <td><%=historyFirstJob%></td>
                                                         <td><%=historyArrYear%></td>
 
@@ -2719,7 +2719,7 @@
 
                                                                             <td class="tbl-20-col"><a style="color: black" data-target="#leadcaseworker_pop_up"  data-class="problem"  
                                                                                                       data-value='leadcaseworker' data-leadcaseworker='<%=icwid%>' href="" 
-                                                                                                      data-toggle="modal" data-action="viewedit"  data-title="View Lead Caseworker"  class="edit_btn pop_up_open">
+                                                                                                      data-toggle="modal" data-action="viewedit" data-title="View Lead Caseworker" class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                                 </a>
                                                                                 <% if (userLogin.getRole().equals("Administrator")) {%>
@@ -2739,9 +2739,9 @@
                                                                             <td><%=name%></td>
                                                                             <td><%=(start == null) ? "-" : sdf.format(start)%></td>
                                                                             <td><%=(end == null) ? "-" : sdf.format(end)%></td>
-                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#leadcaseworker_pop_up" data-title="View Lead Caseworker"  data-class="problem"  
+                                                                            <td class="tbl-20-col"><a style="color: black" data-target="#leadcaseworker_pop_up"  data-class="problem"  
                                                                                                       data-value='leadcaseworker' data-leadcaseworker='<%=icwid%>' href="" data-toggle="modal" 
-                                                                                                      data-action="viewedit"  class="edit_btn pop_up_open">
+                                                                                                      data-action="viewedit"  data-title="View Lead Caseworker" class="edit_btn pop_up_open">
                                                                                     <span class="glyphicon glyphicon-eye-open"></span></a>
                                                                                     <% if (userLogin.getRole().equals("Administrator")) {%>
                                                                                 &nbsp;&nbsp;&nbsp;
@@ -4678,7 +4678,7 @@
                                                                             <td><%=(date == null) ? "-" : sdf.format(date)%></td>                                                         
                                                                             <td><%=status%></td>
                                                                             <td><%=(dDate == null) ? "-" : dDate%></td>
-                                                                            <td><%=name%></td>
+                                                                            <td><%=(name == null)? "" : name%></td>
                                                                             <td class="tbl-20-col"><a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' 
                                                                                                       data-title="Add A New Transfer, TJS & Repatriation" href="" data-toggle="modal" 
                                                                                                       data-class="problem" data-action="viewedit"  class="edit_btn pop_up_open">
@@ -4701,7 +4701,7 @@
                                                                             <td><%=(date == null) ? "-" : sdf.format(date)%></td>                                                         
                                                                             <td><%=status%></td>
                                                                             <td><%=(dDate == null) ? "-" : dDate%></td>
-                                                                            <td><%=name%></td>
+                                                                            <td><%=(name == null)? "" : name%></td>
                                                                             <td class="tbl-20-col"><a style="color: black" data-target="#ttr_pop_up" data-value='ttr' data-ttr='<%=ttrId%>' 
                                                                                                       data-title="Add A New Transfer, TJS & Repatriation" href="" data-toggle="modal" 
                                                                                                       data-class="problem" data-action="viewedit"  class="edit_btn pop_up_open">

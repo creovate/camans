@@ -2139,7 +2139,7 @@
 
             <div class="form-group" id="digitalContactType_other_div">
                 <label for="nDigitalMore" class="control-label">Explain if above is 'Other'</label><br/>
-                <textarea class="form-control" name="nDigitalMore" rows="3"></textarea>
+                <input class="form-control" type='text' name="nDigitalMore">
             </div>
             <div class='form-group'>
                 <label for='nDigitalDetails' class="control-label"><span style="color: red">*</span> Email/QQ address or other details</label>
@@ -2397,7 +2397,7 @@
             <div class="form-group" id="mainLang_other_div" >
                 <label for="nLanguageMore" class="control-label">Explain if above is 'Other'</label>
                 <br/>
-                <textarea class="form-control" name="nLanguageMore" rows="3"></textarea>
+                <input class="form-control" type='text' name="nLanguageMore">
             </div>
             <div class='form-group'>
                 <label for='nEnglishStandard' class="control-label"><span style="color: red">*</span> Spoken English standard</label>
@@ -2542,7 +2542,7 @@
 
             <div class="form-group" id="passtype_other_div">
                 <label for="passtypeMore" class="control-label">Explain if above is 'Other'</label><br/>
-                <textarea class="form-control" name="npasstypeMore" rows="3"></textarea>
+                <input class="form-control" type='text' name="npasstypeMore">
             </div>
 
             <div class='form-group'>
@@ -2781,7 +2781,8 @@
             <div class='form-group' id="agentLocation_other_div" >
                 <label for='nhowMore' class="control-label">Explain if above is 'Other'</label>
                 <br/>
-                <textarea class="form-control" name="naglocationMore" rows="3"></textarea>
+                <input class="form-control" type='text' name="naglocationMore">
+                
             </div>
             <div class='form-group'>
                 <label for='naddress' class="control-label">Agent address</label>

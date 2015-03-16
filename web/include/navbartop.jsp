@@ -14,7 +14,7 @@
 %>
 <style>
     #top-navbar {
-        background: #2c3e50;
+        background: #004b6b;
         border: none;
     }
     
@@ -49,7 +49,7 @@
             <div class="navbar-header">
                 <div class="col-md-1"></div>
                 <!--<a class="navbar-brand" href="home.jsp"><img id="logo" src="img/twc_logo.png"></a>-->
-                <h4><a href="home.jsp" style="color:white; font-family: Roboto">CAMANS - Dev</a></h4>
+                <h4><a href="home.jsp" style="color:white; font-family: Roboto">CAMANS</a></h4>
             </div>
             
             <ul class="nav navbar-nav navbar-right">

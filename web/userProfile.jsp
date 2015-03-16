@@ -402,7 +402,7 @@
                                 },
                                 stringLength: {
                                     max:50,
-                                    message: 'Fullname must be less than 50 characters long.'
+                                    message: 'Fullname must not exceed 50 characters.'
                                 }
                             }
                         },
@@ -410,7 +410,7 @@
                             validators: {
                                 stringLength: {
                                     max:50,
-                                    message: 'Alias name must be less than 50 characters long.'
+                                    message: 'Alias name must not exceed 50 characters.'
                                 }
                             }
                         },
@@ -429,6 +429,10 @@
                                 regexp: {
                                     regexp: /^[\d|\-|(|)|+|\s]+$/, 
                                     message: 'Phone No can contain space, - , () , + and digits only.'
+                                },
+                                stringLength: {
+                                    max:20,
+                                    message: 'Phone number must not exceed 20 characters.'
                                 }
                             }
                         }

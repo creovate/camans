@@ -3660,7 +3660,7 @@
             <div class='form-group'>
                 <label for='milestoneNCRem' class="control-label">Remarks re milestone reached</label>
                 <br/>
-                <textarea class="form-control" name="remark" rows="3"><%=(ncRem==null) ? "": ncRem%></textarea>
+                <textarea class="form-control" name="remark" rows="3"><%=(ncRem== null ) ? "" : ncRem%></textarea>
             </div>
         </fieldset>
         <div class="form-group btn_group pull-right">

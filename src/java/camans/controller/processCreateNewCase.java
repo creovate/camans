@@ -542,11 +542,7 @@ public class processCreateNewCase extends HttpServlet {
                         }
                         if (err.equals("")) {
                             //create object
-                            if (injuryDateStr.equals("")) {
-                                java.util.Date tmp = new java.util.Date();
-                                injuryDate = new java.sql.Date(tmp.getTime());
-                            }
-                            if (!injuryBodyPart.equals("") && injuryDate != null) {
+                            if (!injuryBodyPart.equals("") || injuryDate != null) {
                                 ProblemInjury injury = new ProblemInjury(worker.getFinNumber(), problem.getJobKey(),
                                         problem.getProbKey(), injuryDate, "", "", "", injuryBodyPart, "", "", "", "", "", "");
                                 //add to db
@@ -579,15 +575,18 @@ public class processCreateNewCase extends HttpServlet {
                             err += "Explain if above is other cannot be longer than 50 characters,";
                         }
                         if (err.equals("")) {
+                            
+                            if (!hospitalName.equals("")) {
+                                //create object
+                                ProblemHospital hospital = new ProblemHospital(worker.getFinNumber(), problem.getJobKey(), 
+                                        problem.getProbKey(), worker.getRegistrationDate(), hospitalName, hospitalNameMore, "", "");
 
-                            //create object
-                            ProblemHospital hospital = new ProblemHospital(worker.getFinNumber(), problem.getJobKey(), problem.getProbKey(), worker.getRegistrationDate(), hospitalName, hospitalNameMore, "", "");
+                                //add into db
+                                ProblemComplementsDAO.addProblemHospital(hospital);
 
-                            //add into db
-                            ProblemComplementsDAO.addProblemHospital(hospital);
-
-                            //success display
-                            success = "Hospital Providing Treatment has been successfully added!";
+                                //success display
+                                success = "Hospital Providing Treatment has been successfully added!";
+                            }
                         }
                     } //pass
 
@@ -598,8 +597,7 @@ public class processCreateNewCase extends HttpServlet {
                         lawFirmName = request.getParameter("nlawyerFirm");
                         lawFirmNameMore = request.getParameter("nlawyerFirmMore");
                     }
-//                    String lawFirmName = request.getParameter("nlawyerFirm");
-//                    String lawFirmNameMore = request.getParameter("nlawyerFirmMore");
+
                     if (lawFirmName != null && lawFirmNameMore != null) {
                         if (!lawFirmName.equals("") && lawFirmName.length() > 30) {
                             err += "Law Firm Name cannot be longer than 30 characters,";
@@ -610,23 +608,24 @@ public class processCreateNewCase extends HttpServlet {
                         }
 
                         if (err.equals("")) {
-                            //create object
-                            ProblemLawyer problemLawyer = new ProblemLawyer(worker.getFinNumber(), problem.getJobKey(), problem.getProbKey(), worker.getRegistrationDate(), lawFirmName, lawFirmNameMore, "", "");
+                            if (!lawFirmName.equals("")) {
+                                //create object
+                                ProblemLawyer problemLawyer = new ProblemLawyer(worker.getFinNumber(), problem.getJobKey(), problem.getProbKey(), 
+                                        worker.getRegistrationDate(), lawFirmName, lawFirmNameMore, "", "");
 
-                            //add to db
-                            ProblemComplementsDAO.addProblemLawyer(problemLawyer);
-                            //success display
-                            success = "Lawyer has been successfully added!";
-
-
+                                //add to db
+                                ProblemComplementsDAO.addProblemLawyer(problemLawyer);
+                                //success display
+                                success = "Lawyer has been successfully added!";
+                            }
                         }
                     }
-                    //===============================================//
-                    //     End of Associate complements
-                    //===============================================//
                     request.getSession().setAttribute("workerFin", worker.getFinNumber());
                     response.sendRedirect("associate/issueBenefit.jsp");
                 }
+                //===============================================//
+                //     End of Associate complements
+                //===============================================//
             } else { //validation fail
                 request.getSession().setAttribute("errorMsg", err);
                 if (isAssociate != null) {
