@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Case Summary Report" pageWidth="595" pageHeight="1042" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ed1f73cf-a18f-4b3f-ae15-acd4cd3fa426">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Case Summary Report" pageWidth="595" pageHeight="1042" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ed1f73cf-a18f-4b3f-ae15-acd4cd3fa426">
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="start" class="java.util.Date"/>
@@ -42,41 +42,41 @@ GROUP BY Chief_problem
 	<title>
 		<band height="65">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="72" backcolor="#006699" uuid="fc0cce57-0a6a-47e2-a26c-9a3253591e60"/>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="-20" y="-20" width="595" height="72" backcolor="#006699" uuid="fc0cce57-0a6a-47e2-a26c-9a3253591e60"/>
 				<staticText>
-					<reportElement x="20" y="0" width="328" height="43" forecolor="#FFFFFF" uuid="27eb4177-e4e2-4aef-a551-40be9ed3c871"/>
+					<reportElement stretchType="RelativeToBandHeight" x="20" y="0" width="575" height="43" forecolor="#FFFFFF" uuid="27eb4177-e4e2-4aef-a551-40be9ed3c871"/>
 					<textElement>
-						<font size="30" isBold="true"/>
+						<font size="28" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Case Summary Report]]></text>
 				</staticText>
-				<textField>
-					<reportElement x="465" y="40" width="56" height="20" forecolor="#FFFFFF" uuid="c291ff76-c05d-47f3-b30e-c8803c4a36a0"/>
-					<textElement textAlignment="Right">
-						<font size="14" isBold="false"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement stretchType="RelativeToBandHeight" x="396" y="45" width="88" height="20" forecolor="#FFFFFF" uuid="c291ff76-c05d-47f3-b30e-c8803c4a36a0"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$P{start}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MMM-yyyy").format($P{start})]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="413" y="39" width="51" height="20" forecolor="#FFFFFF" uuid="c8953b77-70f0-401c-87c9-4fa93f284ba4"/>
-					<textElement textAlignment="Right">
-						<font size="14" isBold="false"/>
+					<reportElement stretchType="RelativeToBandHeight" x="347" y="45" width="49" height="20" forecolor="#FFFFFF" uuid="c8953b77-70f0-401c-87c9-4fa93f284ba4"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Period:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="541" y="40" width="53" height="20" forecolor="#FFFFFF" uuid="17bd3f2d-9699-4761-bc5e-7f941a33bb0d"/>
+					<reportElement stretchType="RelativeToBandHeight" x="501" y="46" width="94" height="19" forecolor="#FFFFFF" uuid="17bd3f2d-9699-4761-bc5e-7f941a33bb0d"/>
 					<textElement>
-						<font size="14" isBold="false"/>
+						<font size="12" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$P{end}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MMM-yyyy").format($P{end})]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="523" y="40" width="15" height="20" forecolor="#FFFFFF" uuid="92c993f4-a7c3-4254-9929-c7874fadd870"/>
+					<reportElement stretchType="RelativeToBandHeight" x="484" y="45" width="17" height="20" forecolor="#FFFFFF" uuid="92c993f4-a7c3-4254-9929-c7874fadd870"/>
 					<textElement textAlignment="Center">
-						<font size="14" isBold="false"/>
+						<font size="12" isBold="false"/>
 					</textElement>
-					<text><![CDATA[-]]></text>
+					<text><![CDATA[to]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -90,109 +90,100 @@ GROUP BY Chief_problem
 				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="959e6e5c-5187-4c77-b37f-e28a346276eb"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0c827815-b112-4562-ba89-dbdf02472730"/>
+				<reportElement mode="Opaque" x="-20" y="0" width="256" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0c827815-b112-4562-ba89-dbdf02472730"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Problem Type]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="138" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a742d849-ae1f-4951-8326-a6a73eae9f04"/>
+				<reportElement mode="Opaque" x="236" y="0" width="115" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a742d849-ae1f-4951-8326-a6a73eae9f04"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Male]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="78d21b3a-0dfb-46c6-8e15-96200493e37f"/>
+				<reportElement mode="Opaque" x="351" y="0" width="113" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="78d21b3a-0dfb-46c6-8e15-96200493e37f"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Female]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="414" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="356a4d96-4c3e-4cd5-b9c7-f1f7339550de"/>
+				<reportElement mode="Opaque" x="464" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="356a4d96-4c3e-4cd5-b9c7-f1f7339550de"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="ae3e2663-4871-4478-a78a-b43099589879"/>
-			</line>
+		<band height="15">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="138" height="20" uuid="03a90469-9993-4673-90a3-c05f38955ea7"/>
-				<textElement>
-					<font size="14"/>
+				<reportElement x="-1" y="0" width="237" height="15" uuid="03a90469-9993-4673-90a3-c05f38955ea7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ProblemType}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="138" y="0" width="138" height="20" uuid="3204fa15-536b-4e35-85fe-5d50726f948a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14"/>
+				<reportElement x="466" y="0" width="113" height="15" uuid="a2908655-13a7-4ac2-93cc-93e2c6ce695d"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Male}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="276" y="0" width="138" height="20" uuid="cc1f81a7-5433-4efa-89a9-915579716bf8"/>
+				<reportElement x="351" y="0" width="115" height="15" uuid="cc1f81a7-5433-4efa-89a9-915579716bf8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14"/>
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Female}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="414" y="0" width="138" height="20" uuid="a2908655-13a7-4ac2-93cc-93e2c6ce695d"/>
-				<textElement textAlignment="Center">
-					<font size="14"/>
+				<reportElement x="236" y="0" width="116" height="15" uuid="3204fa15-536b-4e35-85fe-5d50726f948a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Male}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band/>
-	</columnFooter>
-	<pageFooter>
-		<band height="1"/>
-	</pageFooter>
 	<summary>
-		<band height="20">
+		<band height="18">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="ae3e2663-4871-4478-a78a-b43099589879"/>
+				<reportElement positionType="FixRelativeToBottom" x="-19" y="0" width="595" height="1" uuid="ae3e2663-4871-4478-a78a-b43099589879"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="138" y="0" width="138" height="20" uuid="3204fa15-536b-4e35-85fe-5d50726f948a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{totalMale}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="276" y="0" width="138" height="20" uuid="cc1f81a7-5433-4efa-89a9-915579716bf8"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{totalFemale}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="414" y="0" width="138" height="20" uuid="a2908655-13a7-4ac2-93cc-93e2c6ce695d"/>
+				<reportElement x="466" y="0" width="109" height="18" uuid="a2908655-13a7-4ac2-93cc-93e2c6ce695d"/>
 				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{totalAll}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="0" width="138" height="20" uuid="76f88428-6655-4214-9679-e11edcdfeff9"/>
-				<textElement>
-					<font size="14" isBold="true"/>
+				<reportElement x="-1" y="0" width="237" height="18" uuid="76f88428-6655-4214-9679-e11edcdfeff9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total]]></text>
 			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="352" y="0" width="114" height="18" uuid="cc1f81a7-5433-4efa-89a9-915579716bf8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalFemale}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="236" y="0" width="116" height="18" uuid="3204fa15-536b-4e35-85fe-5d50726f948a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalMale}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
