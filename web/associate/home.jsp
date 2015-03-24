@@ -6,13 +6,7 @@
 <%@ include file="../protect.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-    String successMsg = (String) request.getSession().getAttribute("successMsg");
-    request.getSession().removeAttribute("successMsg");
 
-    String errorMsg = (String) request.getSession().getAttribute("errorMsg");
-    request.getSession().removeAttribute("errorMsg");
-%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -30,6 +24,7 @@
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/jquery-ui-1.9.2.custom.js"></script>
         <script src="../js/jquery.validate.js"></script>
+        <script src="../js/bootstrap-session-timeout.min.js"></script> 
         <!------------->
 
         <!--tab icon-->
@@ -92,6 +87,7 @@
                         }
                     }
                 });
+
             });
         </script>
 
@@ -101,26 +97,6 @@
         <jsp:include page="navbar.jsp"/>
         <!-- End of Nav Bar-->
 
-        <% if (successMsg != null) {
-        if (!successMsg.equals("")) {%>
-
-        <div class="alert alert-info col-xs-offset-1 col-xs-10" role="alert">
-            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
-            <%=successMsg%>
-        </div>
-
-        <% }
-            }
-            if (errorMsg != null) {
-                if (!errorMsg.equals("")) {%>
-
-        <div class="alert alert-danger col-xs-offset-1 col-xs-10" role="alert">
-            <a style="cursor:pointer" class="close" data-dismiss="alert">&times;</a>
-            <%=errorMsg%>
-        </div>
-
-        <% }
-            }%>
         <!-- Search Box -->
 
         <div id="searchBox" class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
@@ -147,11 +123,11 @@
             <div class='row'>
                 <div class="col-xs-4 col-md-3 menu_icon text-center">
                     <a href="benefection.jsp?beneCategory=Food&action=History"><img class="img-responsive center-block" src="../img/meal.png" id="folderImg"/></a>
-                    <label style="font-size: small;">Meal Cards</label>
+                    <label style="font-size: small;">Food</label>
                 </div>
                 <div class="col-xs-4 col-md-offset-1 col-md-3 menu_icon text-center">
                     <a href="benefection.jsp?beneCategory=Transport&action=History"><img class="img-responsive center-block" src="../img/farego.png" id="folderImg"/></a>
-                    <label style="font-size: small;">FareGo</label>
+                    <label style="font-size: small;">Transport</label>
                 </div>
                 <div class="col-xs-4 col-md-offset-1 col-md-3 menu_icon text-center">
                     <a href="benefection.jsp?beneCategory=Medical&action=History"><img class="img-responsive center-block" src="../img/med.png" id="folderImg"/></a>
@@ -161,8 +137,8 @@
             <!-- Second Row -->
             <div class="row">
                 <div class="col-xs-4 col-md-3 menu_icon text-center">
-                    <a href="benefection.jsp?beneCategory=Roof&action=viewHistory"><img class="img-responsive center-block" src="../img/shelter.png" id="folderImg"/></a>
-                    <label style="font-size: small;">Roof</label>
+                    <a href="benefection.jsp?beneCategory=Shelter&action=viewHistory"><img class="img-responsive center-block" src="../img/shelter.png" id="folderImg"/></a>
+                    <label style="font-size: small;">Shelter</label>
                 </div>
                 <div class="col-xs-4 col-md-offset-1 col-md-4 menu_icon text-center">
                     <a href="benefection.jsp?beneCategory=r2r&action=viewHistory"><img class="img-responsive center-block" src="../img/r2r.png" id="folderImg"/></a>

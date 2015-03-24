@@ -97,6 +97,10 @@
                 z-index: 999;
                 top: 18vh;
             }
+            .btn-grey{
+                background : #999999;
+                color: white;
+            }
         </style>
         <script>
             $(document).ready(function() {
@@ -512,7 +516,7 @@
 
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn' onclick="goBack();">Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp btn-grey' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -582,7 +586,7 @@
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp btn-grey btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -647,7 +651,7 @@
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp btn-grey btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -712,7 +716,7 @@
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp btn-grey btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -797,7 +801,7 @@
                 <input type="hidden" name="complementName" value="wica"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp btn-grey btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -863,7 +867,7 @@
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp btn-grey btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -935,7 +939,7 @@
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp btn-grey btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%
@@ -1000,7 +1004,7 @@
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue modal_btn ">Refer</button>
-                    <button type='button' class='btn modal_btn cancel_btn' onclick="goBack();">Cancel</button>
+                    <button type='button' class='btn modal_btn btn-grey' onclick="goBack();">Cancel</button>
 
                 </div>
             </form>
@@ -1049,7 +1053,7 @@
                     </div><br/><br/>
                 </div>
                 <div class='form-group col-md-12 col-sm-12 col-xs-12'>
-                    <label for='r2rDept' class="col-xs-4 col-sm-5 col-md-5 control-label">Department/doctor:</label>
+                    <label for='r2rDept' class="col-xs-4 col-sm-5 col-md-5 control-label">Department/ doctor:</label>
                     <div class="col-xs-8 col-sm-7 col-md-7">
                         <input class="form-control input-sm" type='text' name="nr2rDept">
                     </div><br/><br/>
@@ -1086,7 +1090,7 @@
                 <input type="hidden" name="associate" value="associate"/>
                 <div class="form-group btn_group pull-right">
                     <button type='submit' class="btn btn-blue  modal_btn add_comp btn-sm">Save</button>
-                    <button type='button' class='btn modal_btn add_comp cancel_btn btn-sm' onclick="goBack();">Cancel</button>
+                    <button type='button' class='btn modal_btn add_comp btn-grey btn-sm' onclick="goBack();">Cancel</button>
                 </div>
             </form>
             <%

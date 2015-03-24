@@ -90,6 +90,10 @@
                 z-index: 999;
                 top: 18vh;
             }
+            .btn-grey{
+                background : #999999;
+                color: white;
+            }
         </style>
         <script>
             $(document).ready(function() {
@@ -279,13 +283,13 @@
 
                 %>
             </table>
-            <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack();">Back</button>
+            <button type='button' class='btn edit_comp btn-grey input-sm pull-right' style="margin-right: 5%;" onclick="goBack();">Back</button>
         </div>
         <%
         } else {
         %>
         <label style="color:grey; padding: 2%;">There is no R2R record for this case yet.</label>
-        <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack();">Back</button>
+        <button type='button' class='btn edit_comp btn-grey input-sm pull-right' style="margin-right: 5%;" onclick="goBack();">Back</button>
         <%                            }
         } else if (action != null && action.equals("viewEdit")) {
             Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFin);
@@ -408,7 +412,7 @@
                     <input type="hidden" name="associate" value="associate"/>
                     <div class="form-group btn_group pull-right">
                         <button type='submit' class="btn btn-blue modal_btn edit_comp ">Save</button>
-                        <button type='button' class='btn edit_comp cancel_btn' onclick="goBack()">Cancel</button>
+                        <button type='button' class='btn edit_comp btn-grey' onclick="goBack()">Cancel</button>
                     </div>
                 </form>
             </div>

@@ -197,6 +197,10 @@
                 z-index: 999;
                 top: 18vh;
             }
+            .btn-grey{
+                background : #999999;
+                color: white;
+            }
         </style>
         <script>
             function goBack() {
@@ -310,7 +314,7 @@
                 }
             %>
                     //alert("med");
-                } else if (selected === "Roof") {
+                } else if (selected === "Shelter") {
             <%               for (int i = 0; i < roofDropdownList.size(); i++) {
                     String ddlItem = roofDropdownList.get(i);
             %>
@@ -579,7 +583,7 @@
                         <select class="form-control input-sm" id="benefitCategory" name="benefitCategory" onchange="toggleBenefitDDL();">
                             <option value="Food">Food</option>
                             <option value="Medical & Karunya">Medical</option>
-                            <option value="Roof">Shelter</option>
+                            <option value="Shelter">Shelter</option>
                             <option value="Transport">Transport</option>
                             <option value="Other">Other</option>
                         </select>
@@ -642,9 +646,9 @@
                 <input type="hidden" name="associate" value="associate"/>
                 <input type="hidden" name="action" value="add"/>
 
-                <div class="form-group btn_group pull-right">
-                    <button type='submit' class="btn btn-blue modal_btn">Save</button>
-                    <button type='button' onclick="window.location = 'home.jsp'" class='btn modal_btn cancel_btn'>Cancel</button>
+                <div class="form-group btn_group pull-right" style="margin-right: 2%">
+                    <button type='submit' class="btn btn-blue modal_btn input-sm">Save</button>
+                    <button type='button' onclick="window.location = 'home.jsp'" class='btn btn-grey input-sm' >Cancel</button>
                 </div>
 
             </form>

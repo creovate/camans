@@ -83,6 +83,10 @@
                 z-index: 999;
                 top: 18vh;
             }
+            .btn-grey{
+                background : #999999;
+                color: white;
+            }
         </style>
         <script>
             $(document).ready(function() {
@@ -555,8 +559,8 @@
                 </div>
 
                 <div class="pull-right">
-                    <button  type='submit' class="btn btn-blue">Submit</button>
-                    <button type='' class="btn cancel_btn" style="bottom: 0" onclick="goBack();">Cancel</button>
+                    <button  type='submit' class="btn btn-blue btn-sm">Submit</button>
+                    <button type='' class="btn btn-grey btn-sm" style="bottom: 0" onclick="goBack();">Cancel</button>
                 </div>
                 <br/>
             </form> 
@@ -749,7 +753,7 @@
                 <br/><br/>
                 <div class="pull-right">
                     <button  type='submit' class="btn btn-blue input-sm">Submit</button>
-                    <button type='' class="btn cancel_btn input-sm" style="bottom: 0" onclick="goBack();">Cancel</button>
+                    <button type='' class="btn btn-grey input-sm" style="bottom: 0" onclick="goBack();">Cancel</button>
                 </div>
                 <br/><br/>
             </form> 
@@ -881,7 +885,7 @@
                 <br/><br/>
                 <div class="pull-right">
                     <button  type='submit' class="btn btn-blue">Submit</button>
-                    <button type='' class="btn cancel_btn" style="bottom: 0" onclick="goBack();">Cancel</button>
+                    <button type='' class="btn btn-grey" style="bottom: 0" onclick="goBack();">Cancel</button>
                 </div>
                 <br/><br/>
             </form> 

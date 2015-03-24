@@ -232,6 +232,16 @@
         request.getSession().removeAttribute("errorProbCompMsg");
     }
 
+    //case referral
+    if (successMsg == null || successMsg.equals("")) {
+        successMsg = (String) request.getSession().getAttribute("successMsg");
+        request.getSession().removeAttribute("successMsg");
+    }
+
+    if (errorMsg == null || errorMsg.equals("")) {
+        errorMsg = (String) request.getSession().getAttribute("errorMsg");
+        request.getSession().removeAttribute("errorMsg");
+    }
 
 %>
 <html>
@@ -278,6 +288,10 @@
                 position: absolute;
                 z-index: 999;
                 top: 18vh;
+            }
+            .btn-grey{
+                background : #999999;
+                color: white;
             }
         </style>
         <script>
@@ -339,7 +353,7 @@
             %>
 
             <table class="table table-borderless col-md-12 col-xs-12">
-                <tr><td colspan = "2" class="lbl"><h5>Worker Profile</h5></td></tr>
+                <tr style="background:#B2C9D2"><td colspan = "2" class="lbl"><h5>Worker Profile</h5></td></tr>
                 <tr>
                     <td class="lbl">Registration date:</td>
                     <td class="value"><%=(regDate == null) ? "" : sdf.format(regDate)%></td>
@@ -375,7 +389,7 @@
                         <a href="addComplements.jsp?workerFin=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>&complement=sgPhone&action=add" title='Add phone number'><span class='glyphicon glyphicon-plus pull-right'></span></a>
                     </td>
                 </tr>
-                <tr><td colspan = "2" class="lbl"><h5>Job Profile</h5></td></tr>
+                <tr style="background:#B2C9D2"><td colspan = "2" class="lbl"><h5>Job Profile</h5></td></tr>
                 <tr>
                     <td class="lbl">Employer:</td>
                     <td class="value"><%=employer%></td>
@@ -403,7 +417,7 @@
                     <td class="lbl">Current pass issue date:</td>
                     <td class="value"><%=(currentPassIsDate == null) ? "" : sdf.format(currentPassIsDate)%></td>
                 </tr>
-                <tr><tr><td colspan = "2" class="lbl"><h5>Problem Profile</h5></td></tr></tr>
+                <tr style="background:#B2C9D2"><td colspan = "2" class="lbl"><h5>Problem Profile</h5></td></tr>
                 <tr>
                     <td class="lbl">Problem reg date:</td>
                     <td class="value"><%=(probRegDate == null) ? "" : sdf.format(probRegDate)%></td>
@@ -524,7 +538,7 @@
                     <td class="value"><%=ttrDeptDate%></td>
                 </tr>
             </table>
-            <button type='button' class='btn input-sm pull-right' style="margin-right: 5%;" onclick="window.location = 'issueBenefit.jsp?worker=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>';">Back</button>
+            <button type='button' class='btn btn-grey input-sm pull-right' onclick="window.location = 'issueBenefit.jsp?worker=<%=workerFin%>&selectedJob=<%=jobKeyStr%>&selectedProb=<%=probKeyStr%>';">Back</button>
             <div class="modal fade" id="facePicModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">

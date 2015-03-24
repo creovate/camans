@@ -52,20 +52,17 @@
 
     String categoryTitle = "";
     if (category != null) {
-        if (category.equals("Food")) {
-            categoryTitle = "Meal Card";
-        } else if (category.equals("Transport")) {
-            categoryTitle = "FareGo";
-        } else if (category.equals("Medical") || category.contains("Medical")) {
-
+        if (category.equals("Medical") || category.contains("Medical")) {
+            categoryTitle = category;
             category = "Medical & Karunya";
-            categoryTitle = "Medical & Karunya";
-        } else if (category.equals("Roof")) {
-            categoryTitle = "Roof";
-        } else if (category.equals("Other")) {
-            categoryTitle = "Other";
-        } else if (category.equals("r2r")) {
+            
+        }else if(category.equalsIgnoreCase("Shelter")){
+            categoryTitle = category;
+            category = "Roof";
+        }else if (category.equals("r2r")) {
             categoryTitle = "R2R";
+        } else {
+            categoryTitle = category;
         }
     }
 
@@ -112,6 +109,10 @@
                 position: absolute;
                 z-index: 999;
                 top: 18vh;
+            }
+            .btn-grey{
+                background : #999999;
+                color: white;
             }
         </style>
         <script>
@@ -344,13 +345,13 @@
                 %>
 
             </table>
-                <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick="goBack();">Back</button>
+            <button type='button' class='btn edit_comp btn-grey input-sm pull-right' style="margin-right: 5%;" onclick="goBack();">Back</button>
         </div>
         <%
         } else {
         %>
         <label style="color:grey; padding: 2%;">There is no record of <%=categoryTitle%> benefit for this case yet.</label>
-        <button type='button' class='btn edit_comp cancel_btn input-sm pull-right' style="margin-right: 5%;" onclick='goBack();'>Back</button>
+        <button type='button' class='btn edit_comp btn-grey input-sm pull-right' style="margin-right: 5%;" onclick='goBack();'>Back</button>
         <%                }
         } else {
         %>
@@ -373,7 +374,7 @@
                 <input type='hidden' name="category" value="<%=category%>"/>
                 <div class="form-group pull-right">
                     <button type="submit" class="btn btn-blue btn-sm">List</button>
-                    <button type="button" class="btn btn-sm" onclick="window.location='home.jsp';">Cancel</button>
+                    <button type="button" class="btn btn-sm btn-grey" onclick="window.location = 'home.jsp';">Cancel</button>
                 </div>
             </form>
             <hr>
