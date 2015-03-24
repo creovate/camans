@@ -21,6 +21,10 @@ import java.util.logging.Logger;
  */
 public class CaseManagementDAO {
 
+    /**
+     * returns a list of problems that are not assigned to any specialist
+     * @return an arraylist of problems
+     */
     public static ArrayList<Problem> retrieveUnassignedCases() {
         ArrayList<Problem> problemList = new ArrayList<Problem>();
         Connection conn = null;
@@ -49,6 +53,11 @@ public class CaseManagementDAO {
         return problemList;
     }
 
+    /**
+     * Assign problem to user.
+     * @param user User object who is taking the case
+     * @param problem Problem object to assign
+     */
     public static void assignCase(User userlogin, Problem problem) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -124,6 +133,11 @@ public class CaseManagementDAO {
         }
     }
 
+    /**
+     * returns a list of problems that are assigned to user in the past month
+     * @param username username of specialist 
+     * @return an arraylist of problems
+     */
     public static ArrayList<Problem> retrieveRecentAssignedCases(String userloginName) {
         ArrayList<Problem> problemList = new ArrayList<Problem>();
         Connection conn = null;
@@ -151,6 +165,10 @@ public class CaseManagementDAO {
         return problemList;
     }
 
+    /**
+     * terminate existing lead case worker
+     * @param probKey problem key
+     */
     public static void terminateLeadCaseWorker(int probKey) {
         Problem problem_temp = ProblemDAO.retrieveProblemByProblemId(probKey);
         String workerFin = problem_temp.getWorkerFinNum();
@@ -171,10 +189,21 @@ public class CaseManagementDAO {
                 leadCaseWorker = new ProblemLeadCaseWorker(lcw_id, workerFin, jobKey, probKey, lcwName, lcwStart, lcwEnd);
                 ProblemComplementsDAO.updateProblemLeadCaseWorker(leadCaseWorker);
             }
+            problem_temp.setcurrentLeadCaseWorker(null);
+            ProblemDAO.updateProblem(problem_temp);
 
         }
     }
 
+    /**
+     * refer a problem to specialists
+     * @param workerFin FIN number of worker
+     * @param jobKey Job Key
+     * @param probKey Problem Key
+     * @param referredDate date of referral
+     * @param referredBy username of referral
+     * @param description referral notes
+     */
     public static void referCase(String workerFin, int jobKey, int probKey, Date referredDate, String referredBy, String description) {
         Connection conn = null;
         PreparedStatement stmt = null;

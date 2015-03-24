@@ -114,7 +114,7 @@ public class ProblemDAO {
         try {
             conn = ConnectionManager.getConnection();
             sql = "UPDATE tbl_problem SET Chief_problem_date = ?, Chief_problem = ? ,"
-                    + " Chief_problem_more = ?, Chief_problem_remarks = ? "
+                    + " Chief_problem_more = ?, Chief_problem_remarks = ?, Referred_by = ?, Referred_to = ?, Referred_date = ?, Description = ? "
                     + "WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
             
             stmt = conn.prepareStatement(sql);
@@ -123,9 +123,13 @@ public class ProblemDAO {
             stmt.setString(2, problem.getProblem());
             stmt.setString(3, problem.getProblemMore());
             stmt.setString(4, problem.getProblemRemark());
-            stmt.setString(5, problem.getWorkerFinNum());
-            stmt.setInt(6, problem.getJobKey());
-            stmt.setInt(7, problem.getProbKey());
+            stmt.setString(5, problem.getReferredBy());
+            stmt.setString(6, problem.getcurrentLeadCaseWorker());
+            stmt.setDate(7, problem.getReferredDate());
+            stmt.setString(8, problem.getReferralDescription());
+            stmt.setString(9, problem.getWorkerFinNum());
+            stmt.setInt(10, problem.getJobKey());
+            stmt.setInt(11, problem.getProbKey());
             
             stmt.executeUpdate();
         } catch (SQLException ex) {
