@@ -114,7 +114,8 @@ public class ProblemDAO {
         try {
             conn = ConnectionManager.getConnection();
             sql = "UPDATE tbl_problem SET Chief_problem_date = ?, Chief_problem = ? ,"
-                    + " Chief_problem_more = ?, Chief_problem_remarks = ?, Referred_by = ?, Referred_to = ?, Referred_date = ?, Description = ? "
+                    + " Chief_problem_more = ?, Chief_problem_remarks = ?, Referred_by = ?, "
+                    + "Referred_to = ?, Referred_date = ?, Description = ? "
                     + "WHERE Worker_FIN_number = ? AND Job_key = ? AND Prob_key = ?";
             
             stmt = conn.prepareStatement(sql);

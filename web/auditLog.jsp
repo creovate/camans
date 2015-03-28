@@ -66,7 +66,7 @@
                     <div class="panel-body">-->
                         <form class="form-inline" id="searchForm" method="post" action="searchAuditLog.do">
                             <div class="row">
-                                <div class="form-group col-sm-8">
+                                <div class="form-group col-sm-10">
                                     <label>Start Date</label>
                                     <input type="text" id="reg_StartDate_In" name="startDate" 
                                            class="form-control startDate" data-date-format="dd-mm-yyyy" 

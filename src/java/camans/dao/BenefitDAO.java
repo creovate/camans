@@ -34,7 +34,7 @@ public class BenefitDAO {
         try {
             conn = ConnectionManager.getConnection();
             sql = "SELECT ID FROM tbl_benefit where Worker_FIN_number = ? AND Job_key =? "
-                    + "AND Prob_key=? AND Bene_type=? order by Bene_date desc";
+                    + "AND Prob_key=? AND Bene_type=? order by Bene_date ASC";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, problem.getWorkerFinNum());
             pstmt.setInt(2, problem.getJobKey());

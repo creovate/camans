@@ -62,10 +62,11 @@ public class processFile extends HttpServlet {
             //==========================================//
             String attachId = request.getParameter("attachId");
             String action = request.getParameter("action");
-                   workerFinNum = request.getParameter("workerFin");
+            workerFinNum = request.getParameter("workerFin");
             String newFileName = request.getParameter("nFileName");
             User userLogin = (User) request.getSession().getAttribute("userLogin");
             String auditChange = "";
+            request.getSession().setAttribute("worker",workerFinNum);
             
             //==========================================//
             //          Success & Error Display
@@ -170,7 +171,9 @@ public class processFile extends HttpServlet {
 
                 UserAuditLogDAO.addUserAuditLog(userAuditLog);  
                 request.getSession().setAttribute("successAttachMsg", success);
-                response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
+                //response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
+                request.getSession().setAttribute("worker",workerFinNum);
+                response.sendRedirect("viewWorker.jsp");
                 //==========================================//
                 //          End of Process File Upload 
                 //==========================================//
@@ -208,7 +211,8 @@ public class processFile extends HttpServlet {
                         workerFinNum, "Added", auditChange + " has been deleted from worker " + workerFinNum + ".");
                             UserAuditLogDAO.addUserAuditLog(userAuditLog);
                             
-                            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
+                            //response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
+                            response.sendRedirect("viewWorker.jsp");
                         } else { //file delete processing error
                             //do not proceed & show error page
                             //log the errors to logs file
@@ -266,7 +270,8 @@ public class processFile extends HttpServlet {
                         workerFinNum, "Modified", auditChange + " has been renamed for worker " + workerFinNum + ".");
                             
                             UserAuditLogDAO.addUserAuditLog(userAuditLog);
-                            response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
+                            response.sendRedirect("viewWorker.jsp");
+                            //response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum +"#attachment_complement");
                         } else { //file rename processing error
                             //do not proceed & show error page
                             //log the errors to logs file  
@@ -349,8 +354,9 @@ public class processFile extends HttpServlet {
                     } else {
                         error = "Selected File does not exist. Please check with admin.";
                         request.getSession().setAttribute("errAttachMsg", error);
-                        response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum 
-                                +"#attachment_complement");
+                        response.sendRedirect("viewWorker.jsp");
+                        //response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum 
+                        //        +"#attachment_complement");
                     }
                 } else if (action.equals("profilepic")) {
                     //==========================================//
@@ -363,8 +369,9 @@ public class processFile extends HttpServlet {
                     WorkerDAO.updateWorkerPhotoPath(worker);
                     success = workerAttachment.getDocumentName() + " has been set as profile picture.";
                     request.getSession().setAttribute("successAttachMsg", success);
-                    response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum 
-                                +"#attachment_complement");
+                    response.sendRedirect("viewWorker.jsp");
+                    //response.sendRedirect("viewWorker.jsp?worker=" + workerFinNum 
+                    //            +"#attachment_complement");
                 }
             }
         } catch (FileUploadException ex) {
