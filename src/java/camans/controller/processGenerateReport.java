@@ -7,6 +7,7 @@ package camans.controller;
 //import camans.dao.BeanFactory;
 import java.io.FileWriter;
 import au.com.bytecode.opencsv.CSVWriter;
+import camans.dao.BeanFactory;
 import camans.dao.ConnectionManager;
 import camans.dao.ReportDAO;
 import camans.utility.DataExport;
@@ -43,6 +44,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.data.JRMapArrayDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.JRCsvExporter;
+import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
@@ -125,6 +127,7 @@ public class processGenerateReport extends HttpServlet {
                 exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
 
                 exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
+                exporter.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, Boolean.TRUE);
                 exporter.exportReport();
 
                 response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
@@ -142,6 +145,7 @@ public class processGenerateReport extends HttpServlet {
                 exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
 
                 exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
+                exporter.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, Boolean.TRUE);
                 exporter.exportReport();
 
                 response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
@@ -158,41 +162,87 @@ public class processGenerateReport extends HttpServlet {
                 exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
 
                 exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
+                exporter.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, Boolean.TRUE);
                 exporter.exportReport();
 
                 response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
                 response.setHeader("Content-Disposition", "attachment;filename=ClientsByNationalityAndGender.xlsx");
             } else if (reportType.equals("Clients by nationality and work pass") && start != null && end != null) {
+                //get the file path
+                filePath = getServletContext().getRealPath("/reports/NationalityWorkpass.jasper");
 
-                //Zip file Name
-                String fileName = "nationalityWorkpass.csv";
-                //folder to store the out data
-                String folderName = "dataOut";
-                //retrieve filePath of the app build folder
-                filePath = getServletContext().getRealPath("/");
-                // Creating folder to store the zip file
-                File file = new File(filePath + File.separator + folderName);
-                if (!file.exists()) {
-                    file.mkdir();
-                } //data file
-                // get the file Path
-                filePath = file.getAbsolutePath() + File.separator;
-                // preparing for force download
-                response.setContentType("text/csv");
-                response.setHeader("Content-Disposition", "attachment; fileName=" + fileName);
+                BeanFactory factory = new BeanFactory(start, end);
 
+                java.util.Collection beanList = factory.generateNationalityWorkpassBean();
 
+                JRBeanCollectionDataSource beanColDataSource =
+                        new JRBeanCollectionDataSource(beanList);
 
-                //==========================================//
-                //    Exporting data in db to csv file
-                //==========================================//
-                //loop through and export data to data folder
+                //generate report
+                JasperPrint print = JasperFillManager.fillReport(filePath, map, beanColDataSource);
 
-                ReportDAO.generateCSVFile(filePath + fileName, start, end);
+                JRXlsxExporter exporter = new JRXlsxExporter();
+                exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
 
+                exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
+                exporter.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, Boolean.TRUE);
+                exporter.exportReport();
 
-            } else if (reportType.equals("Clients by problem and work pass")) {
+                response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                response.setHeader("Content-Disposition", "attachment;filename=ClientsByNationalityAndWorkpass.xlsx");
+//                JRCsvExporter csvExporter = new JRCsvExporter();
+//                csvExporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+//
+//                csvExporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
+//                csvExporter.exportReport();
+//                response.setContentType("text/csv");
+//                response.setHeader("Content-Disposition", "attachment;filename=ClientsByNationalityAndGender.csv");
+
             } else if (reportType.equals("Clients by problem and nationality")) {
+                //get the file path
+                filePath = getServletContext().getRealPath("/reports/ProblemNationality.jasper");
+
+                BeanFactory factory = new BeanFactory(start, end);
+
+                java.util.Collection beanList = factory.generateProblemNationalityBean();
+
+                JRBeanCollectionDataSource beanColDataSource =
+                        new JRBeanCollectionDataSource(beanList);
+
+                //generate report
+                JasperPrint print = JasperFillManager.fillReport(filePath, map, beanColDataSource);
+
+                JRXlsxExporter exporter = new JRXlsxExporter();
+                exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+
+                exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
+                exporter.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, Boolean.TRUE);
+                exporter.exportReport();
+
+                response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                response.setHeader("Content-Disposition", "attachment;filename=ClientsByProblemAndNationality.xlsx");
+            } else if (reportType.equals("Clients by problem and work pass")) {
+                //get the file path
+                filePath = getServletContext().getRealPath("/reports/ProblemWorkpass.jasper");
+
+                BeanFactory factory = new BeanFactory(start, end);
+
+                java.util.Collection beanList = factory.generateProblemWorkpassBean();
+
+                JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(beanList);
+
+                //generate report
+                JasperPrint print = JasperFillManager.fillReport(filePath, map, beanColDataSource);
+
+                JRXlsxExporter exporter = new JRXlsxExporter();
+                exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+
+                exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, os);
+                exporter.setParameter(JRXlsExporterParameter.IS_ONE_PAGE_PER_SHEET, Boolean.TRUE);
+                exporter.exportReport();
+
+                response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                response.setHeader("Content-Disposition", "attachment;filename=ClientsByProblemAndWprkpass.xlsx");
             }
 
             response.getOutputStream().write(os.toByteArray());

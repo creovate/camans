@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Clients by Nationality and Gender" pageWidth="1095" pageHeight="2042" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="ed1f73cf-a18f-4b3f-ae15-acd4cd3fa426">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="128"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="start" class="java.util.Date"/>
+	<parameter name="end" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nationality" class="java.lang.String">
+		<fieldDescription><![CDATA[nationality]]></fieldDescription>
+	</field>
+	<field name="numOfCases" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numOfCases]]></fieldDescription>
+	</field>
+	<field name="workpass" class="java.lang.String">
+		<fieldDescription><![CDATA[workpass]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="43">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="63" backcolor="#006699" uuid="fc0cce57-0a6a-47e2-a26c-9a3253591e60"/>
+				<staticText>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="1" width="595" height="43" forecolor="#FFFFFF" uuid="0bd2ca3e-ecf8-4c52-a146-3c014e457075"/>
+					<box leftPadding="5"/>
+					<textElement>
+						<font size="26" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Clients by Nationality & Workpass]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Transparent" x="0" y="44" width="595" height="19" forecolor="#FFFFFF" uuid="c7bada8b-e26a-479d-8b3c-752fabf63098"/>
+					<box rightPadding="3"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Period : " + new SimpleDateFormat("dd-MMM-yyyy").format($P{start}) + " to " + new SimpleDateFormat("dd-MMM-yyyy").format($P{end})]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<summary>
+		<band height="21">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="-20" y="0" width="595" height="1" uuid="ae3e2663-4871-4478-a78a-b43099589879"/>
+			</line>
+			<crosstab>
+				<reportElement x="-19" y="0" width="1074" height="21" uuid="268baa1f-7b5b-4716-af6a-dc755ac471cb"/>
+				<rowGroup name="nationality" width="70" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{nationality}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="70" height="25" uuid="23262f71-f78d-4c22-b5ab-72fa83762cce"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{nationality}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="70" height="25" forecolor="#006699" backcolor="#E6E6E6" uuid="e60da26a-f558-4570-8811-297d6308dc27"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[Total nationality]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="workpass" height="30" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{workpass}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="77" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="ab70923a-38ca-4baa-a445-878073319774"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{workpass}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="60" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="71ecb7ac-071d-4e17-8965-3cd10d2fa913"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="numOfCasesMeasure" class="java.lang.Integer" calculation="Sum">
+					<measureExpression><![CDATA[$F{numOfCases}]]></measureExpression>
+				</measure>
+				<crosstabCell width="77" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="#,##0">
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="77" height="25" uuid="699c6a07-84e1-471d-a786-5160e9fcf215"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{numOfCasesMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="77" height="25" rowTotalGroup="nationality">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="#,##0">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="77" height="25" uuid="7c32deca-1dd7-4c0d-a242-576d6f003cf7"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{numOfCasesMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="60" columnTotalGroup="workpass">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="#,##0">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="60" height="25" uuid="7da2fdc0-826d-40c5-8e29-1eb66de5239a"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{numOfCasesMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="60" rowTotalGroup="nationality" columnTotalGroup="workpass">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="#,##0">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="60" height="25" uuid="86535b27-9311-4a75-93a1-f235db5d00a0"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{numOfCasesMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

@@ -7,13 +7,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-User userLogin = (User) session.getAttribute("userLogin");
+    User userLogin = (User) session.getAttribute("userLogin");
 
-String userRole = userLogin.getRole();
-boolean isSpecialist = false;
-if(userRole.equals("Specialist") || userRole.equals("Associate")){
-    isSpecialist = true;
-}
+    String userRole = userLogin.getRole();
+    boolean isSpecialist = false;
+    if (userRole.equals("Specialist") || userRole.equals("Associate")) {
+        isSpecialist = true;
+    }
 %>
 <html>
     <head>
@@ -43,28 +43,28 @@ if(userRole.equals("Specialist") || userRole.equals("Associate")){
             }
         </style>
         <script>
-            $(document).ready(function(){
+            $(document).ready(function() {
                 //----validation for start date and end date----//
-            $(".startDate").datepicker({
-                dateFormat: 'dd-M-yy',
-                changeMonth: true,
-                changeYear: true,
-                onClose: function(selectedDate) {
-                    $(".endDate").datepicker("option", "minDate", selectedDate);
-                }
-            });
-            $(".endDate").datepicker({
-                dateFormat: 'dd-M-yy',
-                changeMonth: true,
-                changeYear: true,
-                onClose: function(selectedDate) {
+                $(".startDate").datepicker({
+                    dateFormat: 'dd-M-yy',
+                    changeMonth: true,
+                    changeYear: true,
+                    onClose: function(selectedDate) {
+                        $(".endDate").datepicker("option", "minDate", selectedDate);
+                    }
+                });
+                $(".endDate").datepicker({
+                    dateFormat: 'dd-M-yy',
+                    changeMonth: true,
+                    changeYear: true,
+                    onClose: function(selectedDate) {
 
-                    $(".startDate").datepicker("option", "maxDate", selectedDate);
-                }
-            });
+                        $(".startDate").datepicker("option", "maxDate", selectedDate);
+                    }
+                });
 
             });
-            
+
 
         </script>
     </head>
@@ -87,22 +87,21 @@ if(userRole.equals("Specialist") || userRole.equals("Associate")){
                             <option value ="Case Summary">Case Summary</option>
                             <option value ="Benefit Summary">Benefit Summary</option>
                             <%
-                            if(!isSpecialist){
-                                %>
+                                if (!isSpecialist) {
+                            %>
                             <option value ="Clients by nationality and gender">Clients by nationality and gender</option>
-                            <!--
-<option value ="Clients by nationality and work pass">Clients by nationality and work pass</option>
 
-<option value ="Clients by problem and work pass">Clients by problem and work pass</option>
-<option value ="Clients by problem and nationality">Clients by problem and nationality</option>
--->
-                            <%
-                            }
+                            <option value ="Clients by nationality and work pass">Clients by nationality and work pass</option>
+
+                            <option value ="Clients by problem and work pass">Clients by problem and work pass</option>
+                            <option value ="Clients by problem and nationality">Clients by problem and nationality</option>
+
+                            <%                                }
                             %>
                         </select>
                     </div>
                 </div><br/><br/>
-                
+
                 <div class="form-group col-md-12">
                     <label class="col-md-1 text-right" for="start">From: </label>
                     <div class="col-md-3">
@@ -115,11 +114,11 @@ if(userRole.equals("Specialist") || userRole.equals("Associate")){
                     <button id="generateSubmitbtn" type="submit" class="btn btn-blue pull-right">Generate Report</button>
 
                 </div>
-                
+
             </form>
         </div>
         <script>
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $.sessionTimeout({
                     message: 'Your session will be expired in five minutes.',
                     keepAliveUrl: 'keep-alive.html',
