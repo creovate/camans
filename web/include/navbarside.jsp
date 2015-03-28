@@ -56,14 +56,9 @@
                     <li id='home_tab' class=''><a class='' href="home.jsp" role="tab" active><span class="glyphicon glyphicon-search"></span>&nbsp;Search Worker</a></li>
                     <li id='createCase_tab'><a href="createCase.jsp" role="tab"><span class="glyphicon glyphicon-plus"></span>&nbsp;Create Worker</a></li>
                     <li id='report_tab'><a href="report.jsp" role="tab" ><span class="glyphicon glyphicon-book"></span>&nbsp;Reports</a></li>
-                    <%
-                        if (_user.getRole().equals("Manager")) {
-                    %>
-                    <li id="importexport_tab"><a href="importexport.jsp" tabindex="-1"><span class="glyphicon glyphicon-upload"></span>&nbsp;Import/Export Data</a></li>
-                    <%  }%>
-                    <%
-                        if (_user.getRole().equals("Administrator")) {
-                    %>
+                        <%
+                            if (_user.getRole().equals("Administrator")) {
+                        %>
 
                     <li id="admin_tab"><a href="admin.jsp" tabindex="-1"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Admin Dashboard</a></li>
                     <li id="usermgmt_tab"><a href="userManagement.jsp" tabindex="-1"><span class="glyphicon glyphicon-user"></span>&nbsp;User Management</a></li>
@@ -71,7 +66,8 @@
                     <li id="ddsetting_tab"><a href="dropdownSetting.jsp" tabindex="-1"><span class="glyphicon glyphicon-random"></span>&nbsp;Dropdown Settings</a></li>
                     <li id="auditLog_tab"><a href="auditLog.jsp" tabindex="-1"><span class="glyphicon glyphicon-list"></span>&nbsp;Audit Log  </a></li>
 
-                    <%  }%>
+                    <%                            }
+                    %>
                 </ul>
 
         </nav>

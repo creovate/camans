@@ -692,7 +692,7 @@
                                 },
                                 stringLength: {
                                     max:50,
-                                    message: 'Fullname must not exceed 50 characters.'
+                                    message: 'Fullname must be less than 50 characters long.'
                                 }
                             }
                         },
@@ -700,7 +700,7 @@
                             validators: {
                                 stringLength: {
                                     max:50,
-                                    message: 'Alias name must not exeed 50 characters.'
+                                    message: 'Alias name must be less than 50 characters long.'
                                 }
                             }
                         },
@@ -786,10 +786,6 @@
                                 regexp: {
                                     regexp: /^[\d|\-|(|)|+|\s]+$/, 
                                     message: 'Phone No can contain space, - , () , + and digits only.'
-                                },
-                                stringLength: {
-                                    max:20,
-                                    message: 'Phone No name must not exceed 20 characters.'
                                 }
                             }
                         },
@@ -846,7 +842,7 @@
                             validators: {
                                 stringLength: {
                                     max:50,
-                                    message: 'Alias name must not exceed 50 characters.'
+                                    message: 'Alias name must be less than 50 characters long.'
                                 }
                             }
                         },
@@ -865,10 +861,6 @@
                                 regexp: {
                                     regexp: /^[\d|\-|(|)|+|\s]+$/, 
                                     message: 'Phone No can contain space, - , () , + and digits only.'
-                                },
-                                stringLength: {
-                                    max:20,
-                                    message: 'Phone No must not exceed 20 characters.'
                                 }
                             }
                         },

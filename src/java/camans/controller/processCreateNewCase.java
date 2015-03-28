@@ -455,6 +455,7 @@ public class processCreateNewCase extends HttpServlet {
                     //validate and update phNum
                     if (phNum != null && !phNum.equals("")) {
                         if (!phNum.matches("^[\\d\\(\\-\\s\\)+]+$")) {
+                            //phone number is invalid
                             err += "invalid phone number, ";
                         }
 
@@ -474,7 +475,6 @@ public class processCreateNewCase extends HttpServlet {
                         currPassNo = request.getParameter("npassno");
                         isDateStr = request.getParameter("nisdate");
                     }
-
                     java.sql.Date isDate = null;
                     if (currPassType != null && currPassNo != null && isDateStr != null) {
                         if (currPassType.equals("")) {
@@ -521,7 +521,6 @@ public class processCreateNewCase extends HttpServlet {
                         injuryDateStr = request.getParameter("injuryDate");
                         injuryBodyPart = request.getParameter("bodyPart");
                     }
-
                     java.sql.Date injuryDate = null;
 
                     if (injuryDateStr != null && injuryBodyPart != null) {
@@ -560,9 +559,6 @@ public class processCreateNewCase extends HttpServlet {
                         hospitalName = request.getParameter("nhospName");
                         hospitalNameMore = request.getParameter("nhospNameMore");
                     }
-//                    String hospitalName = request.getParameter("nhospName");
-//                    String hospitalNameMore = request.getParameter("nhospNameMore");
-
                     if (hospitalName != null && hospitalNameMore != null) {
                         if (!hospitalName.equals("") && hospitalName.length() > 30) {
                             err += "Hosptial Name cannot be longer than 30 characters,";
@@ -571,21 +567,19 @@ public class processCreateNewCase extends HttpServlet {
                         if (hospitalNameMore != null && !hospitalNameMore.equals("") && hospitalNameMore.length() > 50) {
                             err += "Explain if above is other cannot be longer than 50 characters,";
                         }
-                        if (err.equals("")) {
-                            
-                            if (!hospitalName.equals("")) {
-                                //create object
-                                ProblemHospital hospital = new ProblemHospital(worker.getFinNumber(), problem.getJobKey(), 
-                                        problem.getProbKey(), worker.getRegistrationDate(), hospitalName, hospitalNameMore, "", "");
 
-                                //add into db
-                                ProblemComplementsDAO.addProblemHospital(hospital);
+                        if (!hospitalName.equals("")) {
+                            //create object
+                            ProblemHospital hospital = new ProblemHospital(worker.getFinNumber(), problem.getJobKey(),
+                                    problem.getProbKey(), worker.getRegistrationDate(), hospitalName, hospitalNameMore, "", "");
 
-                                //success display
-                                success = "Hospital Providing Treatment has been successfully added!";
-                            }
+                            //add into db
+                            ProblemComplementsDAO.addProblemHospital(hospital);
+
+                            //success display
+                            success = "Hospital Providing Treatment has been successfully added!";
                         }
-                    } //pass
+                    }
 
 
 
@@ -604,19 +598,19 @@ public class processCreateNewCase extends HttpServlet {
                             err += "Explain if above is other cannot be longer than 50 characters,";
                         }
 
-                        if (err.equals("")) {
-                            if (!lawFirmName.equals("")) {
-                                //create object
-                                ProblemLawyer problemLawyer = new ProblemLawyer(worker.getFinNumber(), problem.getJobKey(), problem.getProbKey(), 
-                                        worker.getRegistrationDate(), lawFirmName, lawFirmNameMore, "", "");
 
-                                //add to db
-                                ProblemComplementsDAO.addProblemLawyer(problemLawyer);
-                                //success display
-                                success = "Lawyer has been successfully added!";
-                            }
+                        if (!lawFirmName.equals("")) {
+                            //create object
+                            ProblemLawyer problemLawyer = new ProblemLawyer(worker.getFinNumber(), problem.getJobKey(), problem.getProbKey(),
+                                    worker.getRegistrationDate(), lawFirmName, lawFirmNameMore, "", "");
+
+                            //add to db
+                            ProblemComplementsDAO.addProblemLawyer(problemLawyer);
+                            //success display
+                            success = "Lawyer has been successfully added!";
                         }
                     }
+
                     request.getSession().setAttribute("workerFin", worker.getFinNumber());
                     response.sendRedirect("associate/issueBenefit.jsp");
                 }
@@ -631,7 +625,7 @@ public class processCreateNewCase extends HttpServlet {
                 }
                 response.sendRedirect("createCase.jsp");
             }
-
+            // association validation ends here
             if (finNumber == null) {
                 //Redirect Back to CreateNewCase Successful Page
                 success = "success";

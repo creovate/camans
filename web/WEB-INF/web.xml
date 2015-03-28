@@ -75,10 +75,6 @@
         <servlet-name>processBenefitRetrieve</servlet-name>
         <servlet-class>camans.controller.processBenefitRetrieve</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>processLogin</servlet-name>
-        <servlet-class>camans.controller.authenticate.do</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>processAddWorkerComplements</servlet-name>
         <url-pattern>/addWorkerComplement.do</url-pattern>
@@ -150,10 +146,6 @@
     <servlet-mapping>
         <servlet-name>processBenefitRetrieve</servlet-name>
         <url-pattern>/retrieveBenefit.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>processLogin</servlet-name>
-        <url-pattern>/authenticate.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

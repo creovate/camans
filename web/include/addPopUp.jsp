@@ -763,7 +763,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Location of workplace must not exceed 200 characters.'
+                            message: 'Key person details must not exceed 200 characters.'
                         }
                     }
                 },
@@ -2951,7 +2951,7 @@
                 <input class="form-control" type='text' name="nwhose" >
             </div>
             <div class='form-group'>
-                <label for='npersonDetails' class="control-label">Location of Workplace</label>
+                <label for='npersonDetails' class="control-label">Key persons controlling workplace & contact Details</label>
                 <br/>
                 <textarea class="form-control" name="npersonDetails"></textarea>
             </div>

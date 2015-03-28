@@ -25,27 +25,6 @@
             changeMonth: true,
             changeYear: true
         });
-        
-        //startdate & enddate 
-        $(function() {
-            $(".startDate").datepicker({
-                dateFormat: 'dd-M-yy',
-                changeMonth: true,
-                changeYear: true,
-                onClose: function(selectedDate) {
-                    $(".endDate").datepicker("option", "minDate", selectedDate);
-                }
-            });
-            $(".endDate").datepicker({
-                dateFormat: 'dd-M-yy',
-                changeMonth: true,
-                changeYear: true,
-                onClose: function(selectedDate) {
-
-                    $(".startDate").datepicker("option", "maxDate", selectedDate);
-                }
-            });
-        });
         //----disable manual input in date fields----//
         $('.dateInput').focus(function() {
             $('.dateInput').blur();
@@ -718,7 +697,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Location of workplace must not exceed 200 characters.'
+                            message: 'Key person details must not exceed 200 characters.'
                         }
                     }
                 },
@@ -804,7 +783,7 @@
                     validators: {
                         stringLength: {
                             max: 200,
-                            message: 'Location of workplace must not exceed 200 characters.'
+                            message: 'Key person details must not exceed 200 characters.'
                         }
                     }
                 },
@@ -1447,7 +1426,7 @@
                 <br/><br/>
             </div>
             <div class='form-group'>
-                <label for='isdate' class="control-label">Pass issued date</label>
+                <label for='isdate' class="control-label">Pass issue date</label>
                 <br/>
                        <input class="form-control startDate isdateToRemove col-md-9" type='text' name="isdate" style="width:90%" value="<%=(pass.getIssueDate() == null) ? ""
                         : sdf.format(pass.getIssueDate())%>">
@@ -2189,7 +2168,7 @@
                     <input class="form-control" type='text' name="name" value="<%=whose%>">
                 </div>
                 <div class='form-group'>
-                    <label for='remark' class="control-label">Location of Workplace</label>
+                    <label for='remark' class="control-label">Key persons controlling workplace & contact details</label>
                     <br/>
                     <textarea class="form-control" name="npersonDetails" ><%=(personDetails == null) ? "" : personDetails%></textarea>
                 </div>
@@ -2276,7 +2255,7 @@
                 <input class="form-control" type='text' name="whose" value="<%=whose%>">
             </div>
             <div class='form-group'>
-                <label for='personDetails' class="control-label">Location of Workplace</label>
+                <label for='personDetails' class="control-label">Key persons controlling workplace & contact details</label>
                 <br/>
                 <textarea class="form-control" name="personDetails" ><%=(personDetails == null) ? "" : personDetails%></textarea>
             </div>

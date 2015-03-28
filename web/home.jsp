@@ -368,13 +368,11 @@
                     <!-- End of search filters -->
 
                     <!-- search Results -->
-                    <div id ="pageloading"><img id="loading-image" src="images/loading.gif"/></div>
                     <div id="worker_search_result_div" class="col-md-12">
                         <!--div class="col-md-3 pull-right"> 
                             <input type="text" id="search_in_recent" placeholder="Search..." class="form-control"/>
                         </div-->
                         <!--<table class="table" id="worker_search_result">-->
-                        
                         <div class="panel panel-default">
                             <div class="panel-body">  
 
