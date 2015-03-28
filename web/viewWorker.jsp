@@ -1,3 +1,5 @@
+<%@page import="camans.utility.BenefitComparator"%>
+<%@page import="java.util.Collections"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="camans.entity.*"%>
@@ -4786,16 +4788,23 @@
                                                 </div>
                                                 <div id="foodBeneCol" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="foodbeneHead">
                                                     <div class="panel-body">
+                                                        
                                                         <%
-                                                            ArrayList<Integer> mealIds = new ArrayList<Integer>();
+                                                        
+                                                            ArrayList<Benefit> mealBenefits = new ArrayList<Benefit>();
                                                             ArrayList<String> list = DropdownDAO.retreiveAllDropdownListOfBenefits("Food");
                                                             ArrayList<Integer> ids = new ArrayList<Integer>();
                                                             for (String string : list) {
 
                                                                 ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
-                                                                mealIds.addAll(ids);
+                                                                for (int id = 0; id < ids.size(); id++) {
+                                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(ids.get(id));
+                                                                    mealBenefits.add(benefit);
+                                                                }
                                                             }
-                                                            if (mealIds != null && !mealIds.isEmpty()) {
+                                                            Collections.sort(mealBenefits, new BenefitComparator());
+                                                            if (mealBenefits != null && !mealBenefits.isEmpty()) {
+                                                                
                                                         %>
 
                                                         <table class="table table-condensed">
@@ -4807,10 +4816,10 @@
                                                                 <th class="tbl-20-col">Action</th>
                                                             </tr>
                                                             <%
-                                                                for (int i = mealIds.size() - 1; i >= 0; i--) {
-                                                                    int id = mealIds.get(i);
-                                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(id);
-                                                                    if (i < mealIds.size() - 1) {
+                                                                for (int i = mealBenefits.size() - 1; i >= 0; i--) {
+                                                                    Benefit benefit = mealBenefits.get(i);
+                                                                    
+                                                                    if (i < mealBenefits.size() - 1) {
                                                             %>
                                                             <tr class="other_foodbene moreObjs">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
@@ -4820,7 +4829,7 @@
                                                                 <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#foodbene_pop_up"  data-class="benefection" 
                                                                        data-value='foodbene' data-title='View Meal Benefection' 
-                                                                       data-foodbene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-foodbene='<%=benefit.getId()%>' href="" data-toggle="modal" 
                                                                        data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
@@ -4828,7 +4837,7 @@
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <a style="color: black" data-target="#foodbene_pop_up"  data-class="benefit" 
                                                                        data-value='foodbene'  
-                                                                       data-foodbene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-foodbene='<%=benefit.getId()%>' href="" data-toggle="modal" 
                                                                        data-action="delete" class="delete_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-trash"></span>
                                                                     </a>
@@ -4844,7 +4853,7 @@
                                                                 <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#foodbene_pop_up"  data-class="benefection" 
                                                                        data-value='foodbene' data-title='View Meal Benefection' 
-                                                                       data-foodbene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-foodbene='<%=benefit.getId()%>' href="" data-toggle="modal" 
                                                                        data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
@@ -4852,7 +4861,7 @@
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <a style="color: black" data-target="#foodbene_pop_up"  data-class="benefit" 
                                                                        data-value='foodbene'  
-                                                                       data-foodbene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-foodbene='<%=benefit.getId()%>' href="" data-toggle="modal" 
                                                                        data-action="delete" class="delete_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-trash"></span>
                                                                     </a>
@@ -4863,7 +4872,7 @@
                                                          } //for %>  
                                                         </table>
                                                             <% 
-                                                                if (mealIds.size() > 1) {
+                                                                if (mealBenefits.size() > 1) {
                                                             %>
                                                                     <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_foodbene_seemore" onclick="seemore('.other_foodbene');">See More</a>
                                                                     <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_foodbene_seemore" onclick="seemore('.other_foodbene');">View Less</a>
@@ -4871,6 +4880,7 @@
                                                                    } //if seemore
                                                           }//if
                                                         %>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -4890,15 +4900,19 @@
                                                 <div id="transpoBeneCol" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="transpoBeneHead">
                                                     <div class="panel-body">
                                                         <%
-                                                            ArrayList<Integer> transportIds = new ArrayList<Integer>();
+                                                            ArrayList<Benefit> transportBenefits = new ArrayList<Benefit>();
                                                             list = DropdownDAO.retreiveAllDropdownListOfBenefits("Transport");
                                                             ids = new ArrayList<Integer>();
                                                             for (String string : list) {
 
                                                                 ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
-                                                                transportIds.addAll(ids);
+                                                                for (int id = 0; id < ids.size(); id++) {
+                                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(ids.get(id));
+                                                                    transportBenefits.add(benefit);
+                                                                }
                                                             }
-                                                            if (transportIds != null && !transportIds.isEmpty()) {
+                                                            Collections.sort(transportBenefits, new BenefitComparator());
+                                                            if (transportBenefits != null && !transportBenefits.isEmpty()) {
 
 
                                                         %>
@@ -4911,10 +4925,9 @@
                                                                 <th class="tbl-20-col">Action</th>
                                                             </tr>
                                                             <%
-                                                                for (int i = transportIds.size() - 1; i >= 0; i--) {
-                                                                    int id = transportIds.get(i);
-                                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(id);
-                                                                    if (i < transportIds.size() - 1) {
+                                                                for (int i = transportBenefits.size() - 1; i >= 0; i--) {
+                                                                    Benefit benefit = transportBenefits.get(i);
+                                                                    if (i < transportBenefits.size() - 1) {
                                                             %>
                                                             <tr class="other_transpoBene moreObjs">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
@@ -4924,7 +4937,7 @@
                                                                 <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#transpobene_pop_up"  data-class="benefection" 
                                                                        data-value='transpobene' data-title='View Transportation Benefection' 
-                                                                       data-transpobene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-transpobene='<%=benefit.getId()%>' href="" data-toggle="modal" 
                                                                        data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
@@ -4932,7 +4945,7 @@
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <a style="color: black" data-target="#transpobene_pop_up"  data-class="benefit" 
                                                                        data-value='transpobene' 
-                                                                       data-transpobene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-transpobene='<%=benefit.getId()%>' href="" data-toggle="modal" 
                                                                        data-action="delete" class="delete_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-trash"></span>    
                                                                         <% }%>     
@@ -4947,7 +4960,7 @@
                                                                 <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#transpobene_pop_up"  data-class="benefection" 
                                                                        data-value='transpobene' data-title='View Transportation Benefection' 
-                                                                       data-transpobene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-transpobene='<%=benefit.getId()%>' href="" data-toggle="modal" 
                                                                        data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
@@ -4955,7 +4968,7 @@
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <a style="color: black" data-target="#transpobene_pop_up"  data-class="benefit" 
                                                                        data-value='transpobene' 
-                                                                       data-transpobene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-transpobene='<%=benefit.getId()%>' href="" data-toggle="modal" 
                                                                        data-action="delete" class="delete_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-trash"></span>    
                                                                         <% }%>     
@@ -4965,7 +4978,7 @@
                                                          } //for %> 
                                                         </table>
                                                            <% 
-                                                                if (transportIds.size() > 1) {
+                                                                if (transportBenefits.size() > 1) {
                                                             %>
                                                             <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_transpoBene_seemore" onclick="seemore('.other_transpoBene');">See More</a>
                                                                     <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_transpoBene_seemore" onclick="seemore('.other_transpoBene');">View Less</a>
@@ -4991,15 +5004,19 @@
                                                 <div id="mediBeneCol" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="mediBeneHead">
                                                     <div class="panel-body">
                                                         <%
-                                                            ArrayList<Integer> medicalIds = new ArrayList<Integer>();
+                                                            ArrayList<Benefit> medicalBenefits = new ArrayList<Benefit>();
                                                             list = DropdownDAO.retreiveAllDropdownListOfBenefits("Medical & Karunya");
                                                             ids = new ArrayList<Integer>();
                                                             for (String string : list) {
 
                                                                 ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
-                                                                medicalIds.addAll(ids);
+                                                                for (int id = 0; id < ids.size(); id++) {
+                                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(ids.get(id));
+                                                                    medicalBenefits.add(benefit);
+                                                                }
                                                             }
-                                                            if (medicalIds != null && !medicalIds.isEmpty()) {
+                                                            Collections.sort(medicalBenefits, new BenefitComparator());
+                                                            if (medicalBenefits != null && !medicalBenefits.isEmpty()) {
 
 
                                                         %>
@@ -5012,10 +5029,10 @@
                                                                 <th class="tbl-20-col">Action</th>
                                                             </tr>
                                                             <%
-                                                                for (int i = medicalIds.size() - 1; i >= 0; i--) {
-                                                                    int id = medicalIds.get(i);
-                                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(id);
-                                                                     if (i < medicalIds.size() - 1) {
+                                                                for (int i = medicalBenefits.size() - 1; i >= 0; i--) {
+                                                                    
+                                                                    Benefit benefit = medicalBenefits.get(i);
+                                                                     if (i < medicalBenefits.size() - 1) {
                                                             %>
                                                             <tr class="other_mediBene moreObjs">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
@@ -5025,7 +5042,7 @@
                                                                 <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#medibene_pop_up"  data-class="benefection" 
                                                                        data-value='medibene' data-title='View Medical Benefection' 
-                                                                       data-medibene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-medibene='<%=benefit.getId()%>' href="" data-toggle="modal" 
                                                                        data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
@@ -5033,7 +5050,7 @@
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <a style="color: black" data-target="#medibene_pop_up"  data-class="benefit" 
                                                                        data-value='medibene' 
-                                                                       data-medibene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-medibene='<%=benefit.getId()%>' href="" data-toggle="modal" 
                                                                        data-action="delete" class="delete_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-trash"></span>
                                                                     </a>
@@ -5050,7 +5067,7 @@
                                                                 <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#medibene_pop_up"  data-class="benefection" 
                                                                        data-value='medibene' data-title='View Medical Benefection' 
-                                                                       data-medibene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-medibene='<%=benefit.getId()%>' href="" data-toggle="modal" 
                                                                        data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
@@ -5058,7 +5075,7 @@
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <a style="color: black" data-target="#medibene_pop_up"  data-class="benefit" 
                                                                        data-value='medibene' 
-                                                                       data-medibene='<%=id%>' href="" data-toggle="modal" 
+                                                                       data-medibene='<%=benefit.getId()%>' href="" data-toggle="modal" 
                                                                        data-action="delete" class="delete_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-trash"></span>
                                                                     </a>
@@ -5072,7 +5089,7 @@
                                                             %>                                                    
                                                         </table>
                                                          <% 
-                                                                if (medicalIds.size() > 1) {
+                                                                if (medicalBenefits.size() > 1) {
                                                             %>
                                                             <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_mediBene_seemore" onclick="seemore('.other_mediBene');">See More </a>
                                                             <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_mediBene_seemore" onclick="seemore('.other_mediBene');">View Less</a>
@@ -5099,15 +5116,20 @@
                                                 <div id="roofBeneCol" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="roofBeneHead">
                                                     <div class="panel-body">
                                                         <%
-                                                            ArrayList<Integer> roofIds = new ArrayList<Integer>();
+                                                            ArrayList<Benefit> roofBenefits = new ArrayList<Benefit>();
                                                             list = DropdownDAO.retreiveAllDropdownListOfBenefits("Roof");
                                                             ids = new ArrayList<Integer>();
                                                             for (String string : list) {
 
                                                                 ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
-                                                                roofIds.addAll(ids);
+                                                                
+                                                                for (int id = 0; id < ids.size(); id++) {
+                                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(ids.get(id));
+                                                                    roofBenefits.add(benefit);
+                                                                }
                                                             }
-                                                            if (roofIds != null && !roofIds.isEmpty()) {
+                                                            Collections.sort(roofBenefits, new BenefitComparator());
+                                                            if (roofBenefits != null && !roofBenefits.isEmpty()) {
 
 
                                                         %>
@@ -5120,10 +5142,9 @@
                                                                 <th class="tbl-20-col">Action</th>
                                                             </tr>
                                                             <%
-                                                                for (int i = roofIds.size() - 1; i >= 0; i--) {
-                                                                    int id = roofIds.get(i);
-                                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(id);
-                                                                     if (i < roofIds.size() - 1) {
+                                                                for (int i = roofBenefits.size() - 1; i >= 0; i--) {
+                                                                    Benefit benefit = roofBenefits.get(i);
+                                                                     if (i < roofBenefits.size() - 1) {
                                                             %>
                                                             <tr class="other_roofBene moreObjs">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
@@ -5132,14 +5153,14 @@
                                                                 <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
                                                                 <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#roofbene_pop_up"  data-class="benefection" 
-                                                                       data-value='roofbene' data-title='View Roof Benefection' data-roofbene='<%=id%>' 
+                                                                       data-value='roofbene' data-title='View Roof Benefection' data-roofbene='<%=benefit.getId()%>' 
                                                                        href="" data-toggle="modal" data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
                                                                     <% if (userLogin.getRole().equals("Administrator")) {%>
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <a style="color: black" data-target="#roofbene_pop_up"  data-class="benefit" 
-                                                                       data-value='roofbene' data-roofbene='<%=id%>' 
+                                                                       data-value='roofbene' data-roofbene='<%=benefit.getId()%>' 
                                                                        href="" data-toggle="modal" data-action="delete" class="delete_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-trash"></span>
                                                                     </a>
@@ -5154,14 +5175,14 @@
                                                                 <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
                                                                 <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#roofbene_pop_up"  data-class="benefection" 
-                                                                       data-value='roofbene' data-title='View Roof Benefection' data-roofbene='<%=id%>' 
+                                                                       data-value='roofbene' data-title='View Roof Benefection' data-roofbene='<%=benefit.getId()%>' 
                                                                        href="" data-toggle="modal" data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
                                                                     <% if (userLogin.getRole().equals("Administrator")) {%>
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <a style="color: black" data-target="#roofbene_pop_up"  data-class="benefit" 
-                                                                       data-value='roofbene' data-roofbene='<%=id%>' 
+                                                                       data-value='roofbene' data-roofbene='<%=benefit.getId()%>' 
                                                                        href="" data-toggle="modal" data-action="delete" class="delete_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-trash"></span>
                                                                     </a>
@@ -5174,7 +5195,7 @@
                                                             %>          
                                                         </table>
                                                         <% 
-                                                                if (roofIds.size() > 1) {
+                                                                if (roofBenefits.size() > 1) {
                                                             %>
                                                             <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_roofBene_seemore" onclick="seemore('.other_roofBene');">See More</a>
                                                                     <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_roofBene_seemore" onclick="seemore('.other_roofBene');">View Less</a>
@@ -5202,15 +5223,19 @@
                                                 <div id="otherBeneCol" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="otherBeneHead">
                                                     <div class="panel-body">
                                                         <%
-                                                            ArrayList<Integer> otherIds = new ArrayList<Integer>();
+                                                            ArrayList<Benefit> otherBenefits = new ArrayList<Benefit>();
                                                             list = DropdownDAO.retreiveAllDropdownListOfBenefits("Other");
                                                             ids = new ArrayList<Integer>();
                                                             for (String string : list) {
 
                                                                 ids = BenefitDAO.retrieveBenefitsIdsOfProblem(latestProblem, string);
-                                                                otherIds.addAll(ids);
+                                                                for (int id = 0; id < ids.size(); id++) {
+                                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(ids.get(id));
+                                                                    otherBenefits.add(benefit);
+                                                                }
                                                             }
-                                                            if (otherIds != null && !otherIds.isEmpty()) {
+                                                            Collections.sort(otherBenefits, new BenefitComparator());
+                                                            if (otherBenefits != null && !otherBenefits.isEmpty()) {
 
 
                                                         %>
@@ -5223,10 +5248,10 @@
                                                                 <th class="tbl-20-col">Action</th>
                                                             </tr>
                                                             <%
-                                                                for (int i = otherIds.size() - 1; i >= 0; i--) {
-                                                                    int id = otherIds.get(i);
-                                                                    Benefit benefit = BenefitDAO.retrieveBenefitById(id);
-                                                                    if (i < otherIds.size() - 1) {
+                                                                for (int i = otherBenefits.size() - 1; i >= 0; i--) {
+                                                                    
+                                                                    Benefit benefit = otherBenefits.get(i);
+                                                                    if (i < otherBenefits.size() - 1) {
                                                             %>
                                                             <tr class="other_Bene">
                                                                 <td><%=sdf.format(benefit.getIssueDate())%></td>
@@ -5235,14 +5260,14 @@
                                                                 <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
                                                                 <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#otherbene_pop_up"  data-class="benefection" 
-                                                                       data-value='otherbene' data-title='View Benefection' data-otherbene='<%=id%>' 
+                                                                       data-value='otherbene' data-title='View Benefection' data-otherbene='<%=benefit.getId()%>' 
                                                                        href="" data-toggle="modal" data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
                                                                     <% if (userLogin.getRole().equals("Administrator")) {%>   
                                                                     &nbsp;&nbsp;&nbsp;   
                                                                     <a style="color: black" data-target="#otherbene_pop_up"  data-class="benefit" 
-                                                                       data-value='otherbene' data-otherbene='<%=id%>' 
+                                                                       data-value='otherbene' data-otherbene='<%=benefit.getId()%>' 
                                                                        href="" data-toggle="modal" data-action="delete" class="delete_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-trash"></span>
                                                                     </a> 
@@ -5257,14 +5282,14 @@
                                                                 <td><%=(benefit.getBenefitValue() == 0.0) ? "" : df.format(benefit.getBenefitValue())%></td>
                                                                 <td class="tbl-20-col">
                                                                     <a style="color: black" data-target="#otherbene_pop_up"  data-class="benefection" 
-                                                                       data-value='otherbene' data-title='View Benefection' data-otherbene='<%=id%>' 
+                                                                       data-value='otherbene' data-title='View Benefection' data-otherbene='<%=benefit.getId()%>' 
                                                                        href="" data-toggle="modal" data-action="viewedit" class="edit_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-eye-open"></span>
                                                                     </a>
                                                                     <% if (userLogin.getRole().equals("Administrator")) {%>   
                                                                     &nbsp;&nbsp;&nbsp;   
                                                                     <a style="color: black" data-target="#otherbene_pop_up"  data-class="benefit" 
-                                                                       data-value='otherbene' data-otherbene='<%=id%>' 
+                                                                       data-value='otherbene' data-otherbene='<%=benefit.getId()%>' 
                                                                        href="" data-toggle="modal" data-action="delete" class="delete_btn pop_up_open">
                                                                         <span class="glyphicon glyphicon-trash"></span>
                                                                     </a> 
@@ -5277,7 +5302,7 @@
                                                             %>
                                                         </table>
                                                          <% 
-                                                                if (otherIds.size() > 1) {
+                                                                if (otherBenefits.size() > 1) {
                                                             %>
                                                             <a style="cursor:pointer;display:none" class="text-center col-sm-12 seemore_btn other_Bene_seemore" onclick="seemore('.other_Bene');">See More</a>
                                                             <a style="cursor:pointer" class="text-center col-sm-12 seemore_btn other_Bene_seemore" onclick="seemore('.other_Bene');">View Less</a>
@@ -5324,7 +5349,7 @@
                                                 <form id="uploadAttachForm" action="fileUpload.do" method="post" enctype="multipart/form-data"> 
                                                     <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
                                                     <label>File Upload</label><br/>
-                                                    Select file to upload: <input type="file" name="fileInput"/><br/> 
+                                                    Select file to upload: <input type="file" name="fileInput" multiple="multiple"/><br/> 
                                                     <button type="submit">Upload file</button><br/><br/>
                                                 </form>
                                             </div>
@@ -5440,7 +5465,7 @@
                                             <input type="hidden" name="action" value="delete"/>
                                             <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
                                             Are you sure you want to delete this file?
-                                            <input id="InputDocName" readOnly="readOnly"></input>
+                                            <label id="InputDocName" readOnly="readOnly"></label>
                                             <!--<label id="InputDocName" name="InputDocName"></label> Try Later-->
                                         </div> <!--modal body -->
 
@@ -5580,7 +5605,9 @@
                 var div_action_val = $(this).data('action');
                 var div_title = $(this).data('title');
 
-                $("#pop_up_content").load('include/createcaseForm.jsp?workerFin=<%=workerFin%>' + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" + '&profile=' + div_id + '&action=' + div_action_val).dialog({modal: true,
+                $("#pop_up_content").load('include/createcaseForm.jsp?workerFin=<%=workerFin%>' 
+                    + "&jobkey=<%=latestJob.getJobKey()%>" + "&probkey=<%=latestProblem.getProbKey()%>" 
+                    + '&profile=' + div_id + '&action=' + div_action_val).dialog({modal: true,
                     position: ['center', 80],
                     minWidth: $(window).width() * 0.5,
                     title: div_title,
