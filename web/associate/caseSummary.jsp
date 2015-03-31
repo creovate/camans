@@ -162,7 +162,17 @@
             lawFirmMore = lawyer.getLawyerFirmMore();
         }
 
+        ArrayList<Integer> lcwList = ProblemComplementsDAO.retrieveLeadCaseWorkerIdsOfProblem(selectedProblem);
+        if(lcwList != null && lcwList.size() > 0){
+        int lcwId = lcwList.get(lcwList.size() - 1);
+        ProblemLeadCaseWorker lcwObj = ProblemComplementsDAO.retrieveProblemLeadCaseWorkerById(lcwId);
+        java.util.Date lcwEnd = lcwObj.getLeadEnd();
+        if(lcwEnd != null){
         lcw = selectedProblem.getcurrentLeadCaseWorker();
+}
+}
+
+        
 
         ArrayList<Integer> acwIdList = ProblemComplementsDAO.retrieveProblemAuxiliaryCaseWorkerIdsOfProblem(selectedProblem);
         if (acwIdList != null && acwIdList.size() > 0) {
@@ -298,8 +308,8 @@
             function goBack() {
                 window.history.back();
             }
-            $(document).ready(function() {
-                $('#facePicModal').on('show.bs.modal', function(event) {
+            $(document).ready(function () {
+                $('#facePicModal').on('show.bs.modal', function (event) {
                     var button = $(event.relatedTarget); // Button that triggered the modal
                     var photoPath = button.data('photopath'); // Extract info from data-* attributes
                     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
