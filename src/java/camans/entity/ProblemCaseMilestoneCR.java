@@ -29,16 +29,16 @@ public class ProblemCaseMilestoneCR {
     //constructor with id 
    /**
      *Constructor for ProblemCaseMilestoneCR class
-     * @param id
-     * @param workerFinNumber
-     * @param jobKey
-     * @param problemKey
-     * @param MilesCRDate
-     * @param MilesCRReached
-     * @param MilesCRReachedMore
-     * @param MilesCRCharges
-     * @param MilesCRSentence
-     * @param MilesCRRem
+     * @param id id
+     * @param workerFinNumber FIN
+     * @param jobKey job key
+     * @param problemKey problem key
+     * @param MilesCRDate critical case milestone date
+     * @param MilesCRReached critical case milestone reached
+     * @param MilesCRReachedMore other critical case milestone reached
+     * @param MilesCRCharges critical case milestone charges
+     * @param MilesCRSentence critical case milestone sentence
+     * @param MilesCRRem critical case milestone remark
      */
         public ProblemCaseMilestoneCR(int id, String workerFinNumber, int jobKey, int problemKey , 
             Date MilesCRDate, String MilesCRReached, String MilesCRReachedMore, 
@@ -59,15 +59,15 @@ public class ProblemCaseMilestoneCR {
  
     /**
      *Constructor for ProblemCaseMilestoneCR class without id
-     * @param workerFinNumber
-     * @param jobKey
-     * @param problemKey
-     * @param MilesCRDate
-     * @param MilesCRReached
-     * @param MilesCRReachedMore
-     * @param MilesCRCharges
-     * @param MilesCRSentence
-     * @param MilesCRRem
+     * @param workerFinNumber FIN
+     * @param jobKey job key
+     * @param problemKey problem key
+     * @param MilesCRDate critical case milestone date
+     * @param MilesCRReached critical case milestone reached
+     * @param MilesCRReachedMore other critical case milestone reached
+     * @param MilesCRCharges critical case milestone charges
+     * @param MilesCRSentence critical case milestone sentence
+     * @param MilesCRRem critical case milestone remark
      */
         public ProblemCaseMilestoneCR(String workerFinNumber, int jobKey, int problemKey , 
             Date MilesCRDate, String MilesCRReached, String MilesCRReachedMore, 
