@@ -23,6 +23,13 @@ public class BenefitDAO {
 
 
     /*Benefit*/
+    /**
+     * Retrieve benefits ids of specific problem and benefit type
+	 *
+	 * @param problem
+	 * @param benefit type
+     * @return an Arraylist of benefits ids of specific problem and benefit type
+     */ 
     public static ArrayList<Integer> retrieveBenefitsIdsOfProblem(Problem problem, String benefitType) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -54,7 +61,13 @@ public class BenefitDAO {
 
         return ids;
     }
-
+    /**
+     * Retrieve benefits ids of specific problem and benefit category
+	 *
+	 * @param problem
+	 * @param benefit category
+     * @return an Arraylist of benefits ids of specific problem and benefit category
+     */ 
     public static ArrayList<Integer> retrieveBenefitsIdsOfCategory(Problem problem, String benefitCategory) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -85,7 +98,14 @@ public class BenefitDAO {
 
         return ids;
     }
-    
+    /**
+     * Retrieve benefits ids of specific benefit category, start date and end date
+	 *
+	 * @param benefit category
+	 * @param start date
+	 * @param end date
+     * @return an Arraylist of benefits ids of specific benefit category, start date and end date
+     */ 
     public static ArrayList<Integer> retrieveBenefitsIdsOfCategory(String benefitCategory, java.util.Date startDateIn, java.util.Date endDateIn) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -117,7 +137,12 @@ public class BenefitDAO {
 
         return ids;
     }
-
+    /**
+     * Retrieve benefit by id
+	 *
+	 * @param id
+     * @return an benefit by id
+     */ 
     public static Benefit retrieveBenefitById(int id) {
         Benefit benefit = null;
 
@@ -159,7 +184,12 @@ public class BenefitDAO {
         }
         return benefit;
     }
-
+    /**
+     * Add benefit
+	 *
+	 * @param benefit
+     * 
+     */ 
     public static void addBenefit(Benefit benefit) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -190,7 +220,12 @@ public class BenefitDAO {
             ConnectionManager.close(conn, pstmt);
         }
     }
-
+    /**
+     * Update benefit
+	 *
+	 * @param benefit
+     *
+     */
     public static void updateBenefit(Benefit benefit) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -218,7 +253,12 @@ public class BenefitDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-
+    /**
+     * Delete benefit with id
+	 *
+	 * @param id
+     * 
+     */ 
     public static void deleteBenefit(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -236,7 +276,11 @@ public class BenefitDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-
+    /**
+     * Delete all benefits
+	 *
+	 * 
+     */
     public static void deleteAll() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -254,7 +298,13 @@ public class BenefitDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-
+    /**
+     * Handle SQL Exceptions
+	 *
+     * @param SQLException
+	 * @param sql query
+	 * @param parameters
+     */ 
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
         String msg = "Unable to access data; SQL=" + sql + "\n";
         for (String parameter : parameters) {
