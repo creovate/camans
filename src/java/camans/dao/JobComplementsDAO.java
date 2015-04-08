@@ -28,6 +28,11 @@ import java.util.logging.Logger;
 public class JobComplementsDAO {
     
     /*Job Pass Details*/
+     /**
+     * retrieve a list of job's pass details ids
+     * @param job job
+     * @return ids of job's pass details 
+     */
     public static ArrayList<Integer> retrievePassDetailsIdsOfJob (Job job) {
          ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -57,6 +62,11 @@ public class JobComplementsDAO {
          return ids;
      }
 
+     /**
+     * retrieve job's pass details ids
+     * @param id job id
+     * @return pass details of job with given id 
+     */
     public static JobPassDetails retrieveJobPassDetailsById(int id) {
         JobPassDetails jobPassDetails = null;
 
@@ -101,6 +111,10 @@ public class JobComplementsDAO {
         return jobPassDetails;
     }
 
+     /**
+     * add job pass details
+     * @param jobPassDetails job pass details
+     */
     public static void addJobPassDetails(JobPassDetails jobPassDetails) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -134,6 +148,10 @@ public class JobComplementsDAO {
         }    
     }
 
+     /**
+     * update job pass details
+     * @param jobPassDetails job pass details
+     */
     public static void updateJobPassDetails(JobPassDetails jobPassDetails) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -165,6 +183,10 @@ public class JobComplementsDAO {
         }        
     }
     
+     /**
+     * delete pass details of job with id
+     * @param id job id
+     */
     public static void deleteJobPassDetails(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -183,6 +205,9 @@ public class JobComplementsDAO {
         } 
     }
     
+     /**
+     * delete all job pass details
+     */
     public static void deleteAllJobPassDetails() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -202,6 +227,11 @@ public class JobComplementsDAO {
     }
             
     /*IPA Details*/
+     /**
+     * retrieve a list of IPA details ids of job
+     * @param job job
+     * @return IPA details ids of the job
+     */
     public static ArrayList<Integer> retrieveIPADetailsIdsOfJob (Job job) {
          ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -231,6 +261,11 @@ public class JobComplementsDAO {
          return ids;
      }  
     
+      /**
+     * retrieve IPA details of job with id
+     * @param id job id
+     * @return IPA details of job with id
+     */
     public static JobIPADetails retrieveJobIPADetailsById(int id) {
         JobIPADetails jobIPADetails = null;
 
@@ -285,6 +320,10 @@ public class JobComplementsDAO {
         return jobIPADetails;
     }
   
+     /**
+     * add IPA details for job
+     * @param jobIPADetails IPA details of job
+     */
     public static void addJobIPADetails(JobIPADetails jobIPADetails) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -327,6 +366,10 @@ public class JobComplementsDAO {
         }    
     }
 
+     /**
+     * update IPA details for job
+     * @param jobIPADetails IPA details
+     */
     public static void updateJobIPADetails(JobIPADetails jobIPADetails) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -366,6 +409,10 @@ public class JobComplementsDAO {
         }        
     }
   
+     /**
+     * delete IPA details of job
+     * @param id job id
+     */
     public static void deleteJobIPADetails(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -384,6 +431,9 @@ public class JobComplementsDAO {
         } 
     }
     
+    /**
+     * delete all IPA details of job
+     */
     public static void deleteAllJobIPADetails() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -403,6 +453,11 @@ public class JobComplementsDAO {
     }
          
     /*Verbal Assurance*/
+    /**
+     * retrieve verbal assurance ids of job
+     * @param job job
+     * @return a list of verbal assurance ids of job
+     */
     public static ArrayList<Integer> retrieveVerbalAssuranceOfJob (Job job) {
          ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -432,6 +487,11 @@ public class JobComplementsDAO {
          return ids;
      }
 
+     /**
+     * retrieve verbal assurance details of job with id
+     * @param id id 
+     * @return verbal assurance details of job with id
+     */
     public static JobVerbalAssurance retrieveVerbalAssuranceDetailsById(int id) {
         JobVerbalAssurance jobVerbalAssurance = null;
 
@@ -469,6 +529,10 @@ public class JobComplementsDAO {
         return jobVerbalAssurance;
     }
 
+     /**
+     * add verbal assurance 
+     * @param jobVerbalAssurance verbal assurance of job
+     */
     public static void addJobVerbalAssurance(JobVerbalAssurance jobVerbalAssurance) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -496,6 +560,10 @@ public class JobComplementsDAO {
         }    
     }
 
+    /**
+     * update verbal assurance 
+     * @param jobVerbalAssurance verbal assurance of job
+     */
     public static void updateJobVerbalAssurance(JobVerbalAssurance jobVerbalAssurance) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -522,6 +590,10 @@ public class JobComplementsDAO {
         }        
     }
   
+     /**
+     * delete verbal assurance of job with id
+     * @param id job id
+     */
     public static void deleteJobVerbalAssurance(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -540,6 +612,9 @@ public class JobComplementsDAO {
         } 
     }
     
+     /**
+     * delete all verbal assurance of job
+     */
     public static void deleteAllJobVerbalAssurances() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -559,6 +634,11 @@ public class JobComplementsDAO {
     }
        
     /*Employment Contract*/
+     /**
+     * retrieve employment contract ids
+     * @param job job
+     * @return a list of employment contract ids
+     */
     public static ArrayList<Integer> retrieveEmploymentContractIdsOfJob (Job job) {
          ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -588,6 +668,11 @@ public class JobComplementsDAO {
          return ids;
      }
 
+     /**
+     * retrieve employment contract with id
+     * @param id id
+     * @return employment contract with id
+     */
     public static JobEmploymentContract retrieveEmploymentContractById(int id) {
         JobEmploymentContract jobEmploymentContract = null;
 
@@ -640,6 +725,10 @@ public class JobComplementsDAO {
         return jobEmploymentContract;
     }
 
+     /**
+     * add employment contract
+     * @param jobEmploymentContract employment contract of job
+     */
     public static void addJobEmploymentContract(JobEmploymentContract jobEmploymentContract) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -678,6 +767,10 @@ public class JobComplementsDAO {
         }    
     }
 
+     /**
+     * update employment contract
+     * @param jobEmploymentContract employment contract of job
+     */
     public static void updateJobEmploymentContract(JobEmploymentContract jobEmploymentContract) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -714,6 +807,10 @@ public class JobComplementsDAO {
         }        
     }
   
+     /**
+     * delete employment contract with id
+     * @param id employment contract id
+     */
     public static void deleteJobEmploymentContract(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -732,6 +829,9 @@ public class JobComplementsDAO {
         } 
     }
     
+     /**
+     * delete all employment contract
+     */
     public static void deleteAllEmploymentContracts() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -751,6 +851,11 @@ public class JobComplementsDAO {
     }
 
     /*Intermediary Agent*/
+      /**
+     * retrieve intermediary agent ids
+     * @param job job
+     * @return a list of intermediary agent ids
+     */
     public static ArrayList<Integer> retrieveJobIntermediaryAgentIdsOfJob (Job job) {
          ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -780,6 +885,11 @@ public class JobComplementsDAO {
          return ids;
      }
 
+     /**
+     * retrieve intermediary agent with id
+     * @param id intermediary agent id
+     * @return intermediary agent with id
+     */
     public static JobIntermediaryAgent retrieveJobIntermediaryAgentById(int id) {
         JobIntermediaryAgent jobIntermediaryAgent = null;
 
@@ -836,6 +946,10 @@ public class JobComplementsDAO {
         return jobIntermediaryAgent;
     }
 
+     /**
+     * add intermediary agent
+     * @param jobIntermediaryAgent intermediary agent of job
+     */
     public static void addJobIntermediaryAgent(JobIntermediaryAgent jobIntermediaryAgent) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -878,6 +992,10 @@ public class JobComplementsDAO {
         }    
     }
 
+     /**
+     * update intermediary agent
+     * @param jobIntermediaryAgent intermediary agent of job
+     */
     public static void updateJobIntermediaryAgent(JobIntermediaryAgent jobIntermediaryAgent) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -918,6 +1036,10 @@ public class JobComplementsDAO {
         }        
     }
     
+     /**
+     * delete intermediary agent with id
+     * @param id intermediary agent id
+     */
     public static void deleteJobIntermediaryAgent(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -936,6 +1058,9 @@ public class JobComplementsDAO {
         } 
     }
     
+     /**
+     * delete all intermediary agent
+     */
     public static void deleteAllJobIntermediaryAgent() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -955,6 +1080,11 @@ public class JobComplementsDAO {
     }
         
     /*Employer*/
+     /**
+     * retrieve employer ids
+     * @param job job
+     * @return a list of employer ids
+     */
     public static ArrayList<Integer> retrieveJobEmployerIdsOfJob (Job job) {
          ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -984,6 +1114,11 @@ public class JobComplementsDAO {
          return ids;
      }
 
+    /**
+     * retrieve employer with id
+     * @param id employer id
+     * @return employer
+     */
     public static JobEmployer retrieveJobEmployerById(int id) {
         JobEmployer jobEmployer = null;
 
@@ -1023,6 +1158,10 @@ public class JobComplementsDAO {
         return jobEmployer;
     }
 
+     /**
+     * add employer
+     * @param jobEmployer employer of job
+     */
     public static void addJobEmployer(JobEmployer jobEmployer) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1053,6 +1192,10 @@ public class JobComplementsDAO {
         }    
     }
 
+    /**
+     * update employer
+     * @param jobEmployer employer of job
+     */
     public static void updateJobEmployer(JobEmployer jobEmployer) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1080,6 +1223,10 @@ public class JobComplementsDAO {
         }        
     }
     
+     /**
+     * delete employer with id
+     * @param id employer id
+     */
     public static void deleteJobEmployer(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1098,6 +1245,9 @@ public class JobComplementsDAO {
         } 
     }
     
+     /**
+     * delete all employers
+     */
     public static void deleteAllJobEmployers() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1117,6 +1267,11 @@ public class JobComplementsDAO {
     }
     
     /*Workplace Details*/
+     /**
+     * retrieve worker place ids of job
+     * @param job job
+     * @return a list of worker place ids
+     */
     public static ArrayList<Integer> retrieveJobWorkplaceIdsOfJob (Job job) {
          ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1146,6 +1301,11 @@ public class JobComplementsDAO {
          return ids;
      }
 
+     /**
+     * retrieve worker place with id
+     * @param id worker place id
+     * @return worker place with id
+     */
     public static JobWorkplace retrieveJobWorkplaceById(int id) {
         JobWorkplace jobWorkplace = null;
 
@@ -1196,6 +1356,10 @@ public class JobComplementsDAO {
         return jobWorkplace;
     }
 
+      /**
+     * add worker place
+     * @param jobWorkplace worker place of job
+     */
     public static void addJobWorkplace(JobWorkplace jobWorkplace) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1233,6 +1397,10 @@ public class JobComplementsDAO {
         }    
     }
 
+     /**
+     * update worker place
+     * @param jobWorkplace worker place of job
+     */
     public static void updateJobWorkplace(JobWorkplace jobWorkplace) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1267,6 +1435,9 @@ public class JobComplementsDAO {
         }        
     }
     
+    /**
+     * delete worker place
+     */
     public static void deleteAllJobWorkPlaces() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1285,6 +1456,10 @@ public class JobComplementsDAO {
         }     
     }
     
+     /**
+     *  delete worker place with id
+     * @param id worker place id
+     */
     public static void deleteJobWorkplace(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1304,7 +1479,11 @@ public class JobComplementsDAO {
     }
     
     /*Work History*/
-    
+     /**
+     * retrieve worker history ids
+     * @param job job
+     * @return a list of worker history ids of job
+     */
     public static ArrayList<Integer> retrieveJobWorkHistoryIdsOfJob (Job job) {
          ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1334,6 +1513,11 @@ public class JobComplementsDAO {
          return ids;
      }
 
+     /**
+     * retrieve worker history with id
+     * @param id worker history id
+     * @return worker history with id
+     */
     public static JobWorkHistory retrieveJobWorkHistoryById(int id) {
         JobWorkHistory jobWorkHistory = null;
 
@@ -1378,6 +1562,10 @@ public class JobComplementsDAO {
         return jobWorkHistory;
     }
 
+     /**
+     * add worker history
+     * @param jobWorkHistory worker history of job
+     */
     public static void addJobWorkHistory(JobWorkHistory jobWorkHistory) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1410,6 +1598,10 @@ public class JobComplementsDAO {
         }    
     }
 
+     /**
+     * update worker history
+     * @param jobWorkHistory worker history of job
+     */
     public static void updateJobWorkHistory(JobWorkHistory jobWorkHistory) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1440,6 +1632,10 @@ public class JobComplementsDAO {
         }        
     }
     
+     /**
+     * delete worker history with id
+     * @param id worker history id
+     */
     public static void deleteJobWorkHistory(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1458,6 +1654,9 @@ public class JobComplementsDAO {
         } 
     }
     
+     /**
+     * delete worker history
+     */
     public static void deleteAllJobWorkHistories() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1477,7 +1676,11 @@ public class JobComplementsDAO {
     }
     
     /*Table Accommodation*/
-    
+    /**
+     * retrieve accommodation ids
+     * @param job job
+     * @return a list of accommodation ids
+     */
     public static ArrayList<Integer> retrieveJobAccomodationIdsOfJob (Job job) {
          ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1507,6 +1710,11 @@ public class JobComplementsDAO {
          return ids;
      }
 
+      /**
+     * retrieve accommodation with id
+     * @param id accommodation id
+     * @return accommodation with id
+     */
     public static JobAccomodation retrieveJobAccomodationById(int id) {
         JobAccomodation jobAccomodation = null;
 
@@ -1557,6 +1765,10 @@ public class JobComplementsDAO {
         return jobAccomodation;
     }
 
+     /**
+     * add accommodation
+     * @param jobAccomodation accommodation of job
+     */
     public static void addJobAccomodation(JobAccomodation jobAccomodation) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1595,6 +1807,10 @@ public class JobComplementsDAO {
         }    
     }
 
+     /**
+     * update accommodation
+     * @param jobAccomodation accommodation of job
+     */
     public static void updateJobAccomodation(JobAccomodation jobAccomodation) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1631,6 +1847,10 @@ public class JobComplementsDAO {
         }        
     }
  
+     /**
+     * delete accommodation with id
+     * @param id accommodation id
+     */
     public static void deleteJobAccomodation(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1649,6 +1869,9 @@ public class JobComplementsDAO {
         } 
     }
     
+     /**
+     * delete all accommodation
+     */
     public static void deleteAllJobAccomodations() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1668,6 +1891,9 @@ public class JobComplementsDAO {
     }
     
     /*general*/
+     /**
+     * delete all job complements
+     */
     public static void deleteAll() {
         deleteAllJobPassDetails();
         deleteAllJobIPADetails();
