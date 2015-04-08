@@ -279,7 +279,10 @@ public class JobIPADetails {
     public void setPeriodYears(double periodYears) {
         this.periodYears = periodYears;
     }
-
+    /**
+     * getter method for basic salary in the IPA Pass
+     * @return basic salary in the IPA Pass
+     */
     public double getBasicSalary() {
         return basicSalary;
     }
