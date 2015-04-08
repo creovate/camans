@@ -24,14 +24,26 @@ public class BeanFactory {
     private static java.sql.Date startDate;
     private static java.sql.Date endDate;
 
+    /**
+     * BeanFactory generates data beans to pass to JasperReport and generate reports
+     */
     public BeanFactory() {
     }
 
+    /**
+     * BeanFactory generates data beans to pass to JasperReport and generate reports
+     * @param startDate
+     * @param endDate
+     */
     public BeanFactory(java.util.Date startDate, java.util.Date endDate) {
         this.startDate = new java.sql.Date(startDate.getTime());
         this.endDate = new java.sql.Date(endDate.getTime());
     }
 
+    /**
+     * returns collection of cases by Nationality and Workpass
+     * @return collection of cases by Nationality and Workpass
+     */
     public static java.util.Collection generateNationalityWorkpassBean() {
         java.util.Vector nationalityWorkerList = new java.util.Vector();
 
@@ -150,6 +162,10 @@ public class BeanFactory {
         return nationalityWorkerList;
     }
 
+    /**
+     * returns collection of cases by Problem and Workpass
+     * @return collection of cases by Problem and Workpass
+     */
     public static java.util.Collection generateProblemWorkpassBean() {
         java.util.Vector problemWorkpassCol = new java.util.Vector();
 
@@ -276,6 +292,10 @@ public class BeanFactory {
         return problemWorkpassCol;
     }
     
+    /**
+     * returns collection of cases by Problem and Nationality
+     * @return collection of cases by Problem and Nationality
+     */
     public static java.util.Collection generateProblemNationalityBean() {
         java.util.Vector problemNationalityCol = new java.util.Vector();
 

@@ -3370,7 +3370,7 @@ public class ProblemComplementsDAO {
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                Date LawyerUpdate = rs.getDate(1);
+                java.sql.Date LawyerUpdate = rs.getDate(1);
                 String LawyerFirm = rs.getString(2);
                 String LawyerFirmMore = rs.getString(3);
                 String LawyerName = rs.getString(4);

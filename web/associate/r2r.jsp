@@ -251,10 +251,10 @@
         %>
         <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" style="padding: 0;">
             <br/>
-            <label class="col-xs-5">Worker Name</label><p class="col-xs-6"><%=workerName%></p><br/>
-            <label class="col-xs-5">FIN Number</label><p class="col-xs-6"><%=workerFin%></p><br/>
-            <label class="col-xs-5">Employer</label><p class="col-xs-6"><%=employer%></p><br/>
-            <label class="col-xs-5">Problem</label><p class="col-xs-6"><%=probType%></p><br/><br/><br/><br/>
+            <label class="col-xs-5">Worker Name</label><p class="col-xs-7"><%=workerName%></p><br/>
+            <label class="col-xs-5">FIN Number</label><p class="col-xs-7"><%=workerFin%></p><br/>
+            <label class="col-xs-5">Employer</label><p class="col-xs-7"><%=employer%></p><br/>
+            <label class="col-xs-5">Problem</label><p class="col-xs-7"><%=probType%></p><br/><br/><br/><br/>
             <%
                 if (r2rIdList != null && r2rIdList.size() > 0) {
             %>
@@ -323,10 +323,10 @@
         <div class='row'>
             <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8" >
                 <br/>
-                <label class="col-xs-5">Worker Name</label><p class="col-xs-6"><%=workerName%></p><br/>
-                <label class="col-xs-5">FIN Number</label><p class="col-xs-6"><%=workerFin%></p><br/>
-                <label class="col-xs-5">Employer</label><p class="col-xs-6"><%=employer%></p><br/>
-                <label class="col-xs-5">Problem</label><p class="col-xs-6"><%=probType%></p><br/><br/><br/><br/>
+                <label class="col-xs-5">Worker Name</label><p class="col-xs-7"><%=workerName%></p><br/>
+                <label class="col-xs-5">FIN Number</label><p class="col-xs-7"><%=workerFin%></p><br/>
+                <label class="col-xs-5">Employer</label><p class="col-xs-7"><%=employer%></p><br/>
+                <label class="col-xs-5">Problem</label><p class="col-xs-7"><%=probType%></p><br/><br/><br/><br/>
 
                 <h5>Edit existing record</h5>
                 <form method="POST" action="../addProblemComplement.do" class="col-xs-12 col-md-12 col-sm-12 form form-horizontal" id="problemComplements">
