@@ -27,14 +27,14 @@ public class ProblemCaseMilestoneNC {
     //constructor with id 
      /**
      *Constructor for ProblemCaseMilestoneNC class
-     * @param id
-     * @param workerFinNumber
-     * @param jobKey
-     * @param problemKey
-     * @param MilesNCDate
-     * @param MilesNCReached
-     * @param MilesNCReachedMore
-     * @param MilesNCRem
+     * @param id id
+     * @param workerFinNumber FIN
+     * @param jobKey job key
+     * @param problemKey problem key
+     * @param MilesNCDate date of non-critical case milestone
+     * @param MilesNCReached non-critical case milestone reached
+     * @param MilesNCReachedMore other non-critical case milestone
+     * @param MilesNCRem remark of non-critical case milestone
      */
         public ProblemCaseMilestoneNC(int id, String workerFinNumber, int jobKey, int problemKey , 
             Date MilesNCDate, String MilesNCReached, String MilesNCReachedMore, String MilesNCRem) {
@@ -52,13 +52,13 @@ public class ProblemCaseMilestoneNC {
  
     /**
      *Constructor for ProblemCaseMilestoneNC class without id
-     * @param workerFinNumber
-     * @param jobKey
-     * @param problemKey
-     * @param MilesNCDate
-     * @param MilesNCReached
-     * @param MilesNCReachedMore
-     * @param MilesNCRem
+     * @param workerFinNumber FIN
+     * @param jobKey job key
+     * @param problemKey problem key
+     * @param MilesNCDate date of non-critical case milestone
+     * @param MilesNCReached non-critical case milestone reached
+     * @param MilesNCReachedMore other non-critical case milestone
+     * @param MilesNCRem remark of non-critical case milestone
      */
         public ProblemCaseMilestoneNC(String workerFinNumber, int jobKey, int problemKey , 
             Date MilesNCDate, String MilesNCReached, String MilesNCReachedMore, String MilesNCRem) {
