@@ -27,6 +27,11 @@ import java.util.logging.Logger;
 public class ProblemComplementsDAO {
 
     /*Problem Aggravating Issue*/
+    /**
+     * retrieve aggravating issue ids
+     * @param problem problem
+     * @return a list of aggravating issue ids
+     */
     public static ArrayList<Integer> retrieveAggravatingIssueIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -58,6 +63,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+    /**
+     * retrieve aggravating issue with id
+     * @param id aggravating issue id
+     * @return aggravating issue with id
+     */
     public static ProblemAggravatingIssue retrieveProblemAggravatingIssueById(int id) {
         ProblemAggravatingIssue problemAggravatingIssue = null;
 
@@ -95,6 +105,10 @@ public class ProblemComplementsDAO {
         return problemAggravatingIssue;
     }
 
+    /**
+     * add aggravating issue
+     * @param problemAggravatingIssue aggravating issue of problem
+     */
     public static void addProblemAggravatingIssue(ProblemAggravatingIssue problemAggravatingIssue) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -122,6 +136,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * update aggravating issue
+     * @param problemAggravatingIssue aggravating issue of problem
+     */
     public static void updateProblemAggravatingIssue(ProblemAggravatingIssue problemAggravatingIssue) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -146,6 +164,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * delete aggravating issue with id
+     * @param id aggravating issue id
+     */
     public static void deleteProblemAggravatingIssue(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -163,6 +185,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+    /**
+     * delete all aggravating issues of problem
+     */
     public static void deleteAllProblemAggravatingIssues() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -182,6 +207,11 @@ public class ProblemComplementsDAO {
     }
        
     /*Problem Lead Case Worker*/
+    /**
+     * retrieve lead caseworker ids
+     * @param problem problem
+     * @return a list of lead caseworker ids
+     */
     public static ArrayList<Integer> retrieveLeadCaseWorkerIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -213,6 +243,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+    /**
+     * retrieve lead caseworker with id
+     * @param id lead caseworker id
+     * @return lead caseworker with id
+     */
     public static ProblemLeadCaseWorker retrieveProblemLeadCaseWorkerById(int id) {
         ProblemLeadCaseWorker problemLeadCaseWorker = null;
 
@@ -250,8 +285,8 @@ public class ProblemComplementsDAO {
     }
 
     /**
-     *
-     * @param problemLeadCaseWorker
+     * add lead caseworker
+     * @param problemLeadCaseWorker lead caseworker of problem
      */
     public static void addProblemLeadCaseWorker(ProblemLeadCaseWorker problemLeadCaseWorker) {
         Connection conn = null;
@@ -279,6 +314,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * update lead caseworker
+     * @param problemLeadCaseWorker lead caseworker of problem
+     */
     public static void updateProblemLeadCaseWorker(ProblemLeadCaseWorker problemLeadCaseWorker) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -302,6 +341,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * delete lead caseworker with id
+     * @param id lead caseworker id
+     */
     public static void deleteProblemLeadCaseWorker(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -319,6 +362,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+    /**
+     * delete all lead caseworkers of problem
+     */
     public static void deleteAllProblemLeadCaseWorkers() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -338,6 +384,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem Auxiliary CaseWorker*/
+    /**
+     * retrieve auxiliary caseworker ids
+     * @param problem problem
+     * @return a list of auxiliary caseworker ids
+     */
     public static ArrayList<Integer> retrieveProblemAuxiliaryCaseWorkerIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -369,6 +420,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+    /**
+     * retrieve auxiliary caseworker with id
+     * @param id auxiliary caseworker id
+     * @return auxiliary caseworker with id
+     */
     public static ProblemAuxiliaryCaseWorker retrieveProblemAuxiliaryCaseWorkerById(int id) {
         ProblemAuxiliaryCaseWorker problemAuxiliaryCaseWorker = null;
 
@@ -406,6 +462,10 @@ public class ProblemComplementsDAO {
         return problemAuxiliaryCaseWorker;
     }
 
+    /**
+     * add auxiliary caseworker
+     * @param problemAuxiliaryCaseWorker auxiliary caseworker of problem
+     */
     public static void addProblemAuxiliaryCaseWorker(ProblemAuxiliaryCaseWorker problemAuxiliaryCaseWorker) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -432,6 +492,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * update auxiliary caseworker
+     * @param problemAuxiliaryCaseWorker auxiliary caseworker of problem
+     */
     public static void updateProblemAuxiliaryCaseWorker(ProblemAuxiliaryCaseWorker problemAuxiliaryCaseWorker) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -455,6 +519,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * delete auxiliary caseworker with id
+     * @param id auxiliary caseworker id
+     */
     public static void deleteProblemAuxiliaryCaseWorker(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -472,6 +540,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+    /**
+     * delete all auxiliary caseworkers of problem
+     */
     public static void deleteAllProblemAuxiliaryCaseWorkers() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -491,6 +562,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem Salary Related History*/
+    /**
+     * retrieve salary related history ids
+     * @param problem problem
+     * @return a list of salary related history ids
+     */
     public static ArrayList<Integer> retrieveProblemSalaryRelatedHistoryIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -522,6 +598,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+    /**
+     * retrieve salary related history with id
+     * @param id salary related history id
+     * @return salary related history with id
+     */
     public static ProblemSalaryRelatedHistory retrieveProblemSalaryRelatedHistoryById(int id) {
         ProblemSalaryRelatedHistory problemSalaryRelatedHistory = null;
 
@@ -570,6 +651,10 @@ public class ProblemComplementsDAO {
         return problemSalaryRelatedHistory;
     }
 
+    /**
+     * add salary related history
+     * @param problemSalaryRelatedHistory salary related history of problem
+     */
     public static void addProblemSalaryRelatedHistory(ProblemSalaryRelatedHistory problemSalaryRelatedHistory) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -606,6 +691,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * update salary related history
+     * @param problemSalaryRelatedHistory salary related history of problem
+     */
     public static void updateProblemSalaryRelatedHistory(ProblemSalaryRelatedHistory problemSalaryRelatedHistory) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -639,6 +728,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * delete salary related history with id
+     * @param id salary related history id
+     */
     public static void deleteProblemSalaryRelatedHistory(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -656,6 +749,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+    /**
+     * delete all salary related histories of problem
+     */
     public static void deleteAllProblemSalaryRelatedHistories() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -675,6 +771,11 @@ public class ProblemComplementsDAO {
     }
 
     /*Problem Injury*/
+    /**
+     * retrieve injury ids
+     * @param problem problem
+     * @return a list of injury ids
+     */
     public static ArrayList<Integer> retrieveProblemInjuryIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -706,6 +807,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+     /**
+     * retrieve injury with id
+     * @param id injury id
+     * @return injury with id
+     */
     public static ProblemInjury retrieveProblemInjuryById(int id) {
         ProblemInjury problemInjury = null;
 
@@ -755,6 +861,10 @@ public class ProblemComplementsDAO {
         return problemInjury;
     }
 
+    /**
+     * add injury
+     * @param problemInjury injury of problem
+     */
     public static void addProblemInjury(ProblemInjury problemInjury) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -792,6 +902,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * update injury
+     * @param problemInjury injury of problem
+     */
     public static void updateProblemInjury(ProblemInjury problemInjury) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -826,6 +940,9 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * delete all injuries of problem
+     */
     public static void deleteAllProblemInjuries() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -844,6 +961,10 @@ public class ProblemComplementsDAO {
         }     
     }
 
+    /**
+     * delete injury with id
+     * @param id injury id
+     */
     public static void deleteProblemInjury(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -862,6 +983,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem Illness*/
+    /**
+     * retrieve illness ids
+     * @param problem problem
+     * @return a list of illness ids
+     */
     public static ArrayList<Integer> retrieveIllnessIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -893,6 +1019,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+     /**
+     * retrieve illness with id
+     * @param id illness id
+     * @return illness with id
+     */
     public static ProblemIllness retrieveProblemIllnesseById(int id) {
         ProblemIllness problemIllness = null;
 
@@ -935,6 +1066,10 @@ public class ProblemComplementsDAO {
         return problemIllness;
     }
 
+    /**
+     * add illness
+     * @param problemIllness illness of problem
+     */
     public static void addProblemIllness(ProblemIllness problemIllness) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -966,6 +1101,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * update illness
+     * @param problemIllness illness of problem
+     */
     public static void updateProblemIllness(ProblemIllness problemIllness) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -994,6 +1133,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * delete illness with id
+     * @param id illness id
+     */
     public static void deleteProblemIllness(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1011,6 +1154,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+    /**
+     * delete all illnesses of problem
+     */
     public static void deleteAllProblemIllness() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1030,6 +1176,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem Other Problem*/
+    /**
+     * retrieve other problem ids
+     * @param problem problem
+     * @return a list of other problem ids
+     */
     public static ArrayList<Integer> retrieveOtherProblemIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1061,6 +1212,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+    /**
+     * retrieve other problem with id
+     * @param id other problem id
+     * @return other problem with id
+     */
     public static ProblemOtherProblems retrieveProblemOtherProblemsById(int id) {
         ProblemOtherProblems problemOtherProblems = null;
 
@@ -1097,6 +1253,10 @@ public class ProblemComplementsDAO {
         return problemOtherProblems;
     }
 
+    /**
+     * add other problem
+     * @param problemOtherProblems other problem of problem
+     */
     public static void addProblemOtherProblems(ProblemOtherProblems problemOtherProblems) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1123,6 +1283,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * update other problem
+     * @param problemOtherProblems other problem of problem
+     */
     public static void updateProblemOtherProblems(ProblemOtherProblems problemOtherProblems) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1146,6 +1310,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * delete other problem with id
+     * @param id other problem id
+     */
     public static void deleteProblemOtherProblem(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1163,6 +1331,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+    /**
+     * delete all other problems of problem
+     */
     public static void deleteAllProblemtherProblems() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1182,6 +1353,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem salary claim Issue*/
+    /**
+     * retrieve salary claim ids
+     * @param problem problem
+     * @return a list of salary claim ids
+     */
     public static ArrayList<Integer> retrieveSalaryClaimIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1213,6 +1389,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+    /**
+     * retrieve salary claim with id
+     * @param id salary claim id
+     * @return salary claim with id
+     */
     public static ProblemSalaryClaim retrieveProblemSalaryClaimById(int id) {
         ProblemSalaryClaim problemSalaryClaim = null;
 
@@ -1249,6 +1430,10 @@ public class ProblemComplementsDAO {
         return problemSalaryClaim;
     }
 
+     /**
+     * add salary claim
+     * @param problemSalaryClaim salary claim of problem
+     */
     public static void addProblemSalaryClaim(ProblemSalaryClaim problemSalaryClaim) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1275,6 +1460,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * update salary claim
+     * @param problemSalaryClaim salary claim of problem
+     */
     public static void updateProblemSalaryClaim(ProblemSalaryClaim problemSalaryClaim) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1298,6 +1487,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * delete salary claim with id
+     * @param id salary claim id
+     */
     public static void deleteProblemSalaryClaim(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1315,6 +1508,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+    /**
+     * delete all salary claims of problem
+     */
     public static void deleteAllProblemSalaryClaims() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1335,6 +1531,11 @@ public class ProblemComplementsDAO {
     }
     
         /*Problem wica */
+    /**
+     * retrieve wica ids
+     * @param problem problem
+     * @return a list of wica ids
+     */
     public static ArrayList<Integer> retrieveWicaIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1366,6 +1567,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+     /**
+     * retrieve wica with id
+     * @param id wica id
+     * @return
+     */
     public static ProblemWica retrieveProblemWicaById(int id) {
         ProblemWica problemWica = null;
 
@@ -1406,6 +1612,10 @@ public class ProblemComplementsDAO {
         return problemWica;
     }
 
+     /**
+     * add wica
+     * @param problemWica wica of problem
+     */
     public static void addProblemWica(ProblemWica problemWica) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1436,6 +1646,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * update wica
+     * @param problemWica wica of problem
+     */
     public static void updateProblemWica(ProblemWica problemWica) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1461,6 +1675,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * delete wica with id
+     * @param id wica id
+     */
     public static void deleteProblemWica(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1478,6 +1696,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+    /**
+     * delete all wicas of problem
+     */
     public static void deleteAllProblemWicas() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1497,6 +1718,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem wica claim Issue*/
+    /**
+     * retrieve wica claim ids
+     * @param problem problem
+     * @return a list of wica claim ids
+     */
     public static ArrayList<Integer> retrieveWicaClaimIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1528,6 +1754,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+    /**
+     * retrieve wica claim with id
+     * @param id wica claim id
+     * @return wica claim with id
+     */
     public static ProblemWicaClaim retrieveProblemWicaClaimById(int id) {
         ProblemWicaClaim problemWicaClaim = null;
 
@@ -1568,6 +1799,10 @@ public class ProblemComplementsDAO {
         return problemWicaClaim;
     }
 
+     /**
+     * add wica claim
+     * @param problemWicaClaim wica claim of problem
+     */
     public static void addProblemWicaClaim(ProblemWicaClaim problemWicaClaim) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1597,6 +1832,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * update wica claim
+     * @param problemWicaClaim wica claim of problem
+     */
     public static void updateProblemWicaClaim(ProblemWicaClaim problemWicaClaim) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1622,6 +1861,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * delete wica claim with id
+     * @param id wica claim id
+     */
     public static void deleteProblemWicaClaim(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1639,6 +1882,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+    /**
+     * delte all wica claims of problem
+     */
     public static void deleteAllProblemWicaClaims() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1658,6 +1904,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem non-wica claim Issue*/
+     /**
+     * retrieve non-wica claim ids
+     * @param problem problem
+     * @return a list of non-wica claim ids
+     */
     public static ArrayList<Integer> retrieveNonWicaClaimIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1689,6 +1940,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+     /**
+     * retrieve non-wica claim with id
+     * @param id non-wica claim id
+     * @return non-wica claim with id
+     */
     public static ProblemNonWicaClaim retrieveProblemNonWicaClaimById(int id) {
         ProblemNonWicaClaim problemNonWicaClaim = null;
 
@@ -1729,6 +1985,10 @@ public class ProblemComplementsDAO {
         return problemNonWicaClaim;
     }
 
+    /**
+     * add non-wica claim
+     * @param problemNonWicaClaim non-wica claim of problem
+     */
     public static void addProblemNonWicaClaim(ProblemNonWicaClaim problemNonWicaClaim) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1758,6 +2018,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * update non-wica claim
+     * @param problemNonWicaClaim non-wica claim of problem
+     */
     public static void updateProblemNonWicaClaim(ProblemNonWicaClaim problemNonWicaClaim) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1783,6 +2047,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * delete non-wica claim with id
+     * @param id non-wica claim id
+     */
     public static void deleteProblemNonWicaClaim(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1800,6 +2068,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+     /**
+     * delte all non-wica claims of problem
+     */
     public static void deleteAllProblemNonWicaClaims() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1819,6 +2090,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem police report*/
+    /**
+     * retrieve police report ids
+     * @param problem problem
+     * @return a list of police report ids
+     */
     public static ArrayList<Integer> retrievePoliceReportIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1850,6 +2126,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+     /**
+     * retrieve police report with id
+     * @param id police report id
+     * @return police report with id
+     */
     public static ProblemPoliceReport retrieveProblemPoliceReportById(int id) {
         ProblemPoliceReport problemPoliceReport = null;
 
@@ -1890,6 +2171,10 @@ public class ProblemComplementsDAO {
         return problemPoliceReport;
     }
 
+     /**
+     * add police report
+     * @param problemPoliceReport police report of problem
+     */
     public static void addProblemPoliceReport(ProblemPoliceReport problemPoliceReport) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1920,6 +2205,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * update police report
+     * @param problemPoliceReport police report of problem
+     */
     public static void updateProblemPoliceReport(ProblemPoliceReport problemPoliceReport) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1945,6 +2234,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * delete police report with id
+     * @param id police report id
+     */
     public static void deleteProblemPoliceReport(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1962,6 +2255,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+     /**
+     * delete all police reports of problem
+     */
     public static void deleteAllProblemPoliceReports() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1981,6 +2277,12 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem other complaint*/
+    
+    /**
+     * retrieve other complaint ids
+     * @param problem problem
+     * @return a list of other complaint ids
+     */
     public static ArrayList<Integer> retrieveOtherComplaintIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -2012,6 +2314,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+    /**
+     * retrieve other complaint with id
+     * @param id other complaint id
+     * @return other complaint with id
+     */
     public static ProblemOtherComplaint retrieveProblemOtherComplaintById(int id) {
         ProblemOtherComplaint problemOtherComplaint = null;
 
@@ -2054,6 +2361,10 @@ public class ProblemComplementsDAO {
         return problemOtherComplaint;
     }
 
+     /**
+     * add other complaint
+     * @param problemOtherComplaint other complaint of problem
+     */
     public static void addProblemOtherComplaint(ProblemOtherComplaint problemOtherComplaint) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2087,6 +2398,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * update other complaint
+     * @param problemOtherComplaint other complaint of problem
+     */
     public static void updateProblemOtherComplaint(ProblemOtherComplaint problemOtherComplaint) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2115,6 +2430,10 @@ public class ProblemComplementsDAO {
         }
     }
  
+     /**
+     * delete other complaint with id
+     * @param id other complaint id
+     */
     public static void deleteProblemOtherComplaint(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2132,6 +2451,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+     /**
+     * delete all other complaints of problem
+     */
     public static void deleteAllProblemOtherComplaints() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2151,6 +2473,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem case discussion*/
+     /**
+     * retrieve case discussion ids
+     * @param problem problem
+     * @return a list of case discussion ids
+     */
     public static ArrayList<Integer> retrieveCaseDiscussionIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -2182,6 +2509,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+     /**
+     * retrieve case discussion with id
+     * @param id case discussion id
+     * @return case discussion with id
+     */
     public static ProblemCaseDiscussion retrieveProblemCaseDiscussionById(int id) {
         ProblemCaseDiscussion problemCaseDiscussion = null;
 
@@ -2233,6 +2565,10 @@ public class ProblemComplementsDAO {
         return problemCaseDiscussion;
     }
 
+     /**
+     * add case discussion
+     * @param problemCaseDiscussion case discussion of problem
+     */
     public static void addProblemCaseDiscussion(ProblemCaseDiscussion problemCaseDiscussion) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2272,6 +2608,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * update case discussion
+     * @param problemCaseDiscussion case discussion of problem
+     */
     public static void updateProblemCaseDiscussion(ProblemCaseDiscussion problemCaseDiscussion) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2308,6 +2648,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * delete case discussion with id
+     * @param id case discussion id
+     */
     public static void deleteProblemCaseDiscussion(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2325,6 +2669,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+      /**
+     * delete all case discussions of problem
+     */
     public static void deleteAllProblemCaseDiscussions() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2344,6 +2691,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem Hospital*/
+    /**
+     * retrieve hospital ids
+     * @param problem problem
+     * @return a list of hospital ids
+     */
     public static ArrayList<Integer> retrieveProblemHospitalIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -2375,6 +2727,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+    /**
+     * retrieve hospital with id
+     * @param id hospital id
+     * @return hospital with id
+     */
     public static ProblemHospital retrieveProblemHospitalById(int id) {
         ProblemHospital problemHospital = null;
 
@@ -2414,6 +2771,10 @@ public class ProblemComplementsDAO {
         return problemHospital;
     }
 
+     /**
+     * add hospital
+     * @param problemHospital hospital of problem
+     */
     public static void addProblemHospital(ProblemHospital problemHospital) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2442,6 +2803,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * update hospital
+     * @param problemHospital hospital of problem
+     */
     public static void updateProblemHospital(ProblemHospital problemHospital) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2467,6 +2832,10 @@ public class ProblemComplementsDAO {
         }
     }
     
+     /**
+     * delete hospital with id
+     * @param id hospital id
+     */
     public static void deleteProblemHospital(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2484,6 +2853,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+    /**
+     * delete all hospitals of problem
+     */
     public static void deleteAllProblemHospitals() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2503,6 +2875,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem MC_status*/
+    /**
+     * retrieve MC status ids
+     * @param problem problem
+     * @return a list of MC status ids
+     */
     public static ArrayList<Integer> retrieveProblemMCStatusIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -2534,6 +2911,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+      /**
+     * retrieve MC status with id
+     * @param id MC status id
+     * @return MC status with id
+     */
     public static ProblemMCStatus retrieveProblemMCStatusById(int id) {
         ProblemMCStatus problemMCStatus = null;
 
@@ -2573,6 +2955,10 @@ public class ProblemComplementsDAO {
         return problemMCStatus;
     }
 
+    /**
+     * add MC status
+     * @param problemMCStatus MC status of problem
+     */
     public static void addProblemMCStatus(ProblemMCStatus problemMCStatus) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2603,6 +2989,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * update MC status
+     * @param problemMCStatus MC status of problem
+     */
     public static void updateProblemMCStatus(ProblemMCStatus problemMCStatus) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2629,6 +3019,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * delete MC status with id
+     * @param id MC status id
+     */
     public static void deleteProblemMCStatus(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2646,6 +3040,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+     /**
+     * delete all MC status of problem
+     */
     public static void deleteAllProblemMCStatus() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2665,6 +3062,12 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem R2R*/
+    /**
+     * retrieve R2R dates ids
+     * @param start start date of R2R
+     * @param end end date of R2R
+     * @return a list of R2R dates ids
+     */
     public static ArrayList<Integer> retrieveProblemR2rIdsBetDates(java.util.Date start, java.util.Date end){
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -2697,6 +3100,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
     
+     /**
+     * retrieve R2R ids
+     * @param problem problem
+     * @return a list of R2R ids
+     */
     public static ArrayList<Integer> retrieveProblemR2RIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -2728,6 +3136,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+     /**
+     * retrieve R2R with id
+     * @param id R2R id
+     * @return R2R with id
+     */
     public static ProblemR2R retrieveProblemR2RById(int id) {
         ProblemR2R problemR2R = null;
 
@@ -2775,7 +3188,11 @@ public class ProblemComplementsDAO {
         }
         return problemR2R;
     }
-
+ 
+    /**
+     * add R2R
+     * @param problemR2R R2R of problem
+     */
     public static void addProblemR2R(ProblemR2R problemR2R) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2814,6 +3231,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * update R2R
+     * @param problemR2R R2R of problem
+     */
     public static void updateProblemR2R(ProblemR2R problemR2R) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2847,6 +3268,10 @@ public class ProblemComplementsDAO {
         }
     }
     
+     /**
+     * delete R2R with id
+     * @param id R2R id
+     */
     public static void deleteProblemR2R(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2864,6 +3289,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+     /**
+     * delete all R2Rs of problem
+     */
     public static void deleteAllProblemR2Rs() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2883,6 +3311,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem Lawyer*/
+     /**
+     * retrieve lawyer ids
+     * @param problem problem
+     * @return a list of lawyer ids
+     */
     public static ArrayList<Integer> retrieveProblemLawyerIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -2914,6 +3347,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+    /**
+     * retrieve lawyer with id
+     * @param id lawyer id
+     * @return lawyer with id
+     */
     public static ProblemLawyer retrieveProblemLawyerById(int id) {
         ProblemLawyer problemLawyer = null;
 
@@ -2951,6 +3389,10 @@ public class ProblemComplementsDAO {
         return problemLawyer;
     }
 
+     /**
+     * add lawyer
+     * @param problemLawyer lawyer of problem
+     */
     public static void addProblemLawyer(ProblemLawyer problemLawyer) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2979,6 +3421,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * update lawyer
+     * @param problemLawyer lawyer of problem
+     */
     public static void updateProblemLawyer(ProblemLawyer problemLawyer) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3004,6 +3450,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * delete lawyer with id
+     * @param id lawyer id
+     */
     public static void deleteProblemLawyer(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3021,6 +3471,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+     /**
+     * delete all lawyers of problem
+     */
     public static void deleteAllProblemLawyers() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3040,6 +3493,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem Case Milestone Non criminal*/
+     /**
+     * retrieve case milestone non-critical ids
+     * @param problem problem
+     * @return a list of case milestone non-critical ids
+     */
     public static ArrayList<Integer> retrieveProblemCaseMilestoneNCIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -3072,6 +3530,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+     /**
+     * retrieve case milestone non-critical with id
+     * @param id case milestone non-critical id
+     * @return case milestone non-critical with id
+     */
     public static ProblemCaseMilestoneNC retrieveProblemCaseMilestoneNCById(int id) {
         ProblemCaseMilestoneNC problemCaseMilestoneNC = null;
 
@@ -3108,6 +3571,10 @@ public class ProblemComplementsDAO {
         return problemCaseMilestoneNC;
     }
 
+    /**
+     * add case milestone non-critical
+     * @param problemCaseMilestoneNC case milestone non-critical of problem
+     */
     public static void addProblemCaseMilestoneNC(ProblemCaseMilestoneNC problemCaseMilestoneNC) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3135,6 +3602,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+    /**
+     * update case milestone non-critical
+     * @param problemCaseMilestoneNC case milestone non-critical of problem
+     */
     public static void updateProblemCaseMilestoneNC(ProblemCaseMilestoneNC problemCaseMilestoneNC) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3158,6 +3629,10 @@ public class ProblemComplementsDAO {
         }
     }
     
+     /**
+     * delete case milestone non-critical with id
+     * @param id case milestone non-critical id
+     */
     public static void deleteProblemCaseMilestoneNC(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3175,6 +3650,9 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * delete all case milestones non-critical of problem
+     */
     public static void deleteAllProblemCaseMilestoneNCs() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3194,6 +3672,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem Case Milestone Criminal*/
+     /**
+     * retrieve case milestone critical ids
+     * @param problem problem
+     * @return a list of case milestone critical ids
+     */
     public static ArrayList<Integer> retrieveProblemCaseMilestoneCRIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -3225,6 +3708,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+     /**
+     * retrieve case milestone critical with id
+     * @param id case milestone critical id
+     * @return case milestone critical with id
+     */
     public static ProblemCaseMilestoneCR retrieveProblemCaseMilestoneCRById(int id) {
         ProblemCaseMilestoneCR problemCaseMilestoneCR = null;
 
@@ -3263,6 +3751,10 @@ public class ProblemComplementsDAO {
         return problemCaseMilestoneCR;
     }
 
+    /**
+     * add case milestone critical
+     * @param problemCaseMilestoneCR case milestone critical of problem
+     */
     public static void addProblemCaseMilestoneCR(ProblemCaseMilestoneCR problemCaseMilestoneCR) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3292,6 +3784,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * update case milestone critical
+     * @param problemCaseMilestoneCR case milestone critical of problem
+     */
     public static void updateProblemCaseMilestoneCR(ProblemCaseMilestoneCR problemCaseMilestoneCR) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3318,6 +3814,10 @@ public class ProblemComplementsDAO {
         }
     }
     
+    /**
+     * delete case milestone critical with id
+     * @param id case milestone critical id
+     */
     public static void deleteProblemCaseMilestoneCR(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3335,6 +3835,9 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * delete all case milestones critical of problem
+     */ 
     public static void deleteAllProblemCaseMilestoneCRs() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3354,6 +3857,11 @@ public class ProblemComplementsDAO {
     }
     
     /*Problem TTR*/
+    /**
+     * retrieve TTR ids
+     * @param problem problem
+     * @return a list of TTR ids
+     */
     public static ArrayList<Integer> retrieveProblemTTRIdsOfProblem(Problem problem) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -3385,6 +3893,11 @@ public class ProblemComplementsDAO {
         return ids;
     }
 
+     /**
+     * retrieve TTR with id
+     * @param id TTR id
+     * @return TTR with id
+     */
     public static ProblemTTR retrieveProblemTTRById(int id) {
         ProblemTTR problemTTR = null;
 
@@ -3426,6 +3939,10 @@ public class ProblemComplementsDAO {
         return problemTTR;
     }
 
+    /**
+     * add TTR
+     * @param problemTTR TTR of problem
+     */
     public static void addProblemTTR(ProblemTTR problemTTR) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3457,6 +3974,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * update TTR
+     * @param problemTTR TTR of problem
+     */
     public static void updateProblemTTR(ProblemTTR problemTTR) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3485,6 +4006,10 @@ public class ProblemComplementsDAO {
         }
     }
 
+     /**
+     * delete TTR with id
+     * @param id TTR id
+     */
     public static void deleteProblemTTR(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3502,6 +4027,9 @@ public class ProblemComplementsDAO {
         }
     }
     
+     /**
+     * delete all TTRs of problem
+     */
     public static void deleteAllProblemTTRs() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -3521,6 +4049,9 @@ public class ProblemComplementsDAO {
     }
 
     /*general*/
+    /**
+     * delete all complements of problem
+     */
     public static void deleteAll() {
         deleteAllProblemAggravatingIssues();
         deleteAllProblemLeadCaseWorkers();
