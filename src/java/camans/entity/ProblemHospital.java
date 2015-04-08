@@ -8,90 +8,96 @@ import java.sql.Date;
 
 /**
  *
- * @author soemyatmyat
+ * @author kyilailaishoon
  */
-public class ProblemHospital {
+public class ProblemLawyer {
     
     //attributes
     private int id;
     private String workerFinNumber;
     private int jobKey;
     private int problemKey;
-    private Date hospitalUpdate;
-    private String hospitalName;
-    private String hospitalNameMore ;
-    private String hospitalDoctor;
-    private String hospitalRemark;
+    private Date LawyerUpdate;
+    //private String LawyerHave;
+    private String LawyerFirm ;
+    private String LawyerFirmMore;
+    private String LawyerName;
+    private String LawyerRemarks;
+	
 
     
     //constructor with id 
     /**
-     * Constructor for ProblemHospital class
-     * @param id id 
-     * @param workerFinNumber FIN
+     * Constructor for ProblemLawyer class
+     * @param id id
+     * @param workerFinNumber FIN 
      * @param jobKey job key
      * @param problemKey problem key
-     * @param hospitalUpdate date of update
-     * @param hospitalName hospital name
-     * @param hospitalNameMore other hospital name
-     * @param hospitalDoctor doctor within hospital
-     * @param hospitalRemark remark of hospital
+     * @param LawyerUpdate date of update
+     * @param LawyerFirm law firm
+     * @param LawyerFirmMore more law firm
+     * @param LawyerName name of lawyer
+     * @param LawyerRemarks remarks of lawyer
      */
-        public ProblemHospital(int id, String workerFinNumber, int jobKey, int problemKey,
-            Date hospitalUpdate, String hospitalName, String hospitalNameMore, 
-            String hospitalDoctor, String hospitalRemark) {
+        public ProblemLawyer(int id, String workerFinNumber, int jobKey, int problemKey , 
+            Date LawyerUpdate, String LawyerFirm, String LawyerFirmMore, String LawyerName,
+            String LawyerRemarks) {
 		this.id = id;
 		this.workerFinNumber = workerFinNumber;
 		this.jobKey = jobKey;
 		this.problemKey = problemKey;
-		this.hospitalUpdate= hospitalUpdate;
-		this.hospitalName =hospitalName;
-		this.hospitalNameMore= hospitalNameMore;
-		this.hospitalDoctor = hospitalDoctor;
-                this.hospitalRemark = hospitalRemark;
+		this.LawyerUpdate = LawyerUpdate;
+		//this.LawyerHave = LawyerHave;
+		this.LawyerFirm = LawyerFirm;
+                this.LawyerFirmMore = LawyerFirmMore;
+                this.LawyerName = LawyerName;
+		this.LawyerRemarks = LawyerRemarks;
 	}
 	
     //constructor without id
  
     /**
-     * Constructor for ProblemHospital class without id
-     * @param workerFinNumber FIN
+     * Constructor for ProblemLawyer class without id
+     * @param workerFinNumber FIN 
      * @param jobKey job key
      * @param problemKey problem key
-     * @param hospitalUpdate date of update
-     * @param hospitalName hospital name
-     * @param hospitalNameMore other hospital name
-     * @param hospitalDoctor doctor within hospital
-     * @param hospitalRemark remark of hospital
+     * @param LawyerUpdate date of update
+     * @param LawyerFirm law firm
+     * @param LawyerFirmMore more law firm
+     * @param LawyerName name of lawyer
+     * @param LawyerRemarks remarks of lawyer
      */
-        public ProblemHospital(String workerFinNumber, int jobKey, int problemKey,Date hospitalUpdate, 
-            String hospitalName, String hospitalNameMore, String hospitalDoctor, String hospitalRemark){
+        public ProblemLawyer(String workerFinNumber, int jobKey, int problemKey , Date LawyerUpdate, 
+            String LawyerFirm, String LawyerFirmMore, String LawyerName, String LawyerRemarks) {
+
             this.workerFinNumber = workerFinNumber;
             this.jobKey = jobKey;
             this.problemKey = problemKey;
-            this.hospitalUpdate= hospitalUpdate;
-            this.hospitalName =hospitalName;
-            this.hospitalNameMore= hospitalNameMore;
-            this.hospitalDoctor = hospitalDoctor;
-            this.hospitalRemark = hospitalRemark;
+            this.LawyerUpdate = LawyerUpdate;
+            //this.LawyerHave = LawyerHave;
+            this.LawyerFirm = LawyerFirm;
+            this.LawyerFirmMore = LawyerFirmMore;
+            this.LawyerName = LawyerName;
+            this.LawyerRemarks = LawyerRemarks;
+    }
+    
+
+    /**
+     * returns current law firm
+     * @return current law firm
+     */
+    public String getLawyerName() {
+        return LawyerName;
     }
 
     /**
-     * returns remark
-     * @return remark
+     * sets current law firm
+     * @param LawyerName current law firm
      */
-    public String getHospitalRemark() {
-        return hospitalRemark;
+    public void setLawyerName(String LawyerName) {
+        this.LawyerName = LawyerName;
     }
 
-    /**
-     * sets remark
-     * @param hospitalRemark remark
-     */
-    public void setHospitalRemark(String hospitalRemark) {
-        this.hospitalRemark = hospitalRemark;
-    }
-	
     /**
      * sets id
      * @param id id
@@ -99,15 +105,15 @@ public class ProblemHospital {
     public void setId(int id) {
         this.id = id;
     }
-    
+
     /**
      * returns id
      * @return id
      */
     public int getId() {
-       return id;
+        return id;
     }
- 
+
     /**
      * returns worker FIN
      * @return worker FIN
@@ -149,7 +155,7 @@ public class ProblemHospital {
     }
 
     /**
-     * sets problem key 
+     * sets problem key
      * @param problemKey problem key
      */
     public void setProblemKey(int problemKey) {
@@ -160,79 +166,80 @@ public class ProblemHospital {
      * returns date of update
      * @return date of update
      */
-    public Date getHospitalUpdate() {
-        return hospitalUpdate;
+    public Date getLawyerUpdate() {
+        return LawyerUpdate;
     }
 
     /**
      * sets date of update
-     * @param hospitalUpdate date of update
+     * @param LawyerUpdate date of update
      */
-    public void setHospitalUpdate(Date hospitalUpdate) {
-        this.hospitalUpdate = hospitalUpdate;
+    public void setLawyerUpdate(Date LawyerUpdate) {
+        this.LawyerUpdate = LawyerUpdate;
     }
 
     /**
-     * returns hospital name
-     * @return hospital name
+     * returns more law firm
+     * @return more law firm
      */
-    public String getHospitalName() {
-        return hospitalName;
+    public String getLawyerFirmMore() {
+        return LawyerFirmMore;
     }
 
     /**
-     * sets hospital name
-     * @param hospitalName hospital name
+     * sets more law firm
+     * @param LawyerFirmMore more law firm
      */
-    public void setHospitalName(String hospitalName) {
-        this.hospitalName = hospitalName;
+    public void setLLawyerFirmMore(String LawyerFirmMore) {
+        this.LawyerFirmMore = LawyerFirmMore;
     }
 
     /**
-     * returns more hospital name
-     * @return more hospital name
+     * returns lay firm
+     * @return lay firm
      */
-    public String getHospitalNameMore() {
-        return hospitalNameMore;
+    public String getLawyerFirm() {
+        return LawyerFirm;
     }
 
     /**
-     * sets more hospital name
-     * @param hospitalNameMore more hospital name
+     * sets lay firm
+     * @param LawyerFirm lay firm
      */
-    public void setHospitalNameMore(String hospitalNameMore) {
-        this.hospitalNameMore = hospitalNameMore;
+    public void setLawyerFirm(String LawyerFirm) {
+        this.LawyerFirm = LawyerFirm;
     }
 
     /**
-     * returns department/doctor within hospital
-     * @return department/doctor within hospital
+     * returns remark
+     * @return remark
      */
-    public String getHospitalDoctor() {
-        return hospitalDoctor;
+    public String getLawyerRemarks() {
+        return LawyerRemarks;
     }
 
     /**
-     * sets department/doctor within hospital
-     * @param hospitalDoctor department/doctor within hospital
+     * sets remark
+     * @param LawyerRemarks remark
      */
-    public void setHospitalDoctor(String hospitalDoctor) {
-        this.hospitalDoctor = hospitalDoctor;
+    public void setLawyerRemarks(String LawyerRemarks) {
+        this.LawyerRemarks = LawyerRemarks;
     }
 
     @Override
     public String toString() {
-        return "ProblemHospital{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
-                ", jobKey=" + jobKey + ", problemKey=" + problemKey + 
-                ", hospitalUpdate=" + hospitalUpdate + ", hospitalName=" + hospitalName + 
-                ", hospitalNameMore=" + hospitalNameMore + ", hospitalDoctor=" + hospitalDoctor + 
-                ", hospitalRemark=" + hospitalRemark + '}';
+        return "ProblemLawyer{" + "id=" + id + ", workerFinNumber=" + workerFinNumber + 
+                ", jobKey=" + jobKey + ", problemKey=" + problemKey + ", LawyerUpdate=" + LawyerUpdate + 
+                ", LawyerFirm=" + LawyerFirm + ", LawyerFirmMore=" + LawyerFirmMore + 
+                ", LawyerName=" + LawyerName + ", LawyerRemarks=" + LawyerRemarks + '}';
     }
-    
+	
     public String toString2() {
-        return "Hospital [ hospitalUpdate=" + hospitalUpdate + ", hospitalName=" + hospitalName + 
-                ", hospitalNameMore=" + hospitalNameMore + ", hospitalDoctor=" + hospitalDoctor + 
-                ", hospitalRemark=" + hospitalRemark + ']';
-    }    
+        return "Lawyer [LawyerUpdate=" + LawyerUpdate + 
+                ", LawyerFirm=" + LawyerFirm + ", LawyerFirmMore=" + LawyerFirmMore + 
+                ", LawyerName=" + LawyerName + ", LawyerRemarks=" + LawyerRemarks + ']';
+    }	 
+	
+    
     
 }
