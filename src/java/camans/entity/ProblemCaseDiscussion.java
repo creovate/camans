@@ -34,25 +34,25 @@ public class ProblemCaseDiscussion {
     //constructor with id
     /**
      * Constructor for ProblemCaseDiscussion class
-     * @param id
-     * @param workerFinNumber
-     * @param jobKey
-     * @param problemKey
-     * @param caseDiscussionDate
-     * @param caseDiscussionTime
-     * @param caseDiscussionWhere
-     * @param caseDiscussionWhereMore
-     * @param caseDiscussionWorkerPresent
-     * @param caseDiscussionTWC2Person1
-     * @param caseDiscussionTWC2Person2
-     * @param caseDiscussionOtherPerson
-     * @param caseDiscussionTranslator
-     * @param caseDiscussionTopic
-     * @param caseDiscussionGist
-     * @param caseDiscussionAssist
-     * @param caseDiscussionCalculate
-     * @param caseDiscussionAction
-     * @param caseDiscussionRemark
+     * @param id id
+     * @param workerFinNumber FIN
+     * @param jobKey job key
+     * @param problemKey problem key
+     * @param caseDiscussionDate date of case discussion
+     * @param caseDiscussionTime time of case discussion
+     * @param caseDiscussionWhere location of case discussion
+     * @param caseDiscussionWhereMore other location of case discussion
+     * @param caseDiscussionWorkerPresent present worker who attend case discussion
+     * @param caseDiscussionTWC2Person1 first TWC person who attend case discussion
+     * @param caseDiscussionTWC2Person2 second TWC person who attend case discussion
+     * @param caseDiscussionOtherPerson other TWC person who attend case discussion
+     * @param caseDiscussionTranslator translator of case discussion
+     * @param caseDiscussionTopic topic of case discussion
+     * @param caseDiscussionGist gist of case discussion
+     * @param caseDiscussionAssist assist of case discussion
+     * @param caseDiscussionCalculate calculation of case discussion
+     * @param caseDiscussionAction action of case discussion
+     * @param caseDiscussionRemark remark of case discussion
      */
     public ProblemCaseDiscussion(int id, String workerFinNumber, int jobKey, int problemKey, Date caseDiscussionDate, String caseDiscussionTime, String caseDiscussionWhere, String caseDiscussionWhereMore, String caseDiscussionWorkerPresent, String caseDiscussionTWC2Person1, String caseDiscussionTWC2Person2, String caseDiscussionOtherPerson, String caseDiscussionTranslator, String caseDiscussionTopic, String caseDiscussionGist, String caseDiscussionAssist, String caseDiscussionCalculate, String caseDiscussionAction, String caseDiscussionRemark) {
             this.id = id;
@@ -79,24 +79,24 @@ public class ProblemCaseDiscussion {
     //constructor without id
      /**
      * Constructor for ProblemCaseDiscussion class without id
-     * @param workerFinNumber
-     * @param jobKey
-     * @param problemKey
-     * @param caseDiscussionDate
-     * @param caseDiscussionTime
-     * @param caseDiscussionWhere
-     * @param caseDiscussionWhereMore
-     * @param caseDiscussionWorkerPresent
-     * @param caseDiscussionTWC2Person1
-     * @param caseDiscussionTWC2Person2
-     * @param caseDiscussionOtherPerson
-     * @param caseDiscussionTranslator
-     * @param caseDiscussionTopic
-     * @param caseDiscussionGist
-     * @param caseDiscussionAssist
-     * @param caseDiscussionCalculate
-     * @param caseDiscussionAction
-     * @param caseDiscussionRemark
+     * @param workerFinNumber FIN
+     * @param jobKey job key
+     * @param problemKey problem key
+     * @param caseDiscussionDate date of case discussion
+     * @param caseDiscussionTime time of case discussion
+     * @param caseDiscussionWhere location of case discussion
+     * @param caseDiscussionWhereMore other location of case discussion
+     * @param caseDiscussionWorkerPresent present worker who attend case discussion
+     * @param caseDiscussionTWC2Person1 first TWC person who attend case discussion
+     * @param caseDiscussionTWC2Person2 second TWC person who attend case discussion
+     * @param caseDiscussionOtherPerson other TWC person who attend case discussion
+     * @param caseDiscussionTranslator translator of case discussion
+     * @param caseDiscussionTopic topic of case discussion
+     * @param caseDiscussionGist gist of case discussion
+     * @param caseDiscussionAssist assist of case discussion
+     * @param caseDiscussionCalculate calculation of case discussion
+     * @param caseDiscussionAction action of case discussion
+     * @param caseDiscussionRemark remark of case discussion
      */
     public ProblemCaseDiscussion(String workerFinNumber, int jobKey, int problemKey, Date caseDiscussionDate, String caseDiscussionTime, String caseDiscussionWhere, String caseDiscussionWhereMore, String caseDiscussionWorkerPresent, String caseDiscussionTWC2Person1, String caseDiscussionTWC2Person2, String caseDiscussionOtherPerson, String caseDiscussionTranslator, String caseDiscussionTopic, String caseDiscussionGist, String caseDiscussionAssist, String caseDiscussionCalculate, String caseDiscussionAction, String caseDiscussionRemark) {
             this.workerFinNumber = workerFinNumber;
