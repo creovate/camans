@@ -27,6 +27,21 @@ public class ProblemTTR {
 	
     
     //constructor with id 
+     /**
+    * Constructor for ProblemTTR class
+    *
+    * @param id - id
+    * @param workerFinNumber - worker's FIN
+    * @param jobKey - job key
+    * @param problemKey - problem key
+    * @param TTRUpdate - date of update
+    * @param TTRStatus - Transfer, TJS or repatriation status
+    * @param TTRStatusMore - more Transfer, TJS or repatriation status
+    * @param departureDate - departure date from Singapore
+    * @param newEmployerName - name of TJS or new employer
+    * @param newJob - description of TJS or new job
+    * @param TTRRem - remarks
+    */
     public ProblemTTR(int id, String workerFinNumber, int jobKey, int problemKey , 
             Date TTRUpdate, String TTRStatus, String TTRStatusMore, String departureDate, 
             String newEmployerName, String newJob, String TTRRem) {
@@ -36,7 +51,6 @@ public class ProblemTTR {
         this.problemKey = problemKey;
         this.TTRUpdate = TTRUpdate;
         this.TTRStatus = TTRStatus;
-        this.TTRStatusMore = TTRStatusMore;
         this.departureDate = departureDate;
         this.newEmployerName = newEmployerName;
         this.newJob = newJob;
@@ -44,6 +58,20 @@ public class ProblemTTR {
     }
 	
     //constructor without id
+    /**
+    * Constructor for ProblemTTR class without id
+    *
+    * @param workerFinNumber - worker's FIN
+    * @param jobKey - job key
+    * @param problemKey - problem key
+    * @param TTRUpdate - date of update
+    * @param TTRStatus - Transfer, TJS or repatriation status
+    * @param TTRStatusMore - more Transfer, TJS or repatriation status
+    * @param departureDate - departure date from Singapore
+    * @param newEmployerName - name of TJS or new employer
+    * @param newJob - description of TJS or new job
+    * @param TTRRem - remarks
+    */
     public ProblemTTR(String workerFinNumber, int jobKey, int problemKey , 
             Date TTRUpdate, String TTRStatus, String TTRStatusMore, String departureDate, 
             String newEmployerName, String newJob, String TTRRem) {
@@ -53,97 +81,207 @@ public class ProblemTTR {
             this.problemKey = problemKey;
             this.TTRUpdate = TTRUpdate;
             this.TTRStatus = TTRStatus;
-            this.TTRStatusMore = TTRStatusMore;
             this.departureDate = departureDate;
             this.newEmployerName = newEmployerName;
             this.newJob = newJob;
             this.TTRRem = TTRRem;
     }
 
+    /**
+    * Returns id
+    *
+    * @return id
+    */
+    public int getId() {
+            return id;
+    }
+
+    /**
+    * Returns worker FIN
+    *
+    * @return worker FIN
+    */
     public String getWorkerFinNumber() {
-        return workerFinNumber;
+            return workerFinNumber;
     }
 
-    public void setWorkerFinNumber(String workerFinNumber) {
-        this.workerFinNumber = workerFinNumber;
-    }
-
+    /**
+    * Returns job key
+    *
+    * @return job key
+    */
     public int getJobKey() {
-        return jobKey;
+            return jobKey;
     }
 
-    public void setJobKey(int jobKey) {
-        this.jobKey = jobKey;
-    }
-
+    /**
+    * Returns problem key
+    *
+    * @return problem key
+    */
     public int getProblemKey() {
-        return problemKey;
+            return problemKey;
+    }
+    
+     /**
+    * Sets id
+    *
+    * @param id  id
+    */
+    public void setId(int id) {
+            this.id = id;
+    }
+    
+    /**
+    * Sets worker FIN
+    *
+    * @param workerFinNumber  worker FIN
+    */
+    public void setWorkerFinNumber(String workerFinNumber) {
+            this.workerFinNumber = workerFinNumber;
+    }
+    
+    /**
+    * Sets job key
+    *
+    * @param jobKey  job key
+    */
+    public void setJobKey(int jobKey) {
+            this.jobKey = jobKey;
     }
 
+    /**
+    * Sets problem key
+    *
+    * @param problemKey  problem key
+    */
     public void setProblemKey(int problemKey) {
-        this.problemKey = problemKey;
+            this.problemKey = problemKey;
     }
 
+     /**
+    * Returns date of update
+    *
+    * @return date of update
+    */
     public Date getTTRUpdate() {
         return TTRUpdate;
     }
 
+    /**
+    * Sets date of update
+    *
+    * @param TTRUpdate  date of update
+    */
     public void setTTRUpdate(Date TTRUpdate) {
         this.TTRUpdate = TTRUpdate;
     }
 
+     /**
+    * Returns Transfer, TJS or repatriation status
+    *
+    * @return Transfer, TJS or repatriation status
+    */
     public String getTTRStatus() {
         return TTRStatus;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    /**
+    * Sets Transfer, TJS or repatriation status
+    *
+    * @param TTRStatus  Transfer, TJS or repatriation status
+    */
     public void setTTRStatus(String TTRStatus) {
         this.TTRStatus = TTRStatus;
     }
 
+     /**
+    * Returns more Transfer, TJS or repatriation status
+    *
+    * @return more Transfer, TJS or repatriation status
+    */
     public String getTTRStatusMore() {
         return TTRStatusMore;
     }
 
+    /**
+    * Sets more Transfer, TJS or repatriation status
+    *
+    * @param TTRStatusMore  more Transfer, TJS or repatriation status
+    */
     public void setTTRStatusMore(String TTRStatusMore) {
         this.TTRStatusMore = TTRStatusMore;
     }
 
+     /**
+    * Returns departure date from Singapore
+    *
+    * @return departure date from Singapore
+    */
     public String getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(String departureDate) {
+    /**
+    * Sets departure date from Singapore
+    *
+    * @param MCExpDate  departure date from Singapore
+    */
+    public void setDepartureDate(String MCExpDate) {
         this.departureDate = departureDate;
     }
 	
+     /**
+    * Returns name of TJS or new employer
+    *
+    * @return name of TJS or new employer
+    */
     public String getNewEmployerName() {
         return newEmployerName;
     }
 
+    /**
+    * Sets name of TJS or new employer
+    *
+    * @param newEmployerName  name of TJS or new employer
+    */
     public void setNewEmployerName(String newEmployerName) {
         this.newEmployerName = newEmployerName;
     }
 	
+     /**
+    * Returns description of TJS or new job
+    *
+    * @return description of TJS or new job
+    */
     public String getNewJob() {
    return newJob;
 }
 
+    /**
+    * Sets description of TJS or new job
+    *
+    * @param newJob  description of TJS or new job
+    */
     public void setNewJob (String newJob) {
         this.newJob = newJob;
     }
 	
+     /**
+    * Returns remark
+    *
+    * @return remark
+    */
     public String getTTRRem() {
    return TTRRem;
 }
 
+    /**
+    * Sets remark
+    *
+    * @param TTRRem  remark
+    */
     public void setTTRRem (String TTRRem) {
         this.TTRRem = TTRRem;
     }
