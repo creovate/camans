@@ -23,7 +23,11 @@ import java.util.logging.Logger;
  */
 public class DropdownDAO {
     
-   
+   /**
+     * Retrieve all the drop down list of nationalities
+	 *
+     * @return an Arraylist of drop down lists of nationalities
+     */
     public static ArrayList<String> retrieveAllDropdownListOfNationalities() {
         ArrayList<String> nationalityList = new ArrayList<String>();
         Connection conn = null;
@@ -49,7 +53,11 @@ public class DropdownDAO {
         } 
         return nationalityList;
     }
-        
+    /**
+     * Retrieve all the drop down lists of problems
+	 *
+     * @return an Arraylist of drop down lists of problems
+     */     
     public static ArrayList<String> retrieveAllDropdownListOfProblems() {
         ArrayList<String> problemList = new ArrayList<String>();
         Connection conn = null;
@@ -75,7 +83,11 @@ public class DropdownDAO {
         } 
         return problemList;
     }
-
+    /**
+     * Retrieve all the drop down lists of pass types
+	 *
+     * @return an Arraylist of drop down lists of pass types
+     */
     public static ArrayList<String> retrieveAllDropdownListOfPassType() {
         ArrayList<String> passTypeList = new ArrayList<String>();
         Connection conn = null;
@@ -101,7 +113,11 @@ public class DropdownDAO {
         } 
         return passTypeList;       
     }
-
+    /**
+     * Retrieve all the drop down lists of job sectors
+	 *
+     * @return an Arraylist of drop down lists of job sectors
+     */ 
     public static ArrayList<String> retrieveAllDropdownListOfJobSector() {
         ArrayList<String> jobSectorList = new ArrayList<String>();
         Connection conn = null;
@@ -127,7 +143,11 @@ public class DropdownDAO {
         } 
         return jobSectorList;       
     }
-
+    /**
+     * Retrieve all the drop down lists of hospital type
+	 *
+     * @return an Arraylist of drop down lists of hospital type
+     */ 
     public static ArrayList<String> retrieveAllDropdownListOfHosptialType() {
         ArrayList<String> hosptialList = new ArrayList<String>();
         Connection conn = null;
@@ -153,7 +173,11 @@ public class DropdownDAO {
         } 
         return hosptialList;       
     }
-    
+    /**
+     * Retrieve all the drop down lists of digital contact types
+	 *
+     * @return an Arraylist of drop down lists of digital contact types
+     */ 
     public static ArrayList<String> retrieveAllDropdownListOfDigitalContactType() {
         ArrayList<String> digitalContactList = new ArrayList<String>();
         Connection conn = null;
@@ -179,7 +203,11 @@ public class DropdownDAO {
         } 
         return digitalContactList;            
     }
-
+    /**
+     * Retrieve all the drop down lists of languages
+	 *
+     * @return an Arraylist of drop down lists of languages
+     */
     public static ArrayList<String> retrieveAllDropdownListOfLanguage() {
     ArrayList<String> languageList = new ArrayList<String>();
     Connection conn = null;
@@ -205,7 +233,12 @@ public class DropdownDAO {
     } 
     return languageList;            
 }
-
+    
+	 /**
+     * Retrieve all the drop down lists of spoken English standards
+	 *
+     * @return an Arraylist of drop down lists of spoken English standards
+     */
     public static ArrayList<String> retrieveAllDropdownListOfSpokenEnglish() {
         ArrayList<String> spokenEnglishStandards = new ArrayList<String>();
         Connection conn = null;
@@ -231,7 +264,11 @@ public class DropdownDAO {
         } 
         return spokenEnglishStandards; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of work pass types
+	 *
+     * @return an Arraylist of drop down lists work pass types
+     */ 
     public static ArrayList<String> retrieveAllDropdownListOfWorkpassType() {
         ArrayList<String> workpassTypes = new ArrayList<String>();
         Connection conn = null;
@@ -257,7 +294,11 @@ public class DropdownDAO {
         } 
         return workpassTypes; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of IPA pass types
+	 *
+     * @return an Arraylist of drop down lists of IPA pass types
+     */
     public static ArrayList<String> retrieveAllDropdownListOfIPAPassType() {
         ArrayList<String> ipapassTypes = new ArrayList<String>();
         Connection conn = null;
@@ -283,7 +324,11 @@ public class DropdownDAO {
         } 
         return ipapassTypes; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of location types
+	 *
+     * @return an Arraylist of drop down lists of location types
+     */ 
     public static ArrayList<String> retrieveAllDropdownListOfAgentLocationType() {
         ArrayList<String> agentLocationTypes = new ArrayList<String>();
         Connection conn = null;
@@ -309,7 +354,11 @@ public class DropdownDAO {
         } 
         return agentLocationTypes; 
     }
-    
+     /**
+     * Retrieve all the drop down lists of workplace types
+	 *
+     * @return an Arraylist of drop down lists of workplace types
+     */ 
     public static ArrayList<String> retrieveAllDropdownListOfWorkplaceType() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -335,7 +384,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of people who directed worker to workplace
+	 *
+     * @return an Arraylist of drop down lists of people who directed worker to workplace
+     */
     public static ArrayList<String> retrieveAllDropdownListOfWorkplaceDirectType() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -361,7 +414,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+     /**
+     * Retrieve all the drop down lists of history of work
+	 *
+     * @return an Arraylist of drop down lists of history of work
+     */
     public static ArrayList<String> retrieveAllDropdownListOfWorkHistoryHowType() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -387,7 +444,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+     /**
+     * Retrieve all the drop down lists of provided accommodations 
+	 *
+     * @return an Arraylist of drop down lists of provided accommodations
+     */ 
     public static ArrayList<String> retrieveAllDropdownListOfAccomProvidedType() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -413,7 +474,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of accommodation types
+	 *
+     * @return an Arraylist of drop down lists of accommodation types
+     */ 
     public static ArrayList<String> retrieveAllDropdownListOfAccomType() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -439,7 +504,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of case workers
+	 *
+     * @return an Arraylist of drop down lists of case workers
+     */ 
     public static ArrayList<String> retrieveAllDropdownListOfCaseworkers() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -464,7 +533,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of salary modes
+	 *
+     * @return an Arraylist of drop down lists of salary modes
+     */ 
     public static ArrayList<String> retrieveAllDropdownListOfSalaryMode() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -490,7 +563,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of complaints
+	 *
+     * @return an Arraylist of drop down lists of complaints
+     */
     public static ArrayList<String> retrieveAllDropdownListOfComplaint() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -516,7 +593,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of complaint modes
+	 *
+     * @return an Arraylist of drop down lists of complaint modes
+     */
     public static ArrayList<String> retrieveAllDropdownListOfComplaintMode() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -542,7 +623,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+     /**
+     * Retrieve all the drop down lists of location of discussion
+	 *
+     * @return an Arraylist of drop down lists of location of discussion
+     */
     public static ArrayList<String> retrieveAllDropdownListOfDiscussWhere() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -568,7 +653,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of hospitals
+	 *
+     * @return an Arraylist of drop down lists of hospitals
+     */ 
     public static ArrayList<String> retrieveAllDropdownListOfHosipital() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -594,7 +683,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of MC Status
+	 *
+     * @return an Arraylist of drop down lists of MC Status
+     */ 
     public static ArrayList<String> retrieveAllDropdownListOfMCStatus() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -620,7 +713,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of WICA
+	 *
+     * @return an Arraylist of drop down lists of WICA
+     */
     public static ArrayList<String> retrieveAllDropdownListOfWica() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -646,7 +743,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of non criminal milestone reached
+	 *
+     * @return an Arraylist of drop down lists of non criminal milestone reached
+     */ 
     public static ArrayList<String> retrieveAllDropdownListOfMilestoneNonCriminal() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -672,7 +773,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of criminal milestone reached
+	 *
+     * @return an Arraylist of drop down lists of criminal milestone reached
+     */
     public static ArrayList<String> retrieveAllDropdownListOfMilestoneCriminal() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -698,7 +803,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+     /**
+     * Retrieve all the drop down lists of TTR Status
+	 *
+     * @return an Arraylist of drop down lists of TTR Status
+     */
     public static ArrayList<String> retrieveAllDropdownListOfTTRStatus() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -724,7 +833,11 @@ public class DropdownDAO {
         } 
         return types; 
     }
-    
+    /**
+     * Retrieve all the drop down lists of law firms
+	 *
+     * @return an Arraylist of drop down lists of law firms
+     */
     public static ArrayList<String> retrieveAllDropdownListOfLawFirms() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -750,7 +863,11 @@ public class DropdownDAO {
         } 
         return types;         
     }
-    
+    /**
+     * Retrieve all the drop down lists of benefits
+	 *
+     * @return an Arraylist of drop down lists of benefits
+     */ 
     public static ArrayList<String> retreiveAllDropdownListOfBenefits(String benefitType) {
         ArrayList<String> list = new ArrayList<String>();
         Connection conn = null;
@@ -778,7 +895,11 @@ public class DropdownDAO {
         }
         return list;
     }
-   
+   /**
+     * Retrieve all the drop down types
+	 *
+     * @return an Arraylist of drop down types
+     */ 
     public static ArrayList<String> retrieveAllDropdownType() {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -803,7 +924,12 @@ public class DropdownDAO {
         } 
         return types;   
     }
-    
+    /**
+     * Retrieve drop down list by specific drop down type
+	 * 
+	 * @param drop down type
+     * @return an Arraylist of drop down list by specific drop down type
+     */
     public static ArrayList<String> retrieveAllDropdownListByType(String dropdownType) {
         ArrayList<String> types = new ArrayList<String>();
         Connection conn = null;
@@ -829,7 +955,13 @@ public class DropdownDAO {
         } 
         return types;         
     }
-        
+    /**
+     * Retrieve all the drop down item by dropdown type and name
+	 *
+	 * @param drop down type
+	 * @param name
+     * @return an Arraylist of drop down lists of drop down item by type and name
+     */    
     public static Dropdown retrieveDropdownItem(String dropdownType, String name) {
         Dropdown dropdownItem = null;
         Connection conn = null;
@@ -858,7 +990,12 @@ public class DropdownDAO {
         }
         return dropdownItem;
     }
-    
+    /**
+     * Retrieve all the drop down item by specific id
+	 *
+	 * @param id
+     * @return an Arraylist of drop down item by specific id
+     */ 
     public static Dropdown retrieveDropdownItemById(int id) {
         Dropdown dropdownItem = null;
         Connection conn = null;
@@ -887,7 +1024,12 @@ public class DropdownDAO {
         }
         return dropdownItem;
     }
-    
+    /**
+     * Update drop down item of specific drop down
+	 *
+	 * @param drop down 
+     * 
+     */
     public static void updateDropdownItem(Dropdown dropdown){
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -913,7 +1055,11 @@ public class DropdownDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+     /**
+     * Add drop down item to drop down
+	 *
+     * @param drop down
+     */
     public static void addDropdownItem (Dropdown dropdown) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -936,7 +1082,11 @@ public class DropdownDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+    /**
+     * Delete drop down item from drop down
+	 *
+     * @param drop down
+     */
     public static void deleteDropdownItem (Dropdown dropdown) {
     Connection conn = null;
         PreparedStatement pstmt = null;
@@ -954,7 +1104,13 @@ public class DropdownDAO {
             ConnectionManager.close(conn, pstmt, null);
         }    
     }
-    
+    /**
+     * Handle SQL Exceptions
+	 *
+     * @param SQLException
+	 * @param sql query
+	 * @param parameters
+     */
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
       String msg = "Unable to access data; SQL=" + sql + "\n";
       for (String parameter : parameters) {
