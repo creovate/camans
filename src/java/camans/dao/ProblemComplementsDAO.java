@@ -3116,7 +3116,7 @@ public class ProblemComplementsDAO {
         try {
             conn = ConnectionManager.getConnection();
             sql = "SELECT ID FROM tbl_R2R where Worker_FIN_number = ? AND Job_key =? "
-                    + "AND Prob_key=?";
+                    + "AND Prob_key=? ORDER BY R2R_date DESC";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, problem.getWorkerFinNum());
             pstmt.setInt(2, problem.getJobKey());

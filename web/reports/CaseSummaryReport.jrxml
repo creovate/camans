@@ -50,34 +50,14 @@ GROUP BY Chief_problem
 					</textElement>
 					<text><![CDATA[Case Summary Report]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="true">
-					<reportElement stretchType="RelativeToBandHeight" x="396" y="45" width="88" height="20" forecolor="#FFFFFF" uuid="c291ff76-c05d-47f3-b30e-c8803c4a36a0"/>
-					<textElement textAlignment="Center">
-						<font size="12" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MMM-yyyy").format($P{start})]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement stretchType="RelativeToBandHeight" x="347" y="45" width="49" height="20" forecolor="#FFFFFF" uuid="c8953b77-70f0-401c-87c9-4fa93f284ba4"/>
-					<textElement textAlignment="Center">
-						<font size="12" isBold="false"/>
-					</textElement>
-					<text><![CDATA[Period:]]></text>
-				</staticText>
 				<textField>
-					<reportElement stretchType="RelativeToBandHeight" x="501" y="46" width="94" height="19" forecolor="#FFFFFF" uuid="17bd3f2d-9699-4761-bc5e-7f941a33bb0d"/>
-					<textElement>
-						<font size="12" isBold="false"/>
+					<reportElement mode="Transparent" x="0" y="51" width="595" height="19" forecolor="#FFFFFF" uuid="2a08f660-ba93-4d2f-bee6-824db2e5b6b6"/>
+					<box rightPadding="3"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MMM-yyyy").format($P{end})]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Period : " + new SimpleDateFormat("dd-MMM-yyyy").format($P{start}) + " to " + new SimpleDateFormat("dd-MMM-yyyy").format($P{end})]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement stretchType="RelativeToBandHeight" x="484" y="45" width="17" height="20" forecolor="#FFFFFF" uuid="92c993f4-a7c3-4254-9929-c7874fadd870"/>
-					<textElement textAlignment="Center">
-						<font size="12" isBold="false"/>
-					</textElement>
-					<text><![CDATA[to]]></text>
-				</staticText>
 			</frame>
 		</band>
 	</title>
@@ -90,28 +70,28 @@ GROUP BY Chief_problem
 				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="959e6e5c-5187-4c77-b37f-e28a346276eb"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="-20" y="0" width="256" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0c827815-b112-4562-ba89-dbdf02472730"/>
+				<reportElement mode="Opaque" x="-20" y="0" width="224" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0c827815-b112-4562-ba89-dbdf02472730"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Problem Type]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="236" y="0" width="115" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a742d849-ae1f-4951-8326-a6a73eae9f04"/>
+				<reportElement mode="Opaque" x="204" y="0" width="125" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a742d849-ae1f-4951-8326-a6a73eae9f04"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Male]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="351" y="0" width="113" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="78d21b3a-0dfb-46c6-8e15-96200493e37f"/>
+				<reportElement mode="Opaque" x="329" y="0" width="125" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="78d21b3a-0dfb-46c6-8e15-96200493e37f"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Female]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="464" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="356a4d96-4c3e-4cd5-b9c7-f1f7339550de"/>
+				<reportElement mode="Opaque" x="454" y="0" width="121" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="356a4d96-4c3e-4cd5-b9c7-f1f7339550de"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -122,28 +102,28 @@ GROUP BY Chief_problem
 	<detail>
 		<band height="15">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="-1" y="0" width="237" height="15" uuid="03a90469-9993-4673-90a3-c05f38955ea7"/>
+				<reportElement x="0" y="0" width="204" height="15" uuid="03a90469-9993-4673-90a3-c05f38955ea7"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ProblemType}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="466" y="0" width="113" height="15" uuid="a2908655-13a7-4ac2-93cc-93e2c6ce695d"/>
+				<reportElement x="454" y="0" width="121" height="15" uuid="a2908655-13a7-4ac2-93cc-93e2c6ce695d"/>
 				<textElement textAlignment="Center">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="351" y="0" width="115" height="15" uuid="cc1f81a7-5433-4efa-89a9-915579716bf8"/>
+				<reportElement x="329" y="0" width="125" height="15" uuid="cc1f81a7-5433-4efa-89a9-915579716bf8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Female}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="236" y="0" width="116" height="15" uuid="3204fa15-536b-4e35-85fe-5d50726f948a"/>
+				<reportElement x="204" y="0" width="115" height="15" uuid="3204fa15-536b-4e35-85fe-5d50726f948a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
@@ -157,28 +137,28 @@ GROUP BY Chief_problem
 				<reportElement positionType="FixRelativeToBottom" x="-19" y="0" width="595" height="1" uuid="ae3e2663-4871-4478-a78a-b43099589879"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="466" y="0" width="109" height="18" uuid="a2908655-13a7-4ac2-93cc-93e2c6ce695d"/>
+				<reportElement x="454" y="0" width="121" height="18" uuid="a2908655-13a7-4ac2-93cc-93e2c6ce695d"/>
 				<textElement textAlignment="Center">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{totalAll}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="-1" y="0" width="237" height="18" uuid="76f88428-6655-4214-9679-e11edcdfeff9"/>
+				<reportElement x="-1" y="0" width="205" height="18" uuid="76f88428-6655-4214-9679-e11edcdfeff9"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="352" y="0" width="114" height="18" uuid="cc1f81a7-5433-4efa-89a9-915579716bf8"/>
+				<reportElement x="329" y="0" width="125" height="18" uuid="cc1f81a7-5433-4efa-89a9-915579716bf8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{totalFemale}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="236" y="0" width="116" height="18" uuid="3204fa15-536b-4e35-85fe-5d50726f948a"/>
+				<reportElement x="204" y="0" width="125" height="18" uuid="3204fa15-536b-4e35-85fe-5d50726f948a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>

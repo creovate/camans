@@ -80,7 +80,6 @@ public class ProblemMCStatus {
             this.MCRem = MCRem;
     }
 	
-    public int getId() {
     /**
      * getter method for id of MC status
      * @return id of MC status

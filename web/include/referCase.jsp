@@ -80,6 +80,24 @@
         });
 
     });
+    
+    //worker form validation 
+    $(document).ready(function() {
+        $('#caseReferral_form')
+                .bootstrapValidator({
+            fields: {
+                refDesc: {
+                    validators: {
+                        stringLength: {
+                            max: 200,
+                            message: 'This value must be less than 200 characters.'
+                        }
+                    }
+                }
+            }
+        });
+
+    });
 </script>
 <form method="POST" action="referCase.do"  id='caseReferral_form' class="form" >
     <table class="table table-condensed pull-left">

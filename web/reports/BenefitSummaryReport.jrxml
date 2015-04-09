@@ -43,34 +43,14 @@ on t1.Name = t2.Bene_type]]>
 					</textElement>
 					<text><![CDATA[Benefit Summary Report]]></text>
 				</staticText>
-				<staticText>
-					<reportElement x="331" y="41" width="63" height="20" forecolor="#FFFFFF" uuid="dd49316a-86ea-40ad-80e9-7e0346d13bc2"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="12" isBold="false"/>
-					</textElement>
-					<text><![CDATA[Period : ]]></text>
-				</staticText>
 				<textField>
-					<reportElement x="394" y="40" width="86" height="20" forecolor="#FFFFFF" uuid="2bb18552-73c8-48c9-a4f4-a9e962e48347"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="12" isBold="false"/>
+					<reportElement mode="Transparent" x="0" y="40" width="595" height="19" forecolor="#FFFFFF" uuid="08826ea9-edef-4158-8bb0-cf4219fed4a8"/>
+					<box rightPadding="3"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MMM-yyyy").format($P{start})]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Period : " + new SimpleDateFormat("dd-MMM-yyyy").format($P{start}) + " to " + new SimpleDateFormat("dd-MMM-yyyy").format($P{end})]]></textFieldExpression>
 				</textField>
-				<textField>
-					<reportElement x="507" y="40" width="88" height="20" forecolor="#FFFFFF" uuid="ecd7fc87-b2b5-4267-afca-7f89a6be97f3"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="12" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MMM-yyyy").format($P{end})]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement x="480" y="40" width="27" height="20" forecolor="#FFFFFF" uuid="ec4effe8-7f1d-4af2-a1d2-3abfa2e6363f"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="12" isBold="false"/>
-					</textElement>
-					<text><![CDATA[to]]></text>
-				</staticText>
 			</frame>
 		</band>
 	</title>

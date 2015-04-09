@@ -84,7 +84,11 @@
                         String chiefProb = problem.getProblem();
                         java.util.Date probRegDate = problem.getProblemRegisteredDate();
                         ArrayList<Integer> idList = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(worker);
-                        WorkerSgPhNum sgPhone = WorkerComplementsDAO.retrieveWorkerSgPhNumById(idList.size() - 1);
+                        WorkerSgPhNum sgPhone = null;
+                        if(idList != null && idList.size() > 0){
+                            int phId = idList.get(idList.size()-1);
+                            sgPhone = WorkerComplementsDAO.retrieveWorkerSgPhNumById(idList.size() - 1);
+                        }
                         String phNum = "-";
                         if (sgPhone != null) {
                             phNum = sgPhone.getPhNumber();
@@ -208,7 +212,12 @@
                         String chiefProb = problem.getProblem();
                         java.util.Date probRegDate = problem.getProblemRegisteredDate();
                         ArrayList<Integer> idList = WorkerComplementsDAO.retrieveSgCountryPhoneNumIdsOfWorker(worker);
-                        WorkerSgPhNum sgPhone = WorkerComplementsDAO.retrieveWorkerSgPhNumById(idList.size() - 1);
+                        WorkerSgPhNum sgPhone = null;
+                        if(idList != null && idList.size() > 0){
+                            int phId = idList.get(idList.size()-1);
+                            sgPhone = WorkerComplementsDAO.retrieveWorkerSgPhNumById(idList.size() - 1);
+                        }
+                        
                         String phNum = "-";
                         if (sgPhone != null) {
                             phNum = sgPhone.getPhNumber();
