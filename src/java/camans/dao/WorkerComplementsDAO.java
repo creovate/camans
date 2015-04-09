@@ -36,6 +36,12 @@ public class WorkerComplementsDAO {
      * PreparedStatement
      */
     /*Nickname*/
+    /**
+     * Retrieve nickname ids of worker
+	 *
+	 * @param worker
+     * @return an Arraylist of ids of nickname of worker
+     */ 
     public static ArrayList<Integer> retrieveNickNameIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
         
@@ -63,7 +69,12 @@ public class WorkerComplementsDAO {
         
         return ids;
     }
-    
+    /**
+     * Retrieve nickname of worker by nickname id
+	 *
+	 * @param nickname id
+     * @return nickname of nickname id
+     */
     public static WorkerNickname retrieveWorkerNicknameById(int nicknameId) {
         WorkerNickname workerNickname = null;
         
@@ -93,7 +104,12 @@ public class WorkerComplementsDAO {
         }
         return workerNickname;
     }
-    
+    /**
+     * Add nickname
+	 *
+	 * @param nickname
+     * 
+     */
     public static void addNickname(WorkerNickname workerNickname) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -114,7 +130,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }
-    
+    /**
+     * Update nickname of worker
+	 *
+	 * @param worker nickname
+     */
     public static void updateNickname(WorkerNickname workerNickname) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -133,7 +153,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, stmt, null);
         }        
     }
-    
+    /**
+     * Delete nickname of worker of specific id
+	 *
+	 * @param id
+     */
     public static void deleteNickname(int nicknameId) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -150,7 +174,10 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+    /**
+     * Delete all nicknames of worker
+	 *
+     */ 
     public static void deleteAllNicknames() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -170,6 +197,12 @@ public class WorkerComplementsDAO {
     }
     
     /*PassportDetails*/
+    /**
+     * Retrieve passports ids of worker
+	 *
+	 * @param worker
+     * @return an Arraylist of ids of passports of worker
+     */
     public static ArrayList<Integer> retrievePassportIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
         
@@ -197,7 +230,12 @@ public class WorkerComplementsDAO {
         
         return ids;
     }
-    
+    /**
+     * Retrieve passport details of worker by id
+	 *
+	 * @param id
+     * @return passport details of id
+     */
     public static WorkerPassportDetails retrieveWorkerPassportDetailsById(int id) {
         WorkerPassportDetails workerPassportDetails = null;
         
@@ -232,7 +270,11 @@ public class WorkerComplementsDAO {
         }
         return workerPassportDetails;
     }
-    
+    /**
+     * Add passport details of worker
+	 *
+	 * @param worker passport details
+     */
     public static void addWorkerPassportDetails(WorkerPassportDetails workerPassportDetails) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -257,7 +299,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }
-    
+    /**
+     * Update passport details of worker
+	 *
+	 * @param worker passport details
+     */
     public static void updatePassportDetails(WorkerPassportDetails workerPassportDetails) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -279,7 +325,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, stmt, null);
         }        
     }
-    
+    /**
+     * Delete passport details of worker of specific id
+	 *
+	 * @param id
+     */
     public static void deletePassportDetails(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -296,7 +346,10 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+    /**
+     * Delete all passport details of worker
+	 *
+     */ 
     public static void deleteAllPassportDetails() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -317,6 +370,12 @@ public class WorkerComplementsDAO {
     
     
     /*HomeCountryPhNumber*/
+    /**
+     * Retrieve home country phone number ids of worker
+	 *
+	 * @param worker
+     * @return an Arraylist of home country phone number ids of worker
+     */
     public static ArrayList<Integer> retrieveHomeCountryPhoneNumIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
         
@@ -344,7 +403,12 @@ public class WorkerComplementsDAO {
         
         return ids;
     }
-    
+    /**
+     * Retrieve home country phone number of worker by id
+	 *
+	 * @param id
+     * @return home country phone number of id
+     */
     public static WorkerHomeCountryPhNum retrieveWorkerHomeCountryPhNumById(int id) {
         WorkerHomeCountryPhNum workerHomeCountryPhNum = null;
         
@@ -378,7 +442,11 @@ public class WorkerComplementsDAO {
         }
         return workerHomeCountryPhNum;
     }
-    
+    /**
+     * Add home country phone number of worker
+	 *
+	 * @param worker home country phone number
+     */
     public static void addWorkerHomeCountryPhNum(WorkerHomeCountryPhNum workerHomeCountryPhNum) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -402,7 +470,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }
-   
+   /**
+     * Update home country phone number of worker
+	 *
+	 * @param worker home country phone number
+     */
     public static void updateWorkerHomeCountryPhNum(WorkerHomeCountryPhNum workerHomeCountryPhNum) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -423,7 +495,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, stmt, null);
         }        
     }
-
+    /**
+     * Delete home country phone number of worker of specific id
+	 *
+	 * @param id
+     */
     public static void deleteHomeCountryPhNumber(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -440,7 +516,10 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+    /**
+     * Delete all home country phone numbers of worker
+	 *
+     */
     public static void deleteAllHomeCountryPhoneNums() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -460,6 +539,12 @@ public class WorkerComplementsDAO {
     }
 
     /*SgPhNum*/
+    /**
+     * Retrieve Singapore phone number ids of worker
+	 *
+	 * @param worker
+     * @return an Arraylist of ids of Singapore phone numbers of worker
+     */
     public static ArrayList<Integer> retrieveSgCountryPhoneNumIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
         
@@ -487,7 +572,12 @@ public class WorkerComplementsDAO {
         
         return ids;
     }
-    
+    /**
+     * Retrieve Singapore phone number of worker by id
+	 *
+	 * @param id
+     * @return Singapore phone number of id
+     */
     public static WorkerSgPhNum retrieveWorkerSgPhNumById(int id) {
         WorkerSgPhNum workerSgPhNum = null;
         
@@ -520,7 +610,11 @@ public class WorkerComplementsDAO {
         }
         return workerSgPhNum;
     }
-    
+    /**
+     * Add Singapore phone number of worker
+	 *
+	 * @param worker Singapore phone number
+     */
     public static void addWorkerSgPhNum(WorkerSgPhNum workerSgPhNum) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -543,7 +637,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }
-   
+   /**
+     * Update Singapore phone number of worker
+	 *
+	 * @param worker Singapore phone number
+     */
     public static void updateWorkerSgPhNum(WorkerSgPhNum workerSgPhNum) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -563,7 +661,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, stmt, null);
         }        
     }
-    
+    /**
+     * Delete Singapore phone number of worker of specific id
+	 *
+	 * @param id
+     */
     public static void deleteWorkerSgPhNum(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -580,7 +682,10 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+    /**
+     * Delete all Singapore phone numbers of worker
+	 *
+     */ 
     public static void deleteAllSgPhoneNums() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -600,6 +705,12 @@ public class WorkerComplementsDAO {
     }
     
     /*SgAddress*/
+    /**
+     * Retrieve Singapore addresses ids of worker
+	 *
+	 * @param worker
+     * @return an Arraylist of ids of Singapore addresses of worker
+     */
     public static ArrayList<Integer> retrieveWorkerSgAddressIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
         
@@ -627,7 +738,12 @@ public class WorkerComplementsDAO {
         
         return ids;
     }
-    
+    /**
+     * Retrieve Singapore addresses of worker by id
+	 *
+	 * @param id
+     * @return Singapore addresses of id
+     */
     public static WorkerSgAddress retrieveWorkerSgAddressById(int id) {
         WorkerSgAddress workerSgAddress = null;
         
@@ -660,7 +776,11 @@ public class WorkerComplementsDAO {
         }
         return workerSgAddress;
     }
-    
+    /**
+     * Add Singapore addresses of worker
+	 *
+	 * @param Singapore country addresses
+     */
     public static void addWorkerSgAddress(WorkerSgAddress workerSgAddress) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -683,7 +803,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }
-   
+   /**
+     * Update Singapore addresses of worker
+	 *
+	 * @param worker Singapore addresses
+     */
     public static void updateWorkerSgAddress(WorkerSgAddress workerSgAddress) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -703,7 +827,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, stmt, null);
         }        
     }
-    
+    /**
+     * Delete Singapore addresses of worker of specific id
+	 *
+	 * @param id
+     */
     public static void deleteWorkerSgAddress(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -720,7 +848,10 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+    /**
+     * Delete all Singapore addresses of worker
+	 *
+     */
     public static void deleteAllWorkerSgAddresses() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -740,6 +871,12 @@ public class WorkerComplementsDAO {
     }
     
     /*HomeCountryAddress*/
+    /**
+     * Retrieve home addresses ids of worker
+	 *
+	 * @param worker
+     * @return an Arraylist of ids of home addresses of worker
+     */ 
     public static ArrayList<Integer> retrieveWorkerHomeCountryAddressIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -767,7 +904,12 @@ public class WorkerComplementsDAO {
 
          return ids;
      }
-
+    /**
+     * Retrieve home country addresses of worker by id
+	 *
+	 * @param id
+     * @return home country addresses of id
+     */
     public static WorkerHomeCountryAddress retrieveWorkerHomeCountryAddressById(int id) {
         WorkerHomeCountryAddress workerHomeCountryAddress = null;
 
@@ -800,7 +942,11 @@ public class WorkerComplementsDAO {
         }
         return workerHomeCountryAddress;
     }
-
+    /**
+     * Add home country addresses of worker
+	 *
+	 * @param worker home country addresses
+     */
     public static void addWorkerHomeCountryAddress(WorkerHomeCountryAddress workerHomeCountryAddress) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -823,7 +969,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }
-
+    /**
+     * Update home country addresses of worker
+	 *
+	 * @param worker home country addresses
+     */
     public static void updateWorkerHomeCountryAddress(WorkerHomeCountryAddress workerHomeCountryAddress) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -843,7 +993,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, stmt, null);
         }        
     }
-
+    /**
+     * Delete home coutry addresses of worker of specific id
+	 *
+	 * @param id
+     */
     public static void deleteWorkerHomeCountryAddress(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -860,7 +1014,10 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+    /**
+     * Delete all home country addresses of worker
+	 *
+     */
     public static void deleteAllHomeCountryAddresses() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -880,6 +1037,12 @@ public class WorkerComplementsDAO {
     }
     
     /*DigitalContact*/
+    /**
+     * Retrieve digital contact ids of worker
+	 *
+	 * @param worker
+     * @return an Arraylist of ids of digital contact of worker
+     */ 
     public static ArrayList<Integer> retrieveDigitalContactIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -907,7 +1070,12 @@ public class WorkerComplementsDAO {
 
          return ids;
      }
-
+    /**
+     * Retrieve digital contact of worker by id
+	 *
+	 * @param id
+     * @return digital contact of id
+     */
     public static WorkerDigitalContact retrieveWorkerDigitalContactById(int id) {
         WorkerDigitalContact workerDigitalContact = null;
 
@@ -945,7 +1113,11 @@ public class WorkerComplementsDAO {
         }
         return workerDigitalContact;
     }
-
+    /**
+     * Add digital contact of worker
+	 *
+	 * @param worker digital contact
+     */
     public static void addWorkerDigitalContact(WorkerDigitalContact workerDigitalContact) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -973,7 +1145,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }
-
+    /**
+     * Delete digital contact of worker of specific id
+	 *
+	 * @param id
+     */
     public static void deleteWorkerDigitalContact(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -990,7 +1166,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+    /**
+     * Update digital contact of worker
+	 *
+	 * @param worker digital contact
+     */
     public static void updateWorkerDigitalContact(WorkerDigitalContact workerDigitalContact) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1016,7 +1196,10 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }        
     }
-    
+    /**
+     * Delete all digital contacts of worker
+	 *
+     */
     public static void deleteAllDigitalContacts() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1036,6 +1219,12 @@ public class WorkerComplementsDAO {
     }
     
     /*NextofKin*/
+    /**
+     * Retrieve next of kin ids of worker
+	 *
+	 * @param worker
+     * @return an Arraylist of ids of next of kin of worker
+     */
     public static ArrayList<Integer> retrieveNextOfKinIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1063,7 +1252,12 @@ public class WorkerComplementsDAO {
 
          return ids;
      }
-
+    /**
+     * Retrieve next of kins of worker by id
+	 *
+	 * @param id
+     * @return next of kins of id
+     */
     public static WorkerNextOfKin retrieveWorkerNextOfKinById(int id) {
         WorkerNextOfKin workerNextOfKin = null;
 
@@ -1106,7 +1300,11 @@ public class WorkerComplementsDAO {
         }
         return workerNextOfKin;
     }
-
+    /**
+     * Add next of kin of worker
+	 *
+	 * @param worker next of kin
+     */
     public static void addWorkerNextOfKin(WorkerNextOfKin workerNextOfKin) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1138,7 +1336,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }
-
+    /**
+     * Delete next of kin of worker of specific id
+	 *
+	 * @param id
+     */
     public static void deleteWorkerNextOfKin(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1155,7 +1357,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+    /**
+     * Update next of kin of worker
+	 *
+	 * @param worker next of kin
+     */
     public static void updateWorkerNextOfKin(WorkerNextOfKin workerNextOfKin) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1184,7 +1390,10 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }        
     }
-    
+    /**
+     * Delete all next of kins of worker
+	 *
+     */
     public static void deleteAllNextOfKins() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1204,6 +1413,12 @@ public class WorkerComplementsDAO {
     }
     
     /*Famiy Member*/
+    /**
+     * Retrieve family member ids of worker
+	 *
+	 * @param worker
+     * @return an Arraylist of ids of family member of worker
+     */ 
     public static ArrayList<Integer> retrieveFamilyMemberIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1231,7 +1446,12 @@ public class WorkerComplementsDAO {
 
          return ids;
      }
-
+    /**
+     * Retrieve family members of worker by id
+	 *
+	 * @param id
+     * @return family members of id
+     */
     public static WorkerFamilyMember retrieveWorkerFamilyMemberById(int id) {
         WorkerFamilyMember workerFamilyMember = null;
 
@@ -1271,7 +1491,11 @@ public class WorkerComplementsDAO {
         }
         return workerFamilyMember;
     }
-
+    /**
+     * Add family member of worker
+	 *
+	 * @param worker family member
+     */
     public static void addWorkerFamilyMember(WorkerFamilyMember workerFamilyMember) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1300,7 +1524,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }
-
+    /**
+     * Delete family member of worker of specific id
+	 *
+	 * @param id
+     */
     public static void deleteFamilyMember(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1317,7 +1545,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+    /**
+     * Update family member of worker
+	 *
+	 * @param worker family number
+     */
     public static void updateWorkerFamilyMember(WorkerFamilyMember workerFamilyMember) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1344,7 +1576,10 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }        
     }
-    
+    /**
+     * Delete all family members of worker
+	 *
+     */ 
     public static void deleteAllFamilyMembers() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1364,6 +1599,12 @@ public class WorkerComplementsDAO {
     }
     
     /*Friend*/
+    /**
+     * Retrieve friends ids of worker
+	 *
+	 * @param worker
+     * @return an Arraylist of ids of friends of worker
+     */
     public static ArrayList<Integer> retrieveFriendIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1391,7 +1632,12 @@ public class WorkerComplementsDAO {
 
          return ids;
      }
-
+    /**
+     * Retrieve friend of worker by id
+	 *
+	 * @param id
+     * @return friend of id
+     */
     public static WorkerFriend retrieveWorkerFriendById(int id) {
         WorkerFriend workerFriend = null;
 
@@ -1429,7 +1675,11 @@ public class WorkerComplementsDAO {
         }
         return workerFriend;
     }
-
+    /**
+     * Add friend of worker
+	 *
+	 * @param worker friend
+     */
     public static void addWorkerFriend(WorkerFriend workerFriend) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1456,7 +1706,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }
-
+    /**
+     * Update friend of worker
+	 *
+	 * @param worker friend
+     */
     public static void updateWorkerFriend(WorkerFriend workerFriend) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1481,7 +1735,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }        
     }
-    
+    /**
+     * Delete friend of worker by specific id
+	 *
+	 * @param id
+     */
     public static void deleteWorkerFriend(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1498,7 +1756,10 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+    /**
+     * Delete all friends of worker
+	 *
+     */ 
     public static void deleteAllFriends() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1518,6 +1779,12 @@ public class WorkerComplementsDAO {
     }
     
     /*Language*/
+    /**
+     * Retrieve language ids of worker
+	 *
+	 * @param worker
+     * @return an Arraylist of ids of language of worker
+     */
     public static ArrayList<Integer> retrieveLanguageIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1545,7 +1812,12 @@ public class WorkerComplementsDAO {
 
          return ids;
      }
-
+    /**
+     * Retrieve language of worker by id
+	 *
+	 * @param id
+     * @return language of id
+     */
     public static WorkerLanguage retrieveWorkerLanguageById(int id) {
         WorkerLanguage workerLanguage = null;
 
@@ -1582,7 +1854,11 @@ public class WorkerComplementsDAO {
         }
         return workerLanguage;
     }
-
+    /**
+     * Add language
+	 *
+	 * @param language
+     */
     public static void addWorkerLanguage(WorkerLanguage workerLanguage) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1608,7 +1884,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }
-
+    /**
+     * Update language
+	 *
+	 * @param language
+     */
     public static void updateWorkerLanguage(WorkerLanguage workerLanguage) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1632,7 +1912,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }        
     }
-    
+    /**
+     * Delete language of specific id
+	 *
+	 * @param id
+     */
     public static void deleteWorkerLanguage(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1649,7 +1933,10 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+    /**
+     * Delete all languages of worker
+	 *
+     */ 
     public static void deleteAllLanguages() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1669,6 +1956,12 @@ public class WorkerComplementsDAO {
     }
     
     /*Bank Account Details*/
+    /**
+     * Retrieve bank account ids of worker
+	 *
+	 * @param worker
+     * @return an Arraylist of ids of bank account of worker
+     */ 
     public static ArrayList<Integer> retrieveBankAccountDetailsIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1696,7 +1989,12 @@ public class WorkerComplementsDAO {
 
          return ids;
      }
-
+    /**
+     * Retrieve bank account details of worker by id
+	 *
+	 * @param id
+     * @return bank account details of id
+     */
     public static WorkerBankAcct retrieveBankAccountDetailsById(int id) {
         WorkerBankAcct workerBankAcct = null;
 
@@ -1739,7 +2037,11 @@ public class WorkerComplementsDAO {
         }
         return workerBankAcct;
     }
-
+    /**
+     * Add bank account details of specific bank account
+	 *
+	 * @param worker bank account
+     */
     public static void addWorkerBankAccountDetails(WorkerBankAcct workerBankAcct) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1772,7 +2074,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }
-
+    /**
+     * Delete bank account details of specific worker bank account
+	 *
+	 * @param worker Bank Account
+     */
     public static void updateWorkerBankAccountDetails(WorkerBankAcct workerBankAcct) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1803,7 +2109,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }        
     }
-    
+    /**
+     * Delete all bank account details of specific id
+	 *
+	 * @param id
+     */
     public static void deleteBankAccountDetails(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1820,7 +2130,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }
     }
-    
+    /**
+     * Delete all bank account details of worker
+	 *
+	 * 
+     */
     public static void deleteAllBankAccountDetails() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1840,6 +2154,12 @@ public class WorkerComplementsDAO {
     }
     
     /*Worker Attachments*/
+    /**
+     * Retrieve attachment ids of worker
+	 *
+	 * @param worker
+     * @return an Arraylist of ids of attachment of worker
+     */
     public static ArrayList<Integer> retrieveAttachmentIdsOfWorker (Worker worker) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -1867,7 +2187,12 @@ public class WorkerComplementsDAO {
 
          return ids;
      }
-
+    /**
+     * Retrieve attachment details of worker by id
+	 *
+	 * @param id
+     * @return attachment details of id
+     */
     public static WorkerAttachment retrieveAttachmentDetailsById(int id) {
         WorkerAttachment workerAttachment = null;
 
@@ -1900,7 +2225,11 @@ public class WorkerComplementsDAO {
         }
         return workerAttachment;
     }
-
+    /**
+     * Add attachment of worker
+	 *
+	 * @param worker attachment
+     */
     public static void addAttachmentDetails(WorkerAttachment workerAttachment) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1925,7 +2254,11 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt);
         }    
     }
-
+    /**
+     * Update attachment of worker
+	 *
+	 * @param worker attachment
+     */
     public static void updateAttachmentDetails(WorkerAttachment workerAttachment) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1947,7 +2280,12 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }        
     }    
-    
+    /**
+     * Retrieve time stamp of attachment of worker
+	 *
+	 * @param worker attachment
+	 * @return time stamp of attachment
+     */
     public static Timestamp retrieveTimeStamp(WorkerAttachment workerAttachment) {
         Timestamp timeStamp = null;
         Connection conn = null;
@@ -1973,7 +2311,11 @@ public class WorkerComplementsDAO {
         }
         return timeStamp;
     }
-    
+    /**
+     * Delete attachment of worker
+	 *
+	 * @param worker attachment
+     */
     public static void deleteWorkerAttachment(WorkerAttachment workerAttachment) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -1991,7 +2333,10 @@ public class WorkerComplementsDAO {
             ConnectionManager.close(conn, pstmt, null);
         }        
     }
-    
+    /**
+     * Delete all attachments of worker
+	 *
+     */
     public static void deleteAllWorkerAttachments() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -2011,6 +2356,10 @@ public class WorkerComplementsDAO {
     }
         
     /*General*/
+    /**
+     * Delete all complements of worker
+	 *
+     */
     public static void deleteAll() {
         deleteAllNicknames();
         deleteAllPassportDetails();
@@ -2026,7 +2375,13 @@ public class WorkerComplementsDAO {
         deleteAllBankAccountDetails();
         deleteAllWorkerAttachments();
     }
-    
+    /**
+     * Handle SQL Exceptions
+	 *
+     * @param SQLException
+	 * @param sql query
+	 * @param parameters
+     */
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
       String msg = "Unable to access data; SQL=" + sql + "\n";
       for (String parameter : parameters) {
