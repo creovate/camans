@@ -5611,8 +5611,8 @@
                     position: ['center', 80],
                     minWidth: $(window).width() * 0.5,
                     title: div_title,
-                    resizable: false,
-                    draggable: false, close: function() {
+                    resizable: false, 
+                    close: function() {
                         $(this).dialog('destroy');
                         $('#pop_up_content').empty();
                     }
@@ -5648,7 +5648,6 @@
                         minWidth: $(window).width() * 0.5,
                         title: div_title,
                         resizable: false,
-                        draggable: false,
                         close: function() {
                             $(this).dialog('destroy');
                             $('#pop_up_content').empty();
@@ -5663,7 +5662,6 @@
                         minWidth: $(window).width() * 0.5,
                         title: div_title,
                         resizable: false,
-                        draggable: false,
                         close: function() {
                             $(this).dialog('destroy');
                             $('#pop_up_content').empty();
@@ -5690,7 +5688,6 @@
                     minWidth: $(window).width() * 0.5,
                     title: "Case Referral",
                     resizable: false,
-                    draggable: false,
                     close: function() {
                         $(this).dialog('destroy');
                         $('#pop_up_content').empty();
@@ -5704,8 +5701,7 @@
                     autoOpen: false,
                     position: ['center', 80],
                     minWidth: $(window).width() * 0.5,
-                    resizable: false,
-                    draggable: false
+                    resizable: false
                 })
 
             });
