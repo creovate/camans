@@ -38,6 +38,12 @@ public class ProblemDAO {
      */
     public static HashMap<String, ArrayList<Problem>> problemList = new HashMap<String, ArrayList<Problem>>();
     
+    /**
+     * retrieve a list of problem ids of this worker and this job
+     * @param worker worker 
+     * @param job job
+     * @return a list of problem ids of this worker and this job
+     */
     public static ArrayList<Integer> retrieveProblemsIdsOfWorkerAndJob(Worker worker, Job job) {
         ArrayList<Integer> probIds = new ArrayList<Integer>();
         Connection conn = null;
@@ -66,6 +72,11 @@ public class ProblemDAO {
         return probIds;
     }
     
+    /**
+     * retrieve Problem
+     * @param problemid - problem id
+     * @return problem with this problem id
+     */
     public static Problem retrieveProblemByProblemId(int problemId) {
         Problem problem = null;
         
@@ -107,6 +118,10 @@ public class ProblemDAO {
         return problem;
     }
     
+    /**
+     * Update Problem details of this problem
+     * @param problem problem
+     */
     public static void updateProblem(Problem problem) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -140,6 +155,12 @@ public class ProblemDAO {
         }        
     }
         
+    /**
+     * add this Problem to this worker with this job
+     * @param worker worker
+     * @param job job
+     * @param problem problem
+     */
     public static void addProblem(Worker worker, Job job, Problem problem) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -193,6 +214,9 @@ public class ProblemDAO {
         } 
     }
     
+    /**
+     * delete all data in problems
+     */
     public static void deleteAll() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -211,6 +235,10 @@ public class ProblemDAO {
         }  
     }
     
+    /**
+     * delete problem with this problem id
+     * @param problem problem id
+     */
     public static void deleteProblem(int probKey) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -230,6 +258,12 @@ public class ProblemDAO {
         }  
     }
     
+    /**
+     * validating problem fields
+     * @param probFileName - csv file name for problem data
+     * @param problemErrFile - csv file name to store error from problem data
+     * @return how many data got error
+     */
     public static String validateAndAddProblem(String probFileName, String problemErrFile) throws IOException{
         problemList.clear();
         // Attributes
@@ -378,6 +412,10 @@ public class ProblemDAO {
         return null;
     }
     
+    /**
+     * add problem in problem list
+     * @param problemList a list of problems
+     */
     public static void addAll(ArrayList<Problem> problemList) {
         if (problemList != null && !problemList.isEmpty()) {
             for (Problem problem: problemList) {
@@ -389,6 +427,10 @@ public class ProblemDAO {
         }  
     }
     
+    /**
+     * retrieve the latest year from problem
+     * @return the latest year stored in problem
+     */
     public static int getMaxYear() {
         int year = 0;
         Connection conn = null;
@@ -414,6 +456,10 @@ public class ProblemDAO {
         return year;
     }
     
+    /**
+     * retrieve the earliest year from problem
+     * @return the earliest year stored in problem
+     */
     public static int getMinYear() {
         int year = 0;
         Connection conn = null;
@@ -439,6 +485,12 @@ public class ProblemDAO {
         return year;
     }
     
+    /**
+     * retrieve the problem count given nationality and year
+     * @param nationality --
+     * @param year -- year 
+     * @return the total number of problems for given nationality and year
+     */
     public static int retrieveProblemCountByNationalityAndYear(String nationality, int year) {
         int count = 0;
         Connection conn = null;
@@ -469,6 +521,13 @@ public class ProblemDAO {
         return count;
     }
     
+    /**
+     * retrieve the problem count given nationality and year and job sector
+     * @param nationality --
+     * @param year -- year 
+     * @param jobSector -- job sector
+     * @return the total number of problems for given nationality and year and job sector
+     */
     public static int retrieveProblemCountByNationalityAndYearAndJobSector (String nationality, 
             int year, String jobSector) {
         int count = 0;
@@ -503,6 +562,7 @@ public class ProblemDAO {
         }
         return count;
     }
+    
     
     private static void handleSQLException(SQLException ex, String sql, String... parameters) {
       String msg = "Unable to access data; SQL=" + sql + "\n";

@@ -35,7 +35,7 @@
         <script src="js/bootstrap-session-timeout.min.js"></script> 
 
         <link rel="shortcut icon" href="img/twc_logo.png">
-        <title>Camans</title>
+        <title>CAMANS</title>
 
         <style>
             .col-md-1{
@@ -73,9 +73,10 @@
         <jsp:include page="include/navbarside.jsp"/>
 
         <div class="col-md-offset-2 col-md-10">
+            <!--
             <div class="page-header text-center">
                 <h1>Reports</h1>
-            </div>
+            </div>-->
             <br/>
             <h5 style="padding-left: 2%; color: gray">Please choose a report type and year to view reports.</h5><br/>
             <form method="POST" action="generateReport.do" id="report_generate_form" class="form col-sm-12">

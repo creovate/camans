@@ -239,7 +239,5 @@ public class ProblemLawyer {
                 ", LawyerFirm=" + LawyerFirm + ", LawyerFirmMore=" + LawyerFirmMore + 
                 ", LawyerName=" + LawyerName + ", LawyerRemarks=" + LawyerRemarks + ']';
     }	 
-	
-    
-    
+  
 }

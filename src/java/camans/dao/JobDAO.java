@@ -36,6 +36,9 @@ public class JobDAO {
      */
     public static HashMap<String, ArrayList<Job>> jobList = new HashMap<String, ArrayList<Job>>();
     
+    /**
+     * retrieve the maximum job id
+     */
     public static int retrieveMaxJobId() {
         
         int jobKey = 0;
@@ -60,6 +63,11 @@ public class JobDAO {
         return jobKey;
     }
     
+    /**
+     * retrieve job ids with worker
+     * @param worker object
+     * @return the list of job ids for this worker
+     */
     public static ArrayList<Integer> retrieveJobIdsOfWorker (Worker worker) {
         ArrayList<Integer> jobIds = new ArrayList<Integer>();
         
@@ -88,6 +96,11 @@ public class JobDAO {
         return jobIds;
     }
     
+    /**
+     * retrieve Job by ID
+     * @param id job id
+     * @return Job with id
+     */
     public static Job retrieveJobByJobId(int jobId) {
         Job job = null;
         
@@ -130,6 +143,10 @@ public class JobDAO {
         return job;
     }
     
+    /**
+     * add Job
+     * @param worker and Job 
+     */
     public static void addJob(Worker worker, Job job) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -163,6 +180,9 @@ public class JobDAO {
         }    
     }  
     
+    /**
+     * delete all data in jobs
+     */
     public static void deleteAll() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -181,6 +201,10 @@ public class JobDAO {
         } 
     }
     
+    /**
+     * Delete job with job id
+     * @param id job id
+     */
     public static void deleteJob(int jobKey) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -200,6 +224,12 @@ public class JobDAO {
         } 
     }
     
+    /**
+     * retrieve worker place with id
+     * @param jobFileName - csv file name for job data 
+     * @param jobErrFile - csv file name for job error data
+     * @return worker place with id
+     */
     public static String validateAndAddJob(String jobFileName, String jobErrFile) throws IOException {
         
         // empty existing data in jobList before continuing
@@ -375,6 +405,10 @@ public class JobDAO {
         return null;
     }
         
+    /**
+     * Add Job with joblist
+     * @param jobList : a list of job objects
+     */
     public static void addAll(ArrayList<Job> jobList) {
         if (jobList != null && !jobList.isEmpty()) {
             for (Job job: jobList) {
@@ -394,6 +428,10 @@ public class JobDAO {
       throw new RuntimeException(msg, ex);
     }
     
+    /**
+     * update the job with job object
+     * @param Job job object
+     */
     public static void updateJob(Job job) {
         Connection conn = null;
         PreparedStatement stmt = null;

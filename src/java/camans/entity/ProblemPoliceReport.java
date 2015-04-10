@@ -37,17 +37,17 @@ public class ProblemPoliceReport {
      * @param policeReportDetails details of police report
      * @param policeReportRemark remark of police report
      */
-        public ProblemPoliceReport(int id, String workerFinNumber, int jobKey, int problemKey, Date policeReportDate, String policeReportStation, String policeReportPerson, String policeReportReferenceNumber, String policeReportDetails, String policeReportRemark) {
-            this.id = id;
-            this.workerFinNumber = workerFinNumber;
-            this.jobKey = jobKey;
-            this.problemKey = problemKey;
-            this.policeReportDate = policeReportDate;
-            this.policeReportStation = policeReportStation;
-            this.policeReportPerson = policeReportPerson;
-            this.policeReportReferenceNumber = policeReportReferenceNumber;
-            this.policeReportDetails = policeReportDetails;
-            this.policeReportRemark = policeReportRemark;
+    public ProblemPoliceReport(int id, String workerFinNumber, int jobKey, int problemKey, Date policeReportDate, String policeReportStation, String policeReportPerson, String policeReportReferenceNumber, String policeReportDetails, String policeReportRemark) {
+        this.id = id;
+        this.workerFinNumber = workerFinNumber;
+        this.jobKey = jobKey;
+        this.problemKey = problemKey;
+        this.policeReportDate = policeReportDate;
+        this.policeReportStation = policeReportStation;
+        this.policeReportPerson = policeReportPerson;
+        this.policeReportReferenceNumber = policeReportReferenceNumber;
+        this.policeReportDetails = policeReportDetails;
+        this.policeReportRemark = policeReportRemark;
     }
 
     //constructor without id

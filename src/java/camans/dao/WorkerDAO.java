@@ -39,6 +39,11 @@ public class WorkerDAO {
      */
     public static HashMap<String, Worker> workerList = new HashMap<String, Worker>();
     
+    /**
+     * retrieve the worker given its fin number
+     * @param finnumber --
+     * @return the worker object given its fin number
+     */
     public static Worker retrieveWorkerbyFinNumber(String finNumber) {
         Worker worker = null;
         
@@ -77,6 +82,10 @@ public class WorkerDAO {
         return worker;
     }
     
+    /**
+     * add this worker
+     * @param worker
+     */
     public static void addWorker(Worker worker) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -108,6 +117,10 @@ public class WorkerDAO {
         }    
     }
     
+    /**
+     * retrieve the latest 12 workers
+     * @return the latest 12 workers
+     */
     public static ArrayList<Worker> retrieveLatestWorkers() {
         ArrayList<Worker> workerList = new ArrayList<Worker>();
                 Connection conn = null;
@@ -148,6 +161,12 @@ public class WorkerDAO {
         return workerList;
     }
  
+    /**
+     * retrieve the problem count given nationality and year
+     * @param nationality --
+     * @param year -- year 
+     * @return the total number of problems for given nationality and year
+     */
     public static ArrayList<Worker> retrieveWorkersBySearchFilter(String sql) {
         ArrayList<Worker> workerList = new ArrayList<Worker>();
         Connection conn = null;
@@ -173,6 +192,11 @@ public class WorkerDAO {
         return workerList;
     }
 
+    /**
+     * retrieve the workers lead-cased  by this username
+     * @param username -- username 
+     * @return the list of workers lead-cased by this username
+     */
     public static ArrayList<Worker> retrieveWorkersByUser(String username) {
         ArrayList<Worker> workerList = new ArrayList<Worker>();
         Connection conn = null;
@@ -210,6 +234,10 @@ public class WorkerDAO {
         return workerList;
     }
      
+    /**
+     * update this worker photo directory 
+     * @param worker --
+     */
     public static void updateWorkerPhotoPath(Worker worker ){
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -228,6 +256,11 @@ public class WorkerDAO {
         } 
     }
     
+    /**
+     * update the worker fin number
+     * @param oldFin --
+     * @param newFin --  
+     */
     public static void updateWorkerFinNumber(String oldFin, String newFin){
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -246,6 +279,9 @@ public class WorkerDAO {
         } 
     }
     
+    /**
+     * delete all worker data
+     */
     public static void deleteAll() {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -264,6 +300,10 @@ public class WorkerDAO {
         }     
     }
     
+    /**
+     * delete the worker with this fin number
+     * @param workerFin --
+     */
     public static void deleteWorker(String workerFin) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -283,6 +323,12 @@ public class WorkerDAO {
         }     
     }
   
+    /**
+     * validating worker fields
+     * @param workerFileName - csv file names of worker data
+     * @param workerErrFile - csv file name to store error in worker data
+     * @return the total number of error count
+     */
     public static String validateAndAddWorker(String workerFileName, String workerErrFile) throws IOException{
         
         // empty existing data in workerList before continuing
@@ -453,6 +499,10 @@ public class WorkerDAO {
       throw new RuntimeException(msg, ex);
     }
 
+    /**
+     * update the profile of this worker
+     * @param worker
+     */
     public static void updateWorkerProfile(Worker worker) {
         Connection conn = null;
         PreparedStatement stmt = null;

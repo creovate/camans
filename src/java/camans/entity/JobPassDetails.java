@@ -289,7 +289,7 @@ public class JobPassDetails {
                 ", issuer=" + issuer + ", remarks=" + remarks + ']';
         }
         
-        if (issueDate == null || expiryDate == null) {
+        if (passApplicationDate == null || expiryDate == null) {
             return "Pass Details [passType=" + passType + 
                 ", passTypeMore=" + passTypeMore + ", passNum=" + passNum + ", passApplicationDate=" + 
                 passApplicationDate + 

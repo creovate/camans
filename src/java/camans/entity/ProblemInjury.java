@@ -347,7 +347,6 @@ public class ProblemInjury {
                 ", injuryDeath=" + injuryDeath + ", injuryBodyPart=" + injuryBodyPart + 
                 ", injuryHow=" + injuryHow + ", injuryAmbulance=" + injuryAmbulance + 
                 ", initialTreatment=" + initialTreatment + 
-                ", initialTreatmentMore=" + initialTreatmentMore + 
                 ", injuryWorkRelated=" + injuryWorkRelated + ", injuryRemarks=" + injuryRemarks + ']';
     }
     

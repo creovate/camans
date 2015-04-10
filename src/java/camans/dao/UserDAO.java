@@ -21,6 +21,11 @@ import java.util.logging.Logger;
  */
 public class UserDAO {
     
+    /**
+     * retrieve user by username
+     * @param username  -- 
+     * @return user object given its username
+     */
     public static User retrieveUserByUsername(String username) {
         User user = null;
         
@@ -60,6 +65,11 @@ public class UserDAO {
         return user;
     }
     
+    /**
+     * retrieve user by nric
+     * @param nric --
+     * @return user object given its nric
+     */
     public static User retrieveUserByNRIC(String nricNumber) {
         User user = null;
         
@@ -98,7 +108,11 @@ public class UserDAO {
         }
         return user;
     }
-        
+     
+    /**
+     * add user
+     * @param user  
+     */
     public static void addUser(User user) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -128,6 +142,10 @@ public class UserDAO {
         }    
     }
     
+    /**
+     * update the particulars of this user
+     * @param user
+     */
     public static void updateUser(User user) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -156,6 +174,10 @@ public class UserDAO {
         }  
     }
     
+    /**
+     * update the password of this user
+     * @param user
+     */
     public static void updatePassword(User user) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -175,6 +197,10 @@ public class UserDAO {
         }         
     }
     
+    /**
+     * update the status (active, inactive) of this user
+     * @param user
+     */
     public static void updateStatus(User user) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -194,6 +220,10 @@ public class UserDAO {
         } 
     }
     
+    /**
+     * delete a user given its username
+     * @param username
+     */
     public static void deleteUser (String username) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -212,6 +242,10 @@ public class UserDAO {
         } 
     }
     
+    /**
+     * retrieve the list of all users
+     * @return the list of all users
+     */
     public static ArrayList<User> retrieveAllUsers() {
         ArrayList<User> userList = new ArrayList<User>();
         Connection conn = null;
@@ -252,6 +286,11 @@ public class UserDAO {
         return userList;
     }
     
+    /**
+     * retrieve the registered date of this user
+     * @param user -- user object
+     * @return the registered date of this user
+     */
     public static Date retrieveRegisteredDate(User user) {
         Date registeredDate = null;
         Connection conn = null;
@@ -280,6 +319,9 @@ public class UserDAO {
         return registeredDate;
     }
     
+    /**
+     * delete all users
+     */
     public static void deleteAllUsers() {
         Connection conn = null;
         PreparedStatement pstmt = null;

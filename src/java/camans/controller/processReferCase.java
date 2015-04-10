@@ -51,59 +51,54 @@ public class processReferCase extends HttpServlet {
             try {
                 jobKey = Integer.parseInt(jobKeyStr);
                 probKey = Integer.parseInt(probKeyStr);
-            } catch (Exception e) {
-                out.println(e);
-            }
-            java.sql.Date refDate = null;
-            //if (!referredDateStr.equals("")) {
-                //try {
-                    //java.util.Date tmp = sdf.parse(referredDateStr);
-                    java.util.Date tmp = new java.util.Date();
-                    refDate = new java.sql.Date(tmp.getTime());
-                //} catch (ParseException ex) {
-                 //   out.println(ex);
-               // }
-            //}
+                java.sql.Date refDate = null;
+                java.util.Date tmp = new java.util.Date();
+                refDate = new java.sql.Date(tmp.getTime());
 
-
-            Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFinNum);
-            Job job = null;
-            Problem problem = null;
-            if (jobKey > 0 && probKey > 0) {
+                Worker worker = WorkerDAO.retrieveWorkerbyFinNumber(workerFinNum);
+                Job job = null;
+                Problem problem = null;
+                
                 job = JobDAO.retrieveJobByJobId(jobKey);
                 problem = ProblemDAO.retrieveProblemByProblemId(probKey);
 
                 CaseManagementDAO.referCase(workerFinNum, jobKey, probKey, refDate, referredBy, referredDescription);
 
-            }
-            
-            //log to audit
-            String auditChange = problem.toString2();
-            //referredBy is the same as userLogin
-            User _user = (User) request.getSession().getAttribute("userLogin");
-            UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), probKey + "", 
-                    workerFinNum, "Referred", auditChange + " has been referred.");
-            UserAuditLogDAO.addUserAuditLog(userAuditLog); 
-            //End log to audit
-            request.getSession().setAttribute("tabIndicator", "problem");
-            request.getSession().setAttribute("worker",workerFinNum);
-            request.getSession().setAttribute("selectedJob",jobKeyStr);
-            request.getSession().setAttribute("selectedProb",probKeyStr);
-            String successMsg = "";
-            String errMsg = "";
-            if(problem != null){
-                successMsg = problem.getProblem() + " case of worker (" + worker.getName() + ") has been referred successfully." ;
-                request.getSession().setAttribute("successMsg", successMsg);
-            }else{
-                errMsg = "Sorry! Something went wrong while processing. Please try again.";
-                request.getSession().setAttribute("errorMsg", errMsg);
-            }
-            
-            
-            if(isAssociate != null){
-                response.sendRedirect("associate/caseSummary.jsp");
-            }else{
-            response.sendRedirect("viewWorker.jsp");
+                //log to audit
+                //referredBy is the same as userLogin
+                User _user = (User) request.getSession().getAttribute("userLogin");
+                String auditChange = "[Employer Name: " + job.getEmployerName() + ", Problem Type: "
+                            + problem.getProblem() + "] has been referred for Worker " + workerFinNum + ".";
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), probKey + "", 
+                        workerFinNum, "Referred", "Referred Case: " + auditChange);
+
+                    UserAuditLogDAO.addUserAuditLog(userAuditLog);
+
+                //End log to audit
+                request.getSession().setAttribute("tabIndicator", "problem");
+                request.getSession().setAttribute("worker",workerFinNum);
+                request.getSession().setAttribute("selectedJob",jobKeyStr);
+                request.getSession().setAttribute("selectedProb",probKeyStr);
+                String successMsg = "";
+                String errMsg = "";
+
+                if(problem != null){
+                    successMsg = problem.getProblem() + " case of worker (" + worker.getName() + ") has been referred successfully." ;
+                    request.getSession().setAttribute("successMsg", successMsg);
+                }else{
+                    errMsg = "Sorry! Something went wrong while processing. Please try again.";
+                    request.getSession().setAttribute("errorMsg", errMsg);
+                }
+
+
+                if(isAssociate != null){
+                    response.sendRedirect("associate/caseSummary.jsp");
+                }else{
+                    response.sendRedirect("viewWorker.jsp");
+                }
+                
+            } catch (Exception e) {
+                out.println(e);
             }
 
         } finally {

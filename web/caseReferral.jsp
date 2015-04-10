@@ -87,7 +87,7 @@
                         WorkerSgPhNum sgPhone = null;
                         if(idList != null && idList.size() > 0){
                             int phId = idList.get(idList.size()-1);
-                            sgPhone = WorkerComplementsDAO.retrieveWorkerSgPhNumById(idList.size() - 1);
+                            sgPhone = WorkerComplementsDAO.retrieveWorkerSgPhNumById(phId);
                         }
                         String phNum = "-";
                         if (sgPhone != null) {
@@ -215,7 +215,7 @@
                         WorkerSgPhNum sgPhone = null;
                         if(idList != null && idList.size() > 0){
                             int phId = idList.get(idList.size()-1);
-                            sgPhone = WorkerComplementsDAO.retrieveWorkerSgPhNumById(idList.size() - 1);
+                            sgPhone = WorkerComplementsDAO.retrieveWorkerSgPhNumById(phId);
                         }
                         
                         String phNum = "-";

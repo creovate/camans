@@ -1100,3 +1100,26 @@
         </div>
     </body>
 </html>
+<script>
+    //add form validation 
+    $(document).ready(function() {
+        $('#caseReferral_form') //Form Id
+            .bootstrapValidator({
+            fields: {
+                refDesc: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Description cannot be empty.'
+                        },
+                        stringLength: {
+                            max:200,
+                            message: 'Description must not exceed 200 characters.'
+                        }
+                    }
+                }
+            }
+        })
+    });
+
+
+</script>

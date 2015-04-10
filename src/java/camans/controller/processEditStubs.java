@@ -125,12 +125,14 @@ public class processEditStubs extends HttpServlet {
                         tjs, jobRemark);
                 JobDAO.updateJob(job);
                 
-                //audit log
-                String auditChange = job.toString2();
-                UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), job.getJobKey()+"", 
-                        workerFinNum, "Modified", "Job: " + auditChange);
+                //audit log                
+                User _user = (User) request.getSession().getAttribute("userLogin");
+                String auditChange = "[Employer Name: " + employerName + "] has been modified for Worker " 
+                        + workerFinNum + ".";
+                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), workerFinNum,
+                        workerFinNum, "Modified", "Employer Details: " + auditChange);
 
-                UserAuditLogDAO.addUserAuditLog(userAuditLog); 
+                UserAuditLogDAO.addUserAuditLog(userAuditLog);
                 //end of audit log
                 
             }else if(complement.equals("problem")){
@@ -160,12 +162,13 @@ public class processEditStubs extends HttpServlet {
                 
                 ProblemDAO.updateProblem(problem);
                 
-                //audit log
-                String auditChange = problem.toString2();
-                UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), problem.getProbKey()+"", 
-                        workerFinNum, "Modified", "Problem: " + auditChange);
+                //audit log                
+                String auditChange = "[Problem Type: " + problemName + "] has been modified for Worker " 
+                        + workerFinNum + ".";
+                UserAuditLog userAuditLog = new UserAuditLog(userLogin.getUsername(), workerFinNum,
+                        workerFinNum, "Modified", "Problem Details: " + auditChange);
 
-                UserAuditLogDAO.addUserAuditLog(userAuditLog); 
+                UserAuditLogDAO.addUserAuditLog(userAuditLog);
                 //end of audit log
             }
             //request.getSession().setAttribute("tabIndicator", "job");

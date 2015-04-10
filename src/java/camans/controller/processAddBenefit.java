@@ -153,11 +153,10 @@ public class processAddBenefit extends HttpServlet {
                 BenefitDAO.addBenefit(benefit);
 
                 //log to audit
-                auditChange = benefit.toString2();
-                auditChange = auditChange.replace("{", " [");
-                auditChange = auditChange.replace("}", "]");
-                UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
-                        workerFinNum, "Added", "Benefit: " + auditChange);
+                auditChange = "[Benefit Type: " + benefit.getBenefitType() + ", Given By: "
+                        + benefit.getBenefitGiver() + "] has been added for Worker " + workerFinNum + ".";
+                    UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "",
+                            workerFinNum, "Added", "New Benefit Issued: " + auditChange);
 
                 UserAuditLogDAO.addUserAuditLog(userAuditLog);
 
@@ -173,14 +172,12 @@ public class processAddBenefit extends HttpServlet {
                     BenefitDAO.updateBenefit(benefit);
 
                     //log to audit
-                    auditChange = benefit.toString2();
-                    auditChange = auditChange.replace("{", " [");
-                    auditChange = auditChange.replace("}", "]");
-                    UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "", 
-                            workerFinNum, action, auditChange + " has been " + action + 
-                            " to worker " + workerFinNum + ".");
+                    auditChange = "[Benefit Type: " + benefit.getBenefitType() + ", Given By: "
+                        + benefit.getBenefitGiver() + "] has been edited for Worker " + workerFinNum + ".";
+                    UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), problemKey + "",
+                            workerFinNum, "Modifed", "Edit Benefit: " + auditChange);
 
-                    UserAuditLogDAO.addUserAuditLog(userAuditLog);  
+                    UserAuditLogDAO.addUserAuditLog(userAuditLog);
                     //sucesss
                     success = benefit.getBenefitType() + " has been updated succesfully.";
                 }    

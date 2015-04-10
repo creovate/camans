@@ -425,8 +425,9 @@ public class processCreateNewCase extends HttpServlet {
                 //===============================================//
                 //     Audit Log
                 //===============================================//
+                
                 User _user = (User) request.getSession().getAttribute("userLogin");
-                String auditChange = "[Employer Name: " + employerName + ", Problem Type: "
+                String auditChange = "[Employer Name: " + job.getEmployerName() + ", Problem Type: "
                         + problemName + "] has been added for Worker " + finNum + ".";
                 UserAuditLog userAuditLog = new UserAuditLog(_user.getUsername(), finNum,
                         finNum, "Added", "New Case: " + auditChange);

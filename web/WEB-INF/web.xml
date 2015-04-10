@@ -147,6 +147,10 @@
         <servlet-name>processBenefitRetrieve</servlet-name>
         <url-pattern>/retrieveBenefit.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>processLogin</servlet-name>
+        <url-pattern>/authenticate.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

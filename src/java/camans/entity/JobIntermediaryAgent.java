@@ -418,16 +418,16 @@ public class JobIntermediaryAgent {
      * @return jobIntermediaryAgent details without id
      */
     public String toString2() {
-        return "JobIntermediaryAgent{" + "WorkerFinNum=" + workerFinNum +
-                ", agentCompany=" + agentCompany + ", agentPersonName=" + agentPersonName + 
+        return "JobIntermediaryAgent [agentCompany=" + agentCompany + ", agentPersonName=" + agentPersonName + 
                 ", agentLocation=" + agentLocation + ", agentlocationMore=" + agentlocationMore + 
                 ", agentAddress=" + agentAddress + ", agentContact=" + agentContact + 
                 ", agentAmtPaid=" + agentAmtPaid + ", agentAmtOwed=" + agentAmtOwed + 
                 ", agentFeeShared=" + agentFeeShared + ", agentFeeTraining=" + agentFeeTraining + 
                 ", agentFeeAirfare=" + agentFeeAirfare + ", agentFeeWhere=" + agentFeeWhere + 
                 ", agentFeeWhen=" + agentFeeWhen + ", agentFeeRepay=" + agentFeeRepay + 
-                ", agentEmployer=" + agentEmployer + ", agentRemarks=" + agentRemarks + '}';
+                ", agentEmployer=" + agentEmployer + ", agentRemarks=" + agentRemarks + ']';
     }    
+    
     
     
     

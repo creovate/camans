@@ -177,6 +177,14 @@ public class ProblemLeadCaseWorker {
      * @return details of lead case worker without id
      */
     public String toString2() {
+        if (leadEnd == null && leadStart == null) {
+            return "Lead Case-worker [leadCaseWorker=" + leadCaseWorker + "]";
+        } else if (leadStart == null) {
+            return "Lead Case-worker [leadCaseWorker=" + leadCaseWorker + ", leadEnd=" + leadEnd + ']';
+        } else if (leadEnd == null) {
+            return "Lead Case-worker [leadCaseWorker=" + leadCaseWorker + ", leadStart=" + leadStart + 
+                    ']';
+        }
         return "Lead Case-worker [leadCaseWorker=" + leadCaseWorker + ", leadStart=" + leadStart + 
                 ", leadEnd=" + leadEnd + ']';
     }

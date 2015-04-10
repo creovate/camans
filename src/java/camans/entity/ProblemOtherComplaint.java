@@ -317,15 +317,14 @@ public class ProblemOtherComplaint {
     }
 
     public String toString2() {
-        return "ProblemOtherComplaint{" + "WorkerFinNumber=" + workerFinNumber + 
-                ", otherComplaintDate=" + otherComplaintDate + 
+        return "Other Complaint [otherComplaintDate=" + otherComplaintDate + 
                 ", otherComplaintAgency=" + otherComplaintAgency + 
                 ", otherComplaintWho=" + otherComplaintWho + 
                 ", otherComplaintWhoMore=" + otherComplaintWhoMore + 
                 ", otherComplaintMode=" + otherComplaintMode + 
                 ", otherComplaintModeMore=" + otherComplaintModeMore + 
                 ", otherComplaintDetails=" + otherComplaintDetails + 
-                ", otherComplaintRemark=" + otherComplaintRemark + '}';
+                ", otherComplaintRemark=" + otherComplaintRemark + ']';
     }    
     
 }

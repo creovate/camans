@@ -253,12 +253,12 @@ public class Job {
      * @return string of job details without job key
      */
     public String toString2() {
-        return "Job{" + "workerFinNum=" + workerFinNum + 
+        return "Job[" + "workerFinNum=" + workerFinNum + 
                 ", employerName=" + employerName + ", workPassType=" + workPassType + 
                 ", workPassMore=" + workPassMore + ", jobSector=" + jobSector + 
                 ", jobSectorMore=" + jobSectorMore + ", occupation=" + occupation + 
                 ", jobStartDate=" + jobStartDate + ", jobEndDate=" + jobEndDate + 
-                ", jobTJS=" + jobTJS + ", jobRemark=" + jobRemark + '}';
+                ", jobTJS=" + jobTJS + ", jobRemark=" + jobRemark + ']';
     }
     
     

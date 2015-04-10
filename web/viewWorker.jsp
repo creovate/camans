@@ -1588,8 +1588,10 @@
 
                                                     </select>
                                                 </div>
-                                                <button type='submit' onclick="" class="btn btn-blue  col-md-1">Submit</button>
-                                                <button type='button' data-title="Add New Job" data-action="add" data-value="job" class="btn btn-blue profile_details  pull-right">Add New Job</button>
+                                                 <div class="form-group col-sm-15 text-right">
+                                                    <button type='submit' onclick="" class="btn btn-blue  col-md-1">Submit</button>
+                                                    <button type='button' data-title="Add New Job" data-action="add" data-value="job" class="btn btn-blue profile_details  pull-right">Add New Job</button>
+                                                 </div>
                                             </div>
                                         </form>
                                         <!--need to change the vlaue of job id when the user change the dropdown value-->
@@ -2490,7 +2492,6 @@
                                 <!----Problem Complement Tab-->             
                                 <div class="tab-pane " id="problem_complement" >
                                     <br/>
-                                    <br/>
                                     <!-- Problem Complement Success & Error Display -->
 
                                     <% if (successProbMsg != null) {
@@ -2517,9 +2518,9 @@
 
                                     <div class="row">
                                         <form method="POST" action='changeToSelected'>
-                                            <div class="form-group">
+                                            <div class="form-group col-md-12">
                                                 <label for="probSelected" class="col-md-1 control-label">Select Problem:</label>
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <input type="hidden" name="workerFin" value="<%=workerFin%>"/>
                                                     <input type="hidden" name="selectedType" value="problem"/>
                                                     <input type="hidden" name="jobKey" value="<%=latestJob.getJobKey()%>"/>
@@ -2546,16 +2547,15 @@
 
                                                     </select>
                                                 </div>
-
-                                                <button type='submit' onclick="" class="btn btn-blue changebtn">Submit</button>
-                                                <button type='button' onclick="referCase();" data-title="Case Referral" class="btn btn-blue col-md-offset-1 changebtn" id="refer_case_btn">Refer Case</button>                                            
-                                                <button type='button' data-title="Add New Problem" data-action="add" data-value="problem" class="btn btn-blue profile_details  pull-right">Add New Problem</button>
-
-                                            </div>
+                                                <div class="form-group col-sm-15 text-right">
+                                                    <button type='submit' onclick="" class="btn btn-blue changebtn">Submit</button>
+                                                    <button type='button' onclick="referCase();" data-title="Case Referral" class="btn btn-blue changebtn" id="refer_case_btn">Refer Case</button>                                           
+                                                    <button type='button' data-title="Add New Problem" data-action="add" data-value="problem" class="btn btn-blue profile_details">Add New Problem</button>
+                                                </div>
+                                           </div>            
                                         </form>
                                         <!--need to change the vlaue of job id when the user change the dropdown value-->
                                     </div>
-                                    <br/>
                                     <div class='row'>
                                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                             <div class="panel panel-default">
@@ -5351,6 +5351,7 @@
                                                     <label>File Upload</label><br/>
                                                     Select file to upload: <input type="file" name="fileInput" multiple="multiple"/><br/> 
                                                     <button type="submit">Upload file</button><br/><br/>
+                                                    <small class=help-block"></small>
                                                 </form>
                                             </div>
                                         </div>
@@ -5364,11 +5365,11 @@
                                         <table class="table table-striped table-hover" id="worker_attachment">
                                             <thead bgcolor="#4c98b8">
                                                 <tr>
-                                                    <th class='tbl-20-col'><font color="#FFF">S/N</font></th>
+                                                    <th class='tbl-3-col'><font color="#FFF">S/N</font></th>
                                                     <th class='tbl-20-col'><font color="#FFF">Name</font></th>
                                                     <th class='tbl-20-col'><font color="#FFF">Date & Time uploaded</font></th>
                                                     <th class='tbl-20-col'><font color="#FFF">Upload By</font></th>
-                                                    <th class="tbl-20-col"><font color="#FFF">Actions</font></th>
+                                                    <th class="tbl-35-col"><font color="#FFF">Actions</font></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -5381,11 +5382,11 @@
                                                         String submitBy = workerAttachment.getSubmitBy();
                                                 %>
                                                 <tr bgcolor="">
-                                                    <td><%=i + 1%></td>
-                                                    <td><%=docName%></td>
-                                                    <td><%=sdf2.format(timeStamp)%></td>
-                                                    <td><%=submitBy%></td>
-                                                    <td class="tbl-20-col">
+                                                    <td class="tbl-3-col"><%=i + 1%></td>
+                                                    <td class="tbl-20-col"><%=docName%></td>
+                                                    <td class="tbl-20-col"><%=sdf2.format(timeStamp)%></td>
+                                                    <td class="tbl-20-col"><%=submitBy%></td>
+                                                    <td class="tbl-35-col">
                                                         <% String extension = docName.substring(docName.lastIndexOf(".") + 1);
                                                             if (extension.equalsIgnoreCase("jpeg") || extension.equalsIgnoreCase("jpg")
                                                                     || extension.equalsIgnoreCase("png") || extension.equalsIgnoreCase("bmp")) {
@@ -5611,8 +5612,8 @@
                     position: ['center', 80],
                     minWidth: $(window).width() * 0.5,
                     title: div_title,
-                    resizable: false, 
-                    close: function() {
+                    resizable: false,
+                    draggable: true, close: function() {
                         $(this).dialog('destroy');
                         $('#pop_up_content').empty();
                     }
@@ -5648,6 +5649,7 @@
                         minWidth: $(window).width() * 0.5,
                         title: div_title,
                         resizable: false,
+                        draggable: true,
                         close: function() {
                             $(this).dialog('destroy');
                             $('#pop_up_content').empty();
@@ -5662,6 +5664,7 @@
                         minWidth: $(window).width() * 0.5,
                         title: div_title,
                         resizable: false,
+                        draggable: true,
                         close: function() {
                             $(this).dialog('destroy');
                             $('#pop_up_content').empty();
@@ -5688,6 +5691,7 @@
                     minWidth: $(window).width() * 0.5,
                     title: "Case Referral",
                     resizable: false,
+                    draggable: true,
                     close: function() {
                         $(this).dialog('destroy');
                         $('#pop_up_content').empty();
@@ -5701,7 +5705,8 @@
                     autoOpen: false,
                     position: ['center', 80],
                     minWidth: $(window).width() * 0.5,
-                    resizable: false
+                    resizable: false,
+                    draggable: true
                 })
 
             });
@@ -5756,32 +5761,35 @@
 
             //file size validation
             $(document).ready(function() {
-                $('#uploadAttachForm')
-                        .bootstrapValidator({
+                $('#uploadAttachForm').bootstrapValidator({
                     live: 'enabled',
+                    icon: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
                     fields: {
                         fileInput: {
                             validators: {
                                 file: {
-                                    extension: 'doc,docx,pdf,xls,csv,ppt,ppts,gif,jpeg,jpg,png,bmp,css,html,htm,shtml,txt,xml,csv',
-                                    type: 'application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.ms-excel,application/vnd.ms-powerpoint,image/gif,image/jpeg,image/png,image/bmp,text/css,text/html,text/plain,text/xml,text/csv',
+                                    extension: 'doc,docx,pdf,xls,xlsx,csv,ppt,ppts,gif,jpeg,jpg,png,bmp,css,html,htm,shtml,txt,xml',
+                                    type: 'application/*,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/pdf,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.ms-excel,application/vnd.ms-powerpoint,image/gif,image/jpeg,image/png,image/bmp,text/css,text/html,text/plain,text/xml,text/csv',
                                     maxSize: 10 * 1024 * 1024,
-                                    message: 'Please choose a valid file with a size less than 10M only.'
+                                    message: 'Please choose a valid file with a size less than 10M only. The valid file types are doc, docx, pdf, xls, xlsx, csv, ppt, ppts, gif, jpeg, jpg, bmp, css, html, htm, shtml. txt, xml.  '
                                 }
                             }
                         }
                     }
                 });
             })
-                    .on('success.form.fv', function(e) {
+            .on('success.form.fv', function(e) {
                 e.preventDefault();
                 $('#uploadAttachForm').data('formValidation').disableSubmitButtons(true);
             });
 
             //reset password form validation check - added by soemyatmyat 
             $(document).ready(function() {
-                $('#editAttachForm')
-                        .bootstrapValidator({
+                $('#editAttachForm').bootstrapValidator({
                     feedbackIcons: {
                         valid: 'glyphicon glyphicon-ok',
                         invalid: 'glyphicon glyphicon-remove',

@@ -22,6 +22,11 @@ import java.util.logging.Logger;
  */
 public class UserAuditLogDAO {
  
+    /**
+     * retrieve the logs of this user
+     * @param user -- user object
+     * @return the list of logs by this user
+     */
     public static ArrayList<Integer> retrieveUserAuditLogIdsOfUser(User user) {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -50,6 +55,10 @@ public class UserAuditLogDAO {
         return ids;
     }
 
+    /**
+     * retrieve the last 7 days logs
+     * @return the last 7 days logs
+     */
     public static ArrayList<Integer> retrievelast7daysUserAuditLogIds() {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
@@ -77,6 +86,12 @@ public class UserAuditLogDAO {
         return ids;
     }
 
+    /**
+     * retrieve the problem count given nationality and year
+     * @param nationality --
+     * @param year -- year 
+     * @return the total number of problems for given nationality and year
+     */
     public static ArrayList<Integer> retrieveUserAduitLogIdsBySearch(java.util.Date startDate, 
             java.util.Date endDate) {
     ArrayList<Integer> ids = new ArrayList<Integer>();
@@ -106,6 +121,11 @@ public class UserAuditLogDAO {
         return ids;    
     }
     
+    /**
+     * retrieve the log given its id
+     * @param id --
+     * @return the log object given its id
+     */
     public static UserAuditLog retrieveUserAduitLogById(int id) {
         UserAuditLog userAuditLog = null;
 
@@ -138,6 +158,10 @@ public class UserAuditLogDAO {
         return userAuditLog;
     }
 
+    /**
+     * add log
+     * @param userAuditLog
+     */
     public static void addUserAuditLog(UserAuditLog userAuditLog) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -163,6 +187,11 @@ public class UserAuditLogDAO {
         }
     }
 
+    /**
+     * retrieve the timestamp of this log
+     * @param userAuditLog 
+     * @return the timestamp of this log
+     */
     public static Timestamp retrieveTimeStamp(UserAuditLog userAuditLog) {
         Timestamp timeStamp = null;
         Connection conn = null;
@@ -191,6 +220,9 @@ public class UserAuditLogDAO {
         return timeStamp;
     }
     
+    /**
+     * delete all the logs
+     */
     public static void deleteAll(){
         Connection conn = null;
         PreparedStatement pstmt = null;

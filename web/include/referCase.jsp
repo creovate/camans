@@ -43,7 +43,7 @@
         JobEmployer empObj = JobComplementsDAO.retrieveJobEmployerById(empIdList.size() - 1);
         empName = empObj.getEmployerOfficialName();
     }
-
+    
     /**
      * Get Problem type *
      */
@@ -80,24 +80,6 @@
         });
 
     });
-    
-    //worker form validation 
-    $(document).ready(function() {
-        $('#caseReferral_form')
-                .bootstrapValidator({
-            fields: {
-                refDesc: {
-                    validators: {
-                        stringLength: {
-                            max: 200,
-                            message: 'This value must be less than 200 characters.'
-                        }
-                    }
-                }
-            }
-        });
-
-    });
 </script>
 <form method="POST" action="referCase.do"  id='caseReferral_form' class="form" >
     <table class="table table-condensed pull-left">
@@ -127,9 +109,9 @@
     </div>
     <div class='form-group'>
         <tr>
-            <td class="tbl_lbl"><label for='empName' id="empName_lbl" class="control-label">Employer Name</label></td><td><%=empName%></td>
+            <td class="tbl_lbl"><label for='empName' id="empName_lbl" class="control-label">Employer Name</label></td><td><%=job.getEmployerName()%></td>
         </tr>
-        <input class="form-control no_change" type='hidden' name="empName" value="<%=empName%>">
+        <input class="form-control no_change" type='hidden' name="empName" value="<%=job.getEmployerName()%>">
     </div>
     <div class='form-group'>
         <tr>
@@ -154,3 +136,27 @@
 
     </div>
 </form>
+    
+<script>
+    //add form validation 
+    $(document).ready(function() {
+        $('#caseReferral_form') //Form Id
+            .bootstrapValidator({
+            fields: {
+                refDesc: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Description cannot be empty.'
+                        },
+                        stringLength: {
+                            max:200,
+                            message: 'Description must not exceed 200 characters.'
+                        }
+                    }
+                }
+            }
+        })
+    });
+
+
+</script>

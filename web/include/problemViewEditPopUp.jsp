@@ -2875,7 +2875,7 @@
 
             <select class="form-control" id="discussionWhere" name="discussionWorkerPresent">
                 <%
-                    if (workerPresent == "Yes") {
+                    if (workerPresent.equals("Yes")) {
                 %>
                 <option selected>Yes</option>
                 <option>No</option>
@@ -4190,7 +4190,7 @@
                 <input class="form-control col-md-9 startDate startdateToRemove" type='text' name="startDate" style="width: 90%;" value="<%=(startDate == null) ? "" : sdf.format(startDate)%>"/>
             <div class="input-group-addon col-md-1 removeBtn" title="Remove date" data-field="start" style="width:10%;">
                 <span class="glyphicon glyphicon-remove"></span>
-            </div>
+            </div><br/>
             </div>
             <div class='form-group'>
                 <label for='endDate' class="control-label">End date</label>
